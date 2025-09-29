@@ -18,6 +18,8 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+
 {% connectorDetailsHeader
 name="Glue"
 stage="PROD"
@@ -78,7 +80,7 @@ This is a sample config for Glue:
 
 #### Source Configuration - Service Connection
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config-def.mdx" /%}
+<AwsConfigDef />
 
 {% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
 
@@ -99,7 +101,6 @@ source:
       type: GluePipeline
       awsConfig:
 ```
-{% partial file="/v1.9/connectors/yaml/common/aws-config.mdx" /%}
 
 {% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
 

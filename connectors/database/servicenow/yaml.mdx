@@ -15,6 +15,7 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
 {% connectorDetailsHeader
 name="ServiceNow"
 stage="BETA"
@@ -88,7 +89,7 @@ This is a sample config for ServiceNow:
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 

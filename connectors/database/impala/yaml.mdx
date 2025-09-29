@@ -18,6 +18,9 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
 {% connectorDetailsHeader
 name="Impala"
 stage="PROD"
@@ -108,7 +111,7 @@ This is a sample config for Hive:
 
 {% codeInfo srNumber=8 %}
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -166,7 +169,7 @@ source:
       #   key: value
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -184,7 +187,7 @@ source:
 
 {% partial file="/v1.9/connectors/yaml/auto-classification.mdx" variables={connector: "impala"} /%}
 
-{% partial file="/v1.9/connectors/yaml/data-quality.mdx" /%}
+<DataQuality />
 
 ## Securing Impala Connection with SSL in OpenMetadata
 

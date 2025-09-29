@@ -18,6 +18,10 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+
+import AwsConfig from 'snippets/connectors/yaml/common/aws-config.mdx'
+
 {% connectorDetailsHeader
 name="Kinesis"
 stage="PROD"
@@ -95,7 +99,7 @@ This is a sample config for Kinesis:
 
 #### Source Configuration - Service Connection
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config-def.mdx" /%}
+<AwsConfigDef />
 
 {% partial file="/v1.9/connectors/yaml/messaging/source-config-def.mdx" /%}
 
@@ -118,7 +122,7 @@ source:
       awsConfig:
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config.mdx" /%}
+<AwsConfig />
 
 {% partial file="/v1.9/connectors/yaml/messaging/source-config.mdx" /%}
 

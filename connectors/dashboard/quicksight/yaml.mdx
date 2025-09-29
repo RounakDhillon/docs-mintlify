@@ -21,6 +21,8 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
+import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
@@ -125,7 +127,7 @@ This is a sample config for QuickSight:
 
 #### Source Configuration - Service Connection
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config-def.mdx" /%}
+<AwsConfigDef />
 
 {% codeInfo srNumber=2 %}
 
@@ -164,7 +166,6 @@ source:
       type: QuickSight
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config.mdx" /%}
 
 ```yaml {% srNumber=2 %}
       awsAccountId: <aws-account-id>

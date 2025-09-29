@@ -15,6 +15,12 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+
+import GcpConfig from 'snippets/connectors/yaml/common/gcp-config.mdx'
+
+import GcpConfigDef from 'snippets/connectors/yaml/common/gcp-config-def.mdx'
+
 {% connectorDetailsHeader
 name="VertexAI"
 stage="BETA"
@@ -84,7 +90,7 @@ You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config.mdx" /%}
+<GcpConfigDef />
 
 {% codeInfo srNumber=4 %}
 
@@ -113,7 +119,7 @@ source:
             gcpConfig:
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config.mdx" /%}
+<GcpConfig />
 
 ```yaml {% srNumber=4 %}
         location: PROJECT LOCATION/REGION (us-central1)
@@ -127,7 +133,7 @@ source:
         #   key: value
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

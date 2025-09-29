@@ -18,6 +18,8 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
 {% connectorDetailsHeader
 name="Unity Catalog"
 stage="PROD"
@@ -145,7 +147,7 @@ This is a sample config for Unity Catalog:
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -207,7 +209,7 @@ source:
 ```
 
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

@@ -16,6 +16,8 @@ import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\
 
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
+import Related from 'snippets/connectors/database/related.mdx'
+
 {% connectorDetailsHeader
 name="Oracle"
 stage="PROD"
@@ -143,4 +145,4 @@ there is no routine out of the box in Oracle to grant SELECT to a full schema.
 {% partial file="/v1.9/connectors/database/oracle/reverse-metadata.mdx" /%}
 {% /collateContent %}
 
-{% partial file="/v1.9/connectors/database/related.mdx" /%}
+<Related />

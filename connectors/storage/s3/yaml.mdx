@@ -18,6 +18,16 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+
+import AwsConfig from 'snippets/connectors/yaml/common/aws-config.mdx'
+
+import StorageSourceConfigDef from 'snippets/connectors/yaml/storage/source-config-def.mdx'
+
+import StorageSourceConfig from 'snippets/connectors/yaml/storage/source-config.mdx'
+
+import Manifest from 'snippets/connectors/storage/manifest.mdx'
+
 {% connectorDetailsHeader
 name="S3 Storage"
 stage="PROD"
@@ -118,7 +128,7 @@ file at the bucket root.
 
 You can learn more about this [here](/connectors/storage). Keep reading for an example on the shape of the manifest file.
 
-{% partial file="/v1.9/connectors/storage/manifest.mdx" /%}
+<Manifest />
 
 ## Metadata Ingestion
 
@@ -143,9 +153,9 @@ This is a sample config for Athena:
 
 #### Source Configuration - Service Connection
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config-def.mdx" /%}
+<AwsConfigDef />
 
-{% partial file="/v1.9/connectors/yaml/storage/source-config-def.mdx" /%}
+<StorageSourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -185,7 +195,7 @@ source:
       awsConfig:  # REQUIRED - AWS authentication configuration
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config.mdx" /%}
+<AwsConfig />
 
 ```yaml {% srNumber=13 %}
       bucketNames: 
@@ -201,7 +211,7 @@ source:
         # key: value
 ```
 
-{% partial file="/v1.9/connectors/yaml/storage/source-config.mdx" /%}
+<StorageSourceConfig />
 
 <IngestionSink />
 

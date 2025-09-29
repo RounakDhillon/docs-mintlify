@@ -10,6 +10,10 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
 
+import Manifest from 'snippets/connectors/storage/manifest.mdx'
+
+import ConfigureIngestion from 'snippets/connectors/storage/configure-ingestion.mdx'
+
 {% connectorDetailsHeader
 name="S3 Storage"
 stage="PROD"
@@ -97,7 +101,7 @@ file at the bucket root.
 
 You can learn more about this [here](/connectors/storage). Keep reading for an example on the shape of the manifest file.
 
-{% partial file="/v1.9/connectors/storage/manifest.mdx" /%}
+<Manifest />
 
 ## Metadata Ingestion
 
@@ -289,7 +293,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/storage/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

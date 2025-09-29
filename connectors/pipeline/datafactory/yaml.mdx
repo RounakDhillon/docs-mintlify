@@ -19,6 +19,8 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import AzureConfig from 'snippets/connectors/yaml/common/azure-config.mdx'
+
 {% connectorDetailsHeader
 name="Azure Data Factory"
 stage="PROD"
@@ -134,7 +136,7 @@ source:
       configSource: 
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/azure-config.mdx" /%}
+<AzureConfig />
 
 ```yaml {% srNumber=5 %}
       subscription_id: subscription_id

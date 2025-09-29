@@ -14,6 +14,8 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+
 {% connectorDetailsHeader
 name="Exasol"
 stage="PROD"
@@ -119,7 +121,7 @@ source:
       #   key: value
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

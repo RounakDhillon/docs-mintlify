@@ -16,6 +16,8 @@ import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\
 
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
+import Related from 'snippets/connectors/database/related.mdx'
+
 {% connectorDetailsHeader
 name="PostgreSQL"
 stage="PROD"
@@ -265,4 +267,4 @@ For IAM authentication, it is recommended to choose the `allow` mode or another 
 {% partial file="/v1.9/connectors/database/postgres/reverse-metadata.mdx" /%}
 {% /collateContent %}
 
-{% partial file="/v1.9/connectors/database/related.mdx" /%}
+<Related />

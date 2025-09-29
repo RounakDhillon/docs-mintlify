@@ -18,6 +18,9 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
 import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
 
 {% connectorDetailsHeader
@@ -109,7 +112,7 @@ This is a sample config for Cockroach:
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -191,7 +194,7 @@ source:
       #   key: value
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -205,7 +208,7 @@ source:
 
 {% partial file="/v1.9/connectors/yaml/data-profiler.mdx" variables={connector: "cockroach"} /%}
 
-{% partial file="/v1.9/connectors/yaml/data-quality.mdx" /%}
+<DataQuality />
 
 ## Securing Cockroach Connection with SSL in OpenMetadata
 

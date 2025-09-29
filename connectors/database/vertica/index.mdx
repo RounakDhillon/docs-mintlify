@@ -16,6 +16,8 @@ import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\
 
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
+import Related from 'snippets/connectors/database/related.mdx'
+
 {% connectorDetailsHeader
 name="Vertica"
 stage="PROD"
@@ -111,4 +113,4 @@ GRANT SELECT ON ALL TABLES IN SCHEMA <schema> TO openmetadata;
 
 {% /stepsContainer %}
 
-{% partial file="/v1.9/connectors/database/related.mdx" /%}
+<Related />

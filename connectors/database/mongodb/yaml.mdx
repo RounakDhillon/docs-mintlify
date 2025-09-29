@@ -20,6 +20,9 @@ import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
 import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
 
+import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+
 {% connectorDetailsHeader
 name="MongoDB"
 stage="PROD"
@@ -103,7 +106,7 @@ Using Atlas? Follow [this guide](https://www.mongodb.com/docs/guides/atlas/conne
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -147,7 +150,7 @@ source:
       databaseName: custom_database_name
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

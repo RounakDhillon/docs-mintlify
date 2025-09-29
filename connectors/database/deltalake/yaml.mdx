@@ -18,6 +18,8 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
 {% connectorDetailsHeader
 name="Delta Lake"
 stage="PROD"
@@ -140,7 +142,7 @@ You will need to provide the driver to the ingestion image, and pass the `classp
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -202,7 +204,7 @@ source:
       #   key: value
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -230,7 +232,7 @@ source:
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -260,7 +262,7 @@ source:
         prefix: prefix
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

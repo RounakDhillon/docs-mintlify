@@ -4,6 +4,13 @@ description: Run dbt workflows externally to sync metadata from CI/CD systems or
 slug: /connectors/ingestion/workflows/dbt/run-dbt-workflow-externally
 ---
 
+import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
+import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import AwsConfig from 'snippets/connectors/yaml/common/aws-config.mdx'
+
 # Run Externally
 Learn how to configure the dbt workflow externally to ingest dbt data from your data sources.
 
@@ -47,7 +54,7 @@ In this configuration we will be fetching the dbt `manifest.json`, `catalog.json
 - **dbtConfigType**: s3
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config-def.mdx" /%}
+<AwsConfigDef />
 
 {% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix-def.mdx" /%}
 
@@ -77,7 +84,7 @@ source:
         dbtSecurityConfig:
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/aws-config.mdx" /%}
+<AwsConfig />
 
 {% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix.mdx" /%}
 

@@ -18,6 +18,11 @@ import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
 import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
 
+import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+
+import AzureConfig from 'snippets/connectors/yaml/common/azure-config.mdx'
+
 {% connectorDetailsHeader
 name="ADLS Datalake"
 stage="PROD"
@@ -75,7 +80,7 @@ The workflow is modeled around the following JSON Schema.
 
 {% partial file="/v1.9/connectors/yaml/common/azure-config-def.mdx" /%}
 
-{% partial file="/v1.9/connectors/yaml/database/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -96,13 +101,13 @@ source:
       configSource:
         securityConfig:     
 ```
-{% partial file="/v1.9/connectors/yaml/common/azure-config.mdx" /%}
+<AzureConfig />
 
 ```yaml {% srNumber=9 %}  
       prefix: prefix
 ```
 
-{% partial file="/v1.9/connectors/yaml/database/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
