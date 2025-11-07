@@ -5,6 +5,9 @@ slug: /connectors/pipeline/stitch/yaml
 collate: true
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -90,7 +93,7 @@ This is a sample config for Stitch:
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -116,7 +119,7 @@ source:
         token: "token"
 ```
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

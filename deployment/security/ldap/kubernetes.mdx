@@ -4,6 +4,8 @@ slug: /deployment/security/ldap/kubernetes
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # LDAP Authentication for Kubernetes
 
 This guide outlines how to configure LDAP authentication for Kubernetes deployments of OpenMetadata. It includes details on required configurations, optional settings, and best practices to ensure secure and efficient authentication.
@@ -143,4 +145,4 @@ openmetadata:
    ...
  ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

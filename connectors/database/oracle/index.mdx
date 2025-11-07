@@ -4,6 +4,8 @@ description: Connect Oracle OpenMetadata to OpenMetadata effortlessly. Complete 
 slug: /connectors/database/oracle
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/oracle/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -142,7 +144,7 @@ there is no routine out of the box in Oracle to grant SELECT to a full schema.
 {% /stepsContainer %}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/oracle/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

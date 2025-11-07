@@ -4,6 +4,8 @@ description: Learn how to connect ClickHouse databases to OpenMetadata with our 
 slug: /connectors/database/clickhouse
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/clickhouse/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -104,7 +106,7 @@ For the usage and lineage workflow, the user will need `SELECT` privilege. You c
 {% /stepsContainer %}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/clickhouse/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

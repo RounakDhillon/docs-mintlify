@@ -5,6 +5,8 @@ slug: /deployment/security/azure/implicit-flow
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Implicit Flow
 
 ### Step 1: App Registrations
@@ -28,7 +30,7 @@ collate: false
 "authority": "https://login.microsoftonline.com/c11234b7c-b1b2-9854-0mn1-56abh3dea295"
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 
 After the applying these steps, Now you can update the configuration of your deployment:

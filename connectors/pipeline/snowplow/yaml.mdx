@@ -4,6 +4,8 @@ Description: Run the Snowplow connector externally with YAML to ingest pipelines
 slug: /connectors/pipeline/snowplow/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+
 # Run the Snowplow Connector Externally
 
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -114,7 +116,7 @@ To send the metadata of only selected pipelines, enter the regex pattern for pip
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 

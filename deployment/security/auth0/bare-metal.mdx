@@ -5,6 +5,8 @@ slug: /deployment/security/auth0/bare-metal
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Auth0 SSO for Bare Metal
 
 ## Update conf/openmetadata.yaml
@@ -68,7 +70,7 @@ authenticationConfiguration:
 ```
 {% /codeWithLanguageSelector %}
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 {% inlineCalloutContainer %}
   {% inlineCallout

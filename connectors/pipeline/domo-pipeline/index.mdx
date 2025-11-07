@@ -4,6 +4,8 @@ description: Ingest metadata from Domo pipelines to capture ETL flows and integr
 slug: /connectors/pipeline/domo-pipeline
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -54,7 +56,7 @@ For questions related to scopes, click [here](https://developer.domo.com/portal/
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

@@ -5,6 +5,8 @@ slug: /connectors/metadata/alation
 collate: true
 ---
 
+import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
+
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -156,7 +158,7 @@ To perform incremental ingestion, these arguments should be used together. For i
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/metadata/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

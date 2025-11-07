@@ -5,6 +5,8 @@ slug: /deployment/security/auth0/kubernetes
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Auth0 SSO for Kubernetes
 
 Check the Helm information [here](https://artifacthub.io/packages/search?repo=open-metadata).
@@ -77,7 +79,7 @@ openmetadata:
 
 {% /codeWithLanguageSelector %}
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 {% inlineCalloutContainer %}
   {% inlineCallout

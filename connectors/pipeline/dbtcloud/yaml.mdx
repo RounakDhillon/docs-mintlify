@@ -4,6 +4,9 @@ description: Learn how to Configure OpenMetadata'sdbt Cloud connector using YAML
 slug: /connectors/pipeline/dbtcloud/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -105,7 +108,7 @@ Make sure you have the necessary permissions on the token to run graphql queries
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -143,7 +146,7 @@ source:
       token: auth_token
 ```
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

@@ -4,6 +4,9 @@ description: Configure deployment with Azure Kubernetes Service (AKS) using Open
 slug: /deployment/kubernetes/aks
 collate: false
 ---
+
+import Faqs from '/snippets/deployment/faqs.mdx'
+
 # Openmetadata Deployment on Azure Kubernetes Service Cluster
 Openmetadata can be deployed on Azure Kubernetes Service. It however requires certain cloud specific configurations with regards to setting up storage accounts for Airflow which is one of its dependencies.
 
@@ -336,4 +339,4 @@ discussions [here](https://github.com/Azure/azure-storage-fuse/issues/1171) and 
 
 # FAQs
 
-{% partial file="/v1.9/deployment/faqs.mdx" /%}
+<Faqs />

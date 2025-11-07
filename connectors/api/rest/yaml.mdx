@@ -4,6 +4,8 @@ description: Learn how to configure OpenMetadata REST API connectors using YAML.
 slug: /connectors/api/rest/yaml
 ---
 
+import SourceConfig from '/snippets/connectors/yaml/api/source-config.mdx'
+
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
@@ -82,7 +84,7 @@ source:
 ```
 
 
-{% partial file="/v1.9/connectors/yaml/api/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

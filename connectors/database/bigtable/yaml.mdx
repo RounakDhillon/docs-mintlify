@@ -4,6 +4,9 @@ description: Learn how to Configure OpenMetadata'sBigtable database connector us
 slug: /connectors/database/bigtable/yaml
 ---
 
+import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
+import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
+
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
@@ -98,7 +101,7 @@ You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config-def.mdx" /%}
+<GcpConfigDef />
 
 #### Advanced Configuration
 
@@ -133,7 +136,7 @@ source:
         gcpConfig:
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config.mdx" /%}
+<GcpConfig />
 
 ```yaml {% srNumber=2 %}
       # connectionOptions:

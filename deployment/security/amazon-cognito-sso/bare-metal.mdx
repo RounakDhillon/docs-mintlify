@@ -5,6 +5,8 @@ slug: /deployment/security/amazon-cognito/bare-metal
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Amazon Cognito SSO for Bare Metal
 
 ## Update conf/openmetadata.yaml
@@ -39,4 +41,4 @@ authorizerConfiguration:
   principalDomain: "open-metadata.org"
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

@@ -4,6 +4,9 @@ description: Configure SageMaker ingestion with YAML to extract model metadata, 
 slug: /connectors/ml-model/sagemaker/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/ml-model/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -97,7 +100,7 @@ This is a sample config for Sagemaker:
 
 <AwsConfigDef />
 
-{% partial file="/v1.9/connectors/yaml/ml-model/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -120,7 +123,7 @@ source:
 
 <AwsConfig />
 
-{% partial file="/v1.9/connectors/yaml/ml-model/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

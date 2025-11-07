@@ -4,6 +4,8 @@ description: Configure Kafka Connect for metadata ingestion from real-time event
 slug: /connectors/pipeline/kafkaconnect
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -68,7 +70,7 @@ The ingestion framework uses [kafkaconnect python client](https://libraries.io/p
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

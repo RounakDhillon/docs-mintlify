@@ -5,6 +5,8 @@ slug: /deployment/security/auth0/docker
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Auth0 SSO for Docker
 
 To enable security for the Docker deployment, follow the next steps:
@@ -63,7 +65,7 @@ OIDC_CALLBACK: ${OIDC_CALLBACK:-"http://localhost:8585/callback"}
 docker compose --env-file ~/openmetadata_auth0.env up -d
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 
 {% inlineCalloutContainer %}

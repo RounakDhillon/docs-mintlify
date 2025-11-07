@@ -4,6 +4,8 @@ description: Connect Amazon Kinesis to OpenMetadata with our comprehensive conne
 slug: /connectors/messaging/kinesis
 ---
 
+import ConfigureIngestion from '/snippets/connectors/messaging/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -138,7 +140,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/messaging/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

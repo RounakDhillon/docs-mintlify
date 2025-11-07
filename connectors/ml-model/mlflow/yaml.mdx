@@ -4,6 +4,9 @@ description: Use YAML to configure MLflow ingestion and sync model runs, metrics
 slug: /connectors/ml-model/mlflow/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/ml-model/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -83,7 +86,7 @@ This is a sample config for MLflow:
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/ml-model/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -109,7 +112,7 @@ source:
       registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
 ```
 
-{% partial file="/v1.9/connectors/yaml/ml-model/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

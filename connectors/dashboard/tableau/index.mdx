@@ -4,6 +4,8 @@ description: Connect Tableau dashboards to OpenMetadata with our comprehensive c
 slug: /connectors/dashboard/tableau
 ---
 
+import ReverseMetadata from '/snippets/connectors/dashboard/tableau/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -172,5 +174,5 @@ To establish secure connections between OpenMetadata and Tableau, navigate to th
 <DashboardLineage />
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/dashboard/tableau/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}

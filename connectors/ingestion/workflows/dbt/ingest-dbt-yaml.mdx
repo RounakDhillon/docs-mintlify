@@ -4,6 +4,11 @@ description: Run dbt workflows externally to sync metadata from CI/CD systems or
 slug: /connectors/ingestion/workflows/dbt/run-dbt-workflow-externally
 ---
 
+import DbtPrefixDef from '/snippets/connectors/yaml/dbt/dbt-prefix-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dbt/source-config-def.mdx'
+import DbtPrefix from '/snippets/connectors/yaml/dbt/dbt-prefix.mdx'
+import SourceConfig from '/snippets/connectors/yaml/dbt/source-config.mdx'
+
 import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -56,9 +61,9 @@ In this configuration we will be fetching the dbt `manifest.json`, `catalog.json
 
 <AwsConfigDef />
 
-{% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix-def.mdx" /%}
+<DbtPrefixDef />
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -86,9 +91,9 @@ source:
 
 <AwsConfig />
 
-{% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix.mdx" /%}
+<DbtPrefix />
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -168,9 +173,9 @@ source:
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix-def.mdx" /%}
+<DbtPrefixDef />
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -210,9 +215,9 @@ source:
             clientX509CertUrl: https://cert.url (URI)
 ```
 
-{% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix.mdx" /%}
+<DbtPrefix />
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -276,9 +281,9 @@ Here are the step-by-step instructions for finding the account name for an Azure
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix-def.mdx" /%}
+<DbtPrefixDef />
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -314,9 +319,9 @@ source:
           accountName: accountName
 ```
 
-{% partial file="/v1.9/connectors/yaml/dbt/dbt-prefix.mdx" /%}
+<DbtPrefix />
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -352,7 +357,7 @@ In this configuration, we will be fetching the dbt `manifest.json`, `catalog.jso
 - **dbtRunResultsFilePath**: run_results.json file path to extract dbt models tests and test results metadata. Tests from dbt will only be ingested if this file is present.
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -384,7 +389,7 @@ source:
         dbtRunResultsFilePath: path/to/run_results.json
 ```
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -419,7 +424,7 @@ In this configuration we will be fetching the dbt `manifest.json`, `catalog.json
 - **dbtRunResultsHttpPath**: run_results.json http path to extract dbt models tests and test results metadata. Tests from dbt will only be ingested if this file is present.
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -451,7 +456,7 @@ source:
         dbtRunResultsHttpPath: http://path-to-run_results.json
 ```
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
@@ -519,7 +524,7 @@ The value entered should be a `numeric` value.
 - **dbtCloudUrl**: URL to connect to your dbt cloud instance. E.g., `https://cloud.getdbt.com` or `https://emea.dbt.com/`.
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -557,7 +562,7 @@ source:
         dbtCloudUrl: https://cloud.getdbt.com
 ```
 
-{% partial file="/v1.9/connectors/yaml/dbt/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

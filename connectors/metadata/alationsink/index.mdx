@@ -4,6 +4,8 @@ description: Connect Alation to OpenMetadata seamlessly with our AlationSink con
 slug: /connectors/metadata/alationsink
 ---
 
+import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
+
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -99,7 +101,7 @@ datasourceLinks: {
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/metadata/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

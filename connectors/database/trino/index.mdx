@@ -4,6 +4,8 @@ description: Configure OpenMetadata'sTrino database connector to seamlessly inte
 slug: /connectors/database/trino
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/trino/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -127,7 +129,7 @@ Find more details in [the Python requests library documentation](https://request
 {% /stepsContainer %}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/trino/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />
