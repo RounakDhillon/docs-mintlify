@@ -4,6 +4,8 @@ description: Configure ADLS Data Lake connections in OpenMetadata with YAML. Ste
 slug: /connectors/database/adls-datalake/yaml
 ---
 
+import AzureConfigDef from '/snippets/connectors/yaml/common/azure-config-def.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -78,7 +80,7 @@ The workflow is modeled around the following JSON Schema.
 
 #### Source Configuration - Service Connection
 
-{% partial file="/v1.9/connectors/yaml/common/azure-config-def.mdx" /%}
+<AzureConfigDef />
 
 <SourceConfigDef />
 

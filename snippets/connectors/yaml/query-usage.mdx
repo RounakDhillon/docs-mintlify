@@ -1,3 +1,6 @@
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.md'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.md'
+
 ## Query Usage
 
 The Query Usage workflow will be using the `query-parser` processor.
@@ -53,7 +56,7 @@ Note that the location is a directory that will be cleaned at the end of the ing
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/workflow-config-def.md" /%}
+<WorkflowConfigDef />
 
 {% /codeInfoContainer %}
 
@@ -100,7 +103,7 @@ bulkSink:
     filename: /tmp/athena_usage
 ```
 
-{% partial file="/v1.9/connectors/yaml/workflow-config.md" /%}
+<WorkflowConfig />
 
 {% /codeBlock %}
 {% /codePreview %}

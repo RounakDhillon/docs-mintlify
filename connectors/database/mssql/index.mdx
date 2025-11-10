@@ -4,6 +4,8 @@ description: Connect your Microsoft SQL Server to OpenMetadata with our comprehe
 slug: /connectors/database/mssql
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/mssql/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -132,7 +134,7 @@ For details step please refer to this [link](https://docs.microsoft.com/en-us/sq
 {% /stepsContainer %}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/mssql/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

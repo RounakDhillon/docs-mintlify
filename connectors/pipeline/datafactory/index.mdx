@@ -5,6 +5,8 @@ slug: /connectors/pipeline/datafactory
 collate: true
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -109,7 +111,7 @@ Ensure that the service principal or managed identity you’re using has the nec
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

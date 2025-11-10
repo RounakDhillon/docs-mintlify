@@ -4,6 +4,9 @@ description: Use YAML to configure Redpanda metadata ingestion and track streami
 slug: /connectors/messaging/redpanda/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/messaging/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/messaging/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -140,7 +143,7 @@ following [link](https://docs.confluent.io/platform/current/clients/confluent-ka
 **supportsMetadataExtraction**: Supports Metadata Extraction. `supportsMetadataExtraction` supports boolean value either true or false.
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/messaging/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -190,7 +193,7 @@ source:
 ```
 
 
-{% partial file="/v1.9/connectors/yaml/messaging/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

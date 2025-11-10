@@ -4,6 +4,8 @@ description: Connect your AWS SageMaker ML models to OpenMetadata for complete m
 slug: /connectors/ml-model/sagemaker
 ---
 
+import ConfigureIngestion from '/snippets/connectors/ml-model/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -134,7 +136,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/ml-model/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

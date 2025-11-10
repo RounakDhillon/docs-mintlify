@@ -4,6 +4,9 @@ description: Set up Kafka Connect YAML configuration to stream metadata and sche
 slug: /connectors/pipeline/kafkaconnect/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -97,7 +100,7 @@ This is a sample config for KafkaConnect:
 **messagingServiceName**: Name of the Kafka Messaging Service associated with this KafkaConnect Pipeline Service. e.g. local_kafka.
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -131,7 +134,7 @@ source:
         # messagingServiceName: ""
 ```
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

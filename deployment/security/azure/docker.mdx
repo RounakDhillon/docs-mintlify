@@ -5,6 +5,8 @@ slug: /deployment/security/azure/docker
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Azure SSO for Docker
 
 To enable security for the Docker deployment, follow the next steps:
@@ -68,7 +70,7 @@ Altering the order of claims in `jwtPrincipalClaims` may lead to problems when m
 docker compose --env-file ~/openmetadata_azure.env up -d
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 
 {% inlineCalloutContainer %}

@@ -4,6 +4,8 @@ description: Connect Dagster pipelines to OpenMetadata with our comprehensive in
 slug: /connectors/pipeline/dagster
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -66,7 +68,7 @@ The ingestion framework uses [dagster graphql python client](https://docs.dagste
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

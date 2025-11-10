@@ -4,6 +4,9 @@ description: Use YAML to set up Dagster pipeline ingestion and track transformat
 slug: /connectors/pipeline/dagster/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -90,7 +93,7 @@ This is a sample config for Dagster:
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -119,7 +122,7 @@ source:
         # timeout: 1000
 ```
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

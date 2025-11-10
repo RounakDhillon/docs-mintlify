@@ -5,6 +5,8 @@ slug: /deployment/security/azure/kubernetes
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Azure SSO for Kubernetes
 
 Check the Helm information [here](https://artifacthub.io/packages/search?repo=open-metadata).
@@ -85,7 +87,7 @@ Altering the order of claims in `jwtPrincipalClaims` may lead to problems when m
 
 {% /note %}
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 
 {% inlineCalloutContainer %}

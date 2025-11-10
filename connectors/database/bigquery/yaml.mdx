@@ -4,6 +4,10 @@ description: Configure BigQuery database connections in OpenMetadata using YAML.
 slug: /connectors/database/bigquery/yaml
 ---
 
+import PartitionedTables from '/snippets/connectors/database/partitioned-tables.mdx'
+import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
+import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -97,7 +101,7 @@ link="/connectors/database/bigquery/create-credentials"
   / %}
 {% /tilesContainer %}
 
-{% partial file="/v1.9/connectors/database/partitioned-tables.mdx" /%}
+<PartitionedTables />
 
 ## Metadata Ingestion
 
@@ -128,7 +132,7 @@ You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config-def.mdx" /%}
+<GcpConfigDef />
 
 {% codeInfo srNumber=4 %}
 
@@ -239,7 +243,7 @@ source:
         gcpConfig:
 ```
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config.mdx" /%}
+<GcpConfig />
 
 ```yaml {% srNumber=4 %}
       # taxonomyLocation: us

@@ -4,6 +4,8 @@ description: Configure metadata ingestion from Databricks pipelines for job flow
 slug: /connectors/pipeline/databricks-pipeline
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -46,7 +48,7 @@ Configure and schedule Databricks Pipeline metadata workflows from the OpenMetad
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

@@ -4,6 +4,8 @@ description: Connect OpenMetadata to OpenSearch with our comprehensive connector
 slug: /connectors/search/opensearch
 ---
 
+import ConfigureIngestion from '/snippets/connectors/search/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -152,7 +154,7 @@ Possible values:
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/search/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

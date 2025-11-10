@@ -4,6 +4,9 @@ description: Connect BigQuery to OpenMetadata seamlessly with our comprehensive 
 slug: /connectors/database/bigquery
 ---
 
+import PartitionedTables from '/snippets/connectors/database/partitioned-tables.mdx'
+import ReverseMetadata from '/snippets/connectors/database/bigquery/reverse-metadata.mdx'
+
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -64,7 +67,7 @@ link="/connectors/database/bigquery/create-credentials"
   / %}
 {% /tilesContainer %}
 
-{% partial file="/v1.9/connectors/database/partitioned-tables.mdx" /%}
+<PartitionedTables />
 
 ### Data Catalog API Permissions 
 
@@ -204,7 +207,7 @@ credentials:
 We support cross-project lineage, but the data must be ingested within a single service. This means you need to perform lineage ingestion for just one service while including multiple projects.
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/bigquery/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

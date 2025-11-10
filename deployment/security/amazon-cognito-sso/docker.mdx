@@ -5,6 +5,8 @@ slug: /deployment/security/amazon-cognito/docker
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Amazon Cognito SSO for Docker
 
 To enable security for the Docker deployment, follow the next steps:
@@ -34,4 +36,4 @@ AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback
 docker compose --env-file ~/openmetadata_cognito.env up -d
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

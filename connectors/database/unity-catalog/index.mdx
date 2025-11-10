@@ -4,6 +4,8 @@ description: Learn how to connect Unity Catalog to OpenMetadata with our compreh
 slug: /connectors/database/unity-catalog
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/unitycatalog/reverse-metadata.mdx'
+
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -122,7 +124,7 @@ Adjust <user>, <catalog_name>, <schema_name>, and <table_name> according to your
 {% /stepsContainer %}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/unitycatalog/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

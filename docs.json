@@ -21,6 +21,7 @@
         "tabs": [
             {
                 "tab": "Home",
+                "pages": ["index"]
                 "pages": [
                     "index"
                 ]
@@ -28,6 +29,327 @@
             {
                 "tab": "Getting Started",
                 "pages": [
+                    "getting-started/overview",
+                    "getting-started/introduction"
+                ]
+            },
+            {
+                "tab": "Main Concepts",
+                "pages": ["main-concepts/overview"]
+            },
+            {
+                "tab": "Quick Start",
+                "pages": ["quick-start/index", "quick-start/local-deployment"]
+            },
+            {
+                "tab": "Features",
+                "pages": [
+                    "features/discovery",
+                    "features/data-quality",
+                    "features/lineage"
+                ]
+            },
+            {
+                "tab": "Deployment",
+                "pages": ["deployment/overview", "deployment/kubernetes"]
+            },
+            {
+                "tab": "Connectors",
+                "pages": [
+                    "connectors/overview",
+                    {
+                        "group": "Database Connectors",
+                        "pages": [
+                            "connectors/database/overview",
+                            "connectors/database/mysql",
+                            "connectors/database/postgres",
+                            "connectors/database/snowflake",
+                            "connectors/database/bigquery",
+                            "connectors/database/redshift",
+                            "connectors/database/adls-datalake",
+                            "connectors/database/athena",
+                            "connectors/database/azuresql",
+                            "connectors/database/bigtable",
+                            "connectors/database/cassandra",
+                            "connectors/database/clickhouse",
+                            "connectors/database/cockroach",
+                            "connectors/database/couchbase",
+                            "connectors/database/databricks",
+                            "connectors/database/db2",
+                            "connectors/database/deltalake",
+                            "connectors/database/domo-database",
+                            "connectors/database/doris",
+                            "connectors/database/druid",
+                            "connectors/database/dynamodb",
+                            "connectors/database/exasol",
+                            "connectors/database/gcs-datalake",
+                            "connectors/database/glue",
+                            "connectors/database/greenplum",
+                            "connectors/database/hive",
+                            "connectors/database/iceberg",
+                            "connectors/database/impala",
+                            "connectors/database/mariadb",
+                            "connectors/database/mongodb",
+                            "connectors/database/mssql",
+                            "connectors/database/oracle",
+                            "connectors/database/pinotdb",
+                            "connectors/database/presto",
+                            "connectors/database/s3-datalake",
+                            "connectors/database/salesforce",
+                            "connectors/database/sap-erp",
+                            "connectors/database/sap-hana",
+                            "connectors/database/sas",
+                            "connectors/database/singlestore",
+                            "connectors/database/sqlite",
+                            "connectors/database/teradata",
+                            "connectors/database/trino",
+                            "connectors/database/unity-catalog",
+                            "connectors/database/vertica"
+                        ]
+                    },
+                    {
+                        "group": "Dashboard Connectors",
+                        "pages": [
+                            "connectors/dashboard/overview",
+                            "connectors/dashboard/domo-dashboard",
+                            "connectors/dashboard/grafana",
+                            "connectors/dashboard/lightdash",
+                            "connectors/dashboard/looker",
+                            "connectors/dashboard/metabase",
+                            "connectors/dashboard/microstrategy",
+                            "connectors/dashboard/mode",
+                            "connectors/dashboard/powerbi",
+                            "connectors/dashboard/powerbireportserver",
+                            "connectors/dashboard/qlikcloud",
+                            "connectors/dashboard/qliksense",
+                            "connectors/dashboard/quicksight",
+                            "connectors/dashboard/redash",
+                            "connectors/dashboard/sigma",
+                            "connectors/dashboard/superset",
+                            "connectors/dashboard/tableau",
+                            "connectors/dashboard/thoughtspot"
+                        ]
+                    },
+                    {
+                        "group": "API Connectors",
+                        "pages": [
+                            "connectors/api/overview",
+                            "connectors/api/rest-api"
+                        ]
+                    },
+                    {
+                        "group": "Messaging Connectors",
+                        "pages": [
+                            "connectors/messaging/overview",
+                            "connectors/messaging/kafka",
+                            "connectors/messaging/kinesis",
+                            "connectors/messaging/redpanda"
+                        ]
+                    },
+                    {
+                        "group": "Pipeline Connectors",
+                        "pages": [
+                            "connectors/pipeline/overview",
+                            "connectors/pipeline/airflow",
+                            "connectors/pipeline/datafactory",
+                            "connectors/pipeline/dagster",
+                            "connectors/pipeline/databricks-pipeline",
+                            "connectors/pipeline/dbtcloud",
+                            "connectors/pipeline/domo-pipeline",
+                            "connectors/pipeline/fivetran",
+                            "connectors/pipeline/flink",
+                            "connectors/pipeline/glue-pipeline",
+                            "connectors/pipeline/kafkaconnect",
+                            "connectors/pipeline/matillion",
+                            "connectors/pipeline/nifi",
+                            "connectors/pipeline/openlineage",
+                            "connectors/pipeline/spline",
+                            "connectors/pipeline/snowplow",
+                            "connectors/pipeline/ssis",
+                            "connectors/pipeline/stitch",
+                            "connectors/pipeline/wherescape"
+                        ]
+                    },
+                    {
+                        "group": "ML Model Connectors",
+                        "pages": [
+                            "connectors/ml-model",
+                            "connectors/ml-model/mlflow",
+                            "connectors/ml-model/sagemaker",
+                            "connectors/ml-model/vertexai"
+                        ]
+                    },
+                    {
+                        "group": "Security Connectors",
+                        "pages": [
+                            "connectors/security/overview",
+                            "connectors/security/ranger"
+                        ]
+                    },
+                    {
+                        "group": "Storage Connectors",
+                        "pages": [
+                            "connectors/storage/overview",
+                            "connectors/storage/adls",
+                            "connectors/storage/gcs",
+                            "connectors/storage/s3"
+                        ]
+                    },
+                    {
+                        "group": "Search Connectors",
+                        "pages": [
+                            "connectors/search/overview",
+                            "connectors/search/elasticsearch",
+                            "connectors/search/opensearch"
+                        ]
+                    },
+                    {
+                        "group": "Metadata Connectors",
+                        "pages": [
+                            "connectors/metadata/overview",
+                            "connectors/metadata/alation",
+                            "connectors/metadata/alationsink",
+                            "connectors/metadata/amundsen"
+                        ]
+                    },
+                    {
+                        "group": "Custom Connectors",
+                        "pages": [
+                            "connectors/custom-connectors/overview"
+                        ]
+                    },
+                    {
+                            "group": "Ingestion",
+                            "pages": [
+                            "connectors/ingestion",
+                            {
+                            "group": "Workflows",
+                            "pages": [
+                            "connectors/ingestion/workflows",
+                            {
+                            "group": "Metadata",
+                            "pages": [
+                            "connectors/ingestion/workflows/metadata",
+                            {
+                            "group": "Filter Patterns",
+                            "pages": [
+                            "connectors/ingestion/workflows/metadata/filter-patterns",
+                            "connectors/ingestion/workflows/metadata/filter-patterns/database"
+                        ]
+                    },
+                    {
+                            "group": "Incremental Extraction",
+                            "pages": [
+                            "connectors/ingestion/workflows/metadata/incremental-extraction",
+                            "connectors/ingestion/workflows/metadata/incremental-extraction/bigquery",
+                            "connectors/ingestion/workflows/metadata/incremental-extraction/redshift",
+                            "connectors/ingestion/workflows/metadata/incremental-extraction/snowflake"
+                            ]
+                            },
+                            "connectors/ingestion/workflows/metadata/multithreading"
+                        ]
+                    },
+                    {
+                            "group": "Usage",
+                            "pages": [
+                            "connectors/ingestion/workflows/usage",
+                            "connectors/ingestion/workflows/usage/usage-workflow-query-logs",
+                            "connectors/ingestion/workflows/usage/filter-query-set"
+                        ]
+                    },
+                    {
+                            "group": "Lineage",
+                            "pages": [
+                            "connectors/ingestion/workflows/lineage",
+                            "connectors/ingestion/workflows/lineage/lineage-workflow-query-logs",
+                            "connectors/ingestion/workflows/lineage/filter-query-set"
+                        ]
+                    },
+                    {
+                            "group": "dbt",
+                            "pages": [
+                            "connectors/ingestion/workflows/dbt",
+                            "connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui",
+                            "connectors/ingestion/workflows/dbt/auto-ingest-dbt-core",
+                            "connectors/ingestion/workflows/dbt/run-dbt-workflow-externally",
+                            "connectors/ingestion/workflows/dbt/ingest-dbt-owner",
+                            "connectors/ingestion/workflows/dbt/ingest-dbt-descriptions",
+                            "connectors/ingestion/workflows/dbt/ingest-dbt-tags",
+                            "connectors/ingestion/workflows/dbt/ingest-dbt-tier",
+                            "connectors/ingestion/workflows/dbt/ingest-dbt-glossary",
+                            "connectors/ingestion/workflows/dbt/ingest-dbt-lineage",
+                            "connectors/ingestion/workflows/dbt/setup-multiple-dbt-projects",
+                            "connectors/ingestion/workflows/dbt/dbt-troubleshooting"
+                    ]
+                  }
+                ]
+              },
+              {
+                            "group": "Lineage",
+                            "pages": [
+                            "connectors/ingestion/lineage",
+                            "connectors/ingestion/lineage/edit-lineage-manually",
+                            "connectors/ingestion/lineage/export-lineage",
+                            "connectors/ingestion/lineage/spark-lineage"
+                        ]
+                    },
+                    {
+                            "group": "Versioning",
+                            "pages": [
+                            "connectors/ingestion/versioning",
+                            "connectors/ingestion/versioning/change-feeds",
+                            "connectors/ingestion/versioning/change-events",
+                            "connectors/ingestion/versioning/event-notification-via-webhooks"
+                        ]
+                    },
+                            "connectors/ingestion/auto_tagging",
+                            "connectors/ingestion/great-expectations",
+                            "connectors/ingestion/deployment",
+                            "connectors/ingestion/best-practices"
+                        ]
+                    },
+                    {
+                            "group": "Troubleshooting",
+                            "pages": [
+                            "connectors/troubleshooting"
+                            ]
+                    }
+                ]
+            },
+            {
+                "tab": "Security",
+                "pages": [
+                    "security/overview",
+                    {
+                        "group": "SSO Authentication",
+                        "pages": [
+                            "security/sso/azure",
+                            "security/sso/google",
+                            "security/sso/auth0",
+                            "security/sso/okta"
+                        ]
+                    },
+                    {
+                        "tab": "API & SDKs",
+                        "pages": [
+                            "api/overview",
+                            "api/authentication",
+                            {
+                                "group": "SDKs",
+                                "pages": [
+                                    "sdk/overview",
+                                    "sdk/python/overview",
+                                    "sdk/python/api-reference",
+                                    "sdk/java/overview"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "tab": "Developers",
+                        "pages": ["developers/api"]
+                   }
+=======
                     "getting-started",
                     "getting-started/day-1",
                     "getting-started/day-1/hybrid-saas",
@@ -1126,7 +1448,7 @@
                     "sdk/java",
                     "sdk/go"
                 ]
-            }
+             }
         ]
     }
 }

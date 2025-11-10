@@ -4,6 +4,8 @@ description: Connect Amazon Athena to OpenMetadata effortlessly. Complete setup 
 slug: /connectors/database/athena
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/athena/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -249,7 +251,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 {% /stepsContainer %}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/athena/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 

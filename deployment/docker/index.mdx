@@ -5,6 +5,9 @@ slug: /deployment/docker
 collate: false
 ---
 
+import ConfigureExternalOrchestratorForIngestionService from '/snippets/deployment/configure-external-orchestrator-for-ingestion-service.mdx'
+import PostgresqlIssuePermissionDeniedExtensionPgcrypto from '/snippets/deployment/postgresql-issue-permission-denied-extension-pgcrypto.mdx'
+
 # Docker Deployment
 
 This guide will help you set up the OpenMetadata Application using Docker Deployment.
@@ -20,7 +23,7 @@ Before starting with the deployment make sure you follow all the below Prerequis
 
 For Production Deployment using Docker, we recommend bringing your own Databases and ElasticSearch Engine and not rely on quickstart packages.
 
-{% partial file="/v1.9/deployment/configure-external-orchestrator-for-ingestion-service.mdx" /%}
+<ConfigureExternalOrchestratorForIngestionService />
 
 ### Docker (version 20.10.0 or higher)
 
@@ -363,7 +366,7 @@ Restart the OpenMetadata Docker Compose Application using `docker compose --env-
 
 ### PostgreSQL Issue permission denied to create extension "pgcrypto"
 
-{% partial file="/v1.9/deployment/postgresql-issue-permission-denied-extension-pgcrypto.mdx" /%}
+<PostgresqlIssuePermissionDeniedExtensionPgcrypto />
 
 {%note%}
 

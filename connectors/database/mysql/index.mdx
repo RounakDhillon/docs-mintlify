@@ -4,6 +4,8 @@ description: Set up MySQL database connector for OpenMetadata to automatically d
 slug: /connectors/database/mysql
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/mysql/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -255,7 +257,7 @@ To establish secure connections between OpenMetadata and MySQL, navigate to the 
   caption="SSL Configuration" /%}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/mysql/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

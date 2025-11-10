@@ -4,6 +4,9 @@ description: Use YAML to configure ingestion from Kinesis streams and extract to
 slug: /connectors/messaging/kinesis/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/messaging/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/messaging/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -101,7 +104,7 @@ This is a sample config for Kinesis:
 
 <AwsConfigDef />
 
-{% partial file="/v1.9/connectors/yaml/messaging/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -124,7 +127,7 @@ source:
 
 <AwsConfig />
 
-{% partial file="/v1.9/connectors/yaml/messaging/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

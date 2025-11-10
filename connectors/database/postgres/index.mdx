@@ -4,6 +4,8 @@ description: Connect PostgreSQL to OpenMetadata with our comprehensive database 
 slug: /connectors/database/postgres
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/postgres/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -264,7 +266,7 @@ For IAM authentication, it is recommended to choose the `allow` mode or another 
   caption="SSL Configuration" /%}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/postgres/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

@@ -4,6 +4,9 @@ description: Configure Spline ingestion with YAML to capture Spark lineage metad
 slug: /connectors/pipeline/spline/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -91,7 +94,7 @@ This is a sample config for Spline:
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -115,7 +118,7 @@ source:
       uiHostPort: http://localhost:9090
 ```
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 
