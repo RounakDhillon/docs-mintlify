@@ -4,6 +4,11 @@ description: Configure BigQuery database connections in OpenMetadata using YAML.
 slug: /connectors/database/bigquery/yaml
 ---
 
+import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
+import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
+
 import PartitionedTables from '/snippets/connectors/database/partitioned-tables.mdx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
 import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
@@ -274,13 +279,13 @@ source:
 
 <IngestionCli />
 
-{% partial file="/v1.9/connectors/yaml/query-usage.mdx" variables={connector: "bigquery"} /%}
+<QueryUsage connector="bigquery" />
 
-{% partial file="/v1.9/connectors/yaml/lineage.mdx" variables={connector: "bigquery"} /%}
+<Lineage connector="bigquery" />
 
-{% partial file="/v1.9/connectors/yaml/data-profiler.mdx" variables={connector: "bigquery"} /%}
+<DataProfiler connector="bigquery" />
 
-{% partial file="/v1.9/connectors/yaml/auto-classification.mdx" variables={connector: "bigquery"} /%}
+<AutoClassification connector="bigquery" />
 
 <DataQuality />
 

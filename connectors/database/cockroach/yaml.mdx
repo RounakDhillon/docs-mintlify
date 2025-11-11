@@ -4,6 +4,8 @@ description: Use YAML to ingest metadata from CockroachDB, including schemas, ta
 slug: /connectors/database/cockroach/yaml
 ---
 
+import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -206,7 +208,7 @@ source:
 
 <IngestionCli />
 
-{% partial file="/v1.9/connectors/yaml/data-profiler.mdx" variables={connector: "cockroach"} /%}
+<DataProfiler connector="cockroach" />
 
 <DataQuality />
 

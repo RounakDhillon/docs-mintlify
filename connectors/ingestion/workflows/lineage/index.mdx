@@ -4,6 +4,8 @@ description: Discover how to set up data lineage workflows in OpenMetadata. Lear
 slug: /connectors/ingestion/workflows/lineage
 ---
 
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+
 # Lineage Workflow
 
 Learn how to configure the Lineage workflow from the UI to ingest Lineage data from your data sources.
@@ -91,4 +93,4 @@ In the [connectors](/connectors) section we showcase how to run the metadata ing
 
 This is a good option if you wish to execute your workflow via the Airflow SDK or using the CLI; if you use the CLI a lineage workflow can be triggered with the command `metadata ingest -c FILENAME.yaml`. The `serviceConnection` config will be specific to your connector (you can find more information in the [connectors](/connectors) section), though the sourceConfig for the lineage will be similar across all connectors.
 
-{% partial file="/v1.9/connectors/yaml/lineage.mdx" variables={connector: "bigquery"} /%}
+<Lineage connector="bigquery" />

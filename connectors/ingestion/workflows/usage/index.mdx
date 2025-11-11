@@ -4,6 +4,8 @@ description: Monitor usage patterns from queries and dashboards with workflow-ba
 slug: /connectors/ingestion/workflows/usage
 ---
 
+import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
+
 # Usage Workflow
 
 Learn how to configure the Usage workflow from the UI to ingest Query history data from your data sources.
@@ -100,4 +102,4 @@ In the [connectors](/connectors) section we showcase how to run the metadata ing
 
 This is a good option if you wish to execute your workflow via the Airflow SDK or using the CLI; if you use the CLI a usage workflow can be triggered with the command `metadata usage -c FILENAME.yaml`. The `serviceConnection` config will be specific to your connector (you can find more information in the [connectors](/connectors) section), though the sourceConfig for the usage will be similar across all connectors.
 
-{% partial file="/v1.9/connectors/yaml/query-usage.mdx" variables={connector: "bigquery"} /%}
+<QueryUsage connector="bigquery" />

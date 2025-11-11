@@ -4,6 +4,11 @@ description: Use YAML to ingest Databricks metadata including notebook lineage, 
 slug: /connectors/database/databricks/yaml
 ---
 
+import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
+import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -229,13 +234,13 @@ source:
 
 <IngestionCli />
 
-{% partial file="/v1.9/connectors/yaml/query-usage.mdx" variables={connector: "databricks"} /%}
+<QueryUsage connector="databricks" />
 
-{% partial file="/v1.9/connectors/yaml/lineage.mdx" variables={connector: "databricks"} /%}
+<Lineage connector="databricks" />
 
-{% partial file="/v1.9/connectors/yaml/data-profiler.mdx" variables={connector: "databricks"} /%}
+<DataProfiler connector="databricks" />
 
-{% partial file="/v1.9/connectors/yaml/auto-classification.mdx" variables={connector: "databricks"} /%}
+<AutoClassification connector="databricks" />
 
 <DataQuality />
 

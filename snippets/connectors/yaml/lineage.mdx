@@ -129,8 +129,8 @@ For a simple, local installation using our docker containers, this looks like:
 
 ```yaml {% srNumber=40 %}
 source:
-  type: {% $connector %}-lineage
-  serviceName: {% $connector %}
+  type: {connector}-lineage
+  serviceName: {connector}
   sourceConfig:
     config:
       type: DatabaseLineage
