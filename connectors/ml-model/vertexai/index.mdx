@@ -5,6 +5,8 @@ slug: /connectors/ml-model/vertexai
 collate: true
 ---
 
+import ConfigureIngestion from '/snippets/connectors/ml-model/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -91,7 +93,7 @@ Location refers to the geographical region where your resources, such as dataset
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/ml-model/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

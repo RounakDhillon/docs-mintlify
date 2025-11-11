@@ -1,3 +1,6 @@
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.md'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.md'
+
 ## Data Profiler
 
 The Data Profiler workflow will be using the `orm-profiler` processor.
@@ -72,7 +75,7 @@ To send the metadata to OpenMetadata, it needs to be specified as `type: metadat
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/workflow-config-def.md" /%}
+<WorkflowConfigDef />
 
 {% /codeInfoContainer %}
 
@@ -165,7 +168,7 @@ sink:
   config: {}
 ```
 
-{% partial file="/v1.9/connectors/yaml/workflow-config.md" /%}
+<WorkflowConfig />
 
 {% /codeBlock %}
 

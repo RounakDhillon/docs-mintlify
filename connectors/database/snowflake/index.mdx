@@ -4,6 +4,8 @@ description: Connect Snowflake to OpenMetadata with our comprehensive database c
 slug: /connectors/database/snowflake
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/snowflake/reverse-metadata.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -159,7 +161,7 @@ GRANT APPLY TAG TO ROLE NEW_ROLE;
 Depending on your view ddl you can grant the relevant privileged as per above queries.
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/snowflake/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

@@ -4,6 +4,9 @@ description: Use YAML to configure OpenSearch ingestion and enable search index 
 slug: /connectors/search/opensearch/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/search/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/search/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -198,7 +201,7 @@ information in AWS CloudTrail logs to determine who took actions with a role.
 - **connectionTimeoutSecs**: Connection timeout configuration for communicating with OpenSearch APIs.
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/search/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -251,7 +254,7 @@ source:
       connectionTimeoutSecs: 30
 ```
 
-{% partial file="/v1.9/connectors/yaml/search/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

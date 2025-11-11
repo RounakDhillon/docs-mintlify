@@ -4,6 +4,8 @@ description: Connect Databricks to OpenMetadata effortlessly. Complete setup gui
 slug: /connectors/database/databricks
 ---
 
+import ReverseMetadata from '/snippets/connectors/database/databricks/reverse-metadata.mdx'
+
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -134,7 +136,7 @@ If you are using unity catalog in Databricks, then checkout the [Unity Catalog](
 {% /stepsContainer %}
 
 {% collateContent %}
-{% partial file="/v1.9/connectors/database/databricks/reverse-metadata.mdx" /%}
+<ReverseMetadata />
 {% /collateContent %}
 
 <Related />

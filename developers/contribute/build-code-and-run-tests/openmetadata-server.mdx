@@ -4,6 +4,8 @@ description: Build and run metadata server locally with this guide, including en
 slug: /developers/contribute/build-code-and-run-tests/openmetadata-server
 ---
 
+import PostgresComposeInstructions from '/snippets/developers/contribute/build-code-and-run-tests/postgres-compose-instructions.mdx'
+
 # OpenMetadata Server
 Learn how to run the OpenMetadata server in development mode by using Docker and IntelliJ.
 
@@ -20,7 +22,7 @@ docker compose -f docker/development/docker-compose.yml up mysql elasticsearch -
 docker compose -f docker/development/docker-compose-postgres.yml up postgresql opensearch --build -d
 ```
 
-{% partial file="/v1.8/developers/contribute/build-code-and-run-tests/postgres-compose-instructions.mdx" /%}
+<PostgresComposeInstructions />
 
 ## Building
 The following commands must be run from the top-level directory.

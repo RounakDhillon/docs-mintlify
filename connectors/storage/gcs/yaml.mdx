@@ -4,6 +4,8 @@ description: Use YAML to configure GCS storage ingestion for metadata visibility
 slug: /connectors/storage/gcs/yaml
 ---
 
+import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -102,7 +104,7 @@ This is a sample config for Athena:
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config-def.mdx" /%}
+<GcpConfigDef />
 
 {% codeInfo srNumber=4 %}
 

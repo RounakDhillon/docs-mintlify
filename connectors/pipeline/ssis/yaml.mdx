@@ -4,6 +4,9 @@ slug: /connectors/pipeline/ssis/yaml
 collate: true
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -89,7 +92,7 @@ In terms of `connection` we support the following selections:
 
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -141,7 +144,7 @@ Pass the `S3` credentials where your package folders are uploaded and specify th
   localProjectsPath: /home/user/repos/
 ```
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

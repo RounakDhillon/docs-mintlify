@@ -5,6 +5,8 @@ slug: /deployment/security/one-login/kubernetes
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # One Login SSO for Kubernetes
 
 Check the Helm information [here](https://artifacthub.io/packages/search?repo=open-metadata).
@@ -32,4 +34,4 @@ openmetadata:
       callbackUrl: "http://localhost:8585/callback"
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

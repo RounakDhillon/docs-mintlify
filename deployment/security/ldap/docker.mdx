@@ -5,6 +5,8 @@ slug: /deployment/security/ldap/docker
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Ldap Authentication for Docker
 
 To enable LDAP for docker deployment, there are a couple of files/certificates which are required to carry out the process.
@@ -143,4 +145,4 @@ AUTHENTICATION_LDAP_EXAMINE_VALIDITY_DATES=true
 docker compose --env-file ~/openmetadata_ldap.env up -d
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

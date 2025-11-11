@@ -4,6 +4,8 @@ slug: /deployment/security/saml/docker
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # SAML SSO for Docker
 
 To enable security for the Docker deployment, follow the next steps:
@@ -56,4 +58,4 @@ SAML_KEYSTORE_PASSWORD=myKeystorePassword
 docker compose --env-file ~/openmetadata_saml.env up -d
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

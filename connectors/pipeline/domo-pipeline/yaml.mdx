@@ -4,6 +4,9 @@ description: Configure Domo pipeline ingestion via YAML to automate metadata flo
 slug: /connectors/pipeline/domo-pipeline/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -109,7 +112,7 @@ This is a sample config for Domo-Pipeline:
 {% /codeInfo %}
 
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -143,7 +146,7 @@ source:
       instanceDomain: https://<your>.domo.com
 ```
 
-{% partial file="/v1.9/connectors/yaml/pipeline/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

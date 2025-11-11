@@ -4,6 +4,8 @@ description: Connect Apache NiFi to OpenMetadata seamlessly. Complete setup guid
 slug: /connectors/pipeline/nifi
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -67,7 +69,7 @@ The user should be able to send request to the NiFi API and access the `Resource
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

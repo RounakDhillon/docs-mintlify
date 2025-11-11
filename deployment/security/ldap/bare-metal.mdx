@@ -4,6 +4,8 @@ slug: /deployment/security/ldap/bare-metal
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Ldap Authentication for Bare Metal
 
 ## Set up Configurations in openmetadata.yaml
@@ -152,4 +154,4 @@ For the Ldap we need to set:
 - `adminPrincipals`: This is the list of admin Principal for the OpenMetadata , if mail in ldap is example@open-metadata.org, then if we want this user to be admin in the OM, we should add 'example', in this list.
 - `principalDomain`: Company Domain.
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

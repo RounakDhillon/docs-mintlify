@@ -5,6 +5,8 @@ slug: /deployment/security/okta/docker
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Okta SSO for Docker
 
 To enable security for the Docker deployment, follow the next steps:
@@ -62,7 +64,7 @@ OIDC_CALLBACK: ${OIDC_CALLBACK:-"http://localhost:8585/callback"}
 docker compose --env-file ~/openmetadata_okta.env up -d
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 {% inlineCalloutContainer %}
   {% inlineCallout

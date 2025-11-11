@@ -4,6 +4,8 @@ description: Connect Airbyte data pipelines to OpenMetadata for comprehensive da
 slug: /connectors/pipeline/airbyte
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -50,7 +52,7 @@ Configure and schedule Airbyte metadata and profiler workflows from the OpenMeta
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

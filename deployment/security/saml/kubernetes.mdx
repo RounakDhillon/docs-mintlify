@@ -4,6 +4,8 @@ slug: /deployment/security/saml/kubernetes
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # SAML SSO for Kubernetes
 
 See the snippet below for an example of SAML configurations in the `values.yaml`.
@@ -41,4 +43,4 @@ openmetadata:
       keyStorePassword: ${SAML_KEYSTORE_PASSWORD:-""}
 ```
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />

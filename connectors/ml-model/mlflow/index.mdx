@@ -4,6 +4,8 @@ description: Connect MLflow to OpenMetadata seamlessly with our comprehensive co
 slug: /connectors/ml-model/mlflow
 ---
 
+import ConfigureIngestion from '/snippets/connectors/ml-model/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -52,7 +54,7 @@ To extract metadata, OpenMetadata needs two elements:
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/ml-model/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

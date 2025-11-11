@@ -4,6 +4,8 @@ description: Set up metadata ingestion from Glue pipelines to track source-to-ta
 slug: /connectors/pipeline/glue-pipeline
 ---
 
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -120,7 +122,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/pipeline/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

@@ -4,6 +4,8 @@ description: Connect OpenMetadata to Redpanda with our official messaging connec
 slug: /connectors/messaging/redpanda
 ---
 
+import ConfigureIngestion from '/snippets/connectors/messaging/configure-ingestion.mdx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -63,7 +65,7 @@ To ingest the topic schema `Schema Registry URL` must be passed
 
 <TestConnection />
 
-{% partial file="/v1.9/connectors/messaging/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 

@@ -4,6 +4,9 @@ description: Configure YAML ingestion for GCS Datalake to extract metadata from 
 slug: /connectors/database/gcs-datalake/yaml
 ---
 
+import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
+import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -79,7 +82,7 @@ The workflow is modeled around the following JSON Schema.
 
 #### Source Configuration - Service Connection
 
-{% partial file="/v1.9/connectors/yaml/common/gcp-config-def.mdx" /%}
+<GcpConfigDef />
 
 {% codeInfo srNumber=5 %}
 
@@ -110,7 +113,7 @@ source:
         securityConfig:
           gcpConfig:
 ```
-{% partial file="/v1.9/connectors/yaml/common/gcp-config.mdx" /%}
+<GcpConfig />
 
 ```yaml {% srNumber=5 %}
       bucketName: bucket name

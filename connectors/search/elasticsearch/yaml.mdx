@@ -4,6 +4,9 @@ description: Use YAML to configure Elasticsearch metadata ingestion and track in
 slug: /connectors/search/elasticsearch/yaml
 ---
 
+import SourceConfigDef from '/snippets/connectors/yaml/search/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/search/source-config.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -134,7 +137,7 @@ This is a sample config for Elasticsearch:
 **connectionTimeoutSecs**: Connection timeout configuration for communicating with Elasticsearch APIs.
 {% /codeInfo %}
 
-{% partial file="/v1.9/connectors/yaml/search/source-config-def.mdx" /%}
+<SourceConfigDef />
 
 <IngestionSinkDef />
 
@@ -181,7 +184,7 @@ source:
       connectionTimeoutSecs: 30
 ```
 
-{% partial file="/v1.9/connectors/yaml/search/source-config.mdx" /%}
+<SourceConfig />
 
 <IngestionSink />
 

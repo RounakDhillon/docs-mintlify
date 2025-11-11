@@ -5,6 +5,8 @@ slug: /deployment/security/azure/bare-metal
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Azure SSO for Bare Metal
 
 
@@ -75,7 +77,7 @@ Altering the order of claims in `jwtPrincipalClaims` may lead to problems when m
 {% /note %}
 
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 
 {% inlineCalloutContainer %}

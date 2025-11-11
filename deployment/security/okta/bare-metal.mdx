@@ -5,6 +5,8 @@ slug: /deployment/security/okta/bare-metal
 collate: false
 ---
 
+import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
+
 # Okta SSO for Bare Metal
 
 ## Update conf/openmetadata.yaml
@@ -67,7 +69,7 @@ authenticationConfiguration:
 ```
 {% /codeWithLanguageSelector %}
 
-{% partial file="/v1.9/deployment/configure-ingestion.mdx" /%}
+<ConfigureIngestion />
 
 {% inlineCalloutContainer %}
   {% inlineCallout

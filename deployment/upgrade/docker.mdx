@@ -5,6 +5,9 @@ slug: /deployment/upgrade/docker
 collate: false
 ---
 
+import UpgradePrerequisites from '/snippets/deployment/upgrade/upgrade-prerequisites.mdx'
+import PostUpgradeSteps from '/snippets/deployment/upgrade/post-upgrade-steps.mdx'
+
 # Upgrade on Docker
 
 To run OpenMetadata with Docker, you can simply download the `docker-compose.yml` file. Optionally, we added some
@@ -18,7 +21,7 @@ You can find more details about Docker deployment [here](/deployment/docker)
 
 Below we have highlighted the steps needed to upgrade to the latest version with Docker.
 
-{% partial file="/v1.9/deployment/upgrade/upgrade-prerequisites.mdx" /%}
+<UpgradePrerequisites />
 
 # Upgrade Process
 
@@ -36,7 +39,7 @@ docker compose down
 docker compose -f docker-compose.yml up -d
 ```
 
-{% partial file="/v1.9/deployment/upgrade/post-upgrade-steps.mdx" /%}
+<PostUpgradeSteps />
 
 # Troubleshooting
 

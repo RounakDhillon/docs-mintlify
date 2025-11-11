@@ -4,6 +4,8 @@ description: Set up alerts for data quality failures, ingestion issues, or gover
 slug: /how-to-guides/admin-guide/alerts
 ---
 
+import Email from '/snippets/how-to-guides/email.mdx'
+
 # Set up Data Observability Alerts and Notifications
 
 OpenMetadata has been providing alerts right from the start to notify users of important data lifecycle events: schema modifications, ownership shifts, and tagging updates. Users can define fine-grained alerts and notifications.
@@ -143,7 +145,7 @@ caption="Define the Filter"
 
 ## Additional Details for the Configuration of Destinations
 
-{% partial file="/v1.9/how-to-guides/email.mdx" /%}
+<Email />
 
 ### Slack
 For Slack configuration you will need to get the endpoint URL of the channel where you wish to send the alerts. Additionally, you can configure the following parameters:
