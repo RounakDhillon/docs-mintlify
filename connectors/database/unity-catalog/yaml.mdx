@@ -4,6 +4,9 @@ description: Configure Unity Catalog database connector with OpenMetadata using 
 slug: /connectors/database/unity-catalog/yaml
 ---
 
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -221,9 +224,9 @@ source:
 
 <IngestionCli />
 
-{% partial file="/v1.9/connectors/yaml/query-usage.mdx" variables={connector: "unitycatalog"} /%}
+<QueryUsage connector="unitycatalog" />
 
-{% partial file="/v1.9/connectors/yaml/lineage.mdx" variables={connector: "unitycatalog"} /%}
+<Lineage connector="unitycatalog" />
 
 ## dbt Integration
 

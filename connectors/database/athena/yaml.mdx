@@ -4,6 +4,11 @@ description: Configure OpenMetadata'sAthena database connector with YAML - step-
 slug: /connectors/database/athena/yaml
 ---
 
+import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
+import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -275,13 +280,13 @@ source:
 
 <IngestionCli />
 
-{% partial file="/v1.9/connectors/yaml/query-usage.mdx" variables={connector: "athena"} /%}
+<QueryUsage connector="athena" />
 
-{% partial file="/v1.9/connectors/yaml/lineage.mdx" variables={connector: "athena"} /%}
+<Lineage connector="athena" />
 
-{% partial file="/v1.9/connectors/yaml/data-profiler.mdx" variables={connector: "athena"} /%}
+<DataProfiler connector="athena" />
 
-{% partial file="/v1.9/connectors/yaml/auto-classification.mdx" variables={connector: "athena"} /%}
+<AutoClassification connector="athena" />
 
 <DataQuality />
 

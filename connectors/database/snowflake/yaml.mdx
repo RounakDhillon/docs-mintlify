@@ -4,6 +4,11 @@ description: Integrate Yaml for metadata sync, profiling, and lineage. Start con
 slug: /connectors/database/snowflake/yaml
 ---
 
+import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
+import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -311,13 +316,13 @@ source:
 <IngestionCli />
 
 
-{% partial file="/v1.9/connectors/yaml/query-usage.mdx" variables={connector: "snowflake"} /%}
+<QueryUsage connector="snowflake" />
 
-{% partial file="/v1.9/connectors/yaml/lineage.mdx" variables={connector: "snowflake"} /%}
+<Lineage connector="snowflake" />
 
-{% partial file="/v1.9/connectors/yaml/data-profiler.mdx" variables={connector: "snowflake"} /%}
+<DataProfiler connector="snowflake" />
 
-{% partial file="/v1.9/connectors/yaml/auto-classification.mdx" variables={connector: "snowflake"} /%}
+<AutoClassification connector="snowflake" />
 
 <DataQuality />
 

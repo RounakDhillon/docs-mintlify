@@ -22,9 +22,6 @@
             {
                 "tab": "Home",
                 "pages": ["index"]
-                "pages": [
-                    "index"
-                ]
             },
             {
                 "tab": "Getting Started",
@@ -328,28 +325,32 @@
                             "security/sso/auth0",
                             "security/sso/okta"
                         ]
-                    },
+                    }
+                ]
+            },
+            {
+                "tab": "API & SDKs",
+                "pages": [
+                    "api/overview",
+                    "api/authentication",
                     {
-                        "tab": "API & SDKs",
+                        "group": "SDKs",
                         "pages": [
-                            "api/overview",
-                            "api/authentication",
-                            {
-                                "group": "SDKs",
-                                "pages": [
-                                    "sdk/overview",
-                                    "sdk/python/overview",
-                                    "sdk/python/api-reference",
-                                    "sdk/java/overview"
-                                ]
-                            }
+                            "sdk/overview",
+                            "sdk/python/overview",
+                            "sdk/python/api-reference",
+                            "sdk/java/overview"
                         ]
-                    },
-                    {
-                        "tab": "Developers",
-                        "pages": ["developers/api"]
-                   }
-=======
+                    }
+                ]
+            },
+            {
+                "tab": "Developers",
+                "pages": ["developers/api"]
+            },
+            {
+                "tab": "Getting Started",
+                "pages": [
                     "getting-started",
                     "getting-started/day-1",
                     "getting-started/day-1/hybrid-saas",

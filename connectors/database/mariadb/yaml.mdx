@@ -4,6 +4,10 @@ description: Configure MariaDB ingestion using YAML to sync metadata, run profil
 slug: /connectors/database/mariadb/yaml
 ---
 
+import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
+import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+
 import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
 import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
@@ -175,11 +179,11 @@ source:
 
 <IngestionCli />
 
-{% partial file="/v1.9/connectors/yaml/lineage.mdx" variables={connector: "mariadb"} /%}
+<Lineage connector="mariadb" />
 
-{% partial file="/v1.9/connectors/yaml/data-profiler.mdx" variables={connector: "mariadb"} /%}
+<DataProfiler connector="mariadb" />
 
-{% partial file="/v1.9/connectors/yaml/auto-classification.mdx" variables={connector: "mariadb"} /%}
+<AutoClassification connector="mariadb" />
 
 <DataQuality />
 

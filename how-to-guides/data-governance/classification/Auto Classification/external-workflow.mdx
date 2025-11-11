@@ -3,6 +3,8 @@ title: External Auto Classification Workflow
 slug: /how-to-guides/data-governance/classification/auto-classification/external-workflow
 ---
 
+import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
+
 # Auto Classification Workflow Configuration
 
 The Auto Classification Workflow enables automatic tagging of sensitive information within databases. Below are the configuration parameters available in the **Service Classification Pipeline JSON**.
@@ -122,7 +124,7 @@ workflowConfig:
 - Provides visibility into sensitive data across databases.
 This approach ensures that the Auto Classification Workflow is executed correctly using the appropriate OpenMetadata ingestion framework.
 
-{% partial file="/v1.9/connectors/yaml/auto-classification.mdx" variables={connector: "snowflake"} /%}
+<AutoClassification connector="snowflake" />
 
 ## Workflow Execution
 
