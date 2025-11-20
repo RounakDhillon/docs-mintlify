@@ -306,6 +306,12 @@ site_menu:
     url: /connectors/database/teradata
   - category: Connectors / Database / Teradata / Run Externally
     url: /connectors/database/teradata/yaml
+  - category: Connectors / Database / TimescaleDB
+    url: /connectors/database/timescale
+  - category: Connectors / Database / TimescaleDB / Run Externally
+    url: /connectors/database/timescale/yaml
+  - category: Connectors / Database / TimescaleDB / Troubleshooting
+    url: /connectors/database/timescale/troubleshooting
   - category: Connectors / Database / Trino
     url: /connectors/database/trino
   - category: Connectors / Database / Trino / Run Externally
@@ -339,6 +345,12 @@ site_menu:
     url: /connectors/dashboard/grafana/yaml
   - category: Connectors / Database / Grafana / Troubleshooting
     url: /connectors/dashboard/grafana/troubleshooting
+  - category: Connectors / Database / Hex
+    url: /connectors/dashboard/hex
+  - category: Connectors / Database / Hex / Run Externally
+    url: /connectors/dashboard/hex/yaml
+  - category: Connectors / Database / Hex / Troubleshooting
+    url: /connectors/dashboard/hex/troubleshooting
   - category: Connectors / Dashboard / Lightdash
     url: /connectors/dashboard/lightdash
   - category: Connectors / Dashboard / Lightdash / Run Externally
@@ -537,6 +549,12 @@ site_menu:
     url: /connectors/pipeline/kafkaconnect/yaml
   - category: Connectors / Pipeline / KafkaConnect / Troubleshooting
     url: /connectors/pipeline/kafkaconnect/troubleshooting
+  - category: Connectors / Pipeline / KinesisFirehose
+    url: /connectors/pipeline/kinesis-firehose
+  - category: Connectors / Pipeline / KinesisFirehose / Run Externally
+    url: /connectors/pipeline/kinesis-firehose/yaml
+  - category: Connectors / Pipeline / KinesisFirehose / Troubleshooting
+    url: /connectors/pipeline/kinesis-firehose/troubleshooting
   - category: Connectors / Pipeline / Matillion
     url: /connectors/pipeline/matillion
   - category: Connectors / Pipeline / Matillion / Run Externally
@@ -672,6 +690,23 @@ site_menu:
     url: /connectors/metadata/atlas/yaml
   - category: Connectors / Metadata / Atlas / Troubleshooting
     url: /connectors/metadata/atlas/troubleshooting
+  - category: Connectors / Metadata / Collibra
+    url: /connectors/metadata/collibra
+  - category: Connectors / Metadata / Collibra / Run Externally
+    url: /connectors/metadata/collibra/yaml
+  - category: Connectors / Metadata / Collibra / Troubleshooting
+    url: /connectors/metadata/collibra/troubleshooting
+
+  - category: Connectors / Drive
+    url: /connectors/drive
+  - category: Connectors / Drive / Google Drive
+    url: /connectors/drive/googledrive
+  - category: Connectors / Drive / Google Drive / Run Externally
+    url: /connectors/drive/googledrive/yaml
+  - category: Connectors / Drive / Google Drive / Troubleshooting
+    url: /connectors/drive/googledrive/troubleshooting
+  - category: Connectors / Drive / Custom Drive
+    url: /connectors/drive/custom-drive
 
   - category: Connectors / Custom Connectors
     url: /connectors/custom-connectors
@@ -747,7 +782,7 @@ site_menu:
   - category: Connectors / Ingestion / Versioning
     url: /connectors/ingestion/versioning
   - category: Connectors / Ingestion / Auto Tagging
-    url: /connectors/ingestion/auto_tagging
+    url: /how-to-guides/data-governance/classification/auto-classification/auto-pii-tagging
   - category: Connectors / Ingestion / Versioning / Change Feeds
     url: /connectors/ingestion/versioning/change-feeds
   - category: Connectors / Ingestion / Versioning / Change Events
@@ -788,6 +823,8 @@ site_menu:
     url: /applications/data-retention
   - category: Applications / Slack Application
     url: /applications/slack
+  - category: Applications / Metadata Exporter
+    url: /applications/metadata-exporter
 
   - category: How-to Guides
     url: /how-to-guides
@@ -843,6 +880,13 @@ site_menu:
     url: /how-to-guides/admin-guide/persona-landing-page-customization/customizable-landing-page
   - category: How-to Guides / Admin Guide / Persona and Landing Page Customization / How to Define Personas
     url: /how-to-guides/admin-guide/persona-landing-page-customization/defining-persona
+
+  - category: How-to Guides / Collate Customer Support
+    url: /how-to-guides/collate-customer-support
+  - category: How-to Guides / Collate Customer Support / How to Open a Support Ticket with Collate
+    url: /how-to-guides/collate-customer-support/open-ticket
+  - category: How-to Guides / Collate Customer Support / How to Manage Users from the Collate Support Portal
+    url: /how-to-guides/collate-customer-support/manage-users
 
   - category: How-to Guides / Guide for Data Users
     url: /how-to-guides/guide-for-data-users
@@ -911,6 +955,13 @@ site_menu:
     url: /how-to-guides/data-discovery/openmetadata-extension/viewing-tasks
   - category: How-to Guides / Data Discovery / ER Diagrams
     url: /how-to-guides/data-discovery/er-diagrams
+
+  - category: How-to Guides / Data Contracts
+    url: /how-to-guides/data-contracts
+  - category: How-to Guides / Data Contracts / Creating Data Contracts
+    url: /how-to-guides/data-contracts/create
+  - category: How-to Guides / Data Contracts / Data Contract Specification
+    url: /how-to-guides/data-contracts/spec
 
   - category: How-to Guides / Data Collaboration
     url: /how-to-guides/data-collaboration
@@ -1115,6 +1166,8 @@ site_menu:
     url: /how-to-guides/data-governance/workflows/how-to-edit-workflow
   - category: How-to Guides / Data Governance / Metrics
     url: /how-to-guides/data-governance/metrics
+  - category: How-to Guides / Data Governance / Custom Workflows
+    url: /how-to-guides/data-governance/custom-workflows
 
   - category: Enable Security
     url: /security
@@ -1781,7 +1834,7 @@ site_menu:
   - category: Main Concepts / Metadata Standard / Schemas / Entity / Services / Connections / ServiceConnection
     url: /main-concepts/metadata-standard/schemas/entity/services/connections/serviceconnection
   - category: Main Concepts / Metadata Standard / Schemas / Entity / Services / Connections / Storage / adlsConnection
-    url: /main-concepts/metadata-standard/schemas/entity/services/connections/storage/adlsConnection
+    url: /main-concepts/metadata-standard/schemas/entity/services/connections/storage/adlsconnection
   - category: Main Concepts / Metadata Standard / Schemas / Entity / Services / Connections / Storage / CustomStorageConnection
     url: /main-concepts/metadata-standard/schemas/entity/services/connections/storage/customstorageconnection
   - category: Main Concepts / Metadata Standard / Schemas / Entity / Services / Connections / Storage / GcsConnection
