@@ -8,13 +8,13 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 
 # SAML SSO
 
-{% note %}
+<Tip>
 
 Security requirements for your **production** environment:
 - **DELETE** the admin default account shipped by OM.
 - **UPDATE** the Private / Public keys used for the [JWT Tokens](/deployment/security/enable-jwt-tokens) in case it is enabled.
 
-{% /note %}
+</Tip>
 
 ## Configuring Identity Provider and Service Provider
 
@@ -39,7 +39,7 @@ Every IDP provides this information, we can download the XML Metadata and config
 3. X509 Certificate -> In case the SP expects a signed response from IDP, the IDP can be configured with Signing Certificate given by SP.
 4. Private Key -> In case SP expects a encrypted response from the IDP , the IDP can be  configured with SPs public key for encryption and the Private Key can be used for SP for decrypting.
 
-{% note %}
+<Tip>
 
 When configuring the Private Key for the Service Provider, ensure you use the actual key content enclosed within the `-----BEGIN PRIVATE KEY-----` and `-----END PRIVATE KEY-----` block. Avoid using the Base64-encoded format of the key, as this is not the expected value.
 
@@ -52,9 +52,9 @@ idp:
       nameId: ${SAML_IDP_NAME_ID:-"urn:oasis:names:tc:SAML:2.0:nameid-format:emailAddress"}
 ```
 
-{% /note %}
+</Tip>
 
-{% note %}
+<Tip>
 
 To add a private key, you need to include it in the keystore and update the configuration details accordingly [here](https://github.com/open-metadata/OpenMetadata/blob/main/conf/openmetadata.yaml#L219).
 
@@ -65,7 +65,7 @@ To add a private key, you need to include it in the keystore and update the conf
     keyStorePassword: ${SAML_KEYSTORE_PASSWORD:-"myKeystorePassword"}
 ```
 
-{% /note %}
+</Tip>
 
 SP Metadata XML is available at "http://localhost:8585/api/v1/saml/acs", `localhost` needs to be updated with the correct URI.
 
@@ -81,33 +81,33 @@ Jwt Configuration is mandatory for Saml SSO.
 
 - Follow the guide here for JWT Configuration [Enable JWT Token](/deployment/security/enable-jwt-tokens).
 
-{% note %}
+<Tip>
 
 Security requirements for your **production** environment:
 - **UPDATE** the Private / Public keys used for the [JWT Tokens](/deployment/security/enable-jwt-tokens) the ones shipped with OM are for POC only.
 
-{% /note %}
+</Tip>
 
 More specific details on different IDPs can be found below:
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="celebration"
-    bold="AWS Saml"
-    href="/deployment/security/saml/aws" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="AWS Saml"
+    href="/deployment/security/saml/aws"
+  >
     Configure AWS as IDP.
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>
 
-{% inlineCalloutContainer %}
-{% inlineCallout
-color="violet-70"
-icon="celebration"
-bold="Azure Saml"
-href="/deployment/security/saml/azure" %}
-Configure AWS as IDP.
-{% /inlineCallout %}
-{% /inlineCalloutContainer %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Azure Saml"
+    href="/deployment/security/saml/azure"
+  >
+    Configure AWS as IDP.
+  </Card>
+</CardGroup>
 
 <ConfigureIngestion />

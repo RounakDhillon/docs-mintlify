@@ -4,12 +4,13 @@ description: Use YAML to configure Airbyte ingestion and extract metadata from p
 slug: /connectors/pipeline/airbyte/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Airbyte"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Usage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Usage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Airbyte connector.
 
@@ -67,36 +67,20 @@ The workflow is modeled around the following
 
 This is a sample config for Airbyte:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: Pipeline Service Management UI URL
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="username">
 **username**: Username to connect to Airbyte.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="password">
 **password**: Password to connect to Airbyte.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="apiVersion">
 **apiVersion**: Version of the Airbyte REST API by default `api/v1`.
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -104,30 +88,28 @@ This is a sample config for Airbyte:
 
 <WorkflowConfigDef />
 
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: airbyte
   serviceName: airbyte_source
   serviceConnection:
     config:
       type: Airbyte
+hostPort: http://localhost:8000
+username: <username>
+password: <password>
+apiVersion: api/v1
 ```
-```yaml {% srNumber=1 %}
+```yaml
       hostPort: http://localhost:8000
 ```
-```yaml {% srNumber=2 %}
+```yaml
       username: <username>
 ```
-```yaml {% srNumber=3 %}
+```yaml
       password: <password>
 ```
-```yaml {% srNumber=4 %}
+```yaml
       apiVersion: api/v1
 ```
 
@@ -136,9 +118,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

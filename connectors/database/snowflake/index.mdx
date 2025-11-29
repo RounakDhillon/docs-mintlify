@@ -6,6 +6,9 @@ slug: /connectors/database/snowflake
 
 import ReverseMetadata from '/snippets/connectors/database/snowflake/reverse-metadata.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -14,20 +17,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Snowflake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Stored Procedures", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=[]
-/ %}
-
+availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Stored Procedures", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Snowflake connector.
 
@@ -42,11 +40,7 @@ Configure and schedule Snowflake metadata and profiler workflows from the OpenMe
 - [Lineage](/connectors/ingestion/lineage)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/snowflake/troubleshooting)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/snowflake/yaml" />
 
 ## Requirements
 
@@ -86,7 +80,7 @@ GRANT SELECT ON ALL DYNAMIC TABLES IN SCHEMA TEST_SCHEMA TO ROLE NEW_ROLE;
 GRANT IMPORTED PRIVILEGES ON ALL SCHEMAS IN DATABASE SNOWFLAKE TO ROLE NEW_ROLE;
 ```
 
-{% note %}
+<Tip>
 If running any of:
   - Incremental Extraction
   - Ingesting Tags
@@ -94,7 +88,7 @@ If running any of:
   - Lineage & Usage Workflow
 
 The following Grant is needed
-{% /note %}
+</Tip>
 
 - **Incremental Extraction**: Openmetadata fetches the information by querying `snowflake.account_usage.tables`.
 
@@ -110,8 +104,7 @@ You can find more information about the `account_usage` schema [here](https://do
 
 <MetadataIngestionUi connector={"Snowflake"} selectServicePath={"/images/connectors/snowflake/select-service.png"} addNewServicePath={"/images/connectors/snowflake/add-new-service.png"} serviceConnectionPath={"/images/connectors/snowflake/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -135,15 +128,13 @@ When using this field make sure you have all these tables available within your 
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ### Incomplete Column Level for Views
 
@@ -160,8 +151,6 @@ GRANT APPLY TAG TO ROLE NEW_ROLE;
 
 Depending on your view ddl you can grant the relevant privileged as per above queries.
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}
 
 <Related />

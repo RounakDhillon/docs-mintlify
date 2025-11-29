@@ -6,21 +6,21 @@ slug: /connectors/pipeline/airbyte
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Airbyte"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Airbyte connector.
 
@@ -29,14 +29,11 @@ Configure and schedule Airbyte metadata and profiler workflows from the OpenMeta
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/pipeline/airbyte/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/airbyte/yaml" />
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"Airbyte"} selectServicePath={"/images/connectors/airbyte/select-service.png"} addNewServicePath={"/images/connectors/airbyte/add-new-service.png"} serviceConnectionPath={"/images/connectors/airbyte/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -48,12 +45,10 @@ Configure and schedule Airbyte metadata and profiler workflows from the OpenMeta
 
 - **API Version**: Version of the Airbyte REST API by default `api/v1`.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

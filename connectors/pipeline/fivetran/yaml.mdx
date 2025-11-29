@@ -4,12 +4,13 @@ description: Use YAML to configure Fivetran connector for ingestion of pipeline 
 slug: /connectors/pipeline/fivetran/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Fivetran"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Usage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Usage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Fivetran connector.
 
@@ -69,14 +69,8 @@ The workflow is modeled around the following
 
 This is a sample config for Fivetran:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="apiKey">
 **apiKey**: Fivetran API Key.
 
 Follow the steps mentioned below to generate the Fivetran API key and API secret:
@@ -86,34 +80,24 @@ Follow the steps mentioned below to generate the Fivetran API key and API secret
 - Make a note of the key and secret as they won't be displayed once you close the page or navigate away.
 
 For more detailed documentation visit [here](https://fivetran.com/docs/rest-api/getting-started).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="apiSecret">
 **apiSecret**: Fivetran API Secret.
 
 From the above step where the API key is generated copy the the API secret
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="hostPort">
 **hostPort**: HostPort of the Fivetran instance.
 
 Hostport of the Fivetran instance that the connection will be made to
 By default OpenMetadata will use `https://api.fivetran.com` to connect to the Fivetran APIs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="limit">
 **limit**: Fivetran API Limit For Pagination.
 
 This refers to the maximum number of records that can be returned in a single page of results when using Fivetran's API for pagination.
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -121,28 +105,28 @@ This refers to the maximum number of records that can be returned in a single pa
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: fivetran
   serviceName: local_fivetran
   serviceConnection:
     config:
       type: Fivetran
+apiKey: <fivetran api key>
+apiSecret: <fivetran api secret>
+# hostPort: https://api.fivetran.com (default)
+# limit: 1000 (default)
 ```
-```yaml {% srNumber=1 %}
+```yaml
       apiKey: <fivetran api key>
 ```
-```yaml {% srNumber=2 %}
+```yaml
       apiSecret: <fivetran api secret>
 ```
-```yaml {% srNumber=3 %}
+```yaml
       # hostPort: https://api.fivetran.com (default)
 ```
-```yaml {% srNumber=4 %}
+```yaml
       # limit: 1000 (default)
 ```
 
@@ -151,9 +135,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

@@ -27,9 +27,9 @@ Install the `openmetadata-ingestion` package in your Airflow environment. This a
 #### Installation Command:
 
 ```
-pip3 install openmetadata-ingestion[<plugin>]==x.y.z
+pip3 install openmetadata-ingestion[&lt;plugin&gt;]==x.y.z
 ```
--Replace [<plugin>](https://github.com/open-metadata/OpenMetadata/blob/main/ingestion/setup.py) with the sources to ingest, such as mysql, snowflake, or s3.
+-Replace [&lt;plugin&gt;](https://github.com/open-metadata/OpenMetadata/blob/main/ingestion/setup.py) with the sources to ingest, such as mysql, snowflake, or s3.
 -Replace x.y.z with the OpenMetadata version matching your server (e.g., 1.6.1).
 
 ### Example
@@ -143,13 +143,13 @@ with models.DAG(
     )
 ```
 
-{% note %}
+<Tip>
 
 Make sure to tune out the DAG configurations (`schedule_interval`, `start_date`, etc.) as your use case requires.
 
-{% /note %}
+</Tip>
 
-{% note %}
+<Tip>
 
 If you encounter issues such as missing task instances or Airflow failing to locate a deployed DAG (e.g., `Dag '<DAG_ID>' could not be found`), this may be due to a **timezone mismatch** in your Airflow configuration. To resolve this, set the following in your `airflow.cfg`:
 
@@ -159,7 +159,7 @@ default_timezone = system
 
 This ensures that Airflow uses the system timezone, which is particularly important when OpenMetadata and Airflow are running on the same server.
 
-{% /note %}
+</Tip>
 
 ### Key Notes
 

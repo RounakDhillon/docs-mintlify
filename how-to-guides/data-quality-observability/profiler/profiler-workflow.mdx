@@ -8,46 +8,30 @@ slug: /how-to-guides/data-quality-observability/profiler/workflow
 
 Learn how to configure and run the Profiler Workflow to extract Profiler data and execute the Data Quality.
 
-{% note %}
+<Tip>
 
 For Datalake Profiling, we drop NaN (Not a Number) values from the DataFrame using the dropna() method to allow metric computation. However, we make an exception for null values, which are retained. This ensures that our computations are accurate while handling missing data
 
-{% /note %}
+</Tip>
 
 ## UI configuration
 After the metadata ingestion has been done correctly, we can configure and deploy the Profiler Workflow.
 
 This Pipeline will be in charge of feeding the Profiler tab of the Table Entity, as well as running any tests configured in the Entity.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/profiler-summary-table.png"
-  alt="Table profile summary page"
-  caption="Table profile summary page"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/profiler-summary-table.png" alt="Table profile summary page" />
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/profiler-summary-column.png"
-  alt="Column profile summary page"
-  caption="Column profile summary page"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/profiler-summary-column.png" alt="Column profile summary page" />
 
 ### 1. Add a Profiler Agent
 From the Service Page, go to the Agents tab to add a new ingestion and click on Add Profiler Agent.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/add-profiler-workflow.png"
-  alt="Add a profiler service"
-  caption="Add a profiler service"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/add-profiler-workflow.png" alt="Add a profiler service" />
 
 ### 2. Configure the Profiler Agent
 Here you can enter the Profiler Agent details.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/configure-profiler-workflow.png"
-  alt="Set profiler configuration"
-  caption="Set profiler configuration"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/configure-profiler-workflow.png" alt="Set profiler configuration" />
 
 #### Profiler Options
 **Name**  
@@ -101,17 +85,9 @@ After clicking Next, you will be redirected to the Scheduling form. This will be
 ### 4. Updating Profiler setting at the table level
 Once you have created your profiler you can adjust some behavior at the table level by going to the table and clicking on the profiler tab 
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/accessing-table-profile-settings.png"
-  alt="table profile settings"
-  caption="table profile settings"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/accessing-table-profile-settings.png" alt="table profile settings" />
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/table-profile-summary-view.png"
-  alt="table profile settings"
-  caption="table profile settings"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/table-profile-summary-view.png" alt="table profile settings" />
 
 
 #### Profiler Options
@@ -156,29 +132,17 @@ Once you have picked the `Interval Type` you will need to define the configurati
 ### 5. Updating Profiler setting at the platform level
 The behavior of the profiler can be configured at the platform level. Navigating to `Settings > Preferences > Profiler Configuration` you will find settings to adjust the behavior of the profiler.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/profiler-global-configuration.png"
-  alt="table profile global settings"
-  caption="table profile global settings"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/profiler-global-configuration.png" alt="table profile global settings" />
 
 **Disabling All Metric Computation for a Data Type**
 Select the data type you want to disable all metric for. Then toggle disable on. When running the profiler all metric computation will be skipped for the data type.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/disable-metric-computation.png"
-  alt="table profile global settings"
-  caption="table profile global settings"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/disable-metric-computation.png" alt="table profile global settings" />
 
 **Disabling Specific Metric Computation for a Data Type**
 Select the data type you want to disable a metric for. Then in the `Metric Type` section select the metric you to compute (or unselect the ones you don't want to compute). When running the profiler the unselected metric will not be computed.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/disable-specific-metric-computation.png"
-  alt="table profile global settings"
-  caption="table profile global settings"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/disable-specific-metric-computation.png" alt="table profile global settings" />
 
 
 ## YAML Configuration
@@ -189,136 +153,81 @@ This is a good option if you which to execute your workflow via the Airflow SDK 
 
 This is a sample config for the profiler:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=22 %}
-
+<Steps>
+<Step title="computeMetrics">
 **computeMetrics**: Option to turn on/off computing profiler metrics. This flag is useful when you want to only ingest the sample data with the profiler workflow and not any other information.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=11 %}
-
+</Step>
+<Step title="profileSample">
 **profileSample**: Percentage of data or no. of rows we want to execute the profiler and tests on.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=12 %}
-
+</Step>
+<Step title="threadCount">
 **threadCount**: Number of threads to use during metric computations.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=15 %}
-
+</Step>
+<Step title="timeoutSeconds">
 **timeoutSeconds**: Profiler Timeout in Seconds
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=16 %}
-
+</Step>
+<Step title="databaseFilterPattern">
 **databaseFilterPattern**: Regex to only fetch databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=17 %}
-
+</Step>
+<Step title="schemaFilterPattern">
 **schemaFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=18 %}
-
+</Step>
+<Step title="tableFilterPattern">
 **tableFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=19 %}
-
+</Step>
+<Step title="Processor Configuration">
 #### Processor Configuration
 
 Choose the `orm-profiler`. Its config can also be updated to define tests from the YAML itself instead of the UI:
 
 **tableConfig**: `tableConfig` allows you to set up some configuration at the table level.
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=20 %}
-
+</Step>
+<Step title="Sink Configuration">
 #### Sink Configuration
 
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=21 %}
-
+</Step>
+<Step title="Workflow Configuration">
 #### Workflow Configuration
 
 The main property here is the `openMetadataServerConfig`, where you can define the host and security provider of your OpenMetadata installation.
 
 For a simple, local installation using our docker containers, this looks like:
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: <connectorType (e.g. bigquery, redshift, etc.)>
   serviceName: <serviceName (same as metadata ingestion service name)>
   sourceConfig:
     config:
       type: Profiler
-```
-
-```yaml {% srNumber=22 %}
-      computeMetrics: true
-```
-```yaml {% srNumber=11 %}
-      # profileSample: 85
-```
-```yaml {% srNumber=12 %}
-      # threadCount: 5
-```
-```yaml {% srNumber=15 %}
-      # timeoutSeconds: 43200
-```
-```yaml {% srNumber=16 %}
-      # databaseFilterPattern:
+computeMetrics: true
+# profileSample: 85
+# threadCount: 5
+# timeoutSeconds: 43200
+# databaseFilterPattern:
       #   includes:
       #     - database1
       #     - database2
       #   excludes:
       #     - database3
       #     - database4
-```
-```yaml {% srNumber=17 %}
-      # schemaFilterPattern:
+# schemaFilterPattern:
       #   includes:
       #     - schema1
       #     - schema2
       #   excludes:
       #     - schema3
       #     - schema4
-```
-```yaml {% srNumber=18 %}
-      # tableFilterPattern:
+# tableFilterPattern:
       #   includes:
       #     - table1
       #     - table2
       #   excludes:
       #     - table3
       #     - table4
-```
-
-```yaml {% srNumber=19 %}
 processor:
   type: orm-profiler
   config: {}  # Remove braces if adding properties
@@ -351,26 +260,15 @@ processor:
     #       partitionValues:
     #         - <value>
     #         - <value>
-
-```
-
-```yaml {% srNumber=20 %}
 sink:
   type: metadata-rest
   config: {}
-```
-
-```yaml {% srNumber=21 %}
 workflowConfig:
   # loggerLevel: DEBUG  # DEBUG, INFO, WARN or ERROR
   openMetadataServerConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 ### 2. Run with the CLI
 

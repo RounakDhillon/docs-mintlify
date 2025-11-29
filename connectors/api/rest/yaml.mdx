@@ -4,6 +4,7 @@ description: Learn how to configure OpenMetadata REST API connectors using YAML.
 slug: /connectors/api/rest/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfig from '/snippets/connectors/yaml/api/source-config.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -14,15 +15,15 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="REST"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["API Endpoint", "Request Schema", "Response Schema"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["API Endpoint", "Request Schema", "Response Schema"]}
+unavailableFeatures={[]}
+/>
 
 In this section, we provide guides and references to use the OpenAPI/REST connector.
 
@@ -51,34 +52,25 @@ Configure and schedule REST metadata workflows from the OpenMetadata UI:
 
 This is a sample config for OpenAPI:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="OpenAPI Schema URL">
 **OpenAPI Schema URL**:
 An OpenAPI schema URL typically refers to the URL where the OpenAPI Specification (OAS) document of a web service is hosted. The document defines the service's API, including available endpoints, request/response formats, authentication methods, etc. It is usually in JSON format. for e.g. `https://petstore3.swagger.io/api/v3/openapi.json`
 
 **Token**: An authentication token to connect to an OpenAPI schema URL. It is only required if the API schema is protected or secured.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: rest
   serviceName: openapi_rest
   serviceConnection:
     config:
       type: Rest
+openAPISchemaURL: https://docs.open-metadata.org/swagger.json
 ```
-```yaml {% srNumber=1 %}
+```yaml
       openAPISchemaURL: https://docs.open-metadata.org/swagger.json
 
 ```
@@ -89,9 +81,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

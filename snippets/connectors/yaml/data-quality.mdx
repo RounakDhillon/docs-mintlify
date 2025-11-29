@@ -39,14 +39,14 @@ processor:
 
 The processor type should be set to ` "orm-test-runner"`. For accepted test definition names and parameter value names refer to the [tests page](/how-to-guides/data-quality-observability/quality/tests-yaml).
 
-{% note %}
+<Tip>
 
 Note that while you can define tests directly in this YAML configuration, running the
 workflow will execute ALL THE TESTS present in the table, regardless of what you are defining in the YAML.
 
 This makes it easy for any user to contribute tests via the UI, while maintaining the test execution external.
 
-{% /note %}
+</Tip>
 
 You can keep your YAML config as simple as follows if the table already has tests.
 

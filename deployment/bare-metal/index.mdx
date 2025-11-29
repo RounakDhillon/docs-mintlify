@@ -33,24 +33,24 @@ or visit one of the following OS-specific guides.
 - [Installing MySQL on Windows](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/windows-installation.html)
 - [Installing MySQL on MacOS](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/macos-installation.html)
 
-{%note%}
+<Tip>
 
 Make sure to configure required databases and users for OpenMetadata. 
 
 You can refer a sample script [here](https://github.com/open-metadata/OpenMetadata/blob/main/docker/mysql/mysql-script.sql).
 
-{%/note%}
+</Tip>
 
 ## Postgres (version 12.0 or higher)
 
 To install Postgres see the instructions for your operating system (OS) at [Postgres Download](https://www.postgresql.org/download/) 
-{%note%}
+<Tip>
 
 Make sure to configure required databases and users for OpenMetadata. 
 
 You can refer a sample script [here](https://github.com/open-metadata/OpenMetadata/blob/main/docker/postgresql/postgres-script.sql).
 
-{%/note%}
+</Tip>
 
 
 ## Elasticsearch (version 8.X)
@@ -108,11 +108,11 @@ as the connection to the MySQL database or ElasticSearch. You can find more info
 
 The command below will generate all the necessary tables and indexes in ElasticSearch.
 
-{%note%}
+<Tip>
 
 Note that if there's any data in that database, this command will drop it!
 
-{%/note%}
+</Tip>
 
 ```commandline
 ./bootstrap/openmetadata-ops.sh drop-create
@@ -236,11 +236,11 @@ ELASTICSEARCH_PASSWORD="<OPENSEARCH_PASSWORD>"
 ELASTICSEARCH_CLUSTER_ALIAS="<clusterAlias>"
 ```
 
-{% note %}
+<Tip>
 
 If you want to separate indexes for production and non-production environments, you can set the `clusterAlias` in the configuration file.
 
-{% /note %}
+</Tip>
 
 ### Configure Ingestion
 
@@ -261,11 +261,11 @@ AIRFLOW_TRUST_STORE_PATH=""
 AIRFLOW_TRUST_STORE_PASSWORD=""
 ```
 
-{% note noteType="Warning" %}
+<Warning>
 
 When setting up environment file if your custom password includes any special characters then make sure to follow the steps [here](https://github.com/open-metadata/OpenMetadata/issues/12110#issuecomment-1611341650).
 
-{% /note %}
+</Warning>
 
 ## Troubleshooting
 

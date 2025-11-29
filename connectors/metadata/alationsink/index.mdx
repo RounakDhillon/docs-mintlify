@@ -6,29 +6,27 @@ slug: /connectors/metadata/alationsink
 
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="AlationSink"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
-<IngestionModeTiles yamlPath="/snippets/connectors/metadata/alationsink/yaml" />
-
-{% note %}
+<Tip>
 The connector will ingest data from OpenMetadata into Alation.
-{% /note %}
+</Tip>
 
 Configure and schedule Alation Sink metadata workflow from the OpenMetadata UI:
 
@@ -50,8 +48,6 @@ Follow the link [here](https://developer.alation.com/dev/docs/authentication-int
 
 Following entities are supported and will be mapped to the from OpenMetadata to the entities in Alation.
 
-{% multiTablesWrapper %}
-
 | Alation Entity               | OpenMetadata Entity          |
 | :----------------------------| :--------------------------- |
 | Data Source (OCF)            | Database                     |
@@ -59,16 +55,13 @@ Following entities are supported and will be mapped to the from OpenMetadata to 
 | Table                        | Table                        |
 | Columns                      | Columns                      |
 
-{% /multiTablesWrapper %}
-
 ## Metadata Ingestion
 
 Then, prepare the Alation Sink Service and configure the Ingestion:
 
 <MetadataIngestionUi connector={"AlationSink"} selectServicePath={"/images/connectors/alationsink/select-service.png"} addNewServicePath={"/images/connectors/alationsink/add-new-service.png"} serviceConnectionPath={"/images/connectors/alationsink/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -97,12 +90,10 @@ datasourceLinks: {
 }
 ```
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

@@ -1,24 +1,9 @@
-{% step srNumber=7 %}
-
-{% stepDescription title="7. Configure Metadata Ingestion" %}
-
-In this step we will configure the metadata ingestion pipeline,
+<Step title="7. Configure Metadata Ingestion">
+  In this step we will configure the metadata ingestion pipeline,
 Please follow the instructions below
 
-{% /stepDescription %}
-
-{% stepVisualInfo %}
-
-{% image
-  src="/images/v1.8/connectors/configure-metadata-ingestion-dashboard.png"
-  alt="Configure Metadata Ingestion"
-  caption="Configure Metadata Ingestion Page" /%}
-
-{% /stepVisualInfo %}
-
-{% /step %}
-
-{% extraContent parentTagName="stepsContainer" %}
+  <img src="/images/v1.8/connectors/configure-metadata-ingestion-dashboard.png" alt="Configure Metadata Ingestion" />
+</Step>
 
 #### Metadata Ingestion Options
 
@@ -28,13 +13,13 @@ Please follow the instructions below
   - **Exclude**: Explicitly exclude dashboards by adding a list of comma-separated regular expressions to the 'Exclude' field. OpenMetadata will exclude all dashboards with names matching one or more of the supplied regular expressions. All other dashboards will be included.
 - **projectFilterPattern**: Filter the dashboards, charts and data sources by projects. Note that all of them support regex as include or exclude. E.g., "My project, My proj.*, .*Project".
 
-{% note %} 
+<Tip> 
 
 We filter the projects by concatenating the entire project hierarchy using dot notation  
 (e.g., `Project1.NestedProjectA.OtherProject`).  
 Make sure the regex filter pattern accounts for this fully-qualified format.
 
-{% /note %}
+</Tip>
 
 - **Chart Pattern (Optional)**: Use it to control whether to include charts as part of metadata ingestion.
   - **Include**: Explicitly include charts by adding a list of comma-separated regular expressions to the 'Include' field. OpenMetadata will include all charts with names matching one or more of the supplied regular expressions. All other charts will be excluded.
@@ -50,4 +35,3 @@ Make sure the regex filter pattern accounts for this fully-qualified format.
 - **Mark Deleted Dashboards (toggle)**: Set the 'Mark Deleted Dashboards' toggle to flag dashboards as soft-deleted if they are not present anymore in the source system.
 - **Include Draft Dashboard (toogle)**: Set the 'Include Draft Dashboard' toggle to include draft dashboards. By default it will include draft dashboards.
 
-{% /extraContent %}

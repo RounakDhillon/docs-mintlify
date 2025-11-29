@@ -28,57 +28,32 @@ Airflow host, you can follow [this](/deployment/ingestion/openmetadata) guide.
 If you don't want to use the OpenMetadata Ingestion container to configure the workflows via the UI, then you can check
 the following docs to run the Ingestion Framework in any orchestrator externally.
 
-{% tilesContainer %}
-{% tile
-    title="Run Connectors from the OpenMetadata UI"
-    description="Learn how to manage your deployment to run connectors from the UI."
-    link="/deployment/ingestion/openmetadata"
-  / %}
-{% tile
-    title="External Schedulers"
-    description="Get more information about running the Ingestion Framework Externally."
-    link="/deployment/ingestion/external"
-  / %}
-{% /tilesContainer %}
+<CardGroup cols={2}>
+<Card title="Run Connectors from the OpenMetadata UI" href="/deployment/ingestion/openmetadata">
+Learn how to manage your deployment to run connectors from the UI.
+</Card>
+<Card title="External Schedulers" href="/deployment/ingestion/external">
+Get more information about running the Ingestion Framework Externally.
+</Card>
+</CardGroup>
 
-{%inlineCalloutContainer%}
-
-{%inlineCallout
-  bold="Metadata"
-  icon="cable"
-  href="/connectors/ingestion/workflows/metadata"%}
+<CardGroup cols={2}>
+<Card title="Metadata" href="/connectors/ingestion/workflows/metadata">
 Learn more about how to ingest metadata from dozens of connectors.
-{%/inlineCallout%}
-
-{%inlineCallout
-  bold="Usage"
-  icon="cable"
-  href="/connectors/ingestion/workflows/usage"%}
+</Card>
+<Card title="Usage" href="/connectors/ingestion/workflows/usage">
 Run usage ingestion workflows externally to track data access.
-{%/inlineCallout%}
-
-{%inlineCallout
-  bold="Lineage"
-  icon="cable"
-  href="/connectors/ingestion/workflows/lineage"%}
+</Card>
+<Card title="Lineage" href="/connectors/ingestion/workflows/lineage">
 Run lineage Agent workflows externally to capture data flow.
-{%/inlineCallout%}
-
-{%inlineCallout
-  bold="dbt"
-  icon="cable"
-  href="/connectors/ingestion/workflows/dbt"%}
+</Card>
+<Card title="dbt" href="/connectors/ingestion/workflows/dbt">
 Run dbt Agent workflows externally to sync models and metadata.
-{%/inlineCallout%}
-
-{%inlineCallout
-  bold="Auto-Classification"
-  icon="cable"
-  href="/how-to-guides/data-governance/classification/auto-classification"%}
+</Card>
+<Card title="Auto-Classification" href="/how-to-guides/data-governance/classification/auto-classification">
 Set up auto-classification to detect and tag sensitive data automatically.
-{%/inlineCallout%}
-
-{%/inlineCalloutContainer%}
+</Card>
+</CardGroup>
 
 ## API Services
 

@@ -6,10 +6,10 @@ collate: false
 
 # Configuration Reference Parameters
 
-## Public Key Url (publicKeyUrls): 
+## Public Key Url (publicKeyUrls):
 This needs to be updated as per different SSO providers. The default value is `http://localhost:8585/api/v1/system/config/jwks`. This is the URL where the public keys are stored. The public keys are used to verify the signature of the JWT token.
 
-{%important%}
+<Warning>
 
 **Google**: https://www.googleapis.com/oauth2/v3/certs
 
@@ -21,7 +21,7 @@ This needs to be updated as per different SSO providers. The default value is `h
 
 Also if you have enabled [JWT Tokens](/deployment/security/enable-jwt-tokens) then http://localhost:8585/api/v1/system/config/jwks also needs to be there in the list with proper server url.
 
-{%important%}
+</Warning>
 
 ## Client ID (id):
 The client ID provided by your OIDC provider. This is typically obtained when you register your application with the OIDC provider.
@@ -32,21 +32,21 @@ Specify the type of OIDC provider you are using (e.g., google, azure). This valu
 ## Client Secret (secret): 
 Replace with the client secret provided by your OIDC provider.
 
-## Scope (scope): 
-Define the scopes that your application requests during authentication. Update ${OIDC_SCOPE:-"openid email profile"} with the desired scopes.
+## Scope (scope):
+Define the scopes that your application requests during authentication. Update `${OIDC_SCOPE:-"openid email profile"}` with the desired scopes.
 
-{% note %}
+<Tip>
 
 It does not need to be changed in most cases. The default scopes are `openid email profile`. The openid scope is required for OIDC authentication. The email and profile scopes are used to retrieve the user's email address and profile information.
 Although, some provider only give Refresh Token if `offline_access` scope is provided. So, if you want to use Refresh Token, you need to add `offline_access` scope, like below:
 `offline_access openid email profile`.
 
-{% /note %}
+</Tip>
 
-## Discovery URI (discoveryUri): 
+## Discovery URI (discoveryUri):
 Provide the URL of the OIDC provider's discovery document. This document contains metadata about the provider's configuration.
 
-{%important%}
+<Warning>
 
 It is mostly in the format as below: https://accounts.google.com/.well-known/openid-configuration
 
@@ -60,7 +60,7 @@ It is mostly in the format as below: https://accounts.google.com/.well-known/ope
 
 Normally it's some initial SSO provider URL followed by `.well-known/openid-configuration`
 
-{%important%}
+</Warning>
 
 ## Use Nonce (useNonce): 
 Set to true by Default, if you want to use nonce for replay attack protection during authentication. This does not need to be changed.
@@ -71,43 +71,43 @@ Specify the preferred JSON Web Signature (JWS) algorithm. Default is RS256 and n
 ## Response Type (responseType): 
 Define the response type for the authentication request. Default is code and need not be changed.
 
-## Disable PKCE (disablePkce): 
-Set ${OIDC_DISABLE_PKCE:-true} to true if you want to disable Proof Key for Code Exchange (PKCE). If you want to send CodeVerifier and CodeChallenge in the request, set it to false.
+## Disable PKCE (disablePkce):
+Set `${OIDC_DISABLE_PKCE:-true}` to true if you want to disable Proof Key for Code Exchange (PKCE). If you want to send CodeVerifier and CodeChallenge in the request, set it to false.
 
-## Callback URL (callbackUrl): 
-Provide the callback URL where the OIDC provider redirects after authentication. Update ${OIDC_CALLBACK:-"http://localhost:8585/callback"} with your actual callback URL.
+## Callback URL (callbackUrl):
+Provide the callback URL where the OIDC provider redirects after authentication. Update `${OIDC_CALLBACK:-"http://localhost:8585/callback"}` with your actual callback URL.
 
-{%important%}
+<Warning>
 
 The only initial part of the URL should be changed, the rest of the URL should be the same as the default one. The default URL is `http://localhost:8585/callback`.
 Also, this should match what you have configured in your OIDC provider.
 
-{%important%}
+</Warning>
 
 ## Server URL (serverUrl): 
 Specify the URL of your OM Server. Default is http://localhost:8585.
 
-## Client Authentication Method (clientAuthenticationMethod): 
+## Client Authentication Method (clientAuthenticationMethod):
 Define the method used for client authentication. Default is client_secret_post.
 
-{%important%}
+<Warning>
 
-This does not need to be changed in most cases. The default value is `client_secret_post`. 
+This does not need to be changed in most cases. The default value is `client_secret_post`.
 This method is used to send the client ID and client secret in the request body.
 Another possible value is `client_secret_basic`, which sends the client ID and client secret in the Authorization header.
 Depending on the OIDC provider, you may need to change this value if only one of them is supported.
 
-{%important%}
+</Warning>
 
-## Tenant (tenant): 
+## Tenant (tenant):
 If applicable, specify the tenant ID for multi-tenant applications. Example in case of Azure.
 
-{%important%}
+<Warning>
 
 This is only applicable for multi-tenant applications. If you are using a single tenant application, you can leave this field empty.
 For Azure SSO Provider this may be needed.
 
-{%important%}
+</Warning>
 
 ## Max Clock Skew (maxClockSkew): 
 Define the maximum acceptable clock skew between your application server and the OIDC server.

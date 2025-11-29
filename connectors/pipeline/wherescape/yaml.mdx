@@ -4,12 +4,13 @@ description: Configure WhereScape ingestion via YAML to capture data pipeline me
 slug: /connectors/pipeline/wherescape/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Wherescape"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Owners"]
-unavailableFeatures=["Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Owners"]}
+unavailableFeatures={["Tags"]} />
 
 In this section, we provide guides and references to use the Wherescape connector.
 
@@ -51,9 +51,6 @@ pip3 install "openmetadata-ingestion[wherescape]"
 ```
 
 
-{% /note %}
-
-
 ## Metadata Ingestion
 
 All connectors are defined as JSON Schemas.
@@ -71,47 +68,33 @@ The workflow is modeled around the following
 
 This is a sample config for Wherescape:
 
-{% codePreview %}
+<Steps>
+<Step title="Configuration">
 
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=1 %}
-
+</Step>
+<Step title="connection">
 **connection**: 
 
 In terms of `connection` we support the following selections:
 
 - `Mssql`: Pass the required credentials to reach out this service. We will
   create a connection to the pointed database and read Wherescape data from there.
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 <SourceConfigDef />
 
 <IngestionSinkDef />
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: wherescape
   serviceName: wherescape_source
   serviceConnection:
     config:
       type: Wherescape
-```
-```yaml {% srNumber=6 %}
-      # Connection needs to be Mssql
+# Connection needs to be Mssql
       connection:
         type: Mssql
         username: user
@@ -126,10 +109,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

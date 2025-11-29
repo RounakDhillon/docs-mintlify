@@ -3,6 +3,7 @@ title: Run the Teradata Connector Externally
 slug: /connectors/database/teradata/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -15,18 +16,17 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Teradata"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Owners", "Tags", "Stored Procedures", "dbt"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures", "dbt"]} />
 
 In this section, we provide guides and references to use the Teradata connector.
 
@@ -70,52 +70,28 @@ The workflow is modeled around the following
 
 This is a sample config for Teradata:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Specify the User to connect to Teradata.
-
-{% /codeInfo %}
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="password">
 **password**: User password to connect to Teradata
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="hostPort">
 **hostPort**: Enter the fully qualified hostname and port number for your Greenplum deployment in the Host and Port field.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-
-
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: teradata
   serviceName: example_teradata
   serviceConnection:
     config:
       type: Teradata
-```
-```yaml {% srNumber=1 %}
-      username: username
-```
-```yaml {% srNumber=2 %}
-      password: <password>
-```
-```yaml {% srNumber=3 %}
-      hostPort: teradata:1025
+username: username
+password: <password>
+hostPort: teradata:1025
 ```
 
 <SourceConfig />
@@ -123,10 +99,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

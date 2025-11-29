@@ -7,21 +7,21 @@ collate: true
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Snowplow"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage"]
-unavailableFeatures=["Tags", "Owners"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage"]}
+unavailableFeatures={["Tags", "Owners"]} />
 
 In this section, we provide guides and references to use the Snowplow connector.
 
@@ -31,8 +31,6 @@ Configure and schedule Snowplow metadata workflow from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
     - [Connection Details](#connection-details)
 - [Troubleshooting](/connectors/pipeline/snowplow/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/snowplow/yaml" />
 
 ## Requirements
 
@@ -54,8 +52,7 @@ For self-hosted Snowplow Community deployments, you need:
 
 <MetadataIngestionUi connector={"Snowplow"} selectServicePath={"/images/connectors/snowplow/select-service.png"} addNewServicePath={"/images/connectors/snowplow/add-new-service.png"} serviceConnectionPath={"/images/connectors/snowplow/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -112,12 +109,10 @@ For Community deployments, provide:
   
   Leave empty to ingest all available pipelines.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

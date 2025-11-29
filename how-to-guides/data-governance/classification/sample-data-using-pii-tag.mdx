@@ -12,20 +12,12 @@ In OpenMetadata, sensitive information is protected through **automatic masking*
 - If a **PII tag** is applied to a **specific column**:
   - Only that column’s sample data will be **masked** and displayed as `******` in the UI.
 
-{% image
-src="/images/v1.9/how-to-guides/governance/pii-tags.png"
-alt="PII Tag Application at Column Level"
-caption="PII Tag Application at Column Level"
-/%}
+<img src="/images/v1.9/how-to-guides/governance/pii-tags.png" alt="PII Tag Application at Column Level" />
 
 - If a **PII tag** is applied at the **table level**:
   - **All columns** within that table will have their sample data masked automatically.
 
-{% image
-src="/images/v1.9/how-to-guides/governance/pii-tags2.png"
-alt="PII Tag Application at Table Level"
-caption="PII Tag Application at Table Level"
-/%}
+<img src="/images/v1.9/how-to-guides/governance/pii-tags2.png" alt="PII Tag Application at Table Level" />
 
 This behavior ensures that sensitive data is not exposed through sample data views in OpenMetadata.
 
@@ -50,10 +42,6 @@ When the tag is applied at the **table level**, the result would be:
 1. Navigate to the **column** or **table** in the OpenMetadata UI.
 2. Apply the **PII.Sensitive** tag via the tagging options.
 
-{% image
-src="/images/v1.9/how-to-guides/governance/pii-tags1.png"
-alt="PII.Sensitive Tagging"
-caption="PII.Sensitive Tagging"
-/%}
+<img src="/images/v1.9/how-to-guides/governance/pii-tags1.png" alt="PII.Sensitive Tagging" />
 
 3. Ensure auto-classification or manual tagging captures the correct columns during ingestion.

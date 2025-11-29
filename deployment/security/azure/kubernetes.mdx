@@ -15,9 +15,9 @@ Check the more information about environment variable [here](/deployment/securit
 
 Here is an example for reference, showing where to place the values in the `values.yaml` file after setting up your Azure account and obtaining the application credentials.
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Public Flow
 
 openmetadata:
@@ -29,7 +29,7 @@ openmetadata:
       - "admin"
       - "user1"
       - "user2"
-      principalDomain: "open-metadata.org"  # Update with your Domain,The primary domain for the organization (example.com from john.doe@example.com).  
+      principalDomain: "open-metadata.org"  # Update with your Domain,The primary domain for the organization (example.com from john.doe@example.com).
 
     authentication:
       clientType: public
@@ -37,28 +37,30 @@ openmetadata:
       publicKeys:
       - "{your domain}/api/v1/system/config/jwks"                    # Update with your Domain and Make sure this "/api/v1/system/config/jwks" is always configured to enable JWT tokens
       - "https://login.microsoftonline.com/common/discovery/keys"
-      authority: "https://login.microsoftonline.com/{Tenant ID}"     # Update your Tenant ID  
+      authority: "https://login.microsoftonline.com/{Tenant ID}"     # Update your Tenant ID
       clientId: "{Client ID}"                                        # Update your Client ID
       callbackUrl: "http://localhost:8585/callback"
 ```
+</Tab>
 
-```authcode
-# Auth Code Flow 
+<Tab title="authcode">
+```
+# Auth Code Flow
 
 openmetadata:
   config:
     authorizer:
-      className: "org.openmetadata.service.security.DefaultAuthorizer"  
-      containerRequestFilter: "org.openmetadata.service.security.JwtFilter"  
+      className: "org.openmetadata.service.security.DefaultAuthorizer"
+      containerRequestFilter: "org.openmetadata.service.security.JwtFilter"
       initialAdmins:  # john.doe from john.doe@example.com
       - "admin"
       - "user1"
       - "user2"
-      principalDomain: "open-metadata.org"  # Update with your Domain,The primary domain for the organization (example.com from john.doe@example.com).  
+      principalDomain: "open-metadata.org"  # Update with your Domain,The primary domain for the organization (example.com from john.doe@example.com).
 
     authentication:
-      clientType: confidential 
-      provider: "azure" 
+      clientType: confidential
+      provider: "azure"
       publicKeys:
       - "{your domain}/api/v1/system/config/jwks"                   # Update with your Domain and Make sure this "/api/v1/system/config/jwks" is always configured to enable JWT tokens
       - "https://login.microsoftonline.com/common/discovery/keys"
@@ -70,32 +72,32 @@ openmetadata:
         oidcConfiguration.enabled: true
         clientId:
           secretRef: oidc-secrets
-          secretKey: openmetadata-oidc-client-id  
+          secretKey: openmetadata-oidc-client-id
         clientSecret:
           secretRef: oidc-secrets
-          secretKey: openmetadata-oidc-client-secret  
-        discoveryUri: "https://login.microsoftonline.com/.well-known/openid-configuration"     
-        callbackUrl: http://localhost:8585/callback  
-        serverUrl: http://localhost:8585  
+          secretKey: openmetadata-oidc-client-secret
+        discoveryUri: "https://login.microsoftonline.com/.well-known/openid-configuration"
+        callbackUrl: http://localhost:8585/callback
+        serverUrl: http://localhost:8585
 ```
+</Tab>
+</Tabs>
 
-{% /codeWithLanguageSelector %}
-
-{% note %}
+<Tip>
 
 Altering the order of claims in `jwtPrincipalClaims` may lead to problems when matching a user from a token with an existing user in the system. The mapping process relies on the specific order of claims, so changing it can result in inconsistencies or authentication failures, as the system cannot ensure correct user mapping with a new claim order.
 
-{% /note %}
+</Tip>
 
 <ConfigureIngestion />
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="Azure"
-    href="/deployment/security/azure" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Azure"
+    href="/deployment/security/azure"
+  >
     Go to Azure Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

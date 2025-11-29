@@ -4,6 +4,8 @@ description: Connect QlikCloud dashboards to OpenMetadata effortlessly. Complete
 slug: /connectors/dashboard/qlikcloud
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -12,17 +14,14 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Qlik Cloud"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Projects", "Dashboards", "Charts", "Datamodels", "Lineage", "Column Lineage"]
-  unavailableFeatures=["Owners", "Tags"]
-/ %}
+  availableFeatures={["Projects", "Dashboards", "Charts", "Datamodels", "Lineage", "Column Lineage"]}
+  unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Qlik Cloud connector.
 
@@ -33,20 +32,21 @@ Configure and schedule QlikCloud metadata and profiler workflows from the OpenMe
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/qlikcloud/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/qlikcloud/yaml" />
-
 ## Requirements
 
-{%inlineCallout icon="description" bold="OpenMetadata 1.1.1 or later" href="/deployment"%}
-To deploy OpenMetadata, check the Deployment guides.
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="OpenMetadata 1.1.1 or later"
+    href="/deployment"
+  >
+    To deploy OpenMetadata, check the Deployment guides.
+  </Card>
 
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"QlikCloud"} selectServicePath={"/images/connectors/qlikcloud/select-service.png"} addNewServicePath={"/images/connectors/qlikcloud/add-new-service.png"} serviceConnectionPath={"/images/connectors/qlikcloud/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -54,14 +54,12 @@ To deploy OpenMetadata, check the Deployment guides.
 - **Qlik Cloud API Token**: Enter the API token for Qlik Cloud APIs access. Refer to [this](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-generate-api-keys.htm) document for more details about. Example: `eyJhbGciOiJFU***`.
 - **Qlik Cloud Space Types**: Select relevant space types of Qlik Cloud to filter the dashboards ingested into the platform. Example: `Personal`, `Shared`, `Managed`, `Data`.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <DashboardLineage />

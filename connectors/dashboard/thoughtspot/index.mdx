@@ -5,23 +5,22 @@ slug: /connectors/dashboard/thoughtspot
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="ThoughtSpot"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]
-unavailableFeatures=["Projects"]
-/ %}
+availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
+unavailableFeatures={["Projects"]} />
 
 In this section, we provide guides and references to use the ThoughtSpot connector.
 
@@ -32,8 +31,6 @@ Configure and schedule ThoughtSpot metadata and profiler workflows from the Open
 - [Metadata Ingestion](#metadata-ingestion)
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/thoughtspot/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/thoughtspot/yaml" />
 
 ## Requirements
 
@@ -57,9 +54,9 @@ To access the ThoughtSpot APIs and import liveboards, charts, and data models fr
    If you're using ThoughtSpot Cloud with multiple organizations:
    - Set the `Organization ID` parameter to specify which organization to connect to (only for ThoughtSpot Cloud).
 
-{% note %}
+<Tip>
 - For lineage extraction, ensure TML (ThoughtSpot Modeling Language) export is enabled for your user.
-{% /note %}
+</Tip>
 
 ## Connection Details
 
@@ -93,7 +90,7 @@ To access the ThoughtSpot APIs and import liveboards, charts, and data models fr
 
 <MetadataIngestionUi connector={"ThoughtSpot"} selectServicePath={"/images/connectors/thoughtspot/select-service.png"} addNewServicePath={"/images/connectors/thoughtspot/add-new-service.png"} serviceConnectionPath={"/images/connectors/thoughtspot/service-connection.png"} />
 
-{% stepsContainer %}
+<Steps>
 
 <TestConnection />
 
@@ -101,7 +98,7 @@ To access the ThoughtSpot APIs and import liveboards, charts, and data models fr
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 **Note:**  
 Lineage creation requires:

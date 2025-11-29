@@ -97,13 +97,13 @@ Security requirements for your **production** environment:
 ### 3. Connector Details Headers
 **Source Pattern:**
 ```markdown
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="MySQL"
 stage="PROD"
 platform="OpenMetadata"
 availableFeatures=["Metadata", "Data Profiler"]
 unavailableFeatures=["Owners", "Tags"]
-/ %}
+/>
 ```
 
 **Target Pattern:**

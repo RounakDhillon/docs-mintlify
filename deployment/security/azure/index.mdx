@@ -9,7 +9,7 @@ collate: false
 
 Follow the sections in this guide to set up Azure SSO.
 
-{% note %}
+<Tip>
 
 Security requirements for your **production** environment:
 - **DELETE** the admin default account shipped by OM in case you had [Basic Authentication](/deployment/security/basic-auth)
@@ -17,7 +17,7 @@ Security requirements for your **production** environment:
 - **UPDATE** the Private / Public keys used for the [JWT Tokens](/deployment/security/enable-jwt-tokens). The keys we provide
   by default are aimed only for quickstart and testing purposes. They should NEVER be used in a production installation.
 
-{% /note %}
+</Tip>
 
 ## Create Server Credentials
 
@@ -26,21 +26,21 @@ Security requirements for your **production** environment:
 - Login to [Microsoft Azure Portal](https://azure.microsoft.com/en-in/services/active-directory/external-identities/)
 - Navigate to the Azure Active Directory.
 
-{% note %}
+<Tip>
 
 Admin permissions are required to register the application on the Azure portal.
 
-{% /note %}
+</Tip>
 
 ### Step 2: Create a New Application
 
 - From the Azure Active Directory, navigate to the `App Registrations` section from the left nav bar.
 
-{% image src="/images/v1.9/deployment/security/azure/create-app-1.png" alt="create-app" /%} 
+<img src="/images/v1.9/deployment/security/azure/create-app-1.png" alt="create-app" /> 
 
 - Click on `New Registration`. This step is for registering the OpenMetadata UI.
 
-{% image src="/images/v1.9/deployment/security/azure/create-app-2.png" alt="create-app" /%}
+<img src="/images/v1.9/deployment/security/azure/create-app-2.png" alt="create-app" />
 
 - Provide an Application Name for registration.
 - Provide a redirect URL as a `Single Page Application`.
@@ -53,7 +53,7 @@ After creating the account, choose the authentication flow you want to use:
 - [Implicit Flow](/deployment/security/azure/implicit-flow) (Public)
 - [Auth Code Flow](/deployment/security/azure/auth-code-flow) (Confidential)
 
-{% note %}
+<Tip>
 
 - **SPA (Single Page Application):**  
   This type is designed for implicit flows. In this case, providing both the client ID and client secret will result in a failure because the implicit flow only requires the client ID for authentication.
@@ -68,6 +68,6 @@ After creating the account, choose the authentication flow you want to use:
 - Use the **Web** type for confidential clients that require both a client ID and secret.
 - Use the **SPA** type for applications using implicit flows where only a client ID is needed.
 
-{% /note %}
+</Tip>
 
 

@@ -4,12 +4,13 @@ description: Configure Spline ingestion with YAML to capture Spark lineage metad
 slug: /connectors/pipeline/spline/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Spline"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Usage"]
-unavailableFeatures=["Owners", "Tags", "Lineage"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Usage"]}
+unavailableFeatures={["Owners", "Tags", "Lineage"]} />
 
 In this section, we provide guides and references to use the Spline connector.
 
@@ -42,11 +42,11 @@ Configure and schedule Spline metadata and profiler workflows from the OpenMetad
 
 The Spline connector support lineage of data source of type `jdbc` or `dbfs` i.e. The spline connector would be able to extract lineage if the data source is either a jdbc connection or the data source is databricks instance.
 
-{% note %}
+<Tip>
 
 Currently we do not support data source of type aws s3 or any other cloud storage, which also means that the lineage for external tables from databricks will not be extracted. 
 
-{% /note %}
+</Tip>
 
 You can refer [this](https://github.com/AbsaOSS/spline-getting-started/tree/main/spline-on-databricks) documentation on how to configure databricks with spline.
 
@@ -78,21 +78,13 @@ The workflow is modeled around the following
 
 This is a sample config for Spline:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: Spline REST Server API Host & Port, OpenMetadata uses Spline REST Server APIs to extract the execution details from spline to generate lineage. This should be specified as a URI string in the format `scheme://hostname:port`. E.g., `http://localhost:8080`, `http://host.docker.internal:8080`.
 
 **uiHostPort**: Spline UI Host & Port is an optional field which is used for generating redirection URL from OpenMetadata to Spline Portal. This should be specified as a URI string in the format `scheme://hostname:port`. E.g., `http://localhost:9090`, `http://host.docker.internal:9090`.
-
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -100,21 +92,14 @@ This is a sample config for Spline:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml 
 source:
   type: spline
   serviceName: spline_source
   serviceConnection:
     config:
       type: Spline
-```
-```yaml {% srNumber=1 %}
-      hostPort: http://localhost:8080
+hostPort: http://localhost:8080
       uiHostPort: http://localhost:9090
 ```
 
@@ -123,10 +108,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

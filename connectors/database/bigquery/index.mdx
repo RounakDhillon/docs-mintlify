@@ -4,6 +4,8 @@ description: Connect BigQuery to OpenMetadata seamlessly with our comprehensive 
 slug: /connectors/database/bigquery
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import PartitionedTables from '/snippets/connectors/database/partitioned-tables.mdx'
 import ReverseMetadata from '/snippets/connectors/database/bigquery/reverse-metadata.mdx'
 
@@ -17,20 +19,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="BigQuery"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Tags", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=["Owners"]
-/ %}
-
+availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Tags", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={["Owners"]} />
 
 In this section, we provide guides and references to use the BigQuery connector.
 
@@ -45,12 +42,7 @@ Configure and schedule BigQuery metadata and profiler workflows from the OpenMet
 - [Lineage](/connectors/ingestion/lineage)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/bigquery/troubleshooting)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/bigquery/yaml" />
 
 <ExternalIngestionDeployment />
 
@@ -58,14 +50,11 @@ Configure and schedule BigQuery metadata and profiler workflows from the OpenMet
 
 You need to create an service account in order to ingest metadata from bigquery refer [this](/connectors/database/bigquery/create-credentials) guide on how to create service account.
 
-{% tilesContainer %}
-{% tile
-icon="manage_accounts"
-title="Create Custom GCP Role"
-description="Check out this documentation on how to create a custom role and assign it to the service account."
-link="/connectors/database/bigquery/create-credentials"
-  / %}
-{% /tilesContainer %}
+<Columns cols={2}>
+<Card title="Create Custom GCP Role" href="/connectors/database/bigquery/create-credentials">
+  Check out this documentation on how to create a custom role and assign it to the service account.
+</Card>
+</Columns>
 
 <PartitionedTables />
 
@@ -75,15 +64,13 @@ link="/connectors/database/bigquery/create-credentials"
 - Select the `GCP Project ID` that you want to enable the `Data Catalog API` on.
 - Click on `Enable API` which will enable the data catalog api on the respective project.
 
-{% note %}
+<Tip>
 Access to the Google Data Catalog API is optional and only required if you want to retrieve policy tags from BigQuery. The BigQuery connector does not require this permission for general metadata ingestion.
-{% /note %}
+</Tip>
 
 ### GCP Permissions
 
 To execute metadata extraction and usage workflow successfully the user or the service account should have enough access to fetch required data. Following table describes the minimum required permissions
-
-{% multiTablesWrapper %}
 
 | #    | GCP Permission                | Required For            |
 | :--- | :---------------------------- | :---------------------- |
@@ -102,25 +89,22 @@ To execute metadata extraction and usage workflow successfully the user or the s
 | 13   | bigquery.readsessions.getData | Bigquery Usage & Lineage Workflow |
 | 14   | logging.operations.list       | Incremental Metadata Ingestion    |
 
-{% /multiTablesWrapper %}
-
-{% note %}
+<Tip>
 If the user has `External Tables`, please attach relevant permissions needed for external tables, alongwith the above list of permissions.
-{% /note %}
+</Tip>
 
-{% note %}
+<Tip>
 If you are using BigQuery and have sharded tables, you might want to consider using partitioned tables instead. Partitioned tables allow you to efficiently query data by date or other criteria, without having to manage multiple tables. Partitioned tables also have lower storage and query costs than sharded tables. 
 You can learn more about the benefits of partitioned tables [here](https://cloud.google.com/bigquery/docs/partitioned-tables#dt_partition_shard). 
 If you want to convert your existing sharded tables to partitioned tables, you can follow the steps in this [guide](https://cloud.google.com/bigquery/docs/creating-partitioned-tables#convert-date-sharded-tables).
 This will help you simplify your data management and optimize your performance in BigQuery.
-{% /note %}
+</Tip>
 
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"BigQuery"} selectServicePath={"/images/connectors/bigquery/select-service.png"} addNewServicePath={"/images/connectors/bigquery/add-new-service.png"} serviceConnectionPath={"/images/connectors/bigquery/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Options
 
@@ -169,7 +153,7 @@ This setting does **not** affect actual billing—it is only used for internal r
 
 The default value, if not set, may assume the standard on-demand BigQuery pricing (e.g., $5.00 per TiB), but you should adjust it according to your organization's negotiated rates or flat-rate pricing model.
 
-{% note %}
+<Tip>
 **Application Default Credentials (ADC) Authentication**
 
 If you want to use [ADC authentication](https://cloud.google.com/docs/authentication#adc) for BigQuery, configure the GCP credentials with type `gcp_adc`:
@@ -187,12 +171,9 @@ credentials:
 - You're running queries that span multiple projects
 
 **ADC Setup**: ADC authentication works automatically when running in Google Cloud environments (GKE, Compute Engine, Cloud Run) or when you've configured it locally using `gcloud auth application-default login`.
-{% /note %}
-
+</Tip>
 
 <AdvancedConfiguration />
-
-{% /extraContent %}
 
 <TestConnection />
 
@@ -200,14 +181,12 @@ credentials:
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ### Cross Project Lineage
 
 We support cross-project lineage, but the data must be ingested within a single service. This means you need to perform lineage ingestion for just one service while including multiple projects.
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}
 
 <Related />

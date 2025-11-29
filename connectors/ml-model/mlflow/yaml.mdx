@@ -4,12 +4,13 @@ description: Use YAML to configure MLflow ingestion and sync model runs, metrics
 slug: /connectors/ml-model/mlflow/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/ml-model/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="MLflow"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["ML Features", "Hyperparameters", "ML Store"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["ML Features", "Hyperparameters", "ML Store"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the MLflow connector.
 
@@ -67,24 +67,14 @@ The workflow is modeled around the following
 
 This is a sample config for MLflow:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="trackingUri">
 **trackingUri**: MLflow Experiment tracking URI. E.g., http://localhost:5000
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="registryUri">
 **registryUri**: MLflow Model registry backend. E.g., mysql+pymysql://mlflow:password@localhost:3307/experiments
-
-{% /codeInfo %}
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -92,23 +82,20 @@ This is a sample config for MLflow:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: mlflow
   serviceName: local_mlflow
   serviceConnection:
     config:
       type: Mlflow
+trackingUri: http://localhost:5000
+registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
 ```
-```yaml {% srNumber=1 %}
+```yaml
       trackingUri: http://localhost:5000
 ```
-```yaml {% srNumber=2 %}
+```yaml
       registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
 ```
 
@@ -117,9 +104,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

@@ -4,23 +4,21 @@ description: Connect Apache Airflow to OpenMetadata effortlessly. Complete setup
 slug: /connectors/pipeline/airflow
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Airflow"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Owners", "Usage"]
-unavailableFeatures=["Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Owners", "Usage"]}
+unavailableFeatures={["Tags"]} />
 
 In this section, we provide guides and references to use the Airflow connector.
 
@@ -30,32 +28,25 @@ Configure and schedule Airflow metadata workflow from the OpenMetadata UI:
 
 <IngestionModeTiles yamlPath="/snippets/connectors/pipeline/airflow/yaml" />
 
-{% tilesContainer %}
-{% tile
-    title="MWAA"
-    description="Run the ingestion framework externally!"
-    link="/deployment/ingestion/external/mwaa"
-  / %}
-{% tile
-    title="GCP Composer "
-    description="Run the ingestion from GCP Composer ."
-    link="/deployment/ingestion/external/gcp-composer"
-  / %}
-{% /tilesContainer %}
+<CardGroup cols={2}>
+<Card title="MWAA" href="/deployment/ingestion/external/mwaa">
+Run the ingestion framework externally!
+</Card>
+<Card title="GCP Composer" href="/deployment/ingestion/external/gcp-composer">
+Run the ingestion from GCP Composer.
+</Card>
+</CardGroup>
 
 ## Requirements
 
-{% note %}
-We only support officially supported Airflow versions. 
+<Tip>
+We only support officially supported Airflow versions.
 You can check the version list [here](https://airflow.apache.org/docs/apache-airflow/stable/installation/supported-versions.html).
-{% /note %}
+</Tip>
 
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"Airflow"} selectServicePath={"/images/connectors/airflow/select-service.png"} addNewServicePath={"/images/connectors/airflow/add-new-service.png"} serviceConnectionPath={"/images/connectors/airflow/service-connection.png"} />
-
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
 
 #### Connection Details
 
@@ -71,12 +62,8 @@ In terms of `connection` we support the following selections:
 - `MySQL`, `Postgres`, and `SQLite`: Pass the required credentials to reach out each of these services. We
     will create a connection to the pointed database and read Airflow data from there.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
-
-{% /stepsContainer %}

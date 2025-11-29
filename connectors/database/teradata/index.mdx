@@ -4,6 +4,8 @@ description: Connect Teradata databases to OpenMetadata with our comprehensive c
 slug: /connectors/database/teradata
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Teradata"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Data Quality", "Owners", "Tags", "Stored Procedures", "dbt"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Data Quality", "Owners", "Tags", "Stored Procedures", "dbt"]} />
 
 In this section, we provide guides and references to use the Teradata connector.
 
@@ -37,15 +35,16 @@ Configure and schedule Teradata metadata and profiler workflows from the OpenMet
 - [Data Quality](/how-to-guides/data-quality-observability/quality/configure)
 - [Troubleshooting](/connectors/database/teradata/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/greenplum/yaml" />
-
 ## Requirements
-{%inlineCallout icon="description" bold="OpenMetadata 1.6 or later" href="/deployment"%}
-To deploy OpenMetadata, check the Deployment guides.
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="OpenMetadata 1.6 or later"
+    href="/deployment"
+  >
+    To deploy OpenMetadata, check the Deployment guides.
+  </Card>
 
 Connector was tested on Teradata DBS version 17.20. Since there are no significant changes in metadata objects, so it should work with 15.x, 16.x versions.
-
 
 ## Metadata Ingestion
 
@@ -53,8 +52,7 @@ By default, all valid users in Teradata DB has full access to metadata objects, 
 
 <MetadataIngestionUi connector={"Teradata"} selectServicePath={"/images/connectors/teradata/select-service.png"} addNewServicePath={"/images/connectors/teradata/add-new-service.png"} serviceConnectionPath={"/images/connectors/teradata/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -69,14 +67,12 @@ By default, all valid users in Teradata DB has full access to metadata objects, 
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

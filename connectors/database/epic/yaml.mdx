@@ -5,21 +5,20 @@ slug: /connectors/database/epic/yaml
 Collate: true
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Epic"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Query Usage", "Owners", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Query Usage", "Owners", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Epic FHIR connector.
 
@@ -27,8 +26,6 @@ Configure and schedule Epic metadata workflows from the OpenMetadata UI:
 
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/epic/yaml" />
 
 <ExternalIngestionDeployment />
 
@@ -51,45 +48,22 @@ The ingestion workflow itself follows the general [workflow schema](https://gith
 
 This is a minimal sample config for Epic:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="fhirServerUrl">
 **fhirServerUrl**: Base URL of the Epic FHIR server.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="fhirVersion">
 **fhirVersion**: FHIR specification version supported (`R4`, `STU3`, or `DSTU2`).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="databaseName">
 **databaseName**: Optional name for the database in OpenMetadata. Defaults to `epic`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="schemaFilterPattern / tableFilterPattern">
 **schemaFilterPattern / tableFilterPattern**: Regex filters to limit which FHIR resource categories (schemas) or resource types (tables) are ingested.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="epic_sample.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: epic
   serviceName: epic_fhir
@@ -100,8 +74,6 @@ source:
       fhirVersion: R4
       # Optional:
       # databaseName: epic
-```
-```yaml {% srNumber=1 %}
 # Optional filters
 sourceConfig:
   config:
@@ -115,13 +87,7 @@ sourceConfig:
     #     - Patient
     #   excludes:
     #     - ".*Test.*"
-```
-```yaml {% srNumber=2 %}
 sink:
   type: metadata-rest
   config: {}
-```
-
-{% /codeBlock %}
-
-{% /codePreview %} 
+``` 

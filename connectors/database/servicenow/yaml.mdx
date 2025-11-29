@@ -5,24 +5,26 @@ slug: /connectors/database/servicenow/yaml
 Collate: true
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+<ConnectorDetailsHeader
 name="ServiceNow"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Metadata", "Lineage"]
-unavailableFeatures=["Query Usage", "Data Profiler", "Data Quality", "dbt", "Stored Procedures", "Owners", "Tags", "Sample Data", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata", "Lineage"]}
+unavailableFeatures={["Query Usage", "Data Profiler", "Data Quality", "dbt", "Stored Procedures", "Owners", "Tags", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the ServiceNow connector.
 
@@ -53,64 +55,36 @@ The workflow is modeled around the following [JSON Schema](https://github.com/op
 
 This is a sample config for ServiceNow:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: Your ServiceNow instance URL (e.g., `https://your-instance.service-now.com`).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="username">
 **username**: Username to connect to ServiceNow. This user should have read access to `sys_db_object` and `sys_dictionary` tables.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="password">
 **password**: Password to connect to ServiceNow.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="includeScopes">
 **includeScopes**: If true, ServiceNow application scopes will be imported as database schemas. Otherwise, a single default schema will be used. Default: `false`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="includeSystemTables">
 **includeSystemTables**: If true, both admin and system tables (`sys_*` tables) will be fetched. If false, only admin tables will be fetched. Default: `false`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: servicenow
   serviceName: local_servicenow
   serviceConnection:
     config:
       type: ServiceNow
-      hostPort: https://your-instance.service-now.com  # {% srNumber=1 %}
-      username: your_username  # {% srNumber=2 %}
-      password: your_password  # {% srNumber=3 %}
-      includeScopes: false  # {% srNumber=4 %}
-      includeSystemTables: false  # {% srNumber=5 %}
+      hostPort: https://your-instance.service-now.com
+      username: your_username
+      password: your_password
+      includeScopes: false
+      includeSystemTables: false
   sourceConfig:
     config:
       type: DatabaseMetadata
@@ -134,10 +108,6 @@ workflowConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <WorkflowConfig />
 

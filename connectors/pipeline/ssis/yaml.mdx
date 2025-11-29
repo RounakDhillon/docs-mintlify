@@ -4,12 +4,13 @@ slug: /connectors/pipeline/ssis/yaml
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="SSIS"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage"]
-unavailableFeatures=["Tags", "Owners"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage"]}
+unavailableFeatures={["Tags", "Owners"]} />
 
 In this section, we provide guides and references to use the SSIS connector.
 
@@ -51,9 +51,6 @@ pip3 install "openmetadata-ingestion[ssis]"
 ```
 
 
-{% /note %}
-
-
 ## Metadata Ingestion
 
 All connectors are defined as JSON Schemas.
@@ -71,26 +68,19 @@ The workflow is modeled around the following
 
 This is a sample config for SSIS:
 
-{% codePreview %}
+<Steps>
+<Step title="Configuration">
 
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=1 %}
-
+</Step>
+<Step title="connection">
 **connection**: 
 
 In terms of `connection` we support the following selections:
 
 - `Mssql`: Pass the required credentials to reach out this service. We will
   create a connection to the pointed database and read SSIS data from there.
-
-{% /codeInfo %}
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -98,38 +88,20 @@ In terms of `connection` we support the following selections:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml 
 source:
   type: SSIS
   serviceName: ssis_source
   serviceConnection:
     config:
       type: SSIS
-```
-```yaml {% srNumber=6 %}
-      databaseConnection:
+databaseConnection:
         type: Mssql
         username: user
         password: pass
         database: db
         hostPort: localhost:1433
-```
-
-**storage**:  
-To extract task dependencies and lineage, the connector needs access to your SSIS package XML files.  
-You can either provide the local path to your project folders, or upload your projects to an S3 bucket and supply the bucket name along with S3 credentials.
-
-- For s3
-
-Pass the `S3` credentials where your package folders are uploaded and specify the bucket name inside the `bucketNames` field.
-
-
-```yaml {% srNumber=7 %}
-      storageConnection:
+storageConnection:
         type: S3
         awsConfig:
           awsAccessKeyId: test
@@ -138,9 +110,10 @@ Pass the `S3` credentials where your package folders are uploaded and specify th
           endPointURL: https://packages.s3.us-east-2.amazonaws.com
         bucketNames: 
           - bucket_name
+localProjectsPath: /home/user/repos/
 ```
 - For Local
-```yaml {% srNumber=8 %}
+```yaml
   localProjectsPath: /home/user/repos/
 ```
 
@@ -149,10 +122,6 @@ Pass the `S3` credentials where your package folders are uploaded and specify th
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

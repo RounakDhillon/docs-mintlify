@@ -1,7 +1,7 @@
 #### Source Configuration - Source Config
 
-{% codeInfo srNumber=100 %}
-
+<Steps>
+<Step title="sourceConfig">
 The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/databaseServiceMetadataPipeline.json):
 
 **markDeletedTables**: To flag tables as soft-deleted if they are not present anymore in the source system.
@@ -22,7 +22,7 @@ The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetada
 
 **overrideMetadata** *(boolean)*: Set the 'Override Metadata' toggle to control whether to override the existing metadata in the OpenMetadata server with the metadata fetched from the source. If the toggle is set to true, the metadata fetched from the source will override the existing metadata in the OpenMetadata server. If the toggle is set to false, the metadata fetched from the source will not override the existing metadata in the OpenMetadata server. This is applicable for fields like description, tags, owner and displayName.
 
-**queryLogDuration**: Configuration to tune how far we want to look back in query logs to process Stored Procedures results. 
+**queryLogDuration**: Configuration to tune how far we want to look back in query logs to process Stored Procedures results.
 
 **queryParsingTimeoutLimit**: Configuration to set the timeout for parsing the query in seconds.
 
@@ -39,5 +39,5 @@ The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetada
 - [BigQuery](/connectors/ingestion/workflows/metadata/incremental-extraction/bigquery)
 - [Redshift](/connectors/ingestion/workflows/metadata/incremental-extraction/redshift)
 - [Snowflake](/connectors/ingestion/workflows/metadata/incremental-extraction/snowflake)
-
-{% /codeInfo %}
+</Step>
+</Steps>

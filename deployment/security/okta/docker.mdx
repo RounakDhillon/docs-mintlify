@@ -18,9 +18,9 @@ Create an `openmetadata_okta.env` file and use the following example as a refere
 Check the more information about environment variable [here](/deployment/security/configuration-parameters).
 
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Implicit Flow
 AUTHORIZER_CLASS_NAME=org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER=org.openmetadata.service.security.JwtFilter
@@ -33,9 +33,11 @@ AUTHENTICATION_CLIENT_ID={CLIENT_ID}            # Update with your Client ID
 AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback
 AUTHENTICATION_CLIENT_TYPE= public
 ```
+</Tab>
 
-```authcode
-# Auth Code Flow 
+<Tab title="authcode">
+```
+# Auth Code Flow
 AUTHORIZER_CLASS_NAME=org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER=org.openmetadata.service.security.JwtFilter
 AUTHORIZER_ADMIN_PRINCIPALS=[admin]                 # john.doe from john.doe@example.com
@@ -44,7 +46,7 @@ AUTHENTICATION_PROVIDER=okta
 AUTHENTICATION_PUBLIC_KEYS=[{ISSUER_URL}/v1/keys, https://{your domain}/api/v1/system/config/jwks]   # Update with your Issuer URL and  Domain also Make sure this "/api/v1/system/config/jwks" is always configured to enable JWT tokens
 AUTHENTICATION_AUTHORITY={ISSUER_URL}           # Update with your Issuer URL
 AUTHENTICATION_CLIENT_ID={Client ID}            # Update with your Client ID
-AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback 
+AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback
 AUTHENTICATION_CLIENT_TYPE=confidential
 
 OIDC_CLIENT_ID={Client ID}                      # Update with your Client ID
@@ -54,8 +56,8 @@ OIDC_DISCOVERY_URI: http://{ISSUER_URL}/.well-known/openid-configuration        
 OIDC_CALLBACK: ${OIDC_CALLBACK:-"http://localhost:8585/callback"}
 
 ```
-
-{% /codeWithLanguageSelector %}
+</Tab>
+</Tabs>
 
 
 ## 2. Start Docker
@@ -66,12 +68,12 @@ docker compose --env-file ~/openmetadata_okta.env up -d
 
 <ConfigureIngestion />
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="OKTA"
-    href="/deployment/security/okta" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="OKTA"
+    href="/deployment/security/okta"
+  >
     Go to okta Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

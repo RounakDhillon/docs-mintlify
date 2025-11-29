@@ -6,22 +6,21 @@ slug: /connectors/pipeline/dagster
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Dagster"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Tags", "Usage"]
-unavailableFeatures=["Owners", "Lineage"]
-/ %}
-
+availableFeatures={["Pipelines", "Pipeline Status", "Tags", "Usage"]}
+unavailableFeatures={["Owners", "Lineage"]} />
 
 In this section, we provide guides and references to use the Dagster connector.
 
@@ -36,8 +35,6 @@ Configure and schedule Dagster metadata and profiler workflows from the OpenMeta
 - [Troubleshooting](/connectors/pipeline/dagster/troubleshooting)
   - [Workflow Deployment Error](#workflow-deployment-error)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/dagster/yaml" />
-
 ## Requirements
 
 ### Dagster Versions
@@ -50,8 +47,7 @@ The ingestion framework uses [dagster graphql python client](https://docs.dagste
 
 <MetadataIngestionUi connector={"Dagster"} selectServicePath={"/images/connectors/dagster/select-service.png"} addNewServicePath={"/images/connectors/dagster/add-new-service.png"} serviceConnectionPath={"/images/connectors/dagster/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -64,12 +60,10 @@ The ingestion framework uses [dagster graphql python client](https://docs.dagste
   - Give your API key a name and click on the "Create API Key" button.
   - Copy the generated API key to your clipboard and paste it in the field.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

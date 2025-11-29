@@ -6,22 +6,22 @@ slug: /how-to-guides/data-quality-observability/profiler/external-workflow
 
 # External Profiler Workflow
 
-{% note %}
+<Tip>
 
 Note that this requires OpenMetadata 1.2.1 or higher.
 
-{% /note %}
+</Tip>
 
 Consider a use case where you have a large database source with multiple databases and schemas which are maintained by 
 different teams within your organization. You have created multiple database services within OpenMetadata depending on 
 your use case by applying various filters on this large source. Now, instead of running a profiler pipeline for each 
 service, you want to run a **single workflow profiler for the entire source**, irrespective of the OpenMetadata service which an asset would belong to. This document will guide you on how to achieve this.
 
-{% note %}
+<Tip>
 
 Note that running a single profiler workflow is only supported if you run the workflow **externally**, not from OpenMetadata.
 
-{% /note %}
+</Tip>
 
 <ExternalIngestionDeployment />
 
@@ -133,11 +133,11 @@ workflowConfig:
 
 ```
 
-{% note %}
+<Tip>
 
 Note that we do **NOT pass the Service Name** in this yaml file, unlike your typical profiler workflow
 
-{% /note %}
+</Tip>
 
 
 ## 2. Run the Workflow

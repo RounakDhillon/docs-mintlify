@@ -4,9 +4,11 @@ description: Use YAML to ingest metadata from Apache Cassandra, including keyspa
 slug: /connectors/database/cassandra/yaml
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -16,19 +18,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 
-{% connectorDetailsHeader
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
 name="Cassandra"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Query Usage", "Data Quality", "dbt", "Owners", "Lineage", "Column-level Lineage", "Tags", "Stored Procedures","Data Profiler", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Query Usage", "Data Quality", "dbt", "Owners", "Lineage", "Column-level Lineage", "Tags", "Stored Procedures","Data Profiler", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Cassandra connector.
 
@@ -38,9 +39,6 @@ Configure and schedule Cassandra metadata workflows from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Enable Security](#securing-cassandra-connection-with-ssl-in-openmetadata)
 
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/cassandra/yaml" />
-
 <ExternalIngestionDeployment />
 
 ## Requirements
@@ -48,7 +46,6 @@ Configure and schedule Cassandra metadata workflows from the OpenMetadata UI:
 To extract metadata using the Cassandra connector, ensure the user in the connection has the following permissions:
 - Read Permissions: The ability to query tables and perform data extraction.
 - Schema Operations: Access to list and describe keyspaces and tables.
-
 
 ### Python Requirements
 
@@ -77,32 +74,17 @@ The workflow is modeled around the following
 
 This is a sample config for Cassandra:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Username to connect to Cassandra. This user must have the necessary permissions to perform metadata extraction and table queries.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="hostPort">
 **hostPort**: When using the `cassandra` connecion schema, the hostPort parameter specifies the host and port of the Cassandra. This should be specified as a string in the format `hostname:port`. E.g., `localhost:9042`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="databaseName">
 **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="Auth Type">
 **Auth Type**: Following authentication types are supported:
 1. **Basic Authentication**:
 We'll use the user credentials to connect to Cassandra
@@ -114,25 +96,16 @@ Configuration for connecting to DataStax Astra DB in the cloud.
   - **token**: The Astra DB application token used for authentication.
   - **connectTimeout**: Timeout in seconds for establishing new connections to Cassandra.
   - **requestTimeout**: Timeout in seconds for individual Cassandra requests.
-
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=6 %}
-
+<Steps>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="caCertificate">
 The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) connection between your application and the PostgreSQL server.
 
 - **caCertificate**: Provide the path to ssl ca file.
@@ -149,63 +122,40 @@ prefer (the default): The driver will try to negotiate an SSL connection but if 
 require: The driver will try to negotiate an SSL connection. If the server does not support SSL, the driver will not fall back to a non-SSL connection.
 verify-ca: The driver will negotiate an SSL connection and verify that the server certificate is issued by a trusted certificate authority (CA).
 verify-full: The driver will negotiate an SSL connection, verify that the server certificate is issued by a trusted CA and check that the server host name matches the one in the certificate.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="cassandra.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: cassandra
   serviceName: local_cassandra
   serviceConnection:
     config:
       type: Cassandra
-```
-```yaml {% srNumber=1 %}
-      username: username
-```
-```yaml {% srNumber=3 %}
-      hostPort: localhost:9042
-```
-```yaml {% srNumber=4 %}
-      databaseName: custom_database_name
-```
-```yaml {% srNumber=5 %}
-      authType:
+username: username
+hostPort: localhost:9042
+databaseName: custom_database_name
+authType:
         password: password
         cloudConfig:
           secureConnectBundle: <SCB File Path>
           token: <Token String>
           requestTimeout: <Timeout in seconds>
           connectTimeout: <Timeout in seconds>
-```
-```yaml {% srNumber=6 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
-```
-```yaml {% srNumber=7 %}
-      # sslConfig:
+# sslConfig:
             # caCertificate: "path/to/ca/certificate"
             # sslCertificate: "path/to/ssl/certificate"
             # sslKey: "path/to/ssl/key"
       # sslMode: disable #allow prefer require verify-ca verify-full
 ```
 
-
 <SourceConfig />
 
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

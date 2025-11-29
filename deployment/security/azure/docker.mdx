@@ -17,9 +17,9 @@ Create an `openmetadata_azure.env` file and use the following example as a refer
 
 Check the more information about environment variable [here](/deployment/security/configuration-parameters).
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Implicit Flow
 AUTHORIZER_CLASS_NAME=org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER=org.openmetadata.service.security.JwtFilter
@@ -32,9 +32,11 @@ AUTHENTICATION_CLIENT_ID={CLIENT_ID}            # Update with your Client ID of 
 AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback
 AUTHENTICATION_CLIENT_TYPE= public
 ```
+</Tab>
 
-```authcode
-# Auth Code Flow 
+<Tab title="authcode">
+```
+# Auth Code Flow
 AUTHORIZER_CLASS_NAME=org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER=org.openmetadata.service.security.JwtFilter
 AUTHORIZER_ADMIN_PRINCIPALS=[admin]                 # john.doe from john.doe@example.com
@@ -48,21 +50,21 @@ AUTHENTICATION_CLIENT_TYPE=confidential
 
 OIDC_CLIENT_ID={Client ID}                      # Update with your Client ID
 OIDC_TYPE= azure
-OIDC_TENANT=https://login.microsoftonline.com/{Tenant ID} 
+OIDC_TENANT=https://login.microsoftonline.com/{Tenant ID}
 OIDC_CLIENT_SECRET={Client Secret}              # Update with your Client Secret
-OIDC_DISCOVERY_URI= https://login.microsoftonline.com/.well-known/openid-configuration  
-OIDC_DISCOVERY_URI= ""      
+OIDC_DISCOVERY_URI= https://login.microsoftonline.com/.well-known/openid-configuration
+OIDC_DISCOVERY_URI= ""
 OIDC_CALLBACK= ${OIDC_CALLBACK:-"http://localhost:8585/callback"}
 
 ```
+</Tab>
+</Tabs>
 
-{% /codeWithLanguageSelector %}
-
-{% note %}
+<Tip>
 
 Altering the order of claims in `jwtPrincipalClaims` may lead to problems when matching a user from a token with an existing user in the system. The mapping process relies on the specific order of claims, so changing it can result in inconsistencies or authentication failures, as the system cannot ensure correct user mapping with a new claim order.
 
-{% /note %}
+</Tip>
 
 ## 2. Start Docker
 
@@ -73,12 +75,12 @@ docker compose --env-file ~/openmetadata_azure.env up -d
 <ConfigureIngestion />
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="Azure"
-    href="/deployment/security/azure" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Azure"
+    href="/deployment/security/azure"
+  >
     Go to Azure Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

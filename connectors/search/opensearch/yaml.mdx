@@ -4,12 +4,13 @@ description: Use YAML to configure OpenSearch ingestion and enable search index 
 slug: /connectors/search/opensearch/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/search/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/search/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="OpenSearch"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Search Indexes", "Sample Data"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Search Indexes", "Sample Data"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the OpenSearch connector.
 
@@ -69,29 +69,17 @@ The workflow is modeled around the following
 
 This is a sample config for OpenSearch:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: This parameter specifies the host and port of the OpenSearch instance. This should be specified as a URI string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set it to `https://localhost:9200`.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=2 %}
+</Step>
+<Step title="Basic Authentication">
 **Basic Authentication**
 
 - **username**: Username to connect to OpenSearch required when Basic Authentication is enabled on OpenSearch.
 - **password**: Password of the user account to connect with OpenSearch.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="IAM BASED Auth">
 **IAM BASED Auth**
 
 - **awsAccessKeyId** & **awsSecretAccessKey**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
@@ -156,16 +144,11 @@ is assumed by different principals or for different reasons.
 information in AWS CloudTrail logs to determine who took actions with a role.
 
   Find more information about [Source Identity](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=Required%3A%20No-,SourceIdentity,-The%20source%20identity).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="verifySSL">
 - **verifySSL**: Whether SSL verification should be perform when authenticating.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
+</Step>
+<Step title="sslConfig">
 - **sslConfig**:
     1. SSL Certificates By Path
     - caCertPath: This field specifies the path of CA certificate required for authentication.
@@ -193,13 +176,11 @@ information in AWS CloudTrail logs to determine who took actions with a role.
 
     ```
     -----BEGIN CERTIFICATE-----\nMII..\nMBQ...\nCgU..\n8Lt..\n...\nh+4=\n-----END CERTIFICATE-----\n
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=6 %}
+</Step>
+<Step title="connectionTimeoutSecs">
 - **connectionTimeoutSecs**: Connection timeout configuration for communicating with OpenSearch APIs.
-{% /codeInfo %}
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -207,38 +188,24 @@ information in AWS CloudTrail logs to determine who took actions with a role.
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: opensearch
   serviceName: opensearch_source
   serviceConnection:
     config:
       type: OpenSearch
-```
-```yaml {% srNumber=1 %}
-      hostPort: http://localhost:9200
-```
-```yaml {% srNumber=2 %}
-      authType:
+hostPort: http://localhost:9200
+authType:
         username: open
         password: my_own_password
-```
-```yaml {% srNumber=3 %}
-        # awsConfig:
+# awsConfig:
         #       awsAccessKeyId: access key id
         #       awsSecretAccessKey: access secret key
         #       awsRegion: aws region name
         #       awsSessionToken: Token
-```
-```yaml {% srNumber=4 %}
-      verifySSL: no-ssl
-```
-```yaml {% srNumber=5 %}
-      sslConfig:
+verifySSL: no-ssl
+sslConfig:
         certificates:
           caCertPath: /path/to/http_ca.crt
           clientCertPath: /path/to/http_ca.crt
@@ -249,8 +216,9 @@ source:
           # clientCertValue: -----BEGIN CERTIFICATE-----\n....\n...-----END CERTIFICATE-----\n
           # privateKeyValue: -----BEGIN RSA PRIVATE KEY-----\n....\n....\n-----END RSA PRIVATE KEY-----\n
           # stagingDir: /tmp/stage
+connectionTimeoutSecs: 30
 ```
-```yaml {% srNumber=6 %}
+```yaml
       connectionTimeoutSecs: 30
 ```
 
@@ -259,9 +227,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

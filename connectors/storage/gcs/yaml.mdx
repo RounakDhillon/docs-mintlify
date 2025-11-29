@@ -4,31 +4,31 @@ description: Use YAML to configure GCS storage ingestion for metadata visibility
 slug: /connectors/storage/gcs/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import StorageSourceConfigDef from 'snippets/connectors/yaml/storage/source-config-def.mdx'
+import StorageSourceConfigDef from '/snippets/connectors/yaml/storage/source-config-def.mdx'
 
-import StorageSourceConfig from 'snippets/connectors/yaml/storage/source-config.mdx'
+import StorageSourceConfig from '/snippets/connectors/yaml/storage/source-config.mdx'
 
-import Manifest from 'snippets/connectors/storage/manifest.mdx'
+import Manifest from '/snippets/connectors/storage/manifest.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="GCS"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 This page contains the setup guide and reference information for the GCS connector.
 
@@ -47,9 +47,13 @@ To run the GCS ingestion, you will need to install:
 pip3 install "openmetadata-ingestion[datalake-gcs]"
 ```
 
-{%inlineCallout icon="description" bold="OpenMetadata 1.0 or later" href="/deployment"%}
-To deploy OpenMetadata, check the Deployment guides.
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="OpenMetadata 1.0 or later"
+    href="/deployment"
+  >
+    To deploy OpenMetadata, check the Deployment guides.
+  </Card>
 
 We need the following permissions in GCP:
 
@@ -90,23 +94,13 @@ The workflow is modeled around the following
 
 This is a sample config for Athena:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=2 %}
-
+<Steps>
+<Step title="gcpConfig:">
 **gcpConfig:**
 
 **1.** Passing the raw credential values provided by GCP. This requires us to provide the following information, all provided by GCP:
 
-{% /codeInfo %}
-
 <GcpConfigDef />
-
-{% codeInfo srNumber=4 %}
 
 **2.**  Passing a local file path that contains the credentials:
   - **gcpCredentialsPath**
@@ -139,58 +133,35 @@ source:
       gcpConfig: {}
 ...
 ```
-
-{% /codeInfo %}
-
-<StorageSourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+<Step title="Connection Options (Optional)">
+**Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=2 %}
-
-**Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+<Steps>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: gcs
   serviceName: "<service name>"
   serviceConnection:
     config:
       type: GCS
-```
-```yaml {% srNumber=1 %}
-      credentials:
+credentials:
         gcpConfig:
-```
-
-
-```yaml {% srNumber=4 %}
-      # taxonomyLocation: us
+# taxonomyLocation: us
       # taxonomyProjectID: ["project-id-1", "project-id-2"]
       # usageLocation: us
-```
-```yaml {% srNumber=2 %}
-      # connectionOptions:
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=3 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
 ```
 
@@ -199,7 +170,3 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}

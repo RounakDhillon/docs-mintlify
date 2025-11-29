@@ -6,21 +6,21 @@ slug: /connectors/ml-model/mlflow
 
 import ConfigureIngestion from '/snippets/connectors/ml-model/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="MLflow"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["ML Features", "Hyperparameters", "ML Store"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["ML Features", "Hyperparameters", "ML Store"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the MLflow connector.
 
@@ -29,8 +29,6 @@ Configure and schedule MLflow metadata and profiler workflows from the OpenMetad
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/ml-model/mlflow/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/ml-model/mlflow/yaml" />
 
 ## Requirements
 
@@ -42,15 +40,12 @@ To extract metadata, OpenMetadata needs two elements:
 
 <MetadataIngestionUi connector={"MLflow"} selectServicePath={"/images/connectors/mlflow/select-service.png"} addNewServicePath={"/images/connectors/mlflow/add-new-service.png"} serviceConnectionPath={"/images/connectors/mlflow/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
 - **trackingUri**: Mlflow Experiment tracking URI. E.g., http://localhost:5000
 - **registryUri**: Mlflow Model registry backend. E.g., mysql+pymysql://mlflow:password@localhost:3307/experiments
-
-{% /extraContent %}
 
 <TestConnection />
 
@@ -58,4 +53,4 @@ To extract metadata, OpenMetadata needs two elements:
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

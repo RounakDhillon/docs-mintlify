@@ -4,13 +4,14 @@ description: Use YAML to configure Impala ingestion and extract schema, lineage,
 slug: /connectors/database/impala/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -20,18 +21,20 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
+
+<ConnectorDetailsHeader
 name="Impala"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Owners", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Impala connector.
 
@@ -75,101 +78,57 @@ The workflow is modeled around the following
 
 This is a sample config for Hive:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Specify the User to connect to Impala. It should have enough privileges to read all the metadata.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="password">
 **password**: User password.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="authOptions">
 **authOptions**: Enter the auth options string.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="authMechanism">
 **authMechanism**: `PLAIN`, `NOSASL`, `GSSAPI`, `LDAP` or `JWT`
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="hostPort">
 **hostPort**: Enter the fully qualified hostname and port number for your Hive deployment in the Host and Port field.
-
-{% /codeInfo %}
-
-#### Source Configuration - Source Config
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="<SourceConfigDef /> <IngestionSinkDef /> <WorkflowConfigDef">
 <SourceConfigDef />
 
 <IngestionSinkDef />
 
 <WorkflowConfigDef />
-
-{% /codeInfo %}
+</Step>
+<Step title="Connection Options (Optional)">
+**Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=6 %}
-
-**Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+<Steps>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: impala
   serviceName: local_impala
   serviceConnection:
     config:
       type: Impala
-```
-```yaml {% srNumber=1 %}
-      username: <username>
-```
-```yaml {% srNumber=2 %}
-      password: <password>
-```
-```yaml {% srNumber=3 %}
-      authOptions: <auth options>
-```
-```yaml {% srNumber=4 %}
-      authMechanism: PLAIN # NOSASL, PLAIN, GSSAPI, LDAP, JWT
-```
-```yaml {% srNumber=5 %}
-      hostPort: <hive connection host & port>
-```
-```yaml {% srNumber=6 %}
-      # connectionOptions:
+username: <username>
+password: <password>
+authOptions: <auth options>
+authMechanism: PLAIN # NOSASL, PLAIN, GSSAPI, LDAP, JWT
+hostPort: <hive connection host & port>
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=7 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
 ```
 
@@ -178,10 +137,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 
@@ -205,12 +160,10 @@ To configure SSL for secure connections between OpenMetadata and an Impala datab
 
 ## dbt Integration
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-icon="mediation"
-title="dbt Integration"
-description="Learn more about how to ingest dbt models' definitions and their lineage."
-link="/connectors/ingestion/workflows/dbt" /%}
+<Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
+  Learn more about how to ingest dbt models
+</Card>
 
-{% /tilesContainer %}
+</Columns>

@@ -15,7 +15,7 @@ Before starting with the deployment make sure you follow all the below Prerequis
 
 ## Docker Deployment Architecture
 
-{% image src="/images/v1.9/deployment/docker/om_docker_architecture.png" alt="Docker Deployment Architecture" /%}
+<img src="/images/v1.9/deployment/docker/om_docker_architecture.png" alt="Docker Deployment Architecture" />
 
 ## Prerequisites
 
@@ -155,11 +155,11 @@ ELASTICSEARCH_PASSWORD="<OPENSEARCH_PASSWORD>"
 ELASTICSEARCH_CLUSTER_ALIAS="<clusterAlias>"
 ```
 
-{% note %}
+<Tip>
 
 If you want to separate indexes for production and non-production environments, you can set the `clusterAlias` in the configuration file.
 
-{% /note %}
+</Tip>
 
 For Ingestion Configurations, update the below environment variables -
 
@@ -180,11 +180,11 @@ AIRFLOW_TRUST_STORE_PATH=""
 AIRFLOW_TRUST_STORE_PASSWORD=""
 ```
 
-{% note noteType="Warning" %}
+<Warning>
 
 When setting up environment file if your custom password includes any special characters then make sure to follow the steps [here](https://github.com/open-metadata/OpenMetadata/issues/12110#issuecomment-1611341650).
 
-{% /note %}
+</Warning>
 
 ### 4. Start the Docker Compose Services
 
@@ -297,11 +297,11 @@ docker compose --env-file ./env-mysql up --detach
 
 There are many scenarios where you would want to provide additional files to the OpenMetadata Server and serve while running the application. In such scenarios, it is recommended to provision docker volumes for OpenMetadata Application.
 
-{%note noteType="Tip"%}
+<Tip>
 
 If you are not familiar with Docker Volumes with Docker Compose Services, Please refer to [official documentation](https://docs.docker.com/storage/volumes/#use-a-volume-with-docker-compose) for more information.
 
-{%/note%}
+</Tip>
 
 For example, we would like to provide custom JWT Configuration Keys to be served to OpenMetadata Application. This requires the OpenMetadata Containers to have docker volumes sharing the private and public keys. Let's assume you have the keys available in `jwtkeys` directory in the same directory where your `docker-compose` file is available in the host machine.
 
@@ -368,11 +368,11 @@ Restart the OpenMetadata Docker Compose Application using `docker compose --env-
 
 <PostgresqlIssuePermissionDeniedExtensionPgcrypto />
 
-{%note%}
+<Tip>
 
 In the above command, replace `<openmetadata_psql_user>` with the sql user used by OpenMetadata Application to connect to PostgreSQL Database.
 
-{%/note%}
+</Tip>
 
 ## Security
 

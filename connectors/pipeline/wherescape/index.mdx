@@ -6,21 +6,21 @@ slug: /connectors/pipeline/wherescape
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Wherescape"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Owners"]
-unavailableFeatures=["Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Owners"]}
+unavailableFeatures={["Tags"]} />
 
 In this section, we provide guides and references to use the Wherescape connector.
 
@@ -30,8 +30,6 @@ Configure and schedule Wherescape metadata workflow from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
     - [Connection Details](#connection-details)
 - [Troubleshooting](/connectors/pipeline/wherescape/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/wherescape/yaml" />
 
 ## Requirements
 To extract Wherescape metadata, we need the batabase connection details where the metadata is stored.
@@ -43,8 +41,7 @@ To extract Wherescape metadata, we need the batabase connection details where th
 
 <MetadataIngestionUi connector={"WhereScape"} selectServicePath={"/images/connectors/wherescape/select-service.png"} addNewServicePath={"/images/connectors/wherescape/add-new-service.png"} serviceConnectionPath={"/images/connectors/wherescape/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -58,12 +55,10 @@ In terms of `connection` we support the following selections:
   - Enter the host and port for the SQL Server instance
   - The connector will establish a connection to this database to extract Wherescape pipeline metadata
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

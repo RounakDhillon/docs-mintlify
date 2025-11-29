@@ -7,6 +7,9 @@ collate: true
 
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -15,18 +18,14 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Alation"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
-
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Alation connector.
 
@@ -37,8 +36,6 @@ Configure and schedule Alation metadata workflow from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/metadata/alation/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/metadata/alation/yaml" />
-
 <ExternalIngestionDeployment />
 
 ## Requirements
@@ -48,8 +45,6 @@ Follow the official documentation to generate a API Access Token from [here](htt
 ## Data Mapping and Assumptions
 
 Following entities are supported and will be mapped to the OpenMetadata entities as shown below.
-
-{% multiTablesWrapper %}
 
 | Alation Entity               | OpenMetadata Entity          |
 | :----------------------------| :--------------------------- |
@@ -68,8 +63,6 @@ Following entities are supported and will be mapped to the OpenMetadata entities
 | Domains/Subdomains           | Domains/Subdomains           |
 | Knowledge Articles           | Knowledge Center Articles    |
 
-{% /multiTablesWrapper %}
-
 - Since Alation does not have a concept of Service entity, the Data Sources (OCF and Native) will be mapped to Database Service and Database in OpenMetadata. Hence for each Data Source in Alation there will one Database Service and Database present in OpenMetadata.
 - Custom fields will have a 1:1 mapping for all the entities except for Columns since OpenMetadata does not support custom properties for columns.
 - Alation has two fields for descriptions i.e. `descriptions` and `comments`. These fields will be combined under one field `description` in OpenMetadata for all the entities.
@@ -79,8 +72,7 @@ Following entities are supported and will be mapped to the OpenMetadata entities
 
 <MetadataIngestionUi connector={"Alation"} selectServicePath={"/images/connectors/alation/select-service.png"} addNewServicePath={"/images/connectors/alation/add-new-service.png"} serviceConnectionPath={"/images/connectors/alation/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Options
 
@@ -146,15 +138,12 @@ The following arguments are intended to be used in conjunction and are specifica
 
 - limit: This argument specifies the maximum number of records to return. Here, it's set to 10, meaning only the first 10 records will be returned.
 
-To perform incremental ingestion, these arguments should be used together. For instance, if there are a total of 30 datasources in Alation, the ingestion can be configured to execute three times, with each execution ingesting 10 datasources. 
-- 1st execution: {"skip": 0, "limit": 10}
-- 2nd execution: {"skip": 10, "limit": 10}
-- 3rd execution: {"skip": 20, "limit": 10}
-
+To perform incremental ingestion, these arguments should be used together. For instance, if there are a total of 30 datasources in Alation, the ingestion can be configured to execute three times, with each execution ingesting 10 datasources.
+- 1st execution: `{"skip": 0, "limit": 10}`
+- 2nd execution: `{"skip": 10, "limit": 10}`
+- 3rd execution: `{"skip": 20, "limit": 10}`
 
 <AdvancedConfiguration />
-
-{% /extraContent %}
 
 <TestConnection />
 
@@ -162,4 +151,4 @@ To perform incremental ingestion, these arguments should be used together. For i
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

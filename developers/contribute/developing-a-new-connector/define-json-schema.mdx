@@ -15,7 +15,7 @@ These files can be found in the following path:
 
 Here you can check what the different service connections look like and get some inspiration on how to create your own.
 
-{% note %}
+<Tip>
 
 **Breathe**
 
@@ -23,34 +23,24 @@ It can be overwhelming doing this for the first time, trying to reuse different 
 
 It's a good idea to start little by little and repeat yourself while you get used to working with the definitions.
 
-{% /note %}
+</Tip>
 
 ## Connection File Anatomy
 
 In order to go through the connection file anatomy, we are going to take a look at the [`mysqlConnection.json`](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/mysqlConnection.json)
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="$id">
 * **$id**: Here we are basically referencing the file itself. You will need to change the path to the path for your connection.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="title">
 * **title**: Here we need to define the name of the schema. The standard is to use the filename in camelcase. So if you are creating a connection called `ownConnection.json` the title would be `OwnConnection`.
 * **description**: Here we also add a small description that explains what the JSON Schema is for.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="javaType">
 * **javaType**: Here we also need to define the javaType this JSONSchema will become. This will also depend on the connection name like the title.
 
-{% note %}
+<Tip>
 **Info**
 
 Please note that the javaType path is similar to the filepath for the JSON Schema but not the same.
@@ -64,12 +54,9 @@ The standard is as follows:
 where
 - `{source_type}` depends on the Connector you are building (Database, Dashboard, etc)
 - `{title}` is the title attribute from this json file.
-{% /note %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Tip>
+</Step>
+<Step title="definitions">
 * **definitions**: Here you can place JSON Schemas that you can reference later within the `properties` attribute.
 On this connector we can see two different definitions:
 
@@ -86,26 +73,23 @@ On this connector we can see two different definitions:
     ```
 
     - **mySQLScheme**: This definition is specific for the connections that use [SQLAlchemy](https://www.sqlalchemy.org/) underneath and it is used to define which is the driver scheme to be used.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="properties">
 * **properties**: Here we actually define the attributes that our connection will have. In order to understand better what you need to define here we are going to go through a few of the attributes.
 
     - **type**: As mentioned in the **definitions** section, we define the Service Type. But in order to actually use it we need to reference it in a property. This is exactly what we do here.
 
-    {% note %}
+    <Tip>
     In order to reference another JSON Schema we use the `$ref` attribute. This will basically put the entire JSON Schema in place and update/add any attributes defined here.
-    {% /note %}
+    </Tip>
 
     - **authType**: This property is insteresting because it allows us to showcase two different features.
         - **$ref**: As explained above, this attribute is used to reference another JSON Schema. But in this case you can see it being used within the **oneOf** attribute referencing an external JSON Schema and not a definition.
 
-        {% note %}
+        <Tip>
         When referencing a definition we use the following pattern: `#/definitions/myDefinition`
         When referencing an external JSONSchema we use relative paths: `../common/ownSchema.json`
-        {% /note %}
+        </Tip>
 
         - **oneOf**: This property allows us to actually have a list of different types that are valid. It is used when there are multiple different ways a configuration might appear.
 
@@ -116,44 +100,23 @@ On this connector we can see two different definitions:
 
     The most basic case is **supportsMetadataExtraction** and we should always start from there.
 
-    {% note %}
+    <Tip>
     Here we can also see `$ref` being used to reference a `definition` on another schema: `../connectionBasicType.json#/definitions/supportsMetadataExtraction`
-    {% /note %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+    </Tip>
+</Step>
+<Step title="additionalProperties">
 * **additionalProperties**: To avoid werid behavior, we always prevent additionalProperties to be passed to the schema by setting this parameter to false.
 
 * **required**: Here we can define any properties that are always required or the schema would be invalid otherwise
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="mysqlConnection.json" %}
-
-```json {% isCodeBlock=true %}
+```json
 {
-```
-```json {% srNumber=1 %}
 "$id": "https://open-metadata.org/schema/entity/services/connections/database/mysqlConnection.json",
-```
-```json {% isCodeBlock=true %}
-  "$schema": "http://json-schema.org/draft-07/schema#",
-```
-```json {% srNumber=2 %}
 "title": "MysqlConnection",
 "description": "Mysql Database Connection Config",
-```
-```json {% isCodeBlock=true %}
-  "type": "object",
-```
-```json {% srNumber=3 %}
 "javaType": "org.openmetadata.schema.services.connections.database.MysqlConnection",
-```
-```json {% srNumber=4 %}
 "definitions": {
     "mySQLType": {
       "description": "Service type.",
@@ -168,8 +131,6 @@ On this connector we can see two different definitions:
       "default": "mysql+pymysql"
     }
   },
-```
-```json {% srNumber=5 %}
 "properties": {
     "type": {
       "title": "Service Type",
@@ -248,55 +209,35 @@ On this connector we can see two different definitions:
       "$ref": "../connectionBasicType.json#/definitions/sampleDataStorageConfig"
     }
   },
-```
-```json {% srNumber=6 %}
 "additionalProperties": false,
 "required": ["hostPort", "username"]
 ```
-```json {% isCodeBlock=true %}
-}
-```
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 ## Making the new Connection configuration available to the Service
 
 Once the connection file is properly created, we still need to take one extra step to make it available for the Service.
 
-{% note %}
+<Tip>
 **Note**
 
 The connection is part of a Service (Dashboard, Database, Messaging, etc) and this step should be done on the correct service.
-{% /note %}
+</Tip>
 
 Following with the `mysqlConnection.json` example, we now need to make it available to the `Database Service` by updating the [`databaseService.json`](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/databaseService.json) file within [`openmetadata-spec/src/main/resources/json/schema/entity/services`](https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-spec/src/main/resources/json/schema/entity/services)
-{% note %}
+<Tip>
 The file will be shortened and parts of it will be replaced with `...` for readability.
-{% /note %}
+</Tip>
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=7 %}
-
+<Steps>
+<Step title="databaseServiceType">
 * **databaseServiceType**: Here we need to add our connector type to the `enum` and `javaEnums` properties. It should be the same value as the `type` property that we defined on the JSON Schema.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="databaseConnection">
 * **databaseConnection**: Here we need to point to our JSON Schema within the `config` property by adding it to the `oneOf` list.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="mysqlConnection.json" %}
-```json {% isCodeBlock=true %}
+```json
 {
   "$id": "https://open-metadata.org/schema/entity/services/databaseService.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -309,9 +250,7 @@ The file will be shortened and parts of it will be replaced with `...` for reada
     "org.openmetadata.schema.ServiceEntityInterface"
   ],
   "definitions": {
-```
-```json {% srNumber=7 %}
-  "databaseServiceType": {
+"databaseServiceType": {
       "description": "Type of database service such as MySQL, BigQuery, Snowflake, Redshift, Postgres...",
       "javaInterfaces": ["org.openmetadata.schema.EnumInterface"],
       "type": "string",
@@ -326,9 +265,7 @@ The file will be shortened and parts of it will be replaced with `...` for reada
         }
       ]
     },
-```
-```json {% srNumber=8 %}
-  "databaseConnection": {
+"databaseConnection": {
       "type": "object",
       "description": "Database Connection.",
       "javaInterfaces": [
@@ -348,23 +285,15 @@ The file will be shortened and parts of it will be replaced with `...` for reada
       "additionalProperties": false
     }
 ```
-```json {% isCodeBlock=true %}
-  },
-  ...
-}
-```
-{% /codeBlock %}
-
-{% /codePreview %}
 
 ## Next Step
 
 Now that you have your Connection defined in the JSON Schema, we can proceed to actually implement the Python Code to perform the Ingestion.
 
-{%inlineCallout
-  color="violet-70"
-  bold="Develop the Ingestion Code"
-  icon="MdArrowForward"
-  href="/developers/contribute/developing-a-new-connector/develop-ingestion-code"%}
-  Learn what you need to implement for the Connector's logic
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Develop the Ingestion Code"
+    href="/developers/contribute/developing-a-new-connector/develop-ingestion-code"
+  >
+    Learn what you need to implement for the Connector's logic
+  </Card>

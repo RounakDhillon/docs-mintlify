@@ -4,10 +4,12 @@ description: Configure Sigma dashboard connector for OpenMetadata using YAML. St
 slug: /connectors/dashboard/sigma/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -19,17 +21,12 @@ import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Sigma"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Dashboards", "Charts", "Lineage", "Owners"]
-unavailableFeatures=["Tags", "Datamodels", "Projects"]
-/ %}
+availableFeatures={["Dashboards", "Charts", "Lineage", "Owners"]}
+unavailableFeatures={["Tags", "Datamodels", "Projects"]} />
 
 In this section, we provide guides and references to use the Sigma connector.
 
@@ -62,22 +59,13 @@ The workflow is modeled around the following
 
 This is a sample config for Sigma:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**:  Host and Port Sigma REST API.
 
 The hostPort parameter specifies the host and port of the Sigma's API request URL. This should be specified as a string in the format `https://aws-api.sigmacomputing.com`. Sigma's API request URL varies according to the sigma cloud. you can determine your API url by following the docs [here](https://help.sigmacomputing.com/reference/get-started-sigma-api#identify-your-api-request-url)
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="clientId">
 **clientId**: Client Id for Sigma REST API.
 Get the Client Id and client Secret by following below steps:
 - Navigate to your Sigma homepage.
@@ -88,56 +76,32 @@ Get the Client Id and client Secret by following below steps:
 - Copy the generated access token and password.
 
 For detailed information visit [here](https://help.sigmacomputing.com/reference/generate-client-credentials#generate-api-client-credentials).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="clientSecret">
 **clientSecret**: Client Secret for Sigma REST API.
 Copy the access token password from the step above where a new token is generated.
 
 For detailed information visit [here](https://help.sigmacomputing.com/reference/generate-client-credentials#generate-api-client-credentials).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="apiVersion">
 **apiVersion**: Sigma REST API Version.
 Version of the Sigma REST API by default `v2`.
 
 To get to know the Sigma REST API Version visit [here](https://help.sigmacomputing.com/reference/get-started-sigma-api#identify-your-api-request-url) and look into the `Token URL` section.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: sigma
   serviceName: local_sigma
   serviceConnection:
     config:
       type: Sigma
-```
-```yaml {% srNumber=1 %}
-      hostPort: https://api.sigmacomputing.com
-```
-```yaml {% srNumber=2 %}
-      clientId: client_id
-```
-```yaml {% srNumber=3 %}
-      clientSecret: client_secret
-```
-```yaml {% srNumber=4 %}
-      apiVersion: v2
+hostPort: https://api.sigmacomputing.com
+clientId: client_id
+clientSecret: client_secret
+apiVersion: v2
 ```
 
 <SourceConfig />
@@ -145,10 +109,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

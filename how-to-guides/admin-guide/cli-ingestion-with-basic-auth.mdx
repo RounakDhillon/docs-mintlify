@@ -6,13 +6,15 @@ slug: /how-to-guides/admin-guide/cli-ingestion-with-basic-auth
 # How To Run Ingestion Pipeline Via CLI with Basic Auth
 
 Out of the box, OpenMetadata comes with a Username & Password Login Mechanism.
-{% inlineCalloutContainer %}
-
-{%inlineCallout icon="10k" bold="Basic Authentication" href="/deployment/security/basic-auth"%}
-Basic Authentication
-{% /inlineCallout %}
-
-{% /inlineCalloutContainer %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Basic Authentication"
+    href="/deployment/security/basic-auth"
+  >
+    Basic Authentication
+  </Card>
+</CardGroup>
 
 
 From `0.12.1` OpenMetadata has changed the default `no-auth` to `Basic` auth, So to run any ingestion pipeline from CLI you will have to pass the `jwtToken` and `authProvider` in the `securityConfig`.
@@ -21,19 +23,13 @@ From `0.12.1` OpenMetadata has changed the default `no-auth` to `Basic` auth, So
 
 **1.** Go to the `settings` page from the `activity bar` Section. Click on the `Bots` and you will see the list of bots, then click on the `ingestion-bot`.
    
-   {% image
-    src="/images/v1.9/cli-ingestion-with-basic-auth/settings-bot.png"
-    alt="settings-bot" /%}
+   <img src="/images/v1.9/cli-ingestion-with-basic-auth/settings-bot.png" alt="settings-bot" />
 
-   {% image
-    src="/images/v1.9/cli-ingestion-with-basic-auth/bot-list.png"
-    alt="bot-list" /%}
+   <img src="/images/v1.9/cli-ingestion-with-basic-auth/bot-list.png" alt="bot-list" />
 
 
 **2.** You will be redirected to the `ingestion-bot` details page. there you will get the JWT token, click on the copy button and copy the JWT token.
-   {% image
-src="/images/v1.9/cli-ingestion-with-basic-auth/bot-token.png"
-alt="bot-token" /%}
+   <img src="/images/v1.9/cli-ingestion-with-basic-auth/bot-token.png" alt="bot-token" />
 
 
 Alright, now you have the JWT token, let see how to add that into the workflow config.

@@ -4,6 +4,8 @@ description: Connect Apache Hive to OpenMetadata with our comprehensive database
 slug: /connectors/database/hive
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,20 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Hive"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Owners", "Tags", "Stored Procedures"]
-/ %}
-
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Hive connector.
 
@@ -38,8 +35,6 @@ Configure and schedule Hive metadata and profiler workflows from the OpenMetadat
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Enable Security](#securing-hive-connection-with-ssl-in-openmetadata)
 - [Troubleshooting](/connectors/database/hive/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/hive/yaml" />
 
 ## Requirements
 
@@ -54,8 +49,7 @@ Executing the profiler workflow or data quality tests, will require the user to 
 
 <MetadataIngestionUi connector={"Hive"} selectServicePath={"/images/connectors/hive/select-service.png"} addNewServicePath={"/images/connectors/hive/add-new-service.png"} serviceConnectionPath={"/images/connectors/hive/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -66,7 +60,6 @@ Executing the profiler workflow or data quality tests, will require the user to 
 - **Kerberos Service Name**: This parameter specifies the Kerberos service name to use for authentication. This should only be specified if using Kerberos authentication. The default value is `hive`.
 - **Database Schema**: Schema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single schema. When left blank, OpenMetadata Ingestion attempts to scan all the schemas.
 - **Database Name**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
-
 
 #### For MySQL Metastore Connection
 
@@ -90,10 +83,7 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 
 <AdvancedConfiguration />
 
-
 <AdvancedConfiguration />
-
-{% /extraContent %}
 
 <TestConnection />
 
@@ -101,16 +91,12 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ## Securing Hive Connection with SSL in OpenMetadata
 
 To configure SSL for secure connections between OpenMetadata and a Hive database, you need to add `ssl_cert` as a key and the path to the CA certificate as its value under `connectionArguments`. Ensure that the certificate is accessible by the server. If you use a Docker or Kubernetes deployment, update the CA certificate in the Open Metadata server.
 
-{% image
-  src="/images/v1.9/connectors/ssl_argument.png"
-  alt="SSL Configuration"
-  height="450px"
-  caption="SSL Configuration" /%}
+<img src="/images/v1.9/connectors/ssl_argument.png" alt="SSL Configuration" height="450px" />
 
 <Related />

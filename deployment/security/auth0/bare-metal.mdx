@@ -17,21 +17,22 @@ In `openmetadata.yaml` file and use the following example as a reference. Replac
 Check the more information about environment variable [here](/deployment/security/configuration-parameters).
 
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Implicit Flow Configuration
 authorizerConfiguration:
   className: "org.openmetadata.service.security.DefaultAuthorizer"
   containerRequestFilter: "org.openmetadata.service.security.JwtFilter"
-  adminPrincipals:                          
+  adminPrincipals:
     - "admin"                                               # Administrator email prefix (e.g., "admin" from "admin@domain.com")
     - "user1"                                               # Additional administrator email prefix
     - "user2"                                               # Additional administrator email prefix
-  principalDomain: "open-metadata.org"                      # Primary domain for your organization (e.g., "yourdomain.com") 
-      principalDomain: "open-metadata.org"  # Update with your Domain,The primary domain for the organization (example.com from john.doe@example.com).  
+  principalDomain: "open-metadata.org"                      # Primary domain for your organization (e.g., "yourdomain.com")
+      principalDomain: "open-metadata.org"  # Update with your Domain,The primary domain for the organization (example.com from john.doe@example.com).
 authenticationConfiguration:
   provider: "auth0"                                         # Authentication provider, set to "auth0"
-  publicKeyUrls:                           
+  publicKeyUrls:
     - "https://{Auth0 Domain Name}/.well-known/jwks.json"   # Replace {Auth0 Domain Name} with your Auth0 domain
     - "{Your OMD Server URL}/api/v1/system/config/jwks"     # Replace {Your OMD Server URL} with your OpenMetadata server URL
   authority: "https://{Your Auth0 Domain}"                  # Base URL of your Auth0 domain
@@ -39,19 +40,22 @@ authenticationConfiguration:
   callbackUrl: "http://localhost:8585/callback"             # Callback URL for OpenMetadata authentication
   clientType: "public"                                      # Set to "public" for implicit flow
 ```
-```authcode
+</Tab>
+
+<Tab title="authcode">
+```
 # Auth Code Flow Configuration
 authorizerConfiguration:
   className: "org.openmetadata.service.security.DefaultAuthorizer"
   containerRequestFilter: "org.openmetadata.service.security.JwtFilter"
-  adminPrincipals:                          
+  adminPrincipals:
     - "admin"                                                   # Administrator email prefix (e.g., "admin" from "admin@domain.com")
     - "user1"                                                   # Additional administrator email prefix
     - "user2"                                                   # Additional administrator email prefix
   principalDomain: "open-metadata.org"                          # Primary domain for your organization (e.g., "yourdomain.com")
 authenticationConfiguration:
   provider: "auth0"                                             # Authentication provider, set to "auth0"
-  publicKeyUrls:                           
+  publicKeyUrls:
     - "https://{Auth0 Domain Name}/.well-known/jwks.json"       # Replace {Auth0 Domain Name} with your Auth0 domain
     - "{Your OMD Server URL}/api/v1/system/config/jwks"         # Replace {Your OMD Server URL} with your OpenMetadata server URL
   authority: "https://{Your Auth0 Domain}"                      # Base URL of your Auth0 domain
@@ -62,23 +66,24 @@ authenticationConfiguration:
     id: "{Client ID}"                                           # Auth0 Client ID for your application
     type: "auth0"                                               # Ensure this matches your provider type
     secret: "{Client Secret}"                                   # Auth0 Client Secret for your application
-    discoveryUri: "https://{Auth0 Domain Name}/.well-known/openid-configuration" 
+    discoveryUri: "https://{Auth0 Domain Name}/.well-known/openid-configuration"
                                                                 # Discovery URI for OpenID configuration; replace {Auth0 Domain Name} with your Auth0 domain
     callbackUrl: "http://localhost:8585/callback"               # Callback URL for OpenMetadata authentication
-                                                                
+
     serverUrl: "http://localhost:8585"                          # OpenMetadata server URL; update for production environments
 ```
-{% /codeWithLanguageSelector %}
+</Tab>
+</Tabs>
 
 <ConfigureIngestion />
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="Auth"
-    href="/deployment/security/auth0" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Auth"
+    href="/deployment/security/auth0"
+  >
     Go to Auth0 Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>
 

@@ -4,10 +4,12 @@ description: Configure OpenMetadata'sDomo Dashboard connector with YAML - step-b
 slug: /connectors/dashboard/domo-dashboard/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -21,17 +23,13 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Domo"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Owners"]
-  unavailableFeatures=["Tags", "Datamodels", "Projects", "Lineage"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Owners"]}
+  unavailableFeatures={["Tags", "Datamodels", "Projects", "Lineage"]}
+/>
 
 In this section, we provide guides and references to use the DomoDashboard connector.
 
@@ -74,74 +72,36 @@ The workflow is modeled around the following
 
 This is a sample config for Domo-Dashboard:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="Client ID">
 **Client ID**: Client ID to Connect to DOMO Dashboard.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="Secret Token">
 **Secret Token**: Secret Token to Connect DOMO Dashboard.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Access Token">
 **Access Token**: Access to Connect to DOMO Dashboard.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="API Host">
 **API Host**:  API Host to Connect to DOMO Dashboard instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="Instance Domain">
 **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: domodashboard
   serviceName: local_domodashboard
   serviceConnection:
     config:
       type: DomoDashboard
-```
-```yaml {% srNumber=1 %}
-      clientId: clientid
-```
-```yaml {% srNumber=2 %}
-      secretToken: secret-token
-```
-```yaml {% srNumber=3 %}
-      accessToken: access-token
-```
-```yaml {% srNumber=4 %}
-      apiHost: api.domo.com
-```
-```yaml {% srNumber=5 %}
-      instanceDomain: https://<your>.domo.com
+clientId: clientid
+secretToken: secret-token
+accessToken: access-token
+apiHost: api.domo.com
+instanceDomain: https://<your>.domo.com
 ```
 
 <SourceConfig />
@@ -149,9 +109,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

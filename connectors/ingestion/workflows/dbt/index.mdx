@@ -6,52 +6,47 @@ slug: /connectors/ingestion/workflows/dbt
 
 # dbt Workflow
 
-{%inlineCalloutContainer%}
+<CardGroup cols={3}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Configure dbt workflow from OpenMetadata UI"
+    href="/connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui"
+  >
+    Configure the dbt Workflow from the UI.
+  </Card>
 
-{%inlineCallout
-  icon="celebration"
-  bold="Configure dbt workflow from OpenMetadata UI"
-  href="/connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui"%}
-Configure the dbt Workflow from the UI.
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Run dbt Workflow Externally"
+    href="/connectors/ingestion/workflows/dbt/run-dbt-workflow-externally"
+  >
+    Configure the dbt Workflow from the CLI.
+  </Card>
 
-{%/inlineCallout%}
-
-{%inlineCallout
-  icon="celebration"
-  bold="Run dbt Workflow Externally"
-  href="/connectors/ingestion/workflows/dbt/run-dbt-workflow-externally"%}
-Configure the dbt Workflow from the CLI.
-{%/inlineCallout%}
-
-{%inlineCallout
-  icon="celebration"
-  bold="Auto Ingest dbt Artifacts (dbt-core)"
-  href="/connectors/ingestion/workflows/dbt/auto-ingest-dbt-core"%}
-Configure the auto dbt ingestion for dbt-core.
-
-{%/inlineCallout%}
-
-{%/inlineCalloutContainer%}
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Auto Ingest dbt Artifacts (dbt-core)"
+    href="/connectors/ingestion/workflows/dbt/auto-ingest-dbt-core"
+  >
+    Configure the auto dbt ingestion for dbt-core.
+  </Card>
+</CardGroup>
 
 # dbt Integration
-
-{% multiTablesWrapper %}
 
 | Feature                     | Status                                    |
 | :-------------------------- | :---------------------------------------- |
 | Stage                       | PROD                                      |
-| dbt Queries                 | {% icon iconName="check" /%}              |
-| dbt Lineage                 | {% icon iconName="check" /%}              |
-| dbt Tags                    | {% icon iconName="check" /%}              |
-| dbt Tiers                   | {% icon iconName="check" /%}              |
-| dbt Glossary                | {% icon iconName="check" /%}              |
-| dbt Owner                   | {% icon iconName="check" /%}              |
-| dbt Descriptions            | {% icon iconName="check" /%}              |
-| dbt Tests                   | {% icon iconName="check" /%}              |
-| dbt Exposures               | {% icon iconName="check" /%}              |
+| dbt Queries                 | <Icon name="check" />              |
+| dbt Lineage                 | <Icon name="check" />              |
+| dbt Tags                    | <Icon name="check" />              |
+| dbt Tiers                   | <Icon name="check" />              |
+| dbt Glossary                | <Icon name="check" />              |
+| dbt Owner                   | <Icon name="check" />              |
+| dbt Descriptions            | <Icon name="check" />              |
+| dbt Tests                   | <Icon name="check" />              |
+| dbt Exposures               | <Icon name="check" />              |
 | Supported dbt Core Versions | `v1.2` `v1.3` `v1.5` `v1.5` `v1.6` `v1.7` `v1.8` `v1.9`|
-
-{% /multiTablesWrapper %}
 
 ## Requirements
 
@@ -88,11 +83,7 @@ Note that it's not enough to point the resource to `arn:aws:s3:::MyBucket`. We n
 
 Queries used to create the dbt models can be viewed in the dbt tab
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-query.webp"
-  alt="dbt-query"
-  caption="dbt Query"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-query.webp" alt="dbt-query" />
 
 
 ### 2. dbt Lineage
@@ -101,11 +92,7 @@ Lineage from dbt models can be viewed in the Lineage tab.
 
 For more information on how lineage is extracted from dbt take a look [here](/connectors/ingestion/workflows/dbt/ingest-dbt-lineage)
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-lineage.webp"
-  alt="dbt-lineage"
-  caption="dbt Lineage"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-lineage.webp" alt="dbt-lineage" />
 
 
 ### 3. dbt Tags
@@ -114,11 +101,7 @@ Table and column level tags can be imported from dbt
 
 Please refer [here](/connectors/ingestion/workflows/dbt/ingest-dbt-tags) for adding dbt tags
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-tags.png"
-  alt="dbt-tags"
-  caption="dbt Tags"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-tags.png" alt="dbt-tags" />
 
 
 ### 4. dbt Owner
@@ -127,11 +110,7 @@ Owner from dbt models can be imported and assigned to respective tables
 
 Please refer [here](/connectors/ingestion/workflows/dbt/ingest-dbt-owner) for adding dbt owner
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-owner.webp"
-  alt="dbt-owner"
-  caption="dbt Owner"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-owner.webp" alt="dbt-owner" />
 
 
 ### 5. dbt Descriptions
@@ -140,22 +119,14 @@ Descriptions from dbt `manifest.json` and `catalog.json` can be imported and ass
 
 For more information and to control how the table and column descriptions are updated from dbt please take a look [here](/connectors/ingestion/workflows/dbt/ingest-dbt-descriptions)
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-descriptions.webp"
-  alt="dbt-descriptions"
-  caption="dbt Descriptions"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-descriptions.webp" alt="dbt-descriptions" />
 
 
 ### 6. dbt Tests and Test Results
 
 Tests from dbt will only be imported if the `run_results.json` file is passed.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-tests.webp"
-  alt="dbt-tests"
-  caption="dbt Tests"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-tests.webp" alt="dbt-tests" />
 
 
 ### 7. dbt Tiers
@@ -164,11 +135,7 @@ Table and column level Tiers can be imported from dbt
 
 Please refer [here](/connectors/ingestion/workflows/dbt/ingest-dbt-tier) for adding dbt tiers
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-tier.png"
-  alt="dbt-tiers"
-  caption="dbt Tiers"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-tier.png" alt="dbt-tiers" />
 
 
 ### 8. dbt Glossary
@@ -177,11 +144,7 @@ Table and column level Glossary can be imported from dbt
 
 Please refer [here](/connectors/ingestion/workflows/dbt/ingest-dbt-glossary) for adding dbt glossary
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-glossary.png"
-  alt="dbt-glossary"
-  caption="dbt Glossary"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-features/dbt-glossary.png" alt="dbt-glossary" />
 
 
 ## Troubleshooting

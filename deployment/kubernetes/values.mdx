@@ -11,8 +11,6 @@ This page list all the supported helm values for OpenMetadata Helm Charts.
 
 ## Openmetadata Config Chart Values 
 
-{%table%}
-
 | Key | Type | Default | Environment Variable from openmetadata.yaml | 
 |-----|------|---------| ---------------------- |
 | openmetadata.config.authentication.enabled | bool | `true` | |
@@ -223,11 +221,7 @@ This page list all the supported helm values for OpenMetadata Helm Charts.
 | openmetadata.config.web.permission-policy.enabled | bool | `false` | WEB_CONF_PERMISSION_POLICY_ENABLED |
 | openmetadata.config.web.permission-policy.option | string | `Empty String` | WEB_CONF_PERMISSION_POLICY_OPTION |
 
-{%/table%}
-
 ## Chart Values
-
-{%table%}
 
 | Key | Type | Default |
 |-----|------|---------|
@@ -289,5 +283,3 @@ This page list all the supported helm values for OpenMetadata Helm Charts.
 | podDisruptionBudget.enabled | bool | `false` |
 | podDisruptionBudget.config.maxUnavailable | String | `1` |
 | podDisruptionBudget.config.minAvailable | String | `1` |
-
-{%/table%}

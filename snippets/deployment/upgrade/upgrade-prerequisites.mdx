@@ -13,13 +13,13 @@ data to the newest OpenMetadata release.
 It is important that we backup the data because if we face any unexpected issues during the upgrade process, 
 you will be able to get back to the previous version without any loss.
 
-{% note %}
+<Tip>
 
 You can learn more about how the migration process works [here](/deployment/upgrade/how-does-it-work).
 
 **During the upgrade, please note that the backup is only for safety and should not be used to restore data to a higher version**.
 
-{% /note %}
+</Tip>
 
 Since version 1.4.0, **OpenMetadata encourages using the builtin-tools for creating logical backups of the metadata**:
 
@@ -36,15 +36,15 @@ If you're a user of these services, you can leverage their backup capabilities d
 
 You can refer to the following guide to get more details about the backup and restore:
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="luggage"
-    bold="Backup Metadata"
-    href="/deployment/backup-restore-metadata" %}
-      Learn how to back up MySQL or Postgres data.
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/puzzle.svg"
+    title="Backup Metadata"
+    href="/deployment/backup-restore-metadata"
+  >
+    Learn how to back up MySQL or Postgres data.
+  </Card>
+</CardGroup>
 
 ## Understanding the "Running" State in OpenMetadata
 
@@ -52,10 +52,7 @@ In OpenMetadata, the **"Running"** state indicates that the OpenMetadata server 
 
 This situation can also occur during an OpenMetadata upgrade. If an ingestion pipeline was running at the time of the upgrade and the process caused Airflow to shut down, OpenMetadata would not receive any further updates from Airflow. Consequently, the pipeline status remains **"Running"** indefinitely.
 
-{% image
-  src="/images/v1.8/deployment/upgrade/running-state-in-openmetadata.png"
-  alt="Running State in OpenMetadata"
-  caption="Running State in OpenMetadata" /%}
+<img src="/images/v1.8/deployment/upgrade/running-state-in-openmetadata.png" alt="Running State in OpenMetadata" />
 
 ### Expected Steps to Resolve
 To resolve this issue:  
@@ -117,10 +114,10 @@ If both parameter names do not match an error will be thrown on testCase creatio
 If you're using the API or the SDK, you will need to update your code to use the new `domains` field instead of `domain`.
 We have also updated the `patch_domain` implementation, which now has a new signature to support the new `domains` field.
 
-{% note %}
+<Tip>
 
 While the schema and APIs are all updated, the Multi-domain support is not enabled by default.
 
 If you want to allow your assets to belong to multiple domains, you need to go to Settings > Preferences > Data Asset Rules and disable the `Multiple Domains are not allowed` rule.
 
-{% /note %}
+</Tip>

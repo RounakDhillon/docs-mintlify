@@ -11,7 +11,7 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 
 Follow the sections in this guide to set up Auth0 SSO.
 
-{%important%}
+<Warning>
 
 Security requirements for your **production** environment:
 - **DELETE** the admin default account shipped by OM in case you had [Basic Authentication](/deployment/security/basic-auth)
@@ -19,7 +19,7 @@ Security requirements for your **production** environment:
 - **UPDATE** the Private / Public keys used for the [JWT Tokens](/deployment/security/enable-jwt-tokens). The keys we provide
   by default are aimed only for quickstart and testing purposes. They should NEVER be used in a production installation.
 
-{%/important%}
+</Warning>
 
 ## Create Server Credentials
 
@@ -29,21 +29,15 @@ Security requirements for your **production** environment:
 - Select the Account Type, i.e., Company or Personal
 - Click I need advanced settings and click next.
 
-{% image 
-src="/images/v1.9/deployment/security/auth0/create-account-1.png" 
-alt="create-account" /%}
+<img src="/images/v1.9/deployment/security/auth0/create-account-1.png" alt="create-account" />
 
 - Provide the Tenant Domain, select the region and click on Create Account.
 
-{% image 
-src="/images/v1.9/deployment/security/auth0/create-account-2.png" 
-alt="create-account" /%}
+<img src="/images/v1.9/deployment/security/auth0/create-account-2.png" alt="create-account" />
 
 - Once done, you will land on the dashboard page.
 
-{% image
-src="/images/v1.9/deployment/security/auth0/create-account-3.png" 
-alt="create-account" /%}
+<img src="/images/v1.9/deployment/security/auth0/create-account-3.png" alt="create-account" />
 
 ## Step 2: Create Server Credentials
 
@@ -56,7 +50,7 @@ After creating the account, choose the authentication flow you want to use:
 
 
 
-{% note %}
+<Tip>
 
 - **SPA (Single Page Application):**  
   This type is designed for implicit flows. In this case, providing both the client ID and client secret will result in a failure because the implicit flow only requires the client ID for authentication.
@@ -71,6 +65,6 @@ After creating the account, choose the authentication flow you want to use:
 - Use the **Web** type for confidential clients that require both a client ID and secret.
 - Use the **SPA** type for applications using implicit flows where only a client ID is needed.
 
-{% /note %}
+</Tip>
 
 <ConfigureIngestion />

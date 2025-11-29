@@ -7,22 +7,21 @@ collate: true
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Stitch"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Pipelines", "Lineage"]
-unavailableFeatures=["Owners", "Tags", "Pipeline Status"]
-/ %}
-
+availableFeatures={["Pipelines", "Lineage"]}
+unavailableFeatures={["Owners", "Tags", "Pipeline Status"]} />
 
 In this section, we provide guides and references to use the Stitch connector.
 
@@ -32,20 +31,16 @@ Configure and schedule Stitch metadata and profiler workflows from the OpenMetad
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/pipeline/stitch/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/stitch/yaml" />
-
 ## Requirements
 
 To extract metadata from Stitch, User first need to crate API crednetials:
 - `Token`: Token to access Stitch metadata.
 
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"Stitch"} selectServicePath={"/images/connectors/stitch/select-service.png"} addNewServicePath={"/images/connectors/stitch/add-new-service.png"} serviceConnectionPath={"/images/connectors/stitch/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -53,15 +48,12 @@ To extract metadata from Stitch, User first need to crate API crednetials:
 
 - **token**: Token to get access to Stitch metadata. This token is created by user after logging into stitch console. More about this, please check [here](https://www.stitchdata.com/docs/developers/import-api/guides/quick-start#obtain-api-credentials)
 
-
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 By successfully completing these steps, the lineage information for the service will be displayed.

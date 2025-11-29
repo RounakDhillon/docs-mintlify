@@ -1,7 +1,7 @@
 #### Workflow Configuration
 
-{% codeInfo srNumber=300 %}
-
+<Steps>
+<Step title="Workflow Configuration">
 The main property here is the `openMetadataServerConfig`, where you can define the host and security provider of your OpenMetadata installation.
 
 **Logger Level**
@@ -11,10 +11,10 @@ You can specify the `loggerLevel` depending on your needs. If you are trying to 
 
 **JWT Token**
 
-JWT tokens will allow your clients to authenticate against the OpenMetadata server. 
+JWT tokens will allow your clients to authenticate against the OpenMetadata server.
 To enable JWT Tokens, you will get more details [here](/deployment/security/enable-jwt-tokens).
 
-You can refer to the JWT Troubleshooting section [link](/deployment/security/jwt-troubleshooting) for any issues in 
+You can refer to the JWT Troubleshooting section [link](/deployment/security/jwt-troubleshooting) for any issues in
 your JWT configuration.
 
 **Store Service Connection**
@@ -45,5 +45,5 @@ Find more information on how to troubleshoot SSL issues [here](/deployment/secur
 **ingestionPipelineFQN**
 
 Fully qualified name of ingestion pipeline, used to identify the current ingestion pipeline.
-
-{% /codeInfo %}
+</Step>
+</Steps>

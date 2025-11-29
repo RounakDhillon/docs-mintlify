@@ -6,21 +6,21 @@ slug: /connectors/pipeline/openlineage
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="OpenLineage"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Lineage", "Usage"]
-unavailableFeatures=["Pipeline Status", "Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Lineage", "Usage"]}
+unavailableFeatures={["Pipeline Status", "Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the OpenLineage connector.
 
@@ -29,8 +29,6 @@ Configure and schedule OpenLineage metadata workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/pipeline/openlineage/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/openlineage/yaml" />
 
 ## Requirements
 
@@ -73,15 +71,12 @@ To Configure your Airflow instance
 
 <MetadataIngestionUi connector={"OpenLineage"} selectServicePath={"/images/connectors/openlineage/select-service.png"} addNewServicePath={"/images/connectors/openlineage/add-new-service.png"} serviceConnectionPath={"/images/connectors/openlineage/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagNme="stepsContainer" %}
+<Steps>
 
-{% /extraContent %}
 <TestConnection />
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
-{% /stepsContainer %}
-
+</Steps>
 
 ##### Providing connection details programmatically via API
 ###### 1. Preparing the Client
@@ -148,7 +143,6 @@ openlineage_service_request = CreatePipelineServiceRequest(
 
 metadata.create_or_update(openlineage_service_request)
 
-
 ```
 ###### 1. Preparing the Client
 
@@ -214,7 +208,6 @@ openlineage_service_request = CreatePipelineServiceRequest(
 
 metadata.create_or_update(openlineage_service_request)
 
-
 ```
 ###### 1. Preparing the Client
 
@@ -251,7 +244,6 @@ from metadata.generated.schema.entity.services.connections.pipeline.openLineageC
     SecurityProtocol as KafkaSecurityProtocol,
     ConsumerOffsets
 )
-
 
 openlineage_service_request = CreatePipelineServiceRequest(
     name='openlineage-service',

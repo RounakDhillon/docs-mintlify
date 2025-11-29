@@ -6,6 +6,8 @@ slug: /connectors/database/mssql
 
 import ReverseMetadata from '/snippets/connectors/database/mssql/reverse-metadata.mdx'
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -14,19 +16,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="MSSQL"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=["Owners", "Tags", "SSIS packages"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={["Owners", "Tags", "SSIS packages"]} />
 
 In this section, we provide guides and references to use the MSSQL connector.
 
@@ -41,11 +39,7 @@ Configure and schedule MSSQL metadata and profiler workflows from the OpenMetada
 - [Lineage](/connectors/ingestion/lineage)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/mssql/troubleshooting)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/mssql/yaml" />
 
 ## Requirements
 
@@ -77,11 +71,7 @@ Make sure the SQL server that you are trying to connect is in running state.
 
 This step allow the sql server to accept remote connection request.
 
-{% image
-src="/images/v1.9/connectors/mssql/remote-connection.png"
-alt="Remote Connection"
-caption="Rm"
-/%}
+<img src="/images/v1.9/connectors/mssql/remote-connection.png" alt="Remote Connection" />
 
 #### 3. Configure Windows Firewall 
 
@@ -103,13 +93,11 @@ If you are using SQL server on windows, you must configure the firewall on the c
 
 For details step please refer to this [link](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-a-windows-firewall-for-database-engine-access?view=sql-server-ver15).
 
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"MSSQL"} selectServicePath={"/images/connectors/mssql/select-service.png"} addNewServicePath={"/images/connectors/mssql/add-new-service.png"} serviceConnectionPath={"/images/connectors/mssql/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -123,18 +111,14 @@ For details step please refer to this [link](https://docs.microsoft.com/en-us/sq
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}
 
 <Related />

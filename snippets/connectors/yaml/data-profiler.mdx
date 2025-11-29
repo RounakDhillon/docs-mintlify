@@ -1,6 +1,3 @@
-import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.md'
-import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.md'
-
 ## Data Profiler
 
 The Data Profiler workflow will be using the `orm-profiler` processor.
@@ -13,121 +10,70 @@ While the `serviceName` will be the same to that was used in Metadata Ingestion,
 
 This is a sample config for the profiler:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Source Config
-
-You can find all the definitions and types for the  `sourceConfig` [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/databaseServiceProfilerPipeline.json).
-
-{% codeInfo srNumber=14 %}
-
+<Steps>
+<Step title="profileSample">
 **profileSample**: Percentage of data or no. of rows we want to execute the profiler and tests on.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=15 %}
-
+</Step>
+<Step title="threadCount">
 **threadCount**: Number of threads to use during metric computations.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=18 %}
-
+</Step>
+<Step title="timeoutSeconds">
 **timeoutSeconds**: Profiler Timeout in Seconds
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=19 %}
-
+</Step>
+<Step title="databaseFilterPattern">
 **databaseFilterPattern**: Regex to only fetch databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=20 %}
-
+</Step>
+<Step title="schemaFilterPattern">
 **schemaFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=21 %}
-
+</Step>
+<Step title="tableFilterPattern">
 **tableFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=22 %}
-
+</Step>
+<Step title="Processor Configuration">
 #### Processor Configuration
 
 Choose the `orm-profiler`. Its config can also be updated to define tests from the YAML itself instead of the UI:
 
 **tableConfig**: `tableConfig` allows you to set up some configuration at the table level.
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=23 %}
-
+</Step>
+<Step title="Sink Configuration">
 #### Sink Configuration
 
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-{% /codeInfo %}
+</Step>
+</Steps>
 
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: {connector}
   serviceName: {connector}
   sourceConfig:
     config:
       type: Profiler
-```
-```yaml {% srNumber=14 %}
-      # profileSample: 85
-```
-```yaml {% srNumber=15 %}
-      # threadCount: 5
-```
-```yaml {% srNumber=18 %}
-      # timeoutSeconds: 43200
-```
-```yaml {% srNumber=19 %}
-      # databaseFilterPattern:
+# profileSample: 85
+# threadCount: 5
+# timeoutSeconds: 43200
+# databaseFilterPattern:
       #   includes:
       #     - database1
       #     - database2
       #   excludes:
       #     - database3
       #     - database4
-```
-```yaml {% srNumber=20 %}
-      # schemaFilterPattern:
+# schemaFilterPattern:
       #   includes:
       #     - schema1
       #     - schema2
       #   excludes:
       #     - schema3
       #     - schema4
-```
-```yaml {% srNumber=21 %}
-      # tableFilterPattern:
+# tableFilterPattern:
       #   includes:
       #     - table1
       #     - table2
       #   excludes:
       #     - table3
       #     - table4
-```
-
-```yaml {% srNumber=22 %}
 processor:
   type: orm-profiler
   config: {}  # Remove braces if adding properties
@@ -159,20 +105,10 @@ processor:
     #       partitionValues:
     #         - <value>
     #         - <value>
-
-```
-
-```yaml {% srNumber=23 %}
 sink:
   type: metadata-rest
   config: {}
 ```
-
-<WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 - You can learn more about how to configure and run the Profiler Workflow to extract Profiler data and execute the Data Quality from [here](/how-to-guides/data-quality-observability/profiler/workflow)
 
@@ -186,12 +122,12 @@ metadata profile -c <path-to-yaml>
 
 Note now instead of running `ingest`, we are using the `profile` command to select the Profiler workflow.
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-title="Data Profiler"
-description="Find more information about the Data Profiler here"
-link="/how-to-guides/data-quality-observability/profiler/workflow"
-/ %}
+<Card
+  title="Data Profiler"
+  href="/how-to-guides/data-quality-observability/profiler/workflow">
+  Find more information about the Data Profiler here
+</Card>
 
-{% /tilesContainer %}
+</Columns>

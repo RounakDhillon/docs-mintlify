@@ -6,7 +6,14 @@ collate: true
 
 # Autopilot Application
 
-{% youtube videoId="PKvKWZ8vseU" start="0:00" end="1:45" width="800px" height="450px" /%}
+<iframe
+  width="800"
+  height="450"
+  src="https://www.youtube.com/embed/PKvKWZ8vseU?start=0&end=105"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen>
+</iframe>
 
 The **Autopilot Application** simplifies and accelerates the onboarding of new data services by automatically deploying and triggering essential ingestion workflows.  
 With minimal input—just the service connection details—Autopilot sets up the entire metadata ingestion process using well-defined defaults.
@@ -34,19 +41,11 @@ Autopilot is designed to help users get started quickly with metadata ingestion 
 1. Navigate to **Settings > Applications**.
 2. Click **Add Apps** and select **Autopilot** from the marketplace.
 
-{% image
-src="/images/v1.9/applications/autopilot.png"
-alt="Select Autopilot Application"
-caption="Select Autopilot Application"
-/%}
+<img src="/images/v1.9/applications/autopilot.png" alt="Select Autopilot Application" />
 
 3. Click **Install**.
 
-{% image
-src="/images/v1.9/applications/autopilot1.png"
-alt="Install Autopilot"
-caption="Install Autopilot"
-/%}
+<img src="/images/v1.9/applications/autopilot1.png" alt="Install Autopilot" />
 
 ## Configuration
 
@@ -58,11 +57,7 @@ Once installed, configure the application by filling in the following fields:
 | **Active**            | Enable to activate the workflow for the selected service. |
 | **Service Entity Link** | Link the service for which the ingestion workflows should be triggered. |
 
-{% image
-src="/images/v1.9/applications/autopilot2.png"
-alt="Configuration"
-caption="Configuration"
-/%}
+<img src="/images/v1.9/applications/autopilot2.png" alt="Configuration" />
 
 ## How It Works
 

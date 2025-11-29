@@ -4,10 +4,12 @@ description: Configure Redash dashboard connector for OpenMetadata using YAML. S
 slug: /connectors/dashboard/redash/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -21,17 +23,12 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Redash"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Lineage", "Owners", "Tags"]
-  unavailableFeatures=["Datamodels", "Projects"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Tags"]}
+  unavailableFeatures={["Datamodels", "Projects"]} />
 
 In this section, we provide guides and references to use the Redash connector.
 
@@ -69,66 +66,33 @@ The workflow is modeled around the following
 
 ### 1. Define the YAML Config
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: URL to the Redash instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="username">
 **username**: Specify the User to connect to Redash. It should have enough privileges to read all the metadata.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="apiKey">
 **apiKey**: API key of the redash instance to access. It has the same permissions as the user who owns it.
 Can be found on a user profile page.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="Redash Version">
 **Redash Version**: Redash version of your redash instance. Enter the numerical value from the [Redash Releases](https://github.com/getredash/redash/releases) page. Default: `10.0.0`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: redash
   serviceName: local_redash
   serviceConnection:
     config:
       type: Redash
-```
-```yaml {% srNumber=1 %}
-      hostPort: http://localhost:5000
-```
-```yaml {% srNumber=2 %}
-      username: random
-```
-```yaml {% srNumber=3 %}
-      apiKey: api_key
-```
-```yaml {% srNumber=4 %}
-      redashVersion: 10.0.0
+hostPort: http://localhost:5000
+username: random
+apiKey: api_key
+redashVersion: 10.0.0
 ```
 
 <SourceConfig />
@@ -136,9 +100,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

@@ -4,6 +4,8 @@ description: Use YAML to ingest metadata from Exasol databases including tables,
 slug: /connectors/database/exasol/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
@@ -12,17 +14,16 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Exasol"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Owners", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Owners", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Exasol connector.
 
@@ -51,14 +52,8 @@ pip3 install "openmetadata-ingestion[Exasol]"
 
 This is a sample config for Exasol:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="`username`">
 **`username`** 
 The username required to authenticate and connect to the Exasol database. The user must have sufficient privileges to access and read all the metadata available in Exasol.
 
@@ -77,47 +72,34 @@ Mode/setting for SSL validation:
 
 - **`disable-tls`**: Does not use any Transport Layer Security (TLS). Data will be sent in plain text (no encryption).
 While this may be helpful in rare cases of debugging, make sure you do not use this in production.
-
-{% /codeInfo %}
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=2 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: exasol
   serviceName: "<service name>"
   serviceConnection:
     config:
       type: Exasol
-```
-```yaml {% srNumber=1 %}
-          username: Exasol
+username: Exasol
           password: password
           hostPort: 127.0.0.1:8563
           SSL/TLS Settings: validate-certificate (default), or ignore-certificate, or disable-tls
-```
-```yaml {% srNumber=2 %}
-      # connectionOptions:
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=3 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
 ```
 
@@ -126,9 +108,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

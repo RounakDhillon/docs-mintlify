@@ -6,22 +6,21 @@ slug: /connectors/search/opensearch
 
 import ConfigureIngestion from '/snippets/connectors/search/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="OpenSearch"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Search Indexes", "Sample Data"]
-unavailableFeatures=[]
-/ %}
-
+availableFeatures={["Search Indexes", "Sample Data"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the OpenSearch connector.
 
@@ -31,19 +30,15 @@ Configure and schedule OpenSearch metadata workflow from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/search/opensearch/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/search/opensearch/yaml" />
-
 ## Requirements
 
 We extract OpenSearch's metadata by using its [API](https://opensearch.org/docs/latest/api-reference/). To run this ingestion, you just need a user with permissions to the OpenSearch instance.
-
 
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"OpenSearch"} selectServicePath={"/images/connectors/opensearch/select-service.png"} addNewServicePath={"/images/connectors/opensearch/add-new-service.png"} serviceConnectionPath={"/images/connectors/opensearch/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -150,12 +145,10 @@ Possible values:
 
 - **Connection Timeout in Seconds**: Connection timeout configuration for communicating with OpenSearch APIs.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

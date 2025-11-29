@@ -4,11 +4,12 @@ slug: /connectors/database/ssas/yaml
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -18,17 +19,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
 name="SSAS"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Metadata", "Lineage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Metadata", "Lineage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the SSAS connector.
 
@@ -70,42 +72,19 @@ The workflow is modeled around the following
 This is a sample config for SSAS:
 
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="httpConnection">
 **httpConnection**: HTTP Link for SSAS ACCESS. Provide the HTTP endpoint used to access your SSAS instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="username">
 **username**: Username to connect to SSAS. This user should have sufficient privileges to read all the metadata.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="password">
 **password**: Password to connect to SSAS.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: ssas
   serviceName: local_ssas
@@ -122,10 +101,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 > **Note for SSAS Lineage:**  

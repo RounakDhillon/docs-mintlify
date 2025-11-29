@@ -1,5 +1,5 @@
-import Reindex from '/snippets/deployment/reindex.md'
-import Redeploy from '/snippets/deployment/redeploy.md'
+import Reindex from '/snippets/deployment/reindex.mdx'
+import Redeploy from '/snippets/deployment/redeploy.mdx'
 
 # Post-Upgrade Steps
 
@@ -42,7 +42,7 @@ Create a one-time job from an existing CronJob using the following command:
 ```bash
 kubectl create job --from=cronjob/cron-reindex <job_name>
 ```
-{% note %} Replace `<job_name>` with the actual name of the job.{% /note %}
+<Tip> Replace `<job_name>` with the actual name of the job.</Tip>
 
 Upon running this command you should see output similar to the following.
 ```CommandLine
@@ -65,7 +65,7 @@ To view the logs use the below command.
 ```bash
 kubectl logs job/<job_name>
 ```
-{% note %} Replace `<job_name>` with the actual job name.{% /note %}
+<Tip> Replace `<job_name>` with the actual job name.</Tip>
 
 
 The `plugin` parameter is a list of the sources that we want to ingest. An example would look like this `openmetadata-ingestion[mysql,snowflake,s3]==1.2.0`.
@@ -103,9 +103,9 @@ Create a one-time job from an existing CronJob using the following command:
 ```bash
 kubectl create job --from=cronjob/cron-reindex <job_name>
 ```
-{% note %} 
+<Tip> 
 Replace `<job_name>` with the actual name of the job.
-{% /note %}
+</Tip>
 
 Upon running this command you should see output similar to the following.
 ```commandline
@@ -128,7 +128,7 @@ To view the logs use the below command.
 ```bash
 kubectl logs job/<job_name>
 ```
-{% note %} Replace `<job_name>` with the actual job name.{% /note %}
+<Tip> Replace `<job_name>` with the actual job name.</Tip>
 
 If you are seeing broken dags select all the pipelines from all the services and re deploy the pipelines.
 

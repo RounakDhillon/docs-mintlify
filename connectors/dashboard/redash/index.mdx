@@ -4,6 +4,8 @@ description: Connect Redash dashboards to OpenMetadata Easily. Complete setup gu
 slug: /connectors/dashboard/redash
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -12,18 +14,14 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Redash"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Lineage", "Owners", "Tags"]
-  unavailableFeatures=["Datamodels", "Projects"]
-/ %}
-
+  availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Tags"]}
+  unavailableFeatures={["Datamodels", "Projects"]} />
 
 In this section, we provide guides and references to use the Redash connector.
 
@@ -33,8 +31,6 @@ Configure and schedule Redash metadata and profiler workflows from the OpenMetad
 - [Metadata Ingestion](#metadata-ingestion)
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/redash/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/redash/yaml" />
 
 ## Requirements
 
@@ -46,8 +42,7 @@ permissions, please visit Redash documentation [here](https://redash.io/help/use
 
 <MetadataIngestionUi connector={"Redash"} selectServicePath={"/images/connectors/redash/select-service.png"} addNewServicePath={"/images/connectors/redash/add-new-service.png"} serviceConnectionPath={"/images/connectors/redash/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -56,14 +51,12 @@ permissions, please visit Redash documentation [here](https://redash.io/help/use
 - **API Key**: API key of the redash instance to access. It has the same permissions as the user who owns it. Can be found on a user profile page.
 - **Redash Version**: Redash version of your redash instance. Enter the numerical value from the [Redash Releases](https://github.com/getredash/redash/releases) page. Default: `10.0.0`.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <DashboardLineage />

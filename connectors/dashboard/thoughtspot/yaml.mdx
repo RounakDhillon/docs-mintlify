@@ -5,7 +5,9 @@ slug: /connectors/dashboard/thoughtspot/yaml
 collate: true
 ---
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -13,13 +15,12 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="ThoughtSpot"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]
-unavailableFeatures=["Projects"]
-/ %}
+availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
+unavailableFeatures={["Projects"]} />
 
 In this section, we provide guides and references to use the ThoughtSpot connector.
 
@@ -34,10 +35,10 @@ Configure and schedule ThoughtSpot metadata and profiler workflows from the Open
 
 To access the ThoughtSpot APIs and import liveboards, charts, and data models from ThoughtSpot into OpenMetadata, you need appropriate permissions on your ThoughtSpot instance.
 
-{% note %}
+<Tip>
 - The minimum required role is typically "Developer" or higher, depending on your ThoughtSpot security model.
 - For lineage extraction, ensure TML (ThoughtSpot Modeling Language) export is enabled for your user.
-{% /note %}
+</Tip>
 
 ### Python Requirements
 
@@ -65,62 +66,33 @@ The workflow is modeled around the following
 
 This is a sample config for ThoughtSpot:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: URL or IP address of your ThoughtSpot instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="authentication">
 **authentication**: Choose one of the following authentication methods:
 - **Basic Authentication:**
   - username: The ThoughtSpot username
   - password: The ThoughtSpot password
 - **API Token Authentication:**
   - apiToken: The ThoughtSpot API token
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="apiVersion">
 **apiVersion**: (Optional) ThoughtSpot API version. Supported: v1, v2. Default: v2
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="orgId">
 **orgId**: (Optional) Organization ID for multi-tenant ThoughtSpot Cloud instances.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="dbServicePrefixes">
 - **dbServicePrefixes**: Database Service Names for ingesting lineage if the source supports it.
-
-{% /codeInfo %}
-
-#### Sink Configuration
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="To send the metadata to">
 To send the metadata to OpenMetadata, specify `type: metadata-rest`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: thoughtspot
   serviceName: local_thoughtspot
@@ -152,10 +124,6 @@ workflowConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 ## Securing ThoughtSpot Connection with SSL in OpenMetadata
 

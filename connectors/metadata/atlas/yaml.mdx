@@ -4,7 +4,9 @@ description: Use YAML to ingest metadata from Apache Atlas including classificat
 slug: /connectors/metadata/atlas/yaml
 ---
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -12,15 +14,14 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Atlas"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Atlas connector.
 
@@ -62,100 +63,51 @@ The workflow is modeled around the following
 
 ### 1. Define the YAML Config
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=12 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: Atlas Host of the data source.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=13 %}
-
+</Step>
+<Step title="username">
 **username**: Username to connect to the Atlas. This user should have privileges to read all the metadata in Atlas.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=14 %}
-
+</Step>
+<Step title="password">
 **password**: Password to connect to the Atlas.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=15 %}
-
+</Step>
+<Step title="databaseServiceName">
 **databaseServiceName**: source database of the data source(Database service that you created from UI. example- local_hive).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=16 %}
-
+</Step>
+<Step title="messagingServiceName">
 **messagingServiceName**: messaging service source of the data source.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=17 %}
-
+</Step>
+<Step title="entity_type">
 **entity_type**: Name of the entity type in Atlas.
-
-{% /codeInfo %}
-
-#### Sink Configuration
-
-{% codeInfo srNumber=18 %}
-
+</Step>
+<Step title="To send the metadata to">
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<WorkflowConfigDef />
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: Atlas
   serviceName: local_atlas
   serviceConnection:
     config:
       type: Atlas
-```
-```yaml {% srNumber=12 %}
-      hostPort: http://localhost:10000
-```
-```yaml {% srNumber=13 %}
-      username: username
-```
-```yaml {% srNumber=14 %}
-      password: password
-```
-```yaml {% srNumber=15 %}
-      databaseServiceName: ["local_hive"] # create database service and messaging service and pass `service name` here
-```
-```yaml {% srNumber=16 %}
-      messagingServiceName: []
-```
-```yaml {% srNumber=17 %}
-      entity_type: Table
+hostPort: http://localhost:10000
+username: username
+password: password
+databaseServiceName: ["local_hive"] # create database service and messaging service and pass `service name` here
+messagingServiceName: []
+entity_type: Table
   sourceConfig:
     config:
       type: DatabaseMetadata
-```
-```yaml {% srNumber=18 %}
 sink:
   type: metadata-rest
   config: {}
 ```
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

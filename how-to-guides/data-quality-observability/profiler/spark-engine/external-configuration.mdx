@@ -11,9 +11,9 @@ collate: true
 
 To configure your profiler pipeline to use Spark Engine, you need to add the `processingEngine` configuration to your existing YAML file.
 
-{% note %}
+<Tip>
 Before configuring, ensure you have completed the [Spark Engine Prerequisites](/how-to-guides/data-quality-observability/profiler/spark-engine/prerequisites) and understand the [Partitioning Requirements](/how-to-guides/data-quality-observability/profiler/spark-engine/partitioning).
-{% /note %}
+</Tip>
 
 ## Step 1: Add Spark Engine Configuration
 
@@ -30,9 +30,9 @@ sourceConfig:
       config:
         tempPath: your_path
 
-{% note %}
+<Tip>
 **Important**: The `tempPath` must be accessible to all nodes in your Spark cluster. This is typically a shared filesystem path (like S3, HDFS, or a mounted network drive) that all Spark workers can read from and write to.
-{% /note %}
+</Tip>
 ```
 
 ## Step 2: Add Partition Configuration
@@ -135,12 +135,12 @@ The pipeline will now use Spark Engine instead of the Native engine for processi
 3. **Validate Configuration**: Ensure all required fields are properly set
 4. **Test with Small Dataset**: Start with a small table to verify the setup
 
-{% inlineCalloutContainer %}
- {% inlineCallout
-  color="violet-70"
-  bold="UI Configuration"
-  icon="MdAnalytics"
-  href="/how-to-guides/data-quality-observability/profiler/spark-engine/configuration/ui-configuration" %}
-  Configure Spark Engine through the OpenMetadata UI.
- {% /inlineCallout %}
-{% /inlineCalloutContainer %} 
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="UI Configuration"
+    href="/how-to-guides/data-quality-observability/profiler/spark-engine/configuration/ui-configuration"
+  >
+    Configure Spark Engine through the OpenMetadata UI.
+  </Card>
+</CardGroup> 

@@ -13,54 +13,47 @@ Before you proceed with the installation, you have the option to explore OpenMet
 
 Get hands-on experience and discover how OpenMetadata can streamline your workflows by trying the sandbox environment today.
 
-{% inlineCalloutContainer %}
-
 <CardGroup cols={2}>
   <Card
     title="Docker Compose"
-    icon="docker"
+    icon="/images/icons/deploymentTile.svg"
     href="/quick-start/local-deployment"
   >
     Run Collate locally using Docker Compose
   </Card>
   <Card
     title="Kubernetes"
-    icon="dharmachakra"
+    icon="/images/icons/deploymentTile.svg"
     href="/deployment/kubernetes"
   >
     Deploy on Kubernetes for production environments
   </Card>
 </CardGroup>
 
-{% /inlineCalloutContainer %}
-
 Additionally, you can explore the OpenMetadata by setting up one of the two approaches locally with your own customizations, allowing you to test and experiment with the features.
 
-{% inlineCalloutContainer %}
+<CardGroup cols={2}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Try OpenMetadata in Docker"
+    href="/quick-start/local-docker-deployment"
+  >
+    Get OpenMetadata up and running with docker in under 5 minutes!
+  </Card>
 
-{% inlineCallout
-    icon="celebration"
-    bold="Try OpenMetadata in Docker"
-    href="/quick-start/local-docker-deployment" %}
-Get OpenMetadata up and running with docker in under 5 minutes!
-{% /inlineCallout %}
-
-{% inlineCallout
-    icon="celebration"
-    bold="Try OpenMetadata in Kubernetes"
-    href="/quick-start/local-kubernetes-deployment" %}
-Get OpenMetadata up and running with kubernetes in under 5 minutes!
-{% /inlineCallout %}
-
-{% /inlineCalloutContainer %}
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Try OpenMetadata in Kubernetes"
+    href="/quick-start/local-kubernetes-deployment"
+  >
+    Get OpenMetadata up and running with kubernetes in under 5 minutes!
+  </Card>
+</CardGroup>
 
 Set up and explore OpenMetadata's core features, from basic configuration to advanced functionalities, for a seamless onboarding experience.
 
-{% tilesContainer %}
-{% tile
-    title="Getting Started"
-    description="Unlock metadata insights for informed business decisions."
-    link="/quick-start/getting-started"
-    icon="discovery"
-/%}
-{% /tilesContainer %}
+<Columns cols={2}>
+<Card title="Getting Started" href="/quick-start/getting-started">
+  Unlock metadata insights for informed business decisions.
+</Card>
+</Columns>

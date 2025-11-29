@@ -4,13 +4,14 @@ description: Use YAML to ingest metadata from Hive including tables, partitions,
 slug: /connectors/database/hive/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -20,18 +21,20 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
+
+<ConnectorDetailsHeader
 name="Hive"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Owners", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Hive connector.
 
@@ -75,39 +78,20 @@ The workflow is modeled around the following
 
 This is a sample config for Hive:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Specify the User to connect to Hive. It should have enough privileges to read all the metadata.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="password">
 **password**: Password to connect to Hive.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="hostPort">
 **hostPort**: Enter the fully qualified hostname and port number for your Hive deployment in the Host and Port field.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="authOptions">
 **authOptions**: Enter the auth options string for hive connection.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=22 %}
-
+</Step>
+<Step title="For MySQL Metastore Connection:">
 #### For MySQL Metastore Connection:
 You can also ingest the metadata using Mysql metastore. This step is optional if metastore details are not provided then we will query the hive server directly.
 
@@ -115,11 +99,8 @@ You can also ingest the metadata using Mysql metastore. This step is optional if
 - **password**: Password to connect to MySQL.
 - **hostPort**: Enter the fully qualified hostname and port number for your MySQL Metastore deployment in the Host and Port field in the format `hostname:port`.
 - **databaseSchema**: Enter the database schema which is associated with the metastore.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="For Postgres Metastore Connection:">
 #### For Postgres Metastore Connection:
 
 You can also ingest the metadata using Postgres metastore. This step is optional if metastore details are not provided then we will query the hive server directly.
@@ -128,60 +109,34 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 - **password**: Password to connect to Postgres.
 - **hostPort**: Enter the fully qualified hostname and port number for your Postgres deployment in the Host and Port field in the format `hostname:port`.
 - **database**: Initial Postgres database to connect to. Specify the name of database associated with metastore instance.
-
-{% /codeInfo %}
-
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=5 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: hive
   serviceName: local_hive
   serviceConnection:
     config:
       type: Hive
-```
-```yaml {% srNumber=1 %}
-      username: <username>
-```
-```yaml {% srNumber=2 %}
-      password: <password>
-```
-```yaml {% srNumber=3 %}
-      authOptions: <auth options>
-```
-```yaml {% srNumber=4 %}
-      hostPort: <hive connection host & port>
-```
-
-```yaml {% srNumber=22 %}
-      # For MySQL Metastore Connection
+username: <username>
+password: <password>
+authOptions: <auth options>
+hostPort: <hive connection host & port>
+# For MySQL Metastore Connection
       # metastoreConnection:
       #   type: Mysql
       #   username: <username>
@@ -189,10 +144,7 @@ source:
       #     password: <password>
       #   hostPort: <hostPort>
       #   databaseSchema: metastore
-
-```
-```yaml {% srNumber=23 %}
-      # For Postgres Metastore Connection
+# For Postgres Metastore Connection
       # metastoreConnection:
       #   type: Postgres
       #   username: <username>
@@ -200,13 +152,9 @@ source:
       #     password: <password>
       #   hostPort: <hostPort>
       #   database: metastore
-```
-```yaml {% srNumber=5 %}
-      # connectionOptions:
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=6 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
 ```
 
@@ -215,9 +163,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 
@@ -240,12 +185,10 @@ To configure SSL for secure connections between OpenMetadata and a Hive database
 
 ## dbt Integration
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-  icon="mediation"
-  title="dbt Integration"
-  description="Learn more about how to ingest dbt models' definitions and their lineage."
-  link="/connectors/ingestion/workflows/dbt" /%}
+<Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
+  Learn more about how to ingest dbt models
+</Card>
 
-{% /tilesContainer %}
+</Columns>

@@ -6,6 +6,9 @@ slug: /connectors/dashboard/tableau
 
 import ReverseMetadata from '/snippets/connectors/dashboard/tableau/reverse-metadata.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -14,18 +17,14 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Tableau"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Dashboards", "Charts", "Lineage", "Owners", "Datamodels", "Tags", "Projects", "Column Lineage", "Usage", "Reverse Metadata (Collate Only)"]
-unavailableFeatures=[]
-/ %}
-
+availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Datamodels", "Tags", "Projects", "Column Lineage", "Usage", "Reverse Metadata (Collate Only)"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Tableau connector.
 
@@ -37,11 +36,7 @@ Configure and schedule Tableau metadata and profiler workflows from the OpenMeta
 - [Enable Security](#securing-tableau-connection-with-ssl-in-openmetadata)
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/tableau/troubleshooting)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/tableau/yaml" />
 
 ## Requirements
 
@@ -50,17 +45,17 @@ To ingest tableau metadata, minimum `Site Role: Viewer` is required for the tabl
 To create lineage between tableau dashboard and any database service via the queries provided from Tableau Metadata API, please enable the Tableau Metadata API for your tableau server.
 For more information on enabling the Tableau Metadata APIs follow the link [here](https://help.tableau.com/current/api/metadata_api/en-us/docs/meta_api_start.html)
 
-{% note %}
+<Tip>
 - If using a **default site** on Tableau Server, leave the **Site URL** and **Site Name** fields **blank** in the ingestion configuration.  
 - Ensure that the **Metadata API** is enabled for the user performing the ingestion. If it is not enabled, ingestion may fail. Follow the official Tableau documentation to [enable the Metadata API](https://help.tableau.com/current/api/metadata_api/en-us/docs/meta_api_start.html#enable-the-tableau-metadata-api-for-tableau-server).
 - The minimum required role to retrieve owners is Site Admin Explorer.
-{% /note %}
+</Tip>
 
-{% note %}
+<Tip>
 - As of OpenMetadata versions `1.7.4` and `1.7.5`, the `siteUrl` field has been removed from the Tableau connector configuration. This change was intentional, as confirmed in the release commit.  
 - To connect to a non-default Tableau site, use the `siteName` field instead. The Tableau Python SDK does not require `siteUrl` for authentication.  
 - Ensure the `siteName` field is correctly populated (do not use `*`) to enable successful metadata ingestion for multi-site Tableau environments.
-{% /note %}
+</Tip>
 
 ## Entity Mapping
 
@@ -101,8 +96,7 @@ This mapping ensures that:
 
 <MetadataIngestionUi connector={"Tableau"} selectServicePath={"/images/connectors/tableau/select-service.png"} addNewServicePath={"/images/connectors/tableau/add-new-service.png"} serviceConnectionPath={"/images/connectors/tableau/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -134,9 +128,9 @@ For a default tableau site `Site Name` and `Site URL` fields should be kept empt
 
 For a non-default tableau site `Site Name` and `Site URL` fields are required.
 
-{% note %}
+<Tip>
 If `https://xxx.tableau.com/#/site/MarketingTeam/home` represents the homepage url for your tableau site, the `MarketingTeam` from the url should be entered in the `Site Name` and `Site Url` fields.
-{% /note %}
+</Tip>
 
 ### Authentication Type
 
@@ -150,29 +144,20 @@ In this case, the personal access token name and the personal access token value
 
 For more information to get a Personal Access Token please visit this [link](https://help.tableau.com/current/server/en-us/security_personal_access_tokens.htm).
 
-
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ## Securing Tableau Connection with SSL in OpenMetadata
 
 To establish secure connections between OpenMetadata and Tableau, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`. Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl key`, `ssl cert`, and `caCertificate`. In this case, `ssl_cert` is used for the client’s SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `caCertificate` for the CA certificate to validate the server’s certificate.
 
-  {% image
-  src="/images/v1.9/connectors/ssl_tableau.png"
-  alt="SSL Configuration"
-  height="450px"
-  caption="SSL Configuration" /%}
+  <img src="/images/v1.9/connectors/ssl_tableau.png" alt="SSL Configuration" height="450px" />
 
 <DashboardLineage />
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}

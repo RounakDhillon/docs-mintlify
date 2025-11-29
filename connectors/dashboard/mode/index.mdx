@@ -4,6 +4,8 @@ description: Connect Mode Analytics dashboards to OpenMetadata with our comprehe
 slug: /connectors/dashboard/mode
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -12,17 +14,14 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Mode"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Lineage"]
-  unavailableFeatures=["Owners", "Tags", "Datamodels", "Projects"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Lineage"]}
+  unavailableFeatures={["Owners", "Tags", "Datamodels", "Projects"]} />
 
 In this section, we provide guides and references to use the Mode connector.
 
@@ -33,8 +32,6 @@ Configure and schedule Mode metadata and profiler workflows from the OpenMetadat
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/mode/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/mode/yaml" />
-
 ## Requirements
 
 OpenMetadata relies on Mode's API, which is exclusive to members of the Mode Business Workspace. This means that only resources that belong to a Mode Business Workspace can be accessed via the API.
@@ -43,8 +40,7 @@ OpenMetadata relies on Mode's API, which is exclusive to members of the Mode Bus
 
 <MetadataIngestionUi connector={"Mode"} selectServicePath={"/images/connectors/mode/select-service.png"} addNewServicePath={"/images/connectors/mode/add-new-service.png"} serviceConnectionPath={"/images/connectors/mode/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -69,14 +65,12 @@ For detailed information visit [here](https://mode.com/developer/api-reference/i
 **workspaceName**: Mode Workspace Name.
 Name of the mode workspace from where the metadata is to be fetched.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <DashboardLineage />

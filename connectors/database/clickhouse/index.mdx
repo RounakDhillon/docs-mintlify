@@ -6,6 +6,8 @@ slug: /connectors/database/clickhouse
 
 import ReverseMetadata from '/snippets/connectors/database/clickhouse/reverse-metadata.mdx'
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -14,20 +16,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Clickhouse"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=["Owners", "Tags", "Stored Procedures"]
-/ %}
-
+availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={["Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Clickhouse connector.
 
@@ -43,12 +40,7 @@ Configure and schedule Clickhouse metadata and profiler workflows from the OpenM
 - [Troubleshooting](/connectors/database/clickhouse/troubleshooting)
   - [Workflow Deployment Error](#workflow-deployment-error)
 - [Related](#related)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/clickhouse/yaml" />
 
 ## Requirements
 
@@ -81,8 +73,7 @@ For the usage and lineage workflow, the user will need `SELECT` privilege. You c
 
 <MetadataIngestionUi connector={"ClickHouse"} selectServicePath={"/images/connectors/clickhouse/select-service.png"} addNewServicePath={"/images/connectors/clickhouse/add-new-service.png"} serviceConnectionPath={"/images/connectors/clickhouse/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Options
 
@@ -95,18 +86,14 @@ For the usage and lineage workflow, the user will need `SELECT` privilege. You c
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}
 
 <Related />

@@ -47,10 +47,12 @@ ingestionPipelineFQN: my_service.my_pipeline
 
 ### Databases
 
-{% connectorsListContainer %}
-
-{% connectorInfoCard name="BigQuery" stage="BETA" href="/connectors/ingestion/workflows/metadata/incremental-extraction/bigquery" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Redshift" stage="BETA" href="/connectors/ingestion/workflows/metadata/incremental-extraction/redshift" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Snowflake" stage="BETA" href="/connectors/ingestion/workflows/metadata/incremental-extraction/snowflake" platform="OpenMetadata" / %}
-
-{% /connectorsListContainer %}
+<Card title="BigQuery" icon="database" href="/connectors/ingestion/workflows/metadata/incremental-extraction/bigquery" horizontal>
+  **BETA** | OpenMetadata
+</Card>
+<Card title="Redshift" icon="database" href="/connectors/ingestion/workflows/metadata/incremental-extraction/redshift" horizontal>
+  **BETA** | OpenMetadata
+</Card>
+<Card title="Snowflake" icon="database" href="/connectors/ingestion/workflows/metadata/incremental-extraction/snowflake" horizontal>
+  **BETA** | OpenMetadata
+</Card>

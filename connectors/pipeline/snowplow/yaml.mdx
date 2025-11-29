@@ -4,29 +4,27 @@ Description: Run the Snowplow connector externally with YAML to ingest pipelines
 slug: /connectors/pipeline/snowplow/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 
 # Run the Snowplow Connector Externally
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Snowplow"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Snowplow connector.
 
@@ -52,69 +50,38 @@ For self-hosted Community Edition deployments, you'll need:
 - **Configuration Path**: The path to your Snowplow configuration files
 - **Iglu Server URL** (optional): If you're using an Iglu Server for schema management
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/snowplow/yaml" />
-
 ## Metadata Ingestion
 
 ### 1. Define the YAML Config
 
 This is a sample config for Snowplow:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="type">
 **type**: Must be `Snowplow`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="deployment">
 **deployment**: Choose between `BDP` (managed) or `Community` (self-hosted).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="consoleUrl">
 **consoleUrl**: Required for BDP deployment. The URL of your Snowplow Console.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="apiKey">
 **apiKey**: Required for BDP deployment. Your Snowplow API key.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="organizationId">
 **organizationId**: Required for BDP deployment. Your organization ID.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="configPath">
 **configPath**: Required for Community deployment. Path to configuration files.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="cloudProvider">
 **cloudProvider**: The cloud provider where Snowplow is deployed (AWS, GCP, or Azure).
-
-{% /codeInfo %}
-
-#### Source Configuration - Pipeline Filter Pattern
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="To send the metadata of">
 To send the metadata of only selected pipelines, enter the regex pattern for pipeline names to include or exclude.
-
-{% /codeInfo %}
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -122,25 +89,21 @@ To send the metadata of only selected pipelines, enter the regex pattern for pip
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: snowplow
   serviceName: snowplow_pipeline
   serviceConnection:
     config:
       type: Snowplow
-      deployment: BDP  # or Community {% srNumber=2 %}
+      deployment: BDP  # or Community
       # For BDP deployment:
-      consoleUrl: https://console.snowplowanalytics.com {% srNumber=3 %}
-      apiKey: your-api-key {% srNumber=4 %}
-      organizationId: your-org-id {% srNumber=5 %}
+      consoleUrl: https://console.snowplowanalytics.com
+      apiKey: your-api-key
+      organizationId: your-org-id
       # For Community deployment:
-      # configPath: /path/to/snowplow/config {% srNumber=6 %}
-      cloudProvider: AWS {% srNumber=7 %}
+      # configPath: /path/to/snowplow/config
+      cloudProvider: AWS
   sourceConfig:
     config:
       type: PipelineMetadata
@@ -156,10 +119,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 - You can learn more about how to configure and run the Ingestion Framework [here](/deployment/ingestion).
 

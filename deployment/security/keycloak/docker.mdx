@@ -20,9 +20,9 @@ generated when setting up the account.
 Check the more information about environment variable [here](/deployment/security/configuration-parameters).
 
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Implicit Flow
 AUTHORIZER_CLASS_NAME= org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER= org.openmetadata.service.security.JwtFilter
@@ -37,9 +37,11 @@ AUTHENTICATION_CALLBACK_URL="http://localhost:8585/callback"
 AUTHENTICATION_AUTHORITY={http://localhost:8080/realms/{your-realm}}
 AUTHENTICATION_CLIENT_TYPE=public
 ```
+</Tab>
 
-```authcode
-# Auth Code Flow 
+<Tab title="authcode">
+```
+# Auth Code Flow
 AUTHORIZER_CLASS_NAME= org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER= org.openmetadata.service.security.JwtFilter
 AUTHORIZER_ADMIN_PRINCIPALS=[admin]                 # john.doe from john.doe@example.com
@@ -60,14 +62,14 @@ OIDC_DISCOVERY_URI="OIDC_DISCOVERY_URI=http://host.docker.internal:8081/realms/o
 OIDC_CALLBACK="http://localhost:8585/callback"     # Callback URL registered in Keycloak
 OIDC_SERVER_URL="http://localhost:8585"            # OpenMetadata server URL
 ```
+</Tab>
+</Tabs>
 
-{% /codeWithLanguageSelector %}
-
-{% note %}
+<Tip>
 
 Altering the order of claims in `jwtPrincipalClaims` may lead to problems when matching a user from a token with an existing user in the system. The mapping process relies on the specific order of claims, so changing it can result in inconsistencies or authentication failures, as the system cannot ensure correct user mapping with a new claim order.
 
-{% /note %}
+</Tip>
 
 ## 2. Start Docker
 
@@ -78,12 +80,12 @@ docker compose --env-file ~/openmetadata_keycloak.env up -d
 <ConfigureIngestion />
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="KeyCloak"
-    href="/deployment/security/keycloak" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="KeyCloak"
+    href="/deployment/security/keycloak"
+  >
     Go to KeyCloak Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

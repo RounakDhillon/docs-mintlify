@@ -14,19 +14,15 @@ Glossary adds semantics or meaning to data by defining the business terminologie
 
 OpenMetadata models a Glossary as a Thesauri that organizes terms with **hierarchical**, equivalent, and associative relationships within a domain. The Glossary in OpenMetadata can be accessed from **Govern >>  Glossary**. All the Glossaries are displayed in the left nav bar. Clicking on a specific glossary will display the expanded view to show the entire hierarchy of the glossary terms (parent-child terms).
 
-{% image
-src="/images/v1.9/how-to-guides/governance/banking.png"
-alt="Banking Glossary"
-caption="Banking Glossary"
-/%}
+<img src="/images/v1.9/how-to-guides/governance/banking.png" alt="Banking Glossary" />
 
-{% note %}
+<Tip>
 **Tip:** A well-defined and centralized glossary makes it easy to **onboard new team members** and help them get familiar with the **organizational terminology**.
-{% /note %}
+</Tip>
 
 Watch the [Webinar on Glossaries and Classifications in OpenMetadata](https://www.youtube.com/watch?v=LII_5CDo_0s)
 
-{%  youtube videoId="LII_5CDo_0s" start="0:00" end="52:35" width="800px" height="450px" /%}
+<iframe width="800" height="450" src="https://www.youtube.com/embed/LII_5CDo_0s?start=0&end=3155" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
 ## Glossary APIs
 
@@ -34,68 +30,68 @@ OpenMetadata has extensive Glossary APIs. The main entities are **Glossary** and
 
 You can create, delete, modify, and update using APIs. Refer to the **[Glossary API documentation](https://sandbox.open-metadata.org/docs#tag/Glossaries)**.
 
-{%inlineCalloutContainer%}
- {%inlineCallout
-  color="violet-70"
-  bold="Glossary Term"
-  icon="MdMenuBook"
-  href="/how-to-guides/data-governance/glossary/glossary-term"%}
-  Learn about the hierarchically arranged glossary terms.
- {%/inlineCallout%}
- {%inlineCallout
-  color="violet-70"
-  bold="Setup a Glossary"
-  icon="MdMenuBook"
-  href="/how-to-guides/data-governance/glossary/setup"%}
-  Learn how to set up a glossary manually in OpenMetadata.
- {%/inlineCallout%}
- {%inlineCallout
-  color="violet-70"
-  bold="Create Glossary Terms"
-  icon="MdMenuBook"
-  href="/how-to-guides/data-governance/glossary/create-terms"%}
-  Setup glossary terms to define the terminology. Add tags, synonyms, related terms, links, etc.
- {%/inlineCallout%}
- {%inlineCallout
-  color="violet-70"
-  bold="Bulk Import a Glossary"
-  icon="MdUpload"
-  href="/how-to-guides/data-governance/glossary/import"%}
-  Save time and effort by bulk uploading glossary terms using a CSV file.
- {%/inlineCallout%}
- {%inlineCallout
-  color="violet-70"
-  bold="Glossary Export"
-  icon="MdDownload"
-  href="/how-to-guides/data-governance/glossary/export"%}
-  Quickly export a glossary as a CSV file.
- {%/inlineCallout%}
- {%inlineCallout
-  color="violet-70"
-  bold="Glossary Approval Workflow"
-  icon="MdPushPin"
-  href="/how-to-guides/data-governance/glossary/approval"%}
-  Set up a review and approval process for glossary terms.
- {%/inlineCallout%}
-  {%inlineCallout
-  color="violet-70"
-  bold="Glossary Styling"
-  icon="MdPushPin"
-  href="/how-to-guides/data-governance/glossary/styling"%}
-  Stylize your glossary terms with color-coding and icons.
- {%/inlineCallout%}
- {%inlineCallout
-  color="violet-70"
-  bold="Add Assets to Glossary Terms"
-  icon="MdPushPin"
-  href="/how-to-guides/data-governance/glossary/assets"%}
-  Associate glossary terms to data assets making it easier for data discovery
- {%/inlineCallout%}
- {%inlineCallout
-  color="violet-70"
-  bold="Best Practices for Glossary"
-  icon="MdThumbUp"
-  href="/how-to-guides/data-governance/glossary/best-practices"%}
-  Here are the Top 8 Best Practices around Terminologies.
- {%/inlineCallout%}
-{%/inlineCalloutContainer%}
+<CardGroup cols={3}>
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="Glossary Term"
+    href="/how-to-guides/data-governance/glossary/glossary-term"
+  >
+    Learn about the hierarchically arranged glossary terms.
+  </Card>
+ <Card
+    icon="/images/icons/file-icon.svg"
+    title="Setup a Glossary"
+    href="/how-to-guides/data-governance/glossary/setup"
+  >
+    Learn how to set up a glossary manually in OpenMetadata.
+  </Card>
+ <Card
+    icon="/images/icons/file-icon.svg"
+    title="Create Glossary Terms"
+    href="/how-to-guides/data-governance/glossary/create-terms"
+  >
+    Setup glossary terms to define the terminology. Add tags, synonyms, related terms, links, etc.
+  </Card>
+ <Card
+    icon="/images/icons/arrow-right.svg"
+    title="Bulk Import a Glossary"
+    href="/how-to-guides/data-governance/glossary/import"
+  >
+    Save time and effort by bulk uploading glossary terms using a CSV file.
+  </Card>
+ <Card
+    icon="/images/icons/arrow-right.svg"
+    title="Glossary Export"
+    href="/how-to-guides/data-governance/glossary/export"
+  >
+    Quickly export a glossary as a CSV file.
+  </Card>
+ <Card
+    icon="/images/icons/puzzle.svg"
+    title="Glossary Approval Workflow"
+    href="/how-to-guides/data-governance/glossary/approval"
+  >
+    Set up a review and approval process for glossary terms.
+  </Card>
+  <Card
+    icon="/images/icons/puzzle.svg"
+    title="Glossary Styling"
+    href="/how-to-guides/data-governance/glossary/styling"
+  >
+    Stylize your glossary terms with color-coding and icons.
+  </Card>
+ <Card
+    icon="/images/icons/puzzle.svg"
+    title="Add Assets to Glossary Terms"
+    href="/how-to-guides/data-governance/glossary/assets"
+  >
+    Associate glossary terms to data assets making it easier for data discovery
+  </Card>
+ <Card
+    icon="/images/icons/check.svg"
+    title="Best Practices for Glossary"
+    href="/how-to-guides/data-governance/glossary/best-practices"
+  >
+    Here are the Top 8 Best Practices around Terminologies.
+  </Card>
+</CardGroup>

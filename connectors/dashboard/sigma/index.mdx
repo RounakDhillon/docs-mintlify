@@ -4,6 +4,8 @@ description: Connect Sigma Analytics to OpenMetadata seamlessly. Learn how to co
 slug: /connectors/dashboard/sigma
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -12,17 +14,14 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Sigma"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Lineage", "Owners"]
-  unavailableFeatures=["Tags", "Datamodels", "Projects"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Lineage", "Owners"]}
+  unavailableFeatures={["Tags", "Datamodels", "Projects"]} />
 
 In this section, we provide guides and references to use the Sigma connector.
 
@@ -33,8 +32,6 @@ Configure and schedule Sigma metadata and profiler workflows from the OpenMetada
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/sigma/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/sigma/yaml" />
-
 ## Requirements
 
 OpenMetadata relies on Sigma's REST API. To know more you can read the [Sigma API Get Started docs](https://help.sigmacomputing.com/reference/get-started-sigma-api#about-the-api). To [generate API client credentials](https://help.sigmacomputing.com/reference/generate-client-credentials#user-requirements), you must be assigned the Admin account type.
@@ -43,8 +40,7 @@ OpenMetadata relies on Sigma's REST API. To know more you can read the [Sigma AP
 
 <MetadataIngestionUi connector={"Sigma"} selectServicePath={"/images/connectors/sigma/select-service.png"} addNewServicePath={"/images/connectors/sigma/add-new-service.png"} serviceConnectionPath={"/images/connectors/sigma/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -72,14 +68,12 @@ Version of the Sigma REST API by default `v2`.
 
 To get to know the Sigma REST API Version visit [here](https://help.sigmacomputing.com/reference/get-started-sigma-api#identify-your-api-request-url) and look into the `Token URL` section.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <DashboardLineage />

@@ -17,9 +17,9 @@ In `openmetadata.yaml` file and use the following example as a reference. Replac
 Check the more information about environment variable [here](/deployment/security/configuration-parameters).
 
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Implicit Flow
 authorizerConfiguration:
   className: "org.openmetadata.service.security.DefaultAuthorizer"
@@ -30,18 +30,20 @@ authorizerConfiguration:
     - "user2"
   principalDomain: "open-metadata.org"      # Update with your Domain,The primary domain for the organization (your domain.com from name@domain.com).
 authenticationConfiguration:
-  provider: "azure" 
+  provider: "azure"
   publicKeyUrls:                            # Update with your azure Domain and  OMD server URL.
     - "https://login.microsoftonline.com/common/discovery/keys""
-    - "{OMD URL}/api/v1/system/config/jwks"                    
+    - "{OMD URL}/api/v1/system/config/jwks"
   authority: "https://login.microsoftonline.com/{Tenant ID}"
   clientId: "{Client ID}"
   callbackUrl: "http://localhost:8585/callback"
   clientType: "public"
 ```
+</Tab>
 
-```authcode
-# Auth Code Flow 
+<Tab title="authcode">
+```
+# Auth Code Flow
 authorizerConfiguration:
   className: "org.openmetadata.service.security.DefaultAuthorizer"
   containerRequestFilter: "org.openmetadata.service.security.JwtFilter"
@@ -51,41 +53,42 @@ authorizerConfiguration:
     - "user2"
   principalDomain: "open-metadata.org"      # Update with your Domain,The primary domain for the organization (your domain.com from name@domain.com).
 authenticationConfiguration:
-  provider: "azure" 
+  provider: "azure"
   publicKeyUrls:                            # Update with your azure Domain and  OMD server URL.
     - "https://login.microsoftonline.com/common/discovery/keys""
-    - "{OMD URL}/api/v1/system/config/jwks"   
+    - "{OMD URL}/api/v1/system/config/jwks"
   authority: "https://login.microsoftonline.com/{Tenant ID}"                   # Update your Tenant ID
   clientId: "{Client ID}"                   # Update your Client ID
   callbackUrl: "http://localhost:8585/callback"
   clientType: "confidential"
   oidcConfiguration:
     id: "{Client ID}"                       # Update you azrue Client ID
-    type: "azure"     
+    type: "azure"
     secret: "{Client Secret}"               # Update with azure Client Secret
     discoveryUri: "{azure Domain Name}/.well-known/openid-configuration"       # Update your Azure discovery URI
     callbackUrl: http://localhost:8585/callback"
     serverUrl: "http://localhost:8585"
 
 ```
-{% /codeWithLanguageSelector %}
+</Tab>
+</Tabs>
 
-{% note %}
+<Tip>
 
 Altering the order of claims in `jwtPrincipalClaims` may lead to problems when matching a user from a token with an existing user in the system. The mapping process relies on the specific order of claims, so changing it can result in inconsistencies or authentication failures, as the system cannot ensure correct user mapping with a new claim order.
 
-{% /note %}
+</Tip>
 
 
 <ConfigureIngestion />
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="Azure"
-    href="/deployment/security/azure" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Azure"
+    href="/deployment/security/azure"
+  >
     Go to Azure Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

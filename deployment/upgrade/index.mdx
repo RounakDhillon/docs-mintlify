@@ -18,30 +18,30 @@ In this guide, you will find all the necessary information to safely upgrade you
 
 Once your metadata is safe, follow the required upgrade instructions based on your environment:
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="fit_screen"
-    bold="Upgrade a Kubernetes Deployment"
-    href="/deployment/upgrade/kubernetes#upgrade-process" %}
-      Upgrade your Kubernetes installation
-  {% /inlineCallout %}
+<CardGroup cols={3}>
+<Card
+    icon="/images/icons/puzzle.svg"
+    title="Upgrade a Kubernetes Deployment"
+    href="/deployment/upgrade/kubernetes#upgrade-process"
+  >
+    Upgrade your Kubernetes installation
+  </Card>
 
-  {% inlineCallout
-    color="violet-70"
-    icon="celebration"
-    bold="Upgrade a Docker Deployment"
-    href="/deployment/upgrade/docker#upgrade-process" %}
-      Upgrade your Docker installation
-  {% /inlineCallout %}
+  <Card
+    icon="/images/icons/celebration.svg"
+    title="Upgrade a Docker Deployment"
+    href="/deployment/upgrade/docker#upgrade-process"
+  >
+    Upgrade your Docker installation
+  </Card>
 
-  {% inlineCallout
-    color="violet-70"
-    icon="storage"
-    bold="Upgrade a Bare Metal Deployment"
-    href="/deployment/upgrade/bare-metal#upgrade-process" %}
-      Upgrade your Bare Metal installation
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  <Card
+    icon="/images/icons/puzzle.svg"
+    title="Upgrade a Bare Metal Deployment"
+    href="/deployment/upgrade/bare-metal#upgrade-process"
+  >
+    Upgrade your Bare Metal installation
+  </Card>
+</CardGroup>
 
 <PostUpgradeSteps />

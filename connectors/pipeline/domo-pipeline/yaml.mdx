@@ -4,12 +4,13 @@ description: Configure Domo pipeline ingestion via YAML to automate metadata flo
 slug: /connectors/pipeline/domo-pipeline/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Domo"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Usage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Usage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 
 In this section, we provide guides and references to use the Domo Pipeline connector.
@@ -71,46 +71,23 @@ The workflow is modeled around the following
 
 This is a sample config for Domo-Pipeline:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="Client ID">
 **Client ID**: Client ID to Connect to DOMO Pipeline.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="Secret Token">
 **Secret Token**: Secret Token to Connect DOMO Pipeline.
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Access Token">
 **Access Token**: Access to Connect to DOMO Pipeline.
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="API Host">
 **API Host**:  API Host to Connect to DOMO Pipeline instance.
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="Instance Domain">
 **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
-
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -118,31 +95,32 @@ This is a sample config for Domo-Pipeline:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: domopipeline
   serviceName: domo-pipeline_source
   serviceConnection:
     config:
       type: DomoPipeline
+clientID: clientid
+secretToken: secret-token
+accessToken: access-token
+apiHost: api.domo.com
+instanceDomain: https://<your>.domo.com
 ```
-```yaml {% srNumber=1 %}
+```yaml
       clientID: clientid
 ```
-```yaml {% srNumber=2 %}
+```yaml
       secretToken: secret-token
 ```
-```yaml {% srNumber=3 %}
+```yaml
       accessToken: access-token
 ```
-```yaml {% srNumber=4 %}
+```yaml
       apiHost: api.domo.com
 ```
-```yaml {% srNumber=5 %}
+```yaml
       instanceDomain: https://<your>.domo.com
 ```
 
@@ -151,9 +129,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

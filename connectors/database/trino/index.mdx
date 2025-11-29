@@ -6,6 +6,9 @@ slug: /connectors/database/trino
 
 import ReverseMetadata from '/snippets/connectors/database/trino/reverse-metadata.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -14,19 +17,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Trino"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification", "Reverse Metadata (Collate Only)"]
-unavailableFeatures=["Owners", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification", "Reverse Metadata (Collate Only)"]}
+unavailableFeatures={["Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Trino connector.
 
@@ -39,11 +38,7 @@ Configure and schedule Trino metadata and profiler workflows from the OpenMetada
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/trino/troubleshooting)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/trino/yaml" />
 
 ## Requirements
 
@@ -60,8 +55,7 @@ Executing the profiler workflow or data quality tests, will require the user to 
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Trino"} selectServicePath={"/images/connectors/trino/select-service.png"} addNewServicePath={"/images/connectors/trino/add-new-service.png"} serviceConnectionPath={"/images/connectors/trino/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -105,7 +99,6 @@ Executing the profiler workflow or data quality tests, will require the user to 
 - **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to Trino during the connection. These details must be added as Key-Value pairs. 
   - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
 
-
 **SSL Configuration**
 
 In order to integrate SSL in the Metadata Ingestion Config, the user will have to add the SSL config under **connectionArguments** which is placed in source.
@@ -118,18 +111,14 @@ Find more details in [the Python requests library documentation](https://request
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}
 
 <Related />

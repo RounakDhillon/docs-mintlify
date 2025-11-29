@@ -4,6 +4,8 @@ description: Connect Power BI to OpenMetadata with our comprehensive dashboard c
 slug: /connectors/dashboard/powerbi
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -12,17 +14,14 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="PowerBI"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Datamodels", "Projects", "Lineage", "Column Lineage", "Owners"]
-  unavailableFeatures=[]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Datamodels", "Projects", "Lineage", "Column Lineage", "Owners"]}
+  unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the PowerBI connector.
 
@@ -33,26 +32,23 @@ Configure and schedule PowerBI metadata and profiler workflows from the OpenMeta
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/powerbi/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/powerbi/yaml" />
-
 ## Requirements
 
-{% note noteType="Warning" %}
+<Warning>
 To access the PowerBI APIs and import dashboards, charts, and datasets from PowerBI into OpenMetadata, a `PowerBI Pro` license is necessary.
-{% /note noteType="Warning" %}
-{% /note %}
+</Warning>
 
-{% note %}
+<Tip>
 PowerBI dataflows are not yet supported.
-{% /note %}
+</Tip>
 
-{% note %}
+<Tip>
 OpenMetadata does not support Power BI usage ingestion because the Power BI Usage API does not support Service Principal authentication.
-{% /note %}
+</Tip>
 
-{% note %}
+<Tip>
 When configuring Azure Authentication, ensure that "Allow public client flows" is enabled. This setting is required to support authentication for public client applications.
-{% /note %}
+</Tip>
 
 ### PowerBI Admin and Non-Admin APIs:
 
@@ -60,22 +56,22 @@ While configuring the PowerBI ingestion you can choose whether to use the PowerB
 - Enabled (Use PowerBI Admin APIs)
 Using the admin APIs will fetch the dashboard and chart metadata from all the workspaces available in the PowerBI instance.
 
-{% note %} 
+<Tip> 
 
 When using the PowerBI Admin APIs, the table and dataset information used to generate lineage is gathered using the PowerBI [Scan Result](https://learn.microsoft.com/en-us/rest/api/power-bi/admin/workspace-info-get-scan-result) API. This API has no limitations and hence does not restrict getting the necessary data for generating lineage.
-{% /note %}
+</Tip>
 
 - Disabled (Use Non-Admin PowerBI APIs)
 Using the non-admin APIs will only fetch the dashboard and chart metadata from the workspaces that have the security group of the service principal assigned to them.
 
-{% note %} 
+<Tip> 
 
 When using the PowerBI Non-Admin APIs, the table and dataset information used to generate lineage is gathered using the PowerBI [Get Dataset Tables](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets/datasets-get-tables) API. This API only retrieves the table information if the dataset is a [Push Dataset](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets).
 Hence the lineage can only be created for push datasets in this case.
 
 For more information please visit the PowerBI official documentation [here](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets/datasets-get-tables#limitations).
 
-{% /note %}
+</Tip>
 
 ### PowerBI Account Setup
 Follow the steps below to configure the account setup for PowerBI connector:
@@ -99,13 +95,12 @@ The required permissions are:
 Optional Permissions: (Without granting these permissions, the dataset information cannot be retrieved and the datamodel and lineage processing will be skipped)
 - `Dataset.Read.All`
 
-{% note noteType="Warning" %}
+<Warning>
 
 Make sure that in the API permissions section **Tenant** related permissions are not being given to the app
-Please refer [here](https://stackoverflow.com/questions/71001110/power-bi-rest-api-requests-not-authorizing-as-expected) for detailed explanation 
+Please refer [here](https://stackoverflow.com/questions/71001110/power-bi-rest-api-requests-not-authorizing-as-expected) for detailed explanation
 
-{% /note noteType="Warning" %}
-{% /note %}
+</Warning>
 
 ### Step 4: PowerBI Workspaces
 The service principal does not take into account the default user workspaces e.g `My Workspace`.
@@ -118,8 +113,7 @@ For reference here is a [thread](https://community.powerbi.com/t5/Service/Error-
 
 <MetadataIngestionUi connector={"PowerBI"} selectServicePath={"/images/connectors/powerbi/select-service.png"} addNewServicePath={"/images/connectors/powerbi/add-new-service.png"} serviceConnectionPath={"/images/connectors/powerbi/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -184,14 +178,12 @@ Refer to the section [here](/connectors/dashboard/powerbi#powerbi-admin-and-nona
 - Enabled (Use PowerBI Admin APIs)
 - Disabled (Use Non-Admin PowerBI APIs)
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <DashboardLineage />

@@ -6,22 +6,21 @@ slug: /connectors/pipeline/flink
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Flink"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Usage"]
-unavailableFeatures=["Owners", "Tags", "Lineage"]
-/ %}
-
+availableFeatures={["Pipelines", "Pipeline Status", "Usage"]}
+unavailableFeatures={["Owners", "Tags", "Lineage"]} />
 
 In this section, we provide guides and references to use the Apache Flink connector.
 
@@ -36,8 +35,6 @@ Configure and schedule Flink metadata from the OpenMetadata UI:
 - [Troubleshooting](/connectors/pipeline/flink/troubleshooting)
     - [Workflow Deployment Error](#workflow-deployment-error)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/flink/yaml" />
-
 ## Requirements
 
 ### Versions
@@ -50,8 +47,7 @@ The ingestion framework uses flink REST APIs to connect to the instance and perf
 
 <MetadataIngestionUi connector={"Flink"} selectServicePath={"/images/connectors/flink/select-service.png"} addNewServicePath={"/images/connectors/flink/add-new-service.png"} serviceConnectionPath={"/images/connectors/flink/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -65,13 +61,10 @@ The ingestion framework uses flink REST APIs to connect to the instance and perf
 
 - **verifySSL** : Whether SSL verification should be perform when authenticating.
 
-
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

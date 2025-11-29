@@ -4,6 +4,8 @@ description: Connect Power BI Report Server to OpenMetadata with our comprehensi
 slug: /connectors/dashboard/powerbireportserver
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -14,13 +16,12 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="PowerBI Report Server"
   stage="BETA"
   platform="Collate"
-  availableFeatures=["Dashboards"]
-  unavailableFeatures=["Owners", "Tags", "Charts", "Datamodels", "Projects", "Lineage"]
-/ %}
+  availableFeatures={["Dashboards"]}
+  unavailableFeatures={["Owners", "Tags", "Charts", "Datamodels", "Projects", "Lineage"]} />
 
 In this section, we provide guides and references to use the PowerBI Report Server connector.
 
@@ -40,8 +41,7 @@ The PowerBI Report Server should be accessible from the ingestion environment.
 
 <MetadataIngestionUi connector={"PowerBI Report Server"} selectServicePath={"/images/connectors/powerbi-report-server/select-service.png"} addNewServicePath={"/images/connectors/powerbi-report-server/add-new-service.png"} serviceConnectionPath={"/images/connectors/powerbi-report-server/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -58,12 +58,10 @@ Password to connect to PowerBI Report Server.
 **Web Portal Virtual Directory Name**
 Web Portal Virtual Directory name which you have configured in your PowerBI Report Server configuration manager.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

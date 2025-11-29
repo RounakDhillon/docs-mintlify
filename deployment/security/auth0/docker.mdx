@@ -18,8 +18,9 @@ Create an `openmetadata_auth0.env` file and use the following example as a refer
 Check the more information about environment variable [here](/deployment/security/configuration-parameters).
 
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Implicit Flow
 AUTHORIZER_CLASS_NAME=org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER=org.openmetadata.service.security.JwtFilter
@@ -32,9 +33,11 @@ AUTHENTICATION_CLIENT_ID={Client ID}                # Update with your Client ID
 AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback
 AUTHENTICATION_CLIENT_TYPE= public
 ```
+</Tab>
 
-```authcode
-# Auth Code Flow 
+<Tab title="authcode">
+```
+# Auth Code Flow
 AUTHORIZER_CLASS_NAME=org.openmetadata.service.security.DefaultAuthorizer
 AUTHORIZER_REQUEST_FILTER=org.openmetadata.service.security.JwtFilter
 AUTHORIZER_ADMIN_PRINCIPALS=[admin]                 # john.doe from john.doe@example.com
@@ -43,19 +46,19 @@ AUTHENTICATION_PROVIDER=auth0
 AUTHENTICATION_PUBLIC_KEYS=[{Domain}/.well-known/jwks.json, https://{your domain}/api/v1/system/config/jwks]         # Update with your Domain and Make sure this "/api/v1/system/config/jwks" is always configured to enable JWT tokens
 AUTHENTICATION_AUTHORITY={Domain}                   # The base URL of the authentication provider.
 AUTHENTICATION_CLIENT_ID={Client ID}                # Update with your Client ID
-AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback 
+AUTHENTICATION_CALLBACK_URL=http://localhost:8585/callback
 AUTHENTICATION_CLIENT_TYPE= confidential
 
 OIDC_CLIENT_ID={Client ID}                          # Update with your Client ID
-OIDC_TYPE=auth0 
+OIDC_TYPE=auth0
 OIDC_CLIENT_SECRET={Client Secret}                  # Update with your Client Secret
 OIDC_DISCOVERY_URI: http://{Domain}/.well-known/openid-configuration        # Update with your Domain
 OIDC_CALLBACK: ${OIDC_CALLBACK:-"http://localhost:8585/callback"}
 
 
 ```
-
-{% /codeWithLanguageSelector %}
+</Tab>
+</Tabs>
 
 
 
@@ -68,12 +71,12 @@ docker compose --env-file ~/openmetadata_auth0.env up -d
 <ConfigureIngestion />
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="Auth"
-    href="/deployment/security/auth0" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Auth"
+    href="/deployment/security/auth0"
+  >
     Go to Auth0 Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

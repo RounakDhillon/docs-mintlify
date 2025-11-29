@@ -4,13 +4,14 @@ description: Configure OpenMetadata'sTrino database connector with YAML. Step-by
 slug: /connectors/database/trino/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -20,19 +21,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Trino"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=["Owners", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={["Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Trino connector.
 
@@ -43,9 +43,7 @@ Configure and schedule Trino metadata and profiler workflows from the OpenMetada
 - [Data Profiler](#data-profiler)
 - [Data Quality](#data-quality)
 - [dbt Integration](#dbt-integration)
-{% collateContent %}
 - [Reverse Metadata](/applications/reverse-metadata)
-{% /collateContent %}
 
 <ExternalIngestionDeployment />
 
@@ -61,11 +59,11 @@ To run the Trino ingestion, you will need to install:
 pip3 install "openmetadata-ingestion[trino]"
 ```
 
-{% tilesContainer %}
+<Columns cols={2}>
 
 To extract metadata, the user needs to be able to have `SELECT` privilege on all the tables that you would like to ingest in OpenMetadata as well as `SELECT` privilege `system.metadata.table_comments` table.
 
-{% /tilesContainer %}
+</Columns>
 
 ## Metadata Ingestion
 
@@ -84,20 +82,11 @@ The workflow is modeled around the following
 
 This is a sample config for Trino:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Specify the User to connect to Trino. It should have enough privileges to read all the metadata.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="authType">
 - **authType**: User can authenticate the Trino Instance with auth type as `Basic Authentication` i.e. Password **or** by using `JWT Authentication`.
   - **Basic Auth**:
     - **password**: Password to connect to Trino.
@@ -128,79 +117,47 @@ This is a sample config for Trino:
         3. Select the `Azure AD` app you're using for Trino.
         4. From the `Expose an API` section, copy the `Application ID URI`
         5. Make sure the URI ends with `/.default` in case it does not, you can append the same manually
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="hostPort">
 **hostPort**: Enter the fully qualified hostname and port number for your Trino deployment in the Host and Port field.
-
-{% /codeInfo %}
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="catalog">
 **catalog**: Trino offers a catalog feature where all the databases are stored.
-
-{% /codeInfo %}
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="DatabaseSchema">
 **DatabaseSchema**: DatabaseSchema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single databaseSchema. When left blank, OpenMetadata Ingestion attempts to scan all the databaseSchema.
-
-{% /codeInfo %}
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="proxies">
 **proxies**: Proxies for the connection to Trino data source
-
-{% /codeInfo %}
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="params">
 **params**: URL parameters for connection to the Trino data source
-
-{% /codeInfo %}
-
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=8 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=9 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: trino
   serviceName: <service name>
   serviceConnection:
     config:
       type: Trino
-```
-```yaml {% srNumber=1 %}
-      hostPort: <hostPort>
-```
-```yaml {% srNumber=2 %}
-      username: <username>
-```
-```yaml {% srNumber=3 %}
-      authType:
+hostPort: <hostPort>
+username: <username>
+authType:
       # For basic auth
         password: password
       # # For JWT auth
@@ -210,29 +167,17 @@ source:
       #     clientSecret: your-client-secret
       #     tenantId: your-tenant-id
       #     scopes: https://your-scope/.default
-```
-```yaml {% srNumber=4 %}
-      catalog: <catalog>
-```
-```yaml {% srNumber=5 %}
-      # databaseSchema: schema
-```
-```yaml {% srNumber=6 %}
-      # proxies:
+catalog: <catalog>
+# databaseSchema: schema
+# proxies:
       #   http: http_proxy
       #   https: https_proxy
-```
-```yaml {% srNumber=7 %}
-      # We can add URL parameters if needed
+# We can add URL parameters if needed
       # params:
       #   key: value
-```
-```yaml {% srNumber=8 %}
-      # connectionOptions:
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=9 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
       #   http_scheme: http  # required when connecting over HTTP
 ```
@@ -242,10 +187,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 
@@ -261,51 +202,22 @@ source:
 
 In order to integrate SSL in the Metadata Ingestion Config, the user will have to add the SSL config under **connectionArguments** which is placed in source.
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=25 %}
-
+<Steps>
+<Step title="SSL Modes">
 ### SSL Modes
 There are couple of types of SSL modes that redshift supports which can be added to ConnectionArguments, they are as follows:
 - **false**: In order to disable SSL verification, set the `verify` parameter to `False`.
 - **\<path-to-crt\>**: To use self-signed certificates, specify a path to the certificate in `verify` parameter.
 More details can be found in [the Python requests library documentation](https://requests.readthedocs.io/en/latest/user/advanced.html?highlight=ssl#ssl-cert-verification).
-
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% srNumber=25 %}
-source:
-  type: trino
-  serviceName: <service name>
-  serviceConnection:
-    config:
-      type: Trino
-      hostPort: <hostPort>
-      username: <username>
-      catalog: <catalog>
-      ...
-      ...
-      connectionArguments:
-        verify: <verify-mode>
-
-```
-{% /codeBlock %}
-{% /codePreview %}
+</Step>
+</Steps>
 
 ## dbt Integration
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-  icon="mediation"
-  title="dbt Integration"
-  description="Learn more about how to ingest dbt models' definitions and their lineage."
-  link="/connectors/ingestion/workflows/dbt" /%}
+<Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
+  Learn more about how to ingest dbt models
+</Card>
 
-{% /tilesContainer %}
+</Columns>

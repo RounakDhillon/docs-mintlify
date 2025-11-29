@@ -4,9 +4,11 @@ description: Configure Couchbase ingestion using YAML to extract document-based 
 slug: /connectors/database/couchbase/yaml
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -16,19 +18,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 
-{% connectorDetailsHeader
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
 name="Couchbase"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Owners", "Tags", "Stored Procedures", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Owners", "Tags", "Stored Procedures", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Couchbase connector.
 
@@ -36,8 +37,6 @@ Configure and schedule Couchbase metadata workflows from the OpenMetadata UI:
 
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/couchbase/yaml" />
 
 <ExternalIngestionDeployment />
 
@@ -70,75 +69,40 @@ The workflow is modeled around the following
 
 This is a sample config for Couchbase:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Username to connect to Couchbase.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="password">
 **password**: Password to connect to Couchbase.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="hostport">
 **hostport**: If couchbase is hosted on cloud then the hostport parameter specifies the connection string and if you are using couchbase server then the hostport parameter specifies hostname of the Couchbase. This should be specified as a string in the format `hostname` or `xyz.cloud.couchbase.com`. E.g., `localhost`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="bucketName">
 **bucketName**: Optional name to give to the bucket name in OpenMetadata. If left blank, we will ingest all the bucket names.
-
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=7 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: couchbase
   serviceName: local_couchbase
   serviceConnection:
     config:
       type: Couchbase
-```
-```yaml {% srNumber=1 %}
-        username: username
-```
-```yaml {% srNumber=2 %}
-        password: password
-```
-```yaml {% srNumber=3 %}
-        hostport: localhost
-```
-
-```yaml {% srNumber=4 %}
-      bucket: custom_bucket_name
+username: username
+password: password
+hostport: localhost
+bucket: custom_bucket_name
 ```
 
 <SourceConfig />
@@ -147,21 +111,16 @@ source:
 
 <WorkflowConfig />
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 <IngestionCli />
 
 ## Related
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-   icon="mediation"
-   title="Configure Ingestion Externally"
-   description="Deploy, configure, and manage the ingestion workflows externally."
-   link="/deployment/ingestion"
- / %}
+<Card
+  title="Configure Ingestion Externally"
+  href="/deployment/ingestion">
+  Deploy, configure, and manage the ingestion workflows externally.
+</Card>
 
-{% /tilesContainer %}
+</Columns>

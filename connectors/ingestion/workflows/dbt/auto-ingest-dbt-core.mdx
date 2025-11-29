@@ -7,9 +7,9 @@ slug: /connectors/ingestion/workflows/dbt/auto-ingest-dbt-core
 
 Learn how to automatically ingest dbt-core artifacts into OpenMetadata using the simplified `metadata ingest-dbt` CLI command that reads configuration directly from your `dbt_project.yml` file.
 
-{% note %}
+<Tip>
 This feature eliminates the need for separate YAML configuration files. All configuration is done directly in your existing `dbt_project.yml` file.
-{% /note %}
+</Tip>
 
 ## Overview
 
@@ -29,9 +29,9 @@ The `metadata ingest-dbt` command provides a streamlined way to ingest dbt artif
 pip install "openmetadata-ingestion[dbt]"
 ```
 
-{% note %}
+<Tip>
 **Dependencies**: The package includes `python-dotenv>=0.19.0` for automatic `.env` file support, so no additional setup is required for environment variable functionality.
-{% /note %}
+</Tip>
 
 ## Quick Start
 
@@ -47,9 +47,9 @@ vars:
   openmetadata_service_name: "your-database-service-name"
 ```
 
-{% note %}
+<Tip>
 **Environment Variables**: For security, you can use environment variables instead of hardcoding sensitive values. See the [Environment Variables](#environment-variables) section below for supported patterns.
-{% /note %}
+</Tip>
 
 ### 2. Generate dbt artifacts
 
@@ -117,13 +117,13 @@ OPENMETADATA_JWT_TOKEN=your-jwt-token
 OPENMETADATA_SERVICE_NAME=your-database-service
 ```
 
-{% note %}
+<Tip>
 **Note**: The system automatically loads environment variables from `.env` files in both the dbt project directory and the current working directory. Environment variables set in the shell take precedence over `.env` file values.
-{% /note %}
+</Tip>
 
-{% note %}
+<Tip>
 **Error Handling**: If a required environment variable is not set and no default is provided, the ingestion will fail with a clear error message indicating which variable is missing.
-{% /note %}
+</Tip>
 
 ## Configuration Options
 

@@ -5,6 +5,8 @@ slug: /connectors/database/epic
 Collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -13,19 +15,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Epic"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Query Usage", "Owners", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Query Usage", "Owners", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Epic FHIR connector.
 
@@ -33,8 +31,6 @@ Configure and schedule Epic metadata workflows from the OpenMetadata UI:
 
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/epic/yaml" />
 
 ## Requirements
 
@@ -47,8 +43,7 @@ To fetch metadata from Epic FHIR into OpenMetadata you will need:
 
 <MetadataIngestionUi connector={"EPIC"} selectServicePath={"/images/connectors/epic/select-service.png"} addNewServicePath={"/images/connectors/epic/add-new-service.png"} serviceConnectionPath={"/images/connectors/epic/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -58,14 +53,12 @@ To fetch metadata from Epic FHIR into OpenMetadata you will need:
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

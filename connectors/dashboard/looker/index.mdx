@@ -4,6 +4,8 @@ description: Connect Looker dashboards to OpenMetadata with our comprehensive co
 slug: /connectors/dashboard/looker
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -12,17 +14,15 @@ import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-
 
 import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Looker"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Owners", "Datamodels", "Lineage", "Usage"]
-  unavailableFeatures=["Tags", "Projects"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage", "Usage"]}
+  unavailableFeatures={["Tags", "Projects"]}
+/>
 
 In this section, we provide guides and references to use the Looker connector.
 
@@ -32,8 +32,6 @@ Configure and schedule Looker metadata and profiler workflows from the OpenMetad
 - [Metadata Ingestion](#metadata-ingestion)
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/looker/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/looker/yaml" />
 
 ## Requirements
 
@@ -52,7 +50,7 @@ However, LookML Views are not present in the Looker SDK. Instead, we need to ext
 the GitHub repository holding the source `.lkml` files. In order to get this metadata, we will require a GitHub token
 with read only access to the repository. You can follow these steps from the GitHub [documentation](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
-{% note %}
+<Tip>
 
 The GitHub credentials are completely optional. Just note that without them, we won't be able to ingest metadata
 out of LookML Views, including their lineage to the source databases.
@@ -60,14 +58,13 @@ out of LookML Views, including their lineage to the source databases.
 Moreover, Looker lineage only supports LookML views configured with `sql_table_name` and `derived_table` in plain SQL.
 We do not yet support liquid variables.
 
-{% /note %}
+</Tip>
 
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"Looker"} selectServicePath={"/images/connectors/looker/select-service.png"} addNewServicePath={"/images/connectors/looker/add-new-service.png"} serviceConnectionPath={"/images/connectors/looker/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -85,14 +82,12 @@ Follow these [steps](https://docs.github.com/en/authentication/keeping-your-acco
 
 When configuring, give repository access to `Only select repositories` and choose the one containing your LookML files. Then, we only need `Repository Permissions` as `Read-only` for `Contents`.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <DashboardLineage />

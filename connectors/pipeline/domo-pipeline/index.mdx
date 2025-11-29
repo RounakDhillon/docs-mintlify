@@ -6,21 +6,21 @@ slug: /connectors/pipeline/domo-pipeline
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Domo"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Usage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Usage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Domo-Pipeline connector.
 
@@ -29,8 +29,6 @@ Configure and schedule Domo-Pipeline metadata and profiler workflows from the Op
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/pipeline/domo-pipeline/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/domo-pipeline/yaml" />
 
 ## Requirements
 
@@ -41,8 +39,7 @@ For questions related to scopes, click [here](https://developer.domo.com/portal/
 
 <MetadataIngestionUi connector={"Domo Pipeline"} selectServicePath={"/images/connectors/domo-pipeline/select-service.png"} addNewServicePath={"/images/connectors/domo-pipeline/add-new-service.png"} serviceConnectionPath={"/images/connectors/domo-pipeline/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -52,12 +49,10 @@ For questions related to scopes, click [here](https://developer.domo.com/portal/
 - **API Host**: API Host to Connect to DOMO Pipeline.
 - **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

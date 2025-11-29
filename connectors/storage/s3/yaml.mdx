@@ -4,9 +4,11 @@ description: Use YAML to extract metadata from S3 including files, partitions, a
 slug: /connectors/storage/s3/yaml
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -16,25 +18,24 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
 
-import AwsConfig from 'snippets/connectors/yaml/common/aws-config.mdx'
+import AwsConfig from '/snippets/connectors/yaml/common/aws-config.mdx'
 
-import StorageSourceConfigDef from 'snippets/connectors/yaml/storage/source-config-def.mdx'
+import StorageSourceConfigDef from '/snippets/connectors/yaml/storage/source-config-def.mdx'
 
-import StorageSourceConfig from 'snippets/connectors/yaml/storage/source-config.mdx'
+import StorageSourceConfig from '/snippets/connectors/yaml/storage/source-config.mdx'
 
-import Manifest from 'snippets/connectors/storage/manifest.mdx'
+import Manifest from '/snippets/connectors/storage/manifest.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="S3 Storage"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 This page contains the setup guide and reference information for the S3 connector.
 
@@ -47,9 +48,13 @@ Configure and schedule S3 metadata workflows from the CLI:
 
 ## Requirements
 
-{%inlineCallout icon="description" bold="OpenMetadata 1.0 or later" href="/deployment"%}
-To deploy OpenMetadata, check the Deployment guides.
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="OpenMetadata 1.0 or later"
+    href="/deployment"
+  >
+    To deploy OpenMetadata, check the Deployment guides.
+  </Card>
 
 To run the metadata ingestion, we need the following permissions in AWS:
 
@@ -147,45 +152,21 @@ The workflow is modeled around the following
 
 This is a sample config for Athena:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-<AwsConfigDef />
-
-<StorageSourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
 #### Advanced Configuration
 
-{% codeInfo srNumber=11 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=12 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=13 %}
-
+</Step>
+<Step title="Bucket Names (Optional)">
 - **Bucket Names (Optional)**: Provide the names of buckets that you would want to ingest, if you want to ingest metadata from all buckets or apply a filter to ingest buckets then leave this field empty.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: s3
   serviceName: local_s3
@@ -193,23 +174,16 @@ source:
     config:
       type: S3
       awsConfig:  # REQUIRED - AWS authentication configuration
+bucketNames: 
+      - s3-testing-1
+      - s3-testing-2
+# connectionOptions:
+        # key: value
+# connectionArguments:
+        # key: value
 ```
 
 <AwsConfig />
-
-```yaml {% srNumber=13 %}
-      bucketNames: 
-      - s3-testing-1
-      - s3-testing-2
-```
-```yaml {% srNumber=11 %}
-      # connectionOptions:
-        # key: value
-```
-```yaml {% srNumber=12 %}
-      # connectionArguments:
-        # key: value
-```
 
 <StorageSourceConfig />
 
@@ -217,23 +191,18 @@ source:
 
 <WorkflowConfig />
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 
 
 <IngestionCli />
 
 ## Related
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-   icon="mediation"
-   title="Configure Ingestion Externally"
-   description="Deploy, configure, and manage the ingestion workflows externally."
-   link="/deployment/ingestion"
- / %}
+<Card
+  title="Configure Ingestion Externally"
+  href="/deployment/ingestion">
+  Deploy, configure, and manage the ingestion workflows externally.
+</Card>
 
-{% /tilesContainer %}
+</Columns>

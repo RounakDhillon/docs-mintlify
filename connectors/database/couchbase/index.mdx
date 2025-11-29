@@ -4,6 +4,8 @@ description: Connect Couchbase to OpenMetadata effortlessly. Complete setup guid
 slug: /connectors/database/couchbase
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,20 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Couchbase"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Owners", "Tags", "Stored Procedures", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]
-/ %}
-
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Owners", "Tags", "Stored Procedures", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Couchbase connector.
 
@@ -34,14 +31,11 @@ Configure and schedule Couchbase metadata workflows from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/database/couchbase/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/couchbase/yaml" />
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"Couchbase"} selectServicePath={"/images/connectors/couchbase/select-service.png"} addNewServicePath={"/images/connectors/couchbase/add-new-service.png"} serviceConnectionPath={"/images/connectors/couchbase/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -52,14 +46,12 @@ Configure and schedule Couchbase metadata workflows from the OpenMetadata UI:
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

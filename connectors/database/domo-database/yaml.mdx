@@ -4,9 +4,11 @@ description: Configure YAML to ingest Domo database assets and track metadata li
 slug: /connectors/database/domo-database/yaml
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -16,17 +18,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
 name="Domo"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "Owners", "Tags", "Stored Procedures", "dbt", "Sample Data", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "Owners", "Tags", "Stored Procedures", "dbt", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Domo Database connector.
 
@@ -73,110 +76,58 @@ The workflow is modeled around the following
 
 This is a sample config for DomoDatabase:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="Client ID">
 **Client ID**: Client ID to Connect to DOMODatabase.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="Secret Token">
 **Secret Token**: Secret Token to Connect DOMODatabase.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Access Token">
 **Access Token**: Access to Connect to DOMODatabase.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="API Host">
 **API Host**:  API Host to Connect to DOMODatabase instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="Instance Domain">
 **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="database">
 **database**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name
-
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=10 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=11 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: domodatabase
   serviceName: local_DomoDatabase
   serviceConnection:
     config:
       type: DomoDashboard
-```
-```yaml {% srNumber=1 %}
-      clientId: client-id
-```
-```yaml {% srNumber=2 %}
-      secretToken: secret-token
-```
-```yaml {% srNumber=3 %}
-      accessToken: access-token
-```
-```yaml {% srNumber=4 %}
-      apiHost: api.domo.com
-```
-```yaml {% srNumber=5 %}
-      instancexDomain: https://<your>.domo.com
-```
-```yaml {% srNumber=6 %}
-      # database: database
-```
-```yaml {% srNumber=7 %}
-      # connectionOptions:
+clientId: client-id
+secretToken: secret-token
+accessToken: access-token
+apiHost: api.domo.com
+instancexDomain: https://<your>.domo.com
+# database: database
+# connectionOptions:
+      #   key: value
+# connectionArguments:
       #   key: value
 ```
-```yaml {% srNumber=8 %}
-      # connectionArguments:
-      #   key: value
-```
-
 
 <SourceConfig />
 
@@ -184,20 +135,14 @@ source:
 
 <WorkflowConfig />
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 <IngestionCli />
 
 ## dbt Integration
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-  icon="mediation"
-  title="dbt Integration"
-  description="Learn more about how to ingest dbt models' definitions and their lineage."
-  link="/connectors/ingestion/workflows/dbt" /%}
+<Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
+  Learn more about how to ingest dbt models
+</Card>
 
-{% /tilesContainer %}
+</Columns>

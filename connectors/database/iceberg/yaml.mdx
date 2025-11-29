@@ -4,9 +4,11 @@ description: Use YAML to ingest Iceberg table metadata, including partitions, co
 slug: /connectors/database/iceberg/yaml
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -16,17 +18,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
 name="Iceberg"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Owners"]
-unavailableFeatures=["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata", "Owners"]}
+unavailableFeatures={["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Iceberg connector.
 
@@ -83,50 +86,25 @@ The workflow is modeled around the following
 
 ### This is a sample config for Iceberg using a Glue Catalog:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="name">
 * **name**: Enter the catalog name of choice.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="awsAccessKeyId">
 * **awsAccessKeyId**: Enter your secure access key ID for your AWS connection.
 * **awsSecretAccessKey**: Enter the Secret Access Key (the passcode key pair to the key ID from above).
 * **awsSessionToken (optional)**: Enter the Session Access Token (used if using short lived credentials).
 * **awsRegion**: Specify the AWS region used.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="databaseName (optional)">
 * **databaseName (optional)**: Enter the database name of choice. If not it will be set as 'default'.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="ownershipProperty (optional)">
 * **ownershipProperty (optional)**: Property to use when searching for the owner. It defaults to 'owner'.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: iceberg
   serviceName: glue_test
@@ -134,24 +112,13 @@ source:
     config:
       type: Iceberg
       catalog:
-```
-```yaml {% srNumber=1 %}
-        name: my_glue
-```
-```yaml
-        connection:
-```
-```yaml {% srNumber=2 %}
-          awsConfig:
+name: my_glue
+awsConfig:
               awsAccessKeyId: access key id
               awsSecretAccessKey: access secret key
               awsRegion: aws region name
-```
-```yaml {% srNumber=3 %}
-        databaseName: my_database_name
-```
-```yaml {% srNumber=4 %}
-      ownershipProperty: custom_owner_property
+databaseName: my_database_name
+ownershipProperty: custom_owner_property
 ```
 
 <SourceConfig />
@@ -159,62 +126,30 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 ### This is a sample config for Iceberg using a DynamoDB Catalog:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="name">
 * **name**: Enter the catalog name of choice.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="tableName">
 * **tableName**: Enter the name of the table where the Iceberg Catalog is stored.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="awsAccessKeyId">
 * **awsAccessKeyId**: Enter your secure access key ID for your AWS connection.
 * **awsSecretAccessKey**: Enter the Secret Access Key (the passcode key pair to the key ID from above).
 * **awsSessionToken (optional)**: Enter the Session Access Token (used if using short lived credentials).
 * **awsRegion**: Specify the AWS region used.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="databaseName (optional)">
 * **databaseName (optional)**: Enter the database name of choice. If not it will be set as 'default'.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="ownershipProperty (optional)">
 * **ownershipProperty (optional)**: Property to use when searching for the owner. It defaults to 'owner'.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: iceberg
   serviceName: glue_test
@@ -222,27 +157,14 @@ source:
     config:
       type: Iceberg
       catalog:
-```
-```yaml {% srNumber=1 %}
-        name: my_dynamo
-```
-```yaml
-        connection:
-```
-```yaml {% srNumber=2 %}
-          tableName: catalog_table
-```
-```yaml {% srNumber=3 %}
-          awsConfig:
+name: my_dynamo
+tableName: catalog_table
+awsConfig:
             awsAccessKeyId: access key id
             awsSecretAccessKey: access secret key
             awsRegion: aws region name
-```
-```yaml {% srNumber=4 %}
-        databaseName: my_database_name
-```
-```yaml {% srNumber=5 %}
-      ownershipProperty: custom_owner_property
+databaseName: my_database_name
+ownershipProperty: custom_owner_property
 ```
 
 <SourceConfig />
@@ -250,32 +172,16 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 ### This is a sample config for Iceberg using a Hive Catalog:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="name">
 * **name**: Enter the catalog name of choice.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="uri">
 * **uri**: Enter the uri to the Hive Metastore. Example: 'thrift://localhost:9083'.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="fileSystem (Optional)">
 * **fileSystem (Optional)**: Enter the specific configuration given the file system used to store the Iceberg files.
     * **Local**: No configuration needed
     * **S3 (Or S3 Compatible)**:
@@ -289,32 +195,16 @@ source:
         * **clientSecret** : Client Secret of the account
         * **tenantId** : Tenant ID under which the data storage account falls
         * **accountName** : Account Name of the data Storage
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="databaseName (optional)">
 * **databaseName (optional)**: Enter the database name of choice. If not it will be set as 'default'.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="ownershipProperty (optional)">
 * **ownershipProperty (optional)**: Property to use when searching for the owner. It defaults to 'owner'.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: iceberg
   serviceName: glue_test
@@ -322,18 +212,9 @@ source:
     config:
       type: Iceberg
       catalog:
-```
-```yaml {% srNumber=1 %}
-        name: my_hive
-```
-```yaml {% isCodeBlock=true %}
-        connection:
-```
-```yaml {% srNumber=2 %}
-          uri: thrift://localhost:9083
-```
-```yaml {% srNumber=3 %}
-          fileSystem:
+name: my_hive
+uri: thrift://localhost:9083
+fileSystem:
             # S3 Compatible
             awsAccessKeyId: access key id
             awsSecretAccessKey: access secret key
@@ -344,12 +225,8 @@ source:
             # clientSecret: client_secret
             # tenantId: tenant_id
             # accountName: account_name
-```
-```yaml {% srNumber=4 %}
-        databaseName: my_database_name
-```
-```yaml {% srNumber=5 %}
-      ownershipProperty: custom_owner_property
+databaseName: my_database_name
+ownershipProperty: custom_owner_property
 ```
 
 <SourceConfig />
@@ -358,63 +235,35 @@ source:
 
 <WorkflowConfig />
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 ### This is a sample config for Iceberg using a REST Catalog:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="name">
 * **name**: Enter the catalog name of choice.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="uri">
 * **uri**: Enter the uri to the Rest Catalog. Example: 'http://localhost:8181'.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="credential (Optional)">
 * **credential (Optional)**: OAuth2 Credential to use for Authentication flow.
     * **clientId**: OAuth2 Client ID.
     * **clientSecret**: OAuth2 Client Secret.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="token (Optional)">
 * **token (Optional)**: Enter the Bearer token for the 'Authorization' header.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="ssl (Optional)">
 * **ssl (Optional)**: Needed configuration for SSL.
     * **caCertPath**: CA Certificate Path.
     * **clientCertPath**: Client Certificate Path.
     * **privateKeyPath**: Private Key Path.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="sigv4 (Optional)">
 * **sigv4 (Optional)**: Used if signing requests using AWS SigV4 protocol.
     * **signingRegion** : AWS Region used when signing a request.
     * **signingName** : Name used to sign the request with.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="fileSystem (Optional)">
 * **fileSystem (Optional)**: Enter the specific configuration given the file system used to store the Iceberg files.
     * **Local**: No configuration needed
     * **S3 (Or S3 Compatible)**:
@@ -428,40 +277,21 @@ source:
         * **clientSecret** : Client Secret of the account
         * **tenantId** : Tenant ID under which the data storage account falls
         * **accountName** : Account Name of the data Storage
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="databaseName (optional)">
 * **databaseName (optional)**: Enter the database name of choice. If not it will be set as 'default'.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=9 %}
-
+</Step>
+<Step title="warehouseLocation (optional)">
 * **warehouseLocation (optional)**: Warehouse Location. Used to specify a custom warehouse location if needed.
 
 Most Catalogs should have a working default warehouse location.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=10 %}
-
+</Step>
+<Step title="ownershipProperty (optional)">
 * **ownershipProperty (optional)**: Property to use when searching for the owner. It defaults to 'owner'.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: iceberg
   serviceName: glue_test
@@ -469,37 +299,20 @@ source:
     config:
       type: Iceberg
       catalog:
-```
-```yaml {% srNumber=1 %}
-        name: my_rest
-```
-```yaml {% isCodeBlock=true %}
-        connection:
-```
-```yaml {% srNumber=2 %}
-          uri: http://localhost:8181
-```
-```yaml {% srNumber=3 %}
-          credential:
+name: my_rest
+uri: http://localhost:8181
+credential:
             clientId: client_id
             clientSecret: client_secret
-```
-```yaml {% srNumber=4 %}
-          token: my_bearer_token
-```
-```yaml {% srNumber=5 %}
-          ssl:
+token: my_bearer_token
+ssl:
             caCertPath: ./ca_cert.pem
             clientCertPath: ./client_cert.crt
             privateKeyPath: ./private.key
-```
-```yaml {% srNumber=6 %}
-          sigv4:
+sigv4:
             signingRegion: us-east-2
             signingName: signing_name
-```
-```yaml {% srNumber=7 %}
-          fileSystem:
+fileSystem:
             # S3 compatible
             awsAccessKeyId: access key id
             awsSecretAccessKey: access secret key
@@ -510,15 +323,9 @@ source:
             # clientSecret: client_secret
             # tenantId: tenant_id
             # accountName: account_name
-```
-```yaml {% srNumber=8 %}
-        databaseName: my_database_name
-```
-```yaml {% srNumber=9 %}
-        warehouseLocation: warehouse_location
-```
-```yaml {% srNumber=10 %}
-      ownershipProperty: custom_owner_property
+databaseName: my_database_name
+warehouseLocation: warehouse_location
+ownershipProperty: custom_owner_property
 ```
 
 <SourceConfig />
@@ -526,10 +333,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

@@ -4,23 +4,22 @@ description: Connect MicroStrategy dashboards to OpenMetadata with our comprehen
 slug: /connectors/dashboard/microstrategy
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="MicroStrategy"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]
-  unavailableFeatures=["Tags", "Projects"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
+  unavailableFeatures={["Tags", "Projects"]} />
 
 In this section, we provide guides and references to use the MicroStrategy connector.
 
@@ -29,8 +28,6 @@ Configure and schedule MicroStrategy metadata and profiler workflows from the Op
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/dashboard/microstrategy/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/microstrategy/yaml" />
 
 ## Requirements
 
@@ -50,8 +47,7 @@ However, if the user still cannot access the APIs, the following should be check
 
 <MetadataIngestionUi connector={"MicroStrategy"} selectServicePath={"/images/connectors/microstrategy/select-service.png"} addNewServicePath={"/images/connectors/microstrategy/add-new-service.png"} serviceConnectionPath={"/images/connectors/microstrategy/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -68,12 +64,10 @@ For example, you might set it to https://demo.microstrategy.com.
 - **Login Mode**: Login Mode for Microstrategy's REST API connection. You can authenticate with one of the following authentication modes: `Standard (1)`, `Anonymous (8)`. Default will be `Standard (1)`.
 If you're using demo account for Microstrategy, it will be needed to authenticate through loginMode `8`.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

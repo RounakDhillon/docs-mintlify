@@ -6,22 +6,21 @@ slug: /connectors/pipeline/kafkaconnect
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="KafkaConnect"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Usage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
-
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Usage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the KafkaConnect connector.
 
@@ -36,8 +35,6 @@ Configure and schedule KafkaConnect metadata and profiler workflows from the Ope
 - [Troubleshooting](/connectors/pipeline/glue-pipeline/troubleshooting)
     - [Workflow Deployment Error](#workflow-deployment-error)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/kafkaconnect/yaml" />
-
 ## Requirements
 
 ### KafkaConnect Versions
@@ -50,8 +47,7 @@ The ingestion framework uses [kafkaconnect python client](https://libraries.io/p
 
 <MetadataIngestionUi connector={"KafkaConnect"} selectServicePath={"/images/connectors/kafkaconnect/select-service.png"} addNewServicePath={"/images/connectors/kafkaconnect/add-new-service.png"} serviceConnectionPath={"/images/connectors/kafkaconnect/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -66,15 +62,13 @@ The ingestion framework uses [kafkaconnect python client](https://libraries.io/p
 
 - **Kafka Service Name** : The Service Name of the Ingested [Kafka](/connectors/messaging/kafka#4.-name-and-describe-your-service) instance associated with this KafkaConnect instance. 
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ## Displaying Lineage Information
 Steps to retrieve and display the lineage information for a Kafka Connect service.
@@ -84,10 +78,7 @@ Steps to retrieve and display the lineage information for a Kafka Connect servic
 
 By successfully completing these steps, the lineage information for the service will be displayed.
 
-{% image
-  src="/images/v1.9/connectors/kafkaconnect/lineage.webp"
-  alt="Kafkaconnect Lineage" /%}
-
+<img src="/images/v1.9/connectors/kafkaconnect/lineage.webp" alt="Kafkaconnect Lineage" />
 
 ## Supported Connectors
 Currently, the following source and sink connectors for Kafka Connect are supported for lineage tracking:

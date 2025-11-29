@@ -4,8 +4,6 @@ description: Build and run metadata server locally with this guide, including en
 slug: /developers/contribute/build-code-and-run-tests/openmetadata-server
 ---
 
-import PostgresComposeInstructions from '/snippets/developers/contribute/build-code-and-run-tests/postgres-compose-instructions.mdx'
-
 # OpenMetadata Server
 Learn how to run the OpenMetadata server in development mode by using Docker and IntelliJ.
 
@@ -22,8 +20,6 @@ docker compose -f docker/development/docker-compose.yml up mysql elasticsearch -
 docker compose -f docker/development/docker-compose-postgres.yml up postgresql opensearch --build -d
 ```
 
-<PostgresComposeInstructions />
-
 ## Building
 The following commands must be run from the top-level directory.
 
@@ -31,9 +27,9 @@ The following commands must be run from the top-level directory.
 mvn clean install
 ```
 
-{%note%}
+<Tip>
 This will run all tests, which can take up to an hour. Use `-DskipTests` to skip unit tests if you're only interested in running the server.
-{%/note%}
+</Tip>
 
 ## Create a distribution (packaging)
 You can create a distribution as follows.
@@ -57,9 +53,9 @@ Extract the distribution tar.gz file created on the previous step and run the fo
 cd open-metadata-<version>
 sh bootstrap/openmetadata-ops.sh drop-create
 ```
-{%note%}
+<Tip>
 Why Needed: The script simplifies the setup and execution of OpenMetadata by handling Java dependencies, configurations, and environment variables automatically.
-{%/note%}
+</Tip>
 **Note** To understand more about openmetadata-ops.sh file click [here](/developers/contribute/build-code-and-run-tests/openmetadata-ops)
 
 ## Running the OpenMetadata server
@@ -77,7 +73,7 @@ Add a new Run/Debug configuration like the below screenshot.
 2. Click on "Edit Configurations"
 3. Click + sign and Select Application and make sure your config looks similar to the below image
 
-{% image src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-runtime-config.png" alt="Intellij Runtime Configuration" caption="Intellij Runtime Configuration" /%}
+<img src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-runtime-config.png" alt="Intellij Runtime Configuration" />
 
 Note that if you want to test the connectors (Ingestion) while having the server running locally and the ingestion
 running as a container, you will need to ensure that both components can properly talk to each other. To do so,
@@ -90,27 +86,27 @@ SERVER_HOST_API_URL=http://host.docker.internal:8585/api
 #### Add missing dependency
 Right-click on openmetadata-service
 
-{% image src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-openmetadata-service.png" alt="Open project" caption=" " /%}
+<img src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-openmetadata-service.png" alt="Open project" />
 
 Click on "Open Module Settings"
 
-{% image src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-open-settings.png" alt="Open Module Settings" caption=" " /%}
+<img src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-open-settings.png" alt="Open Module Settings" />
 
 Go to "Dependencies"
 
-{% image src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-dependencies.png" alt="Go to dependencies" caption=" " /%}
+<img src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-dependencies.png" alt="Go to dependencies" />
 
 Click “+” at the bottom of the dialog box and click "Add"
 
-{% image src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-add-dependencies.png" alt="Add dependency" caption=" " /%}
+<img src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-add-dependencies.png" alt="Add dependency" />
 
 Click on Library
 
-{% image src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-library.png" alt="Click on Library" caption=" " /%}
+<img src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-library.png" alt="Click on Library" />
 
 In that list look for "jersey-client:2.25.1"
 
-{% image src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-jersey-dependency.png" alt="Add jersey-client dependency" caption=" " /%}
+<img src="/images/v1.9/developers/contribute/build-code-and-run-tests/intellij-jersey-dependency.png" alt="Add jersey-client dependency" />
 
 Select it and click "OK". 
 

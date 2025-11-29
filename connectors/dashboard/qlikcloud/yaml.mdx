@@ -4,10 +4,12 @@ description: Configure QlikCloud dashboard connector for OpenMetadata using YAML
 slug: /connectors/dashboard/qlikcloud/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -21,17 +23,12 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Qlik Cloud"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=[ "Projects", "Dashboards", "Charts", "Datamodels", "Lineage"]
-  unavailableFeatures=["Owners", "Tags"]
-/ %}
+  availableFeatures={[ "Projects", "Dashboards", "Charts", "Datamodels", "Lineage"]}
+  unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the PowerBI connector.
 
@@ -71,69 +68,40 @@ The workflow is modeled around the following
 
 This is a sample config for Qlik Cloud:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="token">
 **token**: Qlik Cloud API Access Token
 
 Enter the JWT Bearer token generated from Qlik Management Console->API-Keys . Refer to [this](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-generate-api-keys.htm) document for more details.
 
 Example: `eyJhbGciOiJFU***`
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="hostPort">
 **hostPort**: Qlik Cloud Tenant URL
 
 This field refers to the base url of your Qlik Cloud Portal, will be used for generating the redirect links for dashboards and charts.
 
 Example: `https://<TenantURL>.qlikcloud.com`
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="spaceTypes">
 **spaceTypes**: Qlik Cloud Space Types
 
 Select relevant space types of Qlik Cloud to filter the dashboards ingested into the platform.
 
 Example: `Personal`, `Shared`, `Managed`, `Data`
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: qlikcloud
   serviceName: local_qlikcloud
   serviceConnection:
     config:
       type: QlikCloud
-```
-```yaml {% srNumber=1 %}
-      token: eyJhbGciOiJFU***
-```
-```yaml {% srNumber=2 %}
-      hostPort: https://<TenantURL>.qlikcloud.com
-```
-```yaml {% srNumber=3 %}
-      spaceTypes: ["Personal", "Shared", "Managed", "Data"]
+token: eyJhbGciOiJFU***
+hostPort: https://<TenantURL>.qlikcloud.com
+spaceTypes: ["Personal", "Shared", "Managed", "Data"]
 ```
 
 <SourceConfig />
@@ -141,9 +109,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

@@ -7,9 +7,12 @@ slug: /connectors/ml-model/sagemaker/yaml
 import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/ml-model/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,17 +22,16 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Sagemaker"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["ML Store"]
-unavailableFeatures=["ML Features", "Hyperparameters"]
-/ %}
+availableFeatures={["ML Store"]}
+unavailableFeatures={["ML Features", "Hyperparameters"]} />
 
 In this section, we provide guides and references to use the Sagemaker connector.
 
@@ -92,10 +94,6 @@ The workflow is modeled around the following
 
 This is a sample config for Sagemaker:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
 #### Source Configuration - Service Connection
 
 <AwsConfigDef />
@@ -106,12 +104,7 @@ This is a sample config for Sagemaker:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: sagemaker
   serviceName: local_sagemaker
@@ -128,9 +121,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

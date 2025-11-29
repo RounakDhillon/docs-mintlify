@@ -18,38 +18,25 @@ OpenMetadata supports a hierarchical team structure with **teamType** that can b
 
 - **`Group`** is the last level of the team in the hierarchy. It can only have `Users` as children and not any other teams. It can have all the team types as parents. It can have **multiple parents**. 
 
-{% note noteType="Warning" %}
-- Once created, the teamType for `Group` **cannot be changed later**. 
+<Warning>
+- Once created, the teamType for `Group` **cannot be changed later**.
 - Only the Teams of the type `Group` can **own data assets**.
-{% /note noteType="Warning" %}
-{% /note %}
+</Warning>
 
-{% note %}
+<Tip>
 
 OpenMetadata supports flexible nested team hierarchies under organizational structures such as Business Unit, Division, and Department. While there is no hardcoded limit to the depth of hierarchy, leaf nodes such as "Group" cannot have child teams. Additionally, certain team types like "Department" cannot be nested within "Group." To extend the hierarchy, consider using other team types where appropriate.
 
-{% /note %}
+</Tip>
 
-{% image
-src="/images/v1.9/how-to-guides/teams-and-users/teams.png"
-alt="team-structure"
-caption="Team Hierarchy in OpenMetadata"
-/%}
-{% image
-src="/images/v1.9/how-to-guides/teams-and-users/teams1.1.png"
-alt="team-structure"
-caption="Team Hierarchy in OpenMetadata"
-/%}
-{% image
-src="/images/v1.9/how-to-guides/teams-and-users/teams1.2.png"
-alt="team-structure"
-caption="Team Hierarchy in OpenMetadata"
-/%}
+<img src="/images/v1.9/how-to-guides/teams-and-users/teams.png" alt="team-structure" />
+<img src="/images/v1.9/how-to-guides/teams-and-users/teams1.1.png" alt="team-structure" />
+<img src="/images/v1.9/how-to-guides/teams-and-users/teams1.2.png" alt="team-structure" />
 
-{%inlineCallout
-  color="violet-70"
-  bold="How to Add a Team"
-  icon="MdArrowForward"
-  href="/how-to-guides/admin-guide/teams-and-users/add-team"%}
-  Creating a Team in OpenMetadata is easy for different team types.
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="How to Add a Team"
+    href="/how-to-guides/admin-guide/teams-and-users/add-team"
+  >
+    Creating a Team in OpenMetadata is easy for different team types.
+  </Card>

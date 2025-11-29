@@ -7,21 +7,21 @@ collate: true
 
 import ConfigureIngestion from '/snippets/connectors/ml-model/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="VertexAI"
 stage="BETA"
 platform="Collate"
-availableFeatures=["ML Store", "ML Features", "Hyper parameters"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["ML Store", "ML Features", "Hyper parameters"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the VertexAI connector.
 
@@ -30,8 +30,6 @@ Configure and schedule VertexAI metadata workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/ml-model/vertexai/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/ml-model/vertexai/yaml" />
 
 ## Requirements
 
@@ -45,23 +43,16 @@ Configure and schedule VertexAI metadata workflows from the OpenMetadata UI:
 
 To execute metadata extraction workflow successfully the user or the service account should have enough access to fetch required data. Following table describes the minimum required permissions
 
-{% multiTablesWrapper %}
-
 | #    | GCP Permission                | Required For            |
 | :--- | :---------------------------- | :---------------------- |
 | 1    | aiplatform.models.get         | Metadata Ingestion      |
 | 2    | aiplatform.models.list        | Metadata Ingestion      |
 
-
-{% /multiTablesWrapper %}
-
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"Vertex AI"} selectServicePath={"/images/connectors/vertexai/select-service.png"} addNewServicePath={"/images/connectors/vertexai/add-new-service.png"} serviceConnectionPath={"/images/connectors/vertexai/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Options
 
@@ -85,11 +76,8 @@ You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam
 
 **GCP Credentials Path**: Passing a local file path that contains the credentials.
 
-
 **Location**:
 Location refers to the geographical region where your resources, such as datasets, models, and endpoints, are physically hosted.(e.g. `us-central1`, `europe-west4`)
-
-{% /extraContent %}
 
 <TestConnection />
 
@@ -97,4 +85,4 @@ Location refers to the geographical region where your resources, such as dataset
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

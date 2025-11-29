@@ -6,22 +6,21 @@ slug: /connectors/search/elasticsearch
 
 import ConfigureIngestion from '/snippets/connectors/search/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Elasticsearch"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Search Indexes", "Sample Data"]
-unavailableFeatures=[]
-/ %}
-
+availableFeatures={["Search Indexes", "Sample Data"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Elasticsearch connector.
 
@@ -31,21 +30,17 @@ Configure and schedule Elasticsearch metadata workflow from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/search/elasticsearch/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/search/elasticsearch/yaml" />
-
 ## Requirements
 
 We support Elasticsearch 7.0 and above.
 
 We extract Elasticsearch's metadata by using its [API](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html). To run this ingestion, you just need a user with permissions to the ElasticSearch instance.
 
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"ElasticSearch"} selectServicePath={"/images/connectors/elasticsearch/select-service.png"} addNewServicePath={"/images/connectors/elasticsearch/add-new-service.png"} serviceConnectionPath={"/images/connectors/elasticsearch/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -87,12 +82,10 @@ We extract Elasticsearch's metadata by using its [API](https://www.elastic.co/gu
 
 - **Connection Timeout in Seconds**: Connection timeout configuration for communicating with Elasticsearch APIs.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

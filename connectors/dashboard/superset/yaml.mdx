@@ -4,10 +4,12 @@ description: Configure OpenMetadata'sApache Superset connector with YAML. Step-b
 slug: /connectors/dashboard/superset/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -21,17 +23,12 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Superset"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Dashboards", "Charts", "Lineage", "Owners", "Datamodels"]
-unavailableFeatures=["Tags", "Projects"]
-/ %}
+availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Datamodels"]}
+unavailableFeatures={["Tags", "Projects"]} />
 
 In this section, we provide guides and references to use the Superset connector.
 
@@ -80,14 +77,8 @@ The workflow is modeled around the following
 
 This is a sample config for Superset:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: The `Host and Post` parameter is common for all three modes of authentication which specifies the host and port of the Superset instance. This should be specified as a string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set the hostPort parameter to `https://org.superset.com:8088`.
 
 **connection**: Add the connection details to fetch metadata from Superset either through APIs or Database.
@@ -105,11 +96,8 @@ Superset only supports basic or ldap authentication through APIs so if you have 
 **password**: Password of the user account to connect with Superset.
 
 **provider**: Choose between `db`(default) or `ldap` mode of Authentication provider for the Superset service. This parameter is used internally to connect to Superset's REST API.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="For MySQL Connection:">
 #### For MySQL Connection:
 You can use Mysql Connection when you have SSO enabled and your Superset is backed by Mysql database.
 
@@ -131,12 +119,8 @@ You can use Mysql Connection when you have SSO enabled and your Superset is back
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to MySQL during the connection. These details must be added as Key-Value pairs. 
   - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="For Postgres Connection:">
 #### For Postgres Connection:
 
 You can use Postgres Connection when you have SSO enabled and your Superset is backed by Postgres database.
@@ -155,49 +139,30 @@ You can use Postgres Connection when you have SSO enabled and your Superset is b
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to Postgres during the connection. These details must be added as Key-Value pairs. 
   - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
+</Step>
+</Steps>
 
-
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: superset
   serviceName: local_superset
   serviceConnection:
     config:
       type: Superset
-```
-```yaml {% srNumber=1 %}
-      hostPort: http://localhost:8088
+hostPort: http://localhost:8088
       connection:
         # For Superset API Connection
         username: admin
         password: admin
         provider: db # or provider: ldap
-
-```
-```yaml {% srNumber=2 %}
-        # For MySQL Connection
+# For MySQL Connection
         # type: Mysql
         # username: <username>
         # authType:
         #   password: <password>
         # hostPort: <hostPort>
         # databaseSchema: superset
-
-```
-```yaml {% srNumber=3 %}
-        # For Postgres Connection
+# For Postgres Connection
         # type: Postgres
         # username: username
         # authType:
@@ -211,10 +176,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 ## Securing Superset Connection with SSL in OpenMetadata
 

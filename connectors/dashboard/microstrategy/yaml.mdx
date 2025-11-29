@@ -4,10 +4,12 @@ description: Configure MicroStrategy dashboard integration with OpenMetadata usi
 slug: /connectors/dashboard/microstrategy/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -21,17 +23,12 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="MicroStrategy"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]
-  unavailableFeatures=["Tags", "Projects"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
+  unavailableFeatures={["Tags", "Projects"]} />
 
 In this section, we provide guides and references to use the MicroStrategy connector.
 
@@ -73,77 +70,39 @@ The workflow is modeled around the following
 
 This is a sample config for MicroStrategy:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="Username">
 - **Username**: Username to connect to MicroStrategy, e.g., user@organization.com. This user should have access to relevant dashboards and charts in MicroStrategy to fetch the metadata.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="Password">
 - **Password**: Password of the user account to connect with MicroStrategy.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Host Port">
 - **Host Port**: This parameter specifies the host of the MicroStrategy instance. This should be specified as a URI string in the format http://hostname or https://hostname.
 
 For example, you might set it to https://demo.microstrategy.com.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="Project Name">
 - **Project Name**: The name of the project within MicroStrategy that OpenMetadata will connect to, linking to the relevant dashboards and reports for metadata retrieval.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="Login Mode">
 - **Login Mode**: Login Mode for Microstrategy's REST API connection. You can authenticate with one of the following authentication modes: `Standard (1)`, `Anonymous (8)`. Default will be `Standard (1)`.
 If you're using demo account for Microstrategy, it will be needed to authenticate through loginMode `8`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: microstrategy
   serviceName: local_Mstr
   serviceConnection:
     config:
       type: MicroStrategy
-```
-```yaml {% srNumber=1 %}
-      username: username
-```
-```yaml {% srNumber=2 %}
-      password: password
-```
-```yaml {% srNumber=3 %}
-      hostPort: http://hostPort
-```
-```yaml {% srNumber=4 %}
-      projectName: project
-```
-```yaml {% srNumber=5 %}
-      loginMode: "1"
+username: username
+password: password
+hostPort: http://hostPort
+projectName: project
+loginMode: "1"
 ```
 
 <SourceConfig />
@@ -151,9 +110,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

@@ -4,6 +4,8 @@ description: Connect SAP HANA to OpenMetadata effortlessly with our comprehensiv
 slug: /connectors/database/sap-hana
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,20 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="SAP HANA"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Stored Procedures", "Owners", "Tags"]
-/ %}
-
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Stored Procedures", "Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the SAP HANA connector.
 
@@ -39,13 +36,11 @@ Configure and schedule SAP HANA metadata and profiler workflows from the OpenMet
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/sap-hana/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/sap-hana/yaml" />
-
 ## Requirements
 
-{% note %}
+<Tip>
 The connector is compatible with HANA or HANA express versions since HANA SPS 2.
-{% /note %}
+</Tip>
 
 ### Metadata
 
@@ -80,8 +75,7 @@ Executing the profiler Workflow or data quality tests, will require the user to 
 
 <MetadataIngestionUi connector={"SAP Hana"} selectServicePath={"/images/connectors/sap-hana/select-service.png"} addNewServicePath={"/images/connectors/sap-hana/add-new-service.png"} serviceConnectionPath={"/images/connectors/sap-hana/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -105,14 +99,12 @@ We support two possible connection types:
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

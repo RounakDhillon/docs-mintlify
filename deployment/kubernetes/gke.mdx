@@ -12,18 +12,18 @@ import Faqs from '/snippets/deployment/faqs.mdx'
 OpenMetadata supports the Installation and Running of Application on Google Kubernetes Engine through Helm Charts.
 However, there are some additional configurations which needs to be done as prerequisites for the same.
 
-{%note%}
+<Tip>
 
 Google Kubernetes Engine (GKE) Auto Pilot Mode is not compatible with one of OpenMetadata Dependencies - ElasticSearch.
 The reason being that ElasticSearch Pods require Elevated permissions to run initContainers for changing configurations which is not allowed by GKE AutoPilot PodSecurityPolicy.
 
-{%/note%}
+</Tip>
 
-{%note noteType="Warning"%}
+<Warning>
 
 All the code snippets in this section assume the `default` namespace for kubernetes.
 
-{%/note%}
+</Warning>
 
 ## Prerequisites
 
@@ -40,9 +40,9 @@ We recommend -
 - CloudSQL to be Multi Zone Available
 - Elastic Cloud Environment with multiple zones and minimum 2 nodes
 
-{%note noteType="Warning"%}
+<Warning>
 Make sure to increase `sort_buffer_size` ([for MySQL](https://cloud.google.com/sql/docs/mysql/flags)) or `work_mem` ([for PostgreSQL](https://cloud.google.com/sql/docs/postgres/flags)) to the recommended value of **20MB** or more using flags. This is especially important when running migrations to prevent **Out of Sort Memory Error**. You can revert the setting once the migrations are complete.
-{%/note%}
+</Warning>
 
 Once you have the Database and Search Engine configured and available, update the helm values below for OpenMetadata kubernetes deployments to connect with Database and ElasticSearch.
 
@@ -81,7 +81,7 @@ openmetadata:
   ...
 ```
 
-{%note noteType="Tip"%}
+<Tip>
 
 For Database as PostgreSQL, the use the below config for database values -
 
@@ -105,15 +105,15 @@ openmetadata:
           secretKey: openmetadata-sql-password
 ```
 
-{%/note%}
+</Tip>
 
-{%note noteType="Tip"%}
+<Tip>
 
 Make sure to create CloudSQL and ElasticSearch credentials as Kubernetes Secrets mentioned [here](/quick-start/local-kubernetes-deployment#2.-create-kubernetes-secrets-required-for-helm-charts).
 
 Also, disable MySQL and ElasticSearch from OpenMetadata Dependencies Helm Charts as mentioned in the FAQs [here](#how-to-disable-mysql-and-elasticsearch-from-openmetadata-dependencies-helm-charts).
 
-{%/note%}
+</Tip>
 
 ### Persistent Volumes with ReadWriteMany Access Modes
 
@@ -327,11 +327,11 @@ spec:
   restartPolicy: Always
 ```
 
-{%note%}
+<Tip>
 
 Airflow runs the pods with linux user name as airflow and linux user id as 50000.
 
-{%/note%}
+</Tip>
 
 Run the below command to create the pod and fix the permissions
 
@@ -378,7 +378,7 @@ airflow:
     persistence:
       enabled: false
 ```
-{%note%}
+<Tip>
 
 For more information on airflow helm chart values, please refer to [airflow-helm](https://artifacthub.io/packages/helm/airflow-helm/airflow/8.8.0).
 
@@ -388,7 +388,7 @@ When deploying openmeteadata dependencies helm chart, use the below command -
 helm install openmetadata-dependencies open-metadata/openmetadata-dependencies --values values-dependencies.yaml
 ```
 
-{%/note%}
+</Tip>
 
 The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml). 
 You can modify any configuration and deploy by passing your own `values.yaml`
@@ -411,13 +411,8 @@ If you came across `invalid access type while creating the pvc`, and the permiss
 
 The above error might have occurred due to the pvc volumes not setup or pvc volumes are not mounted properly.
 
-{% image
-  src="/images/v1.9/deployment/troubleshoot/dag-log.png"
-  alt="dag-log" /%}
-{% image
-  src="/images/v1.9/deployment/troubleshoot/permission-pod-events.png"
-  alt="permission-pod-events"
-  caption="Permission pod events" /%}
+<img src="/images/v1.9/deployment/troubleshoot/dag-log.png" alt="dag-log" />
+<img src="/images/v1.9/deployment/troubleshoot/permission-pod-events.png" alt="permission-pod-events" />
 
 Please validate:
 - all the prerequisites mentioned in this [section](#prerequisites)

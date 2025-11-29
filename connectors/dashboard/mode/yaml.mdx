@@ -4,10 +4,12 @@ description: Configure Mode Analytics dashboard connector for OpenMetadata using
 slug: /connectors/dashboard/mode/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -21,17 +23,12 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Mode"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Dashboards", "Charts", "Lineage"]
-unavailableFeatures=["Owners", "Tags", "Datamodels", "Projects"]
-/ %}
+availableFeatures={["Dashboards", "Charts", "Lineage"]}
+unavailableFeatures={["Owners", "Tags", "Datamodels", "Projects"]} />
 
 In this section, we provide guides and references to use the Mode connector.
 
@@ -73,22 +70,13 @@ The workflow is modeled around the following
 
 This is a sample config for Mode:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: Host and Port Mode Dashboard.
 
 The hostPort parameter specifies the host and port of the Mode server. This should be specified as a string in the format `https://app.mode.com`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="accessToken">
 **accessToken**: Access Token for Mode Dashboard.
 
 Get the Access Token by following below mentioned steps:
@@ -99,63 +87,36 @@ Get the Access Token by following below mentioned steps:
 - Copy the generated access token and password.
 
 For detailed information visit [here](https://mode.com/developer/api-reference/introduction/).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="accessTokenPassword">
 **accessTokenPassword**: Access Token Password for Mode Dashboard.
 
 Copy the access token password from the step above where a new token is generated.
 
 For detailed information visit [here](https://mode.com/developer/api-reference/introduction/).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="workspaceName">
 **workspaceName**: Mode Workspace Name.
 
 Name of the mode workspace from where the metadata is to be fetched.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
+</Step>
+<Step title="filterQueryParam">
 **filterQueryParam**: Filter query parameter for some of the Mode API calls.
-{% /codeInfo %}
+</Step>
+</Steps>
 
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: mode
   serviceName: local_mode
   serviceConnection:
     config:
       type: Mode
-```
-```yaml {% srNumber=1 %}
-      hostPort: https://app.mode.com
-```
-```yaml {% srNumber=2 %}
-      access_token: access_token
-```
-```yaml {% srNumber=3 %}
-      access_token_password: access_token_password
-```
-```yaml {% srNumber=4 %}
-      workspace_name: workspace_name
-```
-```yaml {% srNumber=5 %}
-      # filterQueryParam: ""
+hostPort: https://app.mode.com
+access_token: access_token
+access_token_password: access_token_password
+workspace_name: workspace_name
+# filterQueryParam: ""
 ```
 
 <SourceConfig />
@@ -163,10 +124,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

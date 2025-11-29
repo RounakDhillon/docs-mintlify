@@ -3,9 +3,9 @@ title: Storage Services | OpenMetadata Cloud Storage Guide
 slug: /connectors/storage
 ---
 
-import ConnectorsList from 'snippets/connectors/storage/connectors-list.mdx'
+import ConnectorsList from '/snippets/connectors/storage/connectors-list.mdx'
 
-import Manifest from 'snippets/connectors/storage/manifest.mdx'
+import Manifest from '/snippets/connectors/storage/manifest.mdx'
 
 # Storage Services
 
@@ -26,11 +26,11 @@ In these systems we can have different types of information:
 - Structured data in single and independent files (which can also be ingested with the [S3 Data Lake connector](/connectors/database/s3-datalake))
 - Structured data in partitioned files, e.g., `my_table/year=2022/...parquet`, `my_table/year=2023/...parquet`, etc.
 
-{% note %}
+<Tip>
 
 The Storage Connector will help you bring in **Structured data in partitioned files**.
 
-{% /note %}
+</Tip>
 
 Then the question is, how do we know which data in each Container is relevant and which structure does it follow? In order to
 optimize ingestion costs and make sure we are only bringing in useful metadata, the Storage Services ingestion process
@@ -40,7 +40,7 @@ follow this approach:
 2. If there is an `openmetadata.json` manifest file present in the bucket root, we will ingest the informed paths
    as children of the top-level container. Let's see how that works.
 
-{% note %}
+<Tip>
 
 Note that the current implementation brings each entry in the `openmetadata.json` as a child container of the
 top-level container. Even if your data path is `s3://bucket/my/deep/table`, we will bring `bucket` as the top-level
@@ -48,7 +48,7 @@ container and `my/deep/table` as its child.
 
 We are flattening this structure to simplify the navigation.
 
-{% /note %}
+</Tip>
 
 <Manifest />
 
@@ -209,11 +209,11 @@ Once the ingestion process runs, we'll see the following metadata:
 
 First, the service we called `s3-demo`, which has the two buckets we included in the filter.
 
-{% image src="/images/v1.9/connectors/storage/s3-demo.png" alt="s3-demo" /%}
+<img src="/images/v1.9/connectors/storage/s3-demo.png" alt="s3-demo" />
 
 Then, if we click on the `collate-demo-storage` container, we'll see all the children defined in the manifest.
 
-{% image src="/images/v1.9/connectors/storage/collate-demo-storage.png" alt="s3-demo" /%}
+<img src="/images/v1.9/connectors/storage/collate-demo-storage.png" alt="s3-demo" />
 
 - **cities**: Will show the columns extracted from the sampled parquet files, since there is no partition columns specified.
 - **cities_multiple**: Will have the parquet columns and the `Year` and `State` columns indicated in the partitions.

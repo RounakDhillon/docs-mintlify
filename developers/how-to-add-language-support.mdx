@@ -8,7 +8,7 @@ slug: /developers/how-to-add-language-support
 
 ## 🌍 Language Support
 
-{% collateContent %}Collate{% /collateContent %}{% ossContent %}OpenMetadata{% /ossContent %} offers **multi-language support** to provide a more accessible and localized experience for global teams. Users can change the application language from the top-right corner of the UI by selecting from a list of supported languages.
+Collate offers **multi-language support** to provide a more accessible and localized experience for global teams. Users can change the application language from the top-right corner of the UI by selecting from a list of supported languages.
 
 ### ✅ Currently Supported Languages
 
@@ -33,11 +33,7 @@ The following languages are available out of the box:
 - Marathi (MR)
 - Turkish (TR)
 
-{% image
-src="/images/v1.9/developers/language/language.png"
-alt="Language Dropdown in UI"
-caption="Language Dropdown in UI"
-/%}
+<img src="/images/v1.9/developers/language/language.png" alt="Language Dropdown in UI" />
 
 ### 📁 Adding or Customizing Language Support
 
@@ -47,7 +43,7 @@ If you'd like to:
 - Customize existing translations,
 - Or enable internal company-specific terms,
 
-You can do so by editing or adding JSON files in the `locale/languages` [directory](https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-ui/src/main/resources/ui/src/locale/languages) of the {% collateContent %}Collate{% /collateContent %}{% ossContent %}OpenMetadata{% /ossContent %} frontend codebase.
+You can do so by editing or adding JSON files in the `locale/languages` [directory](https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-ui/src/main/resources/ui/src/locale/languages) of the Collate frontend codebase.
 
 Each language is structured like this:
 
@@ -90,19 +86,16 @@ To copy the contents of en-us.json and add it to your translation JSON file, fol
 
 You can refer to the image below for a visual guide:
 
-{% image
-src="/images/v1.9/developers/language-support.png"
-alt="copy-en-us"
-/%}
+<img src="/images/v1.9/developers/language-support.png" alt="copy-en-us" />
 
 
 ## How to Add Language Support for Entities Documentation
 
-{% note %}
+<Tip>
 
 We have documentation for some entities on the left sidebar, and we currently support two languages: `en-US` and `fr-FR`. If you want to add support for other languages in our internationalization, you can follow the steps below.
 
-{% /note %}
+</Tip>
 
 Documentation for entities resides in the `openmetadata-ui/src/main/resources/ui/src/public/locales` directory. Our primary language is `en-US`, so you can refer to it and create the same hierarchy for your language.
 

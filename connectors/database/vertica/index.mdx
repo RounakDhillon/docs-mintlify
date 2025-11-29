@@ -4,6 +4,8 @@ description: Connect Vertica database to OpenMetadata with our comprehensive con
 slug: /connectors/database/vertica
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,20 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Vertica"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Owners", "Tags", "Stored Procedures"]
-/ %}
-
+availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Vertica connector.
 
@@ -38,8 +35,6 @@ Configure and schedule Vertica metadata and profiler workflows from the OpenMeta
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/vertica/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/vertica/yaml" />
 
 ## Requirements
 
@@ -92,8 +87,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA <schema> TO openmetadata;
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Vertica"} selectServicePath={"/images/connectors/vertica/select-service.png"} addNewServicePath={"/images/connectors/vertica/add-new-service.png"} serviceConnectionPath={"/images/connectors/vertica/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -103,14 +97,12 @@ GRANT SELECT ON ALL TABLES IN SCHEMA <schema> TO openmetadata;
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

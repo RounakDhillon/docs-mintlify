@@ -6,21 +6,21 @@ slug: /connectors/pipeline/nifi
 
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="NiFi"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Usage", "Lineage", "Pipeline Status"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Usage", "Lineage", "Pipeline Status"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the NiFi connector.
 
@@ -29,8 +29,6 @@ Configure and schedule NiFi metadata workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/pipeline/nifi/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/nifi/yaml" />
 
 ## Requirements
 
@@ -45,8 +43,7 @@ The user should be able to send request to the NiFi API and access the `Resource
 
 <MetadataIngestionUi connector={"NiFi"} selectServicePath={"/images/connectors/nifi/select-service.png"} addNewServicePath={"/images/connectors/nifi/add-new-service.png"} serviceConnectionPath={"/images/connectors/nifi/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -65,12 +62,10 @@ The user should be able to send request to the NiFi API and access the `Resource
         - Client Key Path: Path to the client key file.
         **important**: This file should be accessible from where the ingestion workflow is running. For example, if you are using OpenMetadata Ingestion Docker container, this file should be in this container.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

@@ -4,6 +4,8 @@ description: Learn how to connect SingleStore database to OpenMetadata with step
 slug: /connectors/database/singlestore
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="SingleStore"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Stored Procedures", "Owners", "Tags"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Stored Procedures", "Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the SingleStore connector.
 
@@ -37,8 +35,6 @@ Configure and schedule SingleStore metadata and profiler workflows from the Open
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/singlestore/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/singlestore/yaml" />
 
 ## Requirements
 
@@ -67,8 +63,7 @@ Executing the profiler workflow or data quality tests, will require the user to 
 
 <MetadataIngestionUi connector={"SingleStore"} selectServicePath={"/images/connectors/singlestore/select-service.png"} addNewServicePath={"/images/connectors/singlestore/add-new-service.png"} serviceConnectionPath={"/images/connectors/singlestore/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -79,14 +74,12 @@ Executing the profiler workflow or data quality tests, will require the user to 
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

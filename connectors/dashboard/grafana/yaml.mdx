@@ -4,7 +4,9 @@ description: Learn to run the Grafana connector externally in OpenMetadata. Conf
 slug: /connectors/dashboard/grafana/yaml
 ---
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -12,13 +14,13 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Grafana"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Dashboards", "Charts", "Owners", "Tags", "Lineage"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Dashboards", "Charts", "Owners", "Tags", "Lineage"]}
+unavailableFeatures={[]}
+/>
 
 In this section, we provide guides and references to use the Grafana connector.
 
@@ -61,57 +63,28 @@ process the Entities if needed, and reach the OpenMetadata server.
 
 This is a sample config for Grafana:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: URL or IP address of your Grafana instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="apiKey">
 **apiKey**: Service Account Token for authentication (format: `glsa_xxxxx`). Admin role recommended.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="verifySSL">
 **verifySSL**: (Optional) Whether to verify SSL certificates. Default: true
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="pageSize">
 **pageSize**: (Optional) Page size for Grafana API pagination. Default: 100
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="includeTags">
 **includeTags**: When set to true, imports Grafana tags as OpenMetadata tags.
-
-{% /codeInfo %}
-
-#### Sink Configuration
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="To send the metadata to">
 To send the metadata to OpenMetadata, specify `type: metadata-rest`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="grafana-workflow.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: grafana
   serviceName: local_grafana
@@ -138,10 +111,6 @@ workflowConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 ## Securing Grafana Connection with SSL in OpenMetadata
 

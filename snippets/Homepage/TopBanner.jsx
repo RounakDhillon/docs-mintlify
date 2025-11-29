@@ -1,5 +1,3 @@
-import './homepage.css'
-
 export const TopBanner = () => {
   return (
     <div className="banner-container">

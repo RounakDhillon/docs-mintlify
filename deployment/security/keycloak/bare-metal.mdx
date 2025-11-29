@@ -14,9 +14,9 @@ In `openmetadata.yaml` file and use the following example as a reference. Replac
 
 Check the more information about environment variable [here](/deployment/security/configuration-parameters).
 
-{% codeWithLanguageSelector title="Auth Configuration" id="container-1" languagesArray=["implicit","authcode"] theme="dark" %}
-
-```implicit
+<Tabs>
+<Tab title="implicit">
+```
 # Implicit Flow
 authorizerConfiguration:
   className: "org.openmetadata.service.security.DefaultAuthorizer"
@@ -27,18 +27,20 @@ authorizerConfiguration:
     - "user2"
   principalDomain: "open-metadata.org"                      # Update with your Domain,The primary domain for the organization (your domain.com from name@domain.com).
 authenticationConfiguration:
-  provider: "custom-oidc" 
+  provider: "custom-oidc"
   publicKeyUrls:                                            # Update with your keycloak Domain and  OMD server URL.
     - "{OMD-server-domain}/api/v1/system/config/jwks"       # Update with your Domain and Make sure this "/api/v1/system/config/jwks" is always configured to enable JWT tokens
     - "{Keycloak-server-URL}/auth/realms/{your-realm-name}/protocol/openid-connect/certs"           # Update your Keycloak Url And Realm.
-  authority: "{Keycloak-server-URL}/auth/realms/{your-realm-name}"      
+  authority: "{Keycloak-server-URL}/auth/realms/{your-realm-name}"
   clientId: "{Client ID}"
   callbackUrl: "http://localhost:8585/callback"
   clientType: "public"
 ```
+</Tab>
 
-```authcode
-# Auth Code Flow 
+<Tab title="authcode">
+```
+# Auth Code Flow
 authorizerConfiguration:
   className: "org.openmetadata.service.security.DefaultAuthorizer"
   containerRequestFilter: "org.openmetadata.service.security.JwtFilter"
@@ -48,17 +50,17 @@ authorizerConfiguration:
     - "user2"
   principalDomain: "open-metadata.org"                      # Update with your Domain,The primary domain for the organization (your domain.com from name@domain.com).
 authenticationConfiguration:
-  provider: "custom-oidc" 
+  provider: "custom-oidc"
   publicKeyUrls:                                            # Update with your keycloak Domain and  OMD server URL.
     - "{OMD-server-domain}/api/v1/system/config/jwks"       # Update with your Domain and Make sure this "/api/v1/system/config/jwks" is always configured to enable JWT tokens
     - "{Keycloak-server-URL}/auth/realms/{your-realm-name}/protocol/openid-connect/certs"                   # Update your Keycloak Url And Realm.
-  authority: "{Keycloak-server-URL}/auth/realms/{your-realm-name}"      
+  authority: "{Keycloak-server-URL}/auth/realms/{your-realm-name}"
   clientId: "{Client ID}"
   callbackUrl: "http://localhost:8585/callback"
   clientType: "confidential"
   oidcConfiguration:
     id: "{Client ID}"                                       # Update you keycloak Client ID
-    type: "keycloak"     
+    type: "keycloak"
     secret: "{Client Secret}"                               # Update with keycloak Client Secret
     discoveryUri:"{Keycloak-server-URL}/realms/{your-realm-name}/.well-known/openid-configuration"          # Keycloak's discovery URI Update your Keycloak's Domain and Realm
     callbackUrl: http://localhost:8585/callback"
@@ -66,24 +68,25 @@ authenticationConfiguration:
 
 
 ```
-{% /codeWithLanguageSelector %}
+</Tab>
+</Tabs>
 
 
-{% note %}
+<Tip>
 
 Altering the order of claims in `jwtPrincipalClaims` may lead to problems when matching a user from a token with an existing user in the system. The mapping process relies on the specific order of claims, so changing it can result in inconsistencies or authentication failures, as the system cannot ensure correct user mapping with a new claim order.
 
-{% /note %}
+</Tip>
 
 <ConfigureIngestion />
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="KeyCloak"
-    href="/deployment/security/keycloak" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="KeyCloak"
+    href="/deployment/security/keycloak"
+  >
     Go to KeyCloak Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

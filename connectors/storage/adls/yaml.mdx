@@ -5,9 +5,11 @@ slug: /connectors/storage/adls/yaml
 collate: true
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -15,23 +17,22 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import StorageSourceConfigDef from 'snippets/connectors/yaml/storage/source-config-def.mdx'
+import StorageSourceConfigDef from '/snippets/connectors/yaml/storage/source-config-def.mdx'
 
-import StorageSourceConfig from 'snippets/connectors/yaml/storage/source-config.mdx'
+import StorageSourceConfig from '/snippets/connectors/yaml/storage/source-config.mdx'
 
-import Manifest from 'snippets/connectors/storage/manifest.mdx'
+import Manifest from '/snippets/connectors/storage/manifest.mdx'
 
-import AzureConfigDef from 'snippets/connectors/yaml/common/azure-config-def.mdx'
+import AzureConfigDef from '/snippets/connectors/yaml/common/azure-config-def.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="ADLS"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 This page contains the setup guide and reference information for the Azure connector.
 
@@ -44,9 +45,13 @@ Configure and schedule Azure metadata workflows from the CLI:
 
 ## Requirements
 
-{%inlineCallout icon="description" bold="OpenMetadata 1.0 or later" href="/deployment"%}
-To deploy OpenMetadata, check the Deployment guides.
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="OpenMetadata 1.0 or later"
+    href="/deployment"
+  >
+    To deploy OpenMetadata, check the Deployment guides.
+  </Card>
 
 To run the metadata ingestion, we need the following permissions in ADLS:
 
@@ -85,39 +90,18 @@ The workflow is modeled around the following
 
 This is a sample config for Athena:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-<AzureConfigDef />
-
-<StorageSourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
 #### Advanced Configuration
 
-{% codeInfo srNumber=6 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: ADLS
   serviceName: local_adls
@@ -125,15 +109,9 @@ source:
     config:
       type: ADLS
       credentials:
-```
-
-
-```yaml {% srNumber=6 %}
-      # connectionOptions:
+# connectionOptions:
         # key: value
-```
-```yaml {% srNumber=7 %}
-      # connectionArguments:
+# connectionArguments:
         # key: value
 ```
 
@@ -143,23 +121,18 @@ source:
 
 <WorkflowConfig />
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 
 
 <IngestionCli />
 
 ## Related
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-   icon="mediation"
-   title="Configure Ingestion Externally"
-   description="Deploy, configure, and manage the ingestion workflows externally."
-   link="/deployment/ingestion"
- / %}
+<Card
+  title="Configure Ingestion Externally"
+  href="/deployment/ingestion">
+  Deploy, configure, and manage the ingestion workflows externally.
+</Card>
 
-{% /tilesContainer %}
+</Columns>

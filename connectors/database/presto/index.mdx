@@ -4,6 +4,8 @@ description: Connect Presto to OpenMetadata with our comprehensive database conn
 slug: /connectors/database/presto
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Presto"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Owners", "Tags", "Stored Procedures", "Lineage", "Column-level Lineage"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures", "Lineage", "Column-level Lineage"]} />
 
 In this section, we provide guides and references to use the Presto connector.
 
@@ -36,8 +34,6 @@ Configure and schedule Presto metadata and profiler workflows from the OpenMetad
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/presto/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/presto/yaml" />
 
 ## Requirements
 
@@ -52,8 +48,7 @@ Executing the profiler workflow or data quality tests, will require the user to 
 
 <MetadataIngestionUi connector={"Presto"} selectServicePath={"/images/connectors/presto/select-service.png"} addNewServicePath={"/images/connectors/presto/add-new-service.png"} serviceConnectionPath={"/images/connectors/presto/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Options
 
@@ -65,14 +60,12 @@ Executing the profiler workflow or data quality tests, will require the user to 
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

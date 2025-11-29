@@ -6,30 +6,28 @@ slug: /connectors/metadata/atlas
 
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Atlas"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/metadata/atlas/yaml" />
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 ## Requirements
 
-{% note %}
+<Tip>
 Every table ingested will have a tag name `AtlasMetadata.atlas_table`. You can find all tags under
 Governance > Classification.
-{% /note %}
+</Tip>
 
 ## 1. Create Database & Messaging Services
 
@@ -46,8 +44,7 @@ Then, prepare the Atlas Service and configure the Ingestion:
 
 <MetadataIngestionUi connector={"Atlas"} selectServicePath={"/images/connectors/atlas/select-service.png"} addNewServicePath={"/images/connectors/atlas/add-new-service.png"} serviceConnectionPath={"/images/connectors/atlas/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -58,12 +55,10 @@ Then, prepare the Atlas Service and configure the Ingestion:
 - **messagingServiceName**: messaging service source of the data source.
 - **Entity Type**: Name of the entity type in Atlas.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

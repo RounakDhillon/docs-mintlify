@@ -4,12 +4,13 @@ description: Configure NiFi ingestion using YAML to capture pipeline details, me
 slug: /connectors/pipeline/nifi/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Nifi"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Usage", "Lineage", "Pipeline Status"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Usage", "Lineage", "Pipeline Status"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the NiFi connector.
 
@@ -67,14 +67,8 @@ The workflow is modeled around the following
 
 This is a sample config for NiFi:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: Pipeline Service Management UI URL
 **NiFiConfig**: one of
   **1.** Using Basic authentication  
@@ -88,10 +82,8 @@ This is a sample config for NiFi:
     **important**: This file should be accessible from where the ingestion workflow is running. For example, if you are using OpenMetadata Ingestion Docker container, this file should be in this container.
     - **clientkeyPath**: Path to the client key file.
     **important**: This file should be accessible from where the ingestion workflow is running. For example, if you are using OpenMetadata Ingestion Docker container, this file should be in this container.
-
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -99,12 +91,7 @@ This is a sample config for NiFi:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: nifi
   serviceName: nifi_source
@@ -120,8 +107,9 @@ source:
         # certificateAuthorityPath: path/to/CA
         # clientCertificatePath: path/to/clientCertificate
         # clientkeyPath: path/to/clientKey
+hostPort: http://localhost:8000
 ```
-```yaml {% srNumber=1 %}
+```yaml
       hostPort: http://localhost:8000
 ```
 
@@ -130,10 +118,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

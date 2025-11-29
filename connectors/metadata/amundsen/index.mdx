@@ -6,30 +6,27 @@ slug: /connectors/metadata/amundsen
 
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Amundsen"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/metadata/amundsen/yaml" />
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"Amundsen"} selectServicePath={"/images/connectors/amundsen/select-service.png"} addNewServicePath={"/images/connectors/amundsen/add-new-service.png"} serviceConnectionPath={"/images/connectors/amundsen/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -40,12 +37,10 @@ unavailableFeatures=[]
 - **validateSSL (optional)**: Enable SSL validation for the Amundsen Neo4j Connection. 
 - **encrypted (Optional)**: Enable encryption for the Amundsen Neo4j Connection. 
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

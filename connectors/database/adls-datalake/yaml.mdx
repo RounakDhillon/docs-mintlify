@@ -6,9 +6,11 @@ slug: /connectors/database/adls-datalake/yaml
 
 import AzureConfigDef from '/snippets/connectors/yaml/common/azure-config-def.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -18,20 +20,19 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
 
-import AzureConfig from 'snippets/connectors/yaml/common/azure-config.mdx'
+import AzureConfig from '/snippets/connectors/yaml/common/azure-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="ADLS Datalake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the ADLS Datalake connector.
 
@@ -74,10 +75,6 @@ The workflow is modeled around the following JSON Schema.
 
 ### This is a sample config for Datalake using Azure:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
 #### Source Configuration - Service Connection
 
 <AzureConfigDef />
@@ -88,12 +85,8 @@ The workflow is modeled around the following JSON Schema.
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
-# Datalake with Azure 
+```yaml
+# Datalake with Azure
 source:
   type: datalake
   serviceName: local_datalake
@@ -101,11 +94,12 @@ source:
     config:
       type: Datalake
       configSource:
-        securityConfig:     
+        securityConfig:
 ```
+
 <AzureConfig />
 
-```yaml {% srNumber=9 %}  
+```yaml
       prefix: prefix
 ```
 
@@ -114,10 +108,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

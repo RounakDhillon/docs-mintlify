@@ -8,42 +8,44 @@ slug: /how-to-guides/data-quality-observability/profiler
 
 The profiler in OpenMetadata helps to understand the shape of your data and to quickly validate assumptions. The data profiler helps to capture table usage statistics over a period of time. This happens as part of profiler ingestion. Data profiles enable you to check for null values in non-null columns, for duplicates in a unique column, etc. You can gain a better understanding of column data distributions through the descriptive statistics provided.
 
-Watch the video to understand OpenMetadata’s native Data Profiler and Data Quality tests.
+Watch the video to understand OpenMetadata's native Data Profiler and Data Quality tests.
 
-{%  youtube videoId="gLdTOF81YpI" start="0:00" end="1:08:10" width="800px" height="450px" /%}
+<iframe width="800" height="450" src="https://www.youtube.com/embed/gLdTOF81YpI?start=0&end=4090" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
-{%inlineCalloutContainer%}
- {%inlineCallout
-  color="violet-70"
-  bold="Profiler Tab"
-  icon="MdSecurity"
-  href="/how-to-guides/data-quality-observability/profiler/tab"%}
-  Get a complete picture of the Table Profile and Column Profile details.
- {%/inlineCallout%}
- {%inlineCallout
-    icon="MdVisibility"
-    bold="Profiler Workflow"
-    href="/how-to-guides/data-quality-observability/profiler/workflow"%}
+<CardGroup cols={3}>
+<Card
+    icon="/images/icons/warning.svg"
+    title="Profiler Tab"
+    href="/how-to-guides/data-quality-observability/profiler/tab"
+  >
+    Get a complete picture of the Table Profile and Column Profile details.
+  </Card>
+ <Card
+    icon="/images/icons/search.svg"
+    title="Profiler Workflow"
+    href="/how-to-guides/data-quality-observability/profiler/workflow"
+  >
     Configure and run the Profiler Workflow to extract Profiler data.
- {%/inlineCallout%}
- {%inlineCallout
-    icon="MdAnalytics"
-    bold="Metrics"
-    href="/how-to-guides/data-quality-observability/profiler/metrics"%}
+  </Card>
+ <Card
+    icon="/images/icons/celebration.svg"
+    title="Metrics"
+    href="/how-to-guides/data-quality-observability/profiler/metrics"
+  >
     Learn about the supported profiler metrics.
- {%/inlineCallout%}
- {%inlineCallout
-    icon="MdOutlineSchema"
-    bold="External Workflow"
-    href="/how-to-guides/data-quality-observability/profiler/external-workflow"%}
+  </Card>
+ <Card
+    icon="/images/icons/puzzle.svg"
+    title="External Workflow"
+    href="/how-to-guides/data-quality-observability/profiler/external-workflow"
+  >
     Run a single workflow profiler for the entire source externally.
- {%/inlineCallout%}
-{% collateContent %}
- {%inlineCallout
-    icon="MdRocket"
-    bold="Spark Engine"
-    href="/how-to-guides/data-quality-observability/profiler/spark-engine"%}
+  </Card>
+ <Card
+    icon="/images/icons/arrow-right.svg"
+    title="Spark Engine"
+    href="/how-to-guides/data-quality-observability/profiler/spark-engine"
+  >
     Use distributed processing with Apache Spark for large-scale data profiling.
- {%/inlineCallout%}
-{% /collateContent %}
-{%/inlineCalloutContainer%}
+  </Card>
+</CardGroup>

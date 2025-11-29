@@ -4,12 +4,13 @@ description: Use YAML to configure Airflow pipeline metadata ingestion including
 slug: /connectors/pipeline/airflow/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Airflow"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage", "Owners"]
-unavailableFeatures=["Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage", "Owners"]}
+unavailableFeatures={["Tags"]} />
 
 In this section, we provide guides and references to use the Airflow connector.
 
@@ -50,14 +50,14 @@ To run the Airflow ingestion, you will need to install:
 pip3 install "openmetadata-ingestion[airflow]"
 ```
 
-{% note %}
+<Tip>
 
 Note that this installs the same Airflow version that we ship in the Ingestion Container. If you are running
 the ingestion from Airflow already, you **DON'T NEED** to install the `airflow` plugin.
 
 Instead, just run `pip3 install "openmetadata-ingestion"`.
 
-{% /note %}
+</Tip>
 
 
 **Note:** we only support officially supported Airflow versions. You can check the version list [here](https://airflow.apache.org/docs/apache-airflow/stable/installation/supported-versions.html).
@@ -79,14 +79,8 @@ The workflow is modeled around the following
 
 This is a sample config for Airflow:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="connection">
 **connection**: Airflow metadata database connection. See
   these [docs](https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html)
   for supported backends.
@@ -99,20 +93,11 @@ In terms of `connection` we support the following selections:
   create a connection to the pointed database and read Airflow data from there.
 
 **hostPort**: URL to the Airflow instance.
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=1 %}
-
+</Step>
+<Step title="numberOfStatus">
 **numberOfStatus**: Number of status we want to look back to in every ingestion (e.g., Past executions from a DAG).
-
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=1 %}
-
+</Step>
+<Step title="connection">
 **connection**: Airflow metadata database connection. See
   these [docs](https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html)
   for supported backends.
@@ -123,8 +108,8 @@ In terms of `connection` we support the following selections:
   the ingestion from a DAG. It will use the current Airflow SQLAlchemy connection to extract the data.
 - `MySQL`, `Postgres`, and `SQLite`: Pass the required credentials to reach out each of these services. We will
   create a connection to the pointed database and read Airflow data from there.
-
-{% /codeInfo %}
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -132,26 +117,16 @@ In terms of `connection` we support the following selections:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: airflow
   serviceName: airflow_source
   serviceConnection:
     config:
       type: Airflow
-```
-```yaml {% srNumber=6 %}
-      hostPort: http://localhost:8080
-```
-```yaml {% srNumber=6 %}
-      numberOfStatus: 10
-```
-```yaml {% srNumber=6 %}
-      # Connection needs to be one of Mysql, Postgres or Sqlite
+hostPort: http://localhost:8080
+numberOfStatus: 10
+# Connection needs to be one of Mysql, Postgres or Sqlite
       connection:
         type: Mysql
         username: airflow_user
@@ -180,10 +155,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

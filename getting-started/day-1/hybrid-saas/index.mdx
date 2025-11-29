@@ -7,7 +7,7 @@ collate: true
 
 # Hybrid SaaS
 
-{%  youtube url="https://drive.google.com/file/d/16-2l9EYBE9DjlHepPKTpVFvashMy1buu/preview" start="0:00" end="6:47" width="800px" height="450px" /%}
+<iframe src="https://drive.google.com/file/d/16-2l9EYBE9DjlHepPKTpVFvashMy1buu/preview" width="800" height="450" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
 There's two options on how to set up a data connector:
 1. **Run the connector in Collate SaaS**: In this scenario, you'll get an IP when you add the service. You need to give
@@ -179,9 +179,9 @@ workflowConfig:
       jwtToken: ...
 ```
 
-{% note %}
+<Tip>
 You will find examples of all the workflow's YAML files at each Connector [page](/connectors).
-{% /note %}
+</Tip>
 
 We will now show you examples on how to configure and run every workflow externally by using Snowflake as an example. But
 first, let's digest some information that will be common everywhere, the `workflowConfig`.
@@ -190,11 +190,11 @@ first, let's digest some information that will be common everywhere, the `workfl
 
 Here you will define information such as where are you hosting the OpenMetadata server, and the JWT token to authenticate.
 
-{% note noteType="Warning" %}
+<Warning>
 
 Review this section carefully to ensure you are properly managing service credentials and other security configurations.
 
-{% /note %}
+</Warning>
 
 **Logger Level**
 
@@ -284,44 +284,44 @@ This will stop certain APIs and monitors related to the Pipeline Service Client 
 
 ## Examples
 
-{% note %}
+<Tip>
 
 This is not an exhaustive list, and it will keep growing over time. Not because the orchestrators X or Y are not supported,
 but just because we did not have the time yet to add it here. If you'd like to chip in and help us expand these guides and examples,
 don't hesitate to reach to us in [Slack](https://slack.open-metadata.org/) or directly open a PR in
 [GitHub](https://github.com/open-metadata/OpenMetadata/tree/main/openmetadata-docs/content).
 
-{% /note %}
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="10k"
-    bold="Airflow"
-    href="/deployment/ingestion/external/airflow" %}
+</Tip>
+<CardGroup cols={3}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Airflow"
+    href="/deployment/ingestion/external/airflow"
+  >
     Run the ingestion process externally from Airflow
-  {% /inlineCallout %}
-  {% inlineCallout
-    color="violet-70"
-    icon="10k"
-    bold="MWAA"
-    href="/deployment/ingestion/external/mwaa" %}
+  </Card>
+  <Card
+    icon="/images/icons/celebration.svg"
+    title="MWAA"
+    href="/deployment/ingestion/external/mwaa"
+  >
     Run the ingestion process externally using AWS MWAA
-  {% /inlineCallout %}
-  {% inlineCallout
-    color="violet-70"
-    icon="10k"
-    bold="GCP Composer "
-    href="/deployment/ingestion/external/gcp-composer" %}
-    Run the ingestion process externally from GCP Composer 
-  {% /inlineCallout %}
-  {% inlineCallout
-    color="violet-70"
-    icon="10k"
-    bold="GitHub Actions"
-    href="/deployment/ingestion/external/github-actions" %}
+  </Card>
+  <Card
+    icon="/images/icons/celebration.svg"
+    title="GCP Composer "
+    href="/deployment/ingestion/external/gcp-composer"
+  >
+    Run the ingestion process externally from GCP Composer
+  </Card>
+  <Card
+    icon="/images/icons/celebration.svg"
+    title="GitHub Actions"
+    href="/deployment/ingestion/external/github-actions"
+  >
     Run the ingestion process externally from GitHub Actions
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>
 
 Let's jump now into some examples on how you could create the function the run the different workflows. Note that this code
 can then be executed inside a DAG, a GitHub action, or a vanilla Python script. It will work for any environment.
@@ -341,56 +341,36 @@ be it Database Services, Dashboard Services, Pipelines, etc.
 
 The rest of the workflows (Lineage, Profiler,...) will be executed on top of the metadata already available in the platform.
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=1 %}
+<Steps>
+<Step title="Adding the imports">
 **Adding the imports**
 
 The first step is to import the `MetadataWorkflow` class, which will take care of the full ingestion logic. We'll
 add the import for printing the results at the end.
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
+</Step>
+<Step title="Defining the YAML">
 **Defining the YAML**
 
 Then, we need to pass the YAML configuration. For this simple example we are defining a variable, but you can
 read from a file, parse secrets from your environment, or any other approach you'd need. In the end, it's just
 Python code.
 
-{% note %}
+<Tip>
 You can find complete YAMLs in each connector [docs](/connectors) and find more information about the available
 configurations.
-{% /note %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
+</Tip>
+</Step>
+<Step title="Preparing the Workflow">
 **Preparing the Workflow**
 
 Finally, we'll prepare a function that we can execute anywhere.
 
 It will take care of instantiating the workflow, executing it and giving us the results.
-{% /codeInfo %}
+</Step>
+</Steps>
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="ingestion.py" %}
-
-```python {% isCodeBlock=true %}
+```python
 import yaml
-
-```
-
-```python  {% srNumber=1 %}
-from metadata.workflow.metadata import MetadataWorkflow
- 
-
-```
-
-```python {% srNumber=2 %}
-
 CONFIG = """
 source:
   type: snowflake
@@ -415,11 +395,6 @@ workflowConfig:
     securityConfig:
       jwtToken: "{bot_jwt_token}"
 """
-
-```
-
-```python {% srNumber=3 %}
-
 def run():
     workflow = MetadataWorkflow.create(CONFIG)
     workflow.execute()
@@ -428,15 +403,11 @@ def run():
     workflow.stop()
 ```
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
-{% note %}
+<Tip>
 
 You can test the workflow via `metadata ingest -c <path-to-yaml>`.
 
-{% /note %}
+</Tip>
 
 
 ### Lineage Workflow
@@ -445,20 +416,16 @@ This workflow will take care of scanning your query history and defining lineage
 
 You can find more information about this workflow [here](/connectors/ingestion/lineage).
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=1 %}
+<Steps>
+<Step title="Adding the imports">
 **Adding the imports**
 
 The first step is to import the `MetadataWorkflow` class, which will take care of the full ingestion logic. We'll
 add the import for printing the results at the end.
 
 Note that we are using the same class as in the Metadata Ingestion.
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
+</Step>
+<Step title="Defining the YAML">
 **Defining the YAML**
 
 Then, we need to pass the YAML configuration. For this simple example we are defining a variable, but you can
@@ -470,38 +437,22 @@ metadata ingestion, we can let the Ingestion Framework dynamically fetch the Ser
 If, however, you are configuring the workflow with `storeServiceConnection: false`, you'll need to explicitly
 define the `serviceConnection`.
 
-{% note %}
+<Tip>
 You can find complete YAMLs in each connector [docs](/connectors) and find more information about the available
 configurations.
-{% /note %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
+</Tip>
+</Step>
+<Step title="Preparing the Workflow">
 **Preparing the Workflow**
 
 Finally, we'll prepare a function that we can execute anywhere.
 
 It will take care of instantiating the workflow, executing it and giving us the results.
-{% /codeInfo %}
+</Step>
+</Steps>
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="ingestion.py" %}
-
-```python {% isCodeBlock=true %}
+```python
 import yaml
-
-```
-
-```python  {% srNumber=1 %}
-from metadata.workflow.metadata import MetadataWorkflow
- 
-
-```
-
-```python {% srNumber=2 %}
-
 CONFIG = """
 source:
   type: snowflake-lineage
@@ -522,11 +473,6 @@ workflowConfig:
     securityConfig:
       jwtToken: "{bot_jwt_token}"
 """
-
-```
-
-```python {% srNumber=3 %}
-
 def run():
     workflow = MetadataWorkflow.create(CONFIG)
     workflow.execute()
@@ -535,15 +481,11 @@ def run():
     workflow.stop()
 ```
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
-{% note %}
+<Tip>
 
 You can test the workflow via `metadata ingest -c <path-to-yaml>`.
 
-{% /note %}
+</Tip>
 
 
 ### Usage Workflow
@@ -551,19 +493,14 @@ You can test the workflow via `metadata ingest -c <path-to-yaml>`.
 As with the lineage workflow, we'll scan the query history for any DML statements. The goal is to ingest queries
 into the platform, figure out the relevancy of your assets and frequently joined tables.
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=1 %}
+<Steps>
+<Step title="Adding the imports">
 **Adding the imports**
 
 The first step is to import the `UsageWorkflow` class, which will take care of the full ingestion logic. We'll
 add the import for printing the results at the end.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
+</Step>
+<Step title="Defining the YAML">
 **Defining the YAML**
 
 Then, we need to pass the YAML configuration. For this simple example we are defining a variable, but you can
@@ -576,38 +513,22 @@ If, however, you are configuring the workflow with `storeServiceConnection: fals
 define the `serviceConnection`.
 
 
-{% note %}
+<Tip>
 You can find complete YAMLs in each connector [docs](/connectors) and find more information about the available
 configurations.
-{% /note %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
+</Tip>
+</Step>
+<Step title="Preparing the Workflow">
 **Preparing the Workflow**
 
 Finally, we'll prepare a function that we can execute anywhere.
 
 It will take care of instantiating the workflow, executing it and giving us the results.
-{% /codeInfo %}
+</Step>
+</Steps>
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="ingestion.py" %}
-
-```python {% isCodeBlock=true %}
+```python
 import yaml
-
-```
-
-```python  {% srNumber=1 %}
-from metadata.workflow.usage import UsageWorkflow
- 
-
-```
-
-```python {% srNumber=2 %}
-
 CONFIG = """
 source:
   type: snowflake-usage
@@ -636,11 +557,6 @@ workflowConfig:
     securityConfig:
       jwtToken: "{bot_jwt_token}"
 """
-
-```
-
-```python {% srNumber=3 %}
-
 def run():
     workflow = UsageWorkflow.create(CONFIG)
     workflow.execute()
@@ -649,15 +565,11 @@ def run():
     workflow.stop()
 ```
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
-{% note %}
+<Tip>
 
 You can test the workflow via `metadata usage -c <path-to-yaml>`.
 
-{% /note %}
+</Tip>
 
 ### Profiler Workflow
 
@@ -668,19 +580,14 @@ This is an interesting previous step before creating Data Quality Workflows.
 
 You can find more information about this workflow [here](/how-to-guides/data-quality-observability/profiler/workflow).
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=1 %}
+<Steps>
+<Step title="Adding the imports">
 **Adding the imports**
 
 The first step is to import the `ProfilerWorkflow` class, which will take care of the full ingestion logic. We'll
 add the import for printing the results at the end.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
+</Step>
+<Step title="Defining the YAML">
 **Defining the YAML**
 
 Then, we need to pass the YAML configuration. For this simple example we are defining a variable, but you can
@@ -692,38 +599,22 @@ metadata ingestion, we can let the Ingestion Framework dynamically fetch the Ser
 If, however, you are configuring the workflow with `storeServiceConnection: false`, you'll need to explicitly
 define the `serviceConnection`.
 
-{% note %}
+<Tip>
 You can find complete YAMLs in each connector [docs](/connectors) and find more information about the available
 configurations.
-{% /note %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
+</Tip>
+</Step>
+<Step title="Preparing the Workflow">
 **Preparing the Workflow**
 
 Finally, we'll prepare a function that we can execute anywhere.
 
 It will take care of instantiating the workflow, executing it and giving us the results.
-{% /codeInfo %}
+</Step>
+</Steps>
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="ingestion.py" %}
-
-```python {% isCodeBlock=true %}
+```python
 import yaml
-
-```
-
-```python  {% srNumber=1 %}
-from metadata.workflow.profiler import ProfilerWorkflow
- 
-
-```
-
-```python {% srNumber=2 %}
-
 CONFIG = """
 source:
   type: snowflake
@@ -746,11 +637,6 @@ workflowConfig:
     securityConfig:
       jwtToken: "{bot_jwt_token}"
 """
-
-```
-
-```python {% srNumber=3 %}
-
 def run():
     workflow = ProfilerWorkflow.create(CONFIG)
     workflow.execute()
@@ -759,15 +645,11 @@ def run():
     workflow.stop()
 ```
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
-{% note %}
+<Tip>
 
 You can test the workflow via `metadata profile -c <path-to-yaml>`.
 
-{% /note %}
+</Tip>
 
 
 ### Data Quality Workflow
@@ -779,19 +661,14 @@ This is an interesting previous step before creating Data Quality Workflows.
 
 You can find more information about this workflow [here](/how-to-guides/data-quality-observability/quality/configure).
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=1 %}
+<Steps>
+<Step title="Adding the imports">
 **Adding the imports**
 
 The first step is to import the `TestSuiteWorkflow` class, which will take care of the full ingestion logic. We'll
 add the import for printing the results at the end.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
+</Step>
+<Step title="Defining the YAML">
 **Defining the YAML**
 
 Then, we need to pass the YAML configuration. For this simple example we are defining a variable, but you can
@@ -806,38 +683,22 @@ define the `serviceConnection`.
 Moreover, see how we are not configuring any tests in the `processor`. You can do [that](/how-to-guides/data-quality-observability/quality/configure#full-yaml-config-example),
 but even if nothing gets defined in the YAML, we will execute all the tests configured against the table.
 
-{% note %}
+<Tip>
 You can find complete YAMLs in each connector [docs](/connectors) and find more information about the available
 configurations.
-{% /note %}
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
+</Tip>
+</Step>
+<Step title="Preparing the Workflow">
 **Preparing the Workflow**
 
 Finally, we'll prepare a function that we can execute anywhere.
 
 It will take care of instantiating the workflow, executing it and giving us the results.
-{% /codeInfo %}
+</Step>
+</Steps>
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="ingestion.py" %}
-
-```python {% isCodeBlock=true %}
+```python
 import yaml
-
-```
-
-```python  {% srNumber=1 %}
-from metadata.workflow.data_quality import TestSuiteWorkflow
- 
-
-```
-
-```python {% srNumber=2 %}
-
 CONFIG = """
 source:
   type: TestSuite
@@ -859,11 +720,6 @@ workflowConfig:
     securityConfig:
       jwtToken: "{bot_jwt_token}"
 """
-
-```
-
-```python {% srNumber=3 %}
-
 def run():
     workflow = TestSuiteWorkflow.create(CONFIG)
     workflow.execute()
@@ -872,12 +728,8 @@ def run():
     workflow.stop()
 ```
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
-{% note %}
+<Tip>
 
 You can test the workflow via `metadata test -c <path-to-yaml>`.
 
-{% /note %}
+</Tip>

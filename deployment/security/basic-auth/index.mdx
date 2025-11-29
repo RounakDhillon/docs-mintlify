@@ -5,7 +5,7 @@ slug: /deployment/security/basic-auth
 collate: false
 ---
 
-import SmtpEmail from '/snippets/deployments/smtp-email.mdx'
+import SmtpEmail from '/snippets/deployment/smtp-email.mdx'
 import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 
 # UserName/Password Login
@@ -29,13 +29,13 @@ config:
 
 With this setup, the default Username will be `admin@yourdomain.com`.
 
-{%important%}
+<Warning>
 
 Security requirements for your **production** environment:
 - **DELETE** the admin default account shipped by OM.
 - **UPDATE** the Private / Public keys used for the [JWT Tokens](/deployment/security/enable-jwt-tokens) in case it is enabled.
 
-{%/important%}
+</Warning>
 
 # Setting up Basic Auth Manually
 
@@ -79,7 +79,7 @@ For the Basic auth we need to set:
 - `allowedEmailRegistrationDomains`: This controls what all domain are allowed for email registration can be your {principalDomain} as well, for example gmail.com, outlook.comm etc.
 - `principalDomain`: This controls what all domain are allowed for email registration, for example gmail.com, outlook.comm etc. When `AUTHORIZER_ENFORCE_PRINCIPAL_DOMAIN` is set to `true`, only users with email addresses from the `AUTHORIZER_PRINCIPAL_DOMAIN` can log in.
 
-{%note%}
+<Tip>
 
 Please note the following are the formats to bootstrap admins on server startup: `[admin1,admin2,admin3]`
 
@@ -89,7 +89,7 @@ If SMTP is not enabled for OpenMetadata, please use the method below to create a
 
 After logging into the OpenMetadata UI, admin users can change their default password by navigating to `Settings > Members > Admins`.
 
-{%/note%}
+</Tip>
 
 ## Metadata Ingestion
 

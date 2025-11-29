@@ -4,7 +4,9 @@ description: Use YAML to configure AlationSink metadata ingestion and push terms
 slug: /connectors/metadata/alationsink/yaml
 ---
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -12,15 +14,14 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="AlationSink"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Metadata"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Alation Sink connector.
 
@@ -43,16 +44,12 @@ Follow the link [here](https://developer.alation.com/dev/docs/authentication-int
 
 Following entities are supported and will be mapped to the from OpenMetadata to the entities in Alation.
 
-{% multiTablesWrapper %}
-
 | Alation Entity               | OpenMetadata Entity          |
 | :----------------------------| :--------------------------- |
 | Data Source (OCF)            | Database                     |
 | Schema                       | Schema                       |
 | Table                        | Table                        |
 | Columns                      | Columns                      |
-
-{% /multiTablesWrapper %}
 
 ### Python Requirements
 
@@ -79,19 +76,11 @@ The workflow is modeled around the following
 
 ### 1. Define the YAML Config
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=12 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: Host and port of the Alation service.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=13 %}
+</Step>
+<Step title="authType">
 **authType**:
 
 Following authentication types are supported:
@@ -101,23 +90,14 @@ Following authentication types are supported:
 
 2. Access Token Authentication: The access token created using the steps mentioned [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-via-ui) can directly be entered. We'll use that directly to authenticate the Alation APIs
 - accessToken: Generated access token
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=14 %}
-
+</Step>
+<Step title="projectName">
 **projectName**: Project name to create the refreshToken. Can be anything.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=16 %}
-
+</Step>
+<Step title="paginationLimit">
 **paginationLimit**: Pagination limit used for Alation APIs pagination
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=17 %}
-
+</Step>
+<Step title="datasourceLinks">
 **datasourceLinks**: Add a custom mapping between OpenMetadata databases and Alation DataSources.
 If this mapping is present the connector will only look for the datasource in Alation to create other entities inside it. It will not create the datasource in Alation and it'll need to be created beforehand.
 
@@ -132,35 +112,21 @@ datasourceLinks: {
     "15": "mysql_prod.customers_db",
 }
 ```
-
-{% /codeInfo %}
-
-#### Sink Configuration
-
-{% codeInfo srNumber=18 %}
-
+</Step>
+<Step title="To send the metadata to">
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<WorkflowConfigDef />
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: AlationSink
   serviceName: local_alation_sink
   serviceConnection:
     config:
       type: AlationSink
-```
-```yaml {% srNumber=12 %}
-      hostPort: https://alation.example.com
-```
-```yaml {% srNumber=13 %}
-      # Select one authentication type from below
+hostPort: https://alation.example.com
+# Select one authentication type from below
       # For Basic Authentication
       authType:
         username: user_name
@@ -168,34 +134,20 @@ source:
       # # For Access Token Authentication
       # authType:
       #   accessToken: access_token
-```
-```yaml {% srNumber=14 %}
-      projectName: Test
-```
-```yaml {% srNumber=15 %}
-      paginationLimit: 10
-```
-```yaml {% srNumber=16 %}
-      # datasourceLinks: {
+projectName: Test
+paginationLimit: 10
+# datasourceLinks: {
       #   "23": "om_service_name.om_db_name",
       #   "24": "om_service_name_two.om_db_name_two",
       # }
-```
-```yaml {% srNumber=17 %}
-  sourceConfig:
+sourceConfig:
     config:
       type: DatabaseMetadata
-```
-```yaml {% srNumber=18 %}
 sink:
   type: metadata-rest
   config: {}
 ```
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

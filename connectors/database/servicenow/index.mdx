@@ -5,6 +5,8 @@ slug: /connectors/database/servicenow
 Collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -13,19 +15,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="ServiceNow"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Metadata", "Lineage"]
-unavailableFeatures=["Query Usage", "Data Profiler", "Data Quality", "dbt", "Stored Procedures", "Owners", "Tags", "Sample Data", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata", "Lineage"]}
+unavailableFeatures={["Query Usage", "Data Profiler", "Data Quality", "dbt", "Stored Procedures", "Owners", "Tags", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the ServiceNow connector.
 
@@ -33,8 +31,6 @@ Configure and schedule ServiceNow metadata workflows from the OpenMetadata UI:
 
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/servicenow/yaml" />
 
 ## Requirements
 
@@ -48,8 +44,7 @@ To fetch metadata from ServiceNow into OpenMetadata you will need:
 
 <MetadataIngestionUi connector={"ServiceNow"} selectServicePath={"/images/connectors/servicenow/select-service.png"} addNewServicePath={"/images/connectors/servicenow/add-new-service.png"} serviceConnectionPath={"/images/connectors/servicenow/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -61,14 +56,12 @@ To fetch metadata from ServiceNow into OpenMetadata you will need:
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

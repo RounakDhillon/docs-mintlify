@@ -4,23 +4,22 @@ slug: /connectors/database/ssas
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/database/configure-ingestion.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="SSAS"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Metadata", "Lineage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Metadata", "Lineage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the SSAS connector.
 
@@ -30,9 +29,6 @@ Configure and schedule SSAS metadata and profiler workflows from the Collate UI:
 - [Metadata Ingestion](#metadata-ingestion)
     - [Connection Details](#connection-details)
 - [Troubleshooting](/connectors/database/ssas/troubleshooting)
-
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/ssas/yaml" />
 
 ## Requirements
 To extract metadata from SSAS, ensure the following requirements are met:
@@ -44,13 +40,11 @@ To extract metadata from SSAS, ensure the following requirements are met:
 
 These steps are necessary to allow the connector to communicate with your SSAS instance and retrieve metadata successfully.
 
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"SSAS"} selectServicePath={"/images/connectors/ssas/select-service.png"} addNewServicePath={"/images/connectors/ssas/add-new-service.png"} serviceConnectionPath={"/images/connectors/ssas/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -60,14 +54,11 @@ These steps are necessary to allow the connector to communicate with your SSAS i
 
 **Example Connection JSON:**
 
-
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 

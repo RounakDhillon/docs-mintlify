@@ -6,22 +6,21 @@ slug: /connectors/messaging/redpanda
 
 import ConfigureIngestion from '/snippets/connectors/messaging/configure-ingestion.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Redpanda"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Topics", "Sample Data"]
-unavailableFeatures=[]
-/ %}
-
+availableFeatures={["Topics", "Sample Data"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Redpanda connector.
 
@@ -30,8 +29,6 @@ Configure and schedule Redpanda metadata and profiler workflows from the OpenMet
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/messaging/redpanda/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/messaging/redpanda/yaml" />
 
 ## Requirements
 
@@ -43,8 +40,7 @@ The ingestion of the Kafka topics' schema is done separately by configuring the 
 
 <MetadataIngestionUi connector={"Redpanda"} selectServicePath={"/images/connectors/redpanda/select-service.png"} addNewServicePath={"/images/connectors/redpanda/add-new-service.png"} serviceConnectionPath={"/images/connectors/redpanda/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -57,11 +53,9 @@ The ingestion of the Kafka topics' schema is done separately by configuring the 
 - **Consumer Config**: The accepted additional values for the consumer configuration can be found in the following [link](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.mdx).
 - **Schema Registry Config**: The accepted additional values for the Schema Registry configuration can be found in the following [link](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schemaregistryclient).
 
-{% note %}
+<Tip>
 To ingest the topic schema `Schema Registry URL` must be passed
-{% /note %}
-
-{% /extraContent %}
+</Tip>
 
 <TestConnection />
 
@@ -69,4 +63,4 @@ To ingest the topic schema `Schema Registry URL` must be passed
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

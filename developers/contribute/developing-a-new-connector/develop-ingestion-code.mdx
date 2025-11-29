@@ -87,10 +87,14 @@ From the Service Topology you can understand what methods you need to implement:
 
 Can be found in [`ingestion/src/metadata/ingestion/source/database/database_service.py`](https://github.com/open-metadata/OpenMetadata/blob/main/ingestion/src/metadata/ingestion/source/database/database_service.py)
 
-{%inlineCallout icon="description" bold="OpenMetadata 1.6.0 or later" href="/deployment"%}
-Starting from 1.6.0 the OpenMetadata Ingestion Framewotk is using a ServiceSpec specificaiton
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="OpenMetadata 1.6.0 or later"
+    href="/deployment"
+  >
+    Starting from 1.6.0 the OpenMetadata Ingestion Framewotk is using a ServiceSpec specificaiton
 in order to define the entrypoints for the ingestion process.
-{%/inlineCallout%}
+  </Card>
 
 
 ```python
@@ -207,13 +211,13 @@ Now that you understand how the Ingestion Process works, you need to understand 
 A Service Source is an abstract class that is the base for any Connector from that Source Type.
 They tend to have a lot of methods and are pretty overwhelming at first glance but you don't need to worry. You'll need to check which abstract methods you need to implement in your connector.
 
-{% note %}
+<Tip>
 **Hint**
 
 You can start slow, yielding nothing with `yield from []` to see the whole flow running and then slowly implement the features you want.
 
 On this note, also remember that you don't need to implement everything. You could contribute by start and implement just the Metadata Extraction features but without extracting Owner/Tags or deal with Lineage.
-{% /note %}
+</Tip>
 
 ### Example - DatabaseServiceSource
 
@@ -609,10 +613,10 @@ class DatabaseServiceSource(
 With the Code ready to go, we can now proceed to make a small change in the UI to be able to configure the Connector properly from there.
 
 
-{%inlineCallout
-  color="violet-70"
-  bold="Apply the UI Changes"
-  icon="MdArrowForward"
-  href="/developers/contribute/developing-a-new-connector/apply-ui-changes"%}
-  Learn what you need to do to be able see the Connector properly in the UI
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Apply the UI Changes"
+    href="/developers/contribute/developing-a-new-connector/apply-ui-changes"
+  >
+    Learn what you need to do to be able see the Connector properly in the UI
+  </Card>

@@ -7,7 +7,14 @@ collate: true
 
 # Reverse Metadata Application
 
-{% youtube videoId="EWYDfhCgW8k" start="0:00" end="2:16" width="800px" height="450px" /%}
+<iframe
+  width="800"
+  height="450"
+  src="https://www.youtube.com/embed/EWYDfhCgW8k?start=0&end=136"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen>
+</iframe>
 
 The **Reverse Metadata Application** ensures real-time synchronization of metadata changes. Once installed and configured, any updates made to selected assets in Collate—such as descriptions, tags, or owners—are automatically in real-time propagated back to the source systems. There’s no need to trigger the application manually. This live sync ensures Collate remains the single source of truth while all connected systems stay up to date and compliant with governance policies.
 
@@ -53,14 +60,14 @@ You can assign ownership (individuals or teams) to data assets in **Collate** an
 
 - This ownership info is saved in the original system’s metadata, making it easier to identify responsibilities and understand data flow.
 
-{% note %}
+<Tip>
 
 - Team ownership is currently not supported in the reverse metadata sync process. Support for syncing team-based ownership may be introduced in future releases.
 - The owner update functionality currently supports syncing only a **single owner** back to the source system.
 - If an entity in Collate has multiple owners, **only one owner** will be propagated during the reverse metadata sync.
 - Support for syncing **multiple owners** is planned for future enhancements.
 
-{% /note %}
+</Tip>
 
 ### Tags
 
@@ -161,20 +168,12 @@ This sets or updates schema-level labels, such as sensitive classifications. Use
 
 1. Navigate to **Settings > Applications**.
 
-{% image
-src="/images/v1.9/applications/autopilot.png"
-alt="Install Reverse Metadata Application"
-caption="Install Reverse Metadata Application"
-/%}
+<img src="/images/v1.9/applications/autopilot.png" alt="Install Reverse Metadata Application" />
 
 2. Click **Add Apps** and install the **Reverse Metadata Application**.
 3. After installation, configure the synchronization channels as described below in screenshot. The Filter section allows you to define which assets should be included in a sync channel by applying conditions based on  tables: the service, database or schema they belong to, their name, owners, domain, and even by Custom Properties!
 
-{% image
-src="/images/v1.9/applications/reverse/reverse-metadata-application.png"
-alt="Configuration"
-caption="Configuration"
-/%}
+<img src="/images/v1.9/applications/reverse/reverse-metadata-application.png" alt="Configuration" />
 
 In the Above screenshot, a filter is set to update descriptions only when the tag is "Sensitive." This helps keep all sensitive tag descriptions in sync. At the same time, reverse metadata runs automatically.
 
@@ -216,40 +215,32 @@ The **Sink Service** parameter allows you to redirect metadata changes from one 
 3. Instead of syncing back to Trino, it syncs to the specified Ranger service
 4. The Ranger service receives the updated metadata and applies governance policies
 
-{% note %}
+<Tip>
 
 **Important Requirements:**
 - The sink service name must exactly match the service name configured in OpenMetadata
 - Currently, only security services are supported as sink services
 - Ensure the sink service has the necessary permissions and configurations to receive metadata updates
 
-{% /note %}
+</Tip>
 
 ## Run Now to Clean Workflows
 
-{% image
-src="/images/v1.9/applications/reverse/reverse-metadata-application1.png"
-alt="Scheduling"
-caption="Scheduling"
-/%}
+<img src="/images/v1.9/applications/reverse/reverse-metadata-application1.png" alt="Scheduling" />
 
 Users can monitor the running state of workflows, and in case of a failure, use the options below to clean them up:
 
 - **Run Now:**- This lets you manually initiate a cleanup operation for failed workflows. This option will only be used to clean workflows. They will not trigger reverse metadata. It is an automatic synchronization.
 - **Scheduled Run:**- This automatically re-runs cleanup operations based on a defined schedule (e.g., daily or weekly).
 
-{% note %}
+<Tip>
 
 The Run Now option currently does not trigger any reverse metadata workflows. It is intended for manual cleanup of failed operations only.
 
 Support for batch reverse metadata execution via Run Now is planned for future releases. This note is added to help set clear expectations for users.
 
-{% /note %}
+</Tip>
 
-{% image
-src="/images/v1.9/applications/reverse/reverse-metadata-application2.png"
-alt="Recent Runs"
-caption="Recent Runs"
-/%}
+<img src="/images/v1.9/applications/reverse/reverse-metadata-application2.png" alt="Recent Runs" />
 
 In the Recent Runs tab, users can monitor the results of all workflow executions. Detailed logs are available for each run, making it easy to review outcomes and troubleshoot any failures.

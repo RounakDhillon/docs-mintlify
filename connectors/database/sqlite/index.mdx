@@ -4,6 +4,8 @@ description: Learn to Configure OpenMetadata'sSQLite database connector for seam
 slug: /connectors/database/sqlite
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="SQLite"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Owners", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Presto connector.
 
@@ -38,8 +36,6 @@ Configure and schedule Presto metadata and profiler workflows from the OpenMetad
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/sqlite/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/sqlite/yaml" />
-
 ## Requirements
 
 ### Metadata
@@ -50,8 +46,7 @@ To extract metadata, the user needs to be able to perform `.tables`, `.schema`, 
 
 <MetadataIngestionUi connector={"SQLite"} selectServicePath={"/images/connectors/sqlite/select-service.png"} addNewServicePath={"/images/connectors/sqlite/add-new-service.png"} serviceConnectionPath={"/images/connectors/sqlite/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -63,14 +58,12 @@ To extract metadata, the user needs to be able to perform `.tables`, `.schema`, 
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

@@ -4,14 +4,15 @@ description: Configure OpenMetadata'sAthena database connector with YAML - step-
 slug: /connectors/database/athena/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -21,23 +22,22 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
 
-import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
 
-import AwsConfig from 'snippets/connectors/yaml/common/aws-config.mdx'
+import AwsConfig from '/snippets/connectors/yaml/common/aws-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Athena"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Auto-Classification", "Data Quality", "Tags", "dbt", "Sample Data", "Reverse Metadata (Collate Only)"]
-unavailableFeatures=["Owners", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Auto-Classification", "Data Quality", "Tags", "dbt", "Sample Data", "Reverse Metadata (Collate Only)"]}
+unavailableFeatures={["Owners", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Athena connector.
 
@@ -50,9 +50,7 @@ Configure and schedule Athena metadata and profiler workflows from the OpenMetad
 - [Data Profiler](#data-profiler)
 - [Data Quality](#data-quality)
 - [dbt Integration](#dbt-integration)
-{% collateContent %}
 - [Reverse Metadata](/applications/reverse-metadata)
-{% /collateContent %}
 
 <ExternalIngestionDeployment />
 
@@ -60,14 +58,14 @@ Configure and schedule Athena metadata and profiler workflows from the OpenMetad
 
 The Athena connector ingests metadata through JDBC connections.
 
-{% note %}
+<Tip>
 
 According to AWS's official [documentation](https://docs.aws.amazon.com/athena/latest/ug/policy-actions.html):
 
 *If you are using the JDBC or ODBC driver, ensure that the IAM
 permissions policy includes all of the actions listed in [AWS managed policy: AWSQuicksightAthenaAccess](https://docs.aws.amazon.com/athena/latest/ug/managed-policies.html#awsquicksightathenaaccess-managed-policy).*
 
-{% /note %}
+</Tip>
 
 This policy groups the following permissions:
 
@@ -161,11 +159,11 @@ And is defined as:
 ### LF-Tags
 Athena connector ingests and creates LF-tags in OpenMetadata with LF-tag key mapped to OpenMetadata's classification and the values mapped to tag labels. To ingest LF-tags provide the appropriate permissions as to the resources as mentioned above and enable the `includeTags` toggle in the ingestion config.
 
-{% note %}
+<Tip>
 
 If you have external services other than glue and facing permission issues, add the permissions to the list above.
 
-{% /note %}
+</Tip>
 
 
 You can find further information on the Athena connector in the [docs](/connectors/database/athena).
@@ -197,51 +195,27 @@ The workflow is modeled around the following
 
 This is a sample config for Athena:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-<AwsConfigDef />
-
-{% codeInfo srNumber=9 %}
-
+<Steps>
+<Step title="s3StagingDir">
 **s3StagingDir**: The S3 staging directory is an optional parameter. Enter a staging directory to override the default staging directory for AWS Athena.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=10 %}
-
+</Step>
+<Step title="workgroup">
 **workgroup**: The Athena workgroup is an optional parameter. If you wish to have your Athena connection related to an existing AWS workgroup add your workgroup name here.
-
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=11 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=12 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: athena
   serviceName: local_athena
@@ -249,34 +223,21 @@ source:
     config:
       type: Athena
       awsConfig:
+s3StagingDir: s3 directory for datasource
+workgroup: workgroup name
+# connectionOptions:
+        # key: value
+# connectionArguments:
+        # key: value
 ```
 
 <AwsConfig />
-
-```yaml {% srNumber=9 %}
-      s3StagingDir: s3 directory for datasource
-```
-```yaml {% srNumber=10 %}
-      workgroup: workgroup name
-```
-```yaml {% srNumber=11 %}
-      # connectionOptions:
-        # key: value
-```
-```yaml {% srNumber=12 %}
-      # connectionArguments:
-        # key: value
-```
 
 <SourceConfig />
 
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 
@@ -292,12 +253,10 @@ source:
 
 ## dbt Integration
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-  icon="mediation"
-  title="dbt Integration"
-  description="Learn more about how to ingest dbt models' definitions and their lineage."
-  link="/connectors/ingestion/workflows/dbt" /%}
+<Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
+  Learn more about how to ingest dbt models
+</Card>
 
-{% /tilesContainer %}
+</Columns>

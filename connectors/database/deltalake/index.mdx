@@ -4,6 +4,8 @@ description: Connect OpenMetadata to Delta Lake with our comprehensive database 
 slug: /connectors/database/deltalake
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,20 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Delta Lake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "dbt"]
-unavailableFeatures=["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "Owners", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]
-/ %}
-
+availableFeatures={["Metadata", "dbt"]}
+unavailableFeatures={["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "Owners", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Delta Lake connector.
 
@@ -35,9 +32,6 @@ Configure and schedule Delta Lake metadata and profiler workflows from the OpenM
 - [Metadata Ingestion](#metadata-ingestion)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/deltalake/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/deltalake/yaml" />
-
 
 ## Requirements
 
@@ -75,8 +69,7 @@ To execute metadata extraction AWS account should have enough access to fetch re
 
 <MetadataIngestionUi connector={"DeltaLake"} selectServicePath={"/images/connectors/deltalake/select-service.png"} addNewServicePath={"/images/connectors/deltalake/add-new-service.png"} serviceConnectionPath={"/images/connectors/deltalake/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details For MetastoreConfig
 
@@ -185,10 +178,7 @@ Find more information about the [Role Session Name](https://docs.aws.amazon.com/
 
 Find more information about [Source Identity](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=Required%3A%20No-,SourceIdentity,-The%20source%20identity).
 
-
 <AdvancedConfiguration />
-
-{% /extraContent %}
 
 <TestConnection />
 
@@ -196,6 +186,6 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

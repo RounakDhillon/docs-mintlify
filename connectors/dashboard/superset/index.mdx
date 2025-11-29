@@ -4,6 +4,8 @@ description: Learn how to connect Apache Superset dashboards to OpenMetadata wit
 slug: /connectors/dashboard/superset
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
@@ -14,17 +16,14 @@ import DashboardLineage from '/snippets/connectors/dashboard/dashboard-lineage.m
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Superset"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Lineage", "Owners", "Datamodels", "Column Lineage"]
-  unavailableFeatures=["Tags", "Projects"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Datamodels", "Column Lineage"]}
+  unavailableFeatures={["Tags", "Projects"]} />
 
 In this section, we provide guides and references to use the Superset connector.
 
@@ -35,8 +34,6 @@ Configure and schedule Superset metadata and profiler workflows from the OpenMet
 - [Enable Security](#securing-superset-connection-with-ssl-in-openmetadata)
 - [Lineage](#lineage)
 - [Troubleshooting](/connectors/dashboard/superset/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/superset/yaml" />
 
 ## Requirements
 
@@ -50,8 +47,7 @@ The ingestion also works with Superset 2.0.0 🎉
 
 <MetadataIngestionUi connector={"Superset"} selectServicePath={"/images/connectors/superset/select-service.png"} addNewServicePath={"/images/connectors/superset/add-new-service.png"} serviceConnectionPath={"/images/connectors/superset/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -63,9 +59,9 @@ The ingestion also works with Superset 2.0.0 🎉
 
 Superset API connection is the default mode of authentication where we fetch the metadata using [Superset APIs](https://superset.apache.org/docs/api/). 
 
-{% note %}
+<Tip>
 Superset only supports basic or ldap authentication through APIs so if you have SSO enabled on your Superset instance then this mode of authentication will not work for you and you can opt for MySQL or Postgres Connection to fetch metadata directly from the database in the backend of Superset.
-{% /note %}
+</Tip>
 
 - **Username**: Username to connect to Superset, for ex. `user@organization.com`. This user should have access to relevant dashboards and charts in Superset to fetch the metadata.
 - **Password**: Password of the user account to connect with Superset.
@@ -107,40 +103,26 @@ You can use Postgres Connection when you have SSO enabled and your Superset is b
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ## Securing Superset Connection with SSL in OpenMetadata
 
 1. To establish secure connections between OpenMetadata and Superset, navigate to the `Advanced Config` section. We need to update the `Certificate Path` and ensure that the certificates are accessible from the Airflow Server.
 
-  {% image
-  src="/images/v1.9/connectors/ssl_superset.png"
-  alt="Supertset API SSL Configuration"
-  height="450px"
-  caption="SSL Configuration" /%}
+  <img src="/images/v1.9/connectors/ssl_superset.png" alt="Supertset API SSL Configuration" height="450px" />
 
 2. To establish secure connections between OpenMetadata and Superset's MySQL database, you need to configure SSL certificates appropriately. If you only require SSL validation, specify the `caCertificate` to use the CA certificate for validating the server's certificate. For mutual authentication, where both client and server need to authenticate each other, you must provide all three parameters: `ssl_key` for the client’s private key, `ssl_cert` for the client’s SSL certificate, and `ssl_ca` for the CA certificate to validate the server’s certificate.
 
-{% image
-  src="/images/v1.9/connectors/ssl_superset_mysql.png"
-  alt="MySQL SSL Configuration"
-  height="450px"
-  caption="SSL Configuration" /%}
+<img src="/images/v1.9/connectors/ssl_superset_mysql.png" alt="MySQL SSL Configuration" height="450px" />
 
 3. To establish secure connections between OpenMetadata and Superset's PostgreSQL database, you can configure SSL using different SSL modes provided by PostgreSQL, each offering varying levels of security.Under `PostgresConnection Advanced Config`, specify the SSL mode appropriate for your connection, such as `prefer`, `verify-ca`, `allow`, and others. After selecting the SSL mode, provide the CA certificate used for SSL validation (`caCertificate`). Note that PostgreSQL requires only the CA certificate for SSL validation.
 
-{% image
-  src="/images/v1.9/connectors/ssl_superset_postgres.png"
-  alt="Postgres SSL Configuration"
-  height="450px"
-  caption="SSL Configuration" /%}
+<img src="/images/v1.9/connectors/ssl_superset_postgres.png" alt="Postgres SSL Configuration" height="450px" />
 
 <DashboardLineage />

@@ -4,6 +4,8 @@ description: Connect your Azure Data Lake Storage to OpenMetadata with our ADLS 
 slug: /connectors/database/adls-datalake
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="ADLS Datalake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the ADLS Datalake connector.
 
@@ -35,13 +33,11 @@ Configure and schedule Datalake metadata and profiler workflows from the OpenMet
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [Troubleshooting](/connectors/database/adls-datalake/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/adls-datalake/yaml" />
-
 ## Requirements
 
-{% note %}
+<Tip>
 The ADLS Datalake connector supports extracting metadata from file types `JSON`, `CSV`, `TSV` & `Parquet`.
-{% /note %}
+</Tip>
 
 ### ADLS Permissions
 
@@ -54,8 +50,7 @@ permissions on the Storage Account:
 
 <MetadataIngestionUi connector={"ADLS Datalake"} selectServicePath={"/images/connectors/adls-datalake/select-service.png"} addNewServicePath={"/images/connectors/adls-datalake/add-new-service.png"} serviceConnectionPath={"/images/connectors/adls-datalake/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details for Azure
 
@@ -76,14 +71,12 @@ The current approach for authentication is based on `app registration`, reach ou
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

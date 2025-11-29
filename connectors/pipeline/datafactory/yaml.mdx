@@ -5,13 +5,14 @@ slug: /connectors/pipeline/datafactory/yaml
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AzureConfigDef from '/snippets/connectors/yaml/common/azure-config-def.mdx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -21,17 +22,16 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import AzureConfig from 'snippets/connectors/yaml/common/azure-config.mdx'
+import AzureConfig from '/snippets/connectors/yaml/common/azure-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Azure Data Factory"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Lineage"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Lineage"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 
 In this section, we provide guides and references to use the Azure Data Factory connector.
@@ -83,41 +83,25 @@ The workflow is modeled around the following
 
 This is a sample config for Data Factory:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
+<Steps>
+<Step title="subscription_id">
 
 #### Source Configuration - Service Connection
 
 <AzureConfigDef />
 
-{% codeInfo srNumber=5 %}
-
 **subscription_id**: Your Azure subscription’s unique identifier. In the Azure portal, navigate to Subscriptions > Your Subscription > Overview. You’ll see the subscription ID listed there.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="resource_group_name">
 **resource_group_name**: This is the name of the resource group that contains your Data Factory instance. In the Azure portal, navigate to Resource Groups. Find your resource group, and note the name.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="factory_name">
 **factory_name**: The name of your Data Factory instance. In the Azure portal, navigate to Data Factories and find your Data Factory. The Data Factory name will be listed there.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="run_filter_days">
 **run_filter_days**: The days range when filtering pipeline runs. It specifies how many days back from the current date to look for pipeline runs, and filter runs within the given period of days. Default is `7` days. `Optional`
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -125,33 +109,32 @@ This is a sample config for Data Factory:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: datafactory
   serviceName: datafactory_source
   serviceConnection:
     config:
       type: DataFactory
-      configSource: 
+      configSource:
+subscription_id: subscription_id
+resource_group_name: resource_group_name
+factory_name: factory_name
+run_filter_days: 7
 ```
 
 <AzureConfig />
 
-```yaml {% srNumber=5 %}
+```yaml
       subscription_id: subscription_id
 ```
-```yaml {% srNumber=6 %}
+```yaml
       resource_group_name: resource_group_name
 ```
-```yaml {% srNumber=7 %}
+```yaml
       factory_name: factory_name
 ```
-```yaml {% srNumber=8 %}
+```yaml
       run_filter_days: 7
 ```
 
@@ -160,9 +143,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

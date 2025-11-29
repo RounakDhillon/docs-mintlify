@@ -74,11 +74,11 @@ There are specific workflows (Usage & Lineage) that will use the query log infor
 listed here is to run the workflow by providing the Query Logs that you have previously exported and then running
 the [workflow](/connectors/ingestion/workflows/usage/usage-workflow-query-logs).
 
-{% note %}
+<Tip>
 
 Checkout the documentation of the connector you are using to know if it supports lineage & usage.
 
-{% \note %}
+</Tip>
 
 #### Process
 
@@ -86,7 +86,7 @@ That being said, this process is the same as the one shown in the View Lineage a
 parse, we will obtain the `source` and `target` information, use ElasticSearch to identify the Entities in OpenMetadata
 and then send the lineage to the API.
 
-{% note %}
+<Tip>
 
 When running any query from within OpenMetadata we add an information comment to the query text
 
@@ -97,7 +97,7 @@ When running any query from within OpenMetadata we add an information comment to
 Note that queries with this text as well as the ones containing headers from dbt (which follow a similar structure),
 will be filtered out when building the query log internally.
 
-{% /note %}
+</Tip>
 
 #### Troubleshooting
 
@@ -123,11 +123,7 @@ the data feeding the Dashboards and Charts.
 
 When ingesting the Dashboards metadata, the workflow will pick up the origin tables (or database, in the case of
 PowerBI), and prepare the lineage information.
-{% image
-  src="/images/v1.9/features/ingestion/lineage/dashboard-ingestion-lineage.png"
-  alt="Dashboard Lineage"
-  caption="Dashboard Lineage"
- /%}
+<img src="/images/v1.9/features/ingestion/lineage/dashboard-ingestion-lineage.png" alt="Dashboard Lineage" />
 
 ## Pipeline Services
 
@@ -144,13 +140,12 @@ setup `inlets` and `outlets`. You can find more information about it
 Sometimes there is information that is shared among people but not present in the sources. To enable capturing all
 the possible knowledge, you can also add lineage manually with our UI editor.
 
-{%inlineCalloutContainer%}
-
-{%inlineCallout
-  icon="celebration"
-  bold="Manual Lineage"
-  href="/connectors/ingestion/lineage/edit-lineage-manually"%}
-Capture Lineage knowledge with the UI editor.
-{%/inlineCallout%}
-
-{%/inlineCalloutContainer%}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Manual Lineage"
+    href="/connectors/ingestion/lineage/edit-lineage-manually"
+  >
+    Capture Lineage knowledge with the UI editor.
+  </Card>
+</CardGroup>

@@ -4,12 +4,13 @@ description: Learn how to Configure OpenMetadata'sdbt Cloud connector using YAML
 slug: /connectors/pipeline/dbtcloud/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="dbt Cloud"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Tags", "Usage"]
-unavailableFeatures=["Owners", "Lineage"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Tags", "Usage"]}
+unavailableFeatures={["Owners", "Lineage"]} />
 
 
 In this section, we provide guides and references to use the dbt Cloud connector.
@@ -62,87 +62,65 @@ The workflow is modeled around the following
 
 This is a sample config for dbt Cloud:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="host">
 **host**: dbt cloud Access URL eg.`https://abc12.us1.dbt.com`. Go to your dbt cloud account settings to know your Access URL.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="discoveryAPI">
 **discoveryAPI**: dbt cloud Access URL eg. `https://metadata.cloud.getdbt.com/graphql`. Go to your dbt cloud account settings to know your Discovery API url.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="accountId">
 **accountId**: The Account ID of your dbt cloud Project. Go to your dbt cloud account settings to know your Account Id. This will be a numeric value but in openmetadata we parse it as a string.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="jobIds">
 **jobIds**: Optional. Job IDs of your dbt cloud Jobs in your Project to fetch metadata for. Look for the segment after "jobs" in the URL. For instance, in a URL like `https://cloud.getdbt.com/accounts/123/projects/87477/jobs/73659994`, the job ID is `73659994`. This will be a numeric value but in openmetadata we parse it as a string. If not passed all Jobs under the Account id will be ingested.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="projectIds">
 **projectIds**: Optional.  Project IDs of your dbt cloud Account to fetch metadata for. Look for the segment after "projects" in the URL. For instance, in a URL like `https://cloud.getdbt.com/accounts/123/projects/87477/jobs/73659994`, the job ID is `87477`. This will be a numeric value but in openmetadata we parse it as a string. If not passed all Projects under the Account id will be ingested.
 
 Note that if both `Job Ids` and `Project Ids` are passed then it will filter out the jobs from the passed projects. any `Job Ids` not belonging to the `Project Ids` will also be filtered out.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="token">
 **token**: The Authentication Token of your dbt cloud API Account. To get your access token you can follow the docs [here](https://docs.getdbt.com/docs/dbt-cloud-apis/authentication).
-Make sure you have the necessary permissions on the token to run graphql queries and get job and run details. 
-
-{% /codeInfo %}
-
-
+Make sure you have the necessary permissions on the token to run graphql queries and get job and run details.
+</Step>
+</Steps>
 <SourceConfigDef />
 
 <IngestionSinkDef />
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: dbtcloud
   serviceName: dbtcloud_source
   serviceConnection:
     config:
       type: DBTCloud
+host: "https://account_prefix.account_region.dbt.com"
+discoveryAPI: "https://metadata.cloud.getdbt.com/graphql"
+accountId: "numeric_account_id"
+# jobIds: ["job_id_1", "job_id_2", "job_id_3"]
+# projectIds: ["project_id_1", "project_id_2", "project_id_3"]
+token: auth_token
 ```
-```yaml {% srNumber=1 %}
+```yaml
       host: "https://account_prefix.account_region.dbt.com"
 ```
-```yaml {% srNumber=2 %}
+```yaml
       discoveryAPI: "https://metadata.cloud.getdbt.com/graphql"
 ```
-```yaml {% srNumber=3 %}
+```yaml
       accountId: "numeric_account_id"
 ```
-```yaml {% srNumber=4 %}
+```yaml
       # jobIds: ["job_id_1", "job_id_2", "job_id_3"]
 ```
-```yaml {% srNumber=5 %}
+```yaml
       # projectIds: ["project_id_1", "project_id_2", "project_id_3"]
 ```
-```yaml {% srNumber=6 %}
+```yaml
       token: auth_token
 ```
 
@@ -151,9 +129,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

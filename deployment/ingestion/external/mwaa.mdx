@@ -20,11 +20,11 @@ When running ingestion workflows from MWAA we have three approaches:
 
 We will now discuss pros and cons of each aspect and how to configure them.
 
-{% note %}
+<Tip>
 
 OpenMetadata does not support using Amazon MWAA (Managed Workflows for Apache Airflow) for internal ingestion. This limitation exists because MWAA does not allow the installation of the `openmetadata-ingestion-rest-apis` plugin, which is required to expose the necessary REST APIs for initiating workflows.
 
-{% /note %}
+</Tip>
 
 ## Ingestion Workflows as a Python Operator
 
@@ -162,12 +162,12 @@ We'll need to use the `/ecs/openmetadata` below when configuring the policies.
 }
 ```
 
-{% note %}
+<Tip>
 
 If you want to extract MWAA metadata, add the **VPC**, **subnets** and **security groups** used when setting up MWAA. We need to
 be in the same network environment as MWAA to reach the underlying database.
 
-{% /note %}
+</Tip>
 
 ### 3. Update MWAA Executor Role policies
 

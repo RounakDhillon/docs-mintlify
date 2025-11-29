@@ -13,12 +13,12 @@ import Faqs from '/snippets/deployment/faqs.mdx'
 OpenMetadata supports the Installation and Running of Application on Elastic Kubernetes Services (EKS) through Helm Charts.
 However, there are some additional configurations which needs to be done as prerequisites for the same.
 
-{%note noteType="Warning"%}
+<Warning>
 
 All the code snippets in this section assume the `default` namespace for kubernetes.
 This guide presumes you have AWS EKS Cluster already available.
 
-{%/note%}
+</Warning>
 
 ## Prerequisites
 
@@ -32,17 +32,17 @@ We support
 - Amazon RDS (PostgreSQL) engine version 12 or higher
 - Amazon OpenSearch engine version 2.X (upto 2.19)
 
-{%note noteType="Tip"%}
+<Tip>
 When using AWS Services the SearchType Configuration for elastic search should be `opensearch`, for both cases ElasticSearch and OpenSearch, as you can see in the ElasticSearch configuration example below.
-{%/note%}
+</Tip>
 
 We recommend 
 - Amazon RDS to be in Multiple Availability Zones. 
 - Amazon OpenSearch (or ElasticSearch) Service with Multiple Availability Zones with minimum 2 Nodes.
 
-{%note noteType="Warning"%}
+<Warning>
 Make sure to increase `sort_buffer_size` (for MySQL) or `work_mem` (for PostgreSQL) to the recommended value of **20MB** or more using the [database parameter group setting](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html). This is especially important when running migrations to prevent **Out of Sort Memory Error**. You can revert the setting once the migrations are complete.
-{%/note%}
+</Warning>
 
 Once you have the RDS and OpenSearch Services Setup, you can update the environment variables below for OpenMetadata kubernetes deployments to connect with Database and ElasticSearch.
 
@@ -234,11 +234,11 @@ spec:
   restartPolicy: Always
 ```
 
-{%note%}
+<Tip>
 
 Airflow runs the pods with linux user name as airflow and linux user id as 50000.
 
-{%/note%}
+</Tip>
 
 Run the below command to create the pod and fix the permissions
 
@@ -286,7 +286,7 @@ When deploying openmetadata dependencies helm chart, use the below command -
 helm install openmetadata-dependencies open-metadata/openmetadata-dependencies --values values-dependencies.yaml
 ```
 
-{%note%}
+<Tip>
 
 The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml). 
 You can modify any configuration and deploy by passing your own `values.yaml`
@@ -295,7 +295,7 @@ You can modify any configuration and deploy by passing your own `values.yaml`
 helm install openmetadata-dependencies open-metadata/openmetadata-dependencies --values <path-to-values-file>
 ```
 
-{%/note%}
+</Tip>
 
 Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart - 
 

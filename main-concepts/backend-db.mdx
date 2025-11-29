@@ -5,14 +5,14 @@ slug: /main-concepts/backend-db
 
 # Understanding the Backend DB
 
-{% note %}
+<Tip>
 
 Note that this document is just to give transparency and clarity to anyone who is interested in understanding the backend database of OpenMetadata.
 
 We DO NOT RECOMMEND using the database directly for any kind of operations. The database schema is subject to change and is not guaranteed to be stable across versions.
 Any operations on the platform should be done through the OpenMetadata API.
 
-{% /note %}
+</Tip>
 
 In this document we will talk about *Entities*. For us, an Entity is an object that contains metadata about a particular resource. 
 For example, a Table is an Entity that contains metadata about a table in a database. Similarly, a Dashboard is an Entity that contains metadata about a dashboard in a BI tool.
@@ -21,11 +21,7 @@ The goal of the backend database is to store metadata about these Entities, as w
 This is a narrowed-down view of the database schema, focusing on the main tables and concepts that are relevant to the metadata storage. In *italics*
 you will find the columns that are `GENERATED`:
 
-{% image
-src="/images/v1.9/main-concepts/backend-db/db-diagram.png"
-alt="Backend DB Simplified Diagram"
-caption="Backend DB Simplified Diagram"
-/%}
+<img src="/images/v1.9/main-concepts/backend-db/db-diagram.png" alt="Backend DB Simplified Diagram" />
 
 ## Entity Tables & JSON Columns
 

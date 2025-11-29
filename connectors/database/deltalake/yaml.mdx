@@ -4,9 +4,11 @@ description: Configure Delta Lake ingestion using YAML to extract structured met
 slug: /connectors/database/deltalake/yaml
 ---
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -16,17 +18,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
 name="Delta Lake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "dbt"]
-unavailableFeatures=["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "Owners", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]
-/ %}
+availableFeatures={["Metadata", "dbt"]}
+unavailableFeatures={["Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "Owners", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Delta Lake connector.
 
@@ -79,14 +82,8 @@ The workflow is modeled around the following
 
 #### Source Configuration - From Metastore
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-##### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="Metastore Host Port">
 **Metastore Host Port**: Enter the Host & Port of Hive Metastore Service to configure the Spark Session. Either
   of `metastoreHostPort`, `metastoreDb` or `metastoreFilePath` is required.
 
@@ -137,47 +134,30 @@ You can also connect to the metastore by directly pointing to the Hive Metastore
 Here, we will need to inform all the common database settings (url, username, password), and the driver class name for JDBC metastore.
 
 You will need to provide the driver to the ingestion image, and pass the `classpath` which will be used in the Spark Configuration under `spark.driver.extraClassPath`.
+</Step>
+</Steps>
 
+#### Advanced Configuration
 
-{% /codeInfo %}
-
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-##### Advanced Configuration
-
-{% codeInfo srNumber=2 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: deltalake
   serviceName: "<service name>"
   serviceConnection:
     config:
       type: DeltaLake
-```
-```yaml {% srNumber=1 %}
-      configSource:
+configSource:
         connection:
             # Pick only of these
 
@@ -194,13 +174,9 @@ source:
             ## 3. Local file for Testing
             # metastoreFilePath: "<path_to_metastore>/metastore_db"
             appName: MyApp
-```
-```yaml {% srNumber=2 %}
-      # connectionOptions:
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=3 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
 ```
 
@@ -210,49 +186,25 @@ source:
 
 <WorkflowConfig />
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 #### Source Configuration - From Storage - S3
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-##### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="awsAccessKeyId">
 * **awsAccessKeyId**: Enter your secure access key ID for your DynamoDB connection. The specified key ID should be authorized to read all databases you want to include in the metadata ingestion workflow.
 * **awsSecretAccessKey**: Enter the Secret Access Key (the passcode key pair to the key ID from above).
 * **awsRegion**: Specify the region in which your DynamoDB is located. This setting is required even if you have configured a local AWS profile.
 * **schemaFilterPattern** and **tableFilterPattern**: Note that the `schemaFilterPattern` and `tableFilterPattern` both support regex as `include` or `exclude`. E.g.,
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: deltalake
   serviceName: <service_name>
   serviceConnection:
     config:
       type: DeltaLake
-```
-
-```yaml {% srNumber=1 %}
-      configSource:
+configSource:
         connection:
             securityConfig:
             awsAccessKeyId: aws access key id
@@ -268,20 +220,14 @@ source:
 
 <WorkflowConfig />
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 <IngestionCli />
 
 ## dbt Integration
 
-{% tilesContainer %}
+<Columns cols={2}>
 
-{% tile
-  icon="mediation"
-  title="dbt Integration"
-  description="Learn more about how to ingest dbt models' definitions and their lineage."
-  link="/connectors/ingestion/workflows/dbt" /%}
+<Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
+  Learn more about how to ingest dbt models
+</Card>
 
-{% /tilesContainer %}
+</Columns>

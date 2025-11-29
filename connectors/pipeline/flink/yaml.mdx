@@ -4,12 +4,13 @@ description: Configure Flink ingestion using YAML to capture streaming pipeline 
 slug: /connectors/pipeline/flink/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Flink"
 stage="BETA"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Usage"]
-unavailableFeatures=["Owners", "Lineage", "Tags"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Usage"]}
+unavailableFeatures={["Owners", "Lineage", "Tags"]} />
 
 
 In this section, we provide guides and references to use the Flink connector.
@@ -57,33 +57,22 @@ pip3 install "openmetadata-ingestion[flink]"
 
 This is a sample config for Flink:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: The hostname or IP address of the Flink Connect worker with the REST API enabled
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="verifySSL">
 **verifySSL**: Whether SSL verification should be perform when authenticating.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Flink Connect Config">
 **Flink Connect Config**: OpenMetadata supports SSL config or no Authentication.
 
 *1. SSL config
     - caCertificate: Authorized certificate for ssl configured server.
     - sslCertificate: SSL certificate for the server.
     - sslKey: Server root key for the connection.
-{% /codeInfo %}
+</Step>
+</Steps>
 
 
 <SourceConfigDef />
@@ -92,27 +81,16 @@ This is a sample config for Flink:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: flink
   serviceName: flink_pipeline_dashboard
   serviceConnection:
     config:
       type: Flink
-```
-```yaml {% srNumber=1 %}
-        hostPort: "https://<yourflinkhostport>" # or http://localhost:8083 or http://127.0.0.1:8083
-```
-```yaml {% srNumber=2 %}
-        verifySSL: no-ssl
-```
-```yaml {% srNumber=3 %}
-        sslConfig:
+hostPort: "https://<yourflinkhostport>" # or http://localhost:8083 or http://127.0.0.1:8083
+verifySSL: no-ssl
+sslConfig:
                 caCertificate: |
                         -----BEGIN CERTIFICATE-----
                         sample certificate
@@ -132,9 +110,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

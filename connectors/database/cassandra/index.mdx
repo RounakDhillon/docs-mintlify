@@ -4,26 +4,23 @@ description: Connect Cassandra to OpenMetadata with our database connector. Step
 slug: /connectors/database/cassandra
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/database/configure-ingestion.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Cassandra"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Query Usage", "Data Quality", "dbt", "Owners", "Lineage", "Column-level Lineage", "Tags", "Stored Procedures", "Data Profiler", "Auto-Classification"]
-/ %}
-
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Query Usage", "Data Quality", "dbt", "Owners", "Lineage", "Column-level Lineage", "Tags", "Stored Procedures", "Data Profiler", "Auto-Classification"]} />
 
 In this section, we provide guides and references to use the Cassandra connector.
 
@@ -33,8 +30,6 @@ Configure and schedule Cassandra metadata workflows from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Enable Security](#securing-cassandra-connection-with-ssl-in-openmetadata)
 - [Troubleshooting](/connectors/database/cassandra/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/cassandra/yaml" />
 
 ## Requirements
 
@@ -46,8 +41,7 @@ To extract metadata using the Cassandra connector, ensure the user in the connec
 
 <MetadataIngestionUi connector={"Cassandra"} selectServicePath={"/images/connectors/cassandra/select-service.png"} addNewServicePath={"/images/connectors/cassandra/add-new-service.png"} serviceConnectionPath={"/images/connectors/cassandra/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -80,15 +74,13 @@ There are a couple of types of SSL modes that Cassandra supports which can be ad
 
 In order to integrate SSL in the Metadata Ingestion Config, the user will have to add the SSL config under sslConfig which is placed in the source.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ## Securing Cassandra Connection with SSL in OpenMetadata
 
@@ -96,10 +88,6 @@ To establish secure connections between OpenMetadata and a Cassandra database, y
 
 Under `Advanced Config`, after selecting the SSL mode, provide the CA certificate, SSL certificate and SSL key.
 
-{% image
-  src="/images/v1.9/connectors/ssl_connection.png"
-  alt="SSL Configuration"
-  height="450px"
-  caption="SSL Configuration" /%}
+<img src="/images/v1.9/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 
 <Related />

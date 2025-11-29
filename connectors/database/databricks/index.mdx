@@ -6,6 +6,8 @@ slug: /connectors/database/databricks
 
 import ReverseMetadata from '/snippets/connectors/database/databricks/reverse-metadata.mdx'
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -18,24 +20,19 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Databricks"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=["Stored Procedures", "Tags", "Owners"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={["Stored Procedures", "Tags", "Owners"]} />
 
-{% note %}
+<Tip>
 As per the [documentation](https://docs.databricks.com/en/data-governance/unity-catalog/tags.html#manage-tags-with-sql-commands) here, note that we only support metadata `tag` extraction for databricks version 13.3 version and higher.
-{% /note %}
-
+</Tip>
 
 In this section, we provide guides and references to use the Databricks connector.
 
@@ -50,11 +47,7 @@ Configure and schedule Databricks metadata and profiler workflows from the OpenM
 - [Lineage](/how-to-guides/data-lineage/workflow)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Troubleshooting](/connectors/database/databricks/troubleshooting)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/databricks/yaml" />
 
 <ExternalIngestionDeployment />
 
@@ -97,11 +90,11 @@ GRANT USE SCHEMA ON SCHEMA system.query TO `<user>`;
 
 These permissions allow access to Databricks system tables that track query activity, enabling lineage and usage statistics generation.
 
-{% note %}
+<Tip>
 
-Adjust <user>, <catalog_name>, <schema_name>, and <table_name> according to your specific deployment and security requirements.
+Adjust &lt;user&gt;, &lt;catalog_name&gt;, &lt;schema_name&gt;, and &lt;table_name&gt; according to your specific deployment and security requirements.
 
-{% /note %}
+</Tip>
 
 ## Unity Catalog
 
@@ -111,8 +104,7 @@ If you are using unity catalog in Databricks, then checkout the [Unity Catalog](
 
 <MetadataIngestionUi connector={"Databricks"} selectServicePath={"/images/connectors/databricks/select-service.png"} addNewServicePath={"/images/connectors/databricks/add-new-service.png"} serviceConnectionPath={"/images/connectors/databricks/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -125,18 +117,14 @@ If you are using unity catalog in Databricks, then checkout the [Unity Catalog](
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}
 
 <Related />

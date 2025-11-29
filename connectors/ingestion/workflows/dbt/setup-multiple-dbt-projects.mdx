@@ -8,11 +8,11 @@ slug: /connectors/ingestion/workflows/dbt/setup-multiple-dbt-projects
 
 You can set up the dbt workflow to ingest metadata from multiple dbt projects, each containing multiple manifest.json, catalog.json, and run_results.json files. 
 
-{% note %}
+<Tip>
 
 This functionality is supported for s3, GCS, and Azure configurations only.
 
-{% /note %}
+</Tip>
 
 To ensure the workflow operates smoothly, organize the dbt files for each project into separate directories and name the files `manifest.json`, `catalog.json`, and `run_results.json`.
 
@@ -61,11 +61,7 @@ bucket_home/
 
 If you wish to scan the entire bucket, only enter the `dbt Bucket Name` and keep the `dbt Object Prefix` field empty.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/dbt/dbt-prefix-example.webp"
-  alt="dbt-prefix-example"
-  caption="dbt Multiple Projects Prefix Example"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/dbt/dbt-prefix-example.webp" alt="dbt-prefix-example" />
 
 ### 3. Run the dbt Workflow
 

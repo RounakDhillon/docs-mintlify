@@ -27,11 +27,7 @@ Use any one of the below sources to store the .pbit files and configure these so
 ### 3. Configure the source with PowerBI connector
 ### Run from UI
 Select the source for the .pbit files from UI and add the connection for it
-{% image
-  src="/images/v1.9/connectors/powerbi/pbit-file-source.png"
-  alt="pbit-file-sources"
-  caption="pbit file sources"
- /%}
+<img src="/images/v1.9/connectors/powerbi/pbit-file-source.png" alt="pbit-file-sources" />
 
  ### Run Externally
 
@@ -139,8 +135,8 @@ workflowConfig:
 Add  `dbServiceNames` under `lineageInformation` to create lineage between datasource Tables and PowerBI datasets.
 After running the PowerBI connector, the connector will gather these files and extract the files under path specified at `pbitFilesExtractDir` (directory will be created if not present). Then the extracted contents will be used to create the lineage.
 
-{% note %} 
+<Tip> 
 
 Make sure to provide enough permissions under the `pbitFilesExtractDir` to be able to extract the pbit files.
-{% /note %}
+</Tip>
 

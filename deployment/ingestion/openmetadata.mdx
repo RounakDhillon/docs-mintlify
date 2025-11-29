@@ -11,20 +11,16 @@ When you create and manage ingestion workflows from the OpenMetadata, under the 
 with an orchestration system. It does not matter which one, but we need it to have a set of APIs to create,
 run, fetch the logs, etc. of our workflows.
 
-{% image
-  src="/images/v1.9/deployment/ingestion/openmetadata/om-orchestration.png"
-  alt="openmetadata-orchestration"
-  caption="OpenMetadata Ingestion Orchestration"
-/%}
+<img src="/images/v1.9/deployment/ingestion/openmetadata/om-orchestration.png" alt="openmetadata-orchestration" />
 
 Out of the box, OpenMetadata comes with such integration with Airflow. In this guide, we will show you how to manage 
 ingestions from OpenMetadata by linking it to an Airflow service.
 
-{% note %}
+<Tip>
 Advanced note for developers: We have an [interface]( https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/java/org/openmetadata/sdk/PipelineServiceClient.java)
 that can be extended to bring support to any other orchestrator. You can follow the implementation we have for [Airflow]( https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-service/src/main/java/org/openmetadata/service/clients/pipeline/airflow/AirflowRESTClient.java)
 as a starting point.
-{% /note %}
+</Tip>
 
 1. **If you do not have an Airflow service** up and running on your platform, we provide a custom
    [Docker](https://hub.docker.com/r/openmetadata/ingestion) image, which already contains the OpenMetadata ingestion
@@ -54,12 +50,12 @@ You can find more information on Airflow's Access Control [here](https://airflow
 
 ## Shared Volumes
 
-{% note noteType="Warning" %}
+<Warning>
 
 The Airflow Webserver, Scheduler and Workers - if using a distributed setup - need to have access to the same shared volumes
 with RWX permissions.
 
-{% /note %}
+</Warning>
 
 We have specific instructions on how to set up the shared volumes in Kubernetes depending on your cloud deployment [here](/deployment/kubernetes).
 
@@ -119,10 +115,10 @@ openmetadata:
 
 ## Custom Airflow Installation
 
-{% note %}
+<Tip>
 - Note that the `openmetadata-ingestion` only supports Python versions 3.9, 3,10, and 3.11.
 - - The supported Airflow versions for OpenMetadata include 2.3, 2.4, 2.5, 2.6, and 2.7. Starting from release 1.6, OpenMetadata supports compatibility with Airflow versions up to 2.10.5. Specifically, OpenMetadata 1.5 supports Airflow 2.9, 1.6.4 supports Airflow 2.9.3, and 1.6.5 supports Airflow 2.10.5. Ensure that your Airflow version aligns with your OpenMetadata deployment for optimal performance.
-{% /note %}
+</Tip>
 
 You will need to follow three steps:
 1. Install the `openmetadata-ingestion` package with the connector plugins that you need.
@@ -145,9 +141,9 @@ And then run the DAG as explained in each [Connector](/connectors), where `x.y.z
 OpenMetadata server. For example, if you are on version 1.0.0, then you can install the `openmetadata-ingestion`
 with versions `1.0.0.*`, e.g., `1.0.0.0`, `1.0.0.1`, etc., but not `1.0.1.x`.
 
-{% note %}
+<Tip>
 You can also install `openmetadata-ingestion[all]==x.y.z`, which will bring the requirements to run any connector.
-{% /note %}
+</Tip>
 
 You can check the [Connector Modules](/connectors) guide above to learn how to install the `openmetadata-ingestion` package with the
 necessary plugins. They are necessary because even if we install the APIs, the Airflow instance needs to have the
@@ -155,13 +151,13 @@ required libraries to connect to each source.
 
 ### 2. Install the Airflow APIs
 
-{% note %}
+<Tip>
 
 The `openmetadata-ingestion-apis` has a dependency on `apache-airflow>=2.2.2`. Please make sure that
 your host satisfies such requirement. Only installing the `openmetadata-ingestion-apis` won't result
 in a proper full Airflow installation. For that, please follow the Airflow [docs](https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html).
 
-{% /note %}
+</Tip>
 
 The goal of this module is to add some HTTP endpoints that the UI calls for deploying the Airflow DAGs.
 The first step can be achieved by running:
@@ -176,11 +172,11 @@ with versions `1.0.0.*`, e.g., `1.0.0.0`, `1.0.0.1`, etc., but not `1.0.1.x`.
 
 ### 3. Configure the Airflow environment
 
-{% note %}
+<Tip>
 
 The ingestion image is built on Airflow's base image, ensuring it includes all necessary requirements to run Airflow. For Kubernetes deployments, the setup uses community Airflow charts with a modified base image, enabling it to function seamlessly as a **scheduler**, **webserver**, and **worker**.
 
-{% /note %}
+</Tip>
 
 We need a couple of settings:
 
@@ -330,15 +326,15 @@ Then, should you use `git-sync`?
 
 If you want to learn how to set up Airflow using SSL, you can learn more here:
 
-{% inlineCalloutContainer %}
-{% inlineCallout
-color="violet-70"
-icon="luggage"
-bold="Airflow SSL"
-href="/deployment/security/enable-ssl/airflow" %}
-Learn how to configure Airflow with SSL.
-{% /inlineCallout %}
-{% /inlineCalloutContainer %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/puzzle.svg"
+    title="Airflow SSL"
+    href="/deployment/security/enable-ssl/airflow"
+  >
+    Learn how to configure Airflow with SSL.
+  </Card>
+</CardGroup>
 
 # Troubleshooting
 
@@ -390,7 +386,7 @@ task_run
 airflow.exceptions.AirflowException: Dag '...' could not be found; either it does not exist or it failed to parse.
 ```
 
-This is a common situation where you have not properly enabled the shared volumes between Webserver <> Scheduler <> Worker
+This is a common situation where you have not properly enabled the shared volumes between Webserver &lt;&gt; Scheduler &lt;&gt; Worker
 in your distributed environment.
 
 We have specific instructions on how to set up the shared volumes in Kubernetes depending on your cloud deployment [here](/deployment/kubernetes).

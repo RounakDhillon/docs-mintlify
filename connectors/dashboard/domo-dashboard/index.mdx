@@ -4,23 +4,23 @@ description: Connect Domo dashboards to OpenMetadata with our comprehensive conn
 slug: /connectors/dashboard/domo-dashboard
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import ConfigureIngestion from '/snippets/connectors/dashboard/configure-ingestion.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="Domo"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Owners"]
-  unavailableFeatures=["Tags", "Datamodels", "Projects", "Lineage"]
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Owners"]}
+  unavailableFeatures={["Tags", "Datamodels", "Projects", "Lineage"]}
+/>
 
 In this section, we provide guides and references to use the DomoDashboard connector.
 
@@ -28,8 +28,6 @@ Configure and schedule DomoDashboard metadata and profiler workflows from the Op
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/dashboard/domo-dashboard/troubleshooting)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/dashboard/domo-dashboard/yaml" />
 
 ## Requirements
 
@@ -40,8 +38,7 @@ For questions related to scopes, click [here](https://developer.domo.com/portal/
 
 <MetadataIngestionUi connector={"Domo Dashboard"} selectServicePath={"/images/connectors/domo-dashboard/select-service.png"} addNewServicePath={"/images/connectors/domo-dashboard/add-new-service.png"} serviceConnectionPath={"/images/connectors/domo-dashboard/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -51,12 +48,10 @@ For questions related to scopes, click [here](https://developer.domo.com/portal/
 - **API Host**:  API Host to Connect to DOMO Dashboard instance.
 - **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

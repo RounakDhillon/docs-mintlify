@@ -7,9 +7,9 @@ slug: /connectors/messaging/redpanda/yaml
 import SourceConfigDef from '/snippets/connectors/yaml/messaging/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/messaging/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +19,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Redpanda"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Topics", "Sample Data"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Topics", "Sample Data"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Redpanda connector.
 
@@ -67,81 +66,52 @@ The workflow is modeled around the following
 
 This is a sample config for Redpanda:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="bootstrapServers">
 **bootstrapServers**: List of brokers as comma separated values of broker `host` or `host:port`.
 
 Example: `host1:9092,host2:9092`
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="schemaRegistryURL">
 **schemaRegistryURL**: URL of the Schema Registry used to ingest the schemas of the topics.
 
 **NOTE**: For now, the schema will be the last version found for the schema name `{topic-name}-value`. An [issue](https://github.com/open-metadata/OpenMetadata/issues/10399) to improve how it currently works has been opened.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="saslUsername">
 **saslUsername**: SASL username for use with the PLAIN and SASL-SCRAM mechanisms.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="saslPassword">
 **saslPassword**: SASL password for use with the PLAIN and SASL-SCRAM mechanisms.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="saslMechanism">
 **saslMechanism**: SASL mechanism to use for authentication.
 
 Supported: _GSSAPI, PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, OAUTHBEARER_.
 
 **NOTE**: Despite the name only one mechanism must be configured.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="basicAuthUserInfo">
 **basicAuthUserInfo**: Schema Registry Client HTTP credentials in the form of `username:password`.
 
 By default, user info is extracted from the URL if present.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="consumerConfig">
 **consumerConfig**: The accepted additional values for the consumer configuration can be found in the following
 [link](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.mdx).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="schemaRegistryConfig">
 **schemaRegistryConfig**: The accepted additional values for the Schema Registry configuration can be found in the
 following [link](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schemaregistryclient).
 
 **Note:** To ingest the topic schema, `schemaRegistryURL` must be passed.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=9 %}
+</Step>
+<Step title="securityProtocol">
 **securityProtocol**: security.protocol consumer config property. It accepts `PLAINTEXT`,`SASL_PLAINTEXT`, `SASL_SSL`, `SSL`.
-{% /codeInfo}
-
-{% codeInfo srNumber=10 %}
+</Step>
+<Step title="supportsMetadataExtraction">
 **supportsMetadataExtraction**: Supports Metadata Extraction. `supportsMetadataExtraction` supports boolean value either true or false.
-{% /codeInfo %}
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -149,46 +119,52 @@ following [link](https://docs.confluent.io/platform/current/clients/confluent-ka
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: redpanda
   serviceName: local_redpanda
   serviceConnection:
     config:
       type: Redpanda
+bootstrapServers: localhost:9092
+schemaRegistryURL: http://localhost:8081  # Needs to be a URI
+saslUsername: username
+saslPassword: password
+saslMechanism: PLAIN
+basicAuthUserInfo: username:password
+consumerConfig: {}
+schemaRegistryConfig: {}
+# securityProtocol: PLAINTEXT
+# supportsMetadataExtraction: true
 ```
-```yaml {% srNumber=1 %}
+```yaml
       bootstrapServers: localhost:9092
 ```
-```yaml {% srNumber=2 %}
+```yaml
       schemaRegistryURL: http://localhost:8081  # Needs to be a URI
 ```
-```yaml {% srNumber=3 %}
+```yaml
       saslUsername: username
 ```
-```yaml {% srNumber=4 %}
+```yaml
       saslPassword: password
 ```
-```yaml {% srNumber=5 %}
+```yaml
       saslMechanism: PLAIN
 ```
-```yaml {% srNumber=6 %}
+```yaml
       basicAuthUserInfo: username:password
 ```
-```yaml {% srNumber=7 %}
+```yaml
       consumerConfig: {}
 ```
-```yaml {% srNumber=8 %}
+```yaml 
       schemaRegistryConfig: {}
 ```
-```yaml {% srNumber=9 %}  
+```yaml
       # securityProtocol: PLAINTEXT
 ```
-```yaml {% srNumber=10 %}
+```yaml
       # supportsMetadataExtraction: true
 ```
 
@@ -198,9 +174,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

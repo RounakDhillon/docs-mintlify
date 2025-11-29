@@ -4,11 +4,12 @@ description: Use YAML to ingest metadata from CockroachDB, including schemas, ta
 slug: /connectors/database/cockroach/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -18,20 +19,20 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 
-{% connectorDetailsHeader
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
+
+<ConnectorDetailsHeader
 name="Cockroach"
 stage="BETA"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Quality", "Data Profiler", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "dbt", "Owners", "Lineage", "Column-level Lineage", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Quality", "Data Profiler", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "dbt", "Owners", "Lineage", "Column-level Lineage", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the Cockroach connector.
 
@@ -41,8 +42,6 @@ Configure and schedule Cockroach metadata and profiler workflows from the OpenMe
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](#data-profiler)
 - [Data Quality](#data-quality)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/cockroach/yaml" />
 
 <ExternalIngestionDeployment />
 
@@ -75,68 +74,37 @@ The workflow is modeled around the following
 
 This is a sample config for Cockroach:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Specify the User to connect to Cockroach. It should have enough privileges to read all the metadata.
-
-{% /codeInfo %}
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="authType">
 **authType**: Choose from basic auth and IAM based auth.
 #### Basic Auth
 
 **password**: Password comes under Basic Auth type.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
-
+</Step>
+<Step title="hostPort">
 **hostPort**: Enter the fully qualified hostname and port number for your Cockroach deployment in the Host and Port field.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="database">
 **database**: Initial Cockroach database to connect to. If you want to ingest all databases, set ingestAllDatabases to true.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="ingestAllDatabases">
 **ingestAllDatabases**: Ingest data from all databases in Cockroach. You can use databaseFilterPattern on top of this.
-
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-
-{% codeInfo srNumber=6 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=9 %}
-
+</Step>
+<Step title="caCertificate">
 The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) connection between your application and the Cockroach server. Cockroach will require only rootCertificate i.e caCertificate.
 
 **caCertificate**: This is the path to the CA (Certificate Authority) certificate file. This file is used to verify the server’s certificate.
@@ -149,50 +117,28 @@ prefer (the default): The driver will try to negotiate an SSL connection but if 
 require: The driver will try to negotiate an SSL connection. If the server does not support SSL, the driver will not fall back to a non-SSL connection.
 verify-ca: The driver will negotiate an SSL connection and verify that the server certificate is issued by a trusted certificate authority (CA).
 verify-full: The driver will negotiate an SSL connection, verify that the server certificate is issued by a trusted CA and check that the server host name matches the one in the certificate.
+</Step>
+</Steps>
 
-
-{% /codeInfo %}
-
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="cockroach.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: cockroach
   serviceName: local_cockroach
   serviceConnection:
     config:
       type: Cockroach
-```
-```yaml {% srNumber=1 %}
-      username: username
-```
-```yaml {% srNumber=2 %}
-      authType: 
+username: username
+authType: 
             password: <password>
-```
-```yaml {% srNumber=3 %}
-      hostPort: localhost:26257
-```
-```yaml {% srNumber=4 %}
-      database: database
-```
-```yaml {% srNumber=6 %}
-      ingestAllDatabases: true
-```
-```yaml {% srNumber=9 %}
-      # sslConfig:
+hostPort: localhost:26257
+database: database
+ingestAllDatabases: true
+# sslConfig:
             # caCertificate: "path/to/ca/certificate"
       # sslMode: disable #allow prefer require verify-ca verify-full
-```
-```yaml {% srNumber=7 %}
-      # connectionOptions:
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=8 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
 ```
 
@@ -201,10 +147,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 
@@ -218,11 +160,11 @@ To configure SSL for secure connections between OpenMetadata and a Cockroach dat
 
 When running the ingestion process externally, specify the SSL mode to be used for the Cockroach connection, such as `prefer`, `verify-ca`, `allow`, and others. Once you've chosen the SSL mode, provide the CA certificate for SSL validation (`caCertificate`). Only the CA certificate is required for SSL validation in Cockroach.
 
-{% note %}
+<Tip>
 
 For IAM authentication, it is recommended to select the `allow` mode or another SSL mode that aligns with your specific needs.
 
-{% /note %}
+</Tip>
 
 ```yaml
       sslMode: disable #allow prefer require verify-ca verify-full

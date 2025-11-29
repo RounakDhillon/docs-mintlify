@@ -5,6 +5,8 @@ slug: /connectors/database/synapse
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -13,19 +15,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Synapse"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Stored Procedures", "dbt", "Sample Data"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Stored Procedures", "dbt", "Sample Data"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Synapse connector.
 
@@ -39,8 +37,6 @@ Configure and schedule Synapse metadata and profiler workflows from the OpenMeta
 - [Troubleshooting](/connectors/database/synapse/troubleshooting)
   - [Workflow Deployment Error](#workflow-deployment-error)
 - [Related](#related)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/synapse/yaml" />
 
 ## Requirements
 
@@ -60,8 +56,7 @@ GRANT SELECT TO Mary;
 
 <MetadataIngestionUi connector={"Synapse"} selectServicePath={"/images/connectors/synapse/select-service.png"} addNewServicePath={"/images/connectors/synapse/add-new-service.png"} serviceConnectionPath={"/images/connectors/synapse/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Options
 
@@ -93,14 +88,12 @@ You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/s
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

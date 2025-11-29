@@ -5,12 +5,13 @@ slug: /connectors/pipeline/stitch/yaml
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -18,19 +19,14 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Stitch"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Pipelines", "Lineage"]
-unavailableFeatures=["Owners", "Tags", "Pipeline Status"]
-/ %}
-
-
+availableFeatures={["Pipelines", "Lineage"]}
+unavailableFeatures={["Owners", "Tags", "Pipeline Status"]} />
 
 In this section, we provide guides and references to use the Stitch connector.
 
@@ -39,13 +35,10 @@ Configure and schedule Stitch metadata and profiler workflows from the OpenMetad
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/stitch/yaml" />
-
 ## Requirements
 
 To extract metadata from Stitch, User first need to crate API crednetials:
 - `Token`: Token to access Stitch metadata.
-
 
 ### Python Requirements
 
@@ -74,24 +67,14 @@ The workflow is modeled around the following
 
 This is a sample config for Stitch:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: The hostname or IP address with the REST API enabled eg.`https://api.stitchdata.com`
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="token">
 **token**: Token to get access to Stitch metadata.
-
-{% /codeInfo %}
-
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -99,23 +82,20 @@ This is a sample config for Stitch:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: stitch
   serviceName: stitch_data
   serviceConnection:
     config:
       type: Stitch
+hostPort: "https://api.stitchdata.com"
+token: "token"
 ```
-```yaml {% srNumber=1 %}
+```yaml
         hostPort: "https://api.stitchdata.com"
 ```
-```yaml {% srNumber=2 %}
+```yaml
         token: "token"
 ```
 
@@ -124,9 +104,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

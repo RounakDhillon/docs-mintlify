@@ -1,53 +1,147 @@
-{% connectorsListContainer %}
-
-{% connectorInfoCard name="ADLS Datalake" stage="PROD" href="/connectors/database/adls-datalake" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Athena" stage="PROD" href="/connectors/database/athena" platform="OpenMetadata" / %}
-{% connectorInfoCard name="AzureSQL" stage="PROD" href="/connectors/database/azuresql" platform="OpenMetadata" / %}
-{% connectorInfoCard name="BigQuery" stage="PROD" href="/connectors/database/bigquery" platform="OpenMetadata" / %}
-{% connectorInfoCard name="BigTable" stage="PROD" href="/connectors/database/bigtable" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Cassandra" stage="BETA" href="/connectors/database/cassandra" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Cockroach" stage="BETA" href="/connectors/database/cockroach" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Clickhouse" stage="PROD" href="/connectors/database/clickhouse" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Couchbase" stage="PROD" href="/connectors/database/couchbase" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Databricks" stage="PROD" href="/connectors/database/databricks" platform="OpenMetadata" / %}
-{% connectorInfoCard name="DB2" stage="PROD" href="/connectors/database/db2" platform="OpenMetadata" / %}
-{% connectorInfoCard name="dbt" stage="PROD" href="/connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Delta Lake" stage="PROD" href="/connectors/database/deltalake" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Domo" stage="PROD" href="/connectors/database/domo-database" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Doris" stage="PROD" href="/connectors/database/doris" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Druid" stage="PROD" href="/connectors/database/druid" platform="OpenMetadata" / %}
-{% connectorInfoCard name="DynamoDB" stage="PROD" href="/connectors/database/dynamodb" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Epic" stage="BETA" href="/connectors/database/epic" platform="Collate" / %}
-{% connectorInfoCard name="Exasol" stage="PROD" href="/connectors/database/exasol" platform="OpenMetadata" / %}
-{% connectorInfoCard name="GCS Datalake" stage="PROD" href="/connectors/database/gcs-datalake" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Glue" stage="PROD" href="/connectors/database/glue" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Greenplum" stage="PROD" href="/connectors/database/greenplum" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Hive" stage="PROD" href="/connectors/database/hive" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Iceberg" stage="PROD" href="/connectors/database/iceberg" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Impala" stage="PROD" href="/connectors/database/impala" platform="OpenMetadata" / %}
-{% connectorInfoCard name="MariaDB" stage="PROD" href="/connectors/database/mariadb" platform="OpenMetadata" / %}
-{% connectorInfoCard name="MongoDB" stage="PROD" href="/connectors/database/mongodb" platform="OpenMetadata" / %}
-{% connectorInfoCard name="MSSQL" stage="PROD" href="/connectors/database/mssql" platform="OpenMetadata" / %}
-{% connectorInfoCard name="MySQL" stage="PROD" href="/connectors/database/mysql" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Oracle" stage="PROD" href="/connectors/database/oracle" platform="OpenMetadata" / %}
-{% connectorInfoCard name="PinotDB" stage="PROD" href="/connectors/database/pinotdb" platform="OpenMetadata" / %}
-{% connectorInfoCard name="PostgreSQL" stage="PROD" href="/connectors/database/postgres" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Presto" stage="PROD" href="/connectors/database/presto" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Redshift" stage="PROD" href="/connectors/database/redshift" platform="OpenMetadata" / %}
-{% connectorInfoCard name="S3 Datalake" stage="PROD" href="/connectors/database/s3-datalake" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Salesforce" stage="PROD" href="/connectors/database/salesforce" platform="OpenMetadata" / %}
-{% connectorInfoCard name="SAP ERP" stage="PROD" href="/connectors/database/sap-erp" platform="OpenMetadata" / %}
-{% connectorInfoCard name="SAP HANA" stage="PROD" href="/connectors/database/sap-hana" platform="OpenMetadata" / %}
-{% connectorInfoCard name="SAS" stage="PROD" href="/connectors/database/sas" platform="OpenMetadata" / %}
-{% connectorInfoCard name="ServiceNow" stage="BETA" href="/connectors/database/servicenow" platform="Collate" / %}
-{% connectorInfoCard name="SingleStore" stage="PROD" href="/connectors/database/singlestore" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Snowflake" stage="PROD" href="/connectors/database/snowflake" platform="OpenMetadata" / %}
-{% connectorInfoCard name="SQLite" stage="PROD" href="/connectors/database/sqlite" platform="OpenMetadata" / %}
-{% connectorInfoCard name="SSAS" stage="BETA" href="/connectors/database/ssas" platform="Collate" / %}
-{% connectorInfoCard name="Synapse" stage="PROD" href="/connectors/database/synapse" platform="Collate" / %}
-{% connectorInfoCard name="Teradata" stage="PROD" href="/connectors/database/teradata" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Trino" stage="PROD" href="/connectors/database/trino" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Unity Catalog" stage="PROD" href="/connectors/database/unity-catalog" platform="OpenMetadata" / %}
-{% connectorInfoCard name="Vertica" stage="PROD" href="/connectors/database/vertica" platform="OpenMetadata" / %}
-
-{% /connectorsListContainer %}
+<Card title="ADLS Datalake" icon="database" href="/connectors/database/adls-datalake" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Athena" icon="database" href="/connectors/database/athena" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="AzureSQL" icon="database" href="/connectors/database/azuresql" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="BigQuery" icon="database" href="/connectors/database/bigquery" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="BigTable" icon="database" href="/connectors/database/bigtable" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Cassandra" icon="database" href="/connectors/database/cassandra" horizontal>
+  **BETA** | OpenMetadata
+</Card>
+<Card title="Cockroach" icon="database" href="/connectors/database/cockroach" horizontal>
+  **BETA** | OpenMetadata
+</Card>
+<Card title="Clickhouse" icon="database" href="/connectors/database/clickhouse" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Couchbase" icon="database" href="/connectors/database/couchbase" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Databricks" icon="database" href="/connectors/database/databricks" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="DB2" icon="database" href="/connectors/database/db2" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="dbt" icon="database" href="/connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Delta Lake" icon="database" href="/connectors/database/deltalake" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Domo" icon="database" href="/connectors/database/domo-database" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Doris" icon="database" href="/connectors/database/doris" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Druid" icon="database" href="/connectors/database/druid" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="DynamoDB" icon="database" href="/connectors/database/dynamodb" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Epic" icon="database" href="/connectors/database/epic" horizontal>
+  **BETA** | Collate
+</Card>
+<Card title="Exasol" icon="database" href="/connectors/database/exasol" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="GCS Datalake" icon="database" href="/connectors/database/gcs-datalake" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Glue" icon="database" href="/connectors/database/glue" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Greenplum" icon="database" href="/connectors/database/greenplum" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Hive" icon="database" href="/connectors/database/hive" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Iceberg" icon="database" href="/connectors/database/iceberg" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Impala" icon="database" href="/connectors/database/impala" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="MariaDB" icon="database" href="/connectors/database/mariadb" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="MongoDB" icon="database" href="/connectors/database/mongodb" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="MSSQL" icon="database" href="/connectors/database/mssql" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="MySQL" icon="database" href="/connectors/database/mysql" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Oracle" icon="database" href="/connectors/database/oracle" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="PinotDB" icon="database" href="/connectors/database/pinotdb" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="PostgreSQL" icon="database" href="/connectors/database/postgres" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Presto" icon="database" href="/connectors/database/presto" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Redshift" icon="database" href="/connectors/database/redshift" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="S3 Datalake" icon="database" href="/connectors/database/s3-datalake" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Salesforce" icon="database" href="/connectors/database/salesforce" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="SAP ERP" icon="database" href="/connectors/database/sap-erp" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="SAP HANA" icon="database" href="/connectors/database/sap-hana" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="SAS" icon="database" href="/connectors/database/sas" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="ServiceNow" icon="database" href="/connectors/database/servicenow" horizontal>
+  **BETA** | Collate
+</Card>
+<Card title="SingleStore" icon="database" href="/connectors/database/singlestore" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Snowflake" icon="database" href="/connectors/database/snowflake" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="SQLite" icon="database" href="/connectors/database/sqlite" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="SSAS" icon="database" href="/connectors/database/ssas" horizontal>
+  **BETA** | Collate
+</Card>
+<Card title="Synapse" icon="database" href="/connectors/database/synapse" horizontal>
+  **PROD** | Collate
+</Card>
+<Card title="Teradata" icon="database" href="/connectors/database/teradata" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Trino" icon="database" href="/connectors/database/trino" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Unity Catalog" icon="database" href="/connectors/database/unity-catalog" horizontal>
+  **PROD** | OpenMetadata
+</Card>
+<Card title="Vertica" icon="database" href="/connectors/database/vertica" horizontal>
+  **PROD** | OpenMetadata
+</Card>

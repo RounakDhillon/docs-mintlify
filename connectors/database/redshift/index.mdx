@@ -6,6 +6,9 @@ slug: /connectors/database/redshift
 
 import ReverseMetadata from '/snippets/connectors/database/redshift/reverse-metadata.mdx'
 
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -14,19 +17,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Redshift"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=["Owners", "Tags"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Redshift connector.
 
@@ -42,11 +41,7 @@ Configure and schedule Redshift metadata and profiler workflows from the OpenMet
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
 - [Enable Security](#securing-redshift-connection-with-ssl-in-openmetadata)
 - [Troubleshooting](/connectors/database/redshift/troubleshooting)
-{% collateContent %}
 - [Reverse Metadata](#reverse-metadata)
-{% /collateContent %}
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/redshift/yaml" />
 
 ## Requirements
 
@@ -62,13 +57,13 @@ CREATE USER test_user with PASSWORD 'password';
 GRANT SELECT ON TABLE svv_table_info to test_user;
 ```
 
-{% note %}
+<Tip>
 Ensure that the ingestion user has **USAGE** privileges on the schema containing the views. If additional access is needed, run the following command:  
 
 ```sql
 GRANT USAGE ON SCHEMA "<schema_name>" TO <ingestion_user>;
 ```
-{% /note %}
+</Tip>
 
 ### Profiler & Data Quality
 Executing the profiler workflow or data quality tests, will require the user to have `SELECT` permission on the tables/schemas where the profiler/tests will be executed. More information on the profiler workflow setup can be found [here](/how-to-guides/data-quality-observability/profiler/workflow) and data quality tests [here](/how-to-guides/data-quality-observability/quality).
@@ -82,8 +77,7 @@ For the usage and lineage workflow, the user will need `SELECT` privilege on `ST
 
 It is recommmended to exclude the schema "information_schema" from the metadata ingestion as it contains system tables and views.
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -91,9 +85,9 @@ It is recommmended to exclude the schema "information_schema" from the metadata 
 - **Password**: Password to connect to Redshift.
 - **Database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.
 
-{% note %}
+<Tip>
 During the metadata ingestion for redshift, the tables in which the distribution style i.e, `DISTSTYLE` is not `AUTO` will be marked as partitioned tables
-{% /note %}
+</Tip>
 
 **SSL Configuration**
 
@@ -118,15 +112,13 @@ For more information, you can visit [Redshift SSL documentation](https://docs.aw
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 ## Securing Redshift Connection with SSL in OpenMetadata
 
@@ -134,14 +126,8 @@ To establish secure connections between OpenMetadata and a Redshift database, yo
 
 Under `Advanced Config`, specify the SSL mode appropriate for your connection, such as `prefer`, `verify-ca`, `allow`, and others. After selecting the SSL mode, provide the CA certificate used for SSL validation (`caCertificate`). Note that Redshift requires only the CA certificate for SSL validation.
 
-{% image
-  src="/images/v1.9/connectors/ssl_connection.png"
-  alt="SSL Configuration"
-  height="450px"
-  caption="SSL Configuration" /%}
+<img src="/images/v1.9/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 
-{% collateContent %}
 <ReverseMetadata />
-{% /collateContent %}
 
 <Related />

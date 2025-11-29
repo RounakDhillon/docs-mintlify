@@ -1,35 +1,17 @@
-{% step srNumber=7 %}
-
-{% stepDescription title="7. Configure Metadata Ingestion" %}
-
-In this step we will configure the metadata ingestion pipeline,
+<Step title="7. Configure Metadata Ingestion">
+  In this step we will configure the metadata ingestion pipeline,
 Please follow the instructions below
 
-{% /stepDescription %}
+  <img src="/images/v1.8/connectors/configure-metadata-ingestion-database-1.png" alt="Configure Metadata Ingestion" />
 
-{% stepVisualInfo %}
-
-{% image
-  src="/images/v1.8/connectors/configure-metadata-ingestion-database-1.png"
-  alt="Configure Metadata Ingestion"
-  caption="Configure Metadata Ingestion Page - 1" /%}
-
-{% image
-  src="/images/v1.8/connectors/configure-metadata-ingestion-database-2.png"
-  alt="Configure Metadata Ingestion"
-  caption="Configure Metadata Ingestion Page - 2" /%}
-
-{% /stepVisualInfo %}
-
-{% /step %}
-
-{% extraContent parentTagName="stepsContainer" %}
+<img src="/images/v1.8/connectors/configure-metadata-ingestion-database-2.png" alt="Configure Metadata Ingestion" />
+</Step>
 
 #### Metadata Ingestion Options
 
-{% note %}
+<Tip>
 If the owner's name is openmetadata, you need to enter `openmetadata@domain.com` in the name section of add team/user form, click [here](/connectors/ingestion/workflows/dbt/ingest-dbt-owner#following-steps-shows-adding-a-user-to-openmetadata) for more info.
-{% /note %}
+</Tip>
 
 - **Name**: This field refers to the name of ingestion pipeline, you can customize the name or use the generated name.
 - **Database Filter Pattern (Optional)**: Use to database filter patterns to control whether or not to include database as part of metadata ingestion.
@@ -62,4 +44,3 @@ If the owner's name is openmetadata, you need to enter `openmetadata@domain.com`
 
 Note that the right-hand side panel in the OpenMetadata UI will also share useful documentation when configuring the ingestion.
 
-{% /extraContent %}

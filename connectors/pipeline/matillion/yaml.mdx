@@ -5,12 +5,13 @@ slug: /connectors/pipeline/matillion/yaml
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -18,19 +19,14 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import IngestionModeTiles from '/snippets/connectors/ingestion-modes-tiles.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Matillion"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Pipelines", "Lineage"]
-unavailableFeatures=["Owners", "Tags", "Pipeline Status"]
-/ %}
-
-
+availableFeatures={["Pipelines", "Lineage"]}
+unavailableFeatures={["Owners", "Tags", "Pipeline Status"]} />
 
 In this section, we provide guides and references to use the Matillion connector.
 
@@ -39,14 +35,11 @@ Configure and schedule Matillion metadata and profiler workflows from the OpenMe
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/pipeline/matillion/yaml" />
-
 ## Requirements
 
 To extract metadata from Matillion, you need to create a user with the following permissions:
 
 - `API` Permission ( While Creating the User, from Admin -> User )
-
 
 ### Python Requirements
 
@@ -75,68 +68,37 @@ The workflow is modeled around the following
 
 This is a sample config for Matillion:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: The hostname or IP address with the REST API enabled eg.`https://<your-matillion-host-name-here>`
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="username">
 **username**: The username to authenticate with the Matillion instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="password">
 **password**: The password to authenticate with the Matillion instance.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="caCertificate">
 **caCertificate** : CA Certificate to authenticate with the Matillion instance.
-
-{% /codeInfo %}
-
-
+</Step>
+</Steps>
 <SourceConfigDef />
 
 <IngestionSinkDef />
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: matillion
   serviceName: matillion_service
   serviceConnection:
     config:
       type: Matillion
-```
-```yaml {% srNumber=1 %}
-        hostPort: "https://<your-matillion-here>"
-```
-```yaml {% srNumber=2 %}
-        username: "username"
-```
-```yaml {% srNumber=3 %}
-        password: "password"
-```
-
-```yaml {% srNumber=3 %}
-        sslConfig:
+hostPort: "https://<your-matillion-here>"
+username: "username"
+password: "password"
+sslConfig:
                 caCertificate: |
                         -----BEGIN CERTIFICATE-----
                         sample caCertificateData  
@@ -148,9 +110,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

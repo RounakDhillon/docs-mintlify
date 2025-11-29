@@ -25,11 +25,11 @@ for the non-managed follow only the steps related to the Airflow server and CLI.
 1. In your Azure subscription create [Manged Identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
 2. Use this created identity - for AKS users this means you need to use [Pod Identity](https://learn.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity) or [Workload Identity (recommnded)](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview?tabs=dotnet).
 
-{% note %}
+<Tip>
 
 Note that the using Managed Identity require using [default Authentication Credential](https://learn.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python#defaultazurecredential).
 
-{% /note %}
+</Tip>
 
 ### 2. Add RBAC roles
 
@@ -112,11 +112,11 @@ extraEnvs:
 
 The changes to be done in `airflow.yaml` file of the Airflow are:
 
-{% note %}
+<Tip>
 
 Note that the **Key Vault Name** parameter is MANDATORY for the system to know where to store and retrieve the secrets.
 
-{% /note %}
+</Tip>
 
 And these are the changes required in `airflow.cfg` of our Airflow instance:
 
@@ -141,7 +141,7 @@ AIRFLOW__OPENMETADATA_SECRETS_MANAGER__AZURE_CLIENT_SECRET= <App Registration Se
 
 If only the `<Key Vault Name>`, parameter is provided, we will use Azure's [default Authentication Credential](https://learn.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python#defaultazurecredential).
 
-{% note %}
+<Tip>
 
 Also if you are using [Microsoft Entra Workload ID](https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview) with [Service Account Token Volume Projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection) then you need also to use projected service account instead one created by Airflow and OpenMetadata:
 
@@ -163,7 +163,7 @@ serviceAccount:
   name: "name-of-your-service-account"
 ```
 
-{% /note %}
+</Tip>
 
 ### 3. Migrate Secrets & restart both servers
 
@@ -205,12 +205,12 @@ workflowConfig:
 Make sure to follow the steps [here](https://learn.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python#defaultazurecredential) to allow
 the Python client to authenticate to Azure.
 
-{% note %}
+<Tip>
 
 Note that the `AZURE_KEY_VAULT_NAME` variable is **REQUIRED** to know against which
 Key Vault service to point to.
 
-{% /note %}
+</Tip>
 
 You can specify as well the environment variables of your App Registration if you're running the ingestion
 outside of Azure: [docs](https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.environmentcredential?view=azure-python).
@@ -238,9 +238,9 @@ AIRFLOW__OPENMETADATA_SECRETS_MANAGER__AZURE_CLIENT_ID= <App Registration ID>
 AIRFLOW__OPENMETADATA_SECRETS_MANAGER__AZURE_CLIENT_SECRET= <App Registration Secret>
 ```
 
-{% note %}
+<Tip>
 
 Note that the `AIRFLOW__OPENMETADATA_SECRETS_MANAGER__AZURE_KEY_VAULT_NAME` variable is **REQUIRED** to know against which
 Key Vault service to point to.
 
-{% /note %}
+</Tip>

@@ -16,7 +16,7 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 - Provide a redirect URL as a Auth Code Flow. 
 - Click on Register.
 
-{% image src="/images/v1.9/deployment/security/azure/create-web-registration.png" alt="create-app" /%}
+<img src="/images/v1.9/deployment/security/azure/create-web-registration.png" alt="create-app" />
 
 
 
@@ -24,7 +24,7 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 
 - The `Client ID` and the `Tenant ID` are displayed in the Overview section of the registered application.
 
-{% image src="/images/v1.9/deployment/security/azure/web-client-secret.png" alt="create-app" /%}
+<img src="/images/v1.9/deployment/security/azure/web-client-secret.png" alt="create-app" />
 
 - When passing the details for `authority`, the `Tenant ID` is added to the URL as shown in the example
   below. `https://login.microsoftonline.com/TenantID`
@@ -36,37 +36,37 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 <ConfigureIngestion />
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="celebration"
-    bold="Docker Security"
-    href="/deployment/security/azure/docker" %}
+<CardGroup cols={3}>
+<Card
+    icon="/images/icons/celebration.svg"
+    title="Docker Security"
+    href="/deployment/security/azure/docker"
+  >
     Configure Azure SSO for your Docker Deployment.
-  {% /inlineCallout %}
-  {% inlineCallout
-    color="violet-70"
-    icon="storage"
-    bold="Bare Metal Security"
-    href="/deployment/security/azure/bare-metal" %}
+  </Card>
+  <Card
+    icon="/images/icons/puzzle.svg"
+    title="Bare Metal Security"
+    href="/deployment/security/azure/bare-metal"
+  >
     Configure Azure SSO for your Bare Metal Deployment.
-  {% /inlineCallout %}
-  {% inlineCallout
-    color="violet-70"
-    icon="fit_screen"
-    bold="Kubernetes Security"
-    href="/deployment/security/azure/kubernetes" %}
+  </Card>
+  <Card
+    icon="/images/icons/puzzle.svg"
+    title="Kubernetes Security"
+    href="/deployment/security/azure/kubernetes"
+  >
     Configure Azure SSO for your Kubernetes Deployment.
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>
 
 
-{% inlineCalloutContainer %}
-  {% inlineCallout
-    color="violet-70"
-    icon="MdArrowBack"
-    bold="Azure"
-    href="/deployment/security/azure" %}
+<CardGroup cols={1}>
+<Card
+    icon="/images/icons/arrow-right.svg"
+    title="Azure"
+    href="/deployment/security/azure"
+  >
     Go to Azure Configuration
-  {% /inlineCallout %}
-{% /inlineCalloutContainer %}
+  </Card>
+</CardGroup>

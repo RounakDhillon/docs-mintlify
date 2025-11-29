@@ -4,6 +4,8 @@ description: Connect Exasol database to OpenMetadata with our comprehensive conn
 slug: /connectors/database/exasol
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -14,18 +16,14 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Exasol"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata"]
-unavailableFeatures=["Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Owners", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]
-/ %}
-
+availableFeatures={["Metadata"]}
+unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Owners", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]} />
 
 In this section, we provide guides and references for using the Exasol connector.
 
@@ -35,13 +33,15 @@ Configure and schedule Exasol metadata from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/database/exasol/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/exasol/yaml" />
-
 <ExternalIngestionDeployment />
 
-{%inlineCallout icon="description" bold="OpenMetadata 1.6.1 or later" href="/deployment"%}
-To deploy OpenMetadata, check the Deployment guides.
-{%/inlineCallout%}
+<Card
+    icon="/images/icons/file-icon.svg"
+    title="OpenMetadata 1.6.1 or later"
+    href="/deployment"
+  >
+    To deploy OpenMetadata, check the Deployment guides.
+  </Card>
 
 ## Requirements
 
@@ -51,8 +51,7 @@ The connector requires **Exasol version 7.1 or higher** to function correctly. E
 
 <MetadataIngestionUi connector={"Exasol"} selectServicePath={"/images/connectors/exasol/select-service.png"} addNewServicePath={"/images/connectors/exasol/add-new-service.png"} serviceConnectionPath={"/images/connectors/exasol/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 ### Connection Options
 
@@ -71,21 +70,19 @@ The connector requires **Exasol version 7.1 or higher** to function correctly. E
 
 **ignore-certificate**: Enables Transport Layer Security (TLS) but disables validation of the server certificate. 
 
-{% note %}
+<Tip>
 - This mode should not be used in production. It is useful for testing with self-signed certificates.
-{% /note %}
+</Tip>
 
 **disable-tls**: Disables Transport Layer Security (TLS). Data is sent in plain text (no encryption).
 [!WARNING]
 This mode is not recommended for production and should only be used in debugging scenarios.
 
-{% note %}
+<Tip>
 Ensure that the appropriate TLS setting is chosen based on your security and deployment requirements.
-{% /note %}
+</Tip>
 
 <AdvancedConfiguration />
-
-{% /extraContent %}
 
 <TestConnection />
 
@@ -93,4 +90,4 @@ Ensure that the appropriate TLS setting is chosen based on your security and dep
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>

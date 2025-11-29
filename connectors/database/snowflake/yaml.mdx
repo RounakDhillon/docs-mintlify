@@ -4,14 +4,15 @@ description: Integrate Yaml for metadata sync, profiling, and lineage. Start con
 slug: /connectors/database/snowflake/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -21,19 +22,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-import DataQuality from 'snippets/connectors/yaml/data-quality.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Snowflake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Stored Procedures", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Stored Procedures", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Snowflake connector.
 
@@ -47,9 +47,7 @@ Configure and schedule Snowflake metadata and profiler workflows from the OpenMe
 - [Data Profiler](#data-profiler)
 - [Data Quality](#data-quality)
 - [dbt Integration](#dbt-integration)
-{% collateContent %}
 - [Reverse Metadata](/applications/reverse-metadata)
-{% /collateContent %}
 
 <ExternalIngestionDeployment />
 
@@ -140,165 +138,83 @@ The workflow is modeled around the following
 
 This is a sample config for Snowflake:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="username">
 **username**: Specify the User to connect to Snowflake. It should have enough privileges to read all the metadata.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="password">
 **password**: Password to connect to Snowflake.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="warehouse">
 **warehouse**: Snowflake warehouse is required for executing queries to fetch the metadata. Enter the name of warehouse against which you would like to execute these queries.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="account">
 **account**: Snowflake account identifier uniquely identifies a Snowflake account within your organization, as well as throughout the global network of Snowflake-supported cloud platforms and cloud regions. If the Snowflake URL is `https://xyz1234.us-east-1.gcp.snowflakecomputing.com`, then the account is `xyz1234.us-east-1.gcp`.
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="database">
 **database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=40 %}
-
+</Step>
+<Step title="accountUsageSchema">
 **accountUsageSchema**: Full name of account usage schema, used in case your used do not have direct access to `SNOWFLAKE.ACCOUNT_USAGE` schema. In such case you can replicate tables `QUERY_HISTORY`, `TAG_REFERENCES`, `PROCEDURES`, `FUNCTIONS` to a custom schema let's say `CUSTOM_DB.CUSTOM_SCHEMA` and provide the same name in this field.
 
 When using this field make sure you have all these tables available within your custom schema  `QUERY_HISTORY`, `TAG_REFERENCES`, `PROCEDURES`, `FUNCTIONS`.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="includeTransientTables">
 **includeTransientTables**: Optional configuration for ingestion of TRANSIENT and TEMPORARY tables, By default, it will skip the TRANSIENT and TEMPORARY tables.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="includeStreams">
 **includeStreams**: Optional configuration for ingestion of streams, By default, it will skip the streams.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=39 %}
-
+</Step>
+<Step title="clientSessionKeepAlive">
 **clientSessionKeepAlive**: Optional Configuration to keep the session active in case the ingestion job runs for longer duration.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="privateKey">
 **privateKey**: If you have configured the key pair authentication for the given user you will have to pass the private key associated with the user in this field. You can checkout [this](https://docs.snowflake.com/en/user-guide/key-pair-auth) doc to get more details about key-pair authentication.
   - The multi-line key needs to be converted to one line with `\n` for line endings i.e. `-----BEGIN ENCRYPTED PRIVATE KEY-----\nMII...\n...\n-----END ENCRYPTED PRIVATE KEY-----`
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=9 %}
-
+</Step>
+<Step title="snowflakePrivatekeyPassphrase">
 **snowflakePrivatekeyPassphrase**: If you have configured the encrypted key pair authentication for the given user you will have to pass the paraphrase associated with the private key in this field. You can checkout [this](https://docs.snowflake.com/en/user-guide/key-pair-auth) doc to get more details about key-pair authentication.
-
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=10 %}
-
+</Step>
+<Step title="role">
 **role**: You can specify the role of user that you would like to ingest with, if no role is specified the default roles assigned to user will be selected.
-
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
+</Step>
+</Steps>
 
 #### Advanced Configuration
 
-{% codeInfo srNumber=11 %}
-
+<Steps>
+<Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=12 %}
-
+</Step>
+<Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: snowflake
   serviceName: <service name>
   serviceConnection:
     config:
       type: Snowflake
-```
-```yaml {% srNumber=1 %}
-      username: <username>
-```
-```yaml {% srNumber=2 %}
-      password: <password>
-```
-```yaml {% srNumber=3 %}
-      warehouse: <warehouse>
-```
-```yaml {% srNumber=4 %}
-      account: <account>
-```
-```yaml {% srNumber=5 %}
-      # database: <database>
-```
-```yaml {% srNumber=40 %}
-      # accountUsageSchema: SNOWFLAKE.ACCOUNT_USAGE
-```
-```yaml {% srNumber=6 %}
-      includeTransientTables: false
-```
-```yaml {% srNumber=7 %}
-      includeStreams: false
-```
-```yaml {% srNumber=39 %}
-      clientSessionKeepAlive: false
-```
-```yaml {% srNumber=8 %}
-      # privateKey: <privateKey>
-```
-```yaml {% srNumber=9 %}
-      # snowflakePrivatekeyPassphrase: <passphrase>
-```
-```yaml {% srNumber=10 %}
-      # role: <role>
-```
-```yaml {% srNumber=11 %}
-      # connectionOptions:
+username: <username>
+password: <password>
+warehouse: <warehouse>
+account: <account>
+# database: <database>
+# accountUsageSchema: SNOWFLAKE.ACCOUNT_USAGE
+includeTransientTables: false
+includeStreams: false
+clientSessionKeepAlive: false
+# privateKey: <privateKey>
+# snowflakePrivatekeyPassphrase: <passphrase>
+# role: <role>
+# connectionOptions:
       #   key: value
-```
-```yaml {% srNumber=12 %}
-      # connectionArguments:
+# connectionArguments:
       #   key: value
 ```
 
@@ -307,10 +223,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 
 <IngestionCli />

@@ -4,6 +4,8 @@ description: Learn how to connect Azure SQL OpenMetadata to OpenMetadata with st
 slug: /connectors/database/azuresql
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="AzureSQL"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Stored Procedures", "Owners", "Tags"]
-/ %}
+availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Stored Procedures", "Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the AzureSQL connector.
 
@@ -39,8 +37,6 @@ Configure and schedule AzureSQL metadata and profiler workflows from the OpenMet
 - [Troubleshooting](/connectors/database/azuresql/troubleshooting)
   - [Workflow Deployment Error](#workflow-deployment-error)
 - [Related](#related)
-
-<IngestionModeTiles yamlPath="/snippets/connectors/database/azuresql/yaml" />
 
 ## Requirements
 
@@ -60,8 +56,7 @@ GRANT SELECT TO Mary;
 
 <MetadataIngestionUi connector={"AzureSQL"} selectServicePath={"/images/connectors/azuresql/select-service.png"} addNewServicePath={"/images/connectors/azuresql/add-new-service.png"} serviceConnectionPath={"/images/connectors/azuresql/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Options
 
@@ -93,14 +88,12 @@ You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/s
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

@@ -4,12 +4,13 @@ description: Set up Kafka Connect YAML configuration to stream metadata and sche
 slug: /connectors/pipeline/kafkaconnect/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,15 +20,14 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="KafkaConnect"
 stage="PROD"
 platform="Collate"
-availableFeatures=["Pipelines", "Pipeline Status", "Tags", "Usage"]
-unavailableFeatures=["Owners", "Lineage"]
-/ %}
+availableFeatures={["Pipelines", "Pipeline Status", "Tags", "Usage"]}
+unavailableFeatures={["Owners", "Lineage"]} />
 
 
 In this section, we provide guides and references to use the KafkaConnect connector.
@@ -68,37 +68,24 @@ The workflow is modeled around the following
 
 This is a sample config for KafkaConnect:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="hostPort">
 **hostPort**: The hostname or IP address of the Kafka Connect worker with the REST API enabled
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="verifySSL">
 **verifySSL**: Whether SSL verification should be perform when authenticating.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="Kafka Connect Config">
 **Kafka Connect Config**: OpenMetadata supports username/password or no Authentication.
 
 *Basic Authentication*
     - Username: Username to connect to Kafka Connect. This user should be able to send request to the Kafka Connect API and access the [Rest API](https://docs.confluent.io/platform/current/connect/references/restapi.html) GET endpoints.
-    - Password: Password to connect to Kafka Connect. 
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
+    - Password: Password to connect to Kafka Connect.
+</Step>
+<Step title="messagingServiceName">
 **messagingServiceName**: Name of the Kafka Messaging Service associated with this KafkaConnect Pipeline Service. e.g. local_kafka.
-{% /codeInfo %}
+</Step>
+</Steps>
 
 <SourceConfigDef />
 
@@ -106,31 +93,21 @@ This is a sample config for KafkaConnect:
 
 <WorkflowConfigDef />
 
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: kafkaconnect
   serviceName: kafka_connect_source
   serviceConnection:
     config:
       type: KafkaConnect
-```
-```yaml {% srNumber=1 %}
-        hostPort: "https://<yourkafkaconnectresturihere>" # or http://localhost:8083 or http://127.0.0.1:8083
-```
-```yaml {% srNumber=2 %}
-        verifySSL: true
-```
-```yaml {% srNumber=3 %}
-        authType:
+hostPort: "https://<yourkafkaconnectresturihere>" # or http://localhost:8083 or http://127.0.0.1:8083
+verifySSL: true
+authType:
           username: username
           password: password
+# messagingServiceName: ""
 ```
-```yaml {% srNumber=4 %}
+```yaml
         # messagingServiceName: ""
 ```
 
@@ -139,9 +116,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

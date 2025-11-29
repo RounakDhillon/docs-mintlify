@@ -4,12 +4,13 @@ description: Configure YAML ingestion for GCS Datalake to extract metadata from 
 slug: /connectors/database/gcs-datalake/yaml
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
 import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
 
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 
@@ -19,17 +20,18 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 
-import SourceConfigDef from 'snippets/connectors/yaml/database/source-config-def.mdx'
-import SourceConfig from 'snippets/connectors/yaml/database/source-config.mdx'
-{% connectorDetailsHeader
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
 name="GCS Datalake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the GCS Datalake connector.
 
@@ -57,7 +59,7 @@ If running OpenMetadata version greater than 0.13, you will need to install the 
 pip3 install "openmetadata-ingestion[datalake-gcp]"
 ```
 
-#### If version <0.13
+#### If version &lt;0.13
 
 You will be installing the requirements for GCS
 
@@ -76,33 +78,19 @@ The workflow is modeled around the following JSON Schema.
 
 ### This is a sample config for Datalake using GCS:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
+<Steps>
+<Step title="bucketName">
 
 #### Source Configuration - Service Connection
 
 <GcpConfigDef />
 
-{% codeInfo srNumber=5 %}
-
 * **bucketName**: name of the bucket in GCS
 * **Prefix**: prefix in gcp bucket
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: datalake
   serviceName: local_datalake
@@ -115,7 +103,7 @@ source:
 ```
 <GcpConfig />
 
-```yaml {% srNumber=5 %}
+```yaml
       bucketName: bucket name
       prefix: prefix
 ```
@@ -125,10 +113,6 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />
 

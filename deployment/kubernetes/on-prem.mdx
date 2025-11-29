@@ -12,11 +12,11 @@ import Faqs from '/snippets/deployment/faqs.mdx'
 OpenMetadata supports the Installation and Running of application on OnPremises Kubernetes through Helm Charts.
 However, there are some additional configurations which needs to be done as prerequisites for the same.
 
-{%note noteType="Warning"%}
+<Warning>
 
 This guide presumes you have an on premises Kubernetes cluster setup, and you are installing OpenMetadata in `default` namespace.
 
-{%/note%}
+</Warning>
 
 ## Prerequisites
 
@@ -75,11 +75,11 @@ OpenMetadata helm chart depends on Airflow and Airflow expects a persistent disk
 
 The workaround is to create nfs-share and use that as the persistent claim to deploy OpenMetadata by implementing the following steps in order.
 
-{%note%}
+<Tip>
 
 This guide assumes you have NFS Server already setup with Hostname or IP Address which is reachable from your on premises Kubernetes cluster, and you have configured a path to be used for OpenMetadata Airflow Helm Dependency.
 
-{%/note%}
+</Tip>
 
 ### Dynamic Provisioning using StorageClass
 
@@ -197,11 +197,11 @@ spec:
   restartPolicy: Always
 ```
 
-{%note%}
+<Tip>
 
 Airflow runs the pods with linux username as airflow and linux user id as 50000.
 
-{%/note%}
+</Tip>
 
 Run the below command to create the pod and fix the permissions
 
@@ -249,7 +249,7 @@ When deploying openmetadata dependencies helm chart, use the below command -
 helm install openmetadata-dependencies open-metadata/openmetadata-dependencies --values values-dependencies.yaml
 ```
 
-{%note%}
+<Tip>
 
 The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml). 
 You can modify any configuration and deploy by passing your own `values.yaml`
@@ -258,7 +258,7 @@ You can modify any configuration and deploy by passing your own `values.yaml`
 helm install openmetadata-dependencies open-metadata/openmetadata-dependencies --values <path-to-values-file>
 ```
 
-{%/note%}
+</Tip>
 
 Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart - 
 

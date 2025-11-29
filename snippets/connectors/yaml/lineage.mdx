@@ -1,5 +1,3 @@
-import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.md'
-
 ## Lineage
 
 After running a Metadata Ingestion workflow, we can run Lineage workflow.
@@ -9,125 +7,66 @@ While the `serviceName` will be the same to that was used in Metadata Ingestion,
 
 This is a sample config for BigQuery Lineage:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=40 %}
+<Steps>
+<Step title="Source Configuration - Source Config">
 #### Source Configuration - Source Config
 
 You can find all the definitions and types for the  `sourceConfig` [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/databaseServiceQueryLineagePipeline.json).
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=41 %}
-
+</Step>
+<Step title="queryLogDuration">
 **queryLogDuration**: Configuration to tune how far we want to look back in query logs to process lineage data in days.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=42 %}
-
+</Step>
+<Step title="parsingTimeoutLimit">
 **parsingTimeoutLimit**: Configuration to set the timeout for parsing the query in seconds.
-{% /codeInfo %}
-
-{% codeInfo srNumber=43 %}
-
+</Step>
+<Step title="filterCondition">
 **filterCondition**: Condition to filter the query history.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=44 %}
-
+</Step>
+<Step title="resultLimit">
 **resultLimit**: Configuration to set the limit for query logs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=45 %}
-
+</Step>
+<Step title="queryLogFilePath">
 **queryLogFilePath**: Configuration to set the file path for query logs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=46 %}
-
+</Step>
+<Step title="databaseFilterPattern">
 **databaseFilterPattern**: Regex to only fetch databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=47 %}
-
+</Step>
+<Step title="schemaFilterPattern">
 **schemaFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=48 %}
-
+</Step>
+<Step title="tableFilterPattern">
 **tableFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=51 %}
-
+</Step>
+<Step title="overrideViewLineage">
 **overrideViewLineage**: Set the 'Override View Lineage' toggle to control whether to override the existing view lineage.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=52 %}
-
+</Step>
+<Step title="processViewLineage">
 **processViewLineage**: Set the 'Process View Lineage' toggle to control whether to process view lineage.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=53 %}
-
+</Step>
+<Step title="processQueryLineage">
 **processQueryLineage**: Set the 'Process Query Lineage' toggle to control whether to process query lineage.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=54 %}
-
+</Step>
+<Step title="processStoredProcedureLineage">
 **processStoredProcedureLineage**: Set the 'Process Stored ProcedureLog Lineage' toggle to control whether to process stored procedure lineage.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=55 %}
-
+</Step>
+<Step title="threads">
 **threads**: Number of Threads to use in order to parallelize lineage ingestion.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=55 %}
-
-
+</Step>
+<Step title="Sink Configuration">
 #### Sink Configuration
 
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=50 %}
-
+</Step>
+<Step title="Workflow Configuration">
 #### Workflow Configuration
 
 The main property here is the `openMetadataServerConfig`, where you can define the host and security provider of your OpenMetadata installation.
 
 For a simple, local installation using our docker containers, this looks like:
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-
-```yaml {% srNumber=40 %}
+```yaml
 source:
   type: {connector}-lineage
   serviceName: {connector}
@@ -136,24 +75,24 @@ source:
       type: DatabaseLineage
 ```
 
-```yaml {% srNumber=41 %}
+```yaml
       # Number of days to look back
       queryLogDuration: 1
 ```
-```yaml {% srNumber=42 %}
+```yaml
       parsingTimeoutLimit: 300
 ```
-```yaml {% srNumber=43 %}
+```yaml
       # filterCondition: query_text not ilike '--- metabase query %'
 ```
-```yaml {% srNumber=44 %}
+```yaml
       resultLimit: 1000
 ```
-```yaml {% srNumber=45 %}
+```yaml
       # If instead of getting the query logs from the database we want to pass a file with the queries
       # queryLogFilePath: /tmp/query_log/file_path
 ```
-```yaml {% srNumber=46 %}
+```yaml
       # databaseFilterPattern:
       #   includes:
       #     - database1
@@ -162,7 +101,7 @@ source:
       #     - database3
       #     - database4
 ```
-```yaml {% srNumber=47 %}
+```yaml
       # schemaFilterPattern:
       #   includes:
       #     - schema1
@@ -171,7 +110,7 @@ source:
       #     - schema3
       #     - schema4
 ```
-```yaml {% srNumber=48 %}
+```yaml
       # tableFilterPattern:
       #   includes:
       #     - table1
@@ -181,37 +120,31 @@ source:
       #     - table4
 ```
 
-```yaml {% srNumber=51 %}
+```yaml
       overrideViewLineage: false
 ```
 
-```yaml {% srNumber=52 %}
+```yaml
       processViewLineage: true
 ```
 
-```yaml {% srNumber=53 %}
+```yaml
       processQueryLineage: true
 ```
 
-```yaml {% srNumber=54 %}
+```yaml
       processStoredProcedureLineage: true
 ```
 
-```yaml {% srNumber=55 %}
+```yaml
       threads: 1
 ```
 
-```yaml {% srNumber=49 %}
+```yaml
 sink:
   type: metadata-rest
   config: {}
 ```
-
-<WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 - You can learn more about how to configure and run the Lineage Workflow to extract Lineage data from [here](/connectors/ingestion/workflows/lineage)
 

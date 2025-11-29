@@ -4,15 +4,16 @@ slug: /connectors/security/ranger
 collate: true
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
 
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="Ranger"
 stage="Beta"
 platform="Collate"
-availableFeatures=["Reverse Metadata (Collate Only)"]
-unavailableFeatures=[]
-/ %}
+availableFeatures={["Reverse Metadata (Collate Only)"]}
+unavailableFeatures={[]} />
 
 In this section, we provide guides and references to use the Apache Ranger connector for reverse metadata ingestion.
 

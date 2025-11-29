@@ -26,156 +26,83 @@ We support spark version 3.1 and above.
 While configuring the spark session, in this guide we will make use of PySpark to demonstrate the use of `OpenMetadata Spark Agent`
 
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-{% codeInfo srNumber=1 %}
-
+<Steps>
+<Step title="Once you have downloaded the">
 Once you have downloaded the jar from [here](https://github.com/open-metadata/openmetadata-spark-agent/releases) in your spark configuration you will have to add the path to your `openmetadata-spark-agent.jar` along with other required jars to run your spark job, in this example it is `mysql-connector-java.jar`
-
-{% /codeInfo %}
-
-
-
-{% codeInfo srNumber=2 %}
-
+</Step>
+<Step title="`openmetadata-spark-agent.jar` comes with a custom">
 `openmetadata-spark-agent.jar` comes with a custom spark listener i.e. `io.openlineage.spark.agent.OpenLineageSparkListener` you will need to add this as `extraListeners` spark configuration.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.hostPort`: Specify the host &">
 `spark.openmetadata.transport.hostPort`: Specify the host & port of the instance where your OpenMetadata is hosted.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.type` is required configura...">
 `spark.openmetadata.transport.type` is required configuration with value as `openmetadata`.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=5 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.jwtToken`: Specify your Ope...">
 `spark.openmetadata.transport.jwtToken`: Specify your OpenMetadata Jwt token here. Checkout [this](/deployment/security/enable-jwt-tokens#generate-token) documentation on how you can generate a jwt token in OpenMetadata.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=6 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.pipelineServiceName`: This ...">
 `spark.openmetadata.transport.pipelineServiceName`: This spark job will be creating a new pipeline service of type `Spark`, use this configuration to customize the pipeline service name.
 
 Note: If the pipeline service with the specified name already exists then we will be updating/using the same pipeline service.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=7 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.pipelineName`: This spark j...">
 `spark.openmetadata.transport.pipelineName`: This spark job will also create a new pipeline within the pipeline service defined above. Use this configuration to customize the name of pipeline.
 
 Note: If the pipeline with the specified name already exists then we will be updating/using the same pipeline.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=8 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.pipelineSourceUrl`: You can...">
 `spark.openmetadata.transport.pipelineSourceUrl`: You can use this configuration to provide additional context to your pipeline by specifying a url related to the pipeline.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=9 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.pipelineDescription`: Provi...">
 `spark.openmetadata.transport.pipelineDescription`: Provide pipeline description using this spark configuration.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=10 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.databaseServiceNames`: Prov...">
 `spark.openmetadata.transport.databaseServiceNames`: Provide the comma separated list of database service names which contains the source tables used in this job. If you do not provide this configuration then we will be searching through all the services available in openmetadata.
-
-{% /codeInfo %}
-
-
-{% codeInfo srNumber=11 %}
-
+</Step>
+<Step title="`spark.openmetadata.transport.timeout`: Provide the timeo...">
 `spark.openmetadata.transport.timeout`: Provide the timeout to communicate with OpenMetadata APIs.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=12 %}
-
+</Step>
+<Step title="In this job we are">
 In this job we are reading data from `employee` table and moving it to another table `employee_new` of within same mysql source.
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="pyspark.py" %}
-
-
-```py {% isCodeBlock=true %}
+```py
 from pyspark.sql import SparkSession
 
 spark = (
     SparkSession.builder.master("local")
     .appName("localTestApp")
-```
-```py {% srNumber=1 %}
-    .config(
+.config(
         "spark.jars",
         "path/to/openmetadata-spark-agent.jar,path/to/mysql-connector-java-8.0.30.jar",
     )
-```
-```py {% srNumber=2 %}
-    .config(
+.config(
         "spark.extraListeners",
         "io.openlineage.spark.agent.OpenLineageSparkListener",
     )
-```
-```py {% srNumber=3 %}
-    .config("spark.openmetadata.transport.hostPort", "http://localhost:8585")
-```
-```py {% srNumber=4 %}
-    .config("spark.openmetadata.transport.type", "openmetadata")
-```
-```py {% srNumber=5 %}
-    .config("spark.openmetadata.transport.jwtToken", "<openmetadata-jwt-token>")
-```
-```py {% srNumber=6 %}
-    .config(
+.config("spark.openmetadata.transport.hostPort", "http://localhost:8585")
+.config("spark.openmetadata.transport.type", "openmetadata")
+.config("spark.openmetadata.transport.jwtToken", "<openmetadata-jwt-token>")
+.config(
         "spark.openmetadata.transport.pipelineServiceName", "my_pipeline_service"
     )
-```
-```py {% srNumber=7 %}
-    .config("spark.openmetadata.transport.pipelineName", "my_pipeline_name")
-```
-```py {% srNumber=8 %}
-    .config(
+.config("spark.openmetadata.transport.pipelineName", "my_pipeline_name")
+.config(
         "spark.openmetadata.transport.pipelineSourceUrl",
         "http://your.org/path/to/pipeline",
     )
-```
-```py {% srNumber=9 %}
-    .config(
+.config(
         "spark.openmetadata.transport.pipelineDescription", "My ETL Pipeline"
     )
-```
-```py {% srNumber=10 %}
-    .config(
+.config(
         "spark.openmetadata.transport.databaseServiceNames",
         "random,local_mysql",
     )
-```
-```py {% srNumber=11 %}
-    .config("spark.openmetadata.transport.timeout", "30")
-```
-```py {% srNumber=12 %}
-    .getOrCreate()
+.config("spark.openmetadata.transport.timeout", "30")
+.getOrCreate()
 )
 
 # Read table using jdbc()
@@ -207,34 +134,18 @@ employee_df = (
 spark.stop()
 ```
 
-{% /codeBlock %}
-
-{% /codePreview %}
-
 
 Once this pyspark job get finished you will see a new pipeline service with name `my_pipeline_service` generated in your openmetadata instance which would contain a pipeline with name `my_pipeline` as per the above example and you should also see lineage between the table `employee` and `employee_new` via `my_pipeline`.
 
 
-{% image
-  src="/images/v1.9/connectors/spark/spark-pipeline-service.png"
-  alt="Spark Pipeline Service"
-  caption="Spark Pipeline Service"
- /%}
+<img src="/images/v1.9/connectors/spark/spark-pipeline-service.png" alt="Spark Pipeline Service" />
 
 
- {% image
-  src="/images/v1.9/connectors/spark/spark-pipeline-details.png"
-  alt="Spark Pipeline Details"
-  caption="Spark Pipeline Details"
- /%}
+ <img src="/images/v1.9/connectors/spark/spark-pipeline-details.png" alt="Spark Pipeline Details" />
 
 
 
- {% image
-  src="/images/v1.9/connectors/spark/spark-pipeline-lineage.png"
-  alt="Spark Pipeline Lineage"
-  caption="Spark Pipeline Lineage"
- /%}
+ <img src="/images/v1.9/connectors/spark/spark-pipeline-lineage.png" alt="Spark Pipeline Lineage" />
 
 ## Using Spark Agent with Databricks
 
@@ -246,27 +157,15 @@ To use the `OpenMetadata Spark Agent`, you will have to download the latest jar 
 
 To upload the jar you can visit the compute details page and then go to the libraries tab
 
-{% image
-  src="/images/v1.9/connectors/spark/spark-upload-jar.png"
-  alt="Spark Upload Jar"
-  caption="Spark Upload Jar"
- /%}
+<img src="/images/v1.9/connectors/spark/spark-upload-jar.png" alt="Spark Upload Jar" />
 
 Click on the "Install Now" button and choose `dbfs` mode and upload the `OpenMetadata Spark Agent` jar.
 
-{% image
-  src="/images/v1.9/connectors/spark/spark-upload-jar-2.png"
-  alt="Spark Upload Jar"
-  caption="Spark Upload Jar"
- /%}
+<img src="/images/v1.9/connectors/spark/spark-upload-jar-2.png" alt="Spark Upload Jar" />
 
 Once your jar is uploaded copy the path of the jar for the next steps.
 
-{% image
-  src="/images/v1.9/connectors/spark/spark-uploaded-jar.png"
-  alt="Spark Upload Jar"
-  caption="Spark Upload Jar"
- /%}
+<img src="/images/v1.9/connectors/spark/spark-uploaded-jar.png" alt="Spark Upload Jar" />
 
 
 ### 2. Create Initialization Script
@@ -294,11 +193,7 @@ echo "END: Modify Spark config settings"
 
 Note: The copied path would look like this `dbfs:/FileStore/jars/....` you need to modify it like `/dbfs/FileStore/jars/...` this.
 
-{% image
-  src="/images/v1.9/connectors/spark/prepare-script.png"
-  alt="Prepare Script"
-  caption="Prepare Script"
- /%}
+<img src="/images/v1.9/connectors/spark/prepare-script.png" alt="Prepare Script" />
 
 
 
@@ -306,18 +201,10 @@ Note: The copied path would look like this `dbfs:/FileStore/jars/....` you need 
 
 Once you have created a initialization script, you will need to attach this script to your compute instance, to do that you can go to advanced config > init scripts and add your script path.
 
-{% image
-  src="/images/v1.9/connectors/spark/prepare-script.png"
-  alt="Prepare Script"
-  caption="Prepare Script"
- /%}
+<img src="/images/v1.9/connectors/spark/prepare-script.png" alt="Prepare Script" />
 
 
-{% image
-  src="/images/v1.9/connectors/spark/spark-init-script.png"
-  alt="Spark Init Script"
-  caption="Spark Init Script"
- /%}
+<img src="/images/v1.9/connectors/spark/spark-init-script.png" alt="Spark Init Script" />
 
 
 ### 4. Configure Spark
@@ -325,11 +212,7 @@ Once you have created a initialization script, you will need to attach this scri
 After configuring the init script, you will need to update the spark config as well.
 
 
-{% image
-  src="/images/v1.9/connectors/spark/spark-config-set.png"
-  alt="Spark Set Config"
-  caption="Spark Set Config"
- /%}
+<img src="/images/v1.9/connectors/spark/spark-config-set.png" alt="Spark Set Config" />
 
 these are the possible configurations that you can do, please refer the `Configuration` section above to get the detailed information about the same. 
 
@@ -359,11 +242,7 @@ Follow the below steps in order to use OpenMetadata Spark Agent with glue.
 2. Navigate to the glue job,In the Job details tab, navigate to Advanced properties → Libraries → Dependent Jars path
 3. Add the S3 url of OpenMetadata Spark Agent Jar in the Dependent Jars path.
 
-{% image
-  src="/images/v1.9/connectors/spark/glue-job-jar.png"
-  alt="Glue Job Configure Jar"
-  caption="Glue Job Configure Jar"
- /%}
+<img src="/images/v1.9/connectors/spark/glue-job-jar.png" alt="Glue Job Configure Jar" />
 
 
 ### 2. Add Spark configuration in Job Parameters
@@ -378,8 +257,4 @@ spark.extraListeners=io.openlineage.spark.agent.OpenLineageSparkListener --conf 
 
 2. Add the `--user-jars-first` parameter and set its value to `true`
 
-{% image
-  src="/images/v1.9/connectors/spark/glue-job-params.png"
-  alt="Glue Job Configure Params"
-  caption="Glue Job Configure Params"
- /%}
+<img src="/images/v1.9/connectors/spark/glue-job-params.png" alt="Glue Job Configure Params" />

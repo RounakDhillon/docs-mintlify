@@ -4,6 +4,8 @@ description: Connect Apache Pinot to OpenMetadata with our comprehensive databas
 slug: /connectors/database/pinotdb
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="PinotDB"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Owners", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the PinotDB connector.
 
@@ -37,14 +35,11 @@ Configure and schedule PinotDB metadata and profiler workflows from the OpenMeta
 - [Lineage](/how-to-guides/data-lineage/workflow)
 - [Troubleshooting](/connectors/database/pinotdb/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/pinotdb/yaml" />
-
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"PinotDB"} selectServicePath={"/images/connectors/pinotdb/select-service.png"} addNewServicePath={"/images/connectors/pinotdb/add-new-service.png"} serviceConnectionPath={"/images/connectors/pinotdb/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details
 
@@ -59,14 +54,12 @@ Configure and schedule PinotDB metadata and profiler workflows from the OpenMeta
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

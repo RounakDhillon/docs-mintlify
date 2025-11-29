@@ -4,10 +4,12 @@ description: Configure AWS QuickSight connector in OpenMetadata using YAML. Step
 slug: /connectors/dashboard/quicksight/yaml
 ---
 
-import SourceConfigDef from 'snippets/connectors/yaml/dashboard/source-config-def.mdx'
-import IngestionSinkDef from 'snippets/connectors/yaml/ingestion-sink-def.mdx'
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 
-import WorkflowConfigDef from 'snippets/connectors/yaml/workflow-config-def.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
 
@@ -21,19 +23,14 @@ import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 
-import AwsConfigDef from 'snippets/connectors/yaml/common/aws-config-def.mdx'
+import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
 
-import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
-import WorkflowConfig from 'snippets/connectors/yaml/workflow-config.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
   name="QuickSight"
   stage="PROD"
   platform="OpenMetadata"
-  availableFeatures=["Dashboards", "Charts", "Lineage", "Datamodels"]
-  unavailableFeatures=["Owners", "Tags", "Projects"]  
-/ %}
+  availableFeatures={["Dashboards", "Charts", "Lineage", "Datamodels"]}
+  unavailableFeatures={["Owners", "Tags", "Projects"]} />
 
 In this section, we provide guides and references to use the QuickSight connector.
 
@@ -121,60 +118,28 @@ The workflow is QuickSightled around the following
 
 This is a sample config for QuickSight:
 
-{% codePreview %}
-
-{% codeInfoContainer %}
-
-#### Source Configuration - Service Connection
-
-<AwsConfigDef />
-
-{% codeInfo srNumber=2 %}
-
+<Steps>
+<Step title="awsAccountId">
 **awsAccountId**: AWS Account ID
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=3 %}
-
+</Step>
+<Step title="identityType">
 **identityType**: The authentication method that the user uses to sign in.
-
-{% /codeInfo %}
-
-{% codeInfo srNumber=4 %}
-
+</Step>
+<Step title="namespace">
 **namespace**: The Amazon QuickSight namespace that contains the dashboard IDs in this request ( To be provided when identityType is `ANONYMOUS` )
+</Step>
+</Steps>
 
-{% /codeInfo %}
-
-<SourceConfigDef />
-
-<IngestionSinkDef />
-
-<WorkflowConfigDef />
-
-{% /codeInfoContainer %}
-
-{% codeBlock fileName="filename.yaml" %}
-
-```yaml {% isCodeBlock=true %}
+```yaml
 source:
   type: quicksight
   serviceName: local_quicksight
   serviceConnection:
     config:
       type: QuickSight
-```
-
-
-```yaml {% srNumber=2 %}
-      awsAccountId: <aws-account-id>
-```
-```yaml {% srNumber=3 %}
-      identityType: IAM #QUICKSIGHT, ANONYMOUS
-```
-```yaml {% srNumber=4 %}
-      namespace: #to be provided if identityType is Anonymous
+awsAccountId: <aws-account-id>
+identityType: IAM #QUICKSIGHT, ANONYMOUS
+namespace: #to be provided if identityType is Anonymous
 ```
 
 <SourceConfig />
@@ -182,9 +147,5 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
-
-{% /codeBlock %}
-
-{% /codePreview %}
 
 <IngestionCli />

@@ -4,6 +4,8 @@ description: Connect your Google Cloud Storage data lake to OpenMetadata with ou
 slug: /connectors/database/gcs-datalake
 ---
 
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -12,19 +14,15 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import IngestionModeTiles from \'/snippets/connectors/ingestion-modes-tiles.mdx\'
-
 import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import Related from '/snippets/connectors/database/related.mdx'
 
-import Related from 'snippets/connectors/database/related.mdx'
-
-{% connectorDetailsHeader
+<ConnectorDetailsHeader
 name="GCS Datalake"
 stage="PROD"
 platform="OpenMetadata"
-availableFeatures=["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]
-unavailableFeatures=["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]
-/ %}
+availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
+unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
 
 In this section, we provide guides and references to use the GCS Datalake connector.
 
@@ -35,20 +33,17 @@ Configure and schedule GCS Datalake metadata and profiler workflows from the Ope
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [Troubleshooting](/connectors/database/gcs-datalake/troubleshooting)
 
-<IngestionModeTiles yamlPath="/snippets/connectors/database/gcs-datalake/yaml" />
-
 ## Requirements
 
-{% note %}
+<Tip>
 The GCS Datalake connector supports extracting metadata from file types `JSON`, `CSV`, `TSV` & `Parquet`.
-{% /note %}
+</Tip>
 
 ## Metadata Ingestion
 
 <MetadataIngestionUi connector={"GCS Datalake"} selectServicePath={"/images/connectors/gcs-datalake/select-service.png"} addNewServicePath={"/images/connectors/gcs-datalake/add-new-service.png"} serviceConnectionPath={"/images/connectors/gcs-datalake/service-connection.png"} />
 
-{% stepsContainer %}
-{% extraContent parentTagName="stepsContainer" %}
+<Steps>
 
 #### Connection Details for GCS
 
@@ -75,14 +70,12 @@ We support two ways of authenticating to GCS:
 
 <AdvancedConfiguration />
 
-{% /extraContent %}
-
 <TestConnection />
 
 <ConfigureIngestion />
 
 <IngestionScheduleAndDeploy />
 
-{% /stepsContainer %}
+</Steps>
 
 <Related />

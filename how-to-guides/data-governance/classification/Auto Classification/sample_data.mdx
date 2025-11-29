@@ -5,11 +5,11 @@ slug: /how-to-guides/data-governance/classification/auto-classification/external
 
 # External Storage for Sample Data
 
-{% note %}
+<Tip>
 
 Note that this requires OpenMetadata 1.2.1 or higher.
 
-{% /note %}
+</Tip>
 
 While running the auto-classification workflow if you have enabled the `Generate Sample Data` flag in your profiler configuration, sample data will be ingested for all the tables included in the  auto-classification workflow. This data is a randomly sampled from the table and by default would contain 50 rows of data, which is now configurable.
 
@@ -30,46 +30,26 @@ You can configure the Sample Data Storage Credentials at Database Service level 
 
 You will provide the storage credential details in advance config section of connection details form.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-service.png"
-  alt="Database Service Storage Config"
-  caption="Database Service Storage Config"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-service.png" alt="Database Service Storage Config" />
 
 
 ### Storage Credentials at the Database
 
 You can configure the Sample Data Storage Credentials at the Database level via the `Profiler Settings` option from the menu.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-database-1.png"
-  alt="Database Storage Config - 1"
-  caption="Database Storage Config - 1"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-database-1.png" alt="Database Storage Config - 1" />
 
 
- {% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-database-2.png"
-  alt="Database Storage Config - 2"
-  caption="Database Storage Config - 2"
- /%}
+ <img src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-database-2.png" alt="Database Storage Config - 2" />
 
 ### Storage Credentials at the Database Schema
 
 You can configure the Sample Data Storage Credentials at the Database Schema level via the `Profiler Settings` option from the menu.
 
-{% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-schema-1.png"
-  alt="Database Schema Storage Config - 1"
-  caption="Database Schema Storage Config - 1"
- /%}
+<img src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-schema-1.png" alt="Database Schema Storage Config - 1" />
 
 
- {% image
-  src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-schema-2.png"
-  alt="Database Schema Storage Config - 2"
-  caption="Database Schema Storage Config - 2"
- /%}
+ <img src="/images/v1.9/features/ingestion/workflows/profiler/sample-data-config-schema-2.png" alt="Database Schema Storage Config - 2" />
 
 
 ### Configuration Details
@@ -81,19 +61,19 @@ You can configure the Sample Data Storage Credentials at the Database Schema lev
     - **Row Count**: this will use a number of rows to sample the table (e.g. if table has 100 rows, and we set row count to 10, the profiler will use 10 random rows to compute the metrics).
 - **Sample Data Rows Count**: Number of rows of sample data to be ingested, if generate sample data option is enabled.
 
-{% note %}
+<Tip>
 
 The OpenMetadata UI will always show 50 or fewer rows of sample data. *Sample Data Rows Count* higher than 50 is only used for maintaining the row count of sample data that will be stored in parquet file in an object storage.
 
-{% /note %}
+</Tip>
 
 - **Sampling Method Type**: The sampling method type can be set to **BERNOULLI** or **SYSTEM**. You can find the difference of two values in the document of the Snowflake. When you choice **BERNOULLI**, it will scan full rows in the table even though small value is set at the **Profile Sample**. However, it has less restlictions than **SYSTEM**. If no option is choiced, the default is **BERNOULLI**.
 
-{% note %}
+<Tip>
 
 This parameter is effective for Snowflake only. 
 
-{% /note %}
+</Tip>
 
 
 - **Bucket Name**: A bucket name is a unique identifier used to organize and store data objects. It's similar to a folder name, but it's used for object storage rather than file storage.

@@ -1,7 +1,7 @@
 #### Source Configuration - Source Config
 
-{% codeInfo srNumber=100 %}
-
+<Steps>
+<Step title="sourceConfig">
 The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/pipelineServiceMetadataPipeline.json):
 
 - **dbServiceNames**: Database Service Name for the creation of lineage, if the source supports it.
@@ -19,5 +19,5 @@ The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetada
 - **overrideLineage**: Set the 'Override Lineage' toggle to control whether to override the existing lineage. It supports boolean values either `true` or `false`.
 
 - **overrideMetadata**: Set the 'Override Metadata' toggle to control whether to override the existing metadata in the OpenMetadata server with the metadata fetched from the source. If the toggle is set to true, the metadata fetched from the source will override the existing metadata in the OpenMetadata server. If the toggle is set to false, the metadata fetched from the source will not override the existing metadata in the OpenMetadata server. This is applicable for fields like description, tags, owner and displayName. It supports boolean values either `true` or `false`.
-
-{% /codeInfo %}
+</Step>
+</Steps>
