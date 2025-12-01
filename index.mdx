@@ -4,72 +4,320 @@ description: "Unified platform for data discovery, lineage, and governance"
 mode: "custom"
 ---
 
-import { TopBanner } from "/snippets/Homepage/TopBanner.jsx";
+<div className="homepage-container">
 
-<div className="homepage-banner">
-
-<div className="container banner-content">
+<div className="banner-content">
 
 <h1 className="page-header">
-  Collate <span>Documentation</span>
+  Unlock the <span id="header-highlight">Power</span> of Data
 </h1>
 
 <p className="page-description">
-  Unlock the value of data assets with an end-to-end metadata management
-  solution that includes data discovery, governance, data quality,
-  observability, and people collaboration.
+  Learn how to get started with Collate, your all-in-one documentation solution.
 </p>
 
-<TopBanner />
+<div className="search-container">
+<input
+  type="text"
+  id="homepage-search"
+  className="homepage-search-input"
+  placeholder="Search for data assets, policies, and more"
+  onClick={() => {
+    const searchBar = document.getElementById('search-bar-entry');
+    if (searchBar) {
+      searchBar.click();
+    }
+  }}
+  onFocus={() => {
+    const searchBar = document.getElementById('search-bar-entry');
+    if (searchBar) {
+      searchBar.click();
+    }
+  }}
+  readOnly
+/>
+<svg className="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  <path d="M19 19L14.65 14.65" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+<span className="search-shortcut">⌘K</span>
+</div>
+
+<div className="chips">
+
+<a href="/getting-started" className="chip blue">
+  <Icon icon="rocket" color="#194185" /> <span>Get Started</span>
+</a>
+
+<a href="/how-to-guides" className="chip blue">
+  <Icon icon="book-open" color="#194185" /> <span>How-To Guides</span>
+</a>
+
+<a href="/how-to-guides/admin-guide" className="chip blue">
+  <Icon icon="gear" color="#194185" /> <span>Admin & Setup</span>
+</a>
+
+<a href="/connectors" className="chip blue">
+  <Icon icon="screwdriver-wrench" color="#194185" /> <span>Integration</span>
+</a>
 
 </div>
 
 </div>
 
-<div style={{ padding: '50px 70px' }} className="container">
+<div className="guides">
 
-<h2 className="overview">Overview</h2>
+<div className="chip purple">How-to Guides</div>
 
-<p>Collate is a unified platform for discovery, observability, and governance powered by a central metadata repository, in-depth lineage, and seamless team collaboration. It is one of the fastest-growing open-source projects with a vibrant community and adoption by a diverse set of companies in a variety of industry verticals. Based on Collate Standards and APIs, supporting connectors to a wide range of data services, Collate enables end-to-end metadata management, giving you the freedom to unlock the value of your data assets.</p>
+<h2 className="guide-header">Quick Setup Guides</h2>
 
-<h2 className="overview" style={{ marginTop: '36px' }}>Get Started</h2>
+<p className="page-description">
+  Dive into our library of guides to master Collate's features.
+</p>
 
-<CardGroup cols={2}>
-  <Card
-    title="Quick Start"
-    icon="/images/icons/arrow-right.svg"
-    href="/quick-start/index"
-  >
-    Deploy Collate locally in 5 minutes
-  </Card>
-  <Card title="Connect Data Sources" icon="/images/icons/lineage.svg" href="/connectors/overview">
-    Connect your databases, pipelines, and dashboards
-  </Card>
-</CardGroup>
+<div className="guide-list">
 
-<h2 className="overview" style={{ marginTop: '36px' }}>Core Features</h2>
+<a href="/how-to-guides/data-discovery" className="guide-card">
+  <img src="/public/images/icons/discovery.svg" alt="Discovery" />
+  <div>Discovery</div>
+</a>
 
-<CardGroup cols={4}>
-  <Card
-    title="Data Discovery"
-    icon="/images/icons/search.svg"
-    href="/features/discovery"
-  >
-    Find and understand your data assets across the organization
-  </Card>
-  <Card title="Data Lineage" icon="/images/icons/lineage.svg" href="/features/lineage">
-    Track data flow from source to destination
-  </Card>
-  <Card title="Data Quality" icon="/images/icons/quality.svg" href="/features/data-quality">
-    Monitor and ensure data quality with automated tests
-  </Card>
-  <Card
-    title="Team Collaboration"
-    icon="/images/icons/collaboration.svg"
-    href="/getting-started/overview"
-  >
-    Enable teams to collaborate on data assets
-  </Card>
-</CardGroup>
+<a href="/how-to-guides/data-lineage" className="guide-card">
+  <img src="/public/images/icons/lineage.svg" alt="Lineage" />
+  <div>Lineage</div>
+</a>
+
+<a href="/how-to-guides/data-quality-observability" className="guide-card">
+  <img src="/public/images/icons/observability.svg" alt="Observability" />
+  <div>Observability</div>
+</a>
+
+<a href="/how-to-guides/data-insights" className="guide-card">
+  <img src="/public/images/icons/insights.svg" alt="Insights" />
+  <div>Insights</div>
+</a>
+
+<a href="/how-to-guides/data-contracts" className="guide-card">
+  <img src="/public/images/icons/contract.svg" alt="Contract" />
+  <div>Contract</div>
+</a>
+
+<a href="/how-to-guides/data-governance" className="guide-card">
+  <img src="/public/images/icons/governance.svg" alt="Governance" />
+  <div>Governance</div>
+</a>
+
+</div>
+
+</div>
+
+<div className="highlights">
+
+<div className="chip purple">Highlights</div>
+
+<h2 className="guide-header">What's New at Collate</h2>
+
+<p className="page-description">
+  Stay up-to-date with the latest features, improvements, and updates to
+  Collate.
+</p>
+
+<div className="hightlight-cards">
+
+<div className="hightlight-card">
+  <img src="/public/images/icons/askcollate.svg" alt="AskCollate" />
+  <div className="highlight-header">AskCollate</div>
+  <p>Your one-stop solution to explore data and everything about it.</p>
+  <a className="read-more" href="https://www.getcollate.io/askcollate" target="_blank">
+    <span>Read More</span>
+    <img src="/public/images/icons/right-arrow.svg" alt="Right Arrow" />
+  </a>
+</div>
+
+<div className="hightlight-card">
+  <img src="/public/images/icons/ai-studio.svg" alt="AI Studio" />
+  <div className="highlight-header">Collate AI Platform</div>
+  <p>Set up agents and manage data access permissions and policies.</p>
+  <a className="read-more" href="https://www.getcollate.io/product" target="_blank">
+    <span>Read More</span>
+    <img src="/public/images/icons/right-arrow.svg" alt="Right Arrow" />
+  </a>
+</div>
+
+<div className="hightlight-card">
+  <img src="/public/images/icons/agents.svg" alt="Agents" />
+  <div className="highlight-header">Collate AI</div>
+  <p>Configure and deploy your own agents to automate tasks.</p>
+  <a className="read-more" href="https://www.getcollate.io/collate-ai" target="_blank">
+    <span>Read More</span>
+    <img src="/public/images/icons/right-arrow.svg" alt="Right Arrow" />
+  </a>
+</div>
+
+<div className="hightlight-card">
+  <img
+    src="/public/images/icons/custom-properties.svg"
+    alt="Custom Properties"
+  />
+  <div className="highlight-header">Collate vs OSS</div>
+  <p>Define custom metadata fields and apply them to any data asset.</p>
+  <a className="read-more" href="https://www.getcollate.io/comparison" target="_blank">
+    <span>Read More</span>
+    <img src="/public/images/icons/right-arrow.svg" alt="Right Arrow" />
+  </a>
+</div>
+
+</div>
+
+</div>
+
+<div className="quick-links">
+
+<div className="chip purple">Quick Links</div>
+
+<h2 className="guide-header">Trending Quick Links</h2>
+
+<p className="page-description">
+  Explore the most popular resources and links, handpicked by the Collate
+  community.
+</p>
+
+<div className="links">
+
+<div>
+<div className="link-header">
+<Icon icon="list" color="#414651" size={20} />
+<h3>Core Features</h3>
+</div>
+
+<div className="link-list">
+<div>AskCollate</div>
+<div>Lineage Mapping</div>
+<div>Query Runner</div>
+<div>Data Contracts</div>
+</div>
+</div>
+
+<div>
+<div className="link-header">
+<Icon icon="book-open" color="#414651" size={20} />
+<h3>Blogs & Articles</h3>
+</div>
+
+<div className="link-list">
+<div>Policy Governance</div>
+<div>Metadata Mapping</div>
+<div>Schema Modeling</div>
+<div>Insight Visualization</div>
+</div>
+</div>
+
+<div>
+<div className="link-header">
+<Icon icon="note" color="#414651" size={20} />
+<h3>Release Note</h3>
+</div>
+
+<div className="link-list">
+<div>Run a New Analysis</div>
+<div>Schedule Data Extractions</div>
+<div>Improve Data Retrieval</div>
+<div>Inspect Data Access History</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div className="collate-video">
+
+<div className="video-content">
+
+<div>
+<div className="video-chip">
+<span className='product-demo'>Product Demo</span>
+<span>9 min watch</span>
+</div>
+<h2 className="guide-header video-header">
+See Collate in Action
+</h2>
+<p>
+Want a quick overview? Take a quick tour - watch our detailed demo to learn how Collate works.
+</p>
+</div>
+
+<div className="video-container">
+<iframe
+  className="video"
+  src="https://www.youtube.com/embed/FO4WzV38L3Y?si=y6WdcZx5EGCP5TVz"
+  title="YouTube video player"
+  allowFullScreen
+></iframe>
+</div>
+
+</div>
+
+</div>
+
+<div className="external-links">
+
+<div className="explore-container">
+
+<div>
+<h3 className="explore-header">Explore More</h3>
+<p className="explore-desc">Learn more about Collate</p>
+</div>
+
+<div className="explore-items">
+
+<a className="explore-card" href="https://slack.open-metadata.org/" target="_blank">
+<div className="explore-card-header">
+<img src='/public/images/icons/slack.svg' alt="Slack" />
+<div>Community</div>
+</div>
+<p>Join our Slack community for instant support and updates.</p>
+</a>
+
+<a className="explore-card" href="https://www.getcollate.io/blog" target="_blank">
+<div className="explore-card-header">
+<img src='/public/images/icons/blog.svg' alt="Blog" />
+<div>Blogs</div>
+</div>
+<p>Get to know more about what’s new in data cataloging.</p>
+</a>
+
+<a className="explore-card" href="https://www.youtube.com/@CollateData" target="_blank">
+<div className="explore-card-header">
+<img src='/public/images/icons/youtube.svg' alt="Youtube" />
+<div>Videos</div>
+</div>
+<p>Explore data analytics with quick and interesting lessons.</p>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div className="home-footer">
+
+<div className="collate-tm">©2025 Collate. All rights reserved.</div>
+
+<div className="home-footer-links">
+<a className="footer-link-name" href="https://www.getcollate.io/terms" target="_blank">Terms of Service</a>
+<a className="footer-link-name" href="https://www.getcollate.io/privacypolicy" target="_blank">Privacy Policy</a>
+<a className="footer-link-name" href="https://trustcenter.getcollate.io/" target="_blank">Trust Center</a>
+<a className="footer-link-name" href="https://www.getcollate.io/contact-sales" target="_blank">Contact Us</a>
+</div>
+
+<div className="home-footer-social">
+<a className="social-link" href="https://www.linkedin.com/company/collateinc" target="_blank"><Icon icon="linkedin" size={20} /></a>
+<a className="social-link" href="https://www.youtube.com/@CollateData" target="_blank"><Icon icon="youtube" size={20} /></a>
+<a className="social-link" href="https://twitter.com/collatedata" target="_blank"><Icon icon="x-twitter" size={20} /></a>
+</div>
+
+</div>
 
 </div>

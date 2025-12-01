@@ -118,18 +118,8 @@ a {
   font-weight: 500;
 }
 
-li {
-  margin-top: 4px;
-}
-
 li::marker {
   color: var(--primary-color);
-}
-
-ul {
-  list-style: disc;
-  margin-top: 16px;
-  margin-left: 16px;
 }
 
 ol {
@@ -145,11 +135,6 @@ ol li::marker {
 li > ul {
   margin-top: 0px;
   margin-left: 16px;
-  list-style: circle;
-}
-
-ul li:first-child {
-  margin-top: 0;
 }
 
 pre {
@@ -220,12 +205,6 @@ code::-webkit-scrollbar {
   border: none;
   background-color: #f4f4f4;
   outline: none;
-}
-
-.search-icon {
-  height: 16px;
-  width: 16px;
-  margin-right: 5px;
 }
 
 .overview-container {
@@ -473,4 +452,196 @@ code::-webkit-scrollbar {
 
 .brand-docs-banner+article> h1:first-child{
   margin-top: 8px;
+}
+
+#navbar .border-b {
+  border: none;
+}
+
+#navbar .nav-tabs {
+  background-color: #FAFAFA;
+  width: 100%;
+  border: 1px solid #EAECF5;
+  border-radius: 100px;
+  margin-top: 24px;
+  column-gap: 12px;
+  margin-bottom: 4px;
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+#navbar .nav-tabs .nav-tabs-item  {
+  padding: 12px 24px;
+  font-size: 16px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+#navbar .nav-tabs .nav-tabs-item .absolute {
+  display: none !important;
+}
+
+#navbar .nav-tabs .nav-tabs-item.text-primary {
+  color: white;
+  background-color: #252B37;
+  border-radius: 100px;
+}
+
+#navbar .h-10 {
+  height: auto !important;
+}
+
+.navbar-link a {
+  background-color: transparent;
+}
+
+.card {
+  border: none;
+  box-shadow: 0px 4px 12px -1px rgba(10, 13, 18, 0.08);
+}
+
+.card:hover h2 {
+  text-decoration: underline;
+}
+
+#table-of-contents-content .toc-item a {
+  color: #414651;
+}
+
+#table-of-contents-content .toc-item a:hover, #table-of-contents-content .toc-item a.text-primary {
+  color: #004CD3;
+  border-color: #004CD3;
+}
+
+#content-side-layout::before {
+  content: "Collate Documentation";
+  display: block;
+  background-color: #F0F9FF;
+  color: #0BA5EC;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  width: fit-content;
+  margin-left: 36px;
+}
+
+/* Hide search bar only when homepage-container class is present */
+body:has(.homepage-container) #search-bar-entry {
+  display: none !important;
+}
+
+/* Homepage search input styling */
+.search-container {
+  position: relative;
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 6px;
+}
+
+.homepage-search-input {
+  width: 100%;
+  padding: 16px 50px;
+  border: 2px solid #EAECF5;
+  border-radius: 100px;
+  font-size: 16px;
+  font-family: inherit;
+  color: #3C4257;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.homepage-search-input::placeholder {
+  color: #9CA3AF;
+}
+
+.homepage-search-input:hover {
+  border-color: #5469d4;
+  background-color: #FFFFFF;
+}
+
+.homepage-search-input:focus {
+  outline: none;
+  border-color: #5469d4;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(84, 105, 212, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  color: #9CA3AF;
+  pointer-events: none;
+}
+
+.search-shortcut {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9CA3AF;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.navbar-link:last-of-type a {
+  background-color: #1570EF;
+  color: white;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-link:last-of-type a:hover {
+  background-color: #0257cd;
+}
+
+/* Iframe width adjustment for content pages (exclude homepage) */
+article iframe,
+.prose iframe {
+  max-width: 600px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  display: block !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  border: none !important;
+}
+
+@media (max-width: 1024px) {
+  .navbar-link:first-of-type {
+    margin-top: 20px;
+  }
+
+  article iframe,
+  .prose iframe {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  article iframe,
+  .prose iframe {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
 }
