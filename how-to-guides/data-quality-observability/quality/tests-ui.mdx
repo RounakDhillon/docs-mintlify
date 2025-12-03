@@ -49,7 +49,7 @@ Validate that the total number of rows in a table exactly matches an expected va
 | Actual row count = expected value | ✅ Success  |
 | Actual row count ≠ expected value | ❌ Failed   |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/equal.gif" />
+<img src="/images/how-to-guides/quality/table-test/equal.gif" />
 
 ### Table Row Count to be Between
 Ensure that the total number of rows in the table falls within an expected range.
@@ -75,7 +75,7 @@ Ensure that the total number of rows in the table falls within an expected range
 | Row count is between `minValue` and `maxValue` | ✅ Success  |
 | Row count is outside the defined range         | ❌ Failed   |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/between.gif" />
+<img src="/images/how-to-guides/quality/table-test/between.gif" />
 
 ### Table Column Count to Equal
 
@@ -99,7 +99,7 @@ Validate that the table contains exactly the expected number of columns.
 | Actual column count = expected count          | ✅ Success  |
 | Actual column count ≠ expected count          | ❌ Failed   |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/column-equal.gif" />
+<img src="/images/how-to-guides/quality/table-test/column-equal.gif" />
 
 ### Table Column Count to be Between
 Validate that the number of columns in a table falls within a defined range.
@@ -122,7 +122,7 @@ Validate that the number of columns in a table falls within a defined range.
 | Actual column count is within the defined range       | ✅ Success  |
 | Actual column count is outside the defined range      | ❌ Failed   |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/column-between.gif" />
+<img src="/images/how-to-guides/quality/table-test/column-between.gif" />
 
 ### Table Column Name to Exist
 Ensure that a specific column is present in the table schema.
@@ -145,7 +145,7 @@ Ensure that a specific column is present in the table schema.
 | `columnName` exists in the table schema     | ✅ Success  |
 | `columnName` is missing from the table      | ❌ Failed   |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/exist.gif" />
+<img src="/images/how-to-guides/quality/table-test/exist.gif" />
 
 ### Table Column to Match Set
 Validate that a table’s column names match a predefined set — with or without order sensitivity.
@@ -171,7 +171,7 @@ Validate that a table’s column names match a predefined set — with or withou
 | `false` | Some columns are missing or extra                     | ❌ Failed   |
 | `true`  | Columns are present but order is incorrect            | ❌ Failed   |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/match-set.gif" />
+<img src="/images/how-to-guides/quality/table-test/match-set.gif" />
 
 ### Table Custom SQL Test
 
@@ -199,7 +199,7 @@ Use this test to define your own validation logic using a custom SQL expression.
 | COUNT    | Count result ≤ `threshold`            | ✅ Success |
 | COUNT    | Count result > `threshold`            | ❌ Failed  |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/custom-sql.gif" />
+<img src="/images/how-to-guides/quality/table-test/custom-sql.gif" />
 
 ### Table Row Inserted Count To Be Between
 Check that the number of rows inserted during a defined time window falls within an expected range.**
@@ -232,7 +232,7 @@ The Table Row Inserted Count To Be Between cannot be executed against tables tha
 
 </Tip>
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/inserted-count.gif" />
+<img src="/images/how-to-guides/quality/table-test/inserted-count.gif" />
 
 ### Compare 2 Tables for Differences
 
@@ -273,7 +273,7 @@ Use this test to verify data consistency between two tables, even across differe
 - Trino  
 - SAP Hana
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/differences.gif" />
+<img src="/images/how-to-guides/quality/table-test/differences.gif" />
 
 ### Table Data to Be Fresh [Collate]
 Ensure that table data is being updated frequently enough to be considered fresh.
@@ -297,7 +297,7 @@ Ensure that table data is being updated frequently enough to be considered fresh
 | Last update time ≤ `timeSinceUpdate`      | ✅ Success  |
 | Last update time > `timeSinceUpdate`      | ❌ Failed   |
 
-<img src="/images/v1.9/how-to-guides/quality/table-test/fresh.gif" />
+<img src="/images/how-to-guides/quality/table-test/fresh.gif" />
 
 ## Column Tests
 Tests applied on top of Column metrics. Here is the list of all column tests:
@@ -335,7 +335,7 @@ Ensures each value in a column appears only once.
 | All values are unique        | ✅     |
 | Any duplicate value found    | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/unique.gif" />
+<img src="/images/how-to-guides/quality/column-test/unique.gif" />
 
 ### Column Values to Be Not Null
 Ensures there are no NULL entries in the column.
@@ -354,7 +354,7 @@ Ensures there are no NULL entries in the column.
 | No NULLs present             | ✅     |
 | Any NULL value present       | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/not-null.gif" />
+<img src="/images/how-to-guides/quality/column-test/not-null.gif" />
 
 ### Column Values to Match Regex
 This test allows us to specify how many values in a column we expect that will match a certain regex expression. Please note that for certain databases we will fall back to SQL `LIKE` expression. The databases supporting regex pattern as of 0.13.2 are:
@@ -382,7 +382,7 @@ Ensures all values match a specified regular expression pattern.
 | All values match regex       | ✅     |
 | Any value does not match     | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/match-regex.gif" />
+<img src="/images/how-to-guides/quality/column-test/match-regex.gif" />
 
 ### Column Values to not Match Regex
 This test allows us to specify values in a column we expect that will not match a certain regex expression. If the test find values matching the `forbiddenRegex` the test will fail. Please note that for certain databases we will fall back to SQL `LIKE` expression. The databases supporting regex pattern as of 0.13.2 are:
@@ -412,7 +412,7 @@ Ensures values do **not** match a restricted regex pattern.
 | No value matches forbidden pattern  | ✅     |
 | Any value matches the pattern       | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/not-match-regex.gif" />
+<img src="/images/how-to-guides/quality/column-test/not-match-regex.gif" />
 
 ### Column Values to Be in Set
 Ensures values are within a predefined whitelist.
@@ -432,7 +432,7 @@ Ensures values are within a predefined whitelist.
 | Any value from set exists (if `matchEnum = false`)      | ✅     |
 | No values from set found (if `matchEnum = false`)       | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/column-values-in-set.gif" />
+<img src="/images/how-to-guides/quality/column-test/column-values-in-set.gif" />
 
 ### Column Values to Be Not In Set
 Ensures values are **not** in a specified blacklist.
@@ -450,7 +450,7 @@ Ensures values are **not** in a specified blacklist.
 | No values from forbidden set              | ✅     |
 | Any value from forbidden set found        | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/column-values-not-in-set.gif" />
+<img src="/images/how-to-guides/quality/column-test/column-values-not-in-set.gif" />
 
 ### Column Values to Be Between
 Validates numeric values of a column are within a given range.
@@ -468,7 +468,7 @@ Validates numeric values of a column are within a given range.
 | Length within `[min, max]`                  | ✅     |
 | Length < min or > max                       | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/to-be-between.gif" />
+<img src="/images/how-to-guides/quality/column-test/to-be-between.gif" />
 
 ### Column Values Missing Count to Be Equal
 Ensures total missing values (NULL + defined "missing" strings) match a target count.
@@ -487,7 +487,7 @@ Ensures total missing values (NULL + defined "missing" strings) match a target c
 | Missing count = expected value                 | ✅     |
 | Missing count ≠ expected value                 | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/missing-count.gif" />
+<img src="/images/how-to-guides/quality/column-test/missing-count.gif" />
 
 ### Column Values Lengths to Be Between
 Ensures that the length of each string value in the column is within a defined character range.
@@ -506,7 +506,7 @@ Ensures that the length of each string value in the column is within a defined c
 | All values have length within `[min, max]`    | ✅     |
 | Any value length < min or > max               | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/lengths-to-be-between.gif" />
+<img src="/images/how-to-guides/quality/column-test/lengths-to-be-between.gif" />
 
 ### Column Value Max to Be Between
 Validates the **maximum** value of a column lies within a range.
@@ -524,7 +524,7 @@ Validates the **maximum** value of a column lies within a range.
 | Max value in range `[min, max]`                      | ✅     |
 | Max < min or Max > max                               | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/max.gif" />
+<img src="/images/how-to-guides/quality/column-test/max.gif" />
 
 ### Column Value Min to Be Between
 Validates the **minimum** value of a column lies within a range.
@@ -542,7 +542,7 @@ Validates the **minimum** value of a column lies within a range.
 | Min value in range `[min, max]`                      | ✅     |
 | Min < min or Min > max                               | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/min.gif" />
+<img src="/images/how-to-guides/quality/column-test/min.gif" />
 
 ### Column Value Mean to Be Between
 Validates that the **mean (average)** value is in the expected range.
@@ -560,7 +560,7 @@ Validates that the **mean (average)** value is in the expected range.
 | Mean value in `[min, max]`                            | ✅     |
 | Mean < min or Mean > max                              | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/mean.gif" />
+<img src="/images/how-to-guides/quality/column-test/mean.gif" />
 
 ### Column Value Median to Be Between
 Validates the **median** value is in the expected range.
@@ -578,7 +578,7 @@ Validates the **median** value is in the expected range.
 | Median in range `[min, max]`                           | ✅     |
 | Median < min or Median > max                           | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/median.gif" />
+<img src="/images/how-to-guides/quality/column-test/median.gif" />
 
 ### Column Values Sum to Be Between
 Validates the total **sum** of values in a column is within a defined range.
@@ -596,7 +596,7 @@ Validates the total **sum** of values in a column is within a defined range.
 | Sum in range `[min, max]`                     | ✅     |
 | Sum < min or Sum > max                        | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/sum.gif" />
+<img src="/images/how-to-guides/quality/column-test/sum.gif" />
 
 ### Column Values Standard Deviation to Be Between
 Validates the **standard deviation** (spread) of values is acceptable.
@@ -614,7 +614,7 @@ Validates the **standard deviation** (spread) of values is acceptable.
 | Std Dev in `[min, max]`                          | ✅     |
 | Std Dev < min or > max                           | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/standard-deviation.gif" />
+<img src="/images/how-to-guides/quality/column-test/standard-deviation.gif" />
 
 ### Column Values To Be At Expected Location
 Validates latitude/longitude values are within a defined area.
@@ -633,4 +633,4 @@ Validates latitude/longitude values are within a defined area.
 | Coordinates within buffer of expected location       | ✅     |
 | Any record outside allowed radius                    | ❌     |
 
-<img src="/images/v1.9/how-to-guides/quality/column-test/expected-location.gif" />
+<img src="/images/how-to-guides/quality/column-test/expected-location.gif" />

@@ -12,11 +12,11 @@ OpenMetadata introduces a versatile hierarchical team structure that aligns with
 
 **Organization** serves as the foundation of the team hierarchy representing the entire company. Under Organization, you can add Business Units, Divisions, Departments, Groups, and Users. For instance, if your company is Facebook, then the Organization represents entire Facebook itself, which further houses diverse teams like Engineering, Sales, Finance, and Marketing.
 
-<img src="/images/v1.9/how-to-guides/roles-policies/all-teams.png" alt="Teams Hierarchy" />
+<img src="/images/how-to-guides/roles-policies/all-teams.png" alt="Teams Hierarchy" />
 
 **BusinessUnit** is positioned one level below the Organization and can contain other Business Units, Divisions, Departments, and Groups. To illustrate, the Engineering Business Unit could be one of the top-tier Business Units in the Organization. It contains other teams like Groups and additional Business Units.
 
-<img src="/images/v1.9/how-to-guides/roles-policies/b-u.png" alt="Business Unit" />
+<img src="/images/how-to-guides/roles-policies/b-u.png" alt="Business Unit" />
 
 **Division** is positioned below Business Unit and can include Divisions, Departments, and Groups. For example, a Division named 'Product Development' under the Engineering Business Unit. It can have teams like 'Software Division,' 'Hardware Division,' and 'QA Division.'
 
@@ -30,7 +30,7 @@ This structured hierarchy enhances your control over team management and resourc
 
 ## Access Control Design: Roles and Policies
 
-<img src="/images/v1.9/how-to-guides/roles-policies/evaluation.png" alt="Policy Evaluation" />
+<img src="/images/how-to-guides/roles-policies/evaluation.png" alt="Policy Evaluation" />
 
 OpenMetadata incorporates a robust Access Control framework that merges Role-Based Access Control (RBAC) with Attribute-Based Access Control (ABAC) in a powerful hybrid model. This security design is reinforced by
 
@@ -45,7 +45,7 @@ Bots, on the other hand, are equipped with a JWT token generated based on SSL ce
 
 ## Authentication Flow
 
-<img src="/images/v1.9/how-to-guides/roles-policies/auth.png" alt="Authentication Flow" />
+<img src="/images/how-to-guides/roles-policies/auth.png" alt="Authentication Flow" />
 
 **User Authentication:** When users access the OpenMetadata UI, they authenticate with their SSO provider. Upon successful authentication, a JWT token is generated. This token validates the user's session and permits them to authenticate requests to the OpenMetadata server.
 
@@ -55,7 +55,7 @@ Bots, on the other hand, are equipped with a JWT token generated based on SSL ce
 
 OpenMetadata's authorization is a result of evaluating three crucial factors:
 
-<img src="/images/v1.9/how-to-guides/roles-policies/access.png" alt="Authorization Framework" />
+<img src="/images/how-to-guides/roles-policies/access.png" alt="Authorization Framework" />
 
 **Who is the User (Authentication):** This aspect is determined by the authentication process – whether it a user or a bot – ensuring that only authorized entities access the system.
 
@@ -63,7 +63,7 @@ OpenMetadata's authorization is a result of evaluating three crucial factors:
 
 Below is a list of resources that correspond to Entities such as Table, Topic, Pipeline, etc.
 
-<img src="/images/v1.9/how-to-guides/roles-policies/rules1.png" alt="Resources Correspond to Entities" />
+<img src="/images/how-to-guides/roles-policies/rules1.png" alt="Resources Correspond to Entities" />
 
 **What Operation (API Call):** Each API call is linked to a specific operation, such as editing descriptions, deleting tags, changing ownership, etc.
 
@@ -120,7 +120,7 @@ The operations **ViewBasic** and **ViewAll** in OpenMetadata differ in the level
 
 Choose the appropriate operation based on the level of access required.
 
-<img src="/images/v1.9/how-to-guides/roles-policies/rules2.png" alt="Each Resource has its Own Set of Granular Operations" />
+<img src="/images/how-to-guides/roles-policies/rules2.png" alt="Each Resource has its Own Set of Granular Operations" />
 
 By synthesizing these components, OpenMetadata dynamically ascertains whether a user or bot can perform a particular action on a specific resource. This **fusion of RBAC and ABAC** in the hybrid model contributes to a robust and flexible access control mechanism, bolstering the security and control of your OpenMetadata environment.
 

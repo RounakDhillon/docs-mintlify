@@ -31,22 +31,22 @@ To enable debug logging for any ingestion workflow in OpenMetadata:
 2. **Select a Service**
    Choose the specific service for which you want to enable debug logging.
 
-<img src="/images/v1.9/connectors/debug/debug1.png" alt="Select a Service" />
+<img src="/images/connectors/debug/debug1.png" alt="Select a Service" />
 
 3. **Access Ingestion Tab**
 Go to the **Ingestion tab** and click the three-dot menu on the right-hand side of the ingestion type, and select Edit.
 
-<img src="/images/v1.9/connectors/debug/debug2.png" alt="Access Agents Tab" />
+<img src="/images/connectors/debug/debug2.png" alt="Access Agents Tab" />
 
 4. **Enable Debug Logging**
    In the configuration dialog, enable the **Debug Log** option and click **Next**.
 
-<img src="/images/v1.9/connectors/debug/debug3.png" alt="Enable Debug Logging" />
+<img src="/images/connectors/debug/debug3.png" alt="Enable Debug Logging" />
 
 5. **Schedule and Submit**
    Configure the schedule if needed and click **Submit** to apply the changes.
 
-<img src="/images/v1.9/connectors/debug/debug4.png" alt="Schedule and Submit" />
+<img src="/images/connectors/debug/debug4.png" alt="Schedule and Submit" />
 
 ## Permission Issues
 
@@ -64,7 +64,7 @@ Learn how to resolve the most common problems people encounter in the ADLS Datal
 - Find and click on your application 
 - Select `Certificates & Secret` under `Manage` Section
 
-<img src="/images/v1.9/connectors/datalake/troubleshoot-clientId.png" alt="Configure service connection" />
+<img src="/images/connectors/datalake/troubleshoot-clientId.png" alt="Configure service connection" />
 
 ## AzureSQL
 
@@ -79,7 +79,7 @@ To solve this issue, you can edit your Service Connection by adding the followin
 - Key: `autocommit`
 - Value: `true`
 
-<img src="/images/v1.9/connectors/azuresql/autocommit.png" alt="autocommit" />
+<img src="/images/connectors/azuresql/autocommit.png" alt="autocommit" />
  
 * **Cannot open server '[server name]' requested by the login. Client with IP address '[your IP]' is not allowed to access the server**
 
@@ -88,7 +88,7 @@ This is an exception you can get when trying to connect to AzureSQL using SQLAlc
 
 To solve this issue, you need to add your IP address in firewall rules for your Azure SQL instance.
 
-<img src="/images/v1.9/connectors/azuresql/azure-firewall.png" alt="azure sql firewall rules" />
+<img src="/images/connectors/azuresql/azure-firewall.png" alt="azure sql firewall rules" />
 
 ## Databricks
 
@@ -123,13 +123,13 @@ Here are the steps to get `hostPort`, `token` and `http_path`.
 First login to Azure Databricks and from side bar select SQL Warehouse (In SQL section)
 
 
-<img src="/images/v1.9/connectors/databricks/select-sql-warehouse.png" alt="Select Sql Warehouse" />
+<img src="/images/connectors/databricks/select-sql-warehouse.png" alt="Select Sql Warehouse" />
 
 
 Now click on sql Warehouse from the SQL Warehouses list.
 
 
-<img src="/images/v1.9/connectors/databricks/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
+<img src="/images/connectors/databricks/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
 
 
 Now inside that page go to Connection details section.
@@ -137,19 +137,19 @@ In this page Server hostname and Port is your `hostPort`, HTTP path is your `htt
 
 
 
-<img src="/images/v1.9/connectors/databricks/Connection-details.png" alt="Connection details" />
+<img src="/images/connectors/databricks/Connection-details.png" alt="Connection details" />
 
 
 In Connection details section page click on Create a personal access token.
 
-<img src="/images/v1.9/connectors/databricks/Open-create-tocken-page.png" alt="Open create tocken" />
+<img src="/images/connectors/databricks/Open-create-tocken-page.png" alt="Open create tocken" />
 
 
 
 Now In this page you can create new `token`.
 
 
-<img src="/images/v1.9/connectors/databricks/Generate-token.png" alt="Generate tocken" />
+<img src="/images/connectors/databricks/Generate-token.png" alt="Generate tocken" />
 
 ## Domo Database
 
@@ -159,7 +159,7 @@ Learn how to resolve the most common problems people encounter in the Domo Datab
 * You can find your `clientId` by [logging](https://developer.domo.com/) into your domo instance.
 * After that click on `My Account`> `Manage Clients`(if created).
 
-<img src="/images/v1.9/connectors/domodatabase/client-id.png" alt="Client-id" />
+<img src="/images/connectors/domodatabase/client-id.png" alt="Client-id" />
 
 ### Where to find accessToken?
 * You need to generate accessToken.
@@ -167,13 +167,13 @@ Learn how to resolve the most common problems people encounter in the Domo Datab
 * Click on the `MORE` button on navbar, after that click on `Admin`.
 * Under `Authentication` you will find `Access tokens`.
 
-<img src="/images/v1.9/connectors/domodatabase/access-token.png" alt="Access Token" />
+<img src="/images/connectors/domodatabase/access-token.png" alt="Access Token" />
 
 
 ### Where can I find my scopes?
 * Scopes can be find Under `Manage Clients` section in `My Account` (If client not found, click [here](#how-to-find-clientid))
 
-<img src="/images/v1.9/connectors/domodatabase/scopes.jpeg" alt="Scopes" />
+<img src="/images/connectors/domodatabase/scopes.jpeg" alt="Scopes" />
 
 ## Hive
 
@@ -342,7 +342,7 @@ does not match host name \"<host>:<port>\"
 
 If you get this error that time please pass `{'sslmode': 'verify-ca'}` in the connection arguments.
 
-<img src="/images/v1.9/connectors/redshift/service-connection-arguments.png" alt="Configure service connection" />
+<img src="/images/connectors/redshift/service-connection-arguments.png" alt="Configure service connection" />
 
 ### Metdata Ingestion Failure
 
@@ -412,13 +412,13 @@ Here are the steps to get `hostPort`, `token` and `http_path`.
 First login to Azure Databricks and from side bar select SQL Warehouse (In SQL section)
 
 
-<img src="/images/v1.9/connectors/unitycatalog/select-sql-warehouse.png" alt="Select Sql Warehouse" />
+<img src="/images/connectors/unitycatalog/select-sql-warehouse.png" alt="Select Sql Warehouse" />
 
 
 Now click on sql Warehouse from the SQL Warehouses list.
 
 
-<img src="/images/v1.9/connectors/unitycatalog/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
+<img src="/images/connectors/unitycatalog/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
 
 
 Now inside that page go to Connection details section.
@@ -426,19 +426,19 @@ In this page Server hostname and Port is your `hostPort`, HTTP path is your `htt
 
 
 
-<img src="/images/v1.9/connectors/unitycatalog/Connection-details.png" alt="Connection details" />
+<img src="/images/connectors/unitycatalog/Connection-details.png" alt="Connection details" />
 
 
 In Connection details section page click on Create a personal access token.
 
-<img src="/images/v1.9/connectors/unitycatalog/Open-create-token-page.png" alt="Open create token" />
+<img src="/images/connectors/unitycatalog/Open-create-token-page.png" alt="Open create token" />
 
 
 
 Now In this page you can create new `token`.
 
 
-<img src="/images/v1.9/connectors/unitycatalog/Generate-token.png" alt="Generate token" />
+<img src="/images/connectors/unitycatalog/Generate-token.png" alt="Generate token" />
 
 ## Vertica
 
