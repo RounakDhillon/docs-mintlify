@@ -267,12 +267,11 @@ a.guide-card img {
 
 .explore-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .explore-items {
     display: flex;
-    grid-column: span 2/span 2;
     gap: 20px;
 }
 
