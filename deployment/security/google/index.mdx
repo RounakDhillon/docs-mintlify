@@ -28,89 +28,84 @@ Security requirements for your **production** environment:
 - Go to [Create Google Cloud Account](https://console.cloud.google.com/)
 - Click on `Create Project`
 
-<img src="/images/deployment/security/google/create-account.png" alt="create-account" />
+<img noZoom src="/public/images/deployment/security/google/create-account.png" alt="create-account" />
 
 ### Step 2: Create a New Project
 Enter the **Project name**.
 Enter the parent organization or folder in the **Location box**. That resource will be the hierarchical parent of the new project.
 Click **Create**.
-<img src="/images/deployment/security/google/create-project.png" alt="create-project" />
+<img noZoom src="/public/images/deployment/security/google/create-project.png" alt="create-project" />
 
 ### Step 3: How to Configure OAuth Consent
 - Select the project you created above and click on **APIs & Services** on the left-side panel.
-<img src="/images/deployment/security/google/configure-oauth-consent.png" alt="configure-oauth-consent" />
+<img noZoom src="/public/images/deployment/security/google/configure-oauth-consent.png" alt="configure-oauth-consent" />
 
 - Click on the **OAuth Consent Screen** available on the left-hand side panel.
 - Choose User Type **Internal**.
-<img src="/images/deployment/security/google/select-user-type.png" alt="select-user-type" />
+<img noZoom src="/public/images/deployment/security/google/select-user-type.png" alt="select-user-type" />
 
 - Once the user type is selected, provide the **App Information** and other details.
 - Click **Save and Continue**.
-<img src="/images/deployment/security/google/save-app-information.png" alt="save-app-information" />
+<img noZoom src="/public/images/deployment/security/google/save-app-information.png" alt="save-app-information" />
 
 - On the **Scopes Screen**, Click on **ADD OR REMOVE SCOPES** and select the scopes.
 - Once done click on **Update**.
-<img src="/images/deployment/security/google/scopes-screen.png" alt="scopes-screen" />
+<img noZoom src="/public/images/deployment/security/google/scopes-screen.png" alt="scopes-screen" />
 
 - Click **Save and Continue**.
-<img src="/images/deployment/security/google/save-edit-app-registration.png" alt="save-edit-app-registration" />
+<img noZoom src="/public/images/deployment/security/google/save-edit-app-registration.png" alt="save-edit-app-registration" />
 
 - Click on **Back to Dashboard**.
-<img src="/images/deployment/security/google/back-to-dashboard.png" alt="back-to-dashboard" />
-<img src="/images/deployment/security/google/back-to-dashboard-2.png" alt="back-to-dashboard" />
+<img noZoom src="/public/images/deployment/security/google/back-to-dashboard.png" alt="back-to-dashboard" />
+<img noZoom src="/public/images/deployment/security/google/back-to-dashboard-2.png" alt="back-to-dashboard" />
 
 ### Step 4: Create Credentials for the Project
 - Once the OAuth Consent is configured, click on **Credentials** available on the left-hand side panel.
-<img src="/images/deployment/security/google/create-credentials.png" alt="create-credentials" />
+<img noZoom src="/public/images/deployment/security/google/create-credentials.png" alt="create-credentials" />
 
 - Click on **Create Credentials**
 - Select **OAuth client ID** from the dropdown.
-<img src="/images/deployment/security/google/select-outh-client-id.png" alt="cselect-outh-client-id" />
+<img noZoom src="/public/images/deployment/security/google/select-outh-client-id.png" alt="cselect-outh-client-id" />
 
 - Once selected, you will be asked to select the **Application type**. Select **Web application**.
-<img src="/images/deployment/security/google/select-web-application.png" alt="select-web-application" />
+<img noZoom src="/public/images/deployment/security/google/select-web-application.png" alt="select-web-application" />
 
 After selecting the **Application Type**, name your project and give the authorized URIs:
   - domain/callback
   - domain/silent-callback
-<img src="/images/deployment/security/google/authorized-urls.png" alt="authorized-urls" />
+<img noZoom src="/public/images/deployment/security/google/authorized-urls.png" alt="authorized-urls" />
 
 - Click **Create**
 - You will get the credentials
-<img src="/images/deployment/security/google/get-the-credentials.png" alt="get-the-credentials" />
+<img noZoom src="/public/images/deployment/security/google/get-the-credentials.png" alt="get-the-credentials" />
 
 ### Step 5: Where to Find the Credentials
 - Go to **Credentials**
 - Click on the **pencil icon (Edit OAuth Client)** on the right side of the screen
-<img src="/images/deployment/security/google/find-credentials.png" alt="find-credentials" />
+<img noZoom src="/public/images/deployment/security/google/find-credentials.png" alt="find-credentials" />
 
 - You will find the **Client ID** in the top right corner
-<img src="/images/deployment/security/google/find-clientid-and-secret.png" alt="find-clientid-and-secret" />
+<img noZoom src="/public/images/deployment/security/google/find-clientid-and-secret.png" alt="find-clientid-and-secret" />
 
 After the applying these steps, you can update the configuration of your deployment:
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
 <Card
-    icon="/images/icons/celebration.svg"
-    title="Docker Security"
-    href="/deployment/security/google/docker"
-  >
-    Configure Auth0 SSO for your Docker Deployment.
-  </Card>
-  <Card
-    icon="/images/icons/puzzle.svg"
-    title="Bare Metal Security"
-    href="/deployment/security/google/bare-metal"
-  >
-    Configure Auth0 SSO for your Bare Metal Deployment.
-  </Card>
-  <Card
-    icon="/images/icons/puzzle.svg"
-    title="Kubernetes Security"
-    href="/deployment/security/google/kubernetes"
-  >
-    Configure Auth0 SSO for your Kubernetes Deployment.
-  </Card>
+  icon="party-horn"
+  iconType="solid"
+  title="Google SSO - Public"
+  href="/deployment/security/google/public-client"
+>
+  Configure Google SSO using the Public client type.
+</Card>
+<Card
+  icon="square-list"
+  iconType="solid"
+  title="Google SSO - Confidential"
+  href="/deployment/security/google/confidential-client"
+>
+  Configure Google SSO using the Confidential client type.
+</Card>
 </CardGroup>
 
 <ConfigureIngestion />

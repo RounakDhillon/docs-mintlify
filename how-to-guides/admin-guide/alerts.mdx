@@ -27,7 +27,8 @@ Depending on your use cases, notifications can be sent to owners, admins, teams,
 
 <CardGroup cols={1}>
 <Card
-    icon="/images/icons/quality.svg"
+    icon="shield-check"
+    iconType="solid"
     title="Required Permissions"
     href="/how-to-guides/admin-guide/roles-policies"
   >
@@ -39,7 +40,7 @@ Depending on your use cases, notifications can be sent to owners, admins, teams,
 Navigate to Observability > Alerts.
 
 Once on the Observability alerts page, click on button **Add Alert** in the top right corner.
-<img src="/images/how-to-guides/admin-guide/alert1.webp" alt="Create Observability Alerts" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/alert1.webp" alt="Create Observability Alerts" />
 
 ### Step 2
 Configure your alert.
@@ -47,13 +48,13 @@ Configure your alert.
 As with most configuration in OpenMetadata you will first need to add a **Name** and **Description** for your alert. Once this is completed, we can move on to the configuration. You have 4 steps to configure your alert:
 1. **Source**: Specify the data asset for which the alert must be set up. Alerts can be set up for Container, Ingestion Pipeline, Pipeline, Table, Test Case, Test Suite, and Topic.
 
-<img src="/images/how-to-guides/admin-guide/source.webp" alt="Specify the Data Asset" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/source.webp" alt="Specify the Data Asset" />
 
 2. **Filter**: Specify the change events to narrow the scope of your alerts. Filters are based on source selected. For example, if the source is a Table, then you can filter by Table Name, Domain, or Owner Name. Use the toggle button to **Include** or **Exclude** the selected filter option. Selecting **Include** will result in an alert being sent if the condition is met. If the Include toggle is turned off, then the condition will be silenced and an alert will not be sent for the denied event. You can add multiple filters.
 
-<img src="/images/how-to-guides/admin-guide/filter.webp" alt="Define the Filter" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/filter.webp" alt="Define the Filter" />
 
-<img src="/images/how-to-guides/admin-guide/filter2.webp" alt="Include/Exclude the Filter" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/filter2.webp" alt="Include/Exclude the Filter" />
 
 3. **Trigger**: Select important trigger events like 'Schema Change' or 'Test Failure' to generate an alert. Triggers are based on the source selected. For example,  
 - Schema changes, 
@@ -65,15 +66,15 @@ As with most configuration in OpenMetadata you will first need to add a **Name**
 
 Multiple triggers can be added.
 
-<img src="/images/how-to-guides/admin-guide/trigger.webp" alt="Select Important Trigger Events" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/trigger.webp" alt="Select Important Trigger Events" />
 
 4. **Destination**: Specify the destination for the alerts. OpenMetadata supports sending alerts to the users within OpenMetadata, i.e., **Internal** such as Admins, Followers, Owners, Teams and Users.
 
-<img src="/images/how-to-guides/admin-guide/internal.webp" alt="Send Alerts to the Users and Teams within OpenMetadata" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/internal.webp" alt="Send Alerts to the Users and Teams within OpenMetadata" />
 
 Alerts can be sent to **External** sources like **Email, G Chat, Generic Webhooks, MS Teams, and Slack**. Add the endpoint URL for the destinations. Alerts can be sent to multiple destinations.
 
-<img src="/images/how-to-guides/admin-guide/external.webp" alt="Send Alerts to Email, Slack, Teams, G Chat, & Webhooks" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/external.webp" alt="Send Alerts to Email, Slack, Teams, G Chat, & Webhooks" />
 
 ## Add Notifications for Change Events
 In addition to setting up observability alerts, you can also set up notifications to get timely alerts on various change events.
@@ -81,9 +82,9 @@ In addition to setting up observability alerts, you can also set up notification
 ### Step 1
 Navigate to Settings > Notifications. Once on the Notifications page, click on button **Add Alert** in the top right corner.
 
-<img src="/images/how-to-guides/admin-guide/notify.webp" alt="Add Notifications for Change Events" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/notify.webp" alt="Add Notifications for Change Events" />
 
-<img src="/images/how-to-guides/admin-guide/alert2.webp" alt="Add an Alert" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/alert2.webp" alt="Add an Alert" />
 
 ### Step 2
 Configure your notifications.
@@ -91,13 +92,13 @@ Configure your notifications.
 Add a **Name** and **Description** for your notification. Configure the notification by adding the details for the below 3 steps:
 1. **Source**: Specify the data asset for which the notification must be set up. Notifications can be set up for Announcements, Chart, Conversation, Dashboard, Dashboard Data Model, Dashboard Service, Database, Database Schema, Database Service, Glossary, Glossary Term, Ingestion Pipeline, Location, Messaging Service, Metadata Service, ML Model, ML Model Service, Pipeline, Pipeline Service, Storage Service, Table, Tag, Tag Category, Task, Topic, or for all the data assets.
 
-<img src="/images/how-to-guides/admin-guide/source2.webp" alt="Specify the Data Asset" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/source2.webp" alt="Specify the Data Asset" />
 
 2. **Filter**: Specify the change events to narrow the scope of your alerts. Filters are based on source selected. For example, Owner, Entity FQN, Event Type, Updater Name, Domain, General Metadata Events, or Mentioned Users. 
 
 Use the toggle button to **Include** or **Exclude** the selected filter option. Selecting **Include** will result in a notification being sent if the condition is met. If the Include toggle is turned off, then the condition will be silenced and a notification will not be sent for the denied event. You can add multiple filters.
 
-<img src="/images/how-to-guides/admin-guide/filter3.webp" alt="Define the Filter" />
+<img noZoom src="/public/images/how-to-guides/admin-guide/filter3.webp" alt="Define the Filter" />
 
 3. **Destination**: Specify the destination for the notifications. OpenMetadata supports sending notifications to the users within OpenMetadata, i.e., **Internal** such as Admins, Followers, Owners, Teams and Users. Notifications can be sent to **External** sources like Email, G Chat, Generic Webhooks, MS Teams, and Slack. Add the endpoint URL for the destinations. Notifications can be sent to multiple destinations.
 
