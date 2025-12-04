@@ -138,14 +138,14 @@ spark.stop()
 Once this pyspark job get finished you will see a new pipeline service with name `my_pipeline_service` generated in your openmetadata instance which would contain a pipeline with name `my_pipeline` as per the above example and you should also see lineage between the table `employee` and `employee_new` via `my_pipeline`.
 
 
-<img src="/public/images/connectors/spark/spark-pipeline-service.png" alt="Spark Pipeline Service" />
+<img noZoom src="/public/images/connectors/spark/spark-pipeline-service.png" alt="Spark Pipeline Service" />
 
 
- <img src="/public/images/connectors/spark/spark-pipeline-details.png" alt="Spark Pipeline Details" />
+ <img noZoom src="/public/images/connectors/spark/spark-pipeline-details.png" alt="Spark Pipeline Details" />
 
 
 
- <img src="/public/images/connectors/spark/spark-pipeline-lineage.png" alt="Spark Pipeline Lineage" />
+ <img noZoom src="/public/images/connectors/spark/spark-pipeline-lineage.png" alt="Spark Pipeline Lineage" />
 
 ## Using Spark Agent with Databricks
 
@@ -157,15 +157,15 @@ To use the `OpenMetadata Spark Agent`, you will have to download the latest jar 
 
 To upload the jar you can visit the compute details page and then go to the libraries tab
 
-<img src="/public/images/connectors/spark/spark-upload-jar.png" alt="Spark Upload Jar" />
+<img noZoom src="/public/images/connectors/spark/spark-upload-jar.png" alt="Spark Upload Jar" />
 
 Click on the "Install Now" button and choose `dbfs` mode and upload the `OpenMetadata Spark Agent` jar.
 
-<img src="/public/images/connectors/spark/spark-upload-jar-2.png" alt="Spark Upload Jar" />
+<img noZoom src="/public/images/connectors/spark/spark-upload-jar-2.png" alt="Spark Upload Jar" />
 
 Once your jar is uploaded copy the path of the jar for the next steps.
 
-<img src="/public/images/connectors/spark/spark-uploaded-jar.png" alt="Spark Upload Jar" />
+<img noZoom src="/public/images/connectors/spark/spark-uploaded-jar.png" alt="Spark Upload Jar" />
 
 
 ### 2. Create Initialization Script
@@ -193,7 +193,7 @@ echo "END: Modify Spark config settings"
 
 Note: The copied path would look like this `dbfs:/FileStore/jars/....` you need to modify it like `/dbfs/FileStore/jars/...` this.
 
-<img src="/public/images/connectors/spark/prepare-script.png" alt="Prepare Script" />
+<img noZoom src="/public/images/connectors/spark/prepare-script.png" alt="Prepare Script" />
 
 
 
@@ -201,10 +201,10 @@ Note: The copied path would look like this `dbfs:/FileStore/jars/....` you need 
 
 Once you have created a initialization script, you will need to attach this script to your compute instance, to do that you can go to advanced config > init scripts and add your script path.
 
-<img src="/public/images/connectors/spark/prepare-script.png" alt="Prepare Script" />
+<img noZoom src="/public/images/connectors/spark/prepare-script.png" alt="Prepare Script" />
 
 
-<img src="/public/images/connectors/spark/spark-init-script.png" alt="Spark Init Script" />
+<img noZoom src="/public/images/connectors/spark/spark-init-script.png" alt="Spark Init Script" />
 
 
 ### 4. Configure Spark
@@ -212,7 +212,7 @@ Once you have created a initialization script, you will need to attach this scri
 After configuring the init script, you will need to update the spark config as well.
 
 
-<img src="/public/images/connectors/spark/spark-config-set.png" alt="Spark Set Config" />
+<img noZoom src="/public/images/connectors/spark/spark-config-set.png" alt="Spark Set Config" />
 
 these are the possible configurations that you can do, please refer the `Configuration` section above to get the detailed information about the same. 
 
@@ -242,7 +242,7 @@ Follow the below steps in order to use OpenMetadata Spark Agent with glue.
 2. Navigate to the glue job,In the Job details tab, navigate to Advanced properties → Libraries → Dependent Jars path
 3. Add the S3 url of OpenMetadata Spark Agent Jar in the Dependent Jars path.
 
-<img src="/public/images/connectors/spark/glue-job-jar.png" alt="Glue Job Configure Jar" />
+<img noZoom src="/public/images/connectors/spark/glue-job-jar.png" alt="Glue Job Configure Jar" />
 
 
 ### 2. Add Spark configuration in Job Parameters
@@ -257,4 +257,4 @@ spark.extraListeners=io.openlineage.spark.agent.OpenLineageSparkListener --conf 
 
 2. Add the `--user-jars-first` parameter and set its value to `true`
 
-<img src="/public/images/connectors/spark/glue-job-params.png" alt="Glue Job Configure Params" />
+<img noZoom src="/public/images/connectors/spark/glue-job-params.png" alt="Glue Job Configure Params" />

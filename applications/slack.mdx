@@ -43,18 +43,18 @@ To enable Slack integration in Collate:
 
 1. Navigate to **Settings** → **Applications** → **Add Apps**.
 
-<img src="/public/images/applications/slack1.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack1.png" alt="Configuration" />
 
 2. Search for **Slack** and install the application.
 
-<img src="/public/images/applications/slack2.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack2.png" alt="Configuration" />
 
 ### Configuration Fields
 
 - **User Token**: Token used to authenticate Slack API requests on behalf of a user.
 - **Bot Token**: Token used to authenticate Slack API requests on behalf of the bot.
 
-<img src="/public/images/applications/slack3.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack3.png" alt="Configuration" />
 
 <Tip>
 
@@ -73,16 +73,16 @@ To integrate Slack with Collate, you need to generate both a **Bot Token** and a
 1. Go to the [Slack API: Your Apps](https://api.slack.com/apps) page.
 2. Click **Create New App**.
 
-<img src="/public/images/applications/slack4.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack4.png" alt="Configuration" />
 
 3. Select **From scratch**.
 
-<img src="/public/images/applications/slack5.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack5.png" alt="Configuration" />
 
 4. Enter the **App Name** (e.g., `Collate Integration`) and choose your **Slack workspace**.
 5. Click **Create App**.
 
-<img src="/public/images/applications/slack6.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack6.png" alt="Configuration" />
 
 6. After your app is created, you'll be redirected to the Basic Information page under Settings.
 Here, you'll find the following important credentials:
@@ -95,17 +95,17 @@ Here, you'll find the following important credentials:
  
 Make sure to store these securely, as you'll need them to configure OAuth and validate request signatures later.
 
-<img src="/public/images/applications/slack-basic.png" alt="Basic Information page" />
+<img noZoom src="/public/images/applications/slack-basic.png" alt="Basic Information page" />
 
 ### Configure OAuth & Permissions
 
 1. In your app’s dashboard, navigate to **OAuth & Permissions**.
 
-<img src="/public/images/applications/slack7.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack7.png" alt="Configuration" />
 
 2. Under **Scopes**, configure the following:
 
-<img src="/public/images/applications/slack8.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack8.png" alt="Configuration" />
 
 #### For **Bot Token Scopes**:
 Add these scopes:
@@ -142,7 +142,7 @@ Before installing the app to your workspace, configure the redirect URLs to ensu
 The redirect URL must exactly match the URL used in your OAuth request.  
 This ensures Slack can return the authorization code to your backend after the user grants permissions.
 
-<img src="/public/images/applications/slack-redirect.png" alt="Configure Redirect URLs" />
+<img noZoom src="/public/images/applications/slack-redirect.png" alt="Configure Redirect URLs" />
 
 ### Configure Event Subscriptions
 
@@ -152,7 +152,7 @@ After setting the necessary OAuth scopes, follow the steps below to configure **
 
 2. Toggle the Enable Events switch to On.
 
-<img src="/public/images/applications/enable-events.png" alt="Enable Events" />
+<img noZoom src="/public/images/applications/enable-events.png" alt="Enable Events" />
 
 3. In the Request URL field, enter your app’s endpoint (e.g., https://sandbox.open-metadata.org/api/slack/events).
 
@@ -161,7 +161,7 @@ After setting the necessary OAuth scopes, follow the steps below to configure **
 
 4. Scroll down to the Subscribe to bot events section and click **Add Bot User Event**.
 
-<img src="/public/images/applications/bot-events.png" alt="Subscribe to bot events" />
+<img noZoom src="/public/images/applications/bot-events.png" alt="Subscribe to bot events" />
 
 - Add the following events (ensure corresponding scopes are already granted under OAuth permissions):
 
@@ -176,7 +176,7 @@ After setting the necessary OAuth scopes, follow the steps below to configure **
 
 Slack automatically adds the necessary scopes for any subscribed events if not already included.
 
-<img src="/public/images/applications/subscribe-events.png" alt="Subscribe to events on behalf of users" />
+<img noZoom src="/public/images/applications/subscribe-events.png" alt="Subscribe to events on behalf of users" />
 
 ### Configure Slash Commands
 
@@ -185,7 +185,7 @@ To enable users to interact with your app via custom commands in Slack:
 1. In the left-hand menu under **Features**, click on **Slash Commands**.
 2. Click **Create New Command** to define a new command, or edit an existing one.
 
-<img src="/public/images/applications/create-command.png" alt="Create Edit New Command" />
+<img noZoom src="/public/images/applications/create-command.png" alt="Create Edit New Command" />
 
 #### Example Slash Commands
 
@@ -194,7 +194,7 @@ To enable users to interact with your app via custom commands in Slack:
 | `/find` | Find the asset | `https://sandbox.open-metadata.org/api/slack/command/find` | `query or entityType query` |
 | `/asset` | Fetch data for a specific asset | `https://sandbox.open-metadata.org/api/slack/command/asset` | `entityType fqn/id` |
 
-<img src="/public/images/applications/slash-commands.png" alt="Slash Commands" />
+<img noZoom src="/public/images/applications/slash-commands.png" alt="Slash Commands" />
 
 For each command:
 
@@ -211,7 +211,7 @@ For each command:
 
 1. Still in **OAuth & Permissions**, click **Install** to install App to your Workspace.
 
-<img src="/public/images/applications/slack9.png" alt="Configuration" />
+<img noZoom src="/public/images/applications/slack9.png" alt="Configuration" />
 
 2. Authorize the permissions requested by the app.
 
