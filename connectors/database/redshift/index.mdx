@@ -73,7 +73,7 @@ For the usage and lineage workflow, the user will need `SELECT` privilege on `ST
 
 ## Metadata Ingestion
 
-<MetadataIngestionUi connector={"Redshift"} selectServicePath={"/images/connectors/redshift/select-service.png"} addNewServicePath={"/images/connectors/redshift/add-new-service.png"} serviceConnectionPath={"/images/connectors/redshift/service-connection.png"} />
+<MetadataIngestionUi connector={"Redshift"} selectServicePath={"/public/images/connectors/redshift/select-service.png"} addNewServicePath={"/public/images/connectors/redshift/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/redshift/service-connection.png"} />
 
 It is recommmended to exclude the schema "information_schema" from the metadata ingestion as it contains system tables and views.
 
@@ -126,7 +126,7 @@ To establish secure connections between OpenMetadata and a Redshift database, yo
 
 Under `Advanced Config`, specify the SSL mode appropriate for your connection, such as `prefer`, `verify-ca`, `allow`, and others. After selecting the SSL mode, provide the CA certificate used for SSL validation (`caCertificate`). Note that Redshift requires only the CA certificate for SSL validation.
 
-<img src="/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
+<img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 
 <ReverseMetadata />
 

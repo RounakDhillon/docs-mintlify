@@ -27,7 +27,7 @@ To view created Glossary Terms, navigate to the Glossary section within OpenMeta
 
 OpenMetadata also supports creating nested Glossary Terms, allowing you to organize them hierarchically and seamlessly ingest them into dbt.
 
-<img src="/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-term.png" alt="Openmetadata_glossary_term" />
+<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-term.png" alt="Openmetadata_glossary_term" />
 
 
 ### 2. Add Table-Level Glossary term information in schema.yml file
@@ -47,9 +47,9 @@ And for `more_nested_term` (`Test_Glossary.term_two.nested_term.more_nested_term
 
 you can see the current url containing the glossary term FQNs as **https://localhost:8585/glossary/`Test_Glossary.term_two.nested_term.more_nested_term`**
 
-<img src="/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-fqn.png" alt="Openmetadata_glossary_term" />
+<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-fqn.png" alt="Openmetadata_glossary_term" />
 
-<img src="/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-nested-fqn.png" alt="Openmetadata_glossary_term" />
+<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-nested-fqn.png" alt="Openmetadata_glossary_term" />
 
 In your dbt schema.yml file for the `customers` table model, add the Glossary Term FQNs under `model->name->meta->openmetadata->glossary`
 The format should be a list of strings, like this:  ` [ 'Test_Glossary.term_one', 'Test_Glossary.term_two.nested_term.more_nested_term' ]`.
@@ -167,4 +167,4 @@ The generated `manifest.json` file will then include the FQNs under `node_name->
 ### 4. Viewing the Glossary term on tables and columns
 Table and Column level Glossary term ingested from dbt can be viewed on the node in OpenMetadata
 
-<img src="/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary.png" alt="dbt_glossary" />
+<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary.png" alt="dbt_glossary" />

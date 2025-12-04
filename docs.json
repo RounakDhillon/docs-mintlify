@@ -2,7 +2,7 @@
     "$schema": "https://mintlify.com/docs.json",
     "name": "Collate Documentation",
     "theme": "aspen",
-    "logo": "/images/icons/collate-logo.svg",
+    "logo": "/public/images/icons/collate-logo.svg",
     "colors": {
         "primary": "#1570EF",
         "light": "#1570EF",

@@ -51,7 +51,7 @@ Must also have the `s3:GetObject` permission for the location of the Iceberg tab
 It depends on where and how the Hive / Rest Catalog is setup and where the Iceberg files are stored.
 ## Metadata Ingestion
 
-<MetadataIngestionUi connector={"Iceberg"} selectServicePath={"/images/connectors/iceberg/select-service.png"} addNewServicePath={"/images/connectors/iceberg/add-new-service.png"} serviceConnectionPath={"/images/connectors/iceberg/service-connection.png"} />
+<MetadataIngestionUi connector={"Iceberg"} selectServicePath={"/public/images/connectors/iceberg/select-service.png"} addNewServicePath={"/public/images/connectors/iceberg/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/iceberg/service-connection.png"} />
 
 <Steps>
 
@@ -203,6 +203,6 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 When using `SSL` to establish secure connections between OpenMetadata and Rest Catalog, you can specify the `caCertificate` to provide the CA certificate used for SSL validation. Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl_key`, `ssl_cert`, and `ssl_ca`. In this case, `ssl_cert` is used for the client’s SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `ssl_ca` for the CA certificate to validate the server’s certificate.
 
-<img src="/images/connectors/restcatalog_ssl.png" alt="SSL Configuration" height="450px" />
+<img src="/public/images/connectors/restcatalog_ssl.png" alt="SSL Configuration" height="450px" />
 
 <Related />

@@ -16,7 +16,7 @@ For individual teams, tailor your policies according to the specific needs of bo
 
 You can create a policy with DatabaseService, Ingesiton Pipeline, and Workflow resources with All operations set to allow.
 
-<img src="/images/how-to-guides/roles-policies/policy1.png" alt="Creating Roles & Policies in OpenMetadata" />
+<img src="/public/images/how-to-guides/roles-policies/policy1.png" alt="Creating Roles & Policies in OpenMetadata" />
 
 You can create a Role such as ServiceOwner role and assign the above policy. Once the role is created, you can assign it to users to enable service creation by themselves without the need for an Admin.
 
@@ -30,7 +30,7 @@ Here is an example of a policy to enable it for Data Stewards using two rules.
 
 You can fine tune these permissions to suit your organizational needs.
 
-<img src="/images/how-to-guides/roles-policies/policy2.png" alt="Roles for Data Steward" />
+<img src="/public/images/how-to-guides/roles-policies/policy2.png" alt="Roles for Data Steward" />
 
 ### Use Case 3: Only the team that owns the data asset should be able to access it
 
@@ -38,12 +38,12 @@ To safeguard the data owned by a specific team, you can prevent external access.
 
 The above rule specifies to deny all operations if the logged-in user is not the owner, or if the logged-in user’s team is not the owner of an asset.
 
-<img src="/images/how-to-guides/roles-policies/policy3.png" alt="Team Only Policy" />
+<img src="/public/images/how-to-guides/roles-policies/policy3.png" alt="Team Only Policy" />
 
 ### Use Case 4: Deny all the access if the data asset is tagged with PII.Sensitive and allow only the owners
 
 Just like the above policy, you can create a rule with complex conditions as shown below
 
-<img src="/images/how-to-guides/roles-policies/policy4.png" alt="PII Sensitive Tag Policy" />
+<img src="/public/images/how-to-guides/roles-policies/policy4.png" alt="PII Sensitive Tag Policy" />
 
 In this rule, we are specifying to deny operations if the table tag contains PII.Sensitive tag and if the logged-in user is not the owner, or their team is not the owner of the Table.
