@@ -35,35 +35,28 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 
 <ConfigureIngestion />
 
-
-<CardGroup cols={3}>
+<CardGroup cols={2}>
 <Card
-    icon="/images/icons/celebration.svg"
-    title="Docker Security"
-    href="/deployment/security/azure/docker"
-  >
-    Configure Azure SSO for your Docker Deployment.
-  </Card>
-  <Card
-    icon="/images/icons/puzzle.svg"
-    title="Bare Metal Security"
-    href="/deployment/security/azure/bare-metal"
-  >
-    Configure Azure SSO for your Bare Metal Deployment.
-  </Card>
-  <Card
-    icon="/images/icons/puzzle.svg"
-    title="Kubernetes Security"
-    href="/deployment/security/azure/kubernetes"
-  >
-    Configure Azure SSO for your Kubernetes Deployment.
-  </Card>
+  icon="party-horn"
+  iconType="solid"
+  title="Azure SSO - Public"
+  href="/deployment/security/azure/public-client"
+>
+  Configure Azure SSO using the Public client type.
+</Card>
+<Card
+  icon="square-list"
+  iconType="solid"
+  title="Azure SSO - Confidential"
+  href="/deployment/security/azure/confidential-client"
+>
+  Configure Azure SSO using the Confidential client type.
+</Card>
 </CardGroup>
-
 
 <CardGroup cols={1}>
 <Card
-    icon="/images/icons/arrow-right.svg"
+    icon="arrow-left"
     title="Azure"
     href="/deployment/security/azure"
   >
