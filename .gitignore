@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# macOS
+.DS_Store
+
 # User-specific files
 *.rsuser
 *.suo
@@ -20,6 +23,8 @@ mono_crash.*
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
+# Exception: allow debug images in documentation
+!images/**/debug/
 [Rr]elease/
 [Rr]eleases/
 x64/

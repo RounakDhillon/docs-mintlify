@@ -22,6 +22,6 @@
   "homepage": "https://github.com/sweta1308/mintlify-docs#readme",
   "dependencies": {
     "react": "^19.1.1",
-    "mint": "4.2.108"
+    "mint": "4.2.221"
   }
 }

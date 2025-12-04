@@ -460,15 +460,15 @@ code::-webkit-scrollbar {
 
 #navbar .nav-tabs {
   background-color: #FAFAFA;
-  width: 100%;
+  width: max-content;
   border: 1px solid #EAECF5;
   border-radius: 100px;
-  margin-top: 24px;
-  column-gap: 12px;
-  margin-bottom: 4px;
+  margin: 24px auto 4px;
+  column-gap: 16px;
   overflow-x: scroll;
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
 #navbar .nav-tabs .nav-tabs-item  {
@@ -516,6 +516,7 @@ code::-webkit-scrollbar {
 #table-of-contents-content .toc-item a:hover, #table-of-contents-content .toc-item a.text-primary {
   color: #004CD3;
   border-color: #004CD3;
+  font-weight: 600;
 }
 
 #content-side-layout::before {
@@ -540,12 +541,12 @@ body:has(.homepage-container) #search-bar-entry {
 /* Homepage search input styling */
 .search-container {
   position: relative;
-  margin-top: 32px;
+  margin-top: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 700px;
+  max-width: 750px;
   margin-left: auto;
   margin-right: auto;
   padding: 0px 6px;
