@@ -71,7 +71,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
+  font-weight: 600;
   font-family: "DM Sans";
 }
 
@@ -88,6 +88,8 @@ p {
 h1 {
   font-size: 36px;
   line-height: 44px;
+  color: #222244 !important;
+  margin-bottom: 16px !important;
 }
 
 h2 {
@@ -359,6 +361,14 @@ code::-webkit-scrollbar {
   }
 }
 
+#header h1, #header p {
+  display: none !important;
+}
+
+.mdx-content, .mdx-content h1 {
+  margin-top: 0px !important;
+}
+
 .api-page-container {
   display: grid;
   grid-template-columns: var(--api-side-nav-width) calc(
@@ -452,10 +462,6 @@ code::-webkit-scrollbar {
   width: fit-content;
 }
 
-.brand-docs-banner+article> h1:first-child{
-  margin-top: 8px;
-}
-
 #navbar .border-b {
   border: none;
 }
@@ -509,6 +515,15 @@ code::-webkit-scrollbar {
 
 .card:hover h2 {
   text-decoration: underline;
+}
+
+.card [data-component-part="card-icon"]:has(> svg) {
+  background-color: #e6f1ff;
+  padding: 24px;
+  border-radius: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #sidebar-content {
