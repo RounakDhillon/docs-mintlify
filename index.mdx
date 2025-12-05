@@ -4,6 +4,8 @@ description: "Unified platform for data discovery, lineage, and governance"
 mode: "custom"
 ---
 
+import { Integrations } from "/snippets/components/ConnectorGrid/Integration.jsx"
+
 <div className="homepage-container">
 
 <div className="banner-content">
@@ -112,6 +114,20 @@ mode: "custom"
 <div className="see-all">
 <a href="/how-to-guides">See All</a>
 </div>
+
+</div>
+
+<div className="connectors">
+
+<div className="chip purple">Connectors</div>
+
+<h2 className="guide-header">Seamless Data Integrations</h2>
+
+<p className="page-description header-description">
+  Integrate diverse data sources with Collate.
+</p>
+
+<Integrations />
 
 </div>
 
