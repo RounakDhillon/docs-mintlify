@@ -20,78 +20,46 @@ import ConnectorsList10 from '/snippets/connectors/search/connectors-list.mdx'
 
 OpenMetadata can extract metadata from the following list of connectors below.
 
-## Ingestion Deployment
+<div className="connector-page">
 
-To run the Ingestion via the UI you'll need to use the OpenMetadata Ingestion Container, which comes shipped with
-custom Airflow plugins to handle the workflow deployment. If you want to install it manually in an already existing
-Airflow host, you can follow [this](/deployment/ingestion/openmetadata) guide.
-
-If you don't want to use the OpenMetadata Ingestion container to configure the workflows via the UI, then you can check
-the following docs to run the Ingestion Framework in any orchestrator externally.
-
-<CardGroup cols={2}>
-<Card title="Run Connectors from the OpenMetadata UI" href="/deployment/ingestion/openmetadata">
-Learn how to manage your deployment to run connectors from the UI.
-</Card>
-<Card title="External Schedulers" href="/deployment/ingestion/external">
-Get more information about running the Ingestion Framework Externally.
-</Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-<Card icon="network-wired" iconType="solid" horizontal title="Metadata" href="/connectors/ingestion/workflows/metadata">
-Learn more about how to ingest metadata from dozens of connectors.
-</Card>
-<Card icon="network-wired" iconType="solid" horizontal title="Usage" href="/connectors/ingestion/workflows/usage">
-Run usage ingestion workflows externally to track data access.
-</Card>
-<Card icon="network-wired" iconType="solid" horizontal title="Lineage" href="/connectors/ingestion/workflows/lineage">
-Run lineage Agent workflows externally to capture data flow.
-</Card>
-<Card icon="network-wired" iconType="solid" horizontal title="dbt" href="/connectors/ingestion/workflows/dbt">
-Run dbt Agent workflows externally to sync models and metadata.
-</Card>
-<Card icon="network-wired" iconType="solid" horizontal title="Auto-Classification" href="/how-to-guides/data-governance/classification/auto-classification">
-Set up auto-classification to detect and tag sensitive data automatically.
-</Card>
-</CardGroup>
-
-## API Services
+## API
 
 <ConnectorsList />
 
-## Database / DataWarehouse Services
+## Database
 
 <ConnectorsList2 />
 
-## Dashboard Services
+## Dashboard
 
 <ConnectorsList3 />
 
-## Messaging Services
+## Messaging
 
 <ConnectorsList4 />
 
-## Pipeline Services
+## Pipeline
 
 <ConnectorsList5 />
 
-## ML Model Services
+## ML Model
 
 <ConnectorsList6 />
 
-## Storage Services
+## Storage
 
 <ConnectorsList7 />
 
-## Metadata Services
+## Metadata
 
 <ConnectorsList8 />
 
-## Security Services
+## Security
 
 <ConnectorsList9 />
 
-## Search Services
+## Search
 
 <ConnectorsList10 />
+
+</div>

@@ -68,7 +68,9 @@
     font-size: 14px;
 }
 
-.guides, .highlights, .quick-links {
+.guides,
+.highlights,
+.quick-links {
     padding: 48px 48px 96px;
 }
 
@@ -333,6 +335,36 @@ a.guide-card img {
     gap: 20px;
 }
 
+.connector-page div[data-component-part="card-icon"] {
+    background-color: #F8F9FC;
+    padding: 21px 20px;
+    border-radius: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connector-page div[data-component-part="card-icon"]>* {
+    position: relative;
+    z-index: 1;
+}
+
+.connector-page .card [data-component-part="card-content-container"] {
+    padding: 16px;
+}
+
+.card-details {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.card-logo {
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+}
+
 @media (max-width: 1280px) {
     .guide-list {
         grid-template-columns: repeat(3, 1fr);
@@ -342,7 +374,9 @@ a.guide-card img {
         max-width: 100%;
     }
 
-    .collate-video, .external-links, .home-footer {
+    .collate-video,
+    .external-links,
+    .home-footer {
         padding: 32px 56px;
     }
 }
@@ -404,7 +438,8 @@ a.guide-card img {
         margin: 16px auto;
     }
 
-    .external-links, .home-footer {
+    .external-links,
+    .home-footer {
         padding: 24px;
     }
 
