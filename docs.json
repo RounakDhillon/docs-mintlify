@@ -1381,7 +1381,10 @@
                 "groups": [
                     {
                         "group": "SDK",
-                        "pages": ["sdk/index"]
+                        "pages": [
+                            "sdk/index",
+                            "sdk/openmetadata-standards"
+                        ]
                     },
                     {
                         "group": "SDKs",
