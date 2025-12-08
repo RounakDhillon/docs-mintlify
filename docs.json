@@ -1009,6 +1009,10 @@
                 ]
             },
             {
+                "tab": "Products",
+                "pages": ["products/index"]
+            },
+            {
                 "tab": "Collate AI",
                 "pages": [
                     "collate-ai/index",
