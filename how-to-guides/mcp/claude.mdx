@@ -13,7 +13,7 @@ Configure Collate's MCP Server to interact with Anthropic's AI assistant platfor
 For this guide, you will need:
 
 - [nvm](https://github.com/nvm-sh/nvm) and npx/node version 22
-- OpenMetadata v1.8.0 or later - You can upgrade your version of Collate with [this guide](https://docs.open-metadata.org/latest/deployment/upgrade)
+- Collate v1.8.0 or later - You can upgrade your version of Collate with [this guide](https://docs.open-metadata.org/latest/deployment/upgrade)
 - [Claude Desktop](https://claude.ai/download)
 - Collate [MCP Application and Personal Access Token](https://docs.open-metadata.org/v1.9.x/how-to-guides/mcp#installing-mcp-server)
 
@@ -24,37 +24,37 @@ This how-to guide uses the free version of Claude Desktop for macOS with Sonnet 
 
 ```
 {"mcpServers": {
-    "openmetadata": {
+    "Collate": {
       "command": "npx",
       "args": [
         "-y",
         "mcp-remote",
-        "<YOUR-OpenMetadata-SERVER>/mcp",
-        "--auth-server-url=<YOUR-OpenMetadata-SERVER>/mcp",
-        "--client-id=openmetadata",
+        "<YOUR-Collate-SERVER>/mcp",
+        "--auth-server-url=<YOUR-Collate-SERVER>/mcp",
+        "--client-id=Collate",
         "--verbose",
         "--clean",
         "--header",
         "Authorization:${AUTH_HEADER}"
       ],
       "env": {
-        "AUTH_HEADER": "Bearer <YOUR-OpenMetadata-PAT>"
+        "AUTH_HEADER": "Bearer <YOUR-Collate-PAT>"
       }
     }
   }
 }
 ```
 
-- Restart Claude Desktop. You should see your `openmetadata` service running
+- Restart Claude Desktop. You should see your `Collate` service running
 
 <img noZoom src="/public/images/how-to-guides/mcp/claude-settings.jpg" alt="Claude Settings" />
 
 ## Prompt to read from Collate
-This part of the guide assumes that you have assets in Collate that Claude can read, and that some of your data assets have references to customers. You can change the prompt accordingly and/or add data sources into OpenMetadata [here](https://docs.open-metadata.org/latest/connectors).
+This part of the guide assumes that you have assets in Collate that Claude can read, and that some of your data assets have references to customers. You can change the prompt accordingly and/or add data sources into Collate [here](https://docs.open-metadata.org/latest/connectors).
 
 Past the following prompt into Claude to have it read from Collate:
 ```
-Imagine you're a data analyst tasked with building a customer retention dashboard. Can you help me identify which tables or datasets in the openmetadata database might contain relevant information?
+Imagine you're a data analyst tasked with building a customer retention dashboard. Can you help me identify which tables or datasets in the Collate database might contain relevant information?
 ```
 
 Claude will ask if it can use the external integration `Collate`, select *Allow always*. You may have to do this multiple times, once for each tool. Claude is now reading from Collate via its MCP Server!

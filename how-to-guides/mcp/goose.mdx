@@ -27,15 +27,15 @@ This how-to guide uses Goose Desktop for macOS. Make sure that you already have 
   - *Extension Name* `Collate`
   - *Command* paste the following command:
     ```
-    npx -y mcp-remote <YOUR_OpenMetadata_SERVER>/mcp --auth-server-url=<YOUR_OpenMetadata_SERVER>/mcp --client-id=openmetadata --verbose --clean --header Authorization:${AUTH_HEADER}
+    npx -y mcp-remote <YOUR_Collate_SERVER>/mcp --auth-server-url=<YOUR_Collate_SERVER>/mcp --client-id=Collate --verbose --clean --header Authorization:${AUTH_HEADER}
     ```
     - If you are running [it locally](https://docs.open-metadata.org/latest/quick-start/local-docker-deployment), your command will look like this:
       ```
-      npx -y mcp-remote http://localhost:8585/mcp --auth-server-url=http://localhost:8585/mcp --client-id=openmetadata --verbose --clean --header Authorization:${AUTH_HEADER}
+      npx -y mcp-remote http://localhost:8585/mcp --auth-server-url=http://localhost:8585/mcp --client-id=Collate --verbose --clean --header Authorization:${AUTH_HEADER}
       ```
   - Add 1 *Environment Variable*
     - *Variable name* is `AUTH_HEADER`
-    - *Value* is `Bearer &lt;YOUR_OpenMetadata_PAT&gt;`
+    - *Value* is `Bearer &lt;YOUR_Collate_PAT&gt;`
 
 <img noZoom src="/public/images/how-to-guides/mcp/goose-mcp-settings.jpg" alt="Configuring Collate MCP Server" />
 
@@ -52,7 +52,7 @@ This part of the guide assumes that you have assets in Collate. You can add data
 
 Select a model from Goose and paste the following prompt to have it read from Collate:
 ```
-What tables do you have access to in OpenMetadata?
+What tables do you have access to in Collate?
 ```
 
 For more sample use cases with MCP please check out [our blog](https://collatedata.medium.com/mcp-sample-uses-in-collate-b7846864f63b)!
