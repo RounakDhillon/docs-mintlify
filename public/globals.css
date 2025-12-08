@@ -511,26 +511,18 @@ code::-webkit-scrollbar {
 }
 
 .card h2 {
-  color: #004CD3;
-}
-
-.connector-page .card h2 {
   color: #181D27;
   font-size: 18px;
   line-height: 20px;
 }
 
 .card:hover h2 {
-  text-decoration: underline;
+  color: #004CD3;
+  text-decoration: none;
 }
 
 .connector-page .card [data-component-part="card-content-container"] {
   position: relative;
-}
-
-.connector-page .card:hover h2 {
-  color: #004CD3;
-  text-decoration: none;
 }
 
 .card [data-component-part="card-icon"]:has(> svg) {
@@ -540,6 +532,21 @@ code::-webkit-scrollbar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.how-to-guides-container .card [data-component-part="card-icon"] {
+  width: auto !important;
+  height: auto !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  align-self: flex-start !important;
+}
+
+.how-to-guides-container .card [data-component-part="card-icon"] img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .connector-page div[data-component-part="card-icon"] {
@@ -716,6 +723,14 @@ body:has(.homepage-container) #search-bar-entry {
   background-color: #0257cd;
 }
 
+body:has(.how-to-guides-container) #sidebar-content {
+  display: none;
+}
+
+body:has(.how-to-guides-container) #content-container {
+  max-width: 1300px !important;
+}
+ 
 /* Iframe width adjustment for content pages (exclude homepage) */
 article iframe,
 .prose iframe {
