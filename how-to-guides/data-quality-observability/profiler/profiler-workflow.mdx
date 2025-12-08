@@ -186,12 +186,12 @@ Choose the `orm-profiler`. Its config can also be updated to define tests from t
 <Step title="Sink Configuration">
 #### Sink Configuration
 
-To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
+To send the metadata to Collate, it needs to be specified as `type: metadata-rest`.
 </Step>
 <Step title="Workflow Configuration">
 #### Workflow Configuration
 
-The main property here is the `openMetadataServerConfig`, where you can define the host and security provider of your OpenMetadata installation.
+The main property here is the `CollateServerConfig`, where you can define the host and security provider of your Collate installation.
 
 For a simple, local installation using our docker containers, this looks like:
 </Step>
@@ -266,9 +266,9 @@ sink:
   config: {}
 workflowConfig:
   # loggerLevel: DEBUG  # DEBUG, INFO, WARN or ERROR
-  openMetadataServerConfig:
-    hostPort: <OpenMetadata host and port>
-    authProvider: <OpenMetadata auth provider>
+  CollateServerConfig:
+    hostPort: <Collate host and port>
+    authProvider: <Collate auth provider>
 ```
 
 ### 2. Run with the CLI

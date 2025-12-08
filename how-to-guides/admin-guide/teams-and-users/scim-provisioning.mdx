@@ -15,7 +15,7 @@ For a user to log in using SSO, you must configure SSO from your identity provid
 - **Default Provisioning Schedule**:
     - Azure provisioning happens once every 40 minutes by default
     - Okta provisioning can be configured for real-time or scheduled intervals
-- **Group Provisioning Behavior in OpenMetadata**:
+- **Group Provisioning Behavior in Collate**:
     - **New Group**: If your identity provider sends a group that doesn't yet exist in Collate, we'll create it at the root (under the Organization) with team type as "group"
     - **Existing Group**: If the group already exists—no matter where it sits in Collate's hierarchy—we'll simply add or remove the user in that group
 - **Requirement**: For provisioning to happen, you must assign users/groups to the SCIM App in your identity provider dashboard
