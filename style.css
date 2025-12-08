@@ -5,12 +5,12 @@
 }
 
 .banner-content {
-    padding: 64px 0 96px;
+    padding: 96px 0;
     background: radial-gradient(46.63% 44.4% at 50% 50%, rgba(201, 207, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
 }
 
 .page-header {
-    color: #181D27;
+    color: #181D27 !important;
     font-weight: 600;
     font-size: 56px;
     text-align: center;
@@ -48,7 +48,7 @@
     border-radius: 100px;
     box-shadow: 0px 4px 12px -1px rgba(10, 13, 18, 0.08);
     display: flex;
-    gap: 8px;
+    gap: 12px;
     align-items: center;
     font-weight: 500;
     width: max-content;
@@ -57,6 +57,11 @@
 .chip.blue {
     background: linear-gradient(93.13deg, #EBF9FF 0%, #ECF4FF 189.43%);
     color: #194185;
+}
+
+.chip.blue:hover {
+    background: linear-gradient(93.13deg, #E5F7FF 0%, #DDECFF 189.43%);
+    color: #175CD3;
 }
 
 .chip.purple {
@@ -85,7 +90,7 @@
 .guide-list {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 40px;
+    gap: 24px;
     margin: 0 auto;
     margin-top: 52px;
     max-width: 90%;
@@ -101,13 +106,21 @@
     color: #252B37;
     font-weight: 500;
     font-size: 18px;
-    gap: 10px;
+    gap: 16px;
     width: 100%;
+    transition: all 0.3s ease;
+}
+
+.guide-card:hover {
+    box-shadow: 0px 20px 24px -4px #0A0D1214;
+    transform: translateY(-4px);
+    padding: 24px;
+    margin: -4px;
 }
 
 a.guide-card img {
-    width: 70px !important;
-    height: 70px !important;
+    width: 80px !important;
+    height: 80px !important;
 }
 
 .see-all {
@@ -116,14 +129,22 @@ a.guide-card img {
     color: #004CD3;
     font-size: 18px;
     font-weight: 500;
-    box-shadow: 0px 2px 2px -1px rgba(10, 13, 18, 0.08);
+    box-shadow:
+        0px 2px 2px -1px rgba(10, 13, 18, 0.04),
+        0px 4px 6px -2px rgba(10, 13, 18, 0.03),
+        0px 12px 16px -4px rgba(10, 13, 18, 0.08);
     width: max-content;
     padding: 12px 24px;
     background-color: #EAF4FF;
     border-radius: 100px;
 }
 
-.hightlight-cards {
+.see-all:hover {
+    background-color: #CDE4FE;
+    color: #1849A9;
+}
+
+.highlight-cards {
     max-width: 850px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -131,13 +152,24 @@ a.guide-card img {
     margin: 60px auto 0px;
 }
 
-.hightlight-card {
+.highlight-card {
     box-shadow: 0px 4px 12px -1px rgba(10, 13, 18, 0.08);
     padding: 20px;
     border-radius: 12px;
+    transition: all 0.3s ease;
 }
 
-.hightlight-card .icon {
+.highlight-card:hover {
+    box-shadow:
+        0px 3px 3px -1.5px rgba(10, 13, 18, 0.04),
+        0px 8px 8px -4px rgba(10, 13, 18, 0.03),
+        0px 20px 24px -4px rgba(10, 13, 18, 0.08);
+    padding: 24px;
+    margin: -4px;
+    transform: translateY(-2px);
+}
+
+.highlight-card .icon {
     width: 48px !important;
     height: 48px !important;
 }
@@ -154,10 +186,16 @@ a.guide-card img {
     display: flex;
     gap: 10px;
     align-items: center;
+    color: #175CD3;
+    font-weight: 600;
+}
+
+.highlight-card:hover .read-more {
+    color: #1849A9;
 }
 
 .read-more img {
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .links {
@@ -179,9 +217,6 @@ a.guide-card img {
 
 .link-header h3 {
     font-size: 20px;
-}
-
-.link-header h3 {
     font-weight: 500;
 }
 
@@ -195,6 +230,7 @@ a.guide-card img {
 
 .link-list a:hover {
     text-decoration: underline;
+    color: #1849A9;
 }
 
 .collate-video {
@@ -234,6 +270,9 @@ a.guide-card img {
     border: 3px solid #BED2FB;
     max-width: 100%;
     height: auto;
+    box-shadow: 0px 2px 2px -1px rgba(10, 13, 18, 0.04),
+                0px 4px 6px -2px rgba(10, 13, 18, 0.03),
+                0px 12px 16px -4px rgba(10, 13, 18, 0.08);
 }
 
 .video-chip {
@@ -293,10 +332,20 @@ a.guide-card img {
 .explore-card {
     background-color: #F4F9FF;
     box-shadow: 0px 4px 12px -8px #0026543D;
-    padding: 16px 20px;
+    padding: 12px 20px;
     border-radius: 12px;
     color: #535862;
     font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.explore-card:hover {
+    box-shadow: 0px 3px 3px -1.5px rgba(10, 13, 18, 0.04),
+                0px 8px 8px -4px rgba(10, 13, 18, 0.03),
+                0px 20px 24px -4px rgba(10, 13, 18, 0.08);
+    padding: 16px 24px;
+    margin: -4px;
+    transform: translateY(-2px);
 }
 
 .explore-card-header {
@@ -327,12 +376,22 @@ a.guide-card img {
 }
 
 .footer-link-name:hover {
-    color: #004CD3;
+    color: #181D27;
+    text-decoration: underline;
 }
 
 .home-footer-social {
     display: flex;
-    gap: 20px;
+    gap: 8px;
+}
+
+.social-link {
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.social-link:hover {
+    background-color: #F8F9FC;
 }
 
 .connector-page div[data-component-part="card-icon"] {
@@ -482,7 +541,7 @@ a.guide-card img {
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .hightlight-cards {
+    .highlight-cards {
         grid-template-columns: repeat(1, 1fr);
     }
 

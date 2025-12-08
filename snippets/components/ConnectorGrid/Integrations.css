@@ -76,7 +76,8 @@
 }
 
 .sidebar-item:hover {
-  color: #004CD3;
+  color: #414651;
+  border-right: 1px solid #D5D9EB;
 }
 
 .sidebar-item.active {
@@ -90,7 +91,7 @@
   padding: 20px 32px;
   overflow-y: auto;
   display: grid;
-  gap: 28px;
+  gap: 20px;
   align-content: flex-start;
 }
 
@@ -105,30 +106,38 @@
 .integration-card {
   max-height: 110px;
   text-decoration: none;
-  color: #111;
+  color: #181D27;
   display: flex;
   align-items: center;
   gap: 12px;
   background-color: white;
   box-shadow: 0px 4px 12px -1px #0A0D1214;
   border-radius: 12px;
-  padding: 20px;
+  padding: 12px 20px;
   box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.integration-card:hover {
+  box-shadow:
+    0px 3px 3px -1.5px #0A0D120A,
+    0px 8px 8px -4px #0A0D1208,
+    0px 20px 24px -4px #0A0D1214;
+  padding: 16px 24px;
+  margin: -4px;
+  transform: translateY(-2px);
 }
 
 .integration-card img {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
 .integration-card span {
   font-size: 18px;
-}
-
-.integration-card:hover span {
-  color: #004CD3;
+  line-height: 120%;
 }
 
 .load-more {
