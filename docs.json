@@ -1371,6 +1371,15 @@
                                     "how-to-guides/guide-for-data-users/delete",
                                     "how-to-guides/guide-for-data-users/browser-ext"
                                 ]
+                            },
+                            {
+                                "group": "SQL Studio",
+                                "pages": [
+                                    "how-to-guides/sql-studio/index",
+                                    "how-to-guides/sql-studio/admin-configuration",
+                                    "how-to-guides/sql-studio/user-authentication",
+                                    "how-to-guides/sql-studio/query-execution"
+                                ]
                             }
                         ]
                     }
