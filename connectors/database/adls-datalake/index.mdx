@@ -15,7 +15,7 @@ import ConfigureIngestion from '/snippets/connectors/database/configure-ingestio
 
 import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
 
-import MetadataIngestionUi from '/snippets/connectors/metadata-ingestion-ui.mdx'
+import { MetadataIngestionUi } from '/snippets/components/MetadataIngestionUi.jsx'
 import Related from '/snippets/connectors/database/related.mdx'
 
 <ConnectorDetailsHeader
@@ -49,7 +49,7 @@ permissions on the Storage Account:
 
 ## Metadata Ingestion
 
-<MetadataIngestionUi connector={"ADLS Datalake"} selectServicePath={"/public/images/connectors/adls-datalake/select-service.png"} addNewServicePath={"/public/images/connectors/adls-datalake/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/adls-datalake/service-connection.png"} />
+<MetadataIngestionUi connector="ADLS Datalake" selectServicePath="/public/images/connectors/adls/select-service.png" addNewServicePath="/public/images/connectors/adls/add-new-service.png" serviceConnectionPath="/public/images/connectors/adls/service-connection.png" />
 
 <Steps>
 
