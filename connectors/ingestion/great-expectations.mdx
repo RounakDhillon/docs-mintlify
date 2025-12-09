@@ -56,7 +56,6 @@ In your checkpoint yaml file, you will need to add the above code block in `acti
 - `schema_name`: [Optional] only required for `RuntimeDataBatchSpec` execution (e.g. run GX against a dataframe). 
 - `table_name`: [Optional] only required for `RuntimeDataBatchSpec` execution (e.g. run GX against a dataframe). 
 
-<img alt="Great Expectations checkpoint file" />
 
 **Note**
 
@@ -97,7 +96,7 @@ securityConfig:
 
 You can use environment variables in your configuration file by simply using `{{ env('<MY_ENV_VAR>') }}`. These will be parsed and rendered at runtime allowing you to securely create your configuration and commit it to your favorite version control tool. As we support multiple security configurations, you can check out the [Enable Security](/deployment/security) section for more details on how to set the `securityConfig` part of the `yaml` file.
 
-<img noZoom src="/public/images/features/integrations/ge-config-yaml.gif" alt="Great Expectations config file" />
+![Great Expectations config file](/public/images/features/integrations/ge-config-yaml.gif)
 
 ### Run your Great Expectations Checkpoint File
 With everything set up, it is now time to run your checkpoint file.
@@ -106,7 +105,7 @@ With everything set up, it is now time to run your checkpoint file.
 great_expectations checkpoint run <my_checkpoint>
 ```
 
-<img noZoom src="/public/images/features/integrations/ge-run-checkpoint.gif" alt="Run Great Expectations checkpoint" />
+![Run Great Expectations checkpoint](/public/images/features/integrations/ge-run-checkpoint.gif)
 
 ### Running GX using the Python SDK?
 If you are running GX using their Python SDK below is a full example of how to add the action to your code
