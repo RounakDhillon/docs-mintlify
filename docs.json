@@ -1016,7 +1016,7 @@
                 "tab": "Collate AI",
                 "pages": [
                     "collate-ai/index",
-                    "/collate-ai/ask-collate",
+                    "collate-ai/ask-collate",
                     "collate-ai/collate-ai-autopilot-workflows",
                     "collate-ai/how-to-use-collate-ai",
                     "collate-ai/tier-agent",
