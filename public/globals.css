@@ -582,7 +582,7 @@ a.link:hover {
   justify-content: center;
 }
 
-.how-to-guides-container .card [data-component-part="card-icon"], .product-cards .card [data-component-part="card-icon"] {
+.how-to-guides-container .card [data-component-part="card-icon"], .product-cards .card [data-component-part="card-icon"], .collate-ai-container .card [data-component-part="card-icon"] {
   width: auto !important;
   height: auto !important;
   min-width: 32px !important;
@@ -590,7 +590,7 @@ a.link:hover {
   align-self: flex-start !important;
 }
 
-.how-to-guides-container .card [data-component-part="card-icon"] img, .product-cards .card [data-component-part="card-icon"] img {
+.how-to-guides-container .card [data-component-part="card-icon"] img, .product-cards .card [data-component-part="card-icon"] , .collate-ai-container .card [data-component-part="card-icon"] img {
   width: 32px !important;
   height: 32px !important;
   object-fit: contain;
