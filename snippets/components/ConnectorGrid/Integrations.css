@@ -106,7 +106,6 @@
 .integration-card {
   max-height: 110px;
   text-decoration: none;
-  color: #181D27;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -118,13 +117,25 @@
   transition: all 0.3s ease;
 }
 
-.integration-card:hover {
+.integration-card span {
+  color: #181D27;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+}
+
+a.integration-card span:hover {
+  text-decoration: none;
+}
+
+a.integration-card:hover {
   box-shadow:
     0px 3px 3px -1.5px #0A0D120A,
     0px 8px 8px -4px #0A0D1208,
     0px 20px 24px -4px #0A0D1214;
   padding: 16px 24px;
   margin: -4px;
+  text-decoration: none;
   transform: translateY(-2px);
 }
 
@@ -133,11 +144,6 @@
   height: 32px;
   object-fit: contain;
   flex-shrink: 0;
-}
-
-.integration-card span {
-  font-size: 18px;
-  line-height: 120%;
 }
 
 .load-more {

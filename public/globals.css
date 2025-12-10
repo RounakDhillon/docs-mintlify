@@ -158,6 +158,17 @@ code::-webkit-scrollbar {
   display: none;
 }
 
+a.link {
+  color: #004CD3;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+}
+
+a.link:hover {
+  text-decoration: underline;
+}
+
 .connector-tab {
   display: block;
   width: 100%;
@@ -486,10 +497,12 @@ code::-webkit-scrollbar {
   white-space: nowrap;
   flex-shrink: 0;
   color: #414651;
+  font-weight: 500;
 }
 
 #navbar .nav-tabs .nav-tabs-item:hover {
   color: #181D27;
+  text-decoration: none;
 }
 
 #navbar .nav-tabs .nav-tabs-item .absolute {
@@ -753,11 +766,11 @@ body:has(.homepage-container) #search-bar-entry {
   background-color: #0257cd;
 }
 
-body:has(.how-to-guides-container) #sidebar-content {
+body:has(.how-to-guides-container) #sidebar-content, body:has(.sdk-container) #sidebar-content {
   display: none;
 }
 
-body:has(.how-to-guides-container) #content-container {
+body:has(.how-to-guides-container) #content-container, body:has(.sdk-container) #content-container {
   max-width: 1300px !important;
 }
  
@@ -796,4 +809,22 @@ article iframe,
     height: auto !important;
     aspect-ratio: 16 / 9 !important;
   }
+}
+
+.card:not(:has([data-component-part="card-icon"])) {
+  border: 1px solid #EAECF5 !important;
+  background-color: #F8F9FC !important;
+  box-shadow: none !important;
+}
+
+.card.card:not(:has([data-component-part="card-icon"])) h2 {
+  color: #004CD3;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 12px;
+  line-height: 30px;
+}
+
+.card.card:not(:has([data-component-part="card-icon"])):hover h2 {
+  text-decoration: underline;
 }
