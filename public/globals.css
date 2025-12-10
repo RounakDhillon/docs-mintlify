@@ -153,6 +153,16 @@ code {
   scrollbar-width: none;
 }
 
+/* Hide scrollbars globally for Chrome, Safari, Edge */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for Firefox */
+* {
+  scrollbar-width: none;
+}
+
 pre::-webkit-scrollbar,
 code::-webkit-scrollbar {
   display: none;
@@ -766,11 +776,11 @@ body:has(.homepage-container) #search-bar-entry {
   background-color: #0257cd;
 }
 
-body:has(.how-to-guides-container) #sidebar-content, body:has(.sdk-container) #sidebar-content {
+body:has(.how-to-guides-container) #sidebar-content, body:has(.sdk-container) #sidebar-content, body:has(.connector-page) #sidebar-content {
   display: none;
 }
 
-body:has(.how-to-guides-container) #content-container, body:has(.sdk-container) #content-container {
+body:has(.how-to-guides-container) #content-container, body:has(.sdk-container) #content-container, body:has(.connector-page) #content-container {
   max-width: 1300px !important;
 }
  
@@ -827,4 +837,62 @@ article iframe,
 
 .card.card:not(:has([data-component-part="card-icon"])):hover h2 {
   text-decoration: underline;
+}
+
+.how-to-guides-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.how-to-guides-container ul li {
+  padding-left: 28px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.how-to-guides-container ul li::before, .sdk-container ul li::before, .python-container ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  background-image: url("/public/images/icons/check-circle.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.sdk-container .card img {
+  min-width: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.code-block, .code-block [data-component-part="code-block-root"] {
+  border: none !important;
+  background-color: #3E444F !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(40px);
+}
+
+.code-block pre,
+.code-block code,
+.code-block span {
+  color: #E5E7EB !important;
+  background-color: transparent !important;
+}
+
+.code-block pre {
+  background-color: transparent !important;
+}
+
+.python-container {
+  background-color: #FAFAFA;
+  border-radius: 12px;
+  padding: 6px 20px;
+}
+
+.callout [data-component-part="callout-content"] {
+  color: #414651 !important;
 }

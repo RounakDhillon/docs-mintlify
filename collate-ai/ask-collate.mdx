@@ -1,0 +1,133 @@
+---
+title: Ask Collate | Natural Language Data Assistant
+description: Discover assets, generate SQL, explore lineage, and create data quality tests using natural language in Collate.
+slug: /collate-ai/ask-collate
+sidebarTitle: Ask Collate
+collate: true
+---
+
+# Ask Collate
+
+Ask Collate is the AI assistant inside Collate. It lets you explore data assets, generate or fix SQL, visualize insights, and enforce governance using natural language. Responses are grounded in the metadata, lineage, and usage information ingested into Collate.
+
+## What you can do
+
+<iframe
+  width="800"
+  height="450"
+  src="https://www.youtube.com/embed/OE5tPYs8SoE"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen>
+</iframe>
+
+- Ask plain-language questions to discover tables, dashboards, owners, or usage patterns.
+- Generate SQL with explanations you can review before running in your warehouse.
+- Fix or optimize SQL by pasting an existing query and requesting improvements.
+- Summarize metadata to understand table purpose, lineage, quality signals, and owners.
+- Create and manage glossary terms, tags, and data quality tests through prompts.
+
+## Prerequisites
+
+- Collate AI is installed and enabled in your workspace.
+- Metadata, lineage, and usage ingestion jobs are running so Ask Collate has context.
+- You have permissions to view and act on the assets you are asking about.
+
+## How to use
+
+1. Click the **Ask Collate** chat icon in the Collate UI.
+2. Enter your question in plain language; no SQL is required to start.
+3. Use follow-up prompts to refine the answer, adjust filters, or change the visualization.
+4. Review the generated SQL or insights, then run or apply them in your preferred workflow.
+
+## Core capabilities
+
+- **Discover**: Search certified datasets, BI assets, and databases with metadata filters.
+- **Analyze**: Translate business questions into executable SQL for warehouses like Snowflake or Redshift.
+- **Visualize**: Create charts (bar, pie, donut, etc.) and refine them with follow-up prompts.
+- **Test**: Detect anomalies and suggest data quality tests using profiling and lineage context.
+- **Lineage**: Visualize upstream and downstream dependencies to perform impact analysis.
+- **Govern**: Create or edit glossary terms, assign owners, and tag assets from the chat.
+
+## Reliable prompt patterns
+
+- "Show me top marketing tables by usage this month. Only certified assets."
+- "What does the `orders` table store and who owns it?"
+- "Write a query for the last 90 days of active users by region."
+- "Here is my query. Can you make it faster and explain the changes?"
+- "Which Tier 1 assets are missing descriptions?"
+- "Show lineage for `customer_360` and highlight downstream dashboards."
+
+## Use cases
+
+### Data analyst: assess eco-friendly product performance
+
+<iframe
+  width="800"
+  height="450"
+  src="https://www.youtube.com/embed/DJ4H8leB0uY"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen>
+</iframe>
+
+- **Prompt**: "Give me total market share for eco vs non-eco products by revenue. Only Tier 1 data."
+- **Result**: Finds certified Snowflake tables (`products`, `orders`, `customers`), generates SQL, and returns the split with a chart.
+- **Follow-up**: "Use a donut chart with dark green for eco." Ask Collate updates the styling and summary.
+
+### Data analyst: customer segmentation
+
+- **Prompt**: "What percent of customers bought eco products, grouped by customer tier?"
+- **Result**: Produces SQL, groups by tier, and surfaces the insight that higher-tier customers engage more with eco products.
+
+### Data analyst: product-level checks
+
+- **Prompt**: "List eco-friendly products with total revenue."
+- **Result**: Returns a ranked list and flags anomalies (for example, a product with unexpected zero revenue) for follow-up with engineering.
+
+### Data engineer: troubleshoot data quality
+
+<iframe
+  width="800"
+  height="450"
+  src="https://www.youtube.com/embed/exkXPUI5eSs"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen>
+</iframe>
+
+- **Prompt**: "Show lineage for the customer report dashboard."
+- **Result**: Maps upstream tables (including `customer_360`) and downstream impacts.
+- **Prompt**: "Search for anomalies in these tables: nulls, negatives, duplicates."
+- **Result**: Surfaces outliers (for example, negative `unit_price` values).
+- **Prompt**: "Create test cases for the products table."
+- **Result**: Suggests completeness, uniqueness, range, and integrity tests and records who requested them.
+
+### Data steward: glossary and tagging
+
+<iframe
+  width="800"
+  height="450"
+  src="https://www.youtube.com/embed/5Qa3VwOd8To"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen>
+</iframe>
+
+- **Prompt**: "Do we have a definition for revenue?"
+- **Result**: Searches glossary terms and suggests creating one if missing.
+- **Prompt**: "Create a term for revenue calculation and tag relevant Snowflake tables."
+- **Result**: Adds the term, links it to assets such as `order_items`, and tracks ownership.
+
+## Best practices
+
+- Be specific with filters (time ranges, owners, schemas) to narrow results.
+- Paste failing SQL when asking for fixes and include error context if available.
+- Review the explanation that accompanies generated SQL to confirm intent.
+- Use follow-up prompts to iterate instead of starting new threads.
+
+## Troubleshooting
+
+- If answers seem incomplete, verify recent metadata and lineage ingestion runs succeeded.
+- If you cannot see certain assets, confirm your Collate permissions for those services.
+- For inconsistent results, restate the question with the relevant schema or service name.

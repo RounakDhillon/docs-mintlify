@@ -1016,6 +1016,7 @@
                 "tab": "Collate AI",
                 "pages": [
                     "collate-ai/index",
+                    "collate-ai/ask-collate",
                     "collate-ai/collate-ai-autopilot-workflows",
                     "collate-ai/how-to-use-collate-ai",
                     "collate-ai/tier-agent",
@@ -1306,6 +1307,7 @@
                                     "how-to-guides/admin-guide/index",
                                     "how-to-guides/admin-guide/how-to-ingest-metadata",
                                     "how-to-guides/admin-guide/delete-service-connection",
+                                    "how-to-guides/admin-guide/how-to-configure-sso-in-ui",
                                     {
                                         "group": "Manage Teams and Users",
                                         "pages": [
