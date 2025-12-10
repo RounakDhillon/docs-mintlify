@@ -38,14 +38,31 @@ Configure and schedule Couchbase metadata workflows from the OpenMetadata UI:
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Username to connect to Couchbase.
 - **Password**: Password to connect to Couchbase.
 - **Hostport**: If couchbase is hosted on cloud then the hostport parameter specifies the connection string and if you are using couchbase server then the hostport parameter specifies hostname of the Couchbase. This should be specified as a string in the format `hostname` or `xyz.cloud.couchbase.com`. E.g., `localhost`.
 - **bucketName**: Optional name to give to the bucket in OpenMetadata. If left blank, If left blank, we will ingest all the bucket names.
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

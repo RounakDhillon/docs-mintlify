@@ -100,7 +100,22 @@ For details step please refer to this [link](https://docs.microsoft.com/en-us/sq
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Connection Scheme**: Defines how to connect to MSSQL. We support `mssql+pytds`, `mssql+pyodbc`, and `mssql+pymssql`. (If you are using windows authentication from a linux deployment please use pymssql)
 - **Username**: Specify the User to connect to MSSQL. It should have enough privileges to read all the metadata.
@@ -110,7 +125,9 @@ For details step please refer to this [link](https://docs.microsoft.com/en-us/sq
 - **Database**: The initial database to establish a connection to the data source.
 - **Ingest All Databases**: If you need to ingest multiple databases - aside from the initial one above - you can enable this option.
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

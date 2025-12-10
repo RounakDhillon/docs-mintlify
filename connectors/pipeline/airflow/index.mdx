@@ -49,7 +49,22 @@ You can check the version list [here](https://airflow.apache.org/docs/apache-air
 
 <MetadataIngestionUi connector={"Airflow"} selectServicePath={"/public/images/connectors/airflow/select-service.png"} addNewServicePath={"/public/images/connectors/airflow/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/airflow/service-connection.png"} />
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Host and Port**: URL to the Airflow instance.
 - **Number of Status**: Number of status we want to look back to in every ingestion (e.g., Past executions from a DAG).
@@ -63,6 +78,7 @@ In terms of `connection` we support the following selections:
 - `MySQL`, `Postgres`, and `SQLite`: Pass the required credentials to reach out each of these services. We
     will create a connection to the pointed database and read Airflow data from there.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

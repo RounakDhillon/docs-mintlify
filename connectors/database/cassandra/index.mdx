@@ -44,7 +44,22 @@ To extract metadata using the Cassandra connector, ensure the user in the connec
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Username to connect to Cassandra. This user must have the necessary permissions to perform metadata extraction and table queries.
 - **Host Port**: When using the `cassandra` connecion schema, the hostPort parameter specifies the host and port of the Cassandra. This should be specified as a string in the format `hostname:port`. E.g., `localhost:9042`.- **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
@@ -75,6 +90,8 @@ There are a couple of types of SSL modes that Cassandra supports which can be ad
 
 In order to integrate SSL in the Metadata Ingestion Config, the user will have to add the SSL config under sslConfig which is placed in the source.
 
+
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

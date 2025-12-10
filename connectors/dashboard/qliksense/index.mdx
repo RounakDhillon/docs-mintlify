@@ -46,7 +46,22 @@ Configure and schedule Metabase metadata and profiler workflows from the OpenMet
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Qlik Sense Base URL**: This field refers to the base url of your Qlik Sense Portal, will be used for generating the redirect links for dashboards and charts. Example: `https://server.domain.com` or `https://server.domain.com/<proxy-path>`
 - **Qlik Engine JSON API Websocket URL**: Enter the websocket url of Qlik Sense Engine JSON API. Refer to [this](https://help.qlik.com/en-US/sense-developer/May2023/Subsystems/EngineAPI/Content/Sense_EngineAPI/GettingStarted/connecting-to-engine-api.htm) document for more details about. Example: `wss://server.domain.com:4747` or `wss://server.domain.com[/virtual proxy]`.
@@ -89,6 +104,7 @@ You will have to replace new lines with `\n` and the final private key that you 
 
 **Validate Host Name**: Enable/Disable this field to validate the host name against the provided certificates.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

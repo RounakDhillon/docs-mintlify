@@ -41,7 +41,22 @@ Configure and schedule Cockroach metadata workflows from the OpenMetadata UI:
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Specify the User to connect to Cockroach. It should have enough privileges to read all the metadata.
 - **Auth Type**: Basic Auth or IAM based auth to connect to instances / cloud rds.
@@ -50,6 +65,8 @@ Configure and schedule Cockroach metadata workflows from the OpenMetadata UI:
   
 - **Host and Port**: Enter the fully qualified hostname and port number for your Cockroach deployment in the Host and Port field.
 
+
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

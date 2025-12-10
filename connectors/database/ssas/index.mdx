@@ -47,7 +47,22 @@ These steps are necessary to allow the connector to communicate with your SSAS i
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **HTTP Connection**: The HTTP endpoint (URL) for accessing your SSAS instance. This should be the address where your SSAS service is exposed for HTTP requests.
 - **Username**: The username for authenticating to the SSAS HTTP endpoint. This user must have sufficient privileges to access the required models and metadata.
@@ -55,6 +70,8 @@ These steps are necessary to allow the connector to communicate with your SSAS i
 
 **Example Connection JSON:**
 
+
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

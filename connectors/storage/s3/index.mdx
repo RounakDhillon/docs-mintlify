@@ -150,7 +150,22 @@ desired.
   <img noZoom src="/public/images/connectors/s3/service-connection.png" alt="Configure service connection" />
 </Step>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **AWS Access Key ID** & **AWS Secret Access Key**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
   permission to access the resources that you are requesting. AWS uses the security credentials to authenticate and
@@ -220,6 +235,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 - **Bucket Names (Optional)**: Provide the names of buckets that you would want to ingest, if you want to ingest metadata from all buckets or apply a filter to ingest buckets then leave this field empty.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

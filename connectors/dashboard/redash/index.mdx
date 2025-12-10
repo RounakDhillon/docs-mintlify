@@ -45,13 +45,29 @@ permissions, please visit Redash documentation [here](https://redash.io/help/use
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Host and Port**: URL to the Redash instance.
 - **Username**: Specify the User to connect to Redash. It should have enough privileges to read all the metadata.
 - **API Key**: API key of the redash instance to access. It has the same permissions as the user who owns it. Can be found on a user profile page.
 - **Redash Version**: Redash version of your redash instance. Enter the numerical value from the [Redash Releases](https://github.com/getredash/redash/releases) page. Default: `10.0.0`.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

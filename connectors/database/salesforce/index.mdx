@@ -50,7 +50,22 @@ These are the permissions you will require to fetch the metadata from Salesforce
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Username to connect to the Salesforce. This user should have the access as defined in requirements.
 - **Password**: Password to connect to Salesforce.
@@ -71,7 +86,9 @@ By default, the domain `login` is used for accessing Salesforce.
 
 In order to integrate SSL in the Metadata Ingestion Config, the user will have to add the SSL config under sslConfig which is placed in the source.
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

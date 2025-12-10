@@ -116,7 +116,22 @@ For reference here is a [thread](https://community.powerbi.com/t5/Service/Error-
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 **clientId**: PowerBI Client ID.
 
@@ -179,6 +194,7 @@ Refer to the section [here](/connectors/dashboard/powerbi#powerbi-admin-and-nona
 - Enabled (Use PowerBI Admin APIs)
 - Disabled (Use Non-Admin PowerBI APIs)
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

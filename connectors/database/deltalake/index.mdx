@@ -72,7 +72,7 @@ To execute metadata extraction AWS account should have enough access to fetch re
 
 <Steps>
 
-#### Connection Details For MetastoreConfig
+<Step title="Connection Details For MetastoreConfig">
 
 - **Metastore Host Port**: Enter the Host & Port of Hive Metastore Service to configure the Spark Session. Either
   of `metastoreHostPort`, `metastoreDb` or `metastoreFilePath` is required.
@@ -116,6 +116,7 @@ You can also connect to the metastore by directly pointing to the Hive Metastore
 Here, we will need to inform all the common database settings (url, username, password), and the driver class name for JDBC metastore.
 
 You will need to provide the driver to the ingestion image, and pass the `classpath` which will be used in the Spark Configuration under `spark.driver.extraClassPath`.
+
 
 #### Connection Details for StorageConfig - S3
 
@@ -179,6 +180,8 @@ Find more information about the [Role Session Name](https://docs.aws.amazon.com/
 
 Find more information about [Source Identity](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=Required%3A%20No-,SourceIdentity,-The%20source%20identity).
 
+
+</Step>
 <AdvancedConfiguration />
 
 <TestConnection />

@@ -96,7 +96,22 @@ Adjust &lt;user&gt;, &lt;catalog_name&gt;, &lt;schema_name&gt;, and &lt;table_na
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Host and Port**: Enter the fully qualified hostname and port number for your Databricks deployment in the Host and Port field.
 - **Token**: Generated Token to connect to Databricks.
@@ -105,7 +120,9 @@ Adjust &lt;user&gt;, &lt;catalog_name&gt;, &lt;schema_name&gt;, and &lt;table_na
 - **Catalog**: Catalog of the data source(Example: hive_metastore). This is optional parameter, if you would like to restrict the metadata reading to a single catalog. When left blank, OpenMetadata Ingestion attempts to scan all the catalog.
 - **DatabaseSchema**: databaseSchema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single databaseSchema. When left blank, OpenMetadata Ingestion attempts to scan all the databaseSchema.
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

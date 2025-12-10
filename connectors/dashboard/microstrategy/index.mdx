@@ -50,7 +50,22 @@ However, if the user still cannot access the APIs, the following should be check
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Username to connect to MicroStrategy, e.g., user@organization.com. This user should have access to relevant dashboards and charts in MicroStrategy to fetch the metadata.
 
@@ -65,6 +80,7 @@ For example, you might set it to https://demo.microstrategy.com.
 - **Login Mode**: Login Mode for Microstrategy's REST API connection. You can authenticate with one of the following authentication modes: `Standard (1)`, `Anonymous (8)`. Default will be `Standard (1)`.
 If you're using demo account for Microstrategy, it will be needed to authenticate through loginMode `8`.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

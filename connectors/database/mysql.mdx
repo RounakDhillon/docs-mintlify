@@ -255,6 +255,7 @@ Provide a name and description for your service as illustrated below.
 - **sslCertificate**: Provide the path to ssl client certificate file (ssl_cert).
 - **sslKey**: Provide the path to ssl client certificate file (ssl_key).
 
+
 ## Securing MySQL Connection with SSL in Collate
 
 To establish secure connections between Collate and MySQL, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`. Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl_key`, `ssl_cert`, and `ssl_ca`. In this case, `ssl_cert` is used for the client's SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `ssl_ca` for the CA certificate to validate the server's certificate.

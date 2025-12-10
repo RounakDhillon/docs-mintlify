@@ -48,7 +48,22 @@ The ingestion of the Kafka topics' schema is done separately by configuring the 
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Bootstrap Servers**: List of brokers as comma separated values of broker `host` or `host:port`. Example: `host1:9092,host2:9092`
 - **Schema Registry URL**: URL of the Schema Registry used to ingest the schemas of the topics.
@@ -64,6 +79,7 @@ If you are using Confluent kafka and SSL encryption is enabled you need to add `
 To ingest the topic schema `Schema Registry URL` must be passed
 </Tip>
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

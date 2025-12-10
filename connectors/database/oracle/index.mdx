@@ -112,7 +112,22 @@ there is no routine out of the box in Oracle to grant SELECT to a full schema.
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Specify the User to connect to Oracle. It should have enough privileges to read all the metadata.
 - **Password**: Password to connect to Oracle.
@@ -126,7 +141,9 @@ there is no routine out of the box in Oracle to grant SELECT to a full schema.
     We are shipping the binaries for ARM and AMD architectures from [here](https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html)
     and [here](https://www.oracle.com/database/technologies/instant-client/linux-arm-aarch64-downloads.html) for the instant client version 19.
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 
