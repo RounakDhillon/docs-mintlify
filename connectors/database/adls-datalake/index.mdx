@@ -51,9 +51,9 @@ permissions on the Storage Account:
 
 <MetadataIngestionUi connector="ADLS Datalake" selectServicePath="/public/images/connectors/adls/select-service.png" addNewServicePath="/public/images/connectors/adls/add-new-service.png" serviceConnectionPath="/public/images/connectors/adls/service-connection.png" />
 
-<Steps>
 
-#### Connection Details for Azure
+<Steps>
+<Step title="Connection Details for Azure">
 
 - **Azure Credentials**
 
@@ -68,9 +68,11 @@ permissions on the Storage Account:
    - `Storage Blob Data Reader`
    - `Storage Queue Data Reader`
 
-The current approach for authentication is based on `app registration`, reach out to us on [slack](https://slack.open-metadata.org/) if you find the need for another auth system
+- The current approach for authentication is based on `app registration`, reach out to us on [slack](https://slack.open-metadata.org/) if you find the need for another auth system
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

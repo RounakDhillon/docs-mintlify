@@ -45,13 +45,30 @@ Prepare the SAS Service and configure the Ingestion:
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **ServerHost**: Host and port of the SAS Viya deployment.
 - **Username**: Username to connect to SAS Viya. This user should have privileges to read all the metadata in SAS Information Catalog.
 - **Password**: Password to connect to SAS Viya.
 - **Filter**: A filter expression specifying items for import. For more information [see](https://developer.sas.com/apis/rest/DataManagement/#catalog)
 
+
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

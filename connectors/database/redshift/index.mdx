@@ -80,7 +80,22 @@ It is recommmended to exclude the schema "information_schema" from the metadata 
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Specify the User to connect to Redshift. It should have enough privileges to read all the metadata.
 - **Password**: Password to connect to Redshift.
@@ -111,7 +126,9 @@ There are a couple of types of SSL modes that Redshift supports which can be add
 
 For more information, you can visit [Redshift SSL documentation](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-ssl-support.html)
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

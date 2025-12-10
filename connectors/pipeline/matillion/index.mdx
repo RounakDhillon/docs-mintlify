@@ -21,8 +21,8 @@ import { MetadataIngestionUi } from '/snippets/components/MetadataIngestionUi.js
 name="Matillion"
 stage="PROD"
 platform="Collate"
-availableFeatures={["Pipelines", "Lineage"]}
-unavailableFeatures={["Owners", "Tags", "Pipeline Status"]} />
+availableFeatures={["Pipelines", "Lineage", "Pipeline Status"]}
+unavailableFeatures={["Owners", "Tags"]} />
 
 In this section, we provide guides and references to use the Matillion connector.
 
@@ -52,7 +52,22 @@ OpenMetadata is integrated with matillion up to version [1.75.0](https://docs.ma
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **hostPort**: The hostname or IP address with the REST API enabled eg.`https://<your-matillion-host-name-here>`
 
@@ -62,6 +77,7 @@ OpenMetadata is integrated with matillion up to version [1.75.0](https://docs.ma
 
 - **caCertificate** : CA Certificate to authenticate with the Matillion instance.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

@@ -47,7 +47,22 @@ Configure and schedule Greenplum metadata and profiler workflows from the OpenMe
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Specify the User to connect to Greenplum. It should have enough privileges to read all the metadata.
 - **Auth Type**: Basic Auth or IAM based auth to connect to instances / cloud rds.
@@ -135,7 +150,9 @@ There are a couple of types of SSL modes that Greenplum supports which can be ad
 
 In order to integrate SSL in the Metadata Ingestion Config, the user will have to add the SSL config under sslConfig which is placed in the source.
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

@@ -55,7 +55,22 @@ Ensure that the service principal or managed identity you’re using has the nec
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Subscription ID**: Your Azure subscription’s unique identifier. In the Azure portal, navigate to Subscriptions > Your Subscription > Overview. You’ll see the subscription ID listed there.
 
@@ -98,6 +113,7 @@ Ensure that the service principal or managed identity you’re using has the nec
 3. In the account overview page, locate the `Account name` field. This is the unique identifier for the Data Lake Storage account.
 4. You can use this account name to access and manage the resources associated with the account, such as creating and managing containers and directories.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

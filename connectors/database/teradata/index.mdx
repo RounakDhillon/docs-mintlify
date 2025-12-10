@@ -51,7 +51,22 @@ By default, all valid users in Teradata DB has full access to metadata objects, 
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Specify the User to connect to Teradata.
 - **Password**: Password to connect to Teradata
@@ -62,7 +77,9 @@ By default, all valid users in Teradata DB has full access to metadata objects, 
 - **Teradata Database Account**: Specifies an account string to override the default account string defined for the database user. Accounts are used by the database for workload management and resource usage monitoring.
 - **Connection Options** and **Connection Arguments**: additional connection parameters. For more information please view teradatasql [docs](https://pypi.org/project/teradatasql/).
 
+</Step>
 <AdvancedConfiguration />
+
 
 <TestConnection />
 

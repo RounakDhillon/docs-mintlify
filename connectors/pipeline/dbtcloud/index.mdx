@@ -61,7 +61,22 @@ To know more about permissions required refer [here](https://docs.getdbt.com/doc
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Host**: dbt Cloud Access URL eg.`https://abc12.us1.dbt.com`. Go to your dbt Cloud account settings to know your Access URL.
 
@@ -78,6 +93,7 @@ Note that if both `Job Ids` and `Project Ids` are passed then it will filter out
 - **Token** : The Authentication Token of your dbt Cloud API Account. To get your access token you can follow the docs [here](https://docs.getdbt.com/docs/dbt-cloud-apis/authentication).
 Make sure you have the necessary permissions on the token to run graphql queries and get job and run details. 
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

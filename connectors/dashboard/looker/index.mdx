@@ -67,7 +67,22 @@ We do not yet support liquid variables.
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Host and Port**: URL to the Looker instance, e.g., `https://my-company.region.looker.com`.
 - **Client ID**: User's Client ID to authenticate to the SDK. This user should have privileges to read all the metadata in Looker.
@@ -83,6 +98,7 @@ Follow these [steps](https://docs.github.com/en/authentication/keeping-your-acco
 
 When configuring, give repository access to `Only select repositories` and choose the one containing your LookML files. Then, we only need `Repository Permissions` as `Read-only` for `Contents`.
 
+</Step>
 <TestConnection />
 
 <ConfigureIngestion />

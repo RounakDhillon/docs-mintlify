@@ -50,7 +50,22 @@ The ingestion also works with Superset 2.0.0 🎉
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Host and Port**: The `Host and Post` parameter is common for all three modes of authentication which specifies the host and port of the Superset instance. This should be specified as a string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set the hostPort parameter to `https://org.superset.com:8088`.
 
@@ -78,7 +93,7 @@ Possible values:
 
 - **Certificate Path**: CA certificate path in the instance where the ingestion run. E.g., `/path/to/public.cert`. Will be used if Verify SSL is set to `validate`.
 
-#### For MySQL Connection
+For MySQL Connection
 
 You can use Mysql Connection when you have SSO enabled and your Superset is backed by Mysql database.
 
@@ -90,9 +105,11 @@ You can use Mysql Connection when you have SSO enabled and your Superset is back
 - **sslCertificate**: Provide the path to ssl client certificate file (ssl_cert).
 - **sslKey**: Provide the path to ssl client certificate file (ssl_key).
 
+</Step>
+
 <AdvancedConfiguration />
 
-#### For Postgres Connection
+<Step title="For Postgres Connection">
 
 You can use Postgres Connection when you have SSO enabled and your Superset is backed by Postgres database.
 
@@ -101,6 +118,8 @@ You can use Postgres Connection when you have SSO enabled and your Superset is b
 - **Host and Port**: Enter the fully qualified hostname and port number for your Postgres deployment in the Host and Port field.
 - **Database**: Initial Postgres database to connect to. Specify the name of database associated with Superset instance.
 - **caCertificate**: Provide the path to ssl ca file.
+
+</Step>
 
 <AdvancedConfiguration />
 

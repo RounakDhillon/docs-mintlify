@@ -52,7 +52,22 @@ Executing the profiler workflow or data quality tests, will require the user to 
 
 <Steps>
 
-#### Connection Details
+<Step title="Connection Details">
+
+<Tip>
+
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+
+```
+password: secret:/my/database/password
+```
+
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+
+</Tip>
+
 
 - **Username**: Specify the User to connect to Hive. It should have enough privileges to read all the metadata.
 - **Password**: Password to connect to Hive.
@@ -71,6 +86,7 @@ You can also ingest the metadata using Mysql metastore. This step is optional if
 - **Host and Port**: Enter the fully qualified hostname and port number for your MySQL Metastore deployment in the Host and Port field in the format `hostname:port`.
 - **databaseSchema**: Enter the database schema which is associated with the metastore.
 
+</Step>
 <AdvancedConfiguration />
 
 #### For Postgres Metastore Connection
@@ -85,6 +101,7 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 <AdvancedConfiguration />
 
 <AdvancedConfiguration />
+
 
 <TestConnection />
 
