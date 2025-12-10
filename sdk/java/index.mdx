@@ -35,11 +35,11 @@ inputs will be needed for the same.
 * Security Config: Provide the config for the selected auth provider.
 
 ```java
-        OpenMetadataConnection server = new OpenMetadataConnection();
-        server.setHostPort("http://localhost:{port}}/api");
-        server.setApiVersion("v1");
-        server.setAuthProvider(OpenMetadataConnection.AuthProvider.{auth_provider});
-        server.setSecurityConfig({security_client_config});
+OpenMetadataConnection server = new OpenMetadataConnection();
+server.setHostPort("http://localhost:{port}}/api");
+server.setApiVersion("v1");
+server.setAuthProvider(OpenMetadataConnection.AuthProvider.{auth_provider});
+server.setSecurityConfig({security_client_config});
 ```
 
 ## Create OpenMetadata Gateway
@@ -48,21 +48,21 @@ Once the connection details are provided, you can create an OpenMetadata Gateway
 using the following piece of code.
 
 ```java
-    // OpenMetadata Gateway                                     
-    OpenMetadata openMetadataGateway = new OpenMetadata(server);
+// OpenMetadata Gateway                                     
+OpenMetadata openMetadataGateway = new OpenMetadata(server);
 ```
 
 ## Use Java Client without Authentication
 To use Java Client without any authentication, you can use `NoOpAuthenticationProvider.java`. \
 
 ```java
-    NoOpAuthenticationProvider noOpAuthenticationProvider = new NoOpAuthenticationProvider();
+NoOpAuthenticationProvider noOpAuthenticationProvider = new NoOpAuthenticationProvider();
 ``` 
 
 Establish the [OpenMetadata Server Connection](#establish-openmetadata-server-connection) and provide `noOpAuthenticationProvider` in the config.
 
 ```java
-    server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.NO_AUTH);
+server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.NO_AUTH);
 ```
 
 ## Use Java Client with Authentication.
@@ -81,15 +81,15 @@ To set up Google as the auth provider, the following details are required:
 * Secret Key: Pass the JSON file generated in [Create Service Account](/deployment/security/google) as the secretKey.
 
 ```java
-    GoogleSSOClientConfig googleSSOClientConfig = new GoogleSSOClientConfig();
-    ssoConfig.setAudience("https://www.googleapis.com/oauth2/v4/token");
-    ssoConfig.setSecretKey("{secret_key.json}");
+GoogleSSOClientConfig googleSSOClientConfig = new GoogleSSOClientConfig();
+ssoConfig.setAudience("https://www.googleapis.com/oauth2/v4/token");
+ssoConfig.setSecretKey("{secret_key.json}");
 ```
 
 Provide the Google config while creating the [server connection](#establish-openmetadata-server-connection).
 ```java
-    server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.GOOGLE);
-    server.setSecurityConfig(googleSSOClientConfig);
+server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.GOOGLE);
+server.setSecurityConfig(googleSSOClientConfig);
 
 ```
  
@@ -102,17 +102,17 @@ To set up Okta as the auth provider, the following details should be provided:
 * Scopes: Add the details of the scope created in the Authorization Server. Enter the name of the default scope created.
 
 ```java
-    OktaSSOClientConfig oktaSSOClientConfig = new OktaSSOClientConfig();
-    oktaSSOClientConfig.setClientId("{client_id}");
-    oktaSSOClientConfig.setOrgURL("{org_url}/v1/token");
-    oktaSSOClientConfig.setPrivateKey("{public/private keypair}");
-    oktaSSOClientConfig.setEmail("{email}");
-    oktaSSOClientConfig.setScopes({scope_list});
+OktaSSOClientConfig oktaSSOClientConfig = new OktaSSOClientConfig();
+oktaSSOClientConfig.setClientId("{client_id}");
+oktaSSOClientConfig.setOrgURL("{org_url}/v1/token");
+oktaSSOClientConfig.setPrivateKey("{public/private keypair}");
+oktaSSOClientConfig.setEmail("{email}");
+oktaSSOClientConfig.setScopes({scope_list});
 ```
 Provide the Okta config while creating the [server connection](#establish-openmetadata-server-connection).
 ```java
-    server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.OKTA);
-    server.setSecurityConfig(oktaSSOClientConfig);
+server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.OKTA);
+server.setSecurityConfig(oktaSSOClientConfig);
 
 ```
 
@@ -123,15 +123,15 @@ To set up Auth0 as the auth provider, the following details are required:
 * Domain: Provide the Auth0 domain. For example `test.us.auth0.com`
 
 ```java
-    Auth0SSOClientConfig auth0SSOClientConfig = new Auth0SSOClientConfig();
-    auth0SSOClientConfig.setClientId("{client_id}");
-    auth0SSOClientConfig.setSecretKey("{secret_key}");
-    auth0SSOClientConfig.setDomain("{domain}");
+Auth0SSOClientConfig auth0SSOClientConfig = new Auth0SSOClientConfig();
+auth0SSOClientConfig.setClientId("{client_id}");
+auth0SSOClientConfig.setSecretKey("{secret_key}");
+auth0SSOClientConfig.setDomain("{domain}");
 ```
 Provide the Auth0 config while creating the [server connection](#establish-openmetadata-server-connection).
 ```java
-    server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.AUTH_0);
-    server.setSecurityConfig(auth0SSOClientConfig);
+server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.AUTH_0);
+server.setSecurityConfig(auth0SSOClientConfig);
 ```
 
 ### Azure
@@ -142,16 +142,16 @@ To set up Azure as the auth provider, the following details should be provided:
 * Scopes: Add the details of the scope created.
 
 ```java
-    AzureSSOClientConfig azureSSOClientConfig = new AzureSSOClientConfig();
-    azureSSOClientConfig.setClientId("{client_id}");
-    azureSSOClientConfig.setClientSecret("{client_secret}");
-    azureSSOClientConfig.setAuthority("{authority}");
-    oktaSSOClientConfig.setScopes({scope_list});
-```    
+AzureSSOClientConfig azureSSOClientConfig = new AzureSSOClientConfig();
+azureSSOClientConfig.setClientId("{client_id}");
+azureSSOClientConfig.setClientSecret("{client_secret}");
+azureSSOClientConfig.setAuthority("{authority}");
+oktaSSOClientConfig.setScopes({scope_list});
+```
 Provide the Auth0 config while creating the [server connection](#establish-openmetadata-server-connection).
 ```java
-    server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.AZURE);
-    server.setSecurityConfig(azureSSOClientConfig);
+server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.AZURE);
+server.setSecurityConfig(azureSSOClientConfig);
 ```
 
 ### OpenMetadata
@@ -159,13 +159,13 @@ To set up OpenMetadata as the auth provider, the following details should be pro
 * JWT Token: Provide the JWT Token. For example `eyJraWQiOiJHYjM4OWEtOWY3Ni1nZGpzLWE5Mmo....XN0aW9uLWJvdEBvcGVubWV0YWRhdGEub3JnIn0.Ku_FHGIS3Id3ARusMaXZDYKcq...Ztap9KDU7nZilNT2Bq-o75aIsgKKmtSuVdBTzpFK8aLGLmRp_8J007t-kpcjIW7Qf0l4...dGb0QqhoZin0JA`
 
 ```java
-    OpenMetadataJWTClientConfig openMetadataJWTClientConfig = new OpenMetadataJWTClientConfig();
-    openMetadataJWTClientConfig.setJwtToken("{jwt_token}");
+OpenMetadataJWTClientConfig openMetadataJWTClientConfig = new OpenMetadataJWTClientConfig();
+openMetadataJWTClientConfig.setJwtToken("{jwt_token}");
 ```
 Provide the OpenMetadata config while creating the [server connection](#establish-openmetadata-server-connection).
 ```java
-    server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.OPENMETADATA);
-    server.setSecurityConfig(openMetadataJWTClientConfig);
+server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.OPENMETADATA);
+server.setSecurityConfig(openMetadataJWTClientConfig);
 ```
 
 ### Custom OIDC
@@ -175,16 +175,16 @@ To set up Custom auth provider. The following details are required:
 * Token Endpoint: Provide the token endpoint of your preferred auth provider
 
 ```java
-    CustomOIDCSSOClientConfig customOIDCSSOClientConfig = new CustomOIDCSSOClientConfig();
-    config.setClientId("{client_id}");
-    config.setSecretKey("{client_secret}");
-    config.setTokenEndpoint("{token_endpoint}");
+CustomOIDCSSOClientConfig customOIDCSSOClientConfig = new CustomOIDCSSOClientConfig();
+config.setClientId("{client_id}");
+config.setSecretKey("{client_secret}");
+config.setTokenEndpoint("{token_endpoint}");
 ```
 
 Provide the custom auth provider config while creating the [server connection](#establish-openmetadata-server-connection).
 ```java
-    server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.CUSTOM_OIDC);
-    server.setSecurityConfig(customOIDCSSOClientConfig);
+server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.CUSTOM_OIDC);
+server.setSecurityConfig(customOIDCSSOClientConfig);
 ```
 
 ## How to Use APIs Using the Java Client
@@ -192,37 +192,37 @@ You can use an API from the [OpenMetadata Gateway](#create-openmetadata-gateway)
 Using OpenMetadata Gateway, you will need to build the client by providing the `class` of the respected API.
 Below are some examples:
 ```java
-    // Dashboards API
-    DashboardsApi dashboardApi = openMetadataGateway.buildClient(DashboardsApi.class);
+// Dashboards API
+DashboardsApi dashboardApi = openMetadataGateway.buildClient(DashboardsApi.class);
 
-    // Tables API
-    TablesApi tablesApiClient = openMetadataGateway.buildClient(TablesApi.class);
+// Tables API
+TablesApi tablesApiClient = openMetadataGateway.buildClient(TablesApi.class);
 
-    // Users API
-    UsersApi usersApi = openMetadataGateway.buildClient(UsersApi.class);
+// Users API
+UsersApi usersApi = openMetadataGateway.buildClient(UsersApi.class);
 
-    // Locations API
-    LocationsApi locationsApi = openMetadataGateway.buildClient(LocationsApi.class);
+// Locations API
+LocationsApi locationsApi = openMetadataGateway.buildClient(LocationsApi.class);
 ```
 
 Please refer to the examples to access an API:
 * Tables API
 ```java
-    TablesApi tablesApi = openMetadataGateway.buildClient(TablesApi.class);
-    tablesApi.addLocationToTable("{table_id}", "{location_id}");
+TablesApi tablesApi = openMetadataGateway.buildClient(TablesApi.class);
+tablesApi.addLocationToTable("{table_id}", "{location_id}");
 ```
 * Location API
 ```java
-    LocationsApi locationsApi = openMetadataGateway.buildClient(LocationsApi.class);
-    CreateLocation createLocation = new CreateLocation();
-    Location location = locationsApi.createLocation(createLocation);
+LocationsApi locationsApi = openMetadataGateway.buildClient(LocationsApi.class);
+CreateLocation createLocation = new CreateLocation();
+Location location = locationsApi.createLocation(createLocation);
 ```
 
 * Elastic Search API
 ```java
-    ElasticSearchApi esApi = openMetadataGateway.buildClient(ElasticSearchApi.class);
-    Response response = esApi.searchEntitiesWithQuery("", "pipeline_search_index", false, 0, 0, null, null, true, "{\"query\":{\"bool\":{}}}", null, false, null  );
-    String data = IOUtils.toString(response.body().asInputStream(), Charsets.UTF_8);
+ElasticSearchApi esApi = openMetadataGateway.buildClient(ElasticSearchApi.class);
+Response response = esApi.searchEntitiesWithQuery("", "pipeline_search_index", false, 0, 0, null, null, true, "{\"query\":{\"bool\":{}}}", null, false, null  );
+String data = IOUtils.toString(response.body().asInputStream(), Charsets.UTF_8);
 ```
 
 ## More examples
