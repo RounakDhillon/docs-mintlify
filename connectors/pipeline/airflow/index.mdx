@@ -34,6 +34,8 @@ You can check the version list [here](https://airflow.apache.org/docs/apache-air
 </Tip>
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Airflow"} selectServicePath={"/public/images/connectors/airflow/select-service.png"} addNewServicePath={"/public/images/connectors/airflow/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/airflow/service-connection.png"} />
+# Connection Details
+<Steps>
 <Step title="Connection Details">
 <Tip>
 When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
@@ -56,3 +58,4 @@ In terms of `connection` we support the following selections:
 <TestConnection />
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
+</Steps>
