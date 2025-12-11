@@ -40,6 +40,26 @@
   border-radius: 28px;
 }
 
+.IconContainer {
+  background-color: #F8F9FC;
+  padding: 16px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.ConnectorIcon {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
+
 .FeaturesHeading {
   font-size: 14px;
   color: var(--gray-text-color);

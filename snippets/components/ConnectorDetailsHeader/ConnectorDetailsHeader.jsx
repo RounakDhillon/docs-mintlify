@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 export const ConnectorDetailsHeader = ({
   name,
+  icon,
   stage,
   availableFeatures,
   unavailableFeatures = [],
@@ -17,6 +18,11 @@ export const ConnectorDetailsHeader = ({
     <div className="container">
       <div className="Heading">
         <div className="flex items-center gap-3">
+          {icon && (
+            <div className="IconContainer">
+              <img src={icon} alt={name} noZoom className="ConnectorIcon" />
+            </div>
+          )}
           <h1 className="ConnectorName">{name}</h1>
           <span className={`StageBadge ${stage === 'PROD' ? 'prod' : 'beta'}`}>
             {stage}
@@ -52,6 +58,7 @@ export const ConnectorDetailsHeader = ({
 
 ConnectorDetailsHeader.propTypes = {
   name: PropTypes.string,
+  icon: PropTypes.string,
   stage: PropTypes.string,
   availableFeatures: PropTypes.arrayOf(PropTypes.string),
   unavailableFeatures: PropTypes.arrayOf(PropTypes.string),
