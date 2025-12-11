@@ -51,8 +51,8 @@ export const ConnectorDetailsHeader = ({
 };
 
 ConnectorDetailsHeader.propTypes = {
-  name: PropTypes.string.isRequired,
-  stage: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  stage: PropTypes.string,
   availableFeatures: PropTypes.arrayOf(PropTypes.string),
   unavailableFeatures: PropTypes.arrayOf(PropTypes.string),
   availableFeaturesCollate: PropTypes.arrayOf(PropTypes.string),
