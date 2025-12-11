@@ -4,52 +4,31 @@ description: Use YAML to configure ingestion from Kinesis streams and extract to
 slug: /connectors/messaging/kinesis/yaml
 sidebarTitle: Run Externally
 ---
-
 import SourceConfigDef from '/snippets/connectors/yaml/messaging/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/messaging/source-config.mdx'
-
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
-
 import AwsConfig from '/snippets/connectors/yaml/common/aws-config.mdx'
-
 <ConnectorDetailsHeader
 name="Kinesis"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Topics", "Sample Data"]}
 unavailableFeatures={[]} />
-
 In this section, we provide guides and references to use the Kinesis connector.
-
 Configure and schedule Kinesis metadata workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 OpenMetadata retrieves information about streams and sample data from the streams in the AWS account.
 The user must have the following policy set to access the metadata from Kinesis.
-
 ```json
 {
     "Version": "2012-10-17",
@@ -69,46 +48,29 @@ The user must have the following policy set to access the metadata from Kinesis.
     ]
 }
 ```
-
 For more information on Kinesis permissions visit the [AWS Kinesis official documentation](https://docs.aws.amazon.com/streams/latest/dev/controlling-access.html).
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Kinesis ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[kinesis]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/messaging/kinesisConnection.json)
 you can find the structure to create a connection to Kinesis.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Kinesis:
-
 #### Source Configuration - Service Connection
-
 <AwsConfigDef />
-
 <SourceConfigDef />
-
 <IngestionSinkDef />
-
 <WorkflowConfigDef />
-
 ```yaml
 source:
   type: kinesis
@@ -118,13 +80,8 @@ source:
       type: Kinesis
       awsConfig:
 ```
-
 <AwsConfig />
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

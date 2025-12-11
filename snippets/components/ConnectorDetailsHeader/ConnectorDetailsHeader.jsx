@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
+
 export const ConnectorDetailsHeader = ({
   name,
   stage,
-  platform,
   availableFeatures,
   unavailableFeatures = [],
   availableFeaturesCollate = [],
@@ -20,12 +21,6 @@ export const ConnectorDetailsHeader = ({
           <span className={`StageBadge ${stage === 'PROD' ? 'prod' : 'beta'}`}>
             {stage}
           </span>
-        </div>
-        <div className="PlatformDetails">
-          <div>Available In:</div>
-          <div className="PlatformName">
-            {platform}
-          </div>
         </div>
       </div>
       {showSubHeading && (
@@ -53,4 +48,12 @@ export const ConnectorDetailsHeader = ({
       )}
     </div>
   );
-}
+};
+
+ConnectorDetailsHeader.propTypes = {
+  name: PropTypes.string.isRequired,
+  stage: PropTypes.string.isRequired,
+  availableFeatures: PropTypes.arrayOf(PropTypes.string),
+  unavailableFeatures: PropTypes.arrayOf(PropTypes.string),
+  availableFeaturesCollate: PropTypes.arrayOf(PropTypes.string),
+};

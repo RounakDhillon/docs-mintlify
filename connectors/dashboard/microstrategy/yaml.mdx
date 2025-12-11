@@ -4,73 +4,45 @@ description: Configure MicroStrategy dashboard integration with Collate using YA
 slug: /connectors/dashboard/microstrategy/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
   name="MicroStrategy"
   stage="PROD"
-  platform="OpenMetadata"
-  availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
+availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
   unavailableFeatures={["Tags", "Projects"]} />
-
 In this section, we provide guides and references to use the MicroStrategy connector.
-
 Configure and schedule MicroStrategy metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 To integrate MicroStrategy, ensure you are using OpenMetadata version 1.2.x or higher.
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the MicroStrategy ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[microstrategy]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas. 
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/dashboard/mstrConnection.json)
 you can find the structure to create a connection to MicroStrategy.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for MicroStrategy:
-
 <Steps>
 <Step title="Username">
 - **Username**: Username to connect to MicroStrategy, e.g., user@organization.com. This user should have access to relevant dashboards and charts in MicroStrategy to fetch the metadata.
@@ -80,7 +52,6 @@ This is a sample config for MicroStrategy:
 </Step>
 <Step title="Host Port">
 - **Host Port**: This parameter specifies the host of the MicroStrategy instance. This should be specified as a URI string in the format http://hostname or https://hostname.
-
 For example, you might set it to https://demo.microstrategy.com.
 </Step>
 <Step title="Project Name">
@@ -91,7 +62,6 @@ For example, you might set it to https://demo.microstrategy.com.
 If you're using demo account for Microstrategy, it will be needed to authenticate through loginMode `8`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: microstrategy
@@ -105,11 +75,7 @@ hostPort: http://hostPort
 projectName: project
 loginMode: "1"
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

@@ -4,55 +4,33 @@ description: Use YAML to extract metadata from S3 Datalake for file-level lineag
 slug: /connectors/database/s3-datalake/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
-
 import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
-
 import AwsConfig from '/snippets/connectors/yaml/common/aws-config.mdx'
-
 <ConnectorDetailsHeader
 name="S3 Datalake"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
-
 In this section, we provide guides and references to use the S3 Datalake connector.
-
 Configure and schedule S3 Datalake metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [dbt Integration](#dbt-integration)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 **Note:** S3 Datalake connector supports extracting metadata from file types `JSON`, `CSV`, `TSV` & `Parquet`.
-
-
 ### S3 Permissions
-
 To execute metadata extraction AWS account should have enough access to fetch required data. The <strong>Bucket Policy</strong> in AWS requires at least these permissions:
-
 ```json
 {
     "Version": "2012-10-17",
@@ -71,47 +49,30 @@ To execute metadata extraction AWS account should have enough access to fetch re
     ]
 }
 ```
-
 ### Python Requirements
-
 <PythonRequirements />
-
 If running OpenMetadata version greater than 0.13, you will need to install the Datalake ingestion for S3:
-
 #### S3 installation
-
 ```bash
 pip3 install "openmetadata-ingestion[datalake-s3]"
 ```
-
-
 #### If version &lt;0.13
-
 You will be installing the requirements for S3
-
 ```bash
 pip3 install "openmetadata-ingestion[datalake]"
 ```
-
 ## Metadata Ingestion
 All connectors are defined as JSON Schemas. Here you can find the structure to create a connection to Datalake.
-
 In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following JSON Schema.
-
 ## 1. Define the YAML Config
-
 #### Source Configuration - Source Config using AWS S3
-
 ### This is a sample config for Datalake using AWS S3:
-
 <Steps>
 <Step title="schemaFilterPattern">
 * **schemaFilterPattern** and **tableFilterPattern**: Note that the `schemaFilterPattern` and `tableFilterPattern` both support regex as `include` or `exclude`. E.g.,
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: datalake
@@ -124,18 +85,10 @@ configSource:
 bucketName: bucket name
       prefix: prefix
 ```
-
 <AwsConfig />
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
-
 <IngestionCli />
-
 ## dbt Integration
-
 You can learn more about how to ingest dbt models' definitions and their lineage [here](/connectors/ingestion/workflows/dbt).

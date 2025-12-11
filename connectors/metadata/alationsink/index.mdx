@@ -4,83 +4,51 @@ description: Connect Alation to Collate seamlessly with our AlationSink connecto
 slug: /connectors/metadata/alationsink
 sidebarTitle: Alation Sink
 ---
-
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
-
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import TestConnection from '/snippets/connectors/test-connection.mdx'
-
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
-
 import { MetadataIngestionUi } from '/snippets/components/MetadataIngestionUi.jsx'
-
 <ConnectorDetailsHeader
 name="AlationSink"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata"]}
 unavailableFeatures={[]} />
-
 <Tip>
 The connector will ingest data from OpenMetadata into Alation.
 </Tip>
-
 Configure and schedule Alation Sink metadata workflow from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Data Mapping and Assumptions](#data-mapping-and-assumptions)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/metadata/alationsink/troubleshooting)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 The connector uses `POST` requests to write the data into Alation.
 Hence, an user credentials or an access token with `Source Admin` or `Catalog Admin` or `Server Admin` permissions will be required.
-
 Follow the link [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-via-ui) to create the access token.
-
 ## Data Mapping and Assumptions
-
 Following entities are supported and will be mapped to the from OpenMetadata to the entities in Alation.
-
 | Alation Entity               | OpenMetadata Entity          |
 | :----------------------------| :--------------------------- |
 | Data Source (OCF)            | Database                     |
 | Schema                       | Schema                       |
 | Table                        | Table                        |
 | Columns                      | Columns                      |
-
 ## Metadata Ingestion
-
 Then, prepare the Alation Sink Service and configure the Ingestion:
-
 <MetadataIngestionUi connector={"AlationSink"} selectServicePath={"/public/images/connectors/alationsink/select-service.png"} addNewServicePath={"/public/images/connectors/alationsink/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/alationsink/service-connection.png"} />
-
 <Steps>
-
 <Step title="Connection Details">
-
 <Tip>
-
 When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
-
 ```
 password: secret:/my/database/password
 ```
-
 This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
-
 For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
-
 </Tip>
-
-
 - **Host and Port**: Host and port of the Alation service.
 - **Authentication Types**:
     1. Basic Authentication
@@ -93,11 +61,9 @@ For a complete guide on managing secrets in hybrid setups, see the [Hybrid Inges
 - **Pagination Limit**: Pagination limit used for Alation APIs pagination
 - **DataSource Links**: Add a custom mapping between OpenMetadata databases and Alation DataSources.
 If this mapping is present the connector will only look for the datasource in Alation to create other entities inside it. It will not create the datasource in Alation and it'll need to be created beforehand.
-
 The mapping needs to be of the format `alation_datasource_id: openmetadata_database_fqn`
 Here `alation_datasource_id` corresponds to the numerical id of the datasource in alation.
 And `openmetadata_database_fqn` corresponds to the fullyQualifiedName of the database in OpenMetadata.
-
 Below is an example of the mapping:
 ```yaml
 datasourceLinks: {
@@ -105,12 +71,8 @@ datasourceLinks: {
     "15": "mysql_prod.customers_db",
 }
 ```
-
 </Step>
 <TestConnection />
-
 <ConfigureIngestion />
-
 <IngestionScheduleAndDeploy />
-
 </Steps>

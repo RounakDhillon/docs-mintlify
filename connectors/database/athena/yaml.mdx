@@ -4,46 +4,30 @@ description: Configure Collate'sAthena database connector with YAML - step-by-st
 slug: /connectors/database/athena/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
 import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
-
 import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
-
 import AwsConfig from '/snippets/connectors/yaml/common/aws-config.mdx'
-
 <ConnectorDetailsHeader
 name="Athena"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Auto-Classification", "Data Quality", "Tags", "dbt", "Sample Data", "Reverse Metadata (Collate Only)"]}
 unavailableFeatures={["Owners", "Stored Procedures"]} />
-
 In this section, we provide guides and references to use the Athena connector.
-
 Configure and schedule Athena metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Query Usage](#query-usage)
@@ -52,30 +36,19 @@ Configure and schedule Athena metadata and profiler workflows from the OpenMetad
 - [Data Quality](#data-quality)
 - [dbt Integration](#dbt-integration)
 - [Reverse Metadata](/applications/reverse-metadata)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 The Athena connector ingests metadata through JDBC connections.
-
 <Tip>
-
 According to AWS's official [documentation](https://docs.aws.amazon.com/athena/latest/ug/policy-actions.html):
-
 *If you are using the JDBC or ODBC driver, ensure that the IAM
 permissions policy includes all of the actions listed in [AWS managed policy: AWSQuicksightAthenaAccess](https://docs.aws.amazon.com/athena/latest/ug/managed-policies.html#awsquicksightathenaaccess-managed-policy).*
-
 </Tip>
-
 This policy groups the following permissions:
-
 - `athena` – Allows the principal to run queries on Athena resources.
 - `glue` – Allows principals access to AWS Glue databases, tables, and partitions. This is required so that the principal can use the AWS Glue Data Catalog with Athena. Resources of each table and database needs to be added as resource for each database user wants to ingest.
 - `lakeformation` – Allows principals to request temporary credentials to access data in a data lake location that is registered with Lake Formation and allows access to the LF-tags linked to databases, tables and columns.
-
 And is defined as:
-
 ```json
 {
     "Version": "2012-10-17",
@@ -156,46 +129,29 @@ And is defined as:
     ]
 }
 ```
-
 ### LF-Tags
 Athena connector ingests and creates LF-tags in OpenMetadata with LF-tag key mapped to OpenMetadata's classification and the values mapped to tag labels. To ingest LF-tags provide the appropriate permissions as to the resources as mentioned above and enable the `includeTags` toggle in the ingestion config.
-
 <Tip>
-
 If you have external services other than glue and facing permission issues, add the permissions to the list above.
-
 </Tip>
-
-
 You can find further information on the Athena connector in the [docs](/connectors/database/athena).
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Athena ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[athena]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/athenaConnection.json)
 you can find the structure to create a connection to Athena.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Athena:
-
 <Steps>
 <Step title="s3StagingDir">
 **s3StagingDir**: The S3 staging directory is an optional parameter. Enter a staging directory to override the default staging directory for AWS Athena.
@@ -204,9 +160,7 @@ This is a sample config for Athena:
 **workgroup**: The Athena workgroup is an optional parameter. If you wish to have your Athena connection related to an existing AWS workgroup add your workgroup name here.
 </Step>
 </Steps>
-
 #### Advanced Configuration
-
 <Steps>
 <Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
@@ -215,7 +169,6 @@ This is a sample config for Athena:
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: athena
@@ -231,33 +184,19 @@ workgroup: workgroup name
 # connectionArguments:
         # key: value
 ```
-
 <AwsConfig />
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />
-
 <QueryUsage connector="athena" />
-
 <Lineage connector="athena" />
-
 <DataProfiler connector="athena" />
-
 <AutoClassification connector="athena" />
-
 <DataQuality />
-
 ## dbt Integration
-
 <Columns cols={2}>
-
 <Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
   Learn more about how to ingest dbt models
 </Card>
-
 </Columns>

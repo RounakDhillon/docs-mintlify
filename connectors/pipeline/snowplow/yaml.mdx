@@ -4,59 +4,37 @@ Description: Run the Snowplow connector externally with YAML to ingest pipelines
 slug: /connectors/pipeline/snowplow/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
-
 # Run the Snowplow Connector Externally
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 <ConnectorDetailsHeader
 name="Snowplow"
 stage="BETA"
-platform="Collate"
 availableFeatures={["Pipelines", "Pipeline Status", "Lineage"]}
 unavailableFeatures={["Owners", "Tags"]} />
-
 In this section, we provide guides and references to use the Snowplow connector.
-
 Configure and schedule Snowplow metadata workflow from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 ### Snowplow BDP (Business Data Platform)
-
 For Snowplow BDP deployments, you'll need:
 - **Console URL**: The URL of your Snowplow Console (e.g., `https://console.snowplowanalytics.com`)
 - **API Key**: An API key with read access to your Snowplow organization
 - **Organization ID**: Your Snowplow BDP organization identifier
-
 ### Snowplow Community Edition
-
 For self-hosted Community Edition deployments, you'll need:
 - **Configuration Path**: The path to your Snowplow configuration files
 - **Iglu Server URL** (optional): If you're using an Iglu Server for schema management
-
 ## Metadata Ingestion
-
 ### 1. Define the YAML Config
-
 This is a sample config for Snowplow:
-
 <Steps>
 <Step title="type">
 **type**: Must be `Snowplow`.
@@ -83,13 +61,9 @@ This is a sample config for Snowplow:
 To send the metadata of only selected pipelines, enter the regex pattern for pipeline names to include or exclude.
 </Step>
 </Steps>
-
 <SourceConfigDef />
-
 <IngestionSinkDef />
-
 <WorkflowConfigDef />
-
 ```yaml
 source:
   type: snowplow
@@ -116,32 +90,21 @@ source:
       #     - pipeline3
       #     - pipeline4
 ```
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 - You can learn more about how to configure and run the Ingestion Framework [here](/deployment/ingestion).
-
 ### 2. Run the Command
-
 After saving the YAML config, run the following command:
-
 ```bash
 metadata ingest -c <path-to-yaml>
 ```
-
 ## Data Model
-
 The Snowplow connector extracts the following metadata:
-
 - **Pipelines**: Each Snowplow pipeline is imported with its configuration
 - **Pipeline Components**: Collectors, enrichments, and loaders are imported as pipeline tasks
 - **Event Schemas**: Iglu schemas are imported as table entities showing the structure of events
 - **Lineage**: Data flow from pipelines to destination tables is captured
-
 ### Supported Destinations
-
 The connector can track lineage to the following Snowplow loader destinations:
 - Amazon Redshift
 - Google BigQuery
@@ -151,25 +114,16 @@ The connector can track lineage to the following Snowplow loader destinations:
 - Amazon S3 (Data Lake)
 - Google Cloud Storage
 - Azure Data Lake Storage
-
 ## Troubleshooting
-
 ### Connection Errors
-
 If you encounter connection errors:
-
 1. **For BDP**: Verify your API key has the necessary permissions and the organization ID is correct
 2. **For Community**: Ensure the configuration path exists and is readable
-
 ### Missing Schemas
-
 If Iglu schemas are not being imported:
-
 1. **For BDP**: Check that your API key has access to the Iglu repositories
 2. **For Community**: Verify the Iglu server URL is accessible or local schema files are present
-
 ### Performance
-
 For large deployments with many schemas:
 - Use pipeline and schema filter patterns to limit the scope of ingestion
 - Consider running the ingestion during off-peak hours

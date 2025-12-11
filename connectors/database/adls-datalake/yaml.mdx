@@ -4,88 +4,53 @@ description: Configure ADLS Data Lake connections in Collate with YAML. Step-by-
 slug: /connectors/database/adls-datalake/yaml
 sidebarTitle: Run Externally
 ---
-
 import AzureConfigDef from '/snippets/connectors/yaml/common/azure-config-def.mdx'
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
-
 import AzureConfig from '/snippets/connectors/yaml/common/azure-config.mdx'
-
 <ConnectorDetailsHeader
 name="ADLS Datalake"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
-
 In this section, we provide guides and references to use the ADLS Datalake connector.
-
 Configure and schedule ADLS Datalake metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [dbt Integration](#dbt-integration)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 **Note:** ADLS Datalake connector supports extracting metadata from file types `JSON`, `CSV`, `TSV` & `Parquet`.
-
 ### ADLS Permissions
-
 To extract metadata from Azure ADLS (Storage Account - StorageV2), you will need an **App Registration** with the following
 permissions on the Storage Account:
 - Storage Blob Data Reader
 - Storage Queue Data Reader
-
 ### Python Requirements
-
 <PythonRequirements />
-
 #### Azure installation
-
 ```bash
 pip3 install "openmetadata-ingestion[datalake-azure]"
 ```
-
 ## Metadata Ingestion
 All connectors are defined as JSON Schemas. Here you can find the structure to create a connection to Datalake.
-
 In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following JSON Schema.
-
 ## 1. Define the YAML Config
-
 ### This is a sample config for Datalake using Azure:
-
 #### Source Configuration - Service Connection
-
 <AzureConfigDef />
-
 <SourceConfigDef />
-
 <IngestionSinkDef />
-
 <WorkflowConfigDef />
-
 ```yaml
 # Datalake with Azure
 source:
@@ -97,21 +62,13 @@ source:
       configSource:
         securityConfig:
 ```
-
 <AzureConfig />
-
 ```yaml
       prefix: prefix
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />
-
 ## dbt Integration
-
 You can learn more about how to ingest dbt models' definitions and their lineage [here](/connectors/ingestion/workflows/dbt).

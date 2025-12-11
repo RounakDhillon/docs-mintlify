@@ -4,69 +4,43 @@ description: Configure Redash dashboard connector for Collate using YAML. Step-b
 slug: /connectors/dashboard/redash/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
   name="Redash"
   stage="PROD"
-  platform="OpenMetadata"
-  availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Tags"]}
+availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Tags"]}
   unavailableFeatures={["Datamodels", "Projects"]} />
-
 In this section, we provide guides and references to use the Redash connector.
-
 Configure and schedule Redash metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Redash ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[redash]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/dashboard/redashConnection.json)
 you can find the structure to create a connection to Redash.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: URL to the Redash instance.
@@ -82,7 +56,6 @@ Can be found on a user profile page.
 **Redash Version**: Redash version of your redash instance. Enter the numerical value from the [Redash Releases](https://github.com/getredash/redash/releases) page. Default: `10.0.0`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: redash
@@ -95,11 +68,7 @@ username: random
 apiKey: api_key
 redashVersion: 10.0.0
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

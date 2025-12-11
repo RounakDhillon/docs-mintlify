@@ -4,66 +4,42 @@ description: Learn to run the Grafana connector externally in Collate. Configure
 slug: /connectors/dashboard/grafana/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
 name="Grafana"
 stage="BETA"
-platform="OpenMetadata"
 availableFeatures={["Dashboards", "Charts", "Owners", "Tags", "Lineage"]}
 unavailableFeatures={[]}
 />
-
 In this section, we provide guides and references to use the Grafana connector.
-
 Configure and schedule Grafana metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 You will need:
-
 - Grafana 9.0+ (Service Account Tokens)
 - Service Account Token with Admin role (for full metadata extraction)
 - Network access to Grafana API endpoints
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Grafana ingestion, install:
-
 ```bash
 pip3 install "openmetadata-ingestion[grafana]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/dashboard/grafanaConnection.json)
 you can find the structure to create a connection to Grafana.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 ### 1. Define the YAML Config
-
 This is a sample config for Grafana:
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: URL or IP address of your Grafana instance.
@@ -84,7 +60,6 @@ This is a sample config for Grafana:
 To send the metadata to OpenMetadata, specify `type: metadata-rest`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: grafana
@@ -95,24 +70,19 @@ source:
       hostPort: https://grafana.example.com
       apiKey: glsa_xxxxxxxxxxxxxxxxxxxx
       verifySSL: true
-
 sourceConfig:
   config:
     type: DashboardMetadata
     includeTags: true
     lineageInformation:
       dbServicePrefixes: ["mysql", "postgres"]
-
 sink:
   type: metadata-rest
   config: {}
-
 workflowConfig:
   openMetadataServerConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
 ## Securing Grafana Connection with SSL in OpenMetadata
-
 <IngestionCli />

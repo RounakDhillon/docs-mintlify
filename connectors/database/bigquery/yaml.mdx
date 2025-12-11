@@ -4,46 +4,31 @@ description: Configure BigQuery database connections in Collate using YAML. Comp
 slug: /connectors/database/bigquery/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
-
 import PartitionedTables from '/snippets/connectors/database/partitioned-tables.mdx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
 import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
 import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
-
 <ConnectorDetailsHeader
 name="BigQuery"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Tags", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
 unavailableFeatures={["Owners"]} />
-
 In this section, we provide guides and references to use the BigQuery connector.
-
 Configure and schedule BigQuery metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
     - [Incremental Extraction](/connectors/ingestion/workflows/metadata/incremental-extraction/bigquery)
@@ -53,25 +38,16 @@ Configure and schedule BigQuery metadata and profiler workflows from the OpenMet
 - [Data Quality](#data-quality)
 - [dbt Integration](#dbt-integration)
 - [Reverse Metadata](/applications/reverse-metadata)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the BigQuery ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[bigquery]"
 ```
-
 ### GCP Permissions
-
 To execute metadata extraction and usage workflow successfully the user or the service account should have enough access to fetch required data. Following table describes the minimum required permissions
-
 | #    | GCP Permission                | Required For            |
 | :--- | :---------------------------- | :---------------------- |
 | 1    | bigquery.datasets.get         | Metadata Ingestion      |
@@ -87,79 +63,51 @@ To execute metadata extraction and usage workflow successfully the user or the s
 | 11   | datacatalog.taxonomies.list   | Fetch Policy Tags       |
 | 12   | bigquery.readsessions.create  | Bigquery Usage & Lineage Workflow |
 | 13   | bigquery.readsessions.getData | Bigquery Usage & Lineage Workflow |
-
 <Tip>
 If the user has `External Tables`, please attach relevant permissions needed for external tables, alongwith the above list of permissions.
 </Tip>
-
 <Columns cols={2}>
 <Card title="Create Custom GCP Role" href="/connectors/database/bigquery/create-credentials">
   Checkout this documentation on how to create a custom role and assign it to the service account.
 </Card>
 </Columns>
-
 <PartitionedTables />
-
 ## Metadata Ingestion
-
 ### 1. Define the YAML Config
-
 This is a sample config for BigQuery:
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: BigQuery APIs URL. By default the API URL is `bigquery.googleapis.com` you can modify this if you have custom implementation of BigQuery.
-
 **credentials**: 
 You can authenticate with your bigquery instance using either `GCP Credentials Path` where you can specify the file path of the service account key or you can pass the values directly by choosing the `GCP Credentials Values` from the service account key file.
-
 You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam-service-account-keys-create-console) documentation on how to create the service account keys and download it.
-
-
-
 **gcpConfig:**
-
 **1.** Passing the raw credential values provided by BigQuery. This requires us to provide the following information, all provided by BigQuery:
 </Step>
 <Step title="ADC authentication with optional billing project">
-
 <GcpConfigDef />
-
 **2.**  Passing a local file path that contains the credentials:
   - **gcpCredentialsPath**
-
 **Taxonomy Project ID (Optional)**: Bigquery uses taxonomies to create hierarchical groups of policy tags. To apply access controls to BigQuery columns, tag the columns with policy tags. Learn more about how yo can create policy tags and set up column-level access control [here](https://cloud.google.com/bigquery/docs/column-level-security)
-
 If you have attached policy tags to the columns of table available in Bigquery, then OpenMetadata will fetch those tags and attach it to the respective columns.
-
 In this field you need to specify the id of project in which the taxonomy was created.
-
 **Taxonomy Location (Optional)**: Bigquery uses taxonomies to create hierarchical groups of policy tags. To apply access controls to BigQuery columns, tag the columns with policy tags. Learn more about how yo can create policy tags and set up column-level access control [here](https://cloud.google.com/bigquery/docs/column-level-security)
-
 If you have attached policy tags to the columns of table available in Bigquery, then OpenMetadata will fetch those tags and attach it to the respective columns.
-
 In this field you need to specify the location/region in which the taxonomy was created.
-
 **Usage Location (Optional)**:
 Location used to query `INFORMATION_SCHEMA.JOBS_BY_PROJECT` to fetch usage data. You can pass multi-regions, such as `us` or `eu`, or your specific region such as `us-east1`. Australia and Asia multi-regions are not yet supported.
-
 **Cost Per TiB (Optional)**:
 The cost (in USD) per tebibyte (TiB) of data processed during BigQuery usage analysis. This value is used to estimate query costs when analyzing usage metrics from `INFORMATION_SCHEMA.JOBS_BY_PROJECT`.
-
 This setting does **not** affect actual billing—it is only used for internal reporting and visualization of estimated costs.
-
 The default value, if not set, may assume the standard on-demand BigQuery pricing (e.g., $5.00 per TiB), but you should adjust it according to your organization's negotiated rates or flat-rate pricing model.
-
 - If you prefer to pass the credentials file, you can do so as follows:
 ```yaml
 credentials:
   gcpConfig: 
     path: <path to file>
 ```
-
 - If you want to use [ADC authentication](https://cloud.google.com/docs/authentication#adc) for BigQuery you can just leave
 the GCP credentials empty. This is why they are not marked as required.
-
 ```yaml
 # ADC authentication with optional billing project
 ...
@@ -172,7 +120,6 @@ the GCP credentials empty. This is why they are not marked as required.
     billingProjectId: "your-billing-project-id"  # Optional: for billing attribution
 ...
 ```
-
 ```yaml
 # ADC authentication without billing project  
 ...
@@ -188,20 +135,16 @@ the GCP credentials empty. This is why they are not marked as required.
 **Billing Project ID (Optional)**: A billing project ID is a unique string used to identify and authorize your project for billing in Google Cloud.
 </Step>
 </Steps>
-
 #### Advanced Configuration
-
 <Steps>
 <Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 </Step>
 <Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
-
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: bigquery
@@ -212,9 +155,7 @@ source:
 credentials:
         gcpConfig:
 ```
-
 <GcpConfig />
-
 ```yaml
       # taxonomyLocation: us
       # taxonomyProjectID: ["project-id-1", "project-id-2"]
@@ -225,25 +166,14 @@ credentials:
 # connectionArguments:
       #   key: value
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />
-
 <QueryUsage connector="bigquery" />
-
 <Lineage connector="bigquery" />
-
 <DataProfiler connector="bigquery" />
-
 <AutoClassification connector="bigquery" />
-
 <DataQuality />
-
 ## dbt Integration
-
 You can learn more about how to ingest dbt models' definitions and their lineage [here](/connectors/ingestion/workflows/dbt).

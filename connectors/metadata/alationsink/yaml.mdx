@@ -4,91 +4,61 @@ description: Use YAML to configure AlationSink metadata ingestion and push terms
 slug: /connectors/metadata/alationsink/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 <ConnectorDetailsHeader
 name="AlationSink"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata"]}
 unavailableFeatures={[]} />
-
 In this section, we provide guides and references to use the Alation Sink connector.
-
 Configure and schedule Alation Sink metadata using the yaml:
-
 - [Requirements](#requirements)
 - [Data Mapping and Assumptions](#data-mapping-and-assumptions)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 The connector uses `POST` requests to write the data into Alation.
 Hence, an user credentials or an access token with `Source Admin` or `Catalog Admin` or `Server Admin` permissions will be required.
-
 Follow the link [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-via-ui) to create the access token.
-
 ## Data Mapping and Assumptions
-
 Following entities are supported and will be mapped to the from OpenMetadata to the entities in Alation.
-
 | Alation Entity               | OpenMetadata Entity          |
 | :----------------------------| :--------------------------- |
 | Data Source (OCF)            | Database                     |
 | Schema                       | Schema                       |
 | Table                        | Table                        |
 | Columns                      | Columns                      |
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Alation Sink ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[alationsink]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/metadata/alationSinkConnection.json)
 you can find the structure to create a connection to Alation Sink.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: Host and port of the Alation service.
 </Step>
 <Step title="authType">
 **authType**:
-
 Following authentication types are supported:
 1. Basic Authentication: We'll use the user credentials to generate the access token required to authenticate Alation APIs.
 - username: Username of the user.
 - password: Password of the user.
-
 2. Access Token Authentication: The access token created using the steps mentioned [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-via-ui) can directly be entered. We'll use that directly to authenticate the Alation APIs
 - accessToken: Generated access token
 </Step>
@@ -101,11 +71,9 @@ Following authentication types are supported:
 <Step title="datasourceLinks">
 **datasourceLinks**: Add a custom mapping between OpenMetadata databases and Alation DataSources.
 If this mapping is present the connector will only look for the datasource in Alation to create other entities inside it. It will not create the datasource in Alation and it'll need to be created beforehand.
-
 The mapping needs to be of the format `alation_datasource_id: openmetadata_database_fqn`
 Here `alation_datasource_id` corresponds to the numerical id of the datasource in alation.
 And `openmetadata_database_fqn` corresponds to the fullyQualifiedName of the database in OpenMetadata.
-
 Below is an example of the mapping:
 ```yaml
 datasourceLinks: {
@@ -118,7 +86,6 @@ datasourceLinks: {
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: AlationSink
@@ -148,7 +115,5 @@ sink:
   type: metadata-rest
   config: {}
 ```
-
 <WorkflowConfig />
-
 <IngestionCli />

@@ -4,104 +4,66 @@ description: Use YAML to configure GCS storage ingestion for metadata visibility
 slug: /connectors/storage/gcs/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import StorageSourceConfigDef from '/snippets/connectors/yaml/storage/source-config-def.mdx'
-
 import StorageSourceConfig from '/snippets/connectors/yaml/storage/source-config.mdx'
-
 import Manifest from '/snippets/connectors/storage/manifest.mdx'
-
 <ConnectorDetailsHeader
 name="GCS"
 stage="PROD"
-platform="Collate"
 availableFeatures={["Metadata"]}
 unavailableFeatures={[]} />
-
 This page contains the setup guide and reference information for the GCS connector.
-
 Configure and schedule GCS metadata workflows from the CLI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 To run the GCS ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[datalake-gcs]"
 ```
-
 <Card title="OpenMetadata 1.0 or later" href="/deployment" >
     To deploy OpenMetadata, check the Deployment guides.
   </Card>
-
 We need the following permissions in GCP:
-
 ### GCS Permissions
-
 For all the buckets that we want to ingest, we need to provide the following:
 - `storage.buckets.get`
 - `storage.buckets.list`
 - `storage.objects.get`
 - `storage.objects.list`
-
 ### OpenMetadata Manifest
-
 In any other connector, extracting metadata happens automatically. In this case, we will be able to extract high-level
 metadata from buckets, but in order to understand their internal structure we need users to provide an `openmetadata.json`
 file at the bucket root.
-
 `Supported File Formats: [ "csv",  "tsv", "avro", "parquet", "json", "json.gz", "json.zip" ]`
-
 You can learn more about this [here](/connectors/storage). Keep reading for an example on the shape of the manifest file.
-
 <Manifest />
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/storage/GCSConnection.json)
 you can find the structure to create a connection to Athena.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Athena:
-
 <Steps>
 <Step title="gcpConfig:">
 **gcpConfig:**
-
 **1.** Passing the raw credential values provided by GCP. This requires us to provide the following information, all provided by GCP:
-
 <GcpConfigDef />
-
 **2.**  Passing a local file path that contains the credentials:
   - **gcpCredentialsPath**
-
 - If you prefer to pass the credentials file, you can do so as follows:
 ```yaml
 source:
@@ -114,10 +76,8 @@ source:
         gcpConfig: 
         path: <path to file>
 ```
-
 - If you want to use [ADC authentication](https://cloud.google.com/docs/authentication#adc) for GCP you can just leave
 the GCP credentials empty. This is why they are not marked as required.
-
 ```yaml
 ...
 source:
@@ -135,15 +95,12 @@ source:
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
 </Step>
 </Steps>
-
 #### Advanced Configuration
-
 <Steps>
 <Step title="Connection Arguments (Optional)">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: gcs
@@ -161,9 +118,6 @@ credentials:
 # connectionArguments:
       #   key: value
 ```
-
 <StorageSourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />

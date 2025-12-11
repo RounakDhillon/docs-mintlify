@@ -4,67 +4,42 @@ description: Configure Amundsen metadata ingestion with YAML to import glossary 
 slug: /connectors/metadata/amundsen/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 <ConnectorDetailsHeader
 name="Amundsen"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata"]}
 unavailableFeatures={[]} />
-
 In this section, we provide guides and references to use the Amundsen connector.
-
 Configure and schedule Amundsen metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 Before this, you must create the service you want to get metadata for.  
 You can learn how to do it by following the initial part of the Connector documentation for the service.
 You can find the connectors list [here](/connectors).
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Amundsen ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[amundsen]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/metadata/amundsenConnection.json)
 you can find the structure to create a connection to Amundsen.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: Host and port of the Amundsen Neo4j Connection. This expect a URI format like: bolt://localhost:7687.
@@ -88,7 +63,6 @@ The workflow is modeled around the following
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: Amundsen
@@ -106,7 +80,5 @@ sink:
   type: metadata-rest
   config: {}
 ```
-
 <WorkflowConfig />
-
 <IngestionCli />

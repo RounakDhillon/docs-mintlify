@@ -4,75 +4,46 @@ description: Configure Metabase dashboard connector for Collate using YAML. Step
 slug: /connectors/dashboard/metabase/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
   name="Metabase"
   stage="PROD"
-  platform="OpenMetadata"
-  availableFeatures={["Dashboards", "Charts", "Lineage", "Projects"]}
+availableFeatures={["Dashboards", "Charts", "Lineage", "Projects"]}
   unavailableFeatures={["Owners", "Tags", "Datamodels"]} />
-
 In this section, we provide guides and references to use the Metabase connector.
-
 Configure and schedule Metabase metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 **Note:** We have tested Metabase with Versions `0.42.4` and `0.43.4`.
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Metabase ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[metabase]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/dashboard/metabaseConnection.json)
 you can find the structure to create a connection to Metabase.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Metabase:
-
 ### 1. Define the YAML Config
-
 <Steps>
 <Step title="username">
 **username**: Username to connect to Metabase, for ex. `user@organization.com`. This user should have access to relevant dashboards and charts in Metabase to fetch the metadata.
@@ -84,7 +55,6 @@ This is a sample config for Metabase:
 **hostPort**: The hostPort parameter specifies the host and port of the Metabase instance. This should be specified as a string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set the hostPort parameter to `https://org.metabase.com:3000`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: metabase
@@ -96,11 +66,7 @@ username: <username>
 password: <password>
 hostPort: <hostPort>
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

@@ -5,42 +5,25 @@ slug: /connectors/metadata/alation/yaml
 sidebarTitle: Run Externally
 collate: true
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 <ConnectorDetailsHeader
 name="Alation"
 stage="PROD"
-platform="Collate"
 availableFeatures={["Metadata"]}
 unavailableFeatures={[]} />
-
 In this section, we provide guides and references to use the Alation connector.
-
 Configure and schedule Alation metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 Follow the official documentation to generate a API Access Token from [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-an-api-access-token)
-
 ## Data Mapping and Assumptions
-
 Following entities are supported and will be mapped to the OpenMetadata entities as shown below.
-
 | Alation Entity               | OpenMetadata Entity          |
 | :----------------------------| :--------------------------- |
 | Data Source (OCF and Native) | Database Service             |
@@ -57,35 +40,24 @@ Following entities are supported and will be mapped to the OpenMetadata entities
 | Users/Groups                 | Users/Teams                  |
 | Domains/Subdomains           | Domains/Subdomains           |
 | Knowledge Articles           | Knowledge Center Articles    |
-
 - Since Alation does not have a concept of Service entity, the Data Sources (OCF and Native) will be mapped to Database Service and Database in OpenMetadata. Hence for each Data Source in Alation there will one Database Service and Database present in OpenMetadata.
 - Custom fields will have a 1:1 mapping for all the entities except for Columns since OpenMetadata does not support custom properties for columns.
 - Alation has two fields for descriptions i.e. `descriptions` and `comments`. These fields will be combined under one field `description` in OpenMetadata for all the entities.
-
-
 ### Python Requirements
-
 To run the Alation ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[alation]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/metadata/alationConnection.json)
 you can find the structure to create a connection to Alation.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: Host and port of the Alation instance.
@@ -96,26 +68,22 @@ The workflow is modeled around the following
 We'll use the user credentials to generate the access token required to authenticate Alation APIs
 - username: Username of the user.
 - password: Password of the user.
-
 2. Access Token Authentication:
 The access token created using the steps mentioned [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-an-api-access-token) can directly be entered. We'll use that directly to authenticate the Alation APIs
 - accessToken: Generated access token
 </Step>
 <Step title="For Alation backend database Connection:">
 #### For Alation backend database Connection:
-
 Alation APIs do not provide us with some of the metadata. This metadata we extract directly from the alation's backend database by query the tables directly.
 Note that this is a optional config and if it is not provided primary metadata will still be ingested.
 Below is the metadata fetched from alation database:
 `1. User and Group Relationships`
-
 Choose either postgres or mysql connection depending on the db:
 1. Postgres Connection
 - **username**: Specify the User to connect to Postgres. Make sure the user has select privileges on the tables of the alation schema.
 **password**: Password to connect to Postgres.
 **hostPort**: Enter the fully qualified hostname and port number for your Postgres deployment in the Host and Port field.
 - **database**: Initial Postgres database to connect to. Specify the name of database associated with Alation instance.
-
 1. MySQL Connection
 - **username**: Specify the User to connect to MySQL. Make sure the user has select privileges on the tables of the alation schema.
 **password**: Password to connect to MySQL.
@@ -156,9 +124,7 @@ Choose either postgres or mysql connection depending on the db:
 **connectionArguments**: These are additional parameters for Alation. If not specified the ingestion will use the predefined pagination logic.
 The following arguments are intended to be used in conjunction and are specifically for Alation DataSource APIs:
 - skip: This parameter determines the count of records to bypass at the start of the dataset. When set to 0, as in this case, it means that no records will be bypassed. If set to 10, it will bypass the first 10 records.
-
 - limit: This argument specifies the maximum number of records to return. Here, it's set to 10, meaning only the first 10 records will be returned.
-
 To perform incremental ingestion, these arguments should be used together. For instance, if there are a total of 30 datasources in Alation, the ingestion can be configured to execute three times, with each execution ingesting 10 datasources.
 - 1st execution: `{"skip": 0, "limit": 10}`
 - 2nd execution: `{"skip": 10, "limit": 10}`
@@ -168,7 +134,6 @@ To perform incremental ingestion, these arguments should be used together. For i
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: Alation
@@ -242,7 +207,5 @@ sink:
   type: metadata-rest
   config: {}
 ```
-
 <WorkflowConfig />
-
 <IngestionCli />

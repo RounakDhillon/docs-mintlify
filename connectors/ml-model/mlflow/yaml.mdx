@@ -4,70 +4,44 @@ description: Use YAML to configure MLflow ingestion and sync model runs, metrics
 slug: /connectors/ml-model/mlflow/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/ml-model/source-config.mdx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 <ConnectorDetailsHeader
 name="MLflow"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["ML Features", "Hyperparameters", "ML Store"]}
 unavailableFeatures={[]} />
-
 In this section, we provide guides and references to use the MLflow connector.
-
 Configure and schedule MLflow metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the MLflow ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[mlflow]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/mlmodel/mlflowConnection.json)
 you can find the structure to create a connection to MLflow.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/mlmodelServiceMetadataPipeline.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for MLflow:
-
 <Steps>
 <Step title="trackingUri">
 **trackingUri**: MLflow Experiment tracking URI. E.g., http://localhost:5000
@@ -76,13 +50,9 @@ This is a sample config for MLflow:
 **registryUri**: MLflow Model registry backend. E.g., mysql+pymysql://mlflow:password@localhost:3307/experiments
 </Step>
 </Steps>
-
 <SourceConfigDef />
-
 <IngestionSinkDef />
-
 <WorkflowConfigDef />
-
 ```yaml
 source:
   type: mlflow
@@ -99,11 +69,7 @@ registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
 ```yaml
       registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

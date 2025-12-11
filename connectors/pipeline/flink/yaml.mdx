@@ -4,60 +4,36 @@ description: Configure Flink ingestion using YAML to capture streaming pipeline 
 slug: /connectors/pipeline/flink/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 <ConnectorDetailsHeader
 name="Flink"
 stage="BETA"
-platform="Collate"
 availableFeatures={["Pipelines", "Pipeline Status", "Usage"]}
 unavailableFeatures={["Owners", "Lineage", "Tags"]} />
-
-
 In this section, we provide guides and references to use the Flink connector.
-
 Configure and schedule Flink metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Flink ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[flink]"
 ```
-
 ## Metadata Ingestion
-
 ### 1. Define the YAML Config
-
 This is a sample config for Flink:
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: The hostname or IP address of the Flink Connect worker with the REST API enabled
@@ -67,21 +43,15 @@ This is a sample config for Flink:
 </Step>
 <Step title="Flink Connect Config">
 **Flink Connect Config**: OpenMetadata supports SSL config or no Authentication.
-
 *1. SSL config
     - caCertificate: Authorized certificate for ssl configured server.
     - sslCertificate: SSL certificate for the server.
     - sslKey: Server root key for the connection.
 </Step>
 </Steps>
-
-
 <SourceConfigDef />
-
 <IngestionSinkDef />
-
 <WorkflowConfigDef />
-
 ```yaml
 source:
   type: flink
@@ -105,11 +75,7 @@ sslConfig:
                         sample certificate
                         -----END PRIVATE KEY-----
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

@@ -4,67 +4,41 @@ description: Use YAML to extract metadata from S3 including files, partitions, a
 slug: /connectors/storage/s3/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
-
 import AwsConfig from '/snippets/connectors/yaml/common/aws-config.mdx'
-
 import StorageSourceConfigDef from '/snippets/connectors/yaml/storage/source-config-def.mdx'
-
 import StorageSourceConfig from '/snippets/connectors/yaml/storage/source-config.mdx'
-
 import Manifest from '/snippets/connectors/storage/manifest.mdx'
-
 <ConnectorDetailsHeader
 name="S3 Storage"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata"]}
 unavailableFeatures={[]} />
-
 This page contains the setup guide and reference information for the S3 connector.
-
 Configure and schedule S3 metadata workflows from the CLI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 <Card title="OpenMetadata 1.0 or later" href="/deployment" >
     To deploy OpenMetadata, check the Deployment guides.
   </Card>
-
 To run the metadata ingestion, we need the following permissions in AWS:
-
 ### S3 Permissions
-
 For all the buckets that we want to ingest, we need to provide the following:
 - `s3:ListBucket`
 - `s3:GetObject`
 - `s3:GetBucketLocation`
 - `s3:ListAllMyBuckets`
-
 Note that the `Resources` should be all the buckets that you'd like to scan. A possible policy could be:
-
 ```json
 {
     "Version": "2012-10-17",
@@ -84,15 +58,11 @@ Note that the `Resources` should be all the buckets that you'd like to scan. A p
     ]
 }
 ```
-
 ### CloudWatch Permissions
-
 Which is used to fetch the total size in bytes for a bucket and the total number of files. It requires:
 - `cloudwatch:GetMetricData`
 - `cloudwatch:ListMetrics`
-
 The policy would look like:
-
 ```json
 {
     "Version": "2012-10-17",
@@ -109,48 +79,31 @@ The policy would look like:
     ]
 }
 ```
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Athena ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[athena]"
 ```
-
 ### OpenMetadata Manifest
-
 In any other connector, extracting metadata happens automatically. In this case, we will be able to extract high-level
 metadata from buckets, but in order to understand their internal structure we need users to provide an `openmetadata.json`
 file at the bucket root.
-
 `Supported File Formats: [ "csv",  "tsv", "avro", "parquet", "json", "json.gz", "json.zip" ]`
-
 You can learn more about this [here](/connectors/storage). Keep reading for an example on the shape of the manifest file.
-
 <Manifest />
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/storage/s3Connection.json)
 you can find the structure to create a connection to Athena.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Athena:
-
 #### Advanced Configuration
-
 <Steps>
 <Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
@@ -162,7 +115,6 @@ This is a sample config for Athena:
 - **Bucket Names (Optional)**: Provide the names of buckets that you would want to ingest, if you want to ingest metadata from all buckets or apply a filter to ingest buckets then leave this field empty.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: s3
@@ -179,25 +131,14 @@ bucketNames:
 # connectionArguments:
         # key: value
 ```
-
 <AwsConfig />
-
 <StorageSourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
-
-
 <IngestionCli />
-
 ## Related
-
 <Columns cols={2}>
-
 <Card title="Configure Ingestion Externally" href="/deployment/ingestion">
   Deploy, configure, and manage the ingestion workflows externally.
 </Card>
-
 </Columns>

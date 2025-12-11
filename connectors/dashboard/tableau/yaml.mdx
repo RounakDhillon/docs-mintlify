@@ -4,92 +4,60 @@ description: Configure Tableau dashboard connections in Collate using YAML. Step
 slug: /connectors/dashboard/tableau/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
 name="Tableau"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Dashboards", "Charts", "Lineage", "Owners", "Datamodels", "Tags", "Projects", "Usage"]}
 unavailableFeatures={[]} />
-
 In this section, we provide guides and references to use the Tableau connector.
-
 Configure and schedule Tableau metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Enable Security](#securing-tableau-connection-with-ssl-in-openmetadata)
 - [Reverse Metadata](/applications/reverse-metadata)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 To ingest tableau metadata, minimum `Site Role: Viewer` is required for the tableau user.
-
 To create lineage between tableau dashboard and any database service via the queries provided from Tableau Metadata API, please enable the Tableau Metadata API for your tableau server.
 For more information on enabling the Tableau Metadata APIs follow the link [here](https://help.tableau.com/current/api/metadata_api/en-us/docs/meta_api_start.html)
-
 <Tip>
 - If using a **default site** on Tableau Server, leave the **Site Name** fields **blank** in the ingestion configuration.  
 - Ensure that the **Metadata API** is enabled for the user performing the ingestion. If it is not enabled, ingestion may fail. Follow the official Tableau documentation to [enable the Metadata API](https://help.tableau.com/current/api/metadata_api/en-us/docs/meta_api_start.html#enable-the-tableau-metadata-api-for-tableau-server).  
 </Tip>
-
 <Tip>
 - As of OpenMetadata versions `1.7.4` and `1.7.5`, the `siteUrl` field has been removed from the Tableau connector configuration. This change was intentional, as confirmed in the release commit.  
 - To connect to a non-default Tableau site, use the `siteName` field instead. The Tableau Python SDK does not require `siteUrl` for authentication.  
 - Ensure the `siteName` field is correctly populated (do not use `*`) to enable successful metadata ingestion for multi-site Tableau environments.
 </Tip>
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Tableau ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[tableau]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/dashboard/tableauConnection.json)
 you can find the structure to create a connection to Tableau.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Tableau:
-
 <Steps>
 <Step title="For Basic Authentication:">
 **For Basic Authentication:**
-
 **Username**: The name of the user whose credentials will be used to sign in.
-
 **Password**: The password of the user.
 </Step>
 <Step title="hostPort">
@@ -112,7 +80,6 @@ This is a sample config for Tableau:
 </Step>
 <Step title="dbServiceNames">
 The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/dashboardServiceMetadataPipeline.json):
-
 - **dbServiceNames**: Database Service Names for ingesting lineage if the source supports it.
 - **dashboardFilterPattern**, **chartFilterPattern**, **dataModelFilterPattern**: Note that all of them support regex as include or exclude. E.g., "My dashboard, My dash.*, .*Dashboard".
 - **projectFilterPattern**: Filter the tableau dashboards, charts and data sources by projects. Note that all of them support regex as include or exclude. E.g., "My project, My proj.*, .*Project".
@@ -125,7 +92,6 @@ The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetada
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: tableau
@@ -158,19 +124,12 @@ paginationLimit: pagination_limit
       #     sample certificate
       #     -----END PRIVATE KEY-----
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 ### Example Source Configurations for default and non-default tableau sites
-
 #### 1. Sample config for default tableau site
-
 For a default tableau site `siteName` and `siteUrl` fields should be kept as empty strings as shown in the below config.
-
 ```yaml
 source:
   type: tableau
@@ -230,13 +189,9 @@ workflowConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
 #### 1. Sample config for non-default tableau site
-
 For a non-default tableau site `siteName` and `siteUrl` fields are required.
-
 **Note**: If `https://xxx.tableau.com/#/site/sitename/home` represents the homepage url for your tableau site, the `sitename` from the url should be entered in the `siteName` and `siteUrl` fields in the config below.
-
 ```yaml
 source:
   type: tableau
@@ -281,14 +236,11 @@ workflowConfig:
     authProvider: <OpenMetadata auth provider>
 ```
 ## Securing Tableau Connection with SSL in OpenMetadata
-
 To establish secure connections between OpenMetadata and Tableau, in the `YAML` you can provide the CA certificate used for SSL validation by specifying the `caCertificate`. Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl key`, `ssl cert`, and `caCertificate`. In this case, `ssl_cert` is used for the client’s SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `caCertificate` for the CA certificate to validate the server’s certificate.
-
 ```yaml
       sslConfig:
             caCertificate: "/path/to/ca_certificate"
             sslCertificate: "/path/to/your/ssl_cert"
             sslKey: "/path/to/your/ssl_key"
 ```
-
 <IngestionCli />

@@ -4,74 +4,46 @@ description: Configure MongoDB ingestion via YAML to extract collection metadata
 slug: /connectors/database/mongodb/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
-
 <ConnectorDetailsHeader
 name="MongoDB"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Metadata", "Data Profiler", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Data Quality", "dbt", "Owners", "Lineage", "Column-level Lineage", "Tags", "Stored Procedures"]} />
-
 In this section, we provide guides and references to use the MongoDB connector.
-
 Configure and schedule MongoDB metadata workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](#data-profiler)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 To fetch the metadata from MongoDB to OpenMetadata, the MongoDB user must have access to perform `find` operation on collection and `listCollection` operations on database available in MongoDB.
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the MongoDB ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[mongo]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/mongoDBConnection.json)
 you can find the structure to create a connection to MongoDB.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for MongoDB:
-
 <Steps>
 <Step title="username">
 **username**: Username to connect to Mongodb. This user must have access to perform `find` operation on collection and `listCollection` operations on database available in MongoDB.
@@ -81,22 +53,18 @@ This is a sample config for MongoDB:
 </Step>
 <Step title="hostPort">
 **hostPort**: When using the `mongodb` connecion schema, the hostPort parameter specifies the host and port of the MongoDB. This should be specified as a string in the format `hostname:port`. E.g., `localhost:27017`. When using the `mongodb+srv` connection schema, the hostPort parameter specifies the host and port of the MongoDB. This should be specified as a string in the format `hostname`. E.g., `cluster0-abcde.mongodb.net`.
-
 Using Atlas? Follow [this guide](https://www.mongodb.com/docs/guides/atlas/connection-string/) to get the connection string.
 </Step>
 <Step title="databaseName">
 **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
 </Step>
 </Steps>
-
 #### Advanced Configuration
-
 <Steps>
 <Step title="Connection Options (Optional)">
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: mongodb
@@ -111,39 +79,24 @@ hostPort: localhost:27017
       #   key: value
 databaseName: custom_database_name
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />
-
 ## Data Profiler
-
 The Data Profiler workflow will be using the `orm-profiler` processor.
-
 After running a Metadata Ingestion workflow, we can run Data Profiler workflow.
 While the `serviceName` will be the same to that was used in Metadata Ingestion, so the ingestion bot can get the `serviceConnection` details from the server.
-
 ### Limitations
-
 The MongodDB data profiler current supports only the following features:
-
 1. **Row count**: The number of rows in the collection. Sampling or custom query is not supported.
 2. **Sample data:** If a custom query is defined it will be used for sample data.
-
 ### 1. Define the YAML Config
-
 This is a sample config for the profiler:
-
 <Steps>
 <Step title="Source Configuration - Source Config">
 #### Source Configuration - Source Config
-
 You can find all the definitions and types for the  `sourceConfig` [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/databaseServiceProfilerPipeline.json).
-
 **generateSampleData**: Option to turn on/off generating sample data.
 </Step>
 <Step title="processPiiSensitive">
@@ -160,25 +113,19 @@ You can find all the definitions and types for the  `sourceConfig` [here](https:
 </Step>
 <Step title="Processor Configuration">
 #### Processor Configuration
-
 Choose the `orm-profiler`. Its config can also be updated to define tests from the YAML itself instead of the UI:
-
 **tableConfig**: `tableConfig` allows you to set up some configuration at the table level.
 </Step>
 <Step title="Sink Configuration">
 #### Sink Configuration
-
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 </Step>
 <Step title="Workflow Configuration">
 #### Workflow Configuration
-
 The main property here is the `openMetadataServerConfig`, where you can define the host and security provider of your OpenMetadata installation.
-
 For a simple, local installation using our docker containers, this looks like:
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: monogodb
@@ -218,19 +165,13 @@ workflowConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
 - You can learn more about how to configure and run the Profiler Workflow to extract Profiler data and execute the Data Quality from [here](/how-to-guides/data-quality-observability/profiler/workflow)
-
 ### 2. Prepare the Profiler DAG
-
 Here, we follow a similar approach as with the metadata and usage pipelines, although we will use a different Workflow class:
-
 <Steps>
 <Step title="Import necessary modules">
 #### Import necessary modules
-
 The `ProfilerWorkflow` class that is being imported is a part of a metadata orm_profiler framework, which defines a process of extracting Profiler data. 
-
 Here we are also importing all the basic requirements to parse YAMLs, handle dates and build our DAG.
 </Step>
 <Step title="Default arguments for all tasks in the Airflow DAG.">
@@ -248,14 +189,9 @@ Here we are also importing all the basic requirements to parse YAMLs, handle dat
 - For more Airflow DAGs creation details visit [here](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html#declaring-a-dag).
 </Step>
 </Steps>
-
 ## dbt Integration
-
 <Columns cols={2}>
-
 <Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">
   Learn more about how to ingest dbt models
 </Card>
-
 </Columns>
-

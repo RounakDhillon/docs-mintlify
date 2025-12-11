@@ -4,87 +4,57 @@ description: Use YAML to configure Elasticsearch metadata ingestion and track in
 slug: /connectors/search/elasticsearch/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/search/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/search/source-config.mdx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 <ConnectorDetailsHeader
 name="Elasticsearch"
 stage="PROD"
-platform="OpenMetadata"
 availableFeatures={["Search Indexes", "Sample Data"]}
 unavailableFeatures={[]} />
-
 In this section, we provide guides and references to use the Elasticsearch connector.
-
 Configure and schedule Elasticsearch metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 We support Elasticsearch 7.0 and above.
-
 We extract Elasticsearch's metadata by using its [API](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html). To run this ingestion, you just need a user with permissions to the ElasticSearch instance.
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Elasticsearch ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion[elasticsearch]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/search/elasticSearchConnection.json)
 you can find the structure to create a connection to ElasticSearch.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Elasticsearch:
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: This parameter specifies the host and port of the Elasticsearch instance. This should be specified as a URI string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set it to `https://localhost:9200`.
 </Step>
 <Step title="Basic Authentication">
 **Basic Authentication**
-
 **username**: Username to connect to Elasticsearch required when Basic Authentication is enabled on Elasticsearch.
 **password**: Password of the user account to connect with Elasticsearch.
 </Step>
 <Step title="API Key Authentication">
 **API Key Authentication**
-
 **apiKey**:  API Key to connect to Elasticsearch required when API Key Authentication is enabled on Elasticsearch.
 **apiKeyId**: Enter API Key ID In case of API Key Authentication if there is any API Key ID associated with the API Key, otherwise this field can be left blank or skipped.
 </Step>
@@ -111,9 +81,7 @@ This is a sample config for Elasticsearch:
     h+4=
     -----END CERTIFICATE-----
     ```
-
     You will have to replace new lines with `\n` and the final value that you need to pass should look like this:
-
     ```
     -----BEGIN CERTIFICATE-----\nMII..\nMBQ...\nCgU..\n8Lt..\n...\nh+4=\n-----END CERTIFICATE-----\n
 </Step>
@@ -121,13 +89,9 @@ This is a sample config for Elasticsearch:
 **connectionTimeoutSecs**: Connection timeout configuration for communicating with Elasticsearch APIs.
 </Step>
 </Steps>
-
 <SourceConfigDef />
-
 <IngestionSinkDef />
-
 <WorkflowConfigDef />
-
 ```yaml
 source:
   type: elasticsearch
@@ -146,7 +110,6 @@ sslConfig:
           caCertPath: /path/to/http_ca.crt
           clientCertPath: /path/to/http_ca.crt
           privateKeyPath: /path/to/http_ca.crt
-
           # pass certificate values
           # caCertValue: -----BEGIN CERTIFICATE-----\n....\n.....\n-----END CERTIFICATE-----\n
           # clientCertValue: -----BEGIN CERTIFICATE-----\n....\n...-----END CERTIFICATE-----\n
@@ -157,11 +120,7 @@ connectionTimeoutSecs: 30
 ```yaml
       connectionTimeoutSecs: 30
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

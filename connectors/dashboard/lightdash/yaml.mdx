@@ -4,74 +4,46 @@ description: Configure Lightdash dashboard connector for Collate using YAML. Ste
 slug: /connectors/dashboard/lightdash/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
   name="Lightdash"
   stage="PROD"
-  platform="OpenMetadata"
-  availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
+availableFeatures={["Dashboards", "Charts", "Owners", "Datamodels", "Lineage"]}
   unavailableFeatures={["Tags", "Projects"]}
 />
-
 In this section, we provide guides and references to use the Lightdash connector.
-
 Configure and schedule Lightdash metadata and profiler workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 To integrate Lightdash, ensure you are using OpenMetadata version 1.2.x or higher.
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Lightdash ingestion, you will need to install:
-
 ```bash
 pip3 install "openmetadata-ingestion"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas. 
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/dashboard/lightdashConnection.json)
 you can find the structure to create a connection to Lightdash.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Lightdash:
-
 <Steps>
 <Step title="Host and Port">
 - **Host and Port**: Specify the network location where your Lightdash instance is accessible, combining both hostname and port in a URI format: either `http://hostname:port` or `https://hostname:port`, based on your security needs.
@@ -91,7 +63,6 @@ Ensure the specified port is open and accessible through network firewall settin
 - **Proxy Authentication**: If your Lightdash instance requires authentication through a proxy server, provide proxy credentials. Proxy authentication controls access to external resources and Lightdash.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: lightdash
@@ -105,11 +76,7 @@ projectUUID: <projectUUID>
 spaceUUID: <spaceUUID>
 proxyAuthentication: <ProxyAuthentication>
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

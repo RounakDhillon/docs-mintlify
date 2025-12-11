@@ -3,75 +3,46 @@ title: Run the PowerBI Report Server Connector Externally
 slug: /connectors/dashboard/powerbireportserver/yaml
 sidebarTitle: Run Externally
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import SourceConfig from '/snippets/connectors/yaml/dashboard/source-config.mdx'
-
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
   name="PowerBI Report Server"
   stage="BETA"
-  platform="Collate"
-  availableFeatures={["Dashboards"]}
+availableFeatures={["Dashboards"]}
   unavailableFeatures={["Owners", "Tags", "Datamodels", "Charts", "Lineage", "Projects"]} />
-
 In this section, we provide guides and references to use the PowerBI Report Server connector.
-
 Configure and schedule PowerBI Report Server metadata for external ingestion:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 The PowerBI Report Server should be accessible from the ingestion environment.
-
 ### Python Requirements
-
 <PythonRequirements />
-
 To run the Metabase ingestion, you will need to install:
-
 ```bash
 pip3 install "collate-ingestion[powerbi-report-server]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/dashboard/powerBIReportServerConnection.json)
 you can find the structure to create a connection to Metabase.
-
 In order to create and run a Metadata Ingestion workflow, we will follow
 the steps to create a YAML configuration able to connect to the source,
 process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for Metabase:
-
 ### 1. Define the YAML Config
-
 <Steps>
 <Step title="hostPort">
 **hostPort**:
@@ -91,7 +62,6 @@ Password to connect to PowerBI Report Server.
 Web Portal Virtual Directory name which you have configured in your PowerBI Report Server configuration manager.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: powerbireportserver
@@ -104,11 +74,7 @@ username: username
 password: password
 webPortalVirtualDirectory: Reports
 ```
-
 <SourceConfig />
-
 <IngestionSink />
-
 <WorkflowConfig />
-
 <IngestionCli />

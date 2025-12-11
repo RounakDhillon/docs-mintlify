@@ -5,50 +5,31 @@ slug: /connectors/database/epic/yaml
 sidebarTitle: Run Externally
 Collate: true
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 <ConnectorDetailsHeader
 name="Epic"
 stage="BETA"
-platform="Collate"
 availableFeatures={["Metadata"]}
 unavailableFeatures={["Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Query Usage", "Owners", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification", "Stored Procedures"]} />
-
 In this section, we provide guides and references to use the Epic FHIR connector.
-
 Configure and schedule Epic metadata workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 To run the Epic ingestion, install the Python package:
-
 ```bash
 pip3 install "openmetadata-ingestion[epic]"
 ```
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas.  
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/epicConnection.json) you can find the structure to create a connection to Epic.
-
 The ingestion workflow itself follows the general [workflow schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json).
-
 ### 1. Define the YAML Config
-
 This is a minimal sample config for Epic:
-
 <Steps>
 <Step title="fhirServerUrl">
 **fhirServerUrl**: Base URL of the Epic FHIR server.
@@ -63,7 +44,6 @@ This is a minimal sample config for Epic:
 **schemaFilterPattern / tableFilterPattern**: Regex filters to limit which FHIR resource categories (schemas) or resource types (tables) are ingested.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: epic

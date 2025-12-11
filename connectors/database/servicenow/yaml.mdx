@@ -5,57 +5,34 @@ slug: /connectors/database/servicenow/yaml
 sidebarTitle: Run Externally
 Collate: true
 ---
-
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
-
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
-
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
-
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
-
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
-
 import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
-
 <ConnectorDetailsHeader
 name="ServiceNow"
 stage="BETA"
-platform="Collate"
 availableFeatures={["Metadata", "Lineage"]}
 unavailableFeatures={["Query Usage", "Data Profiler", "Data Quality", "dbt", "Stored Procedures", "Owners", "Tags", "Sample Data", "Auto-Classification"]} />
-
 In this section, we provide guides and references to use the ServiceNow connector.
-
 Configure and schedule ServiceNow metadata workflows from the OpenMetadata UI:
-
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-
 <ExternalIngestionDeployment />
-
 ## Requirements
-
 To fetch metadata from ServiceNow into OpenMetadata you will need:
-
 1. An accessible ServiceNow instance URL (e.g. `https://your-instance.service-now.com`).
 2. A ServiceNow username with read access to `sys_db_object` and `sys_dictionary` tables.
 3. The password for the ServiceNow user.
-
 ## Metadata Ingestion
-
 All connectors are defined as JSON Schemas. Here you can find the structure to create a connection to ServiceNow.
-
 In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the OpenMetadata server.
-
 The workflow is modeled around the following [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/serviceNowConnection.json)
-
 ### 1. Define the YAML Config
-
 This is a sample config for ServiceNow:
-
 <Steps>
 <Step title="hostPort">
 **hostPort**: Your ServiceNow instance URL (e.g., `https://your-instance.service-now.com`).
@@ -73,7 +50,6 @@ This is a sample config for ServiceNow:
 **includeSystemTables**: If true, both admin and system tables (`sys_*` tables) will be fetched. If false, only admin tables will be fetched. Default: `false`.
 </Step>
 </Steps>
-
 ```yaml
 source:
   type: servicenow
@@ -96,30 +72,22 @@ source:
       #   excludes:
       #     - table3
       #     - table4
-
 sink:
   type: metadata-rest
   config:
     api_endpoint: <OpenMetadata host and port>
     auth_provider_type: <OpenMetadata auth provider>
-
 workflowConfig:
   # loggerLevel: DEBUG  # DEBUG, INFO, WARN or ERROR
   openMetadataServerConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
-
 <WorkflowConfig />
-
 <IngestionCli />
-
 ## Advanced Configuration
-
 ### Connection Options
-
 Additional connection options can be configured in YAML:
-
 ```yaml
 source:
   type: servicenow
@@ -132,11 +100,8 @@ source:
       connectionOptions:
         key: value
 ```
-
 ### Connection Arguments
-
 Additional connection arguments can be configured in YAML:
-
 ```yaml
 source:
   type: servicenow
@@ -149,11 +114,8 @@ source:
       connectionArguments:
         key: value
 ```
-
 ### Table Filter Pattern
-
 You can filter tables to include or exclude using regex patterns:
-
 ```yaml
 source:
   type: servicenow
