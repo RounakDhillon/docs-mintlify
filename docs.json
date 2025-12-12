@@ -1167,6 +1167,19 @@
                                         ]
                                     },
                                     {
+                                        "group": "Alerts & Notifications",
+                                        "pages": [
+                                            "how-to-guides/data-quality-observability/alerts-notifications/index",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/data-observability-alerts",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/system-governance-notifications",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/email-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/slack-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/microsoft-teams-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/google-chat-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/generic-webhook-alerts-configuration"
+                                        ]
+                                    },
+                                    {
                                         "group": "Incident Manager",
                                         "pages": [
                                             "how-to-guides/data-quality-observability/incident-manager/index",
