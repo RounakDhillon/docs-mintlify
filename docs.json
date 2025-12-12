@@ -648,6 +648,8 @@
                                 "group": "Ingestion",
                                 "pages": [
                                     "connectors/ingestion/index",
+                                    "connectors/ingestion/best-practices",
+                                    "connectors/ingestion/great-expectations",
                                     {
                                         "group": "Deployment",
                                         "pages": [
@@ -675,7 +677,57 @@
                                     {
                                         "group": "Workflows",
                                         "pages": [
-                                            "connectors/ingestion/workflows/index"
+                                            "connectors/ingestion/workflows/index",
+                                            {
+                                                "group": "Metadata",
+                                                "pages": [
+                                                    "connectors/ingestion/workflows/metadata/index",
+                                                    "connectors/ingestion/workflows/metadata/filter-patterns/index",
+                                                    "connectors/ingestion/workflows/metadata/filter-patterns/database",
+                                                    {
+                                                        "group": "Incremental Extraction",
+                                                        "pages": [
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/index",
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/bigquery",
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/redshift",
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/snowflake"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "group": "Usage",
+                                                "pages": [
+                                                    "connectors/ingestion/workflows/usage/index",
+                                                    "connectors/ingestion/workflows/usage/filter-query-set",
+                                                    "connectors/ingestion/workflows/usage/usage-workflow-query-logs"
+                                                ]
+                                            },
+                                            {
+                                                "group": "Lineage",
+                                                "pages": [
+                                                    "connectors/ingestion/workflows/lineage/index",
+                                                    "connectors/ingestion/workflows/lineage/filter-query-set",
+                                                    "connectors/ingestion/workflows/lineage/lineage-workflow-query-logs"
+                                                ]
+                                            },
+                                            {
+                                                "group": "dbt",
+                                                "pages": [
+                                                    "connectors/ingestion/workflows/dbt/index",
+                                                    "connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui",
+                                                    "connectors/ingestion/workflows/dbt/run-dbt-workflow-externally",
+                                                    "connectors/ingestion/workflows/dbt/auto-ingest-dbt-core",
+                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-owner",
+                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-descriptions",
+                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-tags",
+                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-tier",
+                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-glossary",
+                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-lineage",
+                                                    "connectors/ingestion/workflows/dbt/setup-multiple-dbt-projects",
+                                                    "connectors/ingestion/workflows/dbt/dbt-troubleshooting"
+                                                ]
+                                            }
                                         ]
                                     }
                                 ]
