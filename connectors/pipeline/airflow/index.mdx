@@ -2,7 +2,7 @@
 title: Airflow Connector | Collate Workflow Orchestration
 description: Connect Apache Airflow to Collate effortlessly. Complete setup guide, configuration steps, and pipeline metadata extraction for seamless data lineage tracking.
 slug: /connectors/pipeline/airflow
-sidebarTitle: Airflow
+sidebarTitle: Overview
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
@@ -35,6 +35,8 @@ You can check the version list [here](https://airflow.apache.org/docs/apache-air
 </Tip>
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Airflow"} selectServicePath={"/public/images/connectors/airflow/select-service.png"} addNewServicePath={"/public/images/connectors/airflow/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/airflow/service-connection.png"} />
+# Connection Details
+<Steps>
 <Step title="Connection Details">
 <Tip>
 When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
@@ -57,3 +59,4 @@ In terms of `connection` we support the following selections:
 <TestConnection />
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
+</Steps>

@@ -2,7 +2,7 @@
 title: MariaDB Connector | Collate Database Integration Guide
 description: Connect MariaDB to Collate with our comprehensive database connector guide. Easy setup, configuration steps, and metadata extraction for your data catalog.
 slug: /connectors/database/mariadb
-sidebarTitle: MariaDB
+sidebarTitle: Overview
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -43,6 +43,7 @@ GRANT SELECT ON world.hello TO '<username>';
 Executing the profiler workflow or data quality tests, will require the user to have `SELECT` permission on the tables/schemas where the profiler/tests will be executed. More information on the profiler workflow setup can be found [here](/how-to-guides/data-quality-observability/profiler/workflow) and data quality tests [here](/how-to-guides/data-quality-observability/quality).
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"MariaDB"} selectServicePath={"/public/images/connectors/mariadb/select-service.png"} addNewServicePath={"/public/images/connectors/mariadb/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/mariadb/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

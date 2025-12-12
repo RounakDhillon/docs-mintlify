@@ -2,7 +2,7 @@
 title: KafkaConnect | Collate Messaging Pipeline Connector
 description: Configure Kafka Connect for metadata ingestion from real-time event streams, schema updates, and topic usage.
 slug: /connectors/pipeline/kafkaconnect
-sidebarTitle: KafkaConnect
+sidebarTitle: Overview
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -32,6 +32,7 @@ OpenMetadata is integrated with kafkaconnect up to version [3.6.1](https://docs.
 The ingestion framework uses [kafkaconnect python client](https://libraries.io/pypi/kafka-connect-py) to connect to the kafkaconnect instance and perform the API calls
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"KafkaConnect"} selectServicePath={"/public/images/connectors/kafkaconnect/select-service.png"} addNewServicePath={"/public/images/connectors/kafkaconnect/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/kafkaconnect/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

@@ -1062,7 +1062,9 @@
             },
             {
                 "tab": "Products",
-                "pages": ["products/index"]
+                "pages": [
+                    "products/index"
+                ]
             },
             {
                 "tab": "Collate AI",
@@ -1288,7 +1290,7 @@
                                                     "how-to-guides/data-governance/classification/auto-classification/workflow",
                                                     "how-to-guides/data-governance/classification/auto-classification/external-workflow",
                                                     "how-to-guides/data-governance/classification/auto-classification/auto-pii-tagging",
-                                                     "how-to-guides/data-governance/classification/auto-classification/external-sample-data"
+                                                    "how-to-guides/data-governance/classification/auto-classification/external-sample-data"
                                                 ]
                                             },
                                             "how-to-guides/data-governance/classification/tiers",
@@ -1307,6 +1309,7 @@
                                         "group": "Workflows",
                                         "pages": [
                                             "how-to-guides/data-governance/workflows/index",
+                                            "how-to-guides/data-governance/workflows/creating-a-new-workflow",
                                             {
                                                 "group": "Default Workflows",
                                                 "pages": [
@@ -1332,16 +1335,24 @@
                                                         "group": "Nodes",
                                                         "pages": [
                                                             "how-to-guides/data-governance/workflows/elements/nodes/index",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/check-entity-attributes",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/create-user-task",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/set-asset-certification",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/set-glossary-term-status"
+                                                            "how-to-guides/data-governance/workflows/elements/nodes/start-node",
+                                                            "how-to-guides/data-governance/workflows/elements/nodes/check-condition",
+                                                            "how-to-guides/data-governance/workflows/elements/nodes/set-action",
+                                                            "how-to-guides/data-governance/workflows/elements/nodes/user-approval-task",
+                                                            "how-to-guides/data-governance/workflows/elements/nodes/data-completeness-task"
                                                         ]
                                                     }
                                                 ]
                                             },
-                                            "how-to-guides/data-governance/workflows/how-to-edit-workflow"
-
+                                            {
+                                                "group": "Examples",
+                                                "pages": [
+                                                    "how-to-guides/data-governance/workflows/examples/index",
+                                                    "how-to-guides/data-governance/workflows/examples/tag-approval-workflow",
+                                                    "how-to-guides/data-governance/workflows/examples/column-completeness-workflow",
+                                                    "how-to-guides/data-governance/workflows/examples/set-tier-to-mlmodels-workflow"
+                                                ]
+                                            }
                                         ]
                                     },
                                     "how-to-guides/data-governance/metrics"

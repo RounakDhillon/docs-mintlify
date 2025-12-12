@@ -2,7 +2,7 @@
 title: Alation Connector | Official Documentation
 description: Connect Alation to Collate seamlessly with our comprehensive connector guide. Learn setup, configuration, and metadata synchronization steps.
 slug: /connectors/metadata/alation
-sidebarTitle: Alation
+sidebarTitle: Overview
 collate: true
 ---
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
@@ -52,8 +52,9 @@ Following entities are supported and will be mapped to the OpenMetadata entities
 - Utilize the databaseFilterPattern (datasource in Alation), schemaFilterPattern, and tableFilterPattern to apply filters to Alation entities. Provide the `ids` of the datasource, schemas, and tables for the Alation entities in the respective fields.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Alation"} selectServicePath={"/public/images/connectors/alation/select-service.png"} addNewServicePath={"/public/images/connectors/alation/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/alation/service-connection.png"} />
+## Connection Options
 <Steps>
-#### Connection Options
+<Step title="Connection Options">
 **hostPort**: Host and port of the Alation instance.
 ```bash
 host and port (https://xxxx.alationcloud.com:443)
@@ -100,6 +101,7 @@ To perform incremental ingestion, these arguments should be used together. For i
 - 1st execution: `{"skip": 0, "limit": 10}`
 - 2nd execution: `{"skip": 10, "limit": 10}`
 - 3rd execution: `{"skip": 20, "limit": 10}`
+</Step>
 <AdvancedConfiguration />
 <TestConnection />
 <ConfigureIngestion />

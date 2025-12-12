@@ -2,7 +2,7 @@
 title: Hive Connector | Collate Big Data Integration Guide
 description: Connect Apache Hive to Collate with our comprehensive database connector guide. Setup instructions, configuration options, and metadata extraction steps.
 slug: /connectors/database/hive
-sidebarTitle: Hive
+sidebarTitle: Overview
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -35,6 +35,7 @@ To extract metadata, the user used in the connection needs to be able to perform
 Executing the profiler workflow or data quality tests, will require the user to have `SELECT` permission on the tables/schemas where the profiler/tests will be executed. More information on the profiler workflow setup can be found [here](/how-to-guides/data-quality-observability/profiler/workflow) and data quality tests [here](/how-to-guides/data-quality-observability/quality).
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Hive"} selectServicePath={"/public/images/connectors/hive/select-service.png"} addNewServicePath={"/public/images/connectors/hive/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/hive/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

@@ -2,7 +2,7 @@
 title: SAP HANA Connector | Collate High-Performance DB
 description: Connect SAP HANA to Collate effortlessly with our comprehensive database connector guide. Setup instructions, configuration steps, and troubleshoot...
 slug: /connectors/database/sap-hana
-sidebarTitle: SAP HANA
+sidebarTitle: Overview
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -51,6 +51,7 @@ The same applies to the `_SYS_REPO` schema, required for lineage extraction.
 Executing the profiler Workflow or data quality tests, will require the user to have `SELECT` permission on the tables/schemas where the profiler/tests will be executed. The user should also be allowed to view information in `tables` for all objects in the database. More information on the profiler workflow setup can be found [here](/how-to-guides/data-quality-observability/profiler/workflow) and data quality tests [here](/how-to-guides/data-quality-observability/quality).
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"SAP Hana"} selectServicePath={"/public/images/connectors/sap-hana/select-service.png"} addNewServicePath={"/public/images/connectors/sap-hana/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/sap-hana/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

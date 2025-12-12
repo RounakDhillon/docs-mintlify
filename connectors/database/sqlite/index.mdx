@@ -2,7 +2,7 @@
 title: SQLite Connector | Collate Lightweight DB Integration
 description: Learn to Configure Collate'sSQLite database connector for seamless data cataloging. Step-by-step setup guide with examples and troubleshooting tips.
 slug: /connectors/database/sqlite
-sidebarTitle: SQLite
+sidebarTitle: Overview
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -32,6 +32,7 @@ Configure and schedule Presto metadata and profiler workflows from the OpenMetad
 To extract metadata, the user needs to be able to perform `.tables`, `.schema`, on database you wish to extract metadata from and have `SELECT` permission on the `sqlite_temp_master`. Access to resources will be different based on the connector used.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"SQLite"} selectServicePath={"/public/images/connectors/sqlite/select-service.png"} addNewServicePath={"/public/images/connectors/sqlite/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/sqlite/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

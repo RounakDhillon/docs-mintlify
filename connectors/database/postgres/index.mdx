@@ -2,7 +2,7 @@
 title: PostgreSQL Connector | Collate Database Integration
 description: Connect PostgreSQL to Collate with our comprehensive database connector guide. Step-by-step setup, configuration examples, and metadata extraction tips.
 slug: /connectors/database/postgres
-sidebarTitle: PostgreSQL
+sidebarTitle: Overview
 ---
 import ReverseMetadata from '/snippets/connectors/database/postgres/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -98,6 +98,7 @@ By default, `pg_stat_statements` may only capture top-level procedure calls and 
 This ensures that statements executed within procedures are recorded.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Postgres"} selectServicePath={"/public/images/connectors/postgres/select-service.png"} addNewServicePath={"/public/images/connectors/postgres/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/postgres/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

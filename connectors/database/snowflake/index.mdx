@@ -2,7 +2,7 @@
 title: Snowflake Connector | Collate Cloud Data Warehouse
 description: Connect Snowflake to Collate with our comprehensive database connector guide. Easy setup, metadata extraction, and data lineage tracking.
 slug: /connectors/database/snowflake
-sidebarTitle: Snowflake
+sidebarTitle: Overview
 ---
 import ReverseMetadata from '/snippets/connectors/database/snowflake/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -74,6 +74,7 @@ You can find more information about the `account_usage` schema [here](https://do
 - **Ingesting Stored Procedures**: Openmetadata fetches the information by querying `snowflake.account_usage.procedures` & `snowflake.account_usage.functions`.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Snowflake"} selectServicePath={"/public/images/connectors/snowflake/select-service.png"} addNewServicePath={"/public/images/connectors/snowflake/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/snowflake/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

@@ -2,7 +2,7 @@
 title: Exasol Connector | Collate High-Performance Database
 description: Connect Exasol database to Collate with our comprehensive connector guide. Step-by-step setup, configuration, and metadata extraction instructions.
 slug: /connectors/database/exasol
-sidebarTitle: Exasol
+sidebarTitle: Overview
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -31,6 +31,7 @@ Configure and schedule Exasol metadata from the OpenMetadata UI:
 The connector requires **Exasol version 7.1 or higher** to function correctly. Ensure your Exasol instance meets this minimum version requirement before proceeding.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Exasol"} selectServicePath={"/public/images/connectors/exasol/select-service.png"} addNewServicePath={"/public/images/connectors/exasol/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/exasol/service-connection.png"} />
+# Connection Options
 <Steps>
 <Step title="Connection Options">
 **Connection Scheme**: Specifies the SQLAlchemy driver scheme options required to connect to Exasol.

@@ -2,7 +2,7 @@
 title: Superset Connector | Collate Dashboard Integration
 description: Learn how to connect Apache Superset dashboards to Collate with our comprehensive connector guide. Setup instructions, configuration, and metadata integration.
 slug: /connectors/dashboard/superset
-sidebarTitle: Superset
+sidebarTitle: Overview
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -31,6 +31,7 @@ The ingestion also works with Superset 2.0.0 🎉
 **Database Connection**: To extract metadata from Superset via MySQL or Postgres database, database user must have at least `SELECT` privilege on `dashboards` & `slices` tables within superset schema.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Superset"} selectServicePath={"/public/images/connectors/superset/select-service.png"} addNewServicePath={"/public/images/connectors/superset/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/superset/service-connection.png"} />
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

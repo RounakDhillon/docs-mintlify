@@ -2,7 +2,7 @@
 title: ADLS | Official Documentation
 description: Connect Azure Data Lake Storage to Collate with our comprehensive ADLS connector guide. Setup instructions, configuration, and metadata extraction.
 slug: /connectors/storage/adls
-sidebarTitle: ADLS
+sidebarTitle: Overview
 collate: true
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -37,7 +37,7 @@ You can learn more about this [here](/connectors/storage). Keep reading for an e
 <Manifest />
 ## Metadata Ingestion
 <Steps>
-<Step title="1. Visit the Services Page">
+<Step title="Visit the Services Page">
   The first step is ingesting the metadata from your sources. Under
 Settings, you will find a Services link an external source system to
 OpenMetadata. Once a service is created, it can be used to configure
@@ -45,15 +45,15 @@ metadata, usage, and profiler workflows.
 To visit the Services page, select Services from the Settings menu.
   <img noZoom src="/public/images/connectors/visit-services-page.png" alt="Visit Services Page" />
 </Step>
-<Step title="2. Create a New Service">
+<Step title="Create a New Service">
   Click on the 'Add New Service' button to start the Service creation.
   <img noZoom src="/public/images/connectors/create-new-service.png" alt="Create a new service" />
 </Step>
-<Step title="3. Select the Service Type">
+<Step title="Select the Service Type">
   Select ADLS as the service type and click Next.
   <img noZoom src="/public/images/connectors/adls/select-service.png" alt="Select Service" />
 </Step>
-<Step title="4. Name and Describe your Service">
+<Step title="Name and Describe your Service">
   Provide a name and description for your service.
 #### Service Name
 OpenMetadata uniquely identifies services by their Service Name. Provide
@@ -62,7 +62,7 @@ the other Storage services that you might be ingesting metadata
 from.
   <img noZoom src="/public/images/connectors/adls/add-new-service.png" alt="Add New Service" />
 </Step>
-<Step title="5. Configure the Service Connection">
+<Step title="Configure the Service Connection">
   In this step, we will configure the connection settings required for
 this connector. Please follow the instructions below to ensure that
 you've configured the connector to read from your ADLS service as
