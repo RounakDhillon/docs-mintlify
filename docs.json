@@ -8,6 +8,7 @@
         "light": "#1570EF",
         "dark": "#1570EF"
     },
+    "favicon": "/public/images/icons/collate-monogram.svg",
     "navbar": {
         "links": [
             {
@@ -89,7 +90,7 @@
                         ]
                     },
                     {
-                        "group": "Connector List",
+                        "group": "Connectors",
                         "pages": [
                             {
                                 "group": "API",

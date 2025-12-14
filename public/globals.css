@@ -896,3 +896,8 @@ article iframe,
 .callout [data-component-part="callout-content"] {
   color: #414651 !important;
 }
+
+#chat-assistant-sheet {
+  margin-top: 2rem !important;
+  min-height: 90% !important;
+}
