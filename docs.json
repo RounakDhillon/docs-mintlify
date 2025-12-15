@@ -474,6 +474,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "TimescaleDB",
+                                        "pages": [
+                                            "connectors/database/timescale/index",
+                                            "connectors/database/timescale/troubleshooting",
+                                            "connectors/database/timescale/yaml"
+                                        ]
+                                    },
+                                    {
                                         "group": "Trino",
                                         "pages": [
                                             "connectors/database/trino/index",
@@ -517,6 +525,14 @@
                                             "connectors/dashboard/grafana/index",
                                             "connectors/dashboard/grafana/troubleshooting",
                                             "connectors/dashboard/grafana/yaml"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Hex",
+                                        "pages": [
+                                            "connectors/dashboard/hex/index",
+                                            "connectors/dashboard/hex/troubleshooting",
+                                            "connectors/dashboard/hex/yaml"
                                         ]
                                     },
                                     {
@@ -646,6 +662,26 @@
                                 ]
                             },
                             {
+                                "group": "Drive",
+                                "pages": [
+                                    "connectors/drive/index",
+                                    {
+                                        "group": "Custom Drive",
+                                        "pages": [
+                                            "connectors/drive/custom-drive/index"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Google Drive",
+                                        "pages": [
+                                            "connectors/drive/googledrive/index",
+                                            "connectors/drive/googledrive/troubleshooting",
+                                            "connectors/drive/googledrive/yaml"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
                                 "group": "Ingestion",
                                 "pages": [
                                     "connectors/ingestion/index",
@@ -745,6 +781,14 @@
                                             "connectors/metadata/atlas/index",
                                             "connectors/metadata/atlas/troubleshooting",
                                             "connectors/metadata/atlas/yaml"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Collibra",
+                                        "pages": [
+                                            "connectors/metadata/collibra/index",
+                                            "connectors/metadata/collibra/troubleshooting",
+                                            "connectors/metadata/collibra/yaml"
                                         ]
                                     }
                                 ]
@@ -874,6 +918,14 @@
                                             "connectors/pipeline/kafkaconnect/index",
                                             "connectors/pipeline/kafkaconnect/troubleshooting",
                                             "connectors/pipeline/kafkaconnect/yaml"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Kinesis Firehose",
+                                        "pages": [
+                                            "connectors/pipeline/kinesis-firehose/index",
+                                            "connectors/pipeline/kinesis-firehose/troubleshooting",
+                                            "connectors/pipeline/kinesis-firehose/yaml"
                                         ]
                                     },
                                     {
