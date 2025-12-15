@@ -8,6 +8,7 @@
         "light": "#1570EF",
         "dark": "#1570EF"
     },
+    "favicon": "/public/images/icons/collate-monogram.svg",
     "navbar": {
         "links": [
             {
@@ -89,7 +90,7 @@
                         ]
                     },
                     {
-                        "group": "Connector List",
+                        "group": "Connectors",
                         "pages": [
                             {
                                 "group": "API",
@@ -473,6 +474,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "TimescaleDB",
+                                        "pages": [
+                                            "connectors/database/timescale/index",
+                                            "connectors/database/timescale/troubleshooting",
+                                            "connectors/database/timescale/yaml"
+                                        ]
+                                    },
+                                    {
                                         "group": "Trino",
                                         "pages": [
                                             "connectors/database/trino/index",
@@ -516,6 +525,14 @@
                                             "connectors/dashboard/grafana/index",
                                             "connectors/dashboard/grafana/troubleshooting",
                                             "connectors/dashboard/grafana/yaml"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Hex",
+                                        "pages": [
+                                            "connectors/dashboard/hex/index",
+                                            "connectors/dashboard/hex/troubleshooting",
+                                            "connectors/dashboard/hex/yaml"
                                         ]
                                     },
                                     {
@@ -640,6 +657,26 @@
                                             "connectors/dashboard/thoughtspot/index",
                                             "connectors/dashboard/thoughtspot/troubleshooting",
                                             "connectors/dashboard/thoughtspot/yaml"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Drive",
+                                "pages": [
+                                    "connectors/drive/index",
+                                    {
+                                        "group": "Custom Drive",
+                                        "pages": [
+                                            "connectors/drive/custom-drive/index"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Google Drive",
+                                        "pages": [
+                                            "connectors/drive/googledrive/index",
+                                            "connectors/drive/googledrive/troubleshooting",
+                                            "connectors/drive/googledrive/yaml"
                                         ]
                                     }
                                 ]
@@ -797,6 +834,14 @@
                                             "connectors/metadata/atlas/troubleshooting",
                                             "connectors/metadata/atlas/yaml"
                                         ]
+                                    },
+                                    {
+                                        "group": "Collibra",
+                                        "pages": [
+                                            "connectors/metadata/collibra/index",
+                                            "connectors/metadata/collibra/troubleshooting",
+                                            "connectors/metadata/collibra/yaml"
+                                        ]
                                     }
                                 ]
                             },
@@ -925,6 +970,14 @@
                                             "connectors/pipeline/kafkaconnect/index",
                                             "connectors/pipeline/kafkaconnect/troubleshooting",
                                             "connectors/pipeline/kafkaconnect/yaml"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Kinesis Firehose",
+                                        "pages": [
+                                            "connectors/pipeline/kinesis-firehose/index",
+                                            "connectors/pipeline/kinesis-firehose/troubleshooting",
+                                            "connectors/pipeline/kinesis-firehose/yaml"
                                         ]
                                     },
                                     {
@@ -1171,6 +1224,17 @@
                                             "how-to-guides/data-quality-observability/quality/tests-ui",
                                             "how-to-guides/data-quality-observability/quality/custom-tests",
                                             "how-to-guides/data-quality-observability/quality/dimensional-validation"
+                                            {
+                                                "group": "Data Quality as Code",
+                                                "pages": [
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/index",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/getting-started",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-runner",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/dataframe-validation",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-definitions",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/advanced-usage"
+                                                ]
+                                            }
                                         ]
                                     },
                                     {
@@ -1206,6 +1270,19 @@
                                             "how-to-guides/data-quality-observability/observability/index",
                                             "how-to-guides/data-quality-observability/observability/alerts",
                                             "how-to-guides/data-quality-observability/observability/webhooks"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Alerts & Notifications",
+                                        "pages": [
+                                            "how-to-guides/data-quality-observability/alerts-notifications/index",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/data-observability-alerts",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/system-governance-notifications",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/email-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/slack-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/microsoft-teams-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/google-chat-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/generic-webhook-alerts-configuration"
                                         ]
                                     },
                                     {
