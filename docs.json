@@ -1170,7 +1170,18 @@
                                             "how-to-guides/data-quality-observability/quality/configure",
                                             "how-to-guides/data-quality-observability/quality/tests-yaml",
                                             "how-to-guides/data-quality-observability/quality/tests-ui",
-                                            "how-to-guides/data-quality-observability/quality/custom-tests"
+                                            "how-to-guides/data-quality-observability/quality/custom-tests",
+                                            {
+                                                "group": "Data Quality as Code",
+                                                "pages": [
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/index",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/getting-started",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-runner",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/dataframe-validation",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-definitions",
+                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/advanced-usage"
+                                                ]
+                                            }
                                         ]
                                     },
                                     {
@@ -1206,6 +1217,19 @@
                                             "how-to-guides/data-quality-observability/observability/index",
                                             "how-to-guides/data-quality-observability/observability/alerts",
                                             "how-to-guides/data-quality-observability/observability/webhooks"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Alerts & Notifications",
+                                        "pages": [
+                                            "how-to-guides/data-quality-observability/alerts-notifications/index",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/data-observability-alerts",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/system-governance-notifications",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/email-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/slack-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/microsoft-teams-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/google-chat-alerts-configuration",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/generic-webhook-alerts-configuration"
                                         ]
                                     },
                                     {
