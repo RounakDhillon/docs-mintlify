@@ -1422,8 +1422,8 @@
                                                 "pages": [
                                                     "how-to-guides/data-governance/workflows/examples/index",
                                                     "how-to-guides/data-governance/workflows/examples/tag-approval-workflow",
-                                                    "how-to-guides/data-governance/workflows/examples/column-completeness-workflow",
-                                                    "how-to-guides/data-governance/workflows/examples/set-tier-to-mlmodels-workflow"
+                                                    "how-to-guides/data-governance/workflows/examples/table-documentation-tiering-workflow",
+                                                    "how-to-guides/data-governance/workflows/examples/set-tags-to-mlmodels-workflow"
                                                 ]
                                             }
                                         ]
