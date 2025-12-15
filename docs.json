@@ -109,24 +109,24 @@
                                         "group": "ADLS Datalake",
                                         "pages": [
                                             "connectors/database/adls-datalake/index",
-                                            "connectors/database/adls-datalake/troubleshooting",
-                                            "connectors/database/adls-datalake/yaml"
+                                            "connectors/database/adls-datalake/yaml",
+                                            "connectors/database/adls-datalake/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Athena",
                                         "pages": [
                                             "connectors/database/athena/index",
-                                            "connectors/database/athena/troubleshooting",
-                                            "connectors/database/athena/yaml"
+                                            "connectors/database/athena/yaml",
+                                            "connectors/database/athena/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "AzureSQL",
                                         "pages": [
                                             "connectors/database/azuresql/index",
-                                            "connectors/database/azuresql/troubleshooting",
-                                            "connectors/database/azuresql/yaml"
+                                            "connectors/database/azuresql/yaml",
+                                            "connectors/database/azuresql/troubleshooting"
                                         ]
                                     },
                                     {
@@ -134,8 +134,8 @@
                                         "pages": [
                                             "connectors/database/bigquery/index",
                                             "connectors/database/bigquery/create-credentials",
-                                            "connectors/database/bigquery/troubleshooting",
-                                            "connectors/database/bigquery/yaml"
+                                            "connectors/database/bigquery/yaml",
+                                            "connectors/database/bigquery/troubleshooting"
                                         ]
                                     },
                                     {
@@ -143,64 +143,64 @@
                                         "pages": [
                                             "connectors/database/bigtable/index",
                                             "connectors/database/bigtable/roles",
-                                            "connectors/database/bigtable/troubleshooting",
-                                            "connectors/database/bigtable/yaml"
+                                            "connectors/database/bigtable/yaml",
+                                            "connectors/database/bigtable/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Cassandra",
                                         "pages": [
                                             "connectors/database/cassandra/index",
-                                            "connectors/database/cassandra/troubleshooting",
-                                            "connectors/database/cassandra/yaml"
+                                            "connectors/database/cassandra/yaml",
+                                            "connectors/database/cassandra/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "ClickHouse",
                                         "pages": [
                                             "connectors/database/clickhouse/index",
-                                            "connectors/database/clickhouse/troubleshooting",
-                                            "connectors/database/clickhouse/yaml"
+                                            "connectors/database/clickhouse/yaml",
+                                            "connectors/database/clickhouse/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "CockroachDB",
                                         "pages": [
                                             "connectors/database/cockroach/index",
-                                            "connectors/database/cockroach/troubleshooting",
-                                            "connectors/database/cockroach/yaml"
+                                            "connectors/database/cockroach/yaml",
+                                            "connectors/database/cockroach/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Couchbase",
                                         "pages": [
                                             "connectors/database/couchbase/index",
-                                            "connectors/database/couchbase/troubleshooting",
-                                            "connectors/database/couchbase/yaml"
+                                            "connectors/database/couchbase/yaml",
+                                            "connectors/database/couchbase/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Databricks",
                                         "pages": [
                                             "connectors/database/databricks/index",
-                                            "connectors/database/databricks/troubleshooting",
-                                            "connectors/database/databricks/yaml"
+                                            "connectors/database/databricks/yaml",
+                                            "connectors/database/databricks/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "DB2",
                                         "pages": [
                                             "connectors/database/db2/index",
-                                            "connectors/database/db2/troubleshooting",
-                                            "connectors/database/db2/yaml"
+                                            "connectors/database/db2/yaml",
+                                            "connectors/database/db2/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Delta Lake",
                                         "pages": [
                                             "connectors/database/deltalake/index",
-                                            "connectors/database/deltalake/troubleshooting",
-                                            "connectors/database/deltalake/yaml"
+                                            "connectors/database/deltalake/yaml",
+                                            "connectors/database/deltalake/troubleshooting"
                                         ]
                                     },
                                     {
@@ -215,104 +215,104 @@
                                         "group": "Doris",
                                         "pages": [
                                             "connectors/database/doris/index",
-                                            "connectors/database/doris/troubleshooting",
-                                            "connectors/database/doris/yaml"
+                                            "connectors/database/doris/yaml",
+                                            "connectors/database/doris/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Druid",
                                         "pages": [
                                             "connectors/database/druid/index",
-                                            "connectors/database/druid/troubleshooting",
-                                            "connectors/database/druid/yaml"
+                                            "connectors/database/druid/yaml",
+                                            "connectors/database/druid/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "DynamoDB",
                                         "pages": [
                                             "connectors/database/dynamodb/index",
-                                            "connectors/database/dynamodb/troubleshooting",
-                                            "connectors/database/dynamodb/yaml"
+                                            "connectors/database/dynamodb/yaml",
+                                            "connectors/database/dynamodb/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Epic",
                                         "pages": [
                                             "connectors/database/epic/index",
-                                            "connectors/database/epic/troubleshooting",
-                                            "connectors/database/epic/yaml"
+                                            "connectors/database/epic/yaml",
+                                            "connectors/database/epic/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Exasol",
                                         "pages": [
                                             "connectors/database/exasol/index",
-                                            "connectors/database/exasol/troubleshooting",
-                                            "connectors/database/exasol/yaml"
+                                            "connectors/database/exasol/yaml",
+                                            "connectors/database/exasol/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "GCS Datalake",
                                         "pages": [
                                             "connectors/database/gcs-datalake/index",
-                                            "connectors/database/gcs-datalake/troubleshooting",
-                                            "connectors/database/gcs-datalake/yaml"
+                                            "connectors/database/gcs-datalake/yaml",
+                                            "connectors/database/gcs-datalake/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Glue",
                                         "pages": [
                                             "connectors/database/glue/index",
-                                            "connectors/database/glue/troubleshooting",
-                                            "connectors/database/glue/yaml"
+                                            "connectors/database/glue/yaml",
+                                            "connectors/database/glue/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Greenplum",
                                         "pages": [
                                             "connectors/database/greenplum/index",
-                                            "connectors/database/greenplum/troubleshooting",
-                                            "connectors/database/greenplum/yaml"
+                                            "connectors/database/greenplum/yaml",
+                                            "connectors/database/greenplum/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Hive",
                                         "pages": [
                                             "connectors/database/hive/index",
-                                            "connectors/database/hive/troubleshooting",
-                                            "connectors/database/hive/yaml"
+                                            "connectors/database/hive/yaml",
+                                            "connectors/database/hive/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Iceberg",
                                         "pages": [
                                             "connectors/database/iceberg/index",
-                                            "connectors/database/iceberg/troubleshooting",
-                                            "connectors/database/iceberg/yaml"
+                                            "connectors/database/iceberg/yaml",
+                                            "connectors/database/iceberg/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Impala",
                                         "pages": [
                                             "connectors/database/impala/index",
-                                            "connectors/database/impala/troubleshooting",
-                                            "connectors/database/impala/yaml"
+                                            "connectors/database/impala/yaml",
+                                            "connectors/database/impala/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "MariaDB",
                                         "pages": [
                                             "connectors/database/mariadb/index",
-                                            "connectors/database/mariadb/troubleshooting",
-                                            "connectors/database/mariadb/yaml"
+                                            "connectors/database/mariadb/yaml",
+                                            "connectors/database/mariadb/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "MongoDB",
                                         "pages": [
                                             "connectors/database/mongodb/index",
-                                            "connectors/database/mongodb/troubleshooting",
-                                            "connectors/database/mongodb/yaml"
+                                            "connectors/database/mongodb/yaml",
+                                            "connectors/database/mongodb/troubleshooting"
                                         ]
                                     },
                                     {
@@ -327,64 +327,64 @@
                                         "group": "MySQL",
                                         "pages": [
                                             "connectors/database/mysql/index",
-                                            "connectors/database/mysql/troubleshooting",
-                                            "connectors/database/mysql/yaml"
+                                            "connectors/database/mysql/yaml",
+                                            "connectors/database/mysql/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Oracle",
                                         "pages": [
                                             "connectors/database/oracle/index",
-                                            "connectors/database/oracle/troubleshooting",
-                                            "connectors/database/oracle/yaml"
+                                            "connectors/database/oracle/yaml",
+                                            "connectors/database/oracle/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "PinotDB",
                                         "pages": [
                                             "connectors/database/pinotdb/index",
-                                            "connectors/database/pinotdb/troubleshooting",
-                                            "connectors/database/pinotdb/yaml"
+                                            "connectors/database/pinotdb/yaml",
+                                            "connectors/database/pinotdb/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Postgres",
                                         "pages": [
                                             "connectors/database/postgres/index",
-                                            "connectors/database/postgres/troubleshooting",
-                                            "connectors/database/postgres/yaml"
+                                            "connectors/database/postgres/yaml",
+                                            "connectors/database/postgres/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Presto",
                                         "pages": [
                                             "connectors/database/presto/index",
-                                            "connectors/database/presto/troubleshooting",
-                                            "connectors/database/presto/yaml"
+                                            "connectors/database/presto/yaml",
+                                            "connectors/database/presto/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Redshift",
                                         "pages": [
                                             "connectors/database/redshift/index",
-                                            "connectors/database/redshift/troubleshooting",
-                                            "connectors/database/redshift/yaml"
+                                            "connectors/database/redshift/yaml",
+                                            "connectors/database/redshift/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "S3 Datalake",
                                         "pages": [
                                             "connectors/database/s3-datalake/index",
-                                            "connectors/database/s3-datalake/troubleshooting",
-                                            "connectors/database/s3-datalake/yaml"
+                                            "connectors/database/s3-datalake/yaml",
+                                            "connectors/database/s3-datalake/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Salesforce",
                                         "pages": [
                                             "connectors/database/salesforce/index",
-                                            "connectors/database/salesforce/troubleshooting",
-                                            "connectors/database/salesforce/yaml"
+                                            "connectors/database/salesforce/yaml",
+                                            "connectors/database/salesforce/troubleshooting"
                                         ]
                                     },
                                     {
@@ -392,112 +392,112 @@
                                         "pages": [
                                             "connectors/database/sap-erp/index",
                                             "connectors/database/sap-erp/setup-sap-apis",
-                                            "connectors/database/sap-erp/troubleshooting",
-                                            "connectors/database/sap-erp/yaml"
+                                            "connectors/database/sap-erp/yaml",
+                                            "connectors/database/sap-erp/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "SAP HANA",
                                         "pages": [
                                             "connectors/database/sap-hana/index",
-                                            "connectors/database/sap-hana/troubleshooting",
-                                            "connectors/database/sap-hana/yaml"
+                                            "connectors/database/sap-hana/yaml",
+                                            "connectors/database/sap-hana/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "SAS",
                                         "pages": [
                                             "connectors/database/sas/index",
-                                            "connectors/database/sas/troubleshooting",
-                                            "connectors/database/sas/yaml"
+                                            "connectors/database/sas/yaml",
+                                            "connectors/database/sas/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "ServiceNow",
                                         "pages": [
                                             "connectors/database/servicenow/index",
-                                            "connectors/database/servicenow/troubleshooting",
-                                            "connectors/database/servicenow/yaml"
+                                            "connectors/database/servicenow/yaml",
+                                            "connectors/database/servicenow/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "SingleStore",
                                         "pages": [
                                             "connectors/database/singlestore/index",
-                                            "connectors/database/singlestore/troubleshooting",
-                                            "connectors/database/singlestore/yaml"
+                                            "connectors/database/singlestore/yaml",
+                                            "connectors/database/singlestore/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Snowflake",
                                         "pages": [
                                             "connectors/database/snowflake/index",
-                                            "connectors/database/snowflake/troubleshooting",
-                                            "connectors/database/snowflake/yaml"
+                                            "connectors/database/snowflake/yaml",
+                                            "connectors/database/snowflake/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "SQLite",
                                         "pages": [
                                             "connectors/database/sqlite/index",
-                                            "connectors/database/sqlite/troubleshooting",
-                                            "connectors/database/sqlite/yaml"
+                                            "connectors/database/sqlite/yaml",
+                                            "connectors/database/sqlite/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "SSAS",
                                         "pages": [
                                             "connectors/database/ssas/index",
-                                            "connectors/database/ssas/troubleshooting",
-                                            "connectors/database/ssas/yaml"
+                                            "connectors/database/ssas/yaml",
+                                            "connectors/database/ssas/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Synapse",
                                         "pages": [
                                             "connectors/database/synapse/index",
-                                            "connectors/database/synapse/troubleshooting",
-                                            "connectors/database/synapse/yaml"
+                                            "connectors/database/synapse/yaml",
+                                            "connectors/database/synapse/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Teradata",
                                         "pages": [
                                             "connectors/database/teradata/index",
-                                            "connectors/database/teradata/troubleshooting",
-                                            "connectors/database/teradata/yaml"
+                                            "connectors/database/teradata/yaml",
+                                            "connectors/database/teradata/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "TimescaleDB",
                                         "pages": [
                                             "connectors/database/timescale/index",
-                                            "connectors/database/timescale/troubleshooting",
-                                            "connectors/database/timescale/yaml"
+                                            "connectors/database/timescale/yaml",
+                                            "connectors/database/timescale/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Trino",
                                         "pages": [
                                             "connectors/database/trino/index",
-                                            "connectors/database/trino/troubleshooting",
-                                            "connectors/database/trino/yaml"
+                                            "connectors/database/trino/yaml",
+                                            "connectors/database/trino/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Unity Catalog",
                                         "pages": [
                                             "connectors/database/unity-catalog/index",
-                                            "connectors/database/unity-catalog/troubleshooting",
-                                            "connectors/database/unity-catalog/yaml"
+                                            "connectors/database/unity-catalog/yaml",
+                                            "connectors/database/unity-catalog/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Vertica",
                                         "pages": [
                                             "connectors/database/vertica/index",
-                                            "connectors/database/vertica/troubleshooting",
-                                            "connectors/database/vertica/yaml"
+                                            "connectors/database/vertica/yaml",
+                                            "connectors/database/vertica/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -510,64 +510,64 @@
                                         "group": "Domo Dashboard",
                                         "pages": [
                                             "connectors/dashboard/domo-dashboard/index",
-                                            "connectors/dashboard/domo-dashboard/troubleshooting",
-                                            "connectors/dashboard/domo-dashboard/yaml"
+                                            "connectors/dashboard/domo-dashboard/yaml",
+                                            "connectors/dashboard/domo-dashboard/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Grafana",
                                         "pages": [
                                             "connectors/dashboard/grafana/index",
-                                            "connectors/dashboard/grafana/troubleshooting",
-                                            "connectors/dashboard/grafana/yaml"
+                                            "connectors/dashboard/grafana/yaml",
+                                            "connectors/dashboard/grafana/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Hex",
                                         "pages": [
                                             "connectors/dashboard/hex/index",
-                                            "connectors/dashboard/hex/troubleshooting",
-                                            "connectors/dashboard/hex/yaml"
+                                            "connectors/dashboard/hex/yaml",
+                                            "connectors/dashboard/hex/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Lightdash",
                                         "pages": [
                                             "connectors/dashboard/lightdash/index",
-                                            "connectors/dashboard/lightdash/troubleshooting",
-                                            "connectors/dashboard/lightdash/yaml"
+                                            "connectors/dashboard/lightdash/yaml",
+                                            "connectors/dashboard/lightdash/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Looker",
                                         "pages": [
                                             "connectors/dashboard/looker/index",
-                                            "connectors/dashboard/looker/troubleshooting",
-                                            "connectors/dashboard/looker/yaml"
+                                            "connectors/dashboard/looker/yaml",
+                                            "connectors/dashboard/looker/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Metabase",
                                         "pages": [
                                             "connectors/dashboard/metabase/index",
-                                            "connectors/dashboard/metabase/troubleshooting",
-                                            "connectors/dashboard/metabase/yaml"
+                                            "connectors/dashboard/metabase/yaml",
+                                            "connectors/dashboard/metabase/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "MicroStrategy",
                                         "pages": [
                                             "connectors/dashboard/microstrategy/index",
-                                            "connectors/dashboard/microstrategy/troubleshooting",
-                                            "connectors/dashboard/microstrategy/yaml"
+                                            "connectors/dashboard/microstrategy/yaml",
+                                            "connectors/dashboard/microstrategy/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Mode",
                                         "pages": [
                                             "connectors/dashboard/mode/index",
-                                            "connectors/dashboard/mode/troubleshooting",
-                                            "connectors/dashboard/mode/yaml"
+                                            "connectors/dashboard/mode/yaml",
+                                            "connectors/dashboard/mode/troubleshooting"
                                         ]
                                     },
                                     {
@@ -575,16 +575,16 @@
                                         "pages": [
                                             "connectors/dashboard/powerbi/index",
                                             "connectors/dashboard/powerbi/powerbi-pbit-lineage",
-                                            "connectors/dashboard/powerbi/troubleshooting",
-                                            "connectors/dashboard/powerbi/yaml"
+                                            "connectors/dashboard/powerbi/yaml",
+                                            "connectors/dashboard/powerbi/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Power BI Report Server",
                                         "pages": [
                                             "connectors/dashboard/powerbi-report-server/index",
-                                            "connectors/dashboard/powerbi-report-server/troubleshooting",
-                                            "connectors/dashboard/powerbi-report-server/yaml"
+                                            "connectors/dashboard/powerbi-report-server/yaml",
+                                            "connectors/dashboard/powerbi-report-server/troubleshooting"
                                         ]
                                     },
                                     {
@@ -592,8 +592,8 @@
                                         "pages": [
                                             "connectors/dashboard/qlikcloud/index",
                                             "connectors/dashboard/qlikcloud/api_keys",
-                                            "connectors/dashboard/qlikcloud/troubleshooting",
-                                            "connectors/dashboard/qlikcloud/yaml"
+                                            "connectors/dashboard/qlikcloud/yaml",
+                                            "connectors/dashboard/qlikcloud/troubleshooting"
                                         ]
                                     },
                                     {
@@ -601,32 +601,32 @@
                                         "pages": [
                                             "connectors/dashboard/qliksense/index",
                                             "connectors/dashboard/qliksense/certificates",
-                                            "connectors/dashboard/qliksense/troubleshooting",
-                                            "connectors/dashboard/qliksense/yaml"
+                                            "connectors/dashboard/qliksense/yaml",
+                                            "connectors/dashboard/qliksense/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "QuickSight",
                                         "pages": [
                                             "connectors/dashboard/quicksight/index",
-                                            "connectors/dashboard/quicksight/troubleshooting",
-                                            "connectors/dashboard/quicksight/yaml"
+                                            "connectors/dashboard/quicksight/yaml",
+                                            "connectors/dashboard/quicksight/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Redash",
                                         "pages": [
                                             "connectors/dashboard/redash/index",
-                                            "connectors/dashboard/redash/troubleshooting",
-                                            "connectors/dashboard/redash/yaml"
+                                            "connectors/dashboard/redash/yaml",
+                                            "connectors/dashboard/redash/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Sigma",
                                         "pages": [
                                             "connectors/dashboard/sigma/index",
-                                            "connectors/dashboard/sigma/troubleshooting",
-                                            "connectors/dashboard/sigma/yaml"
+                                            "connectors/dashboard/sigma/yaml",
+                                            "connectors/dashboard/sigma/troubleshooting"
                                         ]
                                     },
                                     {
@@ -634,24 +634,24 @@
                                         "pages": [
                                             "connectors/dashboard/superset/index",
                                             "connectors/dashboard/superset/sso",
-                                            "connectors/dashboard/superset/troubleshooting",
-                                            "connectors/dashboard/superset/yaml"
+                                            "connectors/dashboard/superset/yaml",
+                                            "connectors/dashboard/superset/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Tableau",
                                         "pages": [
                                             "connectors/dashboard/tableau/index",
-                                            "connectors/dashboard/tableau/troubleshooting",
-                                            "connectors/dashboard/tableau/yaml"
+                                            "connectors/dashboard/tableau/yaml",
+                                            "connectors/dashboard/tableau/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "ThoughtSpot",
                                         "pages": [
                                             "connectors/dashboard/thoughtspot/index",
-                                            "connectors/dashboard/thoughtspot/troubleshooting",
-                                            "connectors/dashboard/thoughtspot/yaml"
+                                            "connectors/dashboard/thoughtspot/yaml",
+                                            "connectors/dashboard/thoughtspot/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -670,8 +670,8 @@
                                         "group": "Google Drive",
                                         "pages": [
                                             "connectors/drive/googledrive/index",
-                                            "connectors/drive/googledrive/troubleshooting",
-                                            "connectors/drive/googledrive/yaml"
+                                            "connectors/drive/googledrive/yaml",
+                                            "connectors/drive/googledrive/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -772,24 +772,24 @@
                                         "group": "Kafka",
                                         "pages": [
                                             "connectors/messaging/kafka/index",
-                                            "connectors/messaging/kafka/troubleshooting",
-                                            "connectors/messaging/kafka/yaml"
+                                            "connectors/messaging/kafka/yaml",
+                                            "connectors/messaging/kafka/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Kinesis",
                                         "pages": [
                                             "connectors/messaging/kinesis/index",
-                                            "connectors/messaging/kinesis/troubleshooting",
-                                            "connectors/messaging/kinesis/yaml"
+                                            "connectors/messaging/kinesis/yaml",
+                                            "connectors/messaging/kinesis/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Redpanda",
                                         "pages": [
                                             "connectors/messaging/redpanda/index",
-                                            "connectors/messaging/redpanda/troubleshooting",
-                                            "connectors/messaging/redpanda/yaml"
+                                            "connectors/messaging/redpanda/yaml",
+                                            "connectors/messaging/redpanda/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -802,40 +802,40 @@
                                         "group": "Alation",
                                         "pages": [
                                             "connectors/metadata/alation/index",
-                                            "connectors/metadata/alation/troubleshooting",
-                                            "connectors/metadata/alation/yaml"
+                                            "connectors/metadata/alation/yaml",
+                                            "connectors/metadata/alation/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Alation Sink",
                                         "pages": [
                                             "connectors/metadata/alationsink/index",
-                                            "connectors/metadata/alationsink/troubleshooting",
-                                            "connectors/metadata/alationsink/yaml"
+                                            "connectors/metadata/alationsink/yaml",
+                                            "connectors/metadata/alationsink/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Amundsen",
                                         "pages": [
                                             "connectors/metadata/amundsen/index",
-                                            "connectors/metadata/amundsen/troubleshooting",
-                                            "connectors/metadata/amundsen/yaml"
+                                            "connectors/metadata/amundsen/yaml",
+                                            "connectors/metadata/amundsen/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Atlas",
                                         "pages": [
                                             "connectors/metadata/atlas/index",
-                                            "connectors/metadata/atlas/troubleshooting",
-                                            "connectors/metadata/atlas/yaml"
+                                            "connectors/metadata/atlas/yaml",
+                                            "connectors/metadata/atlas/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Collibra",
                                         "pages": [
                                             "connectors/metadata/collibra/index",
-                                            "connectors/metadata/collibra/troubleshooting",
-                                            "connectors/metadata/collibra/yaml"
+                                            "connectors/metadata/collibra/yaml",
+                                            "connectors/metadata/collibra/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -848,24 +848,24 @@
                                         "group": "MLflow",
                                         "pages": [
                                             "connectors/ml-model/mlflow/index",
-                                            "connectors/ml-model/mlflow/troubleshooting",
-                                            "connectors/ml-model/mlflow/yaml"
+                                            "connectors/ml-model/mlflow/yaml",
+                                            "connectors/ml-model/mlflow/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "SageMaker",
                                         "pages": [
                                             "connectors/ml-model/sagemaker/index",
-                                            "connectors/ml-model/sagemaker/troubleshooting",
-                                            "connectors/ml-model/sagemaker/yaml"
+                                            "connectors/ml-model/sagemaker/yaml",
+                                            "connectors/ml-model/sagemaker/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "VertexAI",
                                         "pages": [
                                             "connectors/ml-model/vertexai/index",
-                                            "connectors/ml-model/vertexai/troubleshooting",
-                                            "connectors/ml-model/vertexai/yaml"
+                                            "connectors/ml-model/vertexai/yaml",
+                                            "connectors/ml-model/vertexai/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -878,8 +878,8 @@
                                         "group": "Airbyte",
                                         "pages": [
                                             "connectors/pipeline/airbyte/index",
-                                            "connectors/pipeline/airbyte/troubleshooting",
-                                            "connectors/pipeline/airbyte/yaml"
+                                            "connectors/pipeline/airbyte/yaml",
+                                            "connectors/pipeline/airbyte/troubleshooting"
                                         ]
                                     },
                                     {
@@ -891,104 +891,104 @@
                                             "connectors/pipeline/airflow/lineage-backend",
                                             "connectors/pipeline/airflow/lineage-operator",
                                             "connectors/pipeline/airflow/mwaa",
-                                            "connectors/pipeline/airflow/troubleshooting",
-                                            "connectors/pipeline/airflow/yaml"
+                                            "connectors/pipeline/airflow/yaml",
+                                            "connectors/pipeline/airflow/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Dagster",
                                         "pages": [
                                             "connectors/pipeline/dagster/index",
-                                            "connectors/pipeline/dagster/troubleshooting",
-                                            "connectors/pipeline/dagster/yaml"
+                                            "connectors/pipeline/dagster/yaml",
+                                            "connectors/pipeline/dagster/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Databricks Pipeline",
                                         "pages": [
                                             "connectors/pipeline/databricks-pipeline/index",
-                                            "connectors/pipeline/databricks-pipeline/troubleshooting",
-                                            "connectors/pipeline/databricks-pipeline/yaml"
+                                            "connectors/pipeline/databricks-pipeline/yaml",
+                                            "connectors/pipeline/databricks-pipeline/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Data Factory",
                                         "pages": [
                                             "connectors/pipeline/datafactory/index",
-                                            "connectors/pipeline/datafactory/troubleshooting",
-                                            "connectors/pipeline/datafactory/yaml"
+                                            "connectors/pipeline/datafactory/yaml",
+                                            "connectors/pipeline/datafactory/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "dbt Cloud",
                                         "pages": [
                                             "connectors/pipeline/dbtcloud/index",
-                                            "connectors/pipeline/dbtcloud/troubleshooting",
-                                            "connectors/pipeline/dbtcloud/yaml"
+                                            "connectors/pipeline/dbtcloud/yaml",
+                                            "connectors/pipeline/dbtcloud/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Domo Pipeline",
                                         "pages": [
                                             "connectors/pipeline/domo-pipeline/index",
-                                            "connectors/pipeline/domo-pipeline/troubleshooting",
-                                            "connectors/pipeline/domo-pipeline/yaml"
+                                            "connectors/pipeline/domo-pipeline/yaml",
+                                            "connectors/pipeline/domo-pipeline/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Fivetran",
                                         "pages": [
                                             "connectors/pipeline/fivetran/index",
-                                            "connectors/pipeline/fivetran/troubleshooting",
-                                            "connectors/pipeline/fivetran/yaml"
+                                            "connectors/pipeline/fivetran/yaml",
+                                            "connectors/pipeline/fivetran/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Flink",
                                         "pages": [
                                             "connectors/pipeline/flink/index",
-                                            "connectors/pipeline/flink/troubleshooting",
-                                            "connectors/pipeline/flink/yaml"
+                                            "connectors/pipeline/flink/yaml",
+                                            "connectors/pipeline/flink/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Glue Pipeline",
                                         "pages": [
                                             "connectors/pipeline/glue-pipeline/index",
-                                            "connectors/pipeline/glue-pipeline/troubleshooting",
-                                            "connectors/pipeline/glue-pipeline/yaml"
+                                            "connectors/pipeline/glue-pipeline/yaml",
+                                            "connectors/pipeline/glue-pipeline/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Kafka Connect",
                                         "pages": [
                                             "connectors/pipeline/kafkaconnect/index",
-                                            "connectors/pipeline/kafkaconnect/troubleshooting",
-                                            "connectors/pipeline/kafkaconnect/yaml"
+                                            "connectors/pipeline/kafkaconnect/yaml",
+                                            "connectors/pipeline/kafkaconnect/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Kinesis Firehose",
                                         "pages": [
                                             "connectors/pipeline/kinesis-firehose/index",
-                                            "connectors/pipeline/kinesis-firehose/troubleshooting",
-                                            "connectors/pipeline/kinesis-firehose/yaml"
+                                            "connectors/pipeline/kinesis-firehose/yaml",
+                                            "connectors/pipeline/kinesis-firehose/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Matillion",
                                         "pages": [
                                             "connectors/pipeline/matillion/index",
-                                            "connectors/pipeline/matillion/troubleshooting",
-                                            "connectors/pipeline/matillion/yaml"
+                                            "connectors/pipeline/matillion/yaml",
+                                            "connectors/pipeline/matillion/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "NiFi",
                                         "pages": [
                                             "connectors/pipeline/nifi/index",
-                                            "connectors/pipeline/nifi/troubleshooting",
-                                            "connectors/pipeline/nifi/yaml"
+                                            "connectors/pipeline/nifi/yaml",
+                                            "connectors/pipeline/nifi/troubleshooting"
                                         ]
                                     },
                                     {
@@ -1002,40 +1002,40 @@
                                         "group": "Snowplow",
                                         "pages": [
                                             "connectors/pipeline/snowplow/index",
-                                            "connectors/pipeline/snowplow/troubleshooting",
-                                            "connectors/pipeline/snowplow/yaml"
+                                            "connectors/pipeline/snowplow/yaml",
+                                            "connectors/pipeline/snowplow/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Spline",
                                         "pages": [
                                             "connectors/pipeline/spline/index",
-                                            "connectors/pipeline/spline/troubleshooting",
-                                            "connectors/pipeline/spline/yaml"
+                                            "connectors/pipeline/spline/yaml",
+                                            "connectors/pipeline/spline/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "SSIS",
                                         "pages": [
                                             "connectors/pipeline/ssis/index",
-                                            "connectors/pipeline/ssis/troubleshooting",
-                                            "connectors/pipeline/ssis/yaml"
+                                            "connectors/pipeline/ssis/yaml",
+                                            "connectors/pipeline/ssis/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "Stitch",
                                         "pages": [
                                             "connectors/pipeline/stitch/index",
-                                            "connectors/pipeline/stitch/troubleshooting",
-                                            "connectors/pipeline/stitch/yaml"
+                                            "connectors/pipeline/stitch/yaml",
+                                            "connectors/pipeline/stitch/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "WhereScape",
                                         "pages": [
                                             "connectors/pipeline/wherescape/index",
-                                            "connectors/pipeline/wherescape/troubleshooting",
-                                            "connectors/pipeline/wherescape/yaml"
+                                            "connectors/pipeline/wherescape/yaml",
+                                            "connectors/pipeline/wherescape/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -1048,16 +1048,16 @@
                                         "group": "Elasticsearch",
                                         "pages": [
                                             "connectors/search/elasticsearch/index",
-                                            "connectors/search/elasticsearch/troubleshooting",
-                                            "connectors/search/elasticsearch/yaml"
+                                            "connectors/search/elasticsearch/yaml",
+                                            "connectors/search/elasticsearch/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "OpenSearch",
                                         "pages": [
                                             "connectors/search/opensearch/index",
-                                            "connectors/search/opensearch/troubleshooting",
-                                            "connectors/search/opensearch/yaml"
+                                            "connectors/search/opensearch/yaml",
+                                            "connectors/search/opensearch/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -1082,24 +1082,24 @@
                                         "group": "ADLS",
                                         "pages": [
                                             "connectors/storage/adls/index",
-                                            "connectors/storage/adls/troubleshooting",
-                                            "connectors/storage/adls/yaml"
+                                            "connectors/storage/adls/yaml",
+                                            "connectors/storage/adls/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "GCS",
                                         "pages": [
                                             "connectors/storage/gcs/index",
-                                            "connectors/storage/gcs/troubleshooting",
-                                            "connectors/storage/gcs/yaml"
+                                            "connectors/storage/gcs/yaml",
+                                            "connectors/storage/gcs/troubleshooting"
                                         ]
                                     },
                                     {
                                         "group": "S3",
                                         "pages": [
                                             "connectors/storage/s3/index",
-                                            "connectors/storage/s3/troubleshooting",
-                                            "connectors/storage/s3/yaml"
+                                            "connectors/storage/s3/yaml",
+                                            "connectors/storage/s3/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -1218,7 +1218,7 @@
                                             "how-to-guides/data-quality-observability/quality/tests-yaml",
                                             "how-to-guides/data-quality-observability/quality/tests-ui",
                                             "how-to-guides/data-quality-observability/quality/custom-tests",
-                                            "how-to-guides/data-quality-observability/quality/dimensional-validation"
+                                            "how-to-guides/data-quality-observability/quality/dimensional-validation",
                                             {
                                                 "group": "Data Quality as Code",
                                                 "pages": [
