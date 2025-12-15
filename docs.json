@@ -1601,8 +1601,19 @@
                                     }
                                 ]
                             },
-                            "sdk/java/index",
-                            "sdk/go/index"
+                            {
+                                "group": "Go SDK",
+                                "pages": [
+                                    "sdk/go/index"
+                                ]
+                            },
+                            {
+                                "group": "Java SDK",
+                                "pages": [
+                                    "sdk/java/index",
+                                    "sdk/java/info"
+                                ]
+                            }
                         ]
                     }
                 ]
