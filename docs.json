@@ -66,11 +66,6 @@
                                         "group": "Hybrid SaaS",
                                         "pages": [
                                             "getting-started/day-1/hybrid-saas/index",
-                                            "getting-started/day-1/hybrid-saas/airflow",
-                                            "getting-started/day-1/hybrid-saas/mwaa",
-                                            "getting-started/day-1/hybrid-saas/gcp-composer",
-                                            "getting-started/day-1/hybrid-saas/github-actions",
-                                            "getting-started/day-1/hybrid-saas/credentials",
                                             "getting-started/day-1/hybrid-saas/hybrid-ingestion-runner"
                                         ]
                                     }
