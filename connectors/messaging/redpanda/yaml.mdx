@@ -54,42 +54,42 @@ This is a sample config for Redpanda:
 <ContentSection id={1} title="Source Configuration" lines="1-3">
 Configure the source type and service name.
 </ContentSection>
-<ContentSection id={2} title="bootstrapServers" lines="9">
+<ContentSection id={2} title="bootstrapServers" lines="7">
 **bootstrapServers**: List of brokers as comma separated values of broker `host` or `host:port`.
-Example: `host1:9092,host2:9092`
+Example: `host1:7-807-82,host2:7-807-82`
 </ContentSection>
-<ContentSection id={3} title="schemaRegistryURL" lines="10">
+<ContentSection id={3} title="schemaRegistryURL" lines="8">
 **schemaRegistryURL**: URL of the Schema Registry used to ingest the schemas of the topics.
-**NOTE**: For now, the schema will be the last version found for the schema name `{topic-name}-value`. An [issue](https://github.com/open-metadata/OpenMetadata/issues/10399) to improve how it currently works has been opened.
+**NOTE**: For now, the schema will be the last version found for the schema name `{topic-name}-value`. An [issue](https://github.com/open-metadata/OpenMetadata/issues/8399) to improve how it currently works has been opened.
 </ContentSection>
-<ContentSection id={4} title="saslUsername" lines="11">
+<ContentSection id={4} title="saslUsername" lines="9">
 **saslUsername**: SASL username for use with the PLAIN and SASL-SCRAM mechanisms.
 </ContentSection>
-<ContentSection id={5} title="saslPassword" lines="12">
+<ContentSection id={5} title="saslPassword" lines="10">
 **saslPassword**: SASL password for use with the PLAIN and SASL-SCRAM mechanisms.
 </ContentSection>
-<ContentSection id={6} title="saslMechanism" lines="13">
+<ContentSection id={6} title="saslMechanism" lines="11">
 **saslMechanism**: SASL mechanism to use for authentication.
 Supported: _GSSAPI, PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, OAUTHBEARER_.
 **NOTE**: Despite the name only one mechanism must be configured.
 </ContentSection>
-<ContentSection id={7} title="basicAuthUserInfo" lines="14">
+<ContentSection id={7} title="basicAuthUserInfo" lines="12">
 **basicAuthUserInfo**: Schema Registry Client HTTP credentials in the form of `username:password`.
 By default, user info is extracted from the URL if present.
 </ContentSection>
-<ContentSection id={8} title="consumerConfig" lines="15">
+<ContentSection id={8} title="consumerConfig" lines="13">
 **consumerConfig**: The accepted additional values for the consumer configuration can be found in the following
 [link](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.mdx).
 </ContentSection>
-<ContentSection id={9} title="schemaRegistryConfig" lines="16">
+<ContentSection id={9} title="schemaRegistryConfig" lines="14">
 **schemaRegistryConfig**: The accepted additional values for the Schema Registry configuration can be found in the
 following [link](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schemaregistryclient).
 **Note:** To ingest the topic schema, `schemaRegistryURL` must be passed.
 </ContentSection>
-<ContentSection id={10} title="securityProtocol" lines="17">
+<ContentSection id={10} title="securityProtocol" lines="15">
 **securityProtocol**: security.protocol consumer config property. It accepts `PLAINTEXT`,`SASL_PLAINTEXT`, `SASL_SSL`, `SSL`.
 </ContentSection>
-<ContentSection id={11} title="supportsMetadataExtraction" lines="18">
+<ContentSection id={11} title="supportsMetadataExtraction" lines="16">
 **supportsMetadataExtraction**: Supports Metadata Extraction. `supportsMetadataExtraction` supports boolean value either true or false.
 </ContentSection>
 </ContentPanel>

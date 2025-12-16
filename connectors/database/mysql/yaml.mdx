@@ -144,7 +144,7 @@ This is a sample config for MySQL:
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your MySQL connector.
 
@@ -166,7 +166,7 @@ Configure the source type and service name for your MySQL connector.
 
 </ContentSection>
 
-<ContentSection id={4} title="IAM Based Auth" lines="10-14">
+<ContentSection id={4} title="IAM Based Auth" lines="12">
 
 #### IAM BASED Auth
 
@@ -228,7 +228,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 </ContentSection>
 
-<ContentSection id={5} title="Host and Port" lines="15">
+<ContentSection id={5} title="Host and Port" lines="71">
 
 **Host and Port**: Enter the fully qualified hostname and port number for your MySQL deployment in the Host and Port field.
 
@@ -240,7 +240,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 </ContentSection>
 
-<ContentSection id={7} title="Connection Options" lines="19-20">
+<ContentSection id={7} title="Connection Options" lines="19">
 
 #### Advanced Configuration
 
@@ -248,7 +248,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 </ContentSection>
 
-<ContentSection id={8} title="Connection Arguments" lines="21-22">
+<ContentSection id={8} title="Connection Arguments" lines="21">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -256,19 +256,19 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 </ContentSection>
 
-<ContentSection id={9} title="Source Config" lines="23-25">
+<ContentSection id={9} title="Source Config" lines="23-66">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={10} title="Sink Configuration" lines="26-28">
+<ContentSection id={10} title="Sink Configuration" lines="67-69">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={11} title="Workflow Configuration" lines="29-45">
+<ContentSection id={11} title="Workflow Configuration" lines="70-86">
 
 <WorkflowConfigDef />
 

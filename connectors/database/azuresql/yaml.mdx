@@ -70,43 +70,43 @@ This is a sample config for AzureSQL:
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your AzureSQL connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Connection Type" lines="5-7">
+<ContentSection id={2} title="Connection Type" lines="6">
 
 **type**: Set to `AzureSQL` for AzureSQL connections.
 
 </ContentSection>
 
-<ContentSection id={3} title="Username" lines="8">
+<ContentSection id={3} title="Username" lines="7">
 
 **username**: Specify the User to connect to AzureSQL. It should have enough privileges to read all the metadata.
 
 </ContentSection>
 
-<ContentSection id={4} title="Password" lines="9">
+<ContentSection id={4} title="Password" lines="8">
 
 **password**: Password to connect to AzureSQL.
 
 </ContentSection>
 
-<ContentSection id={5} title="Host Port" lines="10">
+<ContentSection id={5} title="Host Port" lines="9">
 
 **hostPort**: Enter the fully qualified hostname and port number for your AzureSQL deployment in the Host and Port field.
 
 </ContentSection>
 
-<ContentSection id={6} title="Database" lines="11">
+<ContentSection id={6} title="Database" lines="10">
 
 **database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.
 
 </ContentSection>
 
-<ContentSection id={7} title="Driver" lines="12">
+<ContentSection id={7} title="Driver" lines="11">
 
 **driver**: Connecting to AzureSQL requires ODBC driver to be installed. Specify ODBC driver name in the field.
 
@@ -114,7 +114,7 @@ You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/s
 
 </ContentSection>
 
-<ContentSection id={8} title="Authentication Mode" lines="13-17">
+<ContentSection id={8} title="Authentication Mode" lines="12-16">
 
 <div>
 
@@ -153,13 +153,13 @@ You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/s
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Options" lines="18-19">
+<ContentSection id={9} title="Connection Options" lines="17">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={10} title="Connection Arguments" lines="20-21">
+<ContentSection id={10} title="Connection Arguments" lines="19">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -167,19 +167,19 @@ You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/s
 
 </ContentSection>
 
-<ContentSection id={11} title="Source Config" lines="22">
+<ContentSection id={11} title="Source Config" lines="21-64">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Sink Configuration" lines="23">
+<ContentSection id={12} title="Sink Configuration" lines="65-67">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={13} title="Workflow Configuration" lines="24">
+<ContentSection id={13} title="Workflow Configuration" lines="68-84">
 
 <WorkflowConfigDef />
 

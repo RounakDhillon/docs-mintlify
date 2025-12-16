@@ -59,13 +59,13 @@ The workflow is modeled around the following
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Metastore Configuration" lines="7-19">
+<ContentSection id={2} title="Metastore Configuration" lines="11">
 
 **Metastore Host Port**: Enter the Host & Port of Hive Metastore Service to configure the Spark Session. Either of `metastoreHostPort`, `metastoreDb` or `metastoreFilePath` is required.
 
@@ -87,13 +87,13 @@ You can also connect to the metastore by directly pointing to the Hive Metastore
 
 </ContentSection>
 
-<ContentSection id={4} title="Connection Options" lines="21-22">
+<ContentSection id={4} title="Connection Options" lines="21">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={5} title="Connection Arguments" lines="23-24">
+<ContentSection id={5} title="Connection Arguments" lines="2">
 
 **Connection Arguments (Optional)**: Key-Value pairs that will be used to pass extra `config` elements to the Spark Session builder.
 
@@ -103,19 +103,19 @@ We are internally running with `pyspark` 3.X and `delta-lake` 2.0.0. This means 
 
 </ContentSection>
 
-<ContentSection id={6} title="Source Config" lines="25-27">
+<ContentSection id={6} title="Source Config" lines="25-68">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={7} title="Sink Configuration" lines="28-30">
+<ContentSection id={7} title="Sink Configuration" lines="69-71">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={8} title="Workflow Configuration" lines="31-47">
+<ContentSection id={8} title="Workflow Configuration" lines="72-88">
 
 <WorkflowConfigDef />
 
@@ -167,13 +167,13 @@ source:
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="AWS Configuration" lines="7-11">
+<ContentSection id={2} title="AWS Configuration" lines="88">
 
 **awsAccessKeyId**: Enter your secure access key ID for your DynamoDB connection. The specified key ID should be authorized to read all databases you want to include in the metadata ingestion workflow.
 
@@ -183,7 +183,7 @@ Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={3} title="Bucket Configuration" lines="12-13">
+<ContentSection id={3} title="Bucket Configuration" lines="88">
 
 **bucketName**: The S3 bucket name where your Delta Lake tables are stored.
 
@@ -191,19 +191,19 @@ Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={4} title="Source Config" lines="14-16">
+<ContentSection id={4} title="Source Config" lines="25-68">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={5} title="Sink Configuration" lines="17-19">
+<ContentSection id={5} title="Sink Configuration" lines="69-71">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={6} title="Workflow Configuration" lines="20-36">
+<ContentSection id={6} title="Workflow Configuration" lines="72-88">
 
 <WorkflowConfigDef />
 

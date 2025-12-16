@@ -38,7 +38,7 @@ The ingestion workflow itself follows the general [workflow schema](https://gith
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Epic FHIR connector.
 
@@ -50,25 +50,25 @@ Configure the source type and service name for your Epic FHIR connector.
 
 </ContentSection>
 
-<ContentSection id={3} title="FHIR Version" lines="8">
+<ContentSection id={3} title="FHIR Version" lines="7">
 
 **fhirVersion**: FHIR specification version supported (`R4`, `STU3`, or `DSTU2`).
 
 </ContentSection>
 
-<ContentSection id={4} title="Database Name" lines="9">
+<ContentSection id={4} title="Database Name" lines="2">
 
 **databaseName**: Optional name for the database in OpenMetadata. Defaults to `epic`.
 
 </ContentSection>
 
-<ContentSection id={5} title="Filter Patterns" lines="10-17">
+<ContentSection id={5} title="Filter Patterns" lines="7">
 
 **schemaFilterPattern / tableFilterPattern**: Regex filters to limit which FHIR resource categories (schemas) or resource types (tables) are ingested.
 
 </ContentSection>
 
-<ContentSection id={6} title="Sink Configuration" lines="18-19">
+<ContentSection id={6} title="Sink Configuration" lines="24-26">
 
 <IngestionSinkDef />
 

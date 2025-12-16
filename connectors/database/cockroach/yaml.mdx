@@ -54,7 +54,7 @@ The workflow is modeled around the following
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Cockroach connector.
 
@@ -92,7 +92,7 @@ Configure the source type and service name for your Cockroach connector.
 
 </ContentSection>
 
-<ContentSection id={7} title="SSL Configuration" lines="13-15">
+<ContentSection id={7} title="SSL Configuration" lines="14">
 
 The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) connection between your application and the Cockroach server. Cockroach will require only rootCertificate i.e caCertificate.
 
@@ -109,31 +109,31 @@ The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) c
 
 </ContentSection>
 
-<ContentSection id={8} title="Connection Options" lines="16-17">
+<ContentSection id={8} title="Connection Options" lines="16">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Arguments" lines="18-19">
+<ContentSection id={9} title="Connection Arguments" lines="18">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={10} title="Source Config" lines="20-22">
+<ContentSection id={10} title="Source Config" lines="20-63">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={11} title="Sink Configuration" lines="23-25">
+<ContentSection id={11} title="Sink Configuration" lines="64-66">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Workflow Configuration" lines="26-42">
+<ContentSection id={12} title="Workflow Configuration" lines="67-83">
 
 <WorkflowConfigDef />
 
