@@ -73,38 +73,38 @@ Configure the source type and service name for your Synapse connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="username" lines="6">
+<ContentSection id={2} title="username" lines="7">
 
 **username**: Specify the User to connect to Synapse. It should have enough privileges to read all the metadata.
 
 </ContentSection>
 
-<ContentSection id={3} title="password" lines="7">
+<ContentSection id={3} title="password" lines="8">
 
 **password**: Password to connect to Synapse.
 
 </ContentSection>
 
-<ContentSection id={4} title="hostPort" lines="8">
+<ContentSection id={4} title="hostPort" lines="9">
 
 **hostPort**: Enter the fully qualified hostname and port number for your Synapse deployment in the Host and Port field.
 
 </ContentSection>
 
-<ContentSection id={5} title="database" lines="9">
+<ContentSection id={5} title="database" lines="10">
 
 **database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.
 
 </ContentSection>
 
-<ContentSection id={6} title="driver" lines="10">
+<ContentSection id={6} title="driver" lines="11">
 
 **driver**: Connecting to Synapse requires ODBC driver to be installed. Specify ODBC driver name in the field.
 You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16).In case of docker or kubernetes deployment this driver comes out of the box with version  `ODBC Driver 18 for SQL Server`.
 
 </ContentSection>
 
-<ContentSection id={7} title="Authentication Mode" lines="11-15">
+<ContentSection id={7} title="Authentication Mode" lines="12-16">
 
 **Authentication Mode**:
 1. **Authentication**:
@@ -123,7 +123,7 @@ You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/s
 
 </ContentSection>
 
-<ContentSection id={8} title="Advanced Configuration" lines="16-18">
+<ContentSection id={8} title="Advanced Configuration" lines="17-18">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 

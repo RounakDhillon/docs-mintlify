@@ -105,7 +105,7 @@ The workflow is modeled around the following
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your PostgreSQL connector.
 
@@ -125,7 +125,7 @@ Configure the source type and service name for your PostgreSQL connector.
 
 </ContentSection>
 
-<ContentSection id={4} title="IAM Authentication" lines="10-16">
+<ContentSection id={4} title="IAM Authentication" lines="12">
 
 <div>
 
@@ -213,31 +213,31 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 </ContentSection>
 
-<ContentSection id={5} title="Host Port" lines="17">
+<ContentSection id={5} title="Host Port" lines="15">
 
 **hostPort**: Enter the fully qualified hostname and port number for your PostgreSQL deployment in the Host and Port field.
 
 </ContentSection>
 
-<ContentSection id={6} title="Database" lines="18">
+<ContentSection id={6} title="Database" lines="16">
 
 **database**: Initial PostgreSQL database to connect to. If you want to ingest all databases, set ingestAllDatabases to true.
 
 </ContentSection>
 
-<ContentSection id={7} title="Ingest All Databases" lines="19">
+<ContentSection id={7} title="Ingest All Databases" lines="17">
 
 **ingestAllDatabases**: Ingest data from all databases in PostgreSQL. You can use databaseFilterPattern on top of this.
 
 </ContentSection>
 
-<ContentSection id={8} title="Connection Options" lines="20-21">
+<ContentSection id={8} title="Connection Options" lines="18">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Arguments" lines="22-23">
+<ContentSection id={9} title="Connection Arguments" lines="20">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -245,7 +245,7 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 
 </ContentSection>
 
-<ContentSection id={10} title="SSL Configuration" lines="24-26">
+<ContentSection id={10} title="SSL Configuration" lines="23">
 
 The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) connection between your application and the PostgreSQL server. PostgreSQL will require only rootCertificate i.e caCertificate.
 
@@ -262,19 +262,19 @@ The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) c
 
 </ContentSection>
 
-<ContentSection id={11} title="Source Config" lines="27-29">
+<ContentSection id={11} title="Source Config" lines="25-68">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Sink Configuration" lines="30-32">
+<ContentSection id={12} title="Sink Configuration" lines="69-71">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={13} title="Workflow Configuration" lines="33-49">
+<ContentSection id={13} title="Workflow Configuration" lines="72-88">
 
 <WorkflowConfigDef />
 

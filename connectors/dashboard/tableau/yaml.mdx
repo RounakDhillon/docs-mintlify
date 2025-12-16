@@ -62,13 +62,13 @@ The workflow is modeled around the following
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-5">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Tableau connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Authentication" lines="6-11">
+<ContentSection id={2} title="Authentication" lines="8-9">
 
 **For Basic Authentication:**
 
@@ -78,25 +78,25 @@ Configure the source type and service name for your Tableau connector.
 
 </ContentSection>
 
-<ContentSection id={3} title="Host Port" lines="12">
+<ContentSection id={3} title="Host Port" lines="13">
 
 **hostPort**: URL or IP address of your installation of Tableau Server.
 
 </ContentSection>
 
-<ContentSection id={4} title="Site Name" lines="13">
+<ContentSection id={4} title="Site Name" lines="14">
 
 **siteName**: Tableau Site Name. This corresponds to the `contentUrl` attribute in the Tableau REST API. The `site_name` is the portion of the URL that follows the `/site/` in the URL.
 
 </ContentSection>
 
-<ContentSection id={5} title="Pagination Limit" lines="14">
+<ContentSection id={5} title="Pagination Limit" lines="15">
 
 **paginationLimit**: The pagination limit will be used while querying the Tableau Graphql endpoint to get the data source information.
 
 </ContentSection>
 
-<ContentSection id={6} title="SSL Configuration" lines="15-29">
+<ContentSection id={6} title="SSL Configuration" lines="16-18">
 
 **verifySSL**: Client SSL verification. Make sure to configure the SSLConfig if enabled. Supported values `no-ssl`, `ignore`, `validate`.
 
@@ -106,7 +106,7 @@ Configure the source type and service name for your Tableau connector.
 
 </ContentSection>
 
-<ContentSection id={7} title="Source Config" lines="30-31">
+<ContentSection id={7} title="Source Config" lines="31-73">
 
 The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/dashboardServiceMetadataPipeline.json):
 
@@ -120,13 +120,13 @@ The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetada
 
 </ContentSection>
 
-<ContentSection id={8} title="Sink Configuration" lines="32-33">
+<ContentSection id={8} title="Sink Configuration" lines="74-76">
 
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 
 </ContentSection>
 
-<ContentSection id={9} title="Workflow Configuration" lines="34-38">
+<ContentSection id={9} title="Workflow Configuration" lines="77-93">
 
 <WorkflowConfigDef />
 

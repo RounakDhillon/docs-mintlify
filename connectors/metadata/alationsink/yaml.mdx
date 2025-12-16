@@ -64,13 +64,13 @@ Configure the source type and service name.
 
 </ContentSection>
 
-<ContentSection id={2} title="Host Port" lines="8">
+<ContentSection id={2} title="Host Port" lines="7">
 
 **hostPort**: Host and port of the Alation service.
 
 </ContentSection>
 
-<ContentSection id={3} title="Authentication Type" lines="9-14">
+<ContentSection id={3} title="Authentication Type" lines="10">
 
 **authType**:
 Following authentication types are supported:
@@ -82,19 +82,19 @@ Following authentication types are supported:
 
 </ContentSection>
 
-<ContentSection id={4} title="Project Name" lines="15">
+<ContentSection id={4} title="Project Name" lines="16">
 
 **projectName**: Project name to create the refreshToken. Can be anything.
 
 </ContentSection>
 
-<ContentSection id={5} title="Pagination Limit" lines="16">
+<ContentSection id={5} title="Pagination Limit" lines="17">
 
 **paginationLimit**: Pagination limit used for Alation APIs pagination
 
 </ContentSection>
 
-<ContentSection id={6} title="Datasource Links" lines="17-20">
+<ContentSection id={6} title="Datasource Links" lines="18">
 
 **datasourceLinks**: Add a custom mapping between OpenMetadata databases and Alation DataSources.
 If this mapping is present the connector will only look for the datasource in Alation to create other entities inside it. It will not create the datasource in Alation and it'll need to be created beforehand.
@@ -111,13 +111,13 @@ datasourceLinks: {
 
 </ContentSection>
 
-<ContentSection id={7} title="Source Config" lines="21-23">
+<ContentSection id={7} title="Source Config" lines="22-24">
 
 Configure the metadata ingestion type as DatabaseMetadata.
 
 </ContentSection>
 
-<ContentSection id={8} title="Sink Configuration" lines="24-26">
+<ContentSection id={8} title="Sink Configuration" lines="25-27">
 
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 

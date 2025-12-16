@@ -103,7 +103,7 @@ This is a sample config for Snowflake:
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="1-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Snowflake connector.
 
@@ -165,7 +165,7 @@ When using this field make sure you have all these tables available within your 
 
 </ContentSection>
 
-<ContentSection id={11} title="Private Key" lines="16">
+<ContentSection id={11} title="Private Key" lines="2">
 
 **privateKey**: If you have configured the key pair authentication for the given user you will have to pass the private key associated with the user in this field. You can checkout [this](https://docs.snowflake.com/en/user-guide/key-pair-auth) doc to get more details about key-pair authentication.
 
@@ -185,7 +185,7 @@ When using this field make sure you have all these tables available within your 
 
 </ContentSection>
 
-<ContentSection id={14} title="Connection Options" lines="19-20">
+<ContentSection id={14} title="Connection Options" lines="19">
 
 #### Advanced Configuration
 
@@ -193,7 +193,7 @@ When using this field make sure you have all these tables available within your 
 
 </ContentSection>
 
-<ContentSection id={15} title="Connection Arguments" lines="21-22">
+<ContentSection id={15} title="Connection Arguments" lines="21">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -201,19 +201,19 @@ When using this field make sure you have all these tables available within your 
 
 </ContentSection>
 
-<ContentSection id={16} title="Source Config" lines="23-25">
+<ContentSection id={16} title="Source Config" lines="23-66">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={17} title="Sink Configuration" lines="26-28">
+<ContentSection id={17} title="Sink Configuration" lines="67-69">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={18} title="Workflow Configuration" lines="29-45">
+<ContentSection id={18} title="Workflow Configuration" lines="70-86">
 
 <WorkflowConfigDef />
 

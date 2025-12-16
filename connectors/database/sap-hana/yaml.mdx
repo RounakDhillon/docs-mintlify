@@ -84,49 +84,49 @@ This is a sample config for SAP HANA:
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="1-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your SAP HANA connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Host Port" lines="8">
+<ContentSection id={2} title="Host Port" lines="9">
 
 **hostPort**: Host and port of the SAP HANA service. This should be specified as a string in the format `hostname:port`. E.g., `localhost:39041`, `host.docker.internal:39041`.
 
 </ContentSection>
 
-<ContentSection id={3} title="Username" lines="9">
+<ContentSection id={3} title="Username" lines="10">
 
 **username**: Specify the User to connect to SAP HANA. It should have enough privileges to read all the metadata.
 
 </ContentSection>
 
-<ContentSection id={4} title="Password" lines="10">
+<ContentSection id={4} title="Password" lines="11">
 
 **password**: Password to connect to SAP HANA.
 
 </ContentSection>
 
-<ContentSection id={5} title="Database" lines="11">
+<ContentSection id={5} title="Database" lines="12">
 
 **database**: Optional parameter to connect to a specific database.
 
 </ContentSection>
 
-<ContentSection id={6} title="Database Schema" lines="12">
+<ContentSection id={6} title="Database Schema" lines="13">
 
 **databaseSchema**: databaseSchema of the data source. This is an optional parameter, if you would like to restrict the metadata reading to a single schema. When left blank, OpenMetadata Ingestion attempts to scan all the schemas.
 
 </ContentSection>
 
-<ContentSection id={7} title="User Key" lines="14">
+<ContentSection id={7} title="User Key" lines="15">
 
 **userKey**: HDB Store User Key generated from the command `hdbuserstore SET <KEY> <host:port> <USERNAME> <PASSWORD>`.
 
 </ContentSection>
 
-<ContentSection id={8} title="Connection Options" lines="15-16">
+<ContentSection id={8} title="Connection Options" lines="16">
 
 #### Advanced Configuration
 
@@ -134,7 +134,7 @@ Configure the source type and service name for your SAP HANA connector.
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Arguments" lines="17-18">
+<ContentSection id={9} title="Connection Arguments" lines="18">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -142,19 +142,19 @@ Configure the source type and service name for your SAP HANA connector.
 
 </ContentSection>
 
-<ContentSection id={10} title="Source Config" lines="19-21">
+<ContentSection id={10} title="Source Config" lines="20-63">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={11} title="Sink Configuration" lines="22-24">
+<ContentSection id={11} title="Sink Configuration" lines="64-66">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Workflow Configuration" lines="25-41">
+<ContentSection id={12} title="Workflow Configuration" lines="67-83">
 
 <WorkflowConfigDef />
 

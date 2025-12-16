@@ -61,7 +61,7 @@ This is a sample config for Hive:
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Hive connector.
 
@@ -91,7 +91,7 @@ Configure the source type and service name for your Hive connector.
 
 </ContentSection>
 
-<ContentSection id={6} title="MySQL Metastore Connection" lines="11-18">
+<ContentSection id={6} title="MySQL Metastore Connection" lines="7">
 
 #### For MySQL Metastore Connection:
 
@@ -104,7 +104,7 @@ You can also ingest the metadata using Mysql metastore. This step is optional if
 
 </ContentSection>
 
-<ContentSection id={7} title="Postgres Metastore Connection" lines="19-26">
+<ContentSection id={7} title="Postgres Metastore Connection" lines="7">
 
 #### For Postgres Metastore Connection:
 
@@ -117,7 +117,7 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 
 </ContentSection>
 
-<ContentSection id={8} title="Connection Options" lines="27-28">
+<ContentSection id={8} title="Connection Options" lines="27">
 
 #### Advanced Configuration
 
@@ -125,7 +125,7 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Arguments" lines="29-30">
+<ContentSection id={9} title="Connection Arguments" lines="29">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -133,19 +133,19 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 
 </ContentSection>
 
-<ContentSection id={10} title="Source Config" lines="31-33">
+<ContentSection id={10} title="Source Config" lines="31-74">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={11} title="Sink Configuration" lines="34-36">
+<ContentSection id={11} title="Sink Configuration" lines="75-77">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Workflow Configuration" lines="37-53">
+<ContentSection id={12} title="Workflow Configuration" lines="78-94">
 
 <WorkflowConfigDef />
 

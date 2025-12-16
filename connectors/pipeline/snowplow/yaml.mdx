@@ -40,28 +40,28 @@ For self-hosted Community Edition deployments, you'll need:
 This is a sample config for Snowplow:
 <CodePreview>
 <ContentPanel>
-<ContentSection id={1} title="type" lines="1-7">
+<ContentSection id={1} title="type" lines="2">
 **type**: Must be `Snowplow`.
 </ContentSection>
-<ContentSection id={2} title="deployment" lines="1-7">
+<ContentSection id={2} title="deployment" lines="7">
 **deployment**: Choose between `BDP` (managed) or `Community` (self-hosted).
 </ContentSection>
-<ContentSection id={3} title="consoleUrl" lines="1-9">
+<ContentSection id={3} title="consoleUrl" lines="9">
 **consoleUrl**: Required for BDP deployment. The URL of your Snowplow Console.
 </ContentSection>
-<ContentSection id={4} title="apiKey" lines="1-10">
+<ContentSection id={4} title="apiKey" lines="10">
 **apiKey**: Required for BDP deployment. Your Snowplow API key.
 </ContentSection>
-<ContentSection id={5} title="organizationId" lines="1-11">
+<ContentSection id={5} title="organizationId" lines="11">
 **organizationId**: Required for BDP deployment. Your organization ID.
 </ContentSection>
-<ContentSection id={6} title="configPath" lines="1-13">
+<ContentSection id={6} title="configPath" lines="13">
 **configPath**: Required for Community deployment. Path to configuration files.
 </ContentSection>
-<ContentSection id={7} title="cloudProvider" lines="1-14">
+<ContentSection id={7} title="cloudProvider" lines="14">
 **cloudProvider**: The cloud provider where Snowplow is deployed (AWS, GCP, or Azure).
 </ContentSection>
-<ContentSection id={8} title="To send the metadata of" lines="1-25">
+<ContentSection id={8} title="To send the metadata of" lines="17">
 To send the metadata of only selected pipelines, enter the regex pattern for pipeline names to include or exclude.
 </ContentSection>
 </ContentPanel>

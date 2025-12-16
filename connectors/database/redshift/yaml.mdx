@@ -72,7 +72,7 @@ This is a sample config for Redshift:
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Redshift connector.
 
@@ -108,7 +108,7 @@ Configure the source type and service name for your Redshift connector.
 
 </ContentSection>
 
-<ContentSection id={7} title="SSL Configuration" lines="12-14">
+<ContentSection id={7} title="SSL Configuration" lines="13">
 
 #### Advanced Configuration
 
@@ -127,13 +127,13 @@ The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) c
 
 </ContentSection>
 
-<ContentSection id={8} title="Connection Options" lines="15-16">
+<ContentSection id={8} title="Connection Options" lines="15">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Arguments" lines="17-18">
+<ContentSection id={9} title="Connection Arguments" lines="17">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -141,19 +141,19 @@ The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) c
 
 </ContentSection>
 
-<ContentSection id={10} title="Source Config" lines="19-21">
+<ContentSection id={10} title="Source Config" lines="19-62">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={11} title="Sink Configuration" lines="22-24">
+<ContentSection id={11} title="Sink Configuration" lines="63-65">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Workflow Configuration" lines="25-41">
+<ContentSection id={12} title="Workflow Configuration" lines="66-82">
 
 <WorkflowConfigDef />
 

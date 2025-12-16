@@ -54,7 +54,7 @@ The workflow is modeled around the following
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Domo Database connector.
 
@@ -90,19 +90,19 @@ Configure the source type and service name for your Domo Database connector.
 
 </ContentSection>
 
-<ContentSection id={7} title="Database" lines="12">
+<ContentSection id={7} title="Database" lines="2">
 
 **database**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
 
 </ContentSection>
 
-<ContentSection id={8} title="Connection Options" lines="13-14">
+<ContentSection id={8} title="Connection Options" lines="13">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Arguments" lines="15-16">
+<ContentSection id={9} title="Connection Arguments" lines="15">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -110,19 +110,19 @@ Configure the source type and service name for your Domo Database connector.
 
 </ContentSection>
 
-<ContentSection id={10} title="Source Config" lines="17-19">
+<ContentSection id={10} title="Source Config" lines="17-60">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={11} title="Sink Configuration" lines="20-22">
+<ContentSection id={11} title="Sink Configuration" lines="61-63">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Workflow Configuration" lines="23-39">
+<ContentSection id={12} title="Workflow Configuration" lines="64-80">
 
 <WorkflowConfigDef />
 

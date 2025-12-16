@@ -59,7 +59,7 @@ The workflow is modeled around the following
 
 <ContentPanel>
 
-<ContentSection id={1} title="Source Configuration" lines="2-4">
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
 Configure the source type and service name for your Greenplum connector.
 
@@ -79,7 +79,7 @@ Configure the source type and service name for your Greenplum connector.
 
 </ContentSection>
 
-<ContentSection id={4} title="IAM Based Authentication" lines="10-12">
+<ContentSection id={4} title="IAM Based Authentication" lines="11-14">
 
 **IAM BASED Auth**
 
@@ -109,25 +109,25 @@ When using Assume Role authentication, ensure you provide the following details:
 
 </ContentSection>
 
-<ContentSection id={5} title="Host Port" lines="13">
+<ContentSection id={5} title="Host Port" lines="15">
 
 **hostPort**: Enter the fully qualified hostname and port number for your Greenplum deployment in the Host and Port field.
 
 </ContentSection>
 
-<ContentSection id={6} title="Database" lines="14">
+<ContentSection id={6} title="Database" lines="16">
 
 **database**: Initial Greenplum database to connect to. If you want to ingest all databases, set ingestAllDatabases to true.
 
 </ContentSection>
 
-<ContentSection id={7} title="Ingest All Databases" lines="15">
+<ContentSection id={7} title="Ingest All Databases" lines="17">
 
 **ingestAllDatabases**: Ingest data from all databases in Greenplum. You can use databaseFilterPattern on top of this.
 
 </ContentSection>
 
-<ContentSection id={8} title="SSL Configuration" lines="16-17">
+<ContentSection id={8} title="SSL Configuration" lines="19">
 
 The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) connection between your application and the Greenplum server. Greenplum will require only rootCertificate i.e caCertificate.
 
@@ -144,13 +144,13 @@ The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) c
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Options" lines="18-19">
+<ContentSection id={9} title="Connection Options" lines="21">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={10} title="Connection Arguments" lines="20-21">
+<ContentSection id={10} title="Connection Arguments" lines="23">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -158,19 +158,19 @@ The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) c
 
 </ContentSection>
 
-<ContentSection id={11} title="Source Config" lines="22-24">
+<ContentSection id={11} title="Source Config" lines="25-68">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Sink Configuration" lines="25-27">
+<ContentSection id={12} title="Sink Configuration" lines="69-71">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={13} title="Workflow Configuration" lines="28-44">
+<ContentSection id={13} title="Workflow Configuration" lines="72-88">
 
 <WorkflowConfigDef />
 
