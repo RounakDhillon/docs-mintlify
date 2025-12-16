@@ -3,8 +3,10 @@ title: Run the Domo Database Connector Externally
 description: Configure YAML to ingest Domo database assets and track metadata like schema, usage, and dashboard relationships.
 slug: /connectors/database/domo-database/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -47,37 +49,89 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-This is a sample config for DomoDatabase:
-<Steps>
-<Step title="Client ID">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your Domo Database connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Client ID" lines="7">
+
 **Client ID**: Client ID to Connect to DOMODatabase.
-</Step>
-<Step title="Secret Token">
+
+</ContentSection>
+
+<ContentSection id={3} title="Secret Token" lines="8">
+
 **Secret Token**: Secret Token to Connect DOMODatabase.
-</Step>
-<Step title="Access Token">
+
+</ContentSection>
+
+<ContentSection id={4} title="Access Token" lines="9">
+
 **Access Token**: Access to Connect to DOMODatabase.
-</Step>
-<Step title="API Host">
-**API Host**:  API Host to Connect to DOMODatabase instance.
-</Step>
-<Step title="Instance Domain">
+
+</ContentSection>
+
+<ContentSection id={5} title="API Host" lines="10">
+
+**API Host**: API Host to Connect to DOMODatabase instance.
+
+</ContentSection>
+
+<ContentSection id={6} title="Instance Domain" lines="11">
+
 **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
-</Step>
-<Step title="database">
-**database**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={7} title="Database" lines="12">
+
+**database**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
+
+</ContentSection>
+
+<ContentSection id={8} title="Connection Options" lines="13-14">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={9} title="Connection Arguments" lines="15-16">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={10} title="Source Config" lines="17-19">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={11} title="Sink Configuration" lines="20-22">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={12} title="Workflow Configuration" lines="23-39">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="domo_database_config.yaml">
+
 ```yaml
 source:
   type: domodatabase
@@ -85,20 +139,28 @@ source:
   serviceConnection:
     config:
       type: DomoDashboard
-clientId: client-id
-secretToken: secret-token
-accessToken: access-token
-apiHost: api.domo.com
-instancexDomain: https://<your>.domo.com
-# database: database
-# connectionOptions:
+      clientId: client-id  # REQUIRED
+      secretToken: secret-token  # REQUIRED
+      accessToken: access-token  # REQUIRED
+      apiHost: api.domo.com  # REQUIRED
+      instancexDomain: https://<your>.domo.com  # REQUIRED
+      # database: database
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## dbt Integration
 <Columns cols={2}>

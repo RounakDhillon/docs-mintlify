@@ -3,8 +3,10 @@ title: Run the DB2 Connector Externally
 description: Configure DB2 connector with YAML to ingest structured metadata from enterprise databases into your catalog securely.
 slug: /connectors/database/db2/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -69,37 +71,89 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-This is a sample config for DB2:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your DB2 connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
 **username**: Specify the User to connect to DB2. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
 **password**: Password to connect to DB2.
-</Step>
-<Step title="hostPort">
+
+</ContentSection>
+
+<ContentSection id={4} title="Host Port" lines="9">
+
 **hostPort**: Enter the fully qualified hostname and port number for your DB2 deployment in the Host and Port field.
-</Step>
-<Step title="database">
-**database**: Database of the data source.
-</Step>
-<Step title="license">
+
+</ContentSection>
+
+<ContentSection id={5} title="License" lines="10">
+
 **license**: Contents of your license file if applicable, make sure to replace new lines with `\n` before pasting it here.
-</Step>
-<Step title="licenseFileName">
+
+</ContentSection>
+
+<ContentSection id={6} title="License File Name" lines="11">
+
 **licenseFileName**: License file name in case the license is required for connection.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={7} title="Database Schema" lines="12">
+
+**databaseSchema**: Database schema of the data source.
+
+</ContentSection>
+
+<ContentSection id={8} title="Connection Options" lines="13-14">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={9} title="Connection Arguments" lines="15-16">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={10} title="Source Config" lines="17-19">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={11} title="Sink Configuration" lines="20-22">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={12} title="Workflow Configuration" lines="23-39">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="db2_config.yaml">
+
 ```yaml
 source:
   type: db2
@@ -107,20 +161,28 @@ source:
   serviceConnection:
     config:
       type: Db2
-username: openmetadata_user
-password: openmetadata_password
-hostPort: localhost:5432
-# license: content.....\n..of your....\n...license...\n..file...
-# licenseFileName: your_license.llc
-# databaseSchema: schema
-# connectionOptions:
+      username: openmetadata_user  # REQUIRED
+      password: openmetadata_password  # REQUIRED
+      hostPort: localhost:5432  # REQUIRED - format: host:port
+      # license: content.....\n..of your....\n...license...\n..file...
+      # licenseFileName: your_license.llc
+      # databaseSchema: schema
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <Lineage connector="db2" />
 <DataProfiler connector="db2" />

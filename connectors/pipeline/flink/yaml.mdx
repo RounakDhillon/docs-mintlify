@@ -3,8 +3,10 @@ title: Run the Flink Connector Externally
 description: Configure Flink ingestion using YAML to capture streaming pipeline metadata and lineage from real-time jobs.
 slug: /connectors/pipeline/flink/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -36,24 +38,26 @@ pip3 install "openmetadata-ingestion[flink]"
 ## Metadata Ingestion
 ### 1. Define the YAML Config
 This is a sample config for Flink:
-<Steps>
-<Step title="hostPort">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="hostPort" lines="7">
 **hostPort**: The hostname or IP address of the Flink Connect worker with the REST API enabled
-</Step>
-<Step title="verifySSL">
+</ContentSection>
+<ContentSection id={2} title="verifySSL" lines="8">
 **verifySSL**: Whether SSL verification should be perform when authenticating.
-</Step>
-<Step title="Flink Connect Config">
+</ContentSection>
+<ContentSection id={3} title="Flink Connect Config" lines="9-19">
 **Flink Connect Config**: OpenMetadata supports SSL config or no Authentication.
 *1. SSL config
     - caCertificate: Authorized certificate for ssl configured server.
     - sslCertificate: SSL certificate for the server.
     - sslKey: Server root key for the connection.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: flink
@@ -61,22 +65,24 @@ source:
   serviceConnection:
     config:
       type: Flink
-hostPort: "https://<yourflinkhostport>" # or http://localhost:8083 or http://127.0.0.1:8083
-verifySSL: no-ssl
-sslConfig:
-                caCertificate: |
-                        -----BEGIN CERTIFICATE-----
-                        sample certificate
-                        -----END CERTIFICATE-----
-                sslCertificate: |
-                        -----BEGIN CERTIFICATE-----
-                        sample certificate
-                        -----END CERTIFICATE-----
-                sslKey: |
-                        -----BEGIN PRIVATE KEY-----
-                        sample certificate
-                        -----END PRIVATE KEY-----
+      hostPort: "https://<yourflinkhostport>" # or http://localhost:8083 or http://127.0.0.1:8083
+      verifySSL: no-ssl
+      sslConfig:
+        caCertificate: |
+          -----BEGIN CERTIFICATE-----
+          sample certificate
+          -----END CERTIFICATE-----
+        sslCertificate: |
+          -----BEGIN CERTIFICATE-----
+          sample certificate
+          -----END CERTIFICATE-----
+        sslKey: |
+          -----BEGIN PRIVATE KEY-----
+          sample certificate
+          -----END PRIVATE KEY-----
 ```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

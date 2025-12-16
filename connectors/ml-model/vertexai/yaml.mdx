@@ -4,8 +4,10 @@ description: Use YAML to ingest VertexAI metadata including models, inputs, tags
 slug: /connectors/ml-model/vertexai/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -42,37 +44,46 @@ To execute metadata extraction workflow successfully the user or the service acc
 ## Metadata Ingestion
 ### 1. Define the YAML Config
 This is a sample config for VertexAI:
-<Steps>
-<Step title="credentials">
-**credentials**: 
+
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="credentials" lines="6-20">
+**credentials**:
 You can authenticate with your vertexai instance using either `GCP Credentials Path` where you can specify the file path of the service account key or you can pass the values directly by choosing the `GCP Credentials Values` from the service account key file.
 You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam-service-account-keys-create-console) documentation on how to create the service account keys and download it.
 **gcpConfig:**
 **1.** Passing the raw credential values provided by VertexAI. This requires us to provide the following information, all provided by VertexAI:
-</Step>
-<Step title="2.">
+</ContentSection>
+<ContentSection id={2} title="location" lines="21">
 **2.**  Passing a local file path that contains the credentials:
   - **gcpCredentialsPath**
 **Location**:
 Location refers to the geographical region where your resources, such as datasets, models, and endpoints, are physically hosted.(e.g. `us-central1`, `europe-west4`)
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: vertexai
   serviceName: localvx
   serviceConnection:
     config:
-        type: VertexAI
-credentials:
-            gcpConfig:
-location: PROJECT LOCATION/REGION (us-central1)
+      type: VertexAI
+      credentials:
+        gcpConfig:
+      location: PROJECT LOCATION/REGION (us-central1)
 # connectionOptions:
-        #   key: value
+#   key: value
 # connectionArguments:
-        #   key: value
+#   key: value
 ```
+
 <GcpConfig />
+
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

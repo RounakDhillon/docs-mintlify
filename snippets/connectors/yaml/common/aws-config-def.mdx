@@ -1,74 +1,100 @@
-<Steps>
-<Step title="AWS Access Keys">
-- **awsAccessKeyId** & **awsSecretAccessKey**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
-  permission to access the resources that you are requesting. AWS uses the security credentials to authenticate and
-  authorize your requests ([docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html)).
+<ContentPanel>
 
-Access keys consist of two parts: An **access key ID** (for example, `AKIAIOSFODNN7EXAMPLE`), and a **secret access key** (for example, `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`).
+<ContentSection id={1} title="AWS Access Key Credentials" lines="9-10">
 
-You must use both the access key ID and secret access key together to authenticate your requests.
+**awsAccessKeyId** and **awsSecretAccessKey** are used to authenticate and authorize programmatic requests to AWS services.
 
-You can find further information on how to manage your access keys [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
-</Step>
-<Step title="AWS Session Token">
-**awsSessionToken**: If you are using temporary credentials to access your services, you will need to inform the AWS Access Key ID
-and AWS Secrets Access Key. Also, these will include an AWS Session Token.
-</Step>
-<Step title="AWS Region">
-**awsRegion**: Each AWS Region is a separate geographic area in which AWS clusters data centers ([docs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html)).
+An access key consists of:
+- **Access Key ID** (for example, `AKIAIOSFODNN7EXAMPLE`)
+- **Secret Access Key** (for example, `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`)
 
-As AWS can have instances in multiple regions, we need to know the region the service you want reach belongs to.
+Both values must be provided together when using static credentials.
 
-Note that the AWS Region is the only required parameter when configuring a connection. When connecting to the
-services programmatically, there are different ways in which we can extract and use the rest of AWS configurations.
+For more information, see  
+[Managing access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
 
-You can find further information about configuring your credentials [here](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#configuring-credentials).
-</Step>
-<Step title="Endpoint URL">
-**endPointURL**: To connect programmatically to an AWS service, you use an endpoint. An *endpoint* is the URL of the
-entry point for an AWS web service. The AWS SDKs and the AWS Command Line Interface (AWS CLI) automatically use the
-default endpoint for each service in an AWS Region. But you can specify an alternate endpoint for your API requests.
+</ContentSection>
 
-Find more information on [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html).
-</Step>
-<Step title="Profile Name">
-**profileName**: A named profile is a collection of settings and credentials that you can apply to a AWS CLI command.
-When you specify a profile to run a command, the settings and credentials are used to run that command.
-Multiple named profiles can be stored in the config and credentials files.
+<ContentSection id={2} title="AWS Session Token" >
 
-You can inform this field if you'd like to use a profile other than `default`.
+**awsSessionToken** is required when using **temporary security credentials**, such as those obtained via AWS STS.
 
-Find here more information about [Named profiles for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
-</Step>
-<Step title="Assume Role ARN">
-**assumeRoleArn**: Typically, you use `AssumeRole` within your account or for cross-account access. In this field you'll set the
-`ARN` (Amazon Resource Name) of the policy of the other account.
+The session token must be provided along with the access key ID and secret access key for the duration of the session.
 
-A user who wants to access a role in a different account must also have permissions that are delegated from the account
-administrator. The administrator must attach a policy that allows the user to call `AssumeRole` for the `ARN` of the role in the other account.
+</ContentSection>
 
-This is a required field if you'd like to `AssumeRole`.
+<ContentSection id={3} title="AWS Region">
 
-Find more information on [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html).
+**awsRegion** specifies the AWS Region where the target service is deployed (for example, `us-east-1`).
 
-<Tip>
-When using Assume Role authentication, ensure you provide the following details:
-- **AWS Region**: Specify the AWS region for your deployment.
-- **Assume Role ARN**: Provide the ARN of the role in your AWS account that OpenMetadata will assume.
-</Tip>
-</Step>
-<Step title="Assume Role Session Name">
-**assumeRoleSessionName**: An identifier for the assumed role session. Use the role session name to uniquely identify a session when the same role
-is assumed by different principals or for different reasons.
+This is the **only required parameter** when configuring an AWS connection. Other credentials can be resolved automatically using environment variables, AWS profiles, or IAM roles.
 
-By default, we'll use the name `OpenMetadataSession`.
+Learn more in the  
+[AWS Regions and Availability Zones documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
 
-Find more information about the [Role Session Name](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=An%20identifier%20for%20the%20assumed%20role%20session.).
-</Step>
-<Step title="Assume Role Source Identity">
-**assumeRoleSourceIdentity**: The source identity specified by the principal that is calling the `AssumeRole` operation. You can use source identity
-information in AWS CloudTrail logs to determine who took actions with a role.
+</ContentSection>
 
-Find more information about [Source Identity](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=Required%3A%20No-,SourceIdentity,-The%20source%20identity).
-</Step>
-</Steps>
+<ContentSection id={4} title="Custom Endpoint URL">
+
+**endPointURL** is an optional custom endpoint used to connect to an AWS service.
+
+You may want to specify this when:
+- Using VPC endpoints
+- Connecting to local or AWS-compatible services
+- Overriding the default regional endpoint
+
+See  
+[AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) for details.
+
+</ContentSection>
+
+<ContentSection id={5} title="AWS Profile Name">
+
+**profileName** specifies the AWS CLI profile to use for authentication.
+
+Profiles store credentials and configuration in AWS config files.  
+If not specified, the `default` profile is used.
+
+Learn more about  
+[Named profiles for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
+
+</ContentSection>
+
+<ContentSection id={6} title="Assume Role ARN">
+
+**assumeRoleArn** is the Amazon Resource Name (ARN) of the IAM role to assume.
+
+This is commonly used for:
+- Cross-account access
+- Delegated permissions
+- Enhanced security setups
+
+This field is **required** when using Assume Role authentication.
+
+See the  
+[AssumeRole API reference](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html).
+
+</ContentSection>
+
+<ContentSection id={7} title="Assume Role Session Name">
+
+**assumeRoleSessionName** identifies the assumed role session.
+
+This value helps uniquely identify a session when the same role is assumed multiple times or by different principals.
+
+If not provided, the default value `OpenMetadataSession` is used.
+
+</ContentSection>
+
+<ContentSection id={8} title="Assume Role Source Identity">
+
+**assumeRoleSourceIdentity** is an optional source identity passed when assuming a role.
+
+This value is recorded in AWS CloudTrail logs and can be used to trace actions performed using the assumed role.
+
+See  
+[Source Identity in AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html).
+
+</ContentSection>
+
+</ContentPanel>

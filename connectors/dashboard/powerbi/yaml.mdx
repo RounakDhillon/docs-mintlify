@@ -3,8 +3,10 @@ title: Run the PowerBI Connector Externally
 description: Learn how to configure PowerBI dashboard connectors in Collate using YAML. Step-by-step setup guide with examples and best practices.
 slug: /connectors/dashboard/powerbi/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -94,16 +96,20 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for PowerBI:
-<Steps>
-<Step title="clientId">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+Configure the source type and service name.
+</ContentSection>
+<ContentSection id={2} title="clientId" lines="6">
 **clientId**: PowerBI Client ID.
 To get the client ID (also know as application ID), follow these steps:
 - Log into [Microsoft Azure](https://ms.portal.azure.com/#allservices).
 - Search for App registrations and select the App registrations link.
 - Select the Azure AD app you're using for embedding your Power BI content.
 - From the Overview section, copy the Application (client) ID.
-</Step>
-<Step title="clientSecret">
+</ContentSection>
+<ContentSection id={3} title="clientSecret" lines="7">
 **clientSecret**: PowerBI Client Secret.
 To get the client secret, follow these steps:
 - Log into [Microsoft Azure](https://ms.portal.azure.com/#allservices).
@@ -113,51 +119,53 @@ To get the client secret, follow these steps:
 - Under Client secrets, select New client secret.
 - In the Add a client secret pop-up window, provide a description for your application secret, select when the application secret expires, and select Add.
 - From the Client secrets section, copy the string in the Value column of the newly created application secret.
-</Step>
-<Step title="tenantId">
+</ContentSection>
+<ContentSection id={4} title="tenantId" lines="8">
 **tenantId**: PowerBI Tenant ID.
 To get the tenant ID, follow these steps:
 - Log into [Microsoft Azure](https://ms.portal.azure.com/#allservices).
 - Search for App registrations and select the App registrations link.
 - Select the Azure AD app you're using for Power BI.
 - From the Overview section, copy the Directory (tenant) ID.
-</Step>
-<Step title="scope">
+</ContentSection>
+<ContentSection id={5} title="scope" lines="9-10">
 **scope**: Service scope.
 To let OM use the Power BI APIs using your Azure AD app, you'll need to add the following scopes:
 - https://analysis.windows.net/powerbi/api/.default
 Instructions for adding these scopes to your app can be found by following this link: https://analysis.windows.net/powerbi/api/.default.
-</Step>
-<Step title="authorityUri">
+</ContentSection>
+<ContentSection id={6} title="authorityUri" lines="11">
 **authorityUri**: Authority URI for the service.
 To identify a token authority, you can provide a URL that points to the authority in question.
 If you don't specify a URL for the token authority, we'll use the default value of https://login.microsoftonline.com/.
-</Step>
-<Step title="hostPort">
+</ContentSection>
+<ContentSection id={7} title="hostPort" lines="12">
 **hostPort**: URL to the PowerBI instance.
 To connect with your Power BI instance, you'll need to provide the host URL. If you're using an on-premise installation of Power BI, this will be the domain name associated with your instance.
 If you don't specify a host URL, we'll use the default value of https://app.powerbi.com to connect with your Power BI instance.
-</Step>
-<Step title="Pagination Entity Per Page">
+</ContentSection>
+<ContentSection id={8} title="Pagination Entity Per Page" lines="13">
 **Pagination Entity Per Page**:
 The pagination limit for Power BI APIs can be set using this parameter. The limit determines the number of records to be displayed per page.
 By default, the pagination limit is set to 100 records, which is also the maximum value allowed.
-</Step>
-<Step title="Use Admin APIs">
+</ContentSection>
+<ContentSection id={9} title="Use Admin APIs" lines="14">
 **Use Admin APIs**:
 Option for using the PowerBI admin APIs:
 Refer to the section [here](/connectors/dashboard/powerbi#powerbi-admin-and-nonadmin-apis) to get more information.
 - Enabled (Use PowerBI Admin APIs)
 - Disabled (Use Non-Admin PowerBI APIs)
-</Step>
-<Step title="pbitFilesSource">
+</ContentSection>
+<ContentSection id={10} title="pbitFilesSource" lines="15-30">
 **pbitFilesSource**: Source to get the .pbit files to extract lineage information. Select one of local, azureConfig, gcsConfig, s3Config.
-- `pbitFileConfigType`: Determines the storage backend type (azure, gcs, or s3).	
+- `pbitFileConfigType`: Determines the storage backend type (azure, gcs, or s3).
 - `securityConfig`: Authentication credentials for accessing the storage backend.
 - `prefixConfig`: Details of the location in the storage backend.
 - `pbitFilesExtractDir`: Specifies the local directory where extracted .pbit files will be stored for processing.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: powerbi
@@ -241,6 +249,9 @@ tenantId: tenant  # REQUIRED - Azure AD tenant ID
       #     objectPrefix: ""            # Path prefix to locate files within the bucket
       #   pbitFilesExtractDir: /tmp/pbitFiles  # Local directory for extracted files
 ```
+
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

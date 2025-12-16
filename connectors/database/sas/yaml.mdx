@@ -3,8 +3,10 @@ title: Run the SAS Connector Externally
 description: Configure SAS database connections in Collate with YAML. Step-by-step setup guide, authentication options, and connector configuration examples.
 slug: /connectors/database/sas/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
@@ -42,23 +44,77 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-<Steps>
-<Step title="serverHost">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your SAS connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Server Host" lines="6">
+
 **serverHost**: Host and port of the SAS Viya deployment.
-</Step>
-<Step title="username">
+
+</ContentSection>
+
+<ContentSection id={3} title="Username" lines="7">
+
 **username**: Username to connect to SAS Viya. This user should have privileges to read all the metadata in SAS Information Catalog.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={4} title="Password" lines="8">
+
 **password**: Password to connect to SAS Viya.
-</Step>
-<Step title="filter">
+
+</ContentSection>
+
+<ContentSection id={5} title="Data Tables Configuration" lines="9-10">
+
+**datatables**: Enable or disable data tables ingestion.
+
+**dataTablesCustomFilter**: Custom filter for data tables.
+
+</ContentSection>
+
+<ContentSection id={6} title="Reports Configuration" lines="11-12">
+
+**reports**: Enable or disable reports ingestion.
+
+**reportsCustomFilter**: Custom filter for reports.
+
+</ContentSection>
+
+<ContentSection id={7} title="Dataflows Configuration" lines="13-14">
+
+**dataflows**: Enable or disable dataflows ingestion.
+
+**dataflowsCustomFilter**: Custom filter for dataflows.
+
 **filter**: A filter expression specifying items for import. For more information [see](https://developer.sas.com/apis/rest/DataManagement/#catalog-search)
-</Step>
-<Step title="To send the metadata to">
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="15-16">
+
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="17-33">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="sas_config.yaml">
+
 ```yaml
 source:
   type: SAS
@@ -66,10 +122,10 @@ source:
   serviceConnection:
     config:
       type: SAS
-serverHost: http://localhost:10000
-username: username
-password: password
-datatables: True
+      serverHost: http://localhost:10000
+      username: username
+      password: password
+      datatables: True
       dataTablesCustomFilter: None
       reports: False
       reportsCustomFilter: None
@@ -79,5 +135,11 @@ sink:
   type: metadata-rest
   config: {}
 ```
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />

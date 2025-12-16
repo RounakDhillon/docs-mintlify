@@ -3,8 +3,10 @@ title: Run the Looker Connector Externally
 description: Configure Looker dashboard connections in Collate using YAML. Step-by-step setup guide with examples for seamless data catalog integration.
 slug: /connectors/dashboard/looker/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -62,17 +64,37 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Looker:
-<Steps>
-<Step title="clientId">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your Looker connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Client ID" lines="6">
+
 **clientId**: Specify the Client ID to connect to Looker. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="clientSecret">
+
+</ContentSection>
+
+<ContentSection id={3} title="Client Secret" lines="7">
+
 **clientSecret**: Client Secret to connect to Looker.
-</Step>
-<Step title="hostPort">
+
+</ContentSection>
+
+<ContentSection id={4} title="Host Port" lines="8">
+
 **hostPort**: URL to the Looker instance.
-</Step>
-<Step title="githubCredentials">
+
+</ContentSection>
+
+<ContentSection id={5} title="GitHub Credentials" lines="9-13">
+
 **githubCredentials** (Optional): GitHub API credentials to extract LookML Views' information by parsing the source `.lkml` files. There are three
 properties we need to add in this case:
 - **repositoryOwner**: The owner (user or organization) of a GitHub repository. For example, in https://github.com/open-metadata/OpenMetadata, the owner is `open-metadata`.
@@ -80,8 +102,13 @@ properties we need to add in this case:
 - **token**: Token to use the API. This is required for private repositories and to ensure we don't hit API limits.
 Follow these [steps](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-fine-grained-personal-access-token) in order to create a fine-grained personal access token.
 When configuring, give repository access to `Only select repositories` and choose the one containing your LookML files. Then, we only need `Repository Permissions` as `Read-only` for `Contents`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="looker_config.yaml">
+
 ```yaml
 source:
   type: looker
@@ -98,6 +125,10 @@ gitCredentials:
         repositoryName: OpenMetadata
         token: XYZ
 ```
+
+</CodePanel>
+
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

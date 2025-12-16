@@ -5,43 +5,83 @@ The Data Profiler workflow will be using the `orm-profiler` processor.
 After running a Metadata Ingestion workflow, we can run the Data Profiler workflow.
 While the `serviceName` will be the same to that was used in Metadata Ingestion, so the ingestion bot can get the `serviceConnection` details from the server.
 
-
 ### 1. Define the YAML Config
 
 This is a sample config for the profiler:
 
-<Steps>
-<Step title="profileSample">
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your profiler workflow.
+
+</ContentSection>
+
+<ContentSection id={2} title="Profiler Config Type" lines="4-6">
+
+**type**: Set to `Profiler` for data profiling ingestion.
+
+</ContentSection>
+
+<ContentSection id={3} title="Profile Sample" lines="7">
+
 **profileSample**: Percentage of data or no. of rows we want to execute the profiler and tests on.
-</Step>
-<Step title="threadCount">
+
+</ContentSection>
+
+<ContentSection id={4} title="Thread Count" lines="8">
+
 **threadCount**: Number of threads to use during metric computations.
-</Step>
-<Step title="timeoutSeconds">
-**timeoutSeconds**: Profiler Timeout in Seconds
-</Step>
-<Step title="databaseFilterPattern">
+
+</ContentSection>
+
+<ContentSection id={5} title="Timeout Seconds" lines="9">
+
+**timeoutSeconds**: Profiler Timeout in Seconds.
+
+</ContentSection>
+
+<ContentSection id={6} title="Database Filter Pattern" lines="10-15">
+
 **databaseFilterPattern**: Regex to only fetch databases that matches the pattern.
-</Step>
-<Step title="schemaFilterPattern">
+
+</ContentSection>
+
+<ContentSection id={7} title="Schema Filter Pattern" lines="16-21">
+
 **schemaFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-</Step>
-<Step title="tableFilterPattern">
+
+</ContentSection>
+
+<ContentSection id={8} title="Table Filter Pattern" lines="22-27">
+
 **tableFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-</Step>
-<Step title="Processor Configuration">
-#### Processor Configuration
 
-Choose the `orm-profiler`. Its config can also be updated to define tests from the YAML itself instead of the UI:
+</ContentSection>
 
-**tableConfig**: `tableConfig` allows you to set up some configuration at the table level.
-</Step>
-<Step title="Sink Configuration">
-#### Sink Configuration
+<ContentSection id={9} title="Processor Configuration" lines="28-63">
+
+Choose the `orm-profiler`. Its config can also be updated to define tests from the YAML itself instead of the UI.
+
+**tableConfig**: `tableConfig` allows you to set up some configuration at the table level including:
+- Profile sample settings per table
+- Custom profile queries
+- Column-level configuration (include/exclude columns, specific metrics)
+- Partition configuration for large tables
+
+</ContentSection>
+
+<ContentSection id={10} title="Sink Configuration" lines="64-66">
 
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="{connector}_profiler.yaml">
 
 ```yaml
 source:
@@ -50,30 +90,27 @@ source:
   sourceConfig:
     config:
       type: Profiler
-# profileSample: 85
-# threadCount: 5
-# timeoutSeconds: 43200
-# databaseFilterPattern:
+      # profileSample: 85
+      # threadCount: 5
+      # timeoutSeconds: 43200
+      # databaseFilterPattern:
       #   includes:
       #     - database1
       #     - database2
       #   excludes:
       #     - database3
-      #     - database4
-# schemaFilterPattern:
+      # schemaFilterPattern:
       #   includes:
       #     - schema1
       #     - schema2
       #   excludes:
       #     - schema3
-      #     - schema4
-# tableFilterPattern:
+      # tableFilterPattern:
       #   includes:
       #     - table1
       #     - table2
       #   excludes:
       #     - table3
-      #     - table4
 processor:
   type: orm-profiler
   config: {}  # Remove braces if adding properties
@@ -109,6 +146,10 @@ sink:
   type: metadata-rest
   config: {}
 ```
+
+</CodePanel>
+
+</CodePreview>
 
 - You can learn more about how to configure and run the Profiler Workflow to extract Profiler data and execute the Data Quality from [here](/how-to-guides/data-quality-observability/profiler/workflow)
 

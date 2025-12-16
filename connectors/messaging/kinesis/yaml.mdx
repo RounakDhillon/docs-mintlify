@@ -3,10 +3,12 @@ title: Run the Kinesis Connector Externally
 description: Use YAML to configure ingestion from Kinesis streams and extract topic, schema, and lineage metadata.
 slug: /connectors/messaging/kinesis/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import SourceConfigDef from '/snippets/connectors/yaml/messaging/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/messaging/source-config.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -73,6 +75,17 @@ This is a sample config for Kinesis:
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+Configure the source type and service name.
+</ContentSection>
+<ContentSection id={2} title="AWS Configuration" lines="7-16">
+Configure AWS credentials and settings for accessing Kinesis streams.
+</ContentSection>
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: kinesis
@@ -82,6 +95,8 @@ source:
       type: Kinesis
       awsConfig:
 ```
+</CodePanel>
+</CodePreview>
 <AwsConfig />
 <SourceConfig />
 <IngestionSink />

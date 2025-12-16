@@ -4,8 +4,10 @@ description: Use YAML to configure Matillion ingestion and extract transformatio
 slug: /connectors/pipeline/matillion/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -45,23 +47,25 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Matillion:
-<Steps>
-<Step title="hostPort">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="hostPort" lines="7">
 **hostPort**: The hostname or IP address with the REST API enabled eg.`https://<your-matillion-host-name-here>`
-</Step>
-<Step title="username">
+</ContentSection>
+<ContentSection id={2} title="username" lines="8">
 **username**: The username to authenticate with the Matillion instance.
-</Step>
-<Step title="password">
+</ContentSection>
+<ContentSection id={3} title="password" lines="9">
 **password**: The password to authenticate with the Matillion instance.
-</Step>
-<Step title="caCertificate">
+</ContentSection>
+<ContentSection id={4} title="caCertificate" lines="10-14">
 **caCertificate** : CA Certificate to authenticate with the Matillion instance.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: matillion
@@ -69,15 +73,17 @@ source:
   serviceConnection:
     config:
       type: Matillion
-hostPort: "https://<your-matillion-here>"
-username: "username"
-password: "password"
-sslConfig:
-                caCertificate: |
-                        -----BEGIN CERTIFICATE-----
-                        sample caCertificateData  
-                        -----END CERTIFICATE-----
+      hostPort: "https://<your-matillion-here>"
+      username: "username"
+      password: "password"
+      sslConfig:
+        caCertificate: |
+          -----BEGIN CERTIFICATE-----
+          sample caCertificateData
+          -----END CERTIFICATE-----
 ```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

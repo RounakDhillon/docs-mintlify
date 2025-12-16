@@ -4,8 +4,10 @@ description: Learn how to configure and run ServiceNow connector externally with
 slug: /connectors/database/servicenow/yaml
 sidebarTitle: Run Externally
 Collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -34,24 +36,71 @@ All connectors are defined as JSON Schemas. Here you can find the structure to c
 In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/serviceNowConnection.json)
 ### 1. Define the YAML Config
+
 This is a sample config for ServiceNow:
-<Steps>
-<Step title="hostPort">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your ServiceNow connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Host Port" lines="7">
+
 **hostPort**: Your ServiceNow instance URL (e.g., `https://your-instance.service-now.com`).
-</Step>
-<Step title="username">
+
+</ContentSection>
+
+<ContentSection id={3} title="Username" lines="8">
+
 **username**: Username to connect to ServiceNow. This user should have read access to `sys_db_object` and `sys_dictionary` tables.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={4} title="Password" lines="9">
+
 **password**: Password to connect to ServiceNow.
-</Step>
-<Step title="includeScopes">
+
+</ContentSection>
+
+<ContentSection id={5} title="Include Scopes" lines="10">
+
 **includeScopes**: If true, ServiceNow application scopes will be imported as database schemas. Otherwise, a single default schema will be used. Default: `false`.
-</Step>
-<Step title="includeSystemTables">
+
+</ContentSection>
+
+<ContentSection id={6} title="Include System Tables" lines="11">
+
 **includeSystemTables**: If true, both admin and system tables (`sys_*` tables) will be fetched. If false, only admin tables will be fetched. Default: `false`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={7} title="Source Config" lines="12">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="26">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="29">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="servicenow_config.yaml">
+
 ```yaml
 source:
   type: servicenow
@@ -76,16 +125,19 @@ source:
       #     - table4
 sink:
   type: metadata-rest
-  config:
-    api_endpoint: <OpenMetadata host and port>
-    auth_provider_type: <OpenMetadata auth provider>
+  config: {}
 workflowConfig:
   # loggerLevel: DEBUG  # DEBUG, INFO, WARN or ERROR
   openMetadataServerConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />
 ## Advanced Configuration
 ### Connection Options

@@ -3,10 +3,11 @@ title: Run the Snowplow Connector Externally
 Description: Run the Snowplow connector externally with YAML to ingest pipelines, schemas, and lineage across BDP or Community deployments.
 slug: /connectors/pipeline/snowplow/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
-# Run the Snowplow Connector Externally
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -37,35 +38,37 @@ For self-hosted Community Edition deployments, you'll need:
 ## Metadata Ingestion
 ### 1. Define the YAML Config
 This is a sample config for Snowplow:
-<Steps>
-<Step title="type">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="type" lines="1-7">
 **type**: Must be `Snowplow`.
-</Step>
-<Step title="deployment">
+</ContentSection>
+<ContentSection id={2} title="deployment" lines="1-7">
 **deployment**: Choose between `BDP` (managed) or `Community` (self-hosted).
-</Step>
-<Step title="consoleUrl">
+</ContentSection>
+<ContentSection id={3} title="consoleUrl" lines="1-9">
 **consoleUrl**: Required for BDP deployment. The URL of your Snowplow Console.
-</Step>
-<Step title="apiKey">
+</ContentSection>
+<ContentSection id={4} title="apiKey" lines="1-10">
 **apiKey**: Required for BDP deployment. Your Snowplow API key.
-</Step>
-<Step title="organizationId">
+</ContentSection>
+<ContentSection id={5} title="organizationId" lines="1-11">
 **organizationId**: Required for BDP deployment. Your organization ID.
-</Step>
-<Step title="configPath">
+</ContentSection>
+<ContentSection id={6} title="configPath" lines="1-13">
 **configPath**: Required for Community deployment. Path to configuration files.
-</Step>
-<Step title="cloudProvider">
+</ContentSection>
+<ContentSection id={7} title="cloudProvider" lines="1-14">
 **cloudProvider**: The cloud provider where Snowplow is deployed (AWS, GCP, or Azure).
-</Step>
-<Step title="To send the metadata of">
+</ContentSection>
+<ContentSection id={8} title="To send the metadata of" lines="1-25">
 To send the metadata of only selected pipelines, enter the regex pattern for pipeline names to include or exclude.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: snowplow
@@ -92,6 +95,8 @@ source:
       #     - pipeline3
       #     - pipeline4
 ```
+</CodePanel>
+</CodePreview>
 <IngestionSink />
 <WorkflowConfig />
 - You can learn more about how to configure and run the Ingestion Framework [here](/deployment/ingestion).

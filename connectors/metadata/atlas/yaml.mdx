@@ -3,6 +3,7 @@ title: Run the Atlas Connector Externally
 description: Use YAML to ingest metadata from Apache Atlas including classifications, glossary, and lineage.
 slug: /connectors/metadata/atlas/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -10,6 +11,7 @@ import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 
 <ConnectorDetailsHeader
 icon='/public/images/connectors/atlas.webp'
@@ -41,29 +43,75 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-<Steps>
-<Step title="hostPort">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your Atlas connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Host Port" lines="7">
+
 **hostPort**: Atlas Host of the data source.
-</Step>
-<Step title="username">
+
+</ContentSection>
+
+<ContentSection id={3} title="Username" lines="8">
+
 **username**: Username to connect to the Atlas. This user should have privileges to read all the metadata in Atlas.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={4} title="Password" lines="9">
+
 **password**: Password to connect to the Atlas.
-</Step>
-<Step title="databaseServiceName">
-**databaseServiceName**: source database of the data source(Database service that you created from UI. example- local_hive).
-</Step>
-<Step title="messagingServiceName">
+
+</ContentSection>
+
+<ContentSection id={5} title="Database Service Name" lines="10">
+
+**databaseServiceName**: source database of the data source (Database service that you created from UI. example- local_hive).
+
+</ContentSection>
+
+<ContentSection id={6} title="Messaging Service Name" lines="11">
+
 **messagingServiceName**: messaging service source of the data source.
-</Step>
-<Step title="entity_type">
+
+</ContentSection>
+
+<ContentSection id={7} title="Entity Type" lines="12">
+
 **entity_type**: Name of the entity type in Atlas.
-</Step>
-<Step title="To send the metadata to">
+
+</ContentSection>
+
+<ContentSection id={8} title="Source Config" lines="13-15">
+
+Configure the metadata ingestion type as DatabaseMetadata.
+
+</ContentSection>
+
+<ContentSection id={9} title="Sink Configuration" lines="16-18">
+
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={10} title="Workflow Configuration" lines="19-35">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="atlas_config.yaml">
+
 ```yaml
 source:
   type: Atlas
@@ -71,12 +119,12 @@ source:
   serviceConnection:
     config:
       type: Atlas
-hostPort: http://localhost:10000
-username: username
-password: password
-databaseServiceName: ["local_hive"] # create database service and messaging service and pass `service name` here
-messagingServiceName: []
-entity_type: Table
+      hostPort: http://localhost:10000
+      username: username
+      password: password
+      databaseServiceName: ["local_hive"]
+      messagingServiceName: []
+      entity_type: Table
   sourceConfig:
     config:
       type: DatabaseMetadata
@@ -84,5 +132,10 @@ sink:
   type: metadata-rest
   config: {}
 ```
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />

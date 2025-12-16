@@ -3,8 +3,10 @@ title: Run the MariaDB Connector Externally
 description: Configure MariaDB ingestion using YAML to sync metadata, run profiling, and enable data discovery.
 slug: /connectors/database/mariadb/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -51,33 +53,85 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your MariaDB connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
 **username**: Specify the User to connect to MariaDB. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
 **password**: Password to connect to MariaDB.
-</Step>
-<Step title="hostPort">
+
+</ContentSection>
+
+<ContentSection id={4} title="Host Port" lines="9">
+
 **hostPort**: Enter the fully qualified hostname and port number for your MariaDB deployment in the Host and Port field.
-</Step>
-<Step title="databaseName">
+
+</ContentSection>
+
+<ContentSection id={5} title="Database Name" lines="10">
+
 **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
-</Step>
-<Step title="databaseSchema">
+
+</ContentSection>
+
+<ContentSection id={6} title="Database Schema" lines="11">
+
 **databaseSchema**: databaseSchema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single databaseSchema. When left blank, OpenMetadata Ingestion attempts to scan all the databaseSchema.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={7} title="Connection Options" lines="12-13">
+
 #### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={8} title="Connection Arguments" lines="14-15">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={9} title="Source Config" lines="16-18">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={10} title="Sink Configuration" lines="19-21">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={11} title="Workflow Configuration" lines="22-38">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="mariadb_config.yaml">
+
 ```yaml
 source:
   type: mariadb
@@ -85,19 +139,27 @@ source:
   serviceConnection:
     config:
       type: MariaDB
-username: openmetadata_user
-password: openmetadata_password
-hostPort: localhost:5432
-# databaseName: database
-# databaseSchema: schema
-# connectionOptions:
+      username: openmetadata_user
+      password: openmetadata_password
+      hostPort: localhost:5432
+      # databaseName: database
+      # databaseSchema: schema
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <Lineage connector="mariadb" />
 <DataProfiler connector="mariadb" />

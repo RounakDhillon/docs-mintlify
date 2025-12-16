@@ -3,8 +3,10 @@ title: Run the Doris Connector Externally
 description: Use YAML to ingest metadata from Doris, including tables, partitions, and profiling.
 slug: /connectors/database/doris/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -51,31 +53,77 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-This is a sample config for Doris:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your Doris connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
 **username**: Specify the User to connect to Doris. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
 **password**: Password to connect to Doris.
-</Step>
-<Step title="Host and Port">
+
+</ContentSection>
+
+<ContentSection id={4} title="Host and Port" lines="9">
+
 **Host and Port**: Enter the fully qualified hostname and port number for your Doris deployment in the Host and Port field.
-</Step>
-<Step title="databaseSchema">
+
+</ContentSection>
+
+<ContentSection id={5} title="Database Schema" lines="10">
+
 **databaseSchema**: databaseSchema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single databaseSchema. When left blank, OpenMetadata Ingestion attempts to scan all the databaseSchema.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={6} title="Connection Options" lines="11-12">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={7} title="Connection Arguments" lines="13-14">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={8} title="Source Config" lines="15-17">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Sink Configuration" lines="18-20">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={10} title="Workflow Configuration" lines="21-37">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="doris_config.yaml">
+
 ```yaml
 source:
   type: doris
@@ -83,18 +131,26 @@ source:
   serviceConnection:
     config:
       type: Doris
-username: <username>
-password: <password>
-hostPort: <hostPort>
-databaseSchema: schema
-# connectionOptions:
+      username: <username>  # REQUIRED
+      password: <password>  # REQUIRED
+      hostPort: <hostPort>  # REQUIRED - format: host:port
+      databaseSchema: schema
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <DataProfiler connector="doris" />
 <AutoClassification connector="doris" />

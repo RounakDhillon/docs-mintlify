@@ -3,8 +3,10 @@ title: Run the Lightdash Connector Externally
 description: Configure Lightdash dashboard connector for Collate using YAML. Step-by-step setup guide with examples to integrate your BI dashboards seamlessly.
 slug: /connectors/dashboard/lightdash/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -46,25 +48,53 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Lightdash:
-<Steps>
-<Step title="Host and Port">
-- **Host and Port**: Specify the network location where your Lightdash instance is accessible, combining both hostname and port in a URI format: either `http://hostname:port` or `https://hostname:port`, based on your security needs.
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your Lightdash connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Host and Port" lines="6">
+
+**Host and Port**: Specify the network location where your Lightdash instance is accessible, combining both hostname and port in a URI format: either `http://hostname:port` or `https://hostname:port`, based on your security needs.
 **Example**: For a local setup, use `http://localhost:8080`; for a server deployment, it might be `https://lightdash.example.com:3000`.
 Ensure the specified port is open and accessible through network firewall settings.
-</Step>
-<Step title="API Key">
-- **API Key**: This key authenticates requests to your Lightdash instance. Keep the API Key secure, sharing it only with authorized applications or users.
-</Step>
-<Step title="Project UUID">
-- **Project UUID**: This unique identifier links API requests or configurations to a specific project in Lightdash.
-</Step>
-<Step title="Space UUID">
-- **Space UUID**: Identifies a specific "Space" in Lightdash, used to organize dashboards, charts, and assets.
-</Step>
-<Step title="Proxy Authentication">
-- **Proxy Authentication**: If your Lightdash instance requires authentication through a proxy server, provide proxy credentials. Proxy authentication controls access to external resources and Lightdash.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={3} title="API Key" lines="7">
+
+**API Key**: This key authenticates requests to your Lightdash instance. Keep the API Key secure, sharing it only with authorized applications or users.
+
+</ContentSection>
+
+<ContentSection id={4} title="Project UUID" lines="8">
+
+**Project UUID**: This unique identifier links API requests or configurations to a specific project in Lightdash.
+
+</ContentSection>
+
+<ContentSection id={5} title="Space UUID" lines="9">
+
+**Space UUID**: Identifies a specific "Space" in Lightdash, used to organize dashboards, charts, and assets.
+
+</ContentSection>
+
+<ContentSection id={6} title="Proxy Authentication" lines="10">
+
+**Proxy Authentication**: If your Lightdash instance requires authentication through a proxy server, provide proxy credentials. Proxy authentication controls access to external resources and Lightdash.
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="lightdash_config.yaml">
+
 ```yaml
 source:
   type: lightdash
@@ -78,6 +108,10 @@ projectUUID: <projectUUID>
 spaceUUID: <spaceUUID>
 proxyAuthentication: <ProxyAuthentication>
 ```
+
+</CodePanel>
+
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

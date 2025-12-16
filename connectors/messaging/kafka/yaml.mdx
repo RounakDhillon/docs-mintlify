@@ -3,8 +3,10 @@ title: Run the Kafka Connector Externally
 description: Use YAML to configure Kafka ingestion and capture topic metadata, message structure, and event lineage.
 slug: /connectors/messaging/kafka/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/messaging/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/messaging/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -45,58 +47,64 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Kafka:
-<Steps>
-<Step title="bootstrapServers">
+<SourceConfigDef />
+<IngestionSinkDef />
+<WorkflowConfigDef />
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+Configure the source type and service name.
+</ContentSection>
+<ContentSection id={2} title="bootstrapServers" lines="9">
 **bootstrapServers**: List of brokers as comma separated values of broker `host` or `host:port`.
 Example: `host1:9092,host2:9092`
-</Step>
-<Step title="schemaRegistryURL">
+</ContentSection>
+<ContentSection id={3} title="schemaRegistryURL" lines="10">
 **schemaRegistryURL**: URL of the Schema Registry used to ingest the schemas of the topics.
 If you encounter issues connecting to the Schema Registry, ensure that the protocol is explicitly specified in the Schema Registry URL. For example:
 - Use `http://localhost:8081` instead of `localhost:8081`.
 The Schema Registry requires a properly formatted URL, including the protocol (`http://` or `https://`). While this differentiation is expected in the Schema Registry configuration, it may not be immediately apparent.
 **NOTE**: For now, the schema will be the last version found for the schema name `{topic-name}-value`. An [issue](https://github.com/open-metadata/OpenMetadata/issues/10399) to improve how it currently works has been opened.
-</Step>
-<Step title="saslUsername">
+</ContentSection>
+<ContentSection id={4} title="saslUsername" lines="11">
 **saslUsername**: SASL username for use with the PLAIN and SASL-SCRAM mechanisms.
-</Step>
-<Step title="saslPassword">
+</ContentSection>
+<ContentSection id={5} title="saslPassword" lines="12">
 **saslPassword**: SASL password for use with the PLAIN and SASL-SCRAM mechanisms.
-</Step>
-<Step title="saslMechanism">
+</ContentSection>
+<ContentSection id={6} title="saslMechanism" lines="13">
 **saslMechanism**: SASL mechanism to use for authentication.
 Supported: _GSSAPI, PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, OAUTHBEARER_.
 **NOTE**: Despite the name only one mechanism must be configured.
-</Step>
-<Step title="basicAuthUserInfo">
+</ContentSection>
+<ContentSection id={7} title="basicAuthUserInfo" lines="14">
 **basicAuthUserInfo**: Schema Registry Client HTTP credentials in the form of `username:password`.
 By default, user info is extracted from the URL if present.
-</Step>
-<Step title="consumerConfig">
-**consumerConfig**: The accepted additional values for the consumer configuration can be found in the following 
+</ContentSection>
+<ContentSection id={8} title="consumerConfig" lines="15-19">
+**consumerConfig**: The accepted additional values for the consumer configuration can be found in the following
 [link](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.mdx).
-</Step>
-<Step title="schemaRegistryConfig">
-**schemaRegistryConfig**: The accepted additional values for the Schema Registry configuration can be found in the 
+</ContentSection>
+<ContentSection id={9} title="schemaRegistryConfig" lines="20-23">
+**schemaRegistryConfig**: The accepted additional values for the Schema Registry configuration can be found in the
 following [link](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schemaregistryclient).
 **Note:** To ingest the topic schema, `schemaRegistryURL` must be passed.
-</Step>
-<Step title="securityProtocol">
+</ContentSection>
+<ContentSection id={10} title="securityProtocol" lines="24">
 **securityProtocol**: security.protocol consumer config property. It accepts `PLAINTEXT`,`SASL_PLAINTEXT`, `SASL_SSL`, `SSL`.
-</Step>
-<Step title="schemaRegistryTopicSuffixName">
+</ContentSection>
+<ContentSection id={11} title="schemaRegistryTopicSuffixName" lines="25">
 **schemaRegistryTopicSuffixName**: Schema Registry Topic Suffix Name. The suffix to be appended to the topic name to get topic schema from registry.
-</Step>
-<Step title="schemaRegistrySSL">
+</ContentSection>
+<ContentSection id={12} title="schemaRegistrySSL" lines="32-35">
 **schemaRegistrySSL**: Schema Registry SSL Config. Configuration for enabling SSL for the Schema Registry connection.
-</Step>
-<Step title="supportsMetadataExtraction">
+</ContentSection>
+<ContentSection id={13} title="supportsMetadataExtraction" lines="36">
 **supportsMetadataExtraction**: Supports Metadata Extraction. `supportsMetadataExtraction` supports boolean value either true or false.
-</Step>
-</Steps>
-<SourceConfigDef />
-<IngestionSinkDef />
-<WorkflowConfigDef />
+</ContentSection>
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: kafka
@@ -126,16 +134,15 @@ securityProtocol: PLAINTEXT  # Security protocol: PLAINTEXT, SSL, SASL_PLAINTEXT
       #   caCertificate: "/path/to/ca-cert.pem"
       #   sslCertificate: "/path/to/client-cert.pem"
       #   sslKey: "/path/to/client-key.pem"
-# SSL Configuration for Schema Registry connections  
+# SSL Configuration for Schema Registry connections
       # schemaRegistrySSL:
       #   caCertificate: "/path/to/schema-registry-ca.pem"
-      #   sslCertificate: "/path/to/schema-registry-cert.pem" 
+      #   sslCertificate: "/path/to/schema-registry-cert.pem"
       #   sslKey: "/path/to/schema-registry-key.pem"
 # supportsMetadataExtraction: true
 ```
-```yaml
-      # supportsMetadataExtraction: true
-```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

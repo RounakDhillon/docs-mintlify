@@ -3,8 +3,10 @@ title: Run the Redash Connector Externally
 description: Configure Redash dashboard connector for Collate using YAML. Step-by-step setup guide with examples to integrate your Redash dashboards seamlessly.
 slug: /connectors/dashboard/redash/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -43,21 +45,45 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-<Steps>
-<Step title="hostPort">
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name.
+
+</ContentSection>
+
+<ContentSection id={2} title="hostPort" lines="6">
+
 **hostPort**: URL to the Redash instance.
-</Step>
-<Step title="username">
+
+</ContentSection>
+
+<ContentSection id={3} title="username" lines="7">
+
 **username**: Specify the User to connect to Redash. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="apiKey">
+
+</ContentSection>
+
+<ContentSection id={4} title="apiKey" lines="8">
+
 **apiKey**: API key of the redash instance to access. It has the same permissions as the user who owns it.
+
 Can be found on a user profile page.
-</Step>
-<Step title="Redash Version">
+
+</ContentSection>
+
+<ContentSection id={5} title="Redash Version" lines="9">
+
 **Redash Version**: Redash version of your redash instance. Enter the numerical value from the [Redash Releases](https://github.com/getredash/redash/releases) page. Default: `10.0.0`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: redash
@@ -70,6 +96,10 @@ username: random
 apiKey: api_key
 redashVersion: 10.0.0
 ```
+
+</CodePanel>
+
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

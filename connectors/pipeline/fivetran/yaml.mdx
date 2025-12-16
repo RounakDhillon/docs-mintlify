@@ -3,8 +3,10 @@ title: Run the Fivetran Connector Externally
 description: Use YAML to configure Fivetran connector for ingestion of pipeline and destination metadata.
 slug: /connectors/pipeline/fivetran/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -45,8 +47,9 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Fivetran:
-<Steps>
-<Step title="apiKey">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="apiKey" lines="7">
 **apiKey**: Fivetran API Key.
 Follow the steps mentioned below to generate the Fivetran API key and API secret:
 - Click your user name in your Fivetran dashboard.
@@ -54,24 +57,25 @@ Follow the steps mentioned below to generate the Fivetran API key and API secret
 - Click Generate API key. (If you already have an API key, then the button text is Generate new API key.)
 - Make a note of the key and secret as they won't be displayed once you close the page or navigate away.
 For more detailed documentation visit [here](https://fivetran.com/docs/rest-api/getting-started).
-</Step>
-<Step title="apiSecret">
+</ContentSection>
+<ContentSection id={2} title="apiSecret" lines="8">
 **apiSecret**: Fivetran API Secret.
 From the above step where the API key is generated copy the the API secret
-</Step>
-<Step title="hostPort">
+</ContentSection>
+<ContentSection id={3} title="hostPort" lines="9">
 **hostPort**: HostPort of the Fivetran instance.
 Hostport of the Fivetran instance that the connection will be made to
 By default OpenMetadata will use `https://api.fivetran.com` to connect to the Fivetran APIs.
-</Step>
-<Step title="limit">
+</ContentSection>
+<ContentSection id={4} title="limit" lines="10">
 **limit**: Fivetran API Limit For Pagination.
 This refers to the maximum number of records that can be returned in a single page of results when using Fivetran's API for pagination.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: fivetran
@@ -79,23 +83,13 @@ source:
   serviceConnection:
     config:
       type: Fivetran
-apiKey: <fivetran api key>
-apiSecret: <fivetran api secret>
-# hostPort: https://api.fivetran.com (default)
-# limit: 1000 (default)
-```
-```yaml
       apiKey: <fivetran api key>
-```
-```yaml
       apiSecret: <fivetran api secret>
-```
-```yaml
       # hostPort: https://api.fivetran.com (default)
-```
-```yaml
       # limit: 1000 (default)
 ```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

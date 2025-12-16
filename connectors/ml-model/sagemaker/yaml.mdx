@@ -3,6 +3,7 @@ title: Run the Sagemaker Connector Externally
 description: Configure SageMaker ingestion with YAML to extract model metadata, metrics, and lineage from ML pipelines.
 slug: /connectors/ml-model/sagemaker/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/ml-model/source-config.mdx'
@@ -15,6 +16,8 @@ import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 import AwsConfigDef from '/snippets/connectors/yaml/common/aws-config-def.mdx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
+import AwsConfig from '/snippets/connectors/yaml/common/aws-config.mdx'
 
 <ConnectorDetailsHeader
 icon='/public/images/connectors/sagemaker.webp'
@@ -65,11 +68,18 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/mlmodelServiceMetadataPipeline.json)
 ### 1. Define the YAML Config
 This is a sample config for Sagemaker:
+
+<CodePreview>
+<ContentPanel>
 #### Source Configuration - Service Connection
 <AwsConfigDef />
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: sagemaker
@@ -79,7 +89,11 @@ source:
       type: SageMaker
       awsConfig:
 ```
+
 <AwsConfig />
+
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

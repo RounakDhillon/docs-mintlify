@@ -3,8 +3,10 @@ title: Run the Unity Catalog Connector Externally
 description: Configure Unity Catalog database connector with Collate using YAML. Step-by-step setup guide, configuration examples, and best practices included.
 slug: /connectors/database/unity-catalog/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -70,36 +72,66 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Unity Catalog:
-<Steps>
-<Step title="catalog">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your Unity Catalog connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="catalog" lines="7">
+
 **catalog**: Catalog of the data source(Example: hive_metastore). This is optional parameter, if you would like to restrict the metadata reading to a single catalog. When left blank, OpenMetadata Ingestion attempts to scan all the catalog.
-</Step>
-<Step title="databaseSchema">
+
+</ContentSection>
+
+<ContentSection id={3} title="databaseSchema" lines="8">
+
 **databaseSchema**: DatabaseSchema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single databaseSchema. When left blank, OpenMetadata Ingestion attempts to scan all the databaseSchema.
-</Step>
-<Step title="hostPort">
-**hostPort**: Enter the fully qualified hostname and port number for your Databricks deployment in the Host and Port field.
-</Step>
-<Step title="token">
+
+</ContentSection>
+
+<ContentSection id={4} title="token" lines="9">
+
 **token**: Generated Token to connect to Databricks.
-</Step>
-<Step title="httpPath">
+
+</ContentSection>
+
+<ContentSection id={5} title="hostPort" lines="10">
+
+**hostPort**: Enter the fully qualified hostname and port number for your Databricks deployment in the Host and Port field.
+
+</ContentSection>
+
+<ContentSection id={6} title="httpPath" lines="11">
+
 **httpPath**: Databricks compute resources URL.
-</Step>
-<Step title="connectionTimeout">
+
+</ContentSection>
+
+<ContentSection id={7} title="connectionTimeout" lines="12">
+
 **connectionTimeout**: The maximum amount of time (in seconds) to wait for a successful connection to the data source. If the connection attempt takes longer than this timeout period, an error will be returned.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={8} title="Advanced Configuration" lines="13-16">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="unity_catalog_config.yaml">
+
 ```yaml
 source:
   type: unitycatalog
@@ -118,8 +150,15 @@ connectionTimeout: 120
 # connectionArguments:
       #   key: value
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
 <IngestionCli />
 <QueryUsage connector="unitycatalog" />

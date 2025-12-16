@@ -3,8 +3,10 @@ title: Run the Qlik Sense Connector Externally
 description: Configure QlikSense dashboard connectors in Collate using YAML. Get step-by-step setup instructions, connection parameters, and examples.
 slug: /connectors/dashboard/qliksense/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -45,31 +47,35 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Qlik Sense:
-<Steps>
-<Step title="hostPort">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+Configure the source type and service name.
+</ContentSection>
+<ContentSection id={2} title="hostPort" lines="6">
 **hostPort**: Qlik Engine JSON API Websocket URL
-Enter the websocket url of Qlik Sense Engine JSON API. Refer to [this](https://help.qlik.com/en-US/sense-developer/May2023/Subsystems/EngineAPI/Content/Sense_EngineAPI/GettingStarted/connecting-to-engine-api.htm) document for more details about 
+Enter the websocket url of Qlik Sense Engine JSON API. Refer to [this](https://help.qlik.com/en-US/sense-developer/May2023/Subsystems/EngineAPI/Content/Sense_EngineAPI/GettingStarted/connecting-to-engine-api.htm) document for more details about
 Example: `wss://server.domain.com:4747` or `wss://server.domain.com[/virtual proxy]`
 **Note:** Notice that you have to provide the websocket url here which would begin with either `wss://` or `ws://`
-</Step>
-<Step title="displayUrl">
+</ContentSection>
+<ContentSection id={3} title="displayUrl" lines="7">
 **displayUrl**: Qlik Sense Base URL
-This field refers to the base url of your Qlik Sense Portal, will be used for generating the redirect links for dashboards and charts. 
+This field refers to the base url of your Qlik Sense Portal, will be used for generating the redirect links for dashboards and charts.
 Example: `https://server.domain.com` or `https://server.domain.com/<virtual-proxy-path>`
-</Step>
-<Step title="clientCertificate">
+</ContentSection>
+<ContentSection id={4} title="clientCertificate" lines="8-11">
 Since we use the Qlik Sense Engine APIs, we need to authenticate to those APIs using certificates generated on Qlik Management Console.
 In this approach we provide the path of the certificates to the certificate stored in the container or environment running the ingestion workflow.
-- **clientCertificate**: This field specifies the path of `client.pem` certificate required for authentication. 
-- **clientKeyCertificate**: This field specifies the path of `client_key.pem` certificate required for authentication. 
+- **clientCertificate**: This field specifies the path of `client.pem` certificate required for authentication.
+- **clientKeyCertificate**: This field specifies the path of `client_key.pem` certificate required for authentication.
 - **rootCertificate**: This field specifies the path of `root.pem` certificate required for authentication.
-</Step>
-<Step title="Client Certificate Value">
+</ContentSection>
+<ContentSection id={5} title="Client Certificate Value" lines="12-16">
 In this approach we provide the content of the certificates to the relevant field.
 - **Client Certificate Value**: This field specifies the value of `client.pem` certificate required for authentication.
 - **Client Key Certificate Value**: This field specifies the value of `client_key.pem` certificate required for authentication.
 - **Root Certificate Value**: This field specifies the value of `root.pem` certificate required for authentication.
-- **Staging Directory Path**: This field specifies the path to temporary staging directory, where the certificates will be stored temporarily during the ingestion process, which will de deleted once the ingestion job is over. 
+- **Staging Directory Path**: This field specifies the path to temporary staging directory, where the certificates will be stored temporarily during the ingestion process, which will de deleted once the ingestion job is over.
 when you are using this approach make sure you are passing the key in a correct format. If your certificate looks like this:
 ```
 -----BEGIN CERTIFICATE-----
@@ -85,17 +91,19 @@ You will have to replace new lines with `\n` and the final private key that you 
 ```
 -----BEGIN CERTIFICATE-----\nMII..\nMBQ...\nCgU..\n8Lt..\n...\nh+4=\n-----END CERTIFICATE-----\n
 ```
-</Step>
-<Step title="userId">
+</ContentSection>
+<ContentSection id={6} title="userId" lines="17">
 **userId**: This field specifies the user directory of the user.
-</Step>
-<Step title="userDirectory">
+</ContentSection>
+<ContentSection id={7} title="userDirectory" lines="18">
 **userDirectory**: This field specifies the user directory of the user.
-</Step>
-<Step title="validateHostName">
+</ContentSection>
+<ContentSection id={8} title="validateHostName" lines="19">
 **validateHostName**: Enable/Disable this field to validate the host name against the provided certificates.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: qliksense
@@ -119,6 +127,9 @@ userId: user_id
 userDirectory: user_dir
 validateHostName: false
 ```
+
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

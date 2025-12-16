@@ -3,8 +3,10 @@ title: Run the Domo Dashboard Connector Externally
 description: Configure Collate'sDomo Dashboard connector with YAML - step-by-step setup guide, authentication options, and configuration examples.
 slug: /connectors/dashboard/domo-dashboard/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -47,23 +49,51 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Domo-Dashboard:
-<Steps>
-<Step title="Client ID">
-**Client ID**: Client ID to Connect to DOMO Dashboard.
-</Step>
-<Step title="Secret Token">
-**Secret Token**: Secret Token to Connect DOMO Dashboard.
-</Step>
-<Step title="Access Token">
-**Access Token**: Access to Connect to DOMO Dashboard.
-</Step>
-<Step title="API Host">
-**API Host**:  API Host to Connect to DOMO Dashboard instance.
-</Step>
-<Step title="Instance Domain">
-**Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
-</Step>
-</Steps>
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your Domo Dashboard connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Client ID" lines="6">
+
+**clientId**: Client ID to Connect to DOMO Dashboard.
+
+</ContentSection>
+
+<ContentSection id={3} title="Secret Token" lines="7">
+
+**secretToken**: Secret Token to Connect DOMO Dashboard.
+
+</ContentSection>
+
+<ContentSection id={4} title="Access Token" lines="8">
+
+**accessToken**: Access to Connect to DOMO Dashboard.
+
+</ContentSection>
+
+<ContentSection id={5} title="API Host" lines="9">
+
+**apiHost**: API Host to Connect to DOMO Dashboard instance.
+
+</ContentSection>
+
+<ContentSection id={6} title="Instance Domain" lines="10">
+
+**instanceDomain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="domo_dashboard_config.yaml">
+
 ```yaml
 source:
   type: domodashboard
@@ -71,13 +101,20 @@ source:
   serviceConnection:
     config:
       type: DomoDashboard
-clientId: clientid
-secretToken: secret-token
-accessToken: access-token
-apiHost: api.domo.com
-instanceDomain: https://<your>.domo.com
+      clientId: clientid
+      secretToken: secret-token
+      accessToken: access-token
+      apiHost: api.domo.com
+      instanceDomain: https://<your>.domo.com
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
 <IngestionCli />

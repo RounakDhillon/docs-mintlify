@@ -3,8 +3,10 @@ title: Run the QuickSight Connector Externally
 description: Configure AWS QuickSight connector in Collate using YAML. Step-by-step setup guide for dashboard metadata ingestion and integration.
 slug: /connectors/dashboard/quicksight/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -84,17 +86,37 @@ The workflow is QuickSightled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for QuickSight:
-<Steps>
-<Step title="awsAccountId">
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name.
+
+</ContentSection>
+
+<ContentSection id={2} title="awsAccountId" lines="6">
+
 **awsAccountId**: AWS Account ID
-</Step>
-<Step title="identityType">
+
+</ContentSection>
+
+<ContentSection id={3} title="identityType" lines="7">
+
 **identityType**: The authentication method that the user uses to sign in.
-</Step>
-<Step title="namespace">
+
+</ContentSection>
+
+<ContentSection id={4} title="namespace" lines="8">
+
 **namespace**: The Amazon QuickSight namespace that contains the dashboard IDs in this request ( To be provided when identityType is `ANONYMOUS` )
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: quicksight
@@ -106,6 +128,10 @@ awsAccountId: <aws-account-id>
 identityType: IAM #QUICKSIGHT, ANONYMOUS
 namespace: #to be provided if identityType is Anonymous
 ```
+
+</CodePanel>
+
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

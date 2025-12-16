@@ -4,8 +4,10 @@ description: Set up Stitch ingestion using YAML to automate metadata syncing fro
 slug: /connectors/pipeline/stitch/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -45,17 +47,19 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Stitch:
-<Steps>
-<Step title="hostPort">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="hostPort" lines="1-8">
 **hostPort**: The hostname or IP address with the REST API enabled eg.`https://api.stitchdata.com`
-</Step>
-<Step title="token">
+</ContentSection>
+<ContentSection id={2} title="token" lines="1-9">
 **token**: Token to get access to Stitch metadata.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: stitch
@@ -66,12 +70,8 @@ source:
 hostPort: "https://api.stitchdata.com"
 token: "token"
 ```
-```yaml
-        hostPort: "https://api.stitchdata.com"
-```
-```yaml
-        token: "token"
-```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

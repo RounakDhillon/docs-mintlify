@@ -3,8 +3,10 @@ title: Run the SSAS Connector Externally
 slug: /connectors/database/ssas/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -45,17 +47,39 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for SSAS:
-<Steps>
-<Step title="httpConnection">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your SSAS connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="httpConnection" lines="8">
+
 **httpConnection**: HTTP Link for SSAS ACCESS. Provide the HTTP endpoint used to access your SSAS instance.
-</Step>
-<Step title="username">
+
+</ContentSection>
+
+<ContentSection id={3} title="username" lines="9">
+
 **username**: Username to connect to SSAS. This user should have sufficient privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={4} title="password" lines="10">
+
 **password**: Password to connect to SSAS.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="ssas_config.yaml">
+
 ```yaml
 source:
   type: ssas
@@ -67,8 +91,15 @@ source:
       username: username
       password: password
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
 <IngestionCli />
 > **Note for SSAS Lineage:**  

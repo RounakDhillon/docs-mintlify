@@ -4,8 +4,10 @@ description: Learn to run the ThoughtSpot connector externally in Collate. Confi
 slug: /connectors/dashboard/thoughtspot/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
@@ -44,31 +46,63 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 ### 1. Define the YAML Config
 This is a sample config for ThoughtSpot:
-<Steps>
-<Step title="hostPort">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name.
+
+</ContentSection>
+
+<ContentSection id={2} title="hostPort" lines="6">
+
 **hostPort**: URL or IP address of your ThoughtSpot instance.
-</Step>
-<Step title="authentication">
+
+</ContentSection>
+
+<ContentSection id={3} title="authentication" lines="7-13">
+
 **authentication**: Choose one of the following authentication methods:
+
 - **Basic Authentication:**
   - username: The ThoughtSpot username
   - password: The ThoughtSpot password
 - **API Token Authentication:**
   - apiToken: The ThoughtSpot API token
-</Step>
-<Step title="apiVersion">
+
+</ContentSection>
+
+<ContentSection id={4} title="apiVersion" lines="14">
+
 **apiVersion**: (Optional) ThoughtSpot API version. Supported: v1, v2. Default: v2
-</Step>
-<Step title="orgId">
+
+</ContentSection>
+
+<ContentSection id={5} title="orgId" lines="15">
+
 **orgId**: (Optional) Organization ID for multi-tenant ThoughtSpot Cloud instances.
-</Step>
-<Step title="dbServicePrefixes">
+
+</ContentSection>
+
+<ContentSection id={6} title="dbServicePrefixes" lines="16-20">
+
 - **dbServicePrefixes**: Database Service Names for ingesting lineage if the source supports it.
-</Step>
-<Step title="To send the metadata to">
+
+</ContentSection>
+
+<ContentSection id={7} title="To send the metadata to" lines="21-22">
+
 To send the metadata to OpenMetadata, specify `type: metadata-rest`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: thoughtspot
@@ -99,5 +133,9 @@ workflowConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
+
+</CodePanel>
+
+</CodePreview>
 ## Securing ThoughtSpot Connection with SSL in OpenMetadata
 <IngestionCli />

@@ -3,8 +3,10 @@ title: Run the MLflow Connector Externally
 description: Use YAML to configure MLflow ingestion and sync model runs, metrics, tags, and parameters.
 slug: /connectors/ml-model/mlflow/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/ml-model/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -44,17 +46,22 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/mlmodelServiceMetadataPipeline.json)
 ### 1. Define the YAML Config
 This is a sample config for MLflow:
-<Steps>
-<Step title="trackingUri">
+
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="trackingUri" lines="7">
 **trackingUri**: MLflow Experiment tracking URI. E.g., http://localhost:5000
-</Step>
-<Step title="registryUri">
+</ContentSection>
+<ContentSection id={2} title="registryUri" lines="8">
 **registryUri**: MLflow Model registry backend. E.g., mysql+pymysql://mlflow:password@localhost:3307/experiments
-</Step>
-</Steps>
+</ContentSection>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: mlflow
@@ -62,15 +69,12 @@ source:
   serviceConnection:
     config:
       type: Mlflow
-trackingUri: http://localhost:5000
-registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
-```
-```yaml
       trackingUri: http://localhost:5000
-```
-```yaml
       registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
 ```
+
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

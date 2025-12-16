@@ -3,8 +3,10 @@ title: Run the S3 Datalake Connector Externally
 description: Use YAML to extract metadata from S3 Datalake for file-level lineage and governance.
 slug: /connectors/database/s3-datalake/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -68,13 +70,69 @@ All connectors are defined as JSON Schemas. Here you can find the structure to c
 In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following JSON Schema.
 ## 1. Define the YAML Config
+
 #### Source Configuration - Source Config using AWS S3
+
 ### This is a sample config for Datalake using AWS S3:
-<Steps>
-<Step title="schemaFilterPattern">
-* **schemaFilterPattern** and **tableFilterPattern**: Note that the `schemaFilterPattern` and `tableFilterPattern` both support regex as `include` or `exclude`. E.g.,
-</Step>
-</Steps>
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your S3 Datalake connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Security Config" lines="7-17">
+
+**configSource**: Configure the security settings for connecting to AWS S3.
+
+<AwsConfigDef />
+
+</ContentSection>
+
+<ContentSection id={3} title="Bucket Name" lines="18">
+
+**bucketName**: Name of the S3 bucket to connect to.
+
+</ContentSection>
+
+<ContentSection id={4} title="Prefix" lines="19">
+
+**prefix**: Prefix path within the S3 bucket.
+
+</ContentSection>
+
+<ContentSection id={5} title="Filter Patterns" lines="20-21">
+
+**schemaFilterPattern** and **tableFilterPattern**: Note that the `schemaFilterPattern` and `tableFilterPattern` both support regex as `include` or `exclude`. E.g.,
+
+</ContentSection>
+
+<ContentSection id={6} title="Source Config" lines="13-15">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Sink Configuration" lines="16-18">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Workflow Configuration" lines="19-35">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="s3_datalake_config.yaml">
+
 ```yaml
 source:
   type: datalake
@@ -82,15 +140,25 @@ source:
   serviceConnection:
     config:
       type: Datalake
-configSource:      
+      configSource:
         securityConfig:
-bucketName: bucket name
-      prefix: prefix
+          # AWS Security Config here
+        bucketName: bucket name
+        prefix: prefix
 ```
+
 <AwsConfig />
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## dbt Integration
 You can learn more about how to ingest dbt models' definitions and their lineage [here](/connectors/ingestion/workflows/dbt).

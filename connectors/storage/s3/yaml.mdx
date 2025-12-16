@@ -3,8 +3,10 @@ title: Run the S3 Storage Connector Externally
 description: Use YAML to extract metadata from S3 including files, partitions, and access control details.
 slug: /connectors/storage/s3/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -104,19 +106,63 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-This is a sample config for Athena:
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-5">
+
+Configure the source type and service name for your S3 connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="AWS Configuration" lines="7-16">
+
+<AwsConfigDef />
+
+</ContentSection>
+
+<ContentSection id={3} title="Bucket Names" lines="17-19">
+
+**Bucket Names (Optional)**: Provide the names of buckets that you would want to ingest, if you want to ingest metadata from all buckets or apply a filter to ingest buckets then leave this field empty.
+
+</ContentSection>
+
+<ContentSection id={4} title="Connection Options" lines="20-21">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={5} title="Connection Arguments" lines="22-23">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Bucket Names (Optional)">
-- **Bucket Names (Optional)**: Provide the names of buckets that you would want to ingest, if you want to ingest metadata from all buckets or apply a filter to ingest buckets then leave this field empty.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={6} title="Source Config" lines="17-18">
+
+<StorageSourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Sink Configuration" lines="19-20">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Workflow Configuration" lines="21-25">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="s3_config.yaml">
+
 ```yaml
 source:
   type: s3
@@ -125,18 +171,27 @@ source:
     config:
       type: S3
       awsConfig:  # REQUIRED - AWS authentication configuration
-bucketNames: 
+      bucketNames:
       - s3-testing-1
       - s3-testing-2
-# connectionOptions:
-        # key: value
-# connectionArguments:
-        # key: value
+      # connectionOptions:
+      #   key: value
+      # connectionArguments:
+      #   key: value
 ```
+
 <AwsConfig />
+
 <StorageSourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## Related
 <Columns cols={2}>

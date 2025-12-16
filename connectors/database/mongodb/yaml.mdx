@@ -3,8 +3,10 @@ title: Run the MongoDB Connector Externally
 description: Configure MongoDB ingestion via YAML to extract collection metadata, schema, and profiling insights from NoSQL datasets.
 slug: /connectors/database/mongodb/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -45,28 +47,75 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for MongoDB:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your MongoDB connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
 **username**: Username to connect to Mongodb. This user must have access to perform `find` operation on collection and `listCollection` operations on database available in MongoDB.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
 **password**: Password to connect to MongoDB.
-</Step>
-<Step title="hostPort">
+
+</ContentSection>
+
+<ContentSection id={4} title="Host Port" lines="9">
+
 **hostPort**: When using the `mongodb` connecion schema, the hostPort parameter specifies the host and port of the MongoDB. This should be specified as a string in the format `hostname:port`. E.g., `localhost:27017`. When using the `mongodb+srv` connection schema, the hostPort parameter specifies the host and port of the MongoDB. This should be specified as a string in the format `hostname`. E.g., `cluster0-abcde.mongodb.net`.
+
 Using Atlas? Follow [this guide](https://www.mongodb.com/docs/guides/atlas/connection-string/) to get the connection string.
-</Step>
-<Step title="databaseName">
+
+</ContentSection>
+
+<ContentSection id={5} title="Database Name" lines="12">
+
 **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={6} title="Connection Options" lines="10-11">
+
 #### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={7} title="Source Config" lines="13-15">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="16-18">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="19-35">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="mongodb_config.yaml">
+
 ```yaml
 source:
   type: mongodb
@@ -74,16 +123,24 @@ source:
   serviceConnection:
     config:
       type: MongoDB
-username: username
-password: password
-hostPort: localhost:27017
-# connectionOptions:
+      username: username
+      password: password
+      hostPort: localhost:27017
+      # connectionOptions:
       #   key: value
-databaseName: custom_database_name
+      databaseName: custom_database_name
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## Data Profiler
 The Data Profiler workflow will be using the `orm-profiler` processor.
@@ -94,40 +151,79 @@ The MongodDB data profiler current supports only the following features:
 1. **Row count**: The number of rows in the collection. Sampling or custom query is not supported.
 2. **Sample data:** If a custom query is defined it will be used for sample data.
 ### 1. Define the YAML Config
+
 This is a sample config for the profiler:
-<Steps>
-<Step title="Source Configuration - Source Config">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
 #### Source Configuration - Source Config
+
 You can find all the definitions and types for the  `sourceConfig` [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/databaseServiceProfilerPipeline.json).
+
 **generateSampleData**: Option to turn on/off generating sample data.
-</Step>
-<Step title="processPiiSensitive">
+
+</ContentSection>
+
+<ContentSection id={2} title="Process PII Sensitive" lines="7">
+
 **processPiiSensitive**: Optional configuration to automatically tag columns that might contain sensitive information.
-</Step>
-<Step title="timeoutSeconds">
+
+</ContentSection>
+
+<ContentSection id={3} title="Timeout Seconds" lines="8">
+
 **timeoutSeconds**: Profiler Timeout in Seconds
-</Step>
-<Step title="schemaFilterPattern">
+
+</ContentSection>
+
+<ContentSection id={4} title="Schema Filter Pattern" lines="9-14">
+
 **schemaFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-</Step>
-<Step title="tableFilterPattern">
+
+</ContentSection>
+
+<ContentSection id={5} title="Table Filter Pattern" lines="15-20">
+
 **tableFilterPattern**: Regex to only fetch tables or databases that matches the pattern.
-</Step>
-<Step title="Processor Configuration">
+
+</ContentSection>
+
+<ContentSection id={6} title="Processor Configuration" lines="21-26">
+
 #### Processor Configuration
+
 Choose the `orm-profiler`. Its config can also be updated to define tests from the YAML itself instead of the UI:
+
 **tableConfig**: `tableConfig` allows you to set up some configuration at the table level.
-</Step>
-<Step title="Sink Configuration">
+
+</ContentSection>
+
+<ContentSection id={7} title="Sink Configuration" lines="27-28">
+
 #### Sink Configuration
+
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-</Step>
-<Step title="Workflow Configuration">
+
+</ContentSection>
+
+<ContentSection id={8} title="Workflow Configuration" lines="29-32">
+
 #### Workflow Configuration
+
 The main property here is the `openMetadataServerConfig`, where you can define the host and security provider of your OpenMetadata installation.
+
 For a simple, local installation using our docker containers, this looks like:
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="mongodb_profiler_config.yaml">
+
 ```yaml
 source:
   type: monogodb
@@ -135,17 +231,17 @@ source:
   sourceConfig:
     config:
       type: Profiler
-generateSampleData: true
-processPiiSensitive: false
-# timeoutSeconds: 43200
-# schemaFilterPattern:
+      generateSampleData: true
+      processPiiSensitive: false
+      # timeoutSeconds: 43200
+      # schemaFilterPattern:
       #   includes:
       #     - schema1
       #     - schema2
       #   excludes:
       #     - schema3
       #     - schema4
-# tableFilterPattern:
+      # tableFilterPattern:
       #   includes:
       #     - table1
       #     - table2
@@ -167,30 +263,106 @@ workflowConfig:
     hostPort: <OpenMetadata host and port>
     authProvider: <OpenMetadata auth provider>
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 - You can learn more about how to configure and run the Profiler Workflow to extract Profiler data and execute the Data Quality from [here](/how-to-guides/data-quality-observability/profiler/workflow)
 ### 2. Prepare the Profiler DAG
+
 Here, we follow a similar approach as with the metadata and usage pipelines, although we will use a different Workflow class:
-<Steps>
-<Step title="Import necessary modules">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Import Necessary Modules" lines="2-6">
+
 #### Import necessary modules
-The `ProfilerWorkflow` class that is being imported is a part of a metadata orm_profiler framework, which defines a process of extracting Profiler data. 
+
+The `ProfilerWorkflow` class that is being imported is a part of a metadata orm_profiler framework, which defines a process of extracting Profiler data.
+
 Here we are also importing all the basic requirements to parse YAMLs, handle dates and build our DAG.
-</Step>
-<Step title="Default arguments for all tasks in the Airflow DAG.">
-**Default arguments for all tasks in the Airflow DAG.** 
+
+</ContentSection>
+
+<ContentSection id={2} title="Default Arguments" lines="8-15">
+
+**Default arguments for all tasks in the Airflow DAG.**
+
 - Default arguments dictionary contains default arguments for tasks in the DAG, including the owner's name, email address, number of retries, retry delay, and execution timeout.
-</Step>
-<Step title="config">
+
+</ContentSection>
+
+<ContentSection id={3} title="Config" lines="17-18">
+
 - **config**: Specifies config for the profiler as we prepare above.
-</Step>
-<Step title="metadata_ingestion_workflow()">
+
+</ContentSection>
+
+<ContentSection id={4} title="Workflow Function" lines="20-30">
+
 - **metadata_ingestion_workflow()**: This code defines a function `metadata_ingestion_workflow()` that loads a YAML configuration, creates a `ProfilerWorkflow` object, executes the workflow, checks its status, prints the status to the console, and stops the workflow.
-</Step>
-<Step title="DAG">
+
+</ContentSection>
+
+<ContentSection id={5} title="DAG Definition" lines="32-39">
+
 - **DAG**: creates a DAG using the Airflow framework, and tune the DAG configurations to whatever fits with your requirements
 - For more Airflow DAGs creation details visit [here](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html#declaring-a-dag).
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="mongodb_profiler_dag.py">
+
+```python
+import pathlib
+import yaml
+from datetime import timedelta
+from airflow import DAG
+
+from metadata.profiler.api.workflow import ProfilerWorkflow
+
+default_args = {
+    "owner": "user_name",
+    "email": ["username@org.com"],
+    "execution_timeout": timedelta(minutes=60),
+    "retries": 3,
+    "retry_delay": timedelta(minutes=5),
+}
+
+config = """
+<your YAML configuration>
+"""
+
+def metadata_ingestion_workflow():
+    workflow_config = yaml.safe_load(config)
+    workflow = ProfilerWorkflow.create(workflow_config)
+    workflow.execute()
+    workflow.raise_from_status()
+    workflow.print_status()
+    workflow.stop()
+
+with DAG(
+    "profiler_example",
+    default_args=default_args,
+    description="An example DAG which runs the ProfilerWorkflow",
+    start_date=datetime(2021, 1, 1),
+    is_paused_upon_creation=False,
+    catchup=False,
+) as dag:
+    ingest_task = PythonOperator(
+        task_id="profile_and_test_using_recipe",
+        python_callable=metadata_ingestion_workflow,
+    )
+```
+
+</CodePanel>
+
+</CodePreview>
 ## dbt Integration
 <Columns cols={2}>
 <Card title="dbt Integration" href="/connectors/ingestion/workflows/dbt">

@@ -3,8 +3,10 @@ title: Run the GCS Datalake Connector Externally
 description: Configure YAML ingestion for GCS Datalake to extract metadata from structured and unstructured file-based storage.
 slug: /connectors/database/gcs-datalake/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
 import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -48,15 +50,53 @@ All connectors are defined as JSON Schemas. Here you can find the structure to c
 In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following JSON Schema.
 ## 1. Define the YAML Config
-### This is a sample config for Datalake using GCS:
-<Steps>
-<Step title="bucketName">
-#### Source Configuration - Service Connection
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your GCS Datalake connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="GCP Configuration" lines="7-19">
+
 <GcpConfigDef />
-* **bucketName**: name of the bucket in GCS
-* **Prefix**: prefix in gcp bucket
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={3} title="Bucket Configuration" lines="20-21">
+
+**bucketName**: name of the bucket in GCS
+
+**Prefix**: prefix in gcp bucket
+
+</ContentSection>
+
+<ContentSection id={4} title="Source Config" lines="22-24">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={5} title="Sink Configuration" lines="25-27">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={6} title="Workflow Configuration" lines="28-44">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="gcs_datalake_config.yaml">
+
 ```yaml
 source:
   type: datalake
@@ -67,15 +107,22 @@ source:
       configSource:
         securityConfig:
           gcpConfig:
-```
-<GcpConfig />
-```yaml
-      bucketName: bucket name
+      bucketName: bucket name  # REQUIRED
       prefix: prefix
 ```
+
+<GcpConfig />
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## dbt Integration
 You can learn more about how to ingest dbt models' definitions and their lineage [here](/connectors/ingestion/workflows/dbt).

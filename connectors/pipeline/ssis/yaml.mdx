@@ -3,8 +3,10 @@ title: Run the SSIS Connector Externally
 slug: /connectors/pipeline/ssis/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -44,20 +46,22 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for SSIS:
-<Steps>
-<Step title="Configuration">
-</Step>
-<Step title="connection">
-**connection**: 
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Configuration" lines="1-25">
+</ContentSection>
+<ContentSection id={2} title="connection" lines="1-25">
+**connection**:
 In terms of `connection` we support the following selections:
 - `Mssql`: Pass the required credentials to reach out this service. We will
   create a connection to the pointed database and read SSIS data from there.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
-```yaml 
+<CodePanel fileName="connector_config.yaml">
+```yaml
 source:
   type: SSIS
   serviceName: ssis_source
@@ -77,10 +81,12 @@ storageConnection:
           awsSecretAccessKey: test
           awsRegion: us-east-2
           endPointURL: https://packages.s3.us-east-2.amazonaws.com
-        bucketNames: 
+        bucketNames:
           - bucket_name
 localProjectsPath: /home/user/repos/
 ```
+</CodePanel>
+</CodePreview>
 - For Local
 ```yaml
   localProjectsPath: /home/user/repos/

@@ -3,8 +3,10 @@ title: Run the Exasol Connector Externally
 description: Use YAML to ingest metadata from Exasol databases including tables, indexes, and analytical structures.
 slug: /connectors/database/exasol/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -32,32 +34,61 @@ pip3 install "openmetadata-ingestion[Exasol]"
 ```
 ## Metadata Ingestion
 ### 1. Define the YAML Config
-This is a sample config for Exasol:
-<Steps>
-<Step title="`username`">
-**`username`** 
-The username required to authenticate and connect to the Exasol database. The user must have sufficient privileges to access and read all the metadata available in Exasol.
-**`password`**
-The password associated with the user account used to connect to the Exasol database. Ensure this password corresponds to the specified username and is stored securely. Avoid sharing passwords in plain text and use secure methods for managing sensitive credentials.
-**`hostPort`**
-Provide the fully qualified hostname and port number of your Exasol deployment in the "Host and Port" field.
-**`SSL/TLS Settings`** 
-Mode/setting for SSL validation:
-- **`validate-certificate`**: Uses Transport Layer Security (TLS) and validates the server certificate using system certificate stores.
-- **`ignore-certificate`**: Uses Transport Layer Security (TLS) but disables the validation of the server certificate. This should not be used in production. It can be useful during testing with self-signed certificates.
-- **`disable-tls`**: Does not use any Transport Layer Security (TLS). Data will be sent in plain text (no encryption).
-While this may be helpful in rare cases of debugging, make sure you do not use this in production.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your Exasol connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
+**username**: The username required to authenticate and connect to the Exasol database. The user must have sufficient privileges to access and read all the metadata available in Exasol.
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
+**password**: The password associated with the user account used to connect to the Exasol database. Ensure this password corresponds to the specified username and is stored securely. Avoid sharing passwords in plain text and use secure methods for managing sensitive credentials.
+
+</ContentSection>
+
+<ContentSection id={4} title="Host Port" lines="9">
+
+**hostPort**: Provide the fully qualified hostname and port number of your Exasol deployment in the "Host and Port" field.
+
+</ContentSection>
+
+<ContentSection id={5} title="SSL/TLS Settings" lines="10">
+
+**SSL/TLS Settings**: Mode/setting for SSL validation:
+
+- **validate-certificate**: Uses Transport Layer Security (TLS) and validates the server certificate using system certificate stores.
+- **ignore-certificate**: Uses Transport Layer Security (TLS) but disables the validation of the server certificate. This should not be used in production. It can be useful during testing with self-signed certificates.
+- **disable-tls**: Does not use any Transport Layer Security (TLS). Data will be sent in plain text (no encryption). While this may be helpful in rare cases of debugging, make sure you do not use this in production.
+
+</ContentSection>
+
+<ContentSection id={6} title="Connection Options" lines="11-12">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={7} title="Connection Arguments" lines="13-14">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="exasol_config.yaml">
+
 ```yaml
 source:
   type: exasol
@@ -65,16 +96,24 @@ source:
   serviceConnection:
     config:
       type: Exasol
-username: Exasol
-          password: password
-          hostPort: 127.0.0.1:8563
-          SSL/TLS Settings: validate-certificate (default), or ignore-certificate, or disable-tls
-# connectionOptions:
+      username: Exasol  # REQUIRED
+      password: password  # REQUIRED
+      hostPort: 127.0.0.1:8563  # REQUIRED - format: host:port
+      SSL/TLS Settings: validate-certificate (default), or ignore-certificate, or disable-tls
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />

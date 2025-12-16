@@ -3,8 +3,10 @@ title: Run the Databricks Pipeline Connector Externally
 description: Configure Databricks pipeline ingestion using YAML to automate metadata extraction, data profiling, and lineage tracking across workflows.
 slug: /connectors/pipeline/databricks-pipeline/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -44,22 +46,24 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Databricks Pipeline:
-<Steps>
-<Step title="Host and Port">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Host and Port" lines="7">
 **Host and Port**: Enter the fully qualified hostname and port number for your Databricks Pipeline deployment in the Host and Port field.
-</Step>
-<Step title="Token">
+</ContentSection>
+<ContentSection id={2} title="Token" lines="8">
 **Token**: Generated Token to connect to Databricks Pipeline.
-</Step>
-<Step title="Connection Arguments (Optional)">
+</ContentSection>
+<ContentSection id={3} title="Connection Arguments (Optional)" lines="9-10">
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to Databricks during the connection. These details must be added as Key-Value pairs.
   - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
 **HTTP Path**: Databricks Pipeline compute resources URL.
-</Step>
-</Steps>
+</ContentSection>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: databrickspipeline
@@ -67,11 +71,13 @@ source:
   serviceConnection:
     config:
       type: DatabricksPipeline
-hostPort: localhost:443
-token: <databricks token>
-connectionArguments:
+      hostPort: localhost:443
+      token: <databricks token>
+      connectionArguments:
         http_path: <http path of databricks cluster>
 ```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

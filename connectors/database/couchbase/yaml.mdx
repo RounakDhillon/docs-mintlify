@@ -3,8 +3,10 @@ title: Run the Couchbase Connector Externally
 description: Configure Couchbase ingestion using YAML to extract document-based metadata and support NoSQL governance models.
 slug: /connectors/database/couchbase/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -43,27 +45,69 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-This is a sample config for Couchbase:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your Couchbase connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
 **username**: Username to connect to Couchbase.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
 **password**: Password to connect to Couchbase.
-</Step>
-<Step title="hostport">
+
+</ContentSection>
+
+<ContentSection id={4} title="Host Port" lines="9">
+
 **hostport**: If couchbase is hosted on cloud then the hostport parameter specifies the connection string and if you are using couchbase server then the hostport parameter specifies hostname of the Couchbase. This should be specified as a string in the format `hostname` or `xyz.cloud.couchbase.com`. E.g., `localhost`.
-</Step>
-<Step title="bucketName">
+
+</ContentSection>
+
+<ContentSection id={5} title="Bucket Name" lines="10">
+
 **bucketName**: Optional name to give to the bucket name in OpenMetadata. If left blank, we will ingest all the bucket names.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={6} title="Connection Options" lines="11-12">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={7} title="Source Config" lines="13-15">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="16-18">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="19-35">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="couchbase_config.yaml">
+
 ```yaml
 source:
   type: couchbase
@@ -71,14 +115,24 @@ source:
   serviceConnection:
     config:
       type: Couchbase
-username: username
-password: password
-hostport: localhost
-bucket: custom_bucket_name
+      username: username  # REQUIRED
+      password: password  # REQUIRED
+      hostport: localhost  # REQUIRED
+      bucket: custom_bucket_name
+      # connectionOptions:
+      #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## Related
 <Columns cols={2}>

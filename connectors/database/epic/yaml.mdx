@@ -4,8 +4,10 @@ description: Configure Epic FHIR ingestion using YAML to automate FHIR resource 
 slug: /connectors/database/epic/yaml
 sidebarTitle: Run Externally
 Collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -31,21 +33,51 @@ All connectors are defined as JSON Schemas.
 [Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/epicConnection.json) you can find the structure to create a connection to Epic.
 The ingestion workflow itself follows the general [workflow schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json).
 ### 1. Define the YAML Config
-This is a minimal sample config for Epic:
-<Steps>
-<Step title="fhirServerUrl">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your Epic FHIR connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="FHIR Server URL" lines="7">
+
 **fhirServerUrl**: Base URL of the Epic FHIR server.
-</Step>
-<Step title="fhirVersion">
+
+</ContentSection>
+
+<ContentSection id={3} title="FHIR Version" lines="8">
+
 **fhirVersion**: FHIR specification version supported (`R4`, `STU3`, or `DSTU2`).
-</Step>
-<Step title="databaseName">
+
+</ContentSection>
+
+<ContentSection id={4} title="Database Name" lines="9">
+
 **databaseName**: Optional name for the database in OpenMetadata. Defaults to `epic`.
-</Step>
-<Step title="schemaFilterPattern / tableFilterPattern">
+
+</ContentSection>
+
+<ContentSection id={5} title="Filter Patterns" lines="10-17">
+
 **schemaFilterPattern / tableFilterPattern**: Regex filters to limit which FHIR resource categories (schemas) or resource types (tables) are ingested.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={6} title="Sink Configuration" lines="18-19">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="epic_config.yaml">
+
 ```yaml
 source:
   type: epic
@@ -53,8 +85,8 @@ source:
   serviceConnection:
     config:
       type: Epic
-      fhirServerUrl: https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4
-      fhirVersion: R4
+      fhirServerUrl: https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4  # REQUIRED
+      fhirVersion: R4  # REQUIRED
       # Optional:
       # databaseName: epic
 # Optional filters
@@ -73,4 +105,8 @@ sourceConfig:
 sink:
   type: metadata-rest
   config: {}
-``` 
+```
+
+</CodePanel>
+
+</CodePreview> 

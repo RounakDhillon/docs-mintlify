@@ -3,8 +3,10 @@ title: Run the SAP HANA Connector Externally
 description: Configure SAP HANA database connector in Collate using YAML. Step-by-step setup guide with configuration examples and troubleshooting tips.
 slug: /connectors/database/sap-hana/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -75,61 +77,125 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for SAP HANA:
-<Steps>
-<Step title="hostPort">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-4">
+
+Configure the source type and service name for your SAP HANA connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Host Port" lines="8">
+
 **hostPort**: Host and port of the SAP HANA service. This should be specified as a string in the format `hostname:port`. E.g., `localhost:39041`, `host.docker.internal:39041`.
-</Step>
-<Step title="username">
+
+</ContentSection>
+
+<ContentSection id={3} title="Username" lines="9">
+
 **username**: Specify the User to connect to SAP HANA. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={4} title="Password" lines="10">
+
 **password**: Password to connect to SAP HANA.
-</Step>
-<Step title="database">
+
+</ContentSection>
+
+<ContentSection id={5} title="Database" lines="11">
+
 **database**: Optional parameter to connect to a specific database.
-</Step>
-<Step title="databaseSchema">
+
+</ContentSection>
+
+<ContentSection id={6} title="Database Schema" lines="12">
+
 **databaseSchema**: databaseSchema of the data source. This is an optional parameter, if you would like to restrict the metadata reading to a single schema. When left blank, OpenMetadata Ingestion attempts to scan all the schemas.
-</Step>
-<Step title="userKey">
+
+</ContentSection>
+
+<ContentSection id={7} title="User Key" lines="14">
+
 **userKey**: HDB Store User Key generated from the command `hdbuserstore SET <KEY> <host:port> <USERNAME> <PASSWORD>`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={8} title="Connection Options" lines="15-16">
+
 #### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={9} title="Connection Arguments" lines="17-18">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={10} title="Source Config" lines="19-21">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={11} title="Sink Configuration" lines="22-24">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={12} title="Workflow Configuration" lines="25-41">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="sap_hana_config.yaml">
+
 ```yaml
 source:
   type: sapHana
-  serviceName: <service name>
+  serviceName: local_sap_hana
   serviceConnection:
     config:
       type: SapHana
       connection:
-## Parameters for the SQL Connection
-        # hostPort: <hostPort>
-# username: <username>
-# password: <password>
-# database: <database>
-# databaseSchema: <schema>
-## Parameter for the HDB User Store
-        # userKey: <key>
-# connectionOptions:
+        # Parameters for the SQL Connection
+        hostPort: localhost:39041
+        username: username
+        password: password
+        database: database
+        databaseSchema: schema
+        # Parameter for the HDB User Store
+        # userKey: key
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <Lineage connector="sapHana" />
 <DataProfiler connector="sapHana" />

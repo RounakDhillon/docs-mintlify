@@ -3,8 +3,10 @@ title: Run the AzureSQL Connector Externally
 description: Configure Azure SQL database connections in Collate with our comprehensive YAML setup guide. Step-by-step instructions for seamless data integration.
 slug: /connectors/database/azuresql/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -61,51 +63,132 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for AzureSQL:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your AzureSQL connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Connection Type" lines="5-7">
+
+**type**: Set to `AzureSQL` for AzureSQL connections.
+
+</ContentSection>
+
+<ContentSection id={3} title="Username" lines="8">
+
 **username**: Specify the User to connect to AzureSQL. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={4} title="Password" lines="9">
+
 **password**: Password to connect to AzureSQL.
-</Step>
-<Step title="hostPort">
+
+</ContentSection>
+
+<ContentSection id={5} title="Host Port" lines="10">
+
 **hostPort**: Enter the fully qualified hostname and port number for your AzureSQL deployment in the Host and Port field.
-</Step>
-<Step title="database">
+
+</ContentSection>
+
+<ContentSection id={6} title="Database" lines="11">
+
 **database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.
-</Step>
-<Step title="driver">
+
+</ContentSection>
+
+<ContentSection id={7} title="Driver" lines="12">
+
 **driver**: Connecting to AzureSQL requires ODBC driver to be installed. Specify ODBC driver name in the field.
-You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16).In case of docker or kubernetes deployment this driver comes out of the box with version  `ODBC Driver 18 for SQL Server`.
-</Step>
-<Step title="Authentication Mode">
+
+You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16). In case of docker or kubernetes deployment this driver comes out of the box with version `ODBC Driver 18 for SQL Server`.
+
+</ContentSection>
+
+<ContentSection id={8} title="Authentication Mode" lines="13-17">
+
+<div>
+
 **Authentication Mode**:
-1. **Authentication**:
-   - The `authentication` parameter determines the method of authentication when connecting to AzureSQL using ODBC (Open Database Connectivity).
-   - If you select **"Active Directory Password"**, you'll need to provide the password associated with your Azure Active Directory account.
-   - Alternatively, if you choose **"Active Directory Integrated"**, the connection will use the credentials of the currently logged-in user. This mode ensures secure and seamless connections with AzureSQL.
-2. **Encrypt**:
-   - The `encrypt` setting in the connection string pertains to data encryption during communication with AzureSQL.
-   - When enabled, it ensures that data exchanged between your application and the database is encrypted, enhancing security.
-3. **Trust Server Certificate**:
-   - The `trustServerCertificate` option also relates to security.
-   - When set to true, your application will trust the server's SSL certificate without validation. Use this cautiously, as it bypasses certificate validation checks.
-4. **Connection Timeout**:
-   - The `connectionTimeout` parameter specifies the maximum time (in seconds) that your application will wait while attempting to establish a connection to AzureSQL.
-   - If the connection cannot be established within this timeframe, an error will be raised.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+**Authentication**:
+- The `authentication` parameter determines the method of authentication when connecting to AzureSQL using ODBC (Open Database Connectivity).
+- If you select **"Active Directory Password"**, you'll need to provide the password associated with your Azure Active Directory account.
+- Alternatively, if you choose **"Active Directory Integrated"**, the connection will use the credentials of the currently logged-in user. This mode ensures secure and seamless connections with AzureSQL.
+
+</div>
+
+<div>
+
+**Encrypt**:
+- The `encrypt` setting in the connection string pertains to data encryption during communication with AzureSQL.
+- When enabled, it ensures that data exchanged between your application and the database is encrypted, enhancing security.
+
+</div>
+
+<div>
+
+**Trust Server Certificate**:
+- The `trustServerCertificate` option also relates to security.
+- When set to true, your application will trust the server's SSL certificate without validation. Use this cautiously, as it bypasses certificate validation checks.
+
+</div>
+
+<div>
+
+**Connection Timeout**:
+- The `connectionTimeout` parameter specifies the maximum time (in seconds) that your application will wait while attempting to establish a connection to AzureSQL.
+- If the connection cannot be established within this timeframe, an error will be raised.
+
+</div>
+
+</ContentSection>
+
+<ContentSection id={9} title="Connection Options" lines="18-19">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={10} title="Connection Arguments" lines="20-21">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={11} title="Source Config" lines="22">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={12} title="Sink Configuration" lines="23">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={13} title="Workflow Configuration" lines="24">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="azuresql_config.yaml">
+
 ```yaml
 source:
   type: azuresql
@@ -113,24 +196,31 @@ source:
   serviceConnection:
     config:
       type: AzureSQL
-username: username
-password: password
-hostPort: hostPort
-# database: database_name
-# driver: ODBC Driver 18 for SQL Server (default)
-# authenticationMode:
+      username: username
+      password: password
+      hostPort: hostPort
+      # database: database_name
+      # driver: ODBC Driver 18 for SQL Server (default)
+      # authenticationMode:
       #   authentication: ActiveDirectoryPassword #ActiveDirectoryIntegrated
       #   encrypt: true
       #   trustServerCertificate: false
       #   connectionTimeout: 130
-connectionOptions:
-        key: value
-# connectionArguments:
+      # connectionOptions:
+      #   key: value
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />
 <Lineage connector="azuresql" />
 <DataProfiler connector="azuresql" />

@@ -4,8 +4,10 @@ description: Configure Azure Data Factory ingestion via YAML to extract ETL job 
 slug: /connectors/pipeline/datafactory/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AzureConfigDef from '/snippets/connectors/yaml/common/azure-config-def.mdx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
@@ -53,25 +55,27 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Data Factory:
-<Steps>
-<Step title="subscription_id">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="subscription_id" lines="8-13">
 #### Source Configuration - Service Connection
 <AzureConfigDef />
-**subscription_id**: Your Azure subscription’s unique identifier. In the Azure portal, navigate to Subscriptions > Your Subscription > Overview. You’ll see the subscription ID listed there.
-</Step>
-<Step title="resource_group_name">
+**subscription_id**: Your Azure subscription's unique identifier. In the Azure portal, navigate to Subscriptions > Your Subscription > Overview. You'll see the subscription ID listed there.
+</ContentSection>
+<ContentSection id={2} title="resource_group_name" lines="14">
 **resource_group_name**: This is the name of the resource group that contains your Data Factory instance. In the Azure portal, navigate to Resource Groups. Find your resource group, and note the name.
-</Step>
-<Step title="factory_name">
+</ContentSection>
+<ContentSection id={3} title="factory_name" lines="15">
 **factory_name**: The name of your Data Factory instance. In the Azure portal, navigate to Data Factories and find your Data Factory. The Data Factory name will be listed there.
-</Step>
-<Step title="run_filter_days">
+</ContentSection>
+<ContentSection id={4} title="run_filter_days" lines="16">
 **run_filter_days**: The days range when filtering pipeline runs. It specifies how many days back from the current date to look for pipeline runs, and filter runs within the given period of days. Default is `7` days. `Optional`
-</Step>
-</Steps>
+</ContentSection>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: datafactory
@@ -80,24 +84,14 @@ source:
     config:
       type: DataFactory
       configSource:
-subscription_id: subscription_id
-resource_group_name: resource_group_name
-factory_name: factory_name
-run_filter_days: 7
+        subscription_id: subscription_id
+        resource_group_name: resource_group_name
+        factory_name: factory_name
+        run_filter_days: 7
 ```
 <AzureConfig />
-```yaml
-      subscription_id: subscription_id
-```
-```yaml
-      resource_group_name: resource_group_name
-```
-```yaml
-      factory_name: factory_name
-```
-```yaml
-      run_filter_days: 7
-```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

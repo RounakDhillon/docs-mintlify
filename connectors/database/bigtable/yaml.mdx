@@ -3,8 +3,10 @@ title: Run the BigQuery Connector Externally
 description: Learn how to Configure Collate'sBigtable database connector using YAML. Complete setup guide with examples, parameters, and best practices.
 slug: /connectors/database/bigtable/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
 import GcpConfig from '/snippets/connectors/yaml/common/gcp-config.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -48,30 +50,72 @@ To execute metadata extraction and usage workflow successfully the user or the s
 </Columns>
 ## Metadata Ingestion
 ### 1. Define the YAML Config
+
 This is a sample config for BigTable:
-<Steps>
-<Step title="credentials">
-**credentials**:
-You can authenticate with your BigTable instance using GCP Credentials. You can either specify the file path of the service account key or pass the values directly by choosing the GCP Credentials Values from the service account key file.
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your BigTable connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Connection Type" lines="5-7">
+
+**type**: Set to `BigTable` for BigTable connections.
+
+</ContentSection>
+
+<ContentSection id={3} title="Credentials" lines="8-9">
+
+**credentials**: You can authenticate with your BigTable instance using GCP Credentials. You can either specify the file path of the service account key or pass the values directly by choosing the GCP Credentials Values from the service account key file.
+
 You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam-service-account-keys-create-console) documentation on how to create the service account keys and download it.
-**gcpConfig:**
-Passing the raw credential values provided by GCP. This requires us to provide the service account credentials.
-</Step>
-</Steps>
-**1.** Passing the raw credential values provided by BigTable. This requires us to provide the following information, all provided by BigTable:
-**2.**  Passing a local file path that contains the credentials:
-  - **gcpCredentialsPath**
+
+</ContentSection>
+
+<ContentSection id={4} title="GCP Configuration" lines="10-22">
+
+<div>
+
+**gcpConfig:** Passing the raw credential values provided by GCP. This requires us to provide the service account credentials.
+
+**1.** Passing the raw credential values provided by BigTable:
+
 <GcpConfigDef />
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</div>
+
+<div>
+
+**2.** Passing a local file path that contains the credentials:
+- **gcpCredentialsPath**: Path to the service account key file
+
+</div>
+
+</ContentSection>
+
+<ContentSection id={5} title="Connection Options" lines="23-24">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={6} title="Connection Arguments" lines="25-26">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="bigtable_config.yaml">
+
 ```yaml
 source:
   type: bigtable
@@ -82,15 +126,23 @@ source:
       credentials:
         gcpConfig:
 ```
+
 <GcpConfig />
+
 ```yaml
       # connectionOptions:
       #   key: value
       # connectionArguments:
       #   key: value
 ```
-<GcpConfig />
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />

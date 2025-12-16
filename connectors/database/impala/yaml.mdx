@@ -3,8 +3,10 @@ title: Run the Impala Connector Externally
 description: Use YAML to configure Impala ingestion and extract schema, lineage, and profiling metadata.
 slug: /connectors/database/impala/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -52,38 +54,85 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for Hive:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="2-4">
+
+Configure the source type and service name for your Impala connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
 **username**: Specify the User to connect to Impala. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
 **password**: User password.
-</Step>
-<Step title="authOptions">
+
+</ContentSection>
+
+<ContentSection id={4} title="Auth Options" lines="9">
+
 **authOptions**: Enter the auth options string.
-</Step>
-<Step title="authMechanism">
+
+</ContentSection>
+
+<ContentSection id={5} title="Auth Mechanism" lines="10">
+
 **authMechanism**: `PLAIN`, `NOSASL`, `GSSAPI`, `LDAP` or `JWT`
-</Step>
-<Step title="hostPort">
+
+</ContentSection>
+
+<ContentSection id={6} title="Host Port" lines="11">
+
 **hostPort**: Enter the fully qualified hostname and port number for your Hive deployment in the Host and Port field.
-</Step>
-<Step title="<SourceConfigDef /> <IngestionSinkDef /> <WorkflowConfigDef">
-<SourceConfigDef />
-<IngestionSinkDef />
-<WorkflowConfigDef />
-</Step>
-<Step title="Connection Options (Optional)">
-**Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={7} title="Connection Options" lines="12-13">
+
 #### Advanced Configuration
-<Steps>
-<Step title="Connection Arguments (Optional)">
+
+**Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
+</ContentSection>
+
+<ContentSection id={8} title="Connection Arguments" lines="14-15">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={9} title="Source Config" lines="16-18">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={10} title="Sink Configuration" lines="19-21">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={11} title="Workflow Configuration" lines="22-38">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="impala_config.yaml">
+
 ```yaml
 source:
   type: impala
@@ -91,19 +140,27 @@ source:
   serviceConnection:
     config:
       type: Impala
-username: <username>
-password: <password>
-authOptions: <auth options>
-authMechanism: PLAIN # NOSASL, PLAIN, GSSAPI, LDAP, JWT
-hostPort: <hive connection host & port>
-# connectionOptions:
+      username: <username>
+      password: <password>
+      authOptions: <auth options>
+      authMechanism: PLAIN # NOSASL, PLAIN, GSSAPI, LDAP, JWT
+      hostPort: <hive connection host & port>
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <Lineage connector="impala" />
 <DataProfiler connector="impala" />

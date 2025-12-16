@@ -3,8 +3,10 @@ title: Run the Salesforce Connector Externally
 description: Use YAML to configure Salesforce connector for metadata extraction from objects, fields, and dashboards.
 slug: /connectors/database/salesforce/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -47,47 +49,109 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for Salesforce:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your Salesforce connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="6">
+
 **username**: Username to connect to the Salesforce. This user should have the access as defined in requirements.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="7">
+
 **password**: Password to connect to Salesforce.
-</Step>
-<Step title="securityToken">
+
+</ContentSection>
+
+<ContentSection id={4} title="Security Token" lines="8">
+
 **securityToken**: Salesforce Security Token is required to access the metadata through APIs. You can checkout [this doc](https://help.salesforce.com/s/articleView?id=sf.user_security_token.htm&type=5) on how to get the security token.
-</Step>
-<Step title="Organization ID">
+
+</ContentSection>
+
+<ContentSection id={5} title="Organization ID" lines="9">
+
 **Organization ID**: Salesforce Organization ID is the unique identifier for your Salesforce identity. You can check out [this doc](https://help.salesforce.com/s/articleView?id=000385215&type=1) on how to get the your Salesforce Organization ID.
+
 <Tip>
 **Note**: You need to provide `15` digit organization id in this section. for e.g. `00DIB000004nDEq`, which you can find by following the steps mentioned in above doc (`Salesforce dashboard->Setup->Company Profile->Company Information->Salesforce.com Organization Id`).
 </Tip>
+
 <Tip>
 **Note**: If you want to access salesforce metadata without token(only by using organization id), you will need to setup your ip in trusted ip ranges. You can go (`Salesforce dashboard->Setup->Security->Network Access->Trusted IP Ranges`) to configure this. You can check [here](https://help.salesforce.com/s/articleView?id=sf.security_networkaccess.htm&type=5) to configure your ip in trusted ip ranges.
 </Tip>
-</Step>
-<Step title="sobjectName">
+
+</ContentSection>
+
+<ContentSection id={6} title="SObject Name" lines="10">
+
 **sobjectName**: Specify the Salesforce Object Name in case you want to ingest a specific object.  If left blank, we will ingest all the Objects.
-</Step>
-<Step title="salesforceApiVersion">
+
+</ContentSection>
+
+<ContentSection id={7} title="Salesforce API Version" lines="11">
+
 **salesforceApiVersion**: Follow the steps mentioned [here](https://help.salesforce.com/s/articleView?id=000386929&type=1) to get the API version. Enter the numerical value in the field, For example `42.0`.
-</Step>
-<Step title="salesforceDomain">
+
+</ContentSection>
+
+<ContentSection id={8} title="Salesforce Domain" lines="12">
+
 **salesforceDomain**: When connecting to Salesforce, you can specify the domain to use for accessing the platform. The common domains include `login` and `test`, and you can also utilize Salesforce My Domain.
+
 By default, the domain `login` is used for accessing Salesforce.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={9} title="Connection Options" lines="13-14">
+
 #### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={10} title="Connection Arguments" lines="15-16">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={11} title="Source Config" lines="17-19">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={12} title="Sink Configuration" lines="20-22">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={13} title="Workflow Configuration" lines="23-39">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="salesforce_config.yaml">
+
 ```yaml
 source:
   type: salesforce
@@ -95,21 +159,29 @@ source:
   serviceConnection:
     config:
       type: Salesforce
-username: username
-password: password
-securityToken: securityToken
-organizationId: organizationId
-sobjectName: sobjectName
-salesforceApiVersion: "42.0"
-salesforceDomain: login
-# connectionOptions:
+      username: username
+      password: password
+      securityToken: securityToken
+      organizationId: organizationId
+      sobjectName: sobjectName
+      salesforceApiVersion: "42.0"
+      salesforceDomain: login
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## Securing Salesforce Connection with SSL in OpenMetadata
 To establish secure connections between OpenMetadata and Salesforce, navigate to the Advanced Config section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`. Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl_key`, `ssl_cert`, and `ssl_ca`. In this case, `ssl_cert` is used for the client’s SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `ssl_ca` for the CA certificate to validate the server’s certificate.

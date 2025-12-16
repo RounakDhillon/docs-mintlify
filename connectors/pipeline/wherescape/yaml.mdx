@@ -3,8 +3,10 @@ title: Run the Wherescape Connector Externally
 description: Configure WhereScape ingestion via YAML to capture data pipeline metadata and lineage from ETL job orchestration.
 slug: /connectors/pipeline/wherescape/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -44,19 +46,21 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Wherescape:
-<Steps>
-<Step title="Configuration">
-</Step>
-<Step title="connection">
-**connection**: 
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Configuration" lines="1-17">
+</ContentSection>
+<ContentSection id={2} title="connection" lines="1-17">
+**connection**:
 In terms of `connection` we support the following selections:
 - `Mssql`: Pass the required credentials to reach out this service. We will
   create a connection to the pointed database and read Wherescape data from there.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: wherescape
@@ -73,6 +77,8 @@ source:
         databaseSchema: db
         hostPort: localhost:1433
 ```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

@@ -3,7 +3,10 @@ title: Run the Redpanda Connector Externally
 description: Use YAML to configure Redpanda metadata ingestion and track streaming data topics, schema evolution, and system events.
 slug: /connectors/messaging/redpanda/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/messaging/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/messaging/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -43,49 +46,55 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Redpanda:
-<Steps>
-<Step title="bootstrapServers">
-**bootstrapServers**: List of brokers as comma separated values of broker `host` or `host:port`.
-Example: `host1:9092,host2:9092`
-</Step>
-<Step title="schemaRegistryURL">
-**schemaRegistryURL**: URL of the Schema Registry used to ingest the schemas of the topics.
-**NOTE**: For now, the schema will be the last version found for the schema name `{topic-name}-value`. An [issue](https://github.com/open-metadata/OpenMetadata/issues/10399) to improve how it currently works has been opened.
-</Step>
-<Step title="saslUsername">
-**saslUsername**: SASL username for use with the PLAIN and SASL-SCRAM mechanisms.
-</Step>
-<Step title="saslPassword">
-**saslPassword**: SASL password for use with the PLAIN and SASL-SCRAM mechanisms.
-</Step>
-<Step title="saslMechanism">
-**saslMechanism**: SASL mechanism to use for authentication.
-Supported: _GSSAPI, PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, OAUTHBEARER_.
-**NOTE**: Despite the name only one mechanism must be configured.
-</Step>
-<Step title="basicAuthUserInfo">
-**basicAuthUserInfo**: Schema Registry Client HTTP credentials in the form of `username:password`.
-By default, user info is extracted from the URL if present.
-</Step>
-<Step title="consumerConfig">
-**consumerConfig**: The accepted additional values for the consumer configuration can be found in the following
-[link](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.mdx).
-</Step>
-<Step title="schemaRegistryConfig">
-**schemaRegistryConfig**: The accepted additional values for the Schema Registry configuration can be found in the
-following [link](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schemaregistryclient).
-**Note:** To ingest the topic schema, `schemaRegistryURL` must be passed.
-</Step>
-<Step title="securityProtocol">
-**securityProtocol**: security.protocol consumer config property. It accepts `PLAINTEXT`,`SASL_PLAINTEXT`, `SASL_SSL`, `SSL`.
-</Step>
-<Step title="supportsMetadataExtraction">
-**supportsMetadataExtraction**: Supports Metadata Extraction. `supportsMetadataExtraction` supports boolean value either true or false.
-</Step>
-</Steps>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+Configure the source type and service name.
+</ContentSection>
+<ContentSection id={2} title="bootstrapServers" lines="9">
+**bootstrapServers**: List of brokers as comma separated values of broker `host` or `host:port`.
+Example: `host1:9092,host2:9092`
+</ContentSection>
+<ContentSection id={3} title="schemaRegistryURL" lines="10">
+**schemaRegistryURL**: URL of the Schema Registry used to ingest the schemas of the topics.
+**NOTE**: For now, the schema will be the last version found for the schema name `{topic-name}-value`. An [issue](https://github.com/open-metadata/OpenMetadata/issues/10399) to improve how it currently works has been opened.
+</ContentSection>
+<ContentSection id={4} title="saslUsername" lines="11">
+**saslUsername**: SASL username for use with the PLAIN and SASL-SCRAM mechanisms.
+</ContentSection>
+<ContentSection id={5} title="saslPassword" lines="12">
+**saslPassword**: SASL password for use with the PLAIN and SASL-SCRAM mechanisms.
+</ContentSection>
+<ContentSection id={6} title="saslMechanism" lines="13">
+**saslMechanism**: SASL mechanism to use for authentication.
+Supported: _GSSAPI, PLAIN, SCRAM-SHA-256, SCRAM-SHA-512, OAUTHBEARER_.
+**NOTE**: Despite the name only one mechanism must be configured.
+</ContentSection>
+<ContentSection id={7} title="basicAuthUserInfo" lines="14">
+**basicAuthUserInfo**: Schema Registry Client HTTP credentials in the form of `username:password`.
+By default, user info is extracted from the URL if present.
+</ContentSection>
+<ContentSection id={8} title="consumerConfig" lines="15">
+**consumerConfig**: The accepted additional values for the consumer configuration can be found in the following
+[link](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.mdx).
+</ContentSection>
+<ContentSection id={9} title="schemaRegistryConfig" lines="16">
+**schemaRegistryConfig**: The accepted additional values for the Schema Registry configuration can be found in the
+following [link](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#schemaregistryclient).
+**Note:** To ingest the topic schema, `schemaRegistryURL` must be passed.
+</ContentSection>
+<ContentSection id={10} title="securityProtocol" lines="17">
+**securityProtocol**: security.protocol consumer config property. It accepts `PLAINTEXT`,`SASL_PLAINTEXT`, `SASL_SSL`, `SSL`.
+</ContentSection>
+<ContentSection id={11} title="supportsMetadataExtraction" lines="18">
+**supportsMetadataExtraction**: Supports Metadata Extraction. `supportsMetadataExtraction` supports boolean value either true or false.
+</ContentSection>
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: redpanda
@@ -104,36 +113,8 @@ schemaRegistryConfig: {}
 # securityProtocol: PLAINTEXT
 # supportsMetadataExtraction: true
 ```
-```yaml
-      bootstrapServers: localhost:9092
-```
-```yaml
-      schemaRegistryURL: http://localhost:8081  # Needs to be a URI
-```
-```yaml
-      saslUsername: username
-```
-```yaml
-      saslPassword: password
-```
-```yaml
-      saslMechanism: PLAIN
-```
-```yaml
-      basicAuthUserInfo: username:password
-```
-```yaml
-      consumerConfig: {}
-```
-```yaml 
-      schemaRegistryConfig: {}
-```
-```yaml
-      # securityProtocol: PLAINTEXT
-```
-```yaml
-      # supportsMetadataExtraction: true
-```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

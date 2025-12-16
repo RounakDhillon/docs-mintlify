@@ -3,8 +3,10 @@ title: Run the Domo Pipeline Connector Externally
 description: Configure Domo pipeline ingestion via YAML to automate metadata flow from dashboards and datasets into your governance platform.
 slug: /connectors/pipeline/domo-pipeline/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -46,26 +48,28 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Domo-Pipeline:
-<Steps>
-<Step title="Client ID">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="Client ID" lines="7">
 **Client ID**: Client ID to Connect to DOMO Pipeline.
-</Step>
-<Step title="Secret Token">
+</ContentSection>
+<ContentSection id={2} title="Secret Token" lines="8">
 **Secret Token**: Secret Token to Connect DOMO Pipeline.
-</Step>
-<Step title="Access Token">
+</ContentSection>
+<ContentSection id={3} title="Access Token" lines="9">
 **Access Token**: Access to Connect to DOMO Pipeline.
-</Step>
-<Step title="API Host">
+</ContentSection>
+<ContentSection id={4} title="API Host" lines="10">
 **API Host**:  API Host to Connect to DOMO Pipeline instance.
-</Step>
-<Step title="Instance Domain">
+</ContentSection>
+<ContentSection id={5} title="Instance Domain" lines="11">
 **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: domopipeline
@@ -73,27 +77,14 @@ source:
   serviceConnection:
     config:
       type: DomoPipeline
-clientID: clientid
-secretToken: secret-token
-accessToken: access-token
-apiHost: api.domo.com
-instanceDomain: https://<your>.domo.com
-```
-```yaml
       clientID: clientid
-```
-```yaml
       secretToken: secret-token
-```
-```yaml
       accessToken: access-token
-```
-```yaml
       apiHost: api.domo.com
-```
-```yaml
       instanceDomain: https://<your>.domo.com
 ```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

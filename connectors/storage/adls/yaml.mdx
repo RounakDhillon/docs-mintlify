@@ -4,8 +4,10 @@ description: Use YAML to ingest metadata from Azure Data Lake Storage including 
 slug: /connectors/storage/adls/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -55,15 +57,33 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Athena:
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Azure Configuration" lines="7-12">
+
+<AzureConfigDef />
+
+</ContentSection>
+
+<ContentSection id={2} title="Connection Options (Optional)" lines="13-14">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={3} title="Connection Arguments (Optional)" lines="15-16">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: ADLS
@@ -71,15 +91,26 @@ source:
   serviceConnection:
     config:
       type: ADLS
-      credentials:
+```
+
+<AzureConfig />
+
+```yaml
 # connectionOptions:
         # key: value
 # connectionArguments:
         # key: value
 ```
+
 <StorageSourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />
 ## Related
 <Columns cols={2}>

@@ -3,8 +3,10 @@ title: Run the Snowflake Connector Externally
 description: Integrate Yaml for metadata sync, profiling, and lineage. Start configuring with our easy-to-follow guide.
 slug: /connectors/database/snowflake/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -94,84 +96,168 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for Snowflake:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-4">
+
+Configure the source type and service name for your Snowflake connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Username" lines="7">
+
 **username**: Specify the User to connect to Snowflake. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="Password" lines="8">
+
 **password**: Password to connect to Snowflake.
-</Step>
-<Step title="warehouse">
+
+</ContentSection>
+
+<ContentSection id={4} title="Warehouse" lines="9">
+
 **warehouse**: Snowflake warehouse is required for executing queries to fetch the metadata. Enter the name of warehouse against which you would like to execute these queries.
-</Step>
-<Step title="account">
+
+</ContentSection>
+
+<ContentSection id={5} title="Account" lines="10">
+
 **account**: Snowflake account identifier uniquely identifies a Snowflake account within your organization, as well as throughout the global network of Snowflake-supported cloud platforms and cloud regions. If the Snowflake URL is `https://xyz1234.us-east-1.gcp.snowflakecomputing.com`, then the account is `xyz1234.us-east-1.gcp`.
-</Step>
-<Step title="database">
+
+</ContentSection>
+
+<ContentSection id={6} title="Database" lines="11">
+
 **database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.
-</Step>
-<Step title="accountUsageSchema">
+
+</ContentSection>
+
+<ContentSection id={7} title="Account Usage Schema" lines="12">
+
 **accountUsageSchema**: Full name of account usage schema, used in case your used do not have direct access to `SNOWFLAKE.ACCOUNT_USAGE` schema. In such case you can replicate tables `QUERY_HISTORY`, `TAG_REFERENCES`, `PROCEDURES`, `FUNCTIONS` to a custom schema let's say `CUSTOM_DB.CUSTOM_SCHEMA` and provide the same name in this field.
+
 When using this field make sure you have all these tables available within your custom schema  `QUERY_HISTORY`, `TAG_REFERENCES`, `PROCEDURES`, `FUNCTIONS`.
-</Step>
-<Step title="includeTransientTables">
+
+</ContentSection>
+
+<ContentSection id={8} title="Include Transient Tables" lines="13">
+
 **includeTransientTables**: Optional configuration for ingestion of TRANSIENT and TEMPORARY tables, By default, it will skip the TRANSIENT and TEMPORARY tables.
-</Step>
-<Step title="includeStreams">
+
+</ContentSection>
+
+<ContentSection id={9} title="Include Streams" lines="14">
+
 **includeStreams**: Optional configuration for ingestion of streams, By default, it will skip the streams.
-</Step>
-<Step title="clientSessionKeepAlive">
+
+</ContentSection>
+
+<ContentSection id={10} title="Client Session Keep Alive" lines="15">
+
 **clientSessionKeepAlive**: Optional Configuration to keep the session active in case the ingestion job runs for longer duration.
-</Step>
-<Step title="privateKey">
+
+</ContentSection>
+
+<ContentSection id={11} title="Private Key" lines="16">
+
 **privateKey**: If you have configured the key pair authentication for the given user you will have to pass the private key associated with the user in this field. You can checkout [this](https://docs.snowflake.com/en/user-guide/key-pair-auth) doc to get more details about key-pair authentication.
-  - The multi-line key needs to be converted to one line with `\n` for line endings i.e. `-----BEGIN ENCRYPTED PRIVATE KEY-----\nMII...\n...\n-----END ENCRYPTED PRIVATE KEY-----`
-</Step>
-<Step title="snowflakePrivatekeyPassphrase">
+
+- The multi-line key needs to be converted to one line with `\n` for line endings i.e. `-----BEGIN ENCRYPTED PRIVATE KEY-----\nMII...\n...\n-----END ENCRYPTED PRIVATE KEY-----`
+
+</ContentSection>
+
+<ContentSection id={12} title="Snowflake Private Key Passphrase" lines="17">
+
 **snowflakePrivatekeyPassphrase**: If you have configured the encrypted key pair authentication for the given user you will have to pass the paraphrase associated with the private key in this field. You can checkout [this](https://docs.snowflake.com/en/user-guide/key-pair-auth) doc to get more details about key-pair authentication.
-</Step>
-<Step title="role">
+
+</ContentSection>
+
+<ContentSection id={13} title="Role" lines="18">
+
 **role**: You can specify the role of user that you would like to ingest with, if no role is specified the default roles assigned to user will be selected.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={14} title="Connection Options" lines="19-20">
+
 #### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={15} title="Connection Arguments" lines="21-22">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={16} title="Source Config" lines="23-25">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={17} title="Sink Configuration" lines="26-28">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={18} title="Workflow Configuration" lines="29-45">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="snowflake_config.yaml">
+
 ```yaml
 source:
   type: snowflake
-  serviceName: <service name>
+  serviceName: local_snowflake
   serviceConnection:
     config:
       type: Snowflake
-username: <username>
-password: <password>
-warehouse: <warehouse>
-account: <account>
-# database: <database>
-# accountUsageSchema: SNOWFLAKE.ACCOUNT_USAGE
-includeTransientTables: false
-includeStreams: false
-clientSessionKeepAlive: false
-# privateKey: <privateKey>
-# snowflakePrivatekeyPassphrase: <passphrase>
-# role: <role>
-# connectionOptions:
+      username: username
+      password: password
+      warehouse: warehouse
+      account: account
+      # database: database
+      # accountUsageSchema: SNOWFLAKE.ACCOUNT_USAGE
+      includeTransientTables: false
+      includeStreams: false
+      clientSessionKeepAlive: false
+      # privateKey: privateKey
+      # snowflakePrivatekeyPassphrase: passphrase
+      # role: role
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <QueryUsage connector="snowflake" />
 <Lineage connector="snowflake" />

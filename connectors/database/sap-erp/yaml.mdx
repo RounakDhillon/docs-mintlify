@@ -3,8 +3,10 @@ title: Run the SAP ERP Connector Externally
 description: Configure SAP ERP database connections in Collate with YAML. Complete setup guide, authentication options, and configuration examples for seamless ...
 slug: /connectors/database/sap-erp/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -49,61 +51,132 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for SAP ERP:
-<Steps>
-<Step title="hostPort">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-4">
+
+Configure the source type and service name for your SAP ERP connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Host Port" lines="7">
+
 **hostPort**: Host and port of the SAP ERP service. This specifies the host and port of the SAP ERP instance. It should be specified as a string in the format `https://hostname.com`.
-</Step>
-<Step title="apiKey">
+
+</ContentSection>
+
+<ContentSection id={3} title="API Key" lines="8">
+
 **apiKey**: Api Key to authenticate the SAP ERP Apis
-</Step>
-<Step title="databaseName">
+
+</ContentSection>
+
+<ContentSection id={4} title="Database Name" lines="9">
+
 **databaseName**: In OpenMetadata, the Database Service hierarchy works as follows:
 `Database Service > Database > Schema > Table`
 In the case of SAP ERP, we won't have a Database as such. If you'd like to see your data in a database named something other than `default`, you can specify the name in this field.
-</Step>
-<Step title="databaseSchema">
+
+</ContentSection>
+
+<ContentSection id={5} title="Database Schema" lines="10">
+
 **databaseSchema**: In OpenMetadata, the Database Service hierarchy works as follows:
 `Database Service > Database > Schema > Table`
 In the case of SAP ERP, we won't have a Database Schema as such. If you'd like to see your data in a database schema named something other than `default`, you can specify the name in this field.
-</Step>
-<Step title="paginationLimit">
+
+</ContentSection>
+
+<ContentSection id={6} title="Pagination Limit" lines="11">
+
 **paginationLimit**: Pagination limit used while querying the SAP ERP API for fetching the entities.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={7} title="SSL Configuration" lines="12-14">
+
 #### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) connection between your application and the SAP ERP server.
+
+**caCertificate**: This is the path to the CA (Certificate Authority) certificate file. This file is used to verify the server's certificate.
+
+**sslMode**: This field controls whether a secure SSL/TLS connection will be negotiated with the server. Available modes: disable, allow, prefer, require, verify-ca, verify-full.
+
+</ContentSection>
+
+<ContentSection id={8} title="Connection Options" lines="15-16">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={9} title="Connection Arguments" lines="17-18">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
+
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={10} title="Source Config" lines="19-21">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={11} title="Sink Configuration" lines="22-24">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={12} title="Workflow Configuration" lines="25-41">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="sap_erp_config.yaml">
+
 ```yaml
 source:
   type: SapErp
-  serviceName: <service name>
+  serviceName: local_sap_erp
   serviceConnection:
     config:
       type: SapErp
-hostPort: https://localhost.com
-apiKey: api_key
-databaseName: databaseName
-databaseSchema: databaseSchema
-paginationLimit: 100
-# sslConfig:
-            # caCertificate: "path/to/ca/certificate"
+      hostPort: https://localhost.com
+      apiKey: api_key
+      databaseName: databaseName
+      databaseSchema: databaseSchema
+      paginationLimit: 100
+      # sslConfig:
+      #   caCertificate: "path/to/ca/certificate"
       # sslMode: disable #allow prefer require verify-ca verify-full
-# connectionOptions:
+      # connectionOptions:
       #   key: value
-# connectionArguments:
+      # connectionArguments:
       #   key: value
 ```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 ## Securing SAP ERP Connection with SSL in OpenMetadata
 To configure SSL for secure connections between OpenMetadata and a Redshift database, Redshift offers various SSL modes, each providing different levels of connection security.

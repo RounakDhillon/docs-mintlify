@@ -3,8 +3,10 @@ title: Run the KafkaConnect Connector Externally
 description: Set up Kafka Connect YAML configuration to stream metadata and schema updates from real-time Kafka topics into your catalog.
 slug: /connectors/pipeline/kafkaconnect/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -44,26 +46,28 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for KafkaConnect:
-<Steps>
-<Step title="hostPort">
+<CodePreview>
+<ContentPanel>
+<ContentSection id={1} title="hostPort" lines="7">
 **hostPort**: The hostname or IP address of the Kafka Connect worker with the REST API enabled
-</Step>
-<Step title="verifySSL">
+</ContentSection>
+<ContentSection id={2} title="verifySSL" lines="8">
 **verifySSL**: Whether SSL verification should be perform when authenticating.
-</Step>
-<Step title="Kafka Connect Config">
+</ContentSection>
+<ContentSection id={3} title="Kafka Connect Config" lines="9-11">
 **Kafka Connect Config**: OpenMetadata supports username/password or no Authentication.
 *Basic Authentication*
     - Username: Username to connect to Kafka Connect. This user should be able to send request to the Kafka Connect API and access the [Rest API](https://docs.confluent.io/platform/current/connect/references/restapi.html) GET endpoints.
     - Password: Password to connect to Kafka Connect.
-</Step>
-<Step title="messagingServiceName">
+</ContentSection>
+<ContentSection id={4} title="messagingServiceName" lines="12">
 **messagingServiceName**: Name of the Kafka Messaging Service associated with this KafkaConnect Pipeline Service. e.g. local_kafka.
-</Step>
-</Steps>
+</ContentSection>
+</ContentPanel>
 <SourceConfigDef />
 <IngestionSinkDef />
 <WorkflowConfigDef />
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: kafkaconnect
@@ -71,16 +75,15 @@ source:
   serviceConnection:
     config:
       type: KafkaConnect
-hostPort: "https://<yourkafkaconnectresturihere>" # or http://localhost:8083 or http://127.0.0.1:8083
-verifySSL: true
-authType:
-          username: username
-          password: password
-# messagingServiceName: ""
+      hostPort: "https://<yourkafkaconnectresturihere>" # or http://localhost:8083 or http://127.0.0.1:8083
+      verifySSL: true
+      authType:
+        username: username
+        password: password
+      # messagingServiceName: ""
 ```
-```yaml
-        # messagingServiceName: ""
-```
+</CodePanel>
+</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

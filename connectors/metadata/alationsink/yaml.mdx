@@ -3,6 +3,7 @@ title: Run the Alation Sink Connector Externally
 description: Use YAML to configure AlationSink metadata ingestion and push terms to Alation catalogs.
 slug: /connectors/metadata/alationsink/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -10,6 +11,7 @@ import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 
 <ConnectorDetailsHeader
 icon='/public/images/connectors/alation.webp'
@@ -51,11 +53,25 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-<Steps>
-<Step title="hostPort">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name.
+
+</ContentSection>
+
+<ContentSection id={2} title="Host Port" lines="8">
+
 **hostPort**: Host and port of the Alation service.
-</Step>
-<Step title="authType">
+
+</ContentSection>
+
+<ContentSection id={3} title="Authentication Type" lines="9-14">
+
 **authType**:
 Following authentication types are supported:
 1. Basic Authentication: We'll use the user credentials to generate the access token required to authenticate Alation APIs.
@@ -63,14 +79,23 @@ Following authentication types are supported:
 - password: Password of the user.
 2. Access Token Authentication: The access token created using the steps mentioned [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-via-ui) can directly be entered. We'll use that directly to authenticate the Alation APIs
 - accessToken: Generated access token
-</Step>
-<Step title="projectName">
+
+</ContentSection>
+
+<ContentSection id={4} title="Project Name" lines="15">
+
 **projectName**: Project name to create the refreshToken. Can be anything.
-</Step>
-<Step title="paginationLimit">
+
+</ContentSection>
+
+<ContentSection id={5} title="Pagination Limit" lines="16">
+
 **paginationLimit**: Pagination limit used for Alation APIs pagination
-</Step>
-<Step title="datasourceLinks">
+
+</ContentSection>
+
+<ContentSection id={6} title="Datasource Links" lines="17-20">
+
 **datasourceLinks**: Add a custom mapping between OpenMetadata databases and Alation DataSources.
 If this mapping is present the connector will only look for the datasource in Alation to create other entities inside it. It will not create the datasource in Alation and it'll need to be created beforehand.
 The mapping needs to be of the format `alation_datasource_id: openmetadata_database_fqn`
@@ -83,11 +108,25 @@ datasourceLinks: {
     "15": "mysql_prod.customers_db",
 }
 ```
-</Step>
-<Step title="To send the metadata to">
+
+</ContentSection>
+
+<ContentSection id={7} title="Source Config" lines="21-23">
+
+Configure the metadata ingestion type as DatabaseMetadata.
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="24-26">
+
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: AlationSink
@@ -117,5 +156,10 @@ sink:
   type: metadata-rest
   config: {}
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 <WorkflowConfig />
 <IngestionCli />

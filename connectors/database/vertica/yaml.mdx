@@ -3,8 +3,10 @@ title: Run the Vertica Connector Externally
 description: Configure Collate'sVertica database connector with YAML. Complete setup guide, connection parameters, and configuration examples for seamless data integration.
 slug: /connectors/database/vertica/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -85,30 +87,54 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Vertica:
-<Steps>
-<Step title="username">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your Vertica connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="username" lines="7">
+
 **username**: Specify the User to connect to Vertica. It should have enough privileges to read all the metadata.
-</Step>
-<Step title="password">
+
+</ContentSection>
+
+<ContentSection id={3} title="password" lines="8">
+
 **password**: Password to connect to Vertica.
-</Step>
-<Step title="hostPort">
+
+</ContentSection>
+
+<ContentSection id={4} title="hostPort" lines="9">
+
 **hostPort**: Enter the fully qualified hostname and port number for your Vertica deployment in the Host and Port field.
-</Step>
-<Step title="database">
+
+</ContentSection>
+
+<ContentSection id={5} title="database" lines="10">
+
 **database**: Database of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single database. When left blank, OpenMetadata Ingestion attempts to scan all the databases.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={6} title="Advanced Configuration" lines="11-14">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="vertica_config.yaml">
+
 ```yaml
 source:
   type: vertica
@@ -125,8 +151,15 @@ hostPort: localhost:5432
 # connectionArguments:
       #   key: value
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
 <IngestionCli />
 <Lineage connector="vertica" />

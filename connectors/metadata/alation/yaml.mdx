@@ -4,12 +4,14 @@ description: Use YAML to configure Alation metadata integration and capture glos
 slug: /connectors/metadata/alation/yaml
 sidebarTitle: Run Externally
 collate: true
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 
 <ConnectorDetailsHeader
 icon='/public/images/connectors/alation.webp'
@@ -60,11 +62,25 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
-<Steps>
-<Step title="hostPort">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name.
+
+</ContentSection>
+
+<ContentSection id={2} title="Host Port" lines="8">
+
 **hostPort**: Host and port of the Alation instance.
-</Step>
-<Step title="authType">
+
+</ContentSection>
+
+<ContentSection id={3} title="Authentication Type" lines="9-16">
+
 **authType**: Following authentication types are supported:
 1. Basic Authentication:
 We'll use the user credentials to generate the access token required to authenticate Alation APIs
@@ -73,8 +89,11 @@ We'll use the user credentials to generate the access token required to authenti
 2. Access Token Authentication:
 The access token created using the steps mentioned [here](https://developer.alation.com/dev/docs/authentication-into-alation-apis#create-an-api-access-token) can directly be entered. We'll use that directly to authenticate the Alation APIs
 - accessToken: Generated access token
-</Step>
-<Step title="For Alation backend database Connection:">
+
+</ContentSection>
+
+<ContentSection id={4} title="Alation Backend Database Connection" lines="17-31">
+
 #### For Alation backend database Connection:
 Alation APIs do not provide us with some of the metadata. This metadata we extract directly from the alation's backend database by query the tables directly.
 Note that this is a optional config and if it is not provided primary metadata will still be ingested.
@@ -91,38 +110,71 @@ Choose either postgres or mysql connection depending on the db:
 **password**: Password to connect to MySQL.
 **hostPort**: Enter the fully qualified hostname and port number for your MySQL deployment in the Host and Port field.
 - **databaseSchema**: Initial MySQL database to connect to. Specify the name of database schema associated with Alation instance.
-</Step>
-<Step title="projectName">
+
+</ContentSection>
+
+<ContentSection id={5} title="Project Name" lines="32">
+
 **projectName**: Project Name can be anything. e.g Prod or Demo. It will be used while creating the tokens.
-</Step>
-<Step title="paginationLimit">
+
+</ContentSection>
+
+<ContentSection id={6} title="Pagination Limit" lines="33">
+
 **paginationLimit**: Pagination limit used for Alation APIs pagination. By default is set to 10.
-</Step>
-<Step title="includeUndeployedDatasources">
+
+</ContentSection>
+
+<ContentSection id={7} title="Include Undeployed Datasources" lines="34">
+
 **includeUndeployedDatasources**: Specifies if undeployed datasources should be included while ingesting. By default is set to `false`.
-</Step>
-<Step title="includeHiddenDatasources">
+
+</ContentSection>
+
+<ContentSection id={8} title="Include Hidden Datasources" lines="35">
+
 **includeHiddenDatasources**: Specifies if hidden datasources should be included while ingesting. By default is set to `false`.
-</Step>
-<Step title="ingestUsersAndGroups">
+
+</ContentSection>
+
+<ContentSection id={9} title="Ingest Users and Groups" lines="36">
+
 **ingestUsersAndGroups**: Specifies if users and groups should be included while ingesting. By default is set to `true`.
-</Step>
-<Step title="ingestKnowledgeArticles">
+
+</ContentSection>
+
+<ContentSection id={10} title="Ingest Knowledge Articles" lines="37">
+
 **ingestKnowledgeArticles**: Specifies if knowledge articles should be included while ingesting. By default is set to `true`.
-</Step>
-<Step title="ingestDatasources">
+
+</ContentSection>
+
+<ContentSection id={11} title="Ingest Datasources" lines="38">
+
 **ingestDatasources**: Specifies if databases, schemas and tables should be included while ingesting. By default is set to `true`.
-</Step>
-<Step title="ingestDomains">
+
+</ContentSection>
+
+<ContentSection id={12} title="Ingest Domains" lines="39">
+
 **ingestDomains**: Specifies if hidden domains and subdomains should be included while ingesting. By default is set to `true`.
-</Step>
-<Step title="ingestDashboards">
+
+</ContentSection>
+
+<ContentSection id={13} title="Ingest Dashboards" lines="40">
+
 **ingestDashboards**: Specifies if hidden BI sources and dashboards should be included while ingesting. By default is set to `true`.
-</Step>
-<Step title="alationTagClassificationName">
+
+</ContentSection>
+
+<ContentSection id={14} title="Alation Tag Classification Name" lines="41">
+
 **alationTagClassificationName**: Specify the classification name under which the tags from alation will be created in OpenMetadata. By default it is set to `alationTags`.
-</Step>
-<Step title="connectionArguments">
+
+</ContentSection>
+
+<ContentSection id={15} title="Connection Arguments" lines="42-45">
+
 **connectionArguments**: These are additional parameters for Alation. If not specified the ingestion will use the predefined pagination logic.
 The following arguments are intended to be used in conjunction and are specifically for Alation DataSource APIs:
 - skip: This parameter determines the count of records to bypass at the start of the dataset. When set to 0, as in this case, it means that no records will be bypassed. If set to 10, it will bypass the first 10 records.
@@ -131,11 +183,25 @@ To perform incremental ingestion, these arguments should be used together. For i
 - 1st execution: `{"skip": 0, "limit": 10}`
 - 2nd execution: `{"skip": 10, "limit": 10}`
 - 3rd execution: `{"skip": 20, "limit": 10}`
-</Step>
-<Step title="To send the metadata to">
+
+</ContentSection>
+
+<ContentSection id={16} title="Source Config" lines="46-68">
+
+Configure the metadata ingestion type and optional filter patterns.
+
+</ContentSection>
+
+<ContentSection id={17} title="Sink Configuration" lines="69-71">
+
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: Alation
@@ -209,5 +275,10 @@ sink:
   type: metadata-rest
   config: {}
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 <WorkflowConfig />
 <IngestionCli />

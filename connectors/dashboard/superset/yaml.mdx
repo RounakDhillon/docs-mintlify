@@ -3,8 +3,10 @@ title: Run the Superset Connector Externally
 description: Configure Collate'sApache Superset connector with YAML. Step-by-step setup guide for dashboard metadata integration and automated discovery.
 slug: /connectors/dashboard/superset/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfigDef from '/snippets/connectors/yaml/dashboard/source-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -49,45 +51,88 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Superset:
-<Steps>
-<Step title="hostPort">
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name.
+
+</ContentSection>
+
+<ContentSection id={2} title="hostPort" lines="6">
+
 **hostPort**: The `Host and Post` parameter is common for all three modes of authentication which specifies the host and port of the Superset instance. This should be specified as a string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set the hostPort parameter to `https://org.superset.com:8088`.
+
 **connection**: Add the connection details to fetch metadata from Superset either through APIs or Database.
+
 #### For Superset API Connection:
-Superset API connection is the default mode of authentication where we fetch the metadata using [Superset APIs](https://superset.apache.org/docs/api/). 
+
+Superset API connection is the default mode of authentication where we fetch the metadata using [Superset APIs](https://superset.apache.org/docs/api/).
+
 **Note**:
+
 Superset only supports basic or ldap authentication through APIs so if you have SSO enabled on your Superset instance then this mode of authentication will not work for you and you can opt for MySQL or Postgres Connection to fetch metadata directly from the database in the backend of Superset.
+
 **username**: Username to connect to Superset, for ex. `user@organization.com`. This user should have access to relevant dashboards and charts in Superset to fetch the metadata.
+
 **password**: Password of the user account to connect with Superset.
+
 **provider**: Choose between `db`(default) or `ldap` mode of Authentication provider for the Superset service. This parameter is used internally to connect to Superset's REST API.
-</Step>
-<Step title="For MySQL Connection:">
+
+</ContentSection>
+
+<ContentSection id={3} title="For MySQL Connection:" lines="7-18">
+
 #### For MySQL Connection:
+
 You can use Mysql Connection when you have SSO enabled and your Superset is backed by Mysql database.
+
 **username**: Specify the User to connect to MySQL. It should have enough privileges to read all the metadata. Make sure the user has select privileges on `dashboards`, `tables` & `slices` tables of superset schema.
+
 **password**: Password to connect to MySQL.
+
 **hostPort**: Enter the fully qualified hostname and port number for your MySQL deployment in the Host and Port field.
+
 - **databaseSchema**: Enter the database schema which is associated with the Superset instance..
 - **caCertificate**: Provide the path to ssl ca file.
 - **sslCertificate**: Provide the path to ssl client certificate file (ssl_cert).
 - **sslKey**: Provide the path to ssl client certificate file (ssl_key).
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to MySQL during the connection. These details must be added as Key-Value pairs.
-**Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to MySQL during the connection. These details must be added as Key-Value pairs. 
+
+**Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to MySQL during the connection. These details must be added as Key-Value pairs.
   - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-<Step title="For Postgres Connection:">
+
+</ContentSection>
+
+<ContentSection id={4} title="For Postgres Connection:" lines="19-25">
+
 #### For Postgres Connection:
+
 You can use Postgres Connection when you have SSO enabled and your Superset is backed by Postgres database.
+
 - **username**: Specify the User to connect to Postgres. Make sure the user has select privileges on `dashboards`, `tables` & `slices` tables of superset schema.
+
 **password**: Password to connect to Postgres.
+
 **hostPort**: Enter the fully qualified hostname and port number for your Postgres deployment in the Host and Port field.
+
 - **database**: Initial Postgres database to connect to. Specify the name of database associated with Superset instance.
 - **caCertificate**: Provide the path to ssl ca file.
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to Postgres during the connection. These details must be added as Key-Value pairs.
-**Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to Postgres during the connection. These details must be added as Key-Value pairs. 
+
+**Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to Postgres during the connection. These details must be added as Key-Value pairs.
   - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="superset_config.yaml">
+
 ```yaml
 source:
   type: superset
@@ -116,6 +161,11 @@ hostPort: http://localhost:8088
         # hostPort: localhost:5432
         # database: superset
 ```
+
+</CodePanel>
+
+</CodePreview>
+
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />

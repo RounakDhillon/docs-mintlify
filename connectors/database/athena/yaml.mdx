@@ -3,8 +3,10 @@ title: Run the Athena Connector Externally
 description: Configure Collate'sAthena database connector with YAML - step-by-step setup guide, connection parameters, and configuration examples for seamless integration.
 slug: /connectors/database/athena/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import Lineage from '/snippets/connectors/yaml/lineage.mdx'
@@ -153,24 +155,73 @@ process the Entities if needed, and reach the OpenMetadata server.
 The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
+
 This is a sample config for Athena:
-<Steps>
-<Step title="s3StagingDir">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1">
+
+Configure the source type and service name for your Athena connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="Connection Type" lines="2">
+
+**type**: Set to `Athena` for Athena connections.
+
+</ContentSection>
+
+<AwsConfigDef />
+
+<ContentSection id={4} title="S3 Staging Directory" lines="17">
+
 **s3StagingDir**: The S3 staging directory is an optional parameter. Enter a staging directory to override the default staging directory for AWS Athena.
-</Step>
-<Step title="workgroup">
+
+</ContentSection>
+
+<ContentSection id={5} title="Workgroup" lines="18">
+
 **workgroup**: The Athena workgroup is an optional parameter. If you wish to have your Athena connection related to an existing AWS workgroup add your workgroup name here.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={6} title="Connection Options" lines="19-20">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={7} title="Connection Arguments" lines="21-22">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+<ContentSection id={8} title="Source Config" lines="15">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Sink Configuration" lines="16">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={10} title="Workflow Configuration" lines="17">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="athena_config.yaml">
+
 ```yaml
 source:
   type: athena
@@ -179,17 +230,28 @@ source:
     config:
       type: Athena
       awsConfig:
-s3StagingDir: s3 directory for datasource
-workgroup: workgroup name
-# connectionOptions:
-        # key: value
-# connectionArguments:
-        # key: value
 ```
+
 <AwsConfig />
+
+```yaml
+      s3StagingDir: s3 directory for datasource
+      workgroup: workgroup name
+      # connectionOptions:
+      #   key: value
+      # connectionArguments:
+      #   key: value
+```
+
 <SourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />
 <QueryUsage connector="athena" />
 <Lineage connector="athena" />

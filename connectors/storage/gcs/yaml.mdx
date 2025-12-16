@@ -3,8 +3,10 @@ title: Run the GCS Connector Externally
 description: Use YAML to configure GCS storage ingestion for metadata visibility into cloud buckets.
 slug: /connectors/storage/gcs/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import GcpConfigDef from '/snippets/connectors/yaml/common/gcp-config-def.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
@@ -59,8 +61,13 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Athena:
-<Steps>
-<Step title="gcpConfig:">
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="gcpConfig:" lines="7-19">
+
 **gcpConfig:**
 **1.** Passing the raw credential values provided by GCP. This requires us to provide the following information, all provided by GCP:
 <GcpConfigDef />
@@ -75,7 +82,7 @@ source:
     config:
       type: GCS
       credentials:
-        gcpConfig: 
+        gcpConfig:
         path: <path to file>
 ```
 - If you want to use [ADC authentication](https://cloud.google.com/docs/authentication#adc) for GCP you can just leave
@@ -92,17 +99,25 @@ source:
       gcpConfig: {}
 ...
 ```
-</Step>
-<Step title="Connection Options (Optional)">
+
+</ContentSection>
+
+<ContentSection id={2} title="Connection Options (Optional)" lines="24-25">
+
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
-#### Advanced Configuration
-<Steps>
-<Step title="Connection Arguments (Optional)">
+
+</ContentSection>
+
+<ContentSection id={3} title="Connection Arguments (Optional)" lines="26-27">
+
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to storage service during the connection. These details must be added as Key-Value pairs.
-</Step>
-</Steps>
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="connector_config.yaml">
+
 ```yaml
 source:
   type: gcs
@@ -120,6 +135,13 @@ credentials:
 # connectionArguments:
       #   key: value
 ```
+
 <StorageSourceConfig />
+
 <IngestionSink />
+
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
