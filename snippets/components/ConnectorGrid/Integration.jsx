@@ -504,6 +504,16 @@ export const Integrations = () => {
             ],
         },
         {
+            connector: 'Drive',
+            services: [
+                {
+                    name: 'Google Drive',
+                    image: '/public/images/connectors/googledrive.webp',
+                    link: '/connectors/drive/googledrive',
+                },
+            ],
+        },
+        {
             connector: 'Others',
             services: [
                 {

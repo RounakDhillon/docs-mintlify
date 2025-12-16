@@ -439,9 +439,14 @@ a.guide-card img {
     padding: 64px 16px 40px;
 }
 
+.products-container [data-as="p"]:first-of-type {
+    display: block;
+    margin-bottom: 40px;
+}
+
 .product-cards {
-    margin-top: 32px;
-    padding-bottom: 100px;
+    margin-top: 16px;
+    padding-bottom: 48px;
 }
 
 .product-cards .card [data-component-part="card-content"] {

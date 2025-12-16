@@ -574,6 +574,12 @@ a.link:hover {
   background-color: transparent;
 }
 
+.products-container h2 {
+  color: #222244;
+  font-size: 22px;
+  font-weight: 600;
+}
+
 .card {
   border: none;
   box-shadow: 0px 4px 12px -1px rgba(10, 13, 18, 0.08);
