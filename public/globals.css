@@ -490,6 +490,29 @@ a.link:hover {
   width: fit-content;
 }
 
+/* Hide first breadcrumb items using CSS */
+.breadcrumb-item:first-child {
+  display: none;
+}
+
+.breadcrumb-item:last-of-type a {
+  color: #414651;
+  pointer-events: none; 
+  cursor: text;
+  text-decoration: none;
+}
+
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  z-index: 9999;
+  transition: width 0.3s ease;
+}
+
 #navbar .border-b {
   border: none;
 }
@@ -509,7 +532,7 @@ a.link:hover {
 
 #navbar .nav-tabs .nav-tabs-item {
   padding: 12px 24px;
-  font-size: 18px;
+  font-size: 16px;
   white-space: nowrap;
   flex-shrink: 0;
   color: #414651;
@@ -529,6 +552,7 @@ a.link:hover {
   color: white;
   background-color: #252B37;
   border-radius: 100px;
+  font-weight: 600;
 }
 
 #navbar .h-10 {
@@ -539,6 +563,10 @@ a.link:hover {
   background-color: transparent;
   color: #535862;
   font-weight: 600;
+}
+
+.nav-logo {
+  height: 36px;
 }
 
 .navbar-link a:hover {
@@ -735,6 +763,7 @@ body:has(.homepage-container) #search-bar-entry {
 
 .homepage-search-input::placeholder {
   color: #CECFD2;
+  font-size: 18px;
 }
 
 .homepage-search-input:hover {
@@ -914,4 +943,13 @@ article iframe,
 #chat-assistant-sheet {
   margin-top: 2rem !important;
   min-height: 90% !important;
+}
+
+.chat-assistant-floating-input {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  left: auto !important;
+  margin: 0;
+  z-index: 50;
 }

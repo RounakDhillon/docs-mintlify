@@ -159,6 +159,11 @@ a.guide-card img {
     transition: all 0.3s ease;
 }
 
+.highlight-card p {
+    font-size: 18px;
+    color: #717680;
+}
+
 .highlight-card:hover {
     box-shadow:
         0px 3px 3px -1.5px rgba(10, 13, 18, 0.04),
@@ -281,6 +286,7 @@ a.guide-card img {
     padding: 12px 8px;
     border-radius: 24px;
     color: #0086C9;
+    font-size: 12px;
 }
 
 .video-description {
@@ -295,6 +301,7 @@ a.guide-card img {
     color: white;
     border-radius: 24px;
     margin-right: 8px;
+    font-size: 12px;
 }
 
 .video-header {
@@ -336,6 +343,7 @@ a.guide-card img {
     border-radius: 12px;
     color: #535862;
     font-size: 14px;
+    font-weight: 400;
     transition: all 0.3s ease;
 }
 
@@ -373,6 +381,7 @@ a.guide-card img {
 
 .footer-link-name {
     color: #252B37;
+    font-weight: 400;
 }
 
 .footer-link-name:hover {
