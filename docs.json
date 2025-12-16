@@ -1180,10 +1180,10 @@
                                     {
                                         "group": "OpenMetadata Chrome Extension",
                                         "pages": [
-                                            "how-to-guides/data-discovery/openmetadata-extension/index",
-                                            "how-to-guides/data-discovery/openmetadata-extension/activity-feeds",
-                                            "how-to-guides/data-discovery/openmetadata-extension/looking-up",
-                                            "how-to-guides/data-discovery/openmetadata-extension/viewing-tasks"
+                                            "how-to-guides/data-discovery/collate-extension/index",
+                                            "how-to-guides/data-discovery/collate-extension/activity-feeds",
+                                            "how-to-guides/data-discovery/collate-extension/looking-up",
+                                            "how-to-guides/data-discovery/collate-extension/viewing-tasks"
                                         ]
                                     },
                                     "how-to-guides/data-discovery/er-diagrams"
