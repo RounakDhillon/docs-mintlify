@@ -9,9 +9,9 @@ sidebarTitle: Lineage Mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/lineage_mixin.py#L0")
 
 # module `lineage_mixin`
-Mixin class containing Lineage specific methods 
+Mixin class containing Lineage specific methods
 
-To be used by OpenMetadata class 
+To be used by OpenMetadata class
 
 **Global Variables**
 ---------------
@@ -23,9 +23,9 @@ To be used by OpenMetadata class
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/lineage_mixin.py#L35")
 
 ## class `OMetaLineageMixin`
-OpenMetadata API methods related to Lineage. 
+OpenMetadata API methods related to Lineage.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -40,7 +40,7 @@ To be inherited by OpenMetadata
 add_lineage(data: AddLineageRequest) → Dict[str, Any]
 ```
 
-Add lineage relationship between two entities and returns the entity information of the origin node 
+Add lineage relationship between two entities and returns the entity information of the origin node
 
 ---
 
@@ -58,7 +58,7 @@ add_lineage_by_query(
 ) → None
 ```
 
-Method parses the query and generated the lineage between source and target tables 
+Method parses the query and generated the lineage between source and target tables
 
 ---
 
@@ -70,7 +70,7 @@ Method parses the query and generated the lineage between source and target tabl
 delete_lineage_edge(edge: EntitiesEdge) → None
 ```
 
-Remove the given Edge 
+Remove the given Edge
 
 ---
 
@@ -87,17 +87,17 @@ get_lineage_by_id(
 ) → Optional[Dict[str, Any]]
 ```
 
-Get lineage details for an entity `id` 
+Get lineage details for an entity `id`
 
 **Args:**
 
-`entity`: Type of the entity 
+`entity`: Type of the entity
 
-`entity_id`: Entity ID 
+`entity_id`: Entity ID
 
-`up_depth`: Upstream depth of lineage (default=1, min=0, max=3)" 
+`up_depth`: Upstream depth of lineage (default=1, min=0, max=3)"
 
-`down_depth`: Downstream depth of lineage (default=1, min=0, max=3) 
+`down_depth`: Downstream depth of lineage (default=1, min=0, max=3)
 
 ---
 
@@ -114,17 +114,17 @@ get_lineage_by_name(
 ) → Optional[Dict[str, Any]]
 ```
 
-Get lineage details for an entity `id` 
+Get lineage details for an entity `id`
 
 **Args:**
 
-`entity`: Type of the entity 
+`entity`: Type of the entity
 
-`fqn`: Entity FQN 
+`fqn`: Entity FQN
 
-`up_depth`: Upstream depth of lineage (default=1, min=0, max=3)" 
+`up_depth`: Upstream depth of lineage (default=1, min=0, max=3)"
 
-`down_depth`: Downstream depth of lineage (default=1, min=0, max=3) 
+`down_depth`: Downstream depth of lineage (default=1, min=0, max=3)
 
 
 

@@ -111,7 +111,7 @@ create_db = CreateDatabaseRequest(
     service=db_service_entity.fullyQualifiedName,
 )
 
-create_db_entity = metadata.create_or_update(data=create_db)    
+create_db_entity = metadata.create_or_update(data=create_db)
 ```
 
 ### 4. Creating the Schema
@@ -317,7 +317,7 @@ We can start by linking our columns together. For that we are going to create:
 
 ```python
 column_lineage = ColumnLineage(
-    fromColumns=["test-service-db-lineage.test-db.test-schema.tableA.id"], 
+    fromColumns=["test-service-db-lineage.test-db.test-schema.tableA.id"],
     toColumn="test-service-db-lineage.test-db.test-schema.tableC.id"
 )
 
@@ -446,13 +446,13 @@ workflowConfig:
 
 - **serviceName**: Name of the database service which contains the table involved in query.
 - **query**: You can specify the raw sql query within the yaml file itself.
-- **filePath**: In case the query is too big then you can also save query in a file and pass the path to the file in this field. 
+- **filePath**: In case the query is too big then you can also save query in a file and pass the path to the file in this field.
 - **parseTimeout**: Timeout for the lineage parsing process.
 - **workflowConfig**: The main property here is the openMetadataServerConfig, where you can define the host and security provider of your OpenMetadata installation.
 
 
 
-Once the yaml file is prepare you can run the command 
+Once the yaml file is prepare you can run the command
 
 ```
 metadata lineage -c path/to/your_config_yaml.yaml

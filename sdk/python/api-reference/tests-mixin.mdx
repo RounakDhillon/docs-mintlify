@@ -9,9 +9,9 @@ sidebarTitle: Tests Mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/tests_mixin.py#L0")
 
 # module `tests_mixin`
-Mixin class containing Tests specific methods 
+Mixin class containing Tests specific methods
 
-To be used by OpenMetadata class 
+To be used by OpenMetadata class
 
 
 
@@ -20,9 +20,9 @@ To be used by OpenMetadata class
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/tests_mixin.py#L49")
 
 ## class `OMetaTestsMixin`
-OpenMetadata API methods related to Tests. 
+OpenMetadata API methods related to Tests.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -37,13 +37,13 @@ To be inherited by OpenMetadata
 add_logical_test_cases(data: CreateLogicalTestCases) → None
 ```
 
-Add logical test cases to a test suite 
+Add logical test cases to a test suite
 
 
 
 **Args:**
- 
- - `data` (CreateLogicalTestCases):  logical test cases 
+
+ - `data` (CreateLogicalTestCases):  logical test cases
 
 ---
 
@@ -55,20 +55,20 @@ Add logical test cases to a test suite
 add_test_case_results(test_results: TestCaseResult, test_case_fqn: str)
 ```
 
-Add test case results to a test case 
+Add test case results to a test case
 
 
 
 **Args:**
- 
- - `test_results` (TestCaseResult):  test case results to pass to the test case 
- - `test_case_fqn` (str):  test case fqn 
+
+ - `test_results` (TestCaseResult):  test case results to pass to the test case
+ - `test_case_fqn` (str):  test case fqn
 
 
 
 **Returns:**
- 
- - `_type_`:  _description_ 
+
+ - `_type_`:  _description_
 
 ---
 
@@ -80,19 +80,19 @@ Add test case results to a test case
 create_or_update_executable_test_suite(data: CreateTestSuiteRequest) → TestSuite
 ```
 
-Create or update an executable test suite 
+Create or update an executable test suite
 
 
 
 **Args:**
- 
- - `data` (CreateTestSuiteRequest):  test suite request 
+
+ - `data` (CreateTestSuiteRequest):  test suite request
 
 
 
 **Returns:**
- 
- - `TestSuite`:  test suite object 
+
+ - `TestSuite`:  test suite object
 
 ---
 
@@ -109,15 +109,15 @@ delete_executable_test_suite(
 ) → None
 ```
 
-Delete executable test suite 
+Delete executable test suite
 
 
 
 **Args:**
- 
- - `entity_id` (str):  test suite ID 
- - `recursive` (bool, optional):  delete children if true 
- - `hard_delete` (bool, optional):  hard delete if true 
+
+ - `entity_id` (str):  test suite ID
+ - `recursive` (bool, optional):  delete children if true
+ - `hard_delete` (bool, optional):  hard delete if true
 
 ---
 
@@ -131,18 +131,18 @@ get_or_create_executable_test_suite(
 ) → Union[EntityReference, TestSuite]
 ```
 
-Given an entity fqn, retrieve the link test suite if it exists or create a new one 
+Given an entity fqn, retrieve the link test suite if it exists or create a new one
 
 
 
 **Args:**
- 
- - `table_fqn` (str):  entity fully qualified name 
+
+ - `table_fqn` (str):  entity fully qualified name
 
 
 
 **Returns:**
- TestSuite: 
+ TestSuite:
 
 ---
 
@@ -159,23 +159,23 @@ get_or_create_test_case(
 )
 ```
 
-Get or create a test case 
+Get or create a test case
 
 
 
 **Args:**
- 
- - `test_case_fqn` (str):  fully qualified name for the test 
- - `entity_link` (Optional[str], optional):  _description_. Defaults to None. 
- - `test_suite_fqn` (Optional[str], optional):  _description_. Defaults to None. 
- - `test_definition_fqn` (Optional[str], optional):  _description_. Defaults to None. 
- - `test_case_parameter_values` (Optional[str], optional):  _description_. Defaults to None. 
+
+ - `test_case_fqn` (str):  fully qualified name for the test
+ - `entity_link` (Optional[str], optional):  _description_. Defaults to None.
+ - `test_suite_fqn` (Optional[str], optional):  _description_. Defaults to None.
+ - `test_definition_fqn` (Optional[str], optional):  _description_. Defaults to None.
+ - `test_case_parameter_values` (Optional[str], optional):  _description_. Defaults to None.
 
 
 
 **Returns:**
- 
- - `_type_`:  _description_ 
+
+ - `_type_`:  _description_
 
 ---
 
@@ -193,23 +193,23 @@ get_or_create_test_definition(
 ) → TestDefinition
 ```
 
-Get or create a test definition 
+Get or create a test definition
 
 
 
 **Args:**
- 
- - `test_definition_fqn` (str):  test definition fully qualified name 
- - `test_definition_description` (Optional[str], optional):  description for the test definition.  Defaults to None. 
- - `entity_type` (Optional[EntityType], optional):  entity type (COLUMN or TABLE). Defaults to None. 
- - `test_platforms` (Optional[List[TestPlatform]], optional):  test platforms. Defaults to None. 
- - `test_case_parameter_definition` (Optional[List[TestCaseParameterDefinition]], optional):  parameters for the  test case definition. Defaults to None. 
+
+ - `test_definition_fqn` (str):  test definition fully qualified name
+ - `test_definition_description` (Optional[str], optional):  description for the test definition.  Defaults to None.
+ - `entity_type` (Optional[EntityType], optional):  entity type (COLUMN or TABLE). Defaults to None.
+ - `test_platforms` (Optional[List[TestPlatform]], optional):  test platforms. Defaults to None.
+ - `test_case_parameter_definition` (Optional[List[TestCaseParameterDefinition]], optional):  parameters for the  test case definition. Defaults to None.
 
 
 
 **Returns:**
- 
- - `TestDefinition`:  a test definition object 
+
+ - `TestDefinition`:  a test definition object
 
 ---
 
@@ -224,19 +224,19 @@ get_or_create_test_suite(
 ) → TestSuite
 ```
 
-Get or create a TestSuite 
+Get or create a TestSuite
 
 
 
 **Args:**
- 
- - `test_suite_name` (str):  test suite name 
- - `test_suite_description` (Optional[str], optional):  test suite description.  Defaults to f"Test Suite created on {datetime.now(timezone.utc).strftime('%Y-%m-%d')}". 
+
+ - `test_suite_name` (str):  test suite name
+ - `test_suite_description` (Optional[str], optional):  test suite description.  Defaults to f"Test Suite created on {datetime.now(timezone.utc).strftime('%Y-%m-%d')}".
 
 
 
 **Returns:**
- TestSuite: 
+ TestSuite:
 
 ---
 
@@ -252,15 +252,15 @@ get_test_case_results(
 ) → Optional[List[TestCaseResult]]
 ```
 
-Retrieve list of test cases 
+Retrieve list of test cases
 
 
 
 **Args:**
- 
- - `test_case_fqn` (str):  test_case_fqn 
- - `start_ts` (int):  timestamp 
- - `end_ts` (int):  timestamp 
+
+ - `test_case_fqn` (str):  test_case_fqn
+ - `start_ts` (int):  timestamp
+ - `end_ts` (int):  timestamp
 
 
 

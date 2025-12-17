@@ -60,7 +60,7 @@ except ModuleNotFoundError:
 
 from metadata.config.common import load_config_file
 from metadata.workflow.metadata import MetadataWorkflow
- 
+
 
 from airflow.utils.dates import days_ago
 
@@ -231,7 +231,7 @@ default_args = {
 
 def metadata_ingestion_workflow():
     from metadata.workflow.metadata import MetadataWorkflow
-     
+
     import yaml
     config = """
         ...

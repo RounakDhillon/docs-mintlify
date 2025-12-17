@@ -10,7 +10,7 @@ collate: false
 
 When we [enable SSO security](/deployment/security) on OpenMetadata, it will restrict access to all the APIs. Users who want to access the UI
 will be redirected to configured SSO to log in, and SSO will provide the token to continue to make OpenMetadata REST API
-calls. 
+calls.
 
 However, metadata ingestion or any other services which use OpenMetadata APIs to create entities or update them
 requires a token as well to authenticate. Typically, SSO offers service accounts for this very reason. OpenMetadata
@@ -28,7 +28,7 @@ Security requirements for your **production** environment:
 
 </Tip>
 
-## Create Private / Public key 
+## Create Private / Public key
 
 ### For local/testing deployment
 
@@ -39,9 +39,9 @@ You can work with the existing configuration or generate private/public keys. By
 It is a **MUST** to update the JWT configuration. To create private/public key use the following commands can be used:
 
 ```commandline
-openssl genrsa -out private_key.pem 2048   
+openssl genrsa -out private_key.pem 2048
 openssl pkcs8 -topk8 -inform PEM -outform DER -in private_key.pem -out private_key.der -nocrypt
-openssl rsa -in private_key.pem -pubout -outform DER -out public_key.der 
+openssl rsa -in private_key.pem -pubout -outform DER -out public_key.der
 ```
 
 Copy the `private_key.der` and `public_key.der` in OpenMetadata server `conf` directory. Make sure the permissions can only be
@@ -82,7 +82,7 @@ authenticationConfiguration:
 ```
 
 add `{your domain}/api/v1/system/config/jwks` to `publicKeyUrls`. You should append to the existing configuration such that
-your SSO and JWTToken auth verification will work. 
+your SSO and JWTToken auth verification will work.
 
 ```yaml
   publicKeyUrls: ${AUTHENTICATION_PUBLIC_KEYS:-[{your SSO public keys URL}, {your domain}/api/v1/system/config/jwks]}
@@ -106,18 +106,18 @@ wget -O - {your domain}/api/v1/system/config/jwks
 
 Once the above configuration is updated, the server is restarted. Admin can go to Settings -> Bots page.
 
-<img noZoom src="/public/images/deployment/security/enable-jwt/settings-bot.png" alt="Settings Page" /> 
+<img noZoom src="/public/images/deployment/security/enable-jwt/settings-bot.png" alt="Settings Page" />
 
-<img noZoom src="/public/images/deployment/security/enable-jwt/bot.png" alt="Bot settings page" /> 
+<img noZoom src="/public/images/deployment/security/enable-jwt/bot.png" alt="Bot settings page" />
 
 Click on the `ingestion-bot`. The current token can be revoked, or you can create a new one.
 
-<img noZoom src="/public/images/deployment/security/enable-jwt/bot-jwt-token.png" alt="Bot credentials edition" /> 
+<img noZoom src="/public/images/deployment/security/enable-jwt/bot-jwt-token.png" alt="Bot credentials edition" />
 
 ## Configure Ingestion
 
 The generated token from the above page should pass onto the ingestion framework so that the ingestion can make calls
-securely to OpenMetadata. Make sure this token is not shared and stored securely. 
+securely to OpenMetadata. Make sure this token is not shared and stored securely.
 
 ### Running Ingestion from CLI
 
@@ -187,7 +187,7 @@ Following the above documentation, you will have private key and public key pair
 
 ### Create Kubernetes Secrets for the Key Pairs
 
-Create Kubernetes Secrets from file using the kubernetes imperative  commands below.
+Create Kubernetes Secrets from file using the kubernetes imperative commands below.
 
 ```bash
 kubectl create secret generic openmetadata-jwt-keys --from-file private_key.der --from-file public_key.der --namespace default
@@ -210,7 +210,7 @@ openmetadata:
   ...
 extraVolumes:
 - name: openmetadata-jwt-vol
-  secret: 
+  secret:
     secretName: openmetadata-jwt-keys
 extraVolumeMounts:
 - name: openmetadata-jwt-vol

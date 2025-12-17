@@ -52,7 +52,7 @@ Security requirements for your **production** environment:
 <img noZoom src="/public/images/deployment/security/saml/aws/saml-aws-7.png" alt="edit-attribute" />
 
 
-### Step 2: Setup `OpenMetadata Server` 
+### Step 2: Setup `OpenMetadata Server`
 
 - Open the downloaded metadata xml file, and populate the following properties in `openmetadata.yml`
 ```yaml
@@ -88,7 +88,7 @@ Security requirements for your **production** environment:
 
 <img noZoom src="/public/images/deployment/security/saml/aws/saml-aws-8.png" alt="populate-metadata" />
 
-- IDP Config         
+- IDP Config
     `entityID` -> Populate it from Metadata XML Entity ID
     `HTTP-Redirect SSO Login URL` -> always select HTTP-Redirect Url for SSO Login Url
     `X509 Certificate` -> This is also available in the IDP XML.
@@ -103,7 +103,7 @@ Security requirements for your **production** environment:
 
 - Security Parameters can be configured in case we want to have signed or encrypted or both assertions.
   In any case we decided to use above config for security then it is mandatory to provide keystore config,
-  from where the system can load the signing certificate or Private Key for encryption.  
+  from where the system can load the signing certificate or Private Key for encryption.
 
 ### Step 3: Setup JWT Configuration
 

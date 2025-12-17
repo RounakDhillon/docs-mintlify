@@ -74,7 +74,7 @@ helm upgrade --install openmetadata open-metadata/openmetadata--values values.ya
 One possible use case where you would need to use a custom image for the ingestion is because you have developed your own custom connectors.
 You can find a complete working example of this [here](https://github.com/open-metadata/openmetadata-demo/tree/main/custom-connector). After
 you have your code ready, the steps would be the following:
-  
+
 ### 1. Create a `Dockerfile` based on `docker.getcollate.io/openmetadata/ingestion`:
 
 For example -
@@ -91,7 +91,7 @@ COPY <your_package> <your_package>
 COPY setup.py .
 RUN pip install --no-deps .
 ```
-  
+
 where `docker.getcollate.io/openmetadata/ingestion:x.y.z` needs to point to the same version of the OpenMetadata server, for example `docker.getcollate.io/openmetadata/ingestion:1.3.1`.
 This image needs to be built and published to the container registry of your choice.
 
@@ -100,7 +100,7 @@ This image needs to be built and published to the container registry of your cho
 The ingestion containers (which is the one shipping Airflow) gets installed in the `openmetadata-dependencies` helm chart. In this step, we use
 our own custom values YAML file to point to the image we just created on the previous step. You can create a file named `values.deps.yaml` with the
 following contents:
-  
+
 ```yaml
 airflow:
   airflow:

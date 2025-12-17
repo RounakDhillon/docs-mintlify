@@ -24,7 +24,7 @@ Configure and schedule NiFi metadata workflows from the OpenMetadata UI:
 ## Requirements
 ### Metadata
 OpenMetadata supports 2 types of connection for the NiFi connector:
-- **basic authentication**: use username/password to authenticate to NiFi. 
+- **basic authentication**: use username/password to authenticate to NiFi.
 - **client certificate authentication**: use CA, client certificate and client key files to authenticate.
 The user should be able to send request to the NiFi API and access the `Resources` endpoint.
 ## Metadata Ingestion
@@ -40,7 +40,7 @@ password: secret:/my/database/password
 This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
 For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
 </Tip>
-- **Host and Port**: Pipeline Service Management/UI URI. This should be specified as a string in the format 'hostname:port'.  
+- **Host and Port**: Pipeline Service Management/UI URI. This should be specified as a string in the format 'hostname:port'.
 - **NiFi Config**: OpenMetadata supports username/password or client certificate authentication.
     1. Basic Authentication
         - Username: Username to connect to NiFi. This user should be able to send request to the Nifi API and access the `Resources` endpoint.

@@ -65,10 +65,10 @@ Also if you have enabled [JWT Tokens](/deployment/security/enable-jwt-tokens) th
 ## Client ID (id):
 The client ID provided by your OIDC provider. This is typically obtained when you register your application with the OIDC provider.
 
-## Type (type): 
+## Type (type):
 Specify the type of OIDC provider you are using (e.g., google, azure). This value is same as `provider` in `authenticationConfiguration`.
 
-## Client Secret (secret): 
+## Client Secret (secret):
 Replace with the client secret provided by your OIDC provider.
 
 ## Scope (scope):
@@ -101,13 +101,13 @@ Normally it's some initial SSO provider URL followed by `.well-known/openid-conf
 
 </Warning>
 
-## Use Nonce (useNonce): 
+## Use Nonce (useNonce):
 Set to true by Default, if you want to use nonce for replay attack protection during authentication. This does not need to be changed.
 
-## Preferred JWS Algorithm (preferredJwsAlgorithm): 
+## Preferred JWS Algorithm (preferredJwsAlgorithm):
 Specify the preferred JSON Web Signature (JWS) algorithm. Default is RS256 and need not be changed .
 
-## Response Type (responseType): 
+## Response Type (responseType):
 Define the response type for the authentication request. Default is code and need not be changed.
 
 ## Disable PKCE (disablePkce):
@@ -123,7 +123,7 @@ Also, this should match what you have configured in your OIDC provider.
 
 </Warning>
 
-## Server URL (serverUrl): 
+## Server URL (serverUrl):
 Specify the URL of your OM Server. Default is https://{your-collate-domain}.
 
 ## Client Authentication Method (clientAuthenticationMethod):
@@ -148,8 +148,8 @@ For Azure SSO Provider this may be needed.
 
 </Warning>
 
-## Max Clock Skew (maxClockSkew): 
+## Max Clock Skew (maxClockSkew):
 Define the maximum acceptable clock skew between your application server and the OIDC server.
 
-## Custom Parameters (customParams): 
+## Custom Parameters (customParams):
 If you have any additional custom parameters required for OIDC configuration, specify them here.

@@ -13,7 +13,7 @@ import PostUpgradeSteps from '/snippets/deployment/upgrade/post-upgrade-steps.md
 
 This guide will help you upgrade an OpenMetadata deployment using release binaries.
 
-## Requirements 
+## Requirements
 
 This guide assumes that you have an OpenMetadata deployment that you installed and configured following the
 [Bare Metal deployment](/deployment/bare-metal) guide.
@@ -29,16 +29,16 @@ OpenMetadata release binaries are maintained as GitHub releases.
 To download a specific release binary:
 
 - Visit [github.com/open-metadata/OpenMetadata/releases](https://github.com/open-metadata/OpenMetadata/releases). The latest
-  release will be at the top of this page. 
-- Locate the Assets' section for the release you want to upgrade to. 
-- Download the release binaries. The release binaries will be in a compressed tar file named using the following 
+  release will be at the top of this page.
+- Locate the Assets' section for the release you want to upgrade to.
+- Download the release binaries. The release binaries will be in a compressed tar file named using the following
   convention, `openmetadata-x.y.z.tar.gz` Where `x`, `y`, `z` are the major, minor, and patch release numbers, respectively.
 
 ## Step 2: Extract the release binaries from the download file
 
-Using the command-line tool or application of your choice, extract the release binaries. 
+Using the command-line tool or application of your choice, extract the release binaries.
 
-For example, to extract using `tar`, run the following command. 
+For example, to extract using `tar`, run the following command.
 
 ```commandline
 tar xfz openmetadata-*.tar.gz
@@ -64,9 +64,9 @@ cd openmetadata-1.1.0
 ## Step 4: Stop the OpenMetadata server
 
 OpenMetadata ships with a few control scripts. One is `openmetadata.sh`. This script enables you to start, stop, and
-perform other deployment operations on the OpenMetadata server. 
+perform other deployment operations on the OpenMetadata server.
 
-Most OpenMetadata releases will require you to migrate your data to updated schemas. 
+Most OpenMetadata releases will require you to migrate your data to updated schemas.
 
 Before you migrate your data to the new release you are upgrading to, stop the OpenMetadata server from the
 directory of your current installation by running the following command:

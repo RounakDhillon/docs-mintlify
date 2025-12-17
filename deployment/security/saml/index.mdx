@@ -38,7 +38,7 @@ Every IDP provides this information, we can download the XML Metadata and config
 1. EntityId/Authority -> Normally a Url providing info about the provider.
 2. SignOn Url -> Url to be used for signing purpose.
 3. X509 Certificate -> In case the SP expects a signed response from IDP, the IDP can be configured with Signing Certificate given by SP.
-4. Private Key -> In case SP expects a encrypted response from the IDP , the IDP can be  configured with SPs public key for encryption and the Private Key can be used for SP for decrypting.
+4. Private Key -> In case SP expects a encrypted response from the IDP , the IDP can be configured with SPs public key for encryption and the Private Key can be used for SP for decrypting.
 
 <Tip>
 
@@ -73,7 +73,7 @@ SP Metadata XML is available at "http://localhost:8585/api/v1/saml/acs", `localh
 ### Security Configuration
 
 Security Configuration controls the SP requirement for the Security related aspects.
-The SP can be configured to send signed or encrypted or both request , and in return can also expect 
+The SP can be configured to send signed or encrypted or both request , and in return can also expect
 signed or encrypted or both responses from the IDP.
 
 ## Setup JWT Configuration

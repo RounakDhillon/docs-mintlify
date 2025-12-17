@@ -263,15 +263,15 @@ Use this test to verify data consistency between two tables, even across differe
 
 #### 🌐 Supported Data Sources
 
-- Snowflake  
-- BigQuery  
-- Athena  
-- Redshift  
-- Postgres  
-- MySQL  
-- MSSQL  
-- Oracle  
-- Trino  
+- Snowflake
+- BigQuery
+- Athena
+- Redshift
+- Postgres
+- MySQL
+- MSSQL
+- Oracle
+- Trino
 - SAP Hana
 
 ![Differences](/public/images/how-to-guides/quality/table-test/differences.gif)
@@ -493,14 +493,14 @@ Ensures total missing values (NULL + defined "missing" strings) match a target c
 ### Column Values Lengths to Be Between
 Ensures that the length of each string value in the column is within a defined character range.
 
-#### Dimension  
+#### Dimension
 `Accuracy`
 
-#### When to Use  
-- To validate field length constraints like `name`, `address`, or `description`  
+#### When to Use
+- To validate field length constraints like `name`, `address`, or `description`
 - To catch too-short or too-long values that may break UI or downstream logic
 
-#### Behavior  
+#### Behavior
 
 | Condition                                     | Status |
 |-----------------------------------------------|--------|

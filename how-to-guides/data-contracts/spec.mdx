@@ -30,9 +30,9 @@ The JSON Schema for the Data Contract entity can be found [here](https://github.
 # Data Contract Sections
 ## Schema
 
-This is where the expected structural schema of the data asset is defined. It includes a list of fields (for a table, these are columns) each with name and data type. This captures the contractual schema that producers and consumers agreed on, which usually is a subset of the available fields on an asset. 
+This is where the expected structural schema of the data asset is defined. It includes a list of fields (for a table, these are columns) each with name and data type. This captures the contractual schema that producers and consumers agreed on, which usually is a subset of the available fields on an asset.
 
-## Semantics 
+## Semantics
 
 Business meaning and documentation requirements are defined in a contract's Semantics section. For example, one can enforce that a data asset must have a description, owner or domain.
 
@@ -40,13 +40,13 @@ These rules complement the formal tests in the quality section, acting as docume
 
 ## Security
 
-Data security and access expectations are defined in this section. This can reference an  access policy ID or name that should govern this data, or a required classification label. 
+Data security and access expectations are defined in this section. This can reference an access policy ID or name that should govern this data, or a required classification label.
 
 In practice, this means the contract might require the data asset to be tagged as `PII` or `Confidential` if appropriate, and that only certain roles can access it (through an associated policy).
 
 ## Quality (Assertions)
 
-Data quality tests and assertions required by the contract are here. 
+Data quality tests and assertions required by the contract are here.
 
 Built on top of the native Data Quality features in Collate, this section allows defining specific tests that must pass for the data to be considered compliant with the contract. Tests can be at the column level (e.g., a column must be non-null) or table level (e.g., row count must be above a threshold), and can be managed from the Data Contract UI itself.
 

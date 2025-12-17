@@ -17,8 +17,8 @@ sh bootstrap/openmetadata-ops.sh [OPTIONS] [COMMANDS]
 #### Options:
  1. -c, --config=&lt;configFilePath&gt;
  2. -d, --debug
- 3. -h, --help      Show this help message and exit.
- 4. -V, --version   Print version information and exit.
+ 3. -h, --help Show this help message and exit.
+ 4. -V, --version Print version information and exit.
 
 **Example:**
 ```shell
@@ -33,7 +33,7 @@ sh bootstrap/openmetadata-ops.sh --help
  3. **repair**          Repairs the DATABASE_CHANGE_LOG table which is used to trackall the migrations on the target database. This involves removing entries for the failed migrations and updatethe checksum of migrations already applied on the target database.
 
  4. **validate**        Checks if the all the migrations haven been applied on the target database.
-  
+
  5. **drop-create**     Deletes any tables in configured database and creates a new tables based on current version of OpenMetadata. This command also re-creates the search indexes.
 
  6. **deploy-pipelines**  Deploy all the service pipelines.

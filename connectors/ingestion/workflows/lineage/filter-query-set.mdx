@@ -64,7 +64,7 @@ WHERE creation_time BETWEEN "{start_time}" AND "{end_time}"
   AND statement_type IN ("SELECT",....)
 
   AND {**your filter condition**}
-  
+
   AND job_type = "QUERY"
   AND state = "DONE"
   AND IFNULL(statement_type, "NO") not in ("NO", "DROP_TABLE", "CREATE_TABLE")
@@ -175,7 +175,7 @@ SELECT
       AND success = 1
 
       AND {**your filter condition**}
-    
+
     ORDER BY query_start DESC
     LIMIT {result_limit}
 ```
@@ -193,7 +193,7 @@ To fetch the query history log from redshift we execute the following query
 SELECT *
       FROM pg_catalog.stl_query
 WHERE userid > 1
-    
+
     AND {**your filter condition**}
 
     -- Filter out all automated & cursor queries

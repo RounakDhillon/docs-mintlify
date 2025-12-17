@@ -12,10 +12,10 @@ Please follow the instructions below
   - **Exclude**: Explicitly exclude dashboards by adding a list of comma-separated regular expressions to the 'Exclude' field. OpenMetadata will exclude all dashboards with names matching one or more of the supplied regular expressions. All other dashboards will be included.
 - **projectFilterPattern**: Filter the dashboards, charts and data sources by projects. Note that all of them support regex as include or exclude. E.g., "My project, My proj.*, .*Project".
 
-<Tip> 
+<Tip>
 
-We filter the projects by concatenating the entire project hierarchy using dot notation  
-(e.g., `Project1.NestedProjectA.OtherProject`).  
+We filter the projects by concatenating the entire project hierarchy using dot notation
+(e.g., `Project1.NestedProjectA.OtherProject`).
 Make sure the regex filter pattern accounts for this fully-qualified format.
 
 </Tip>

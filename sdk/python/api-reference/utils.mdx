@@ -9,7 +9,7 @@ sidebarTitle: Utils Mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/utils.py#L0")
 
 # module `utils`
-Helper functions to handle OpenMetadata Entities' properties 
+Helper functions to handle OpenMetadata Entities' properties
 
 
 ---
@@ -22,15 +22,15 @@ Helper functions to handle OpenMetadata Entities' properties
 format_name(name: str) → str
 ```
 
-Given a name, replace all special characters by `_` 
+Given a name, replace all special characters by `_`
 
 **Args:**
 
-`name`: name to format 
+`name`: name to format
 
 **Returns:**
 
-formatted string 
+formatted string
 
 
 ---
@@ -43,9 +43,9 @@ formatted string
 get_entity_type(entity: Union[Type[~T], str]) → str
 ```
 
-Given an Entity T, return its type. E.g., Table returns table, Dashboard returns dashboard... 
+Given an Entity T, return its type. E.g., Table returns table, Dashboard returns dashboard...
 
-Also allow to be the identity if we just receive a string 
+Also allow to be the identity if we just receive a string
 
 
 ---
@@ -58,9 +58,9 @@ Also allow to be the identity if we just receive a string
 model_str(arg: Any) → str
 ```
 
-Default model stringifying method. 
+Default model stringifying method.
 
-Some elements such as FQN, EntityName, UUID have the actual value under the pydantic base __root__ 
+Some elements such as FQN, EntityName, UUID have the actual value under the pydantic base __root__
 
 
 

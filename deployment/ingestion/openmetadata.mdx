@@ -14,12 +14,12 @@ run, fetch the logs, etc. of our workflows.
 
 <img noZoom src="/public/images/deployment/ingestion/openmetadata/om-orchestration.png" alt="openmetadata-orchestration" />
 
-Out of the box, OpenMetadata comes with such integration with Airflow. In this guide, we will show you how to manage 
+Out of the box, OpenMetadata comes with such integration with Airflow. In this guide, we will show you how to manage
 ingestions from OpenMetadata by linking it to an Airflow service.
 
 <Tip>
-Advanced note for developers: We have an [interface]( https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/java/org/openmetadata/sdk/PipelineServiceClient.java)
-that can be extended to bring support to any other orchestrator. You can follow the implementation we have for [Airflow]( https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-service/src/main/java/org/openmetadata/service/clients/pipeline/airflow/AirflowRESTClient.java)
+Advanced note for developers: We have an [interface](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/java/org/openmetadata/sdk/PipelineServiceClient.java)
+that can be extended to bring support to any other orchestrator. You can follow the implementation we have for [Airflow](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-service/src/main/java/org/openmetadata/service/clients/pipeline/airflow/AirflowRESTClient.java)
 as a starting point.
 </Tip>
 
@@ -402,7 +402,7 @@ small bugfixes on existing functionalities.
 If you get this response during a `Test Connection` or `Deploy`:
 
 ```
-airflow API returned Unauthorized and response 
+airflow API returned Unauthorized and response
 { "detail": null, "status": 401, "title": "Unauthorized", "type": "https://airflow.apache.org/docs/apache-airflow/2.3.3/stable-rest-api-ref.html#section/Errors/Unauthenticated" }
 ```
 

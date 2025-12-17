@@ -29,7 +29,7 @@ Configure and schedule dbt Cloud metadata and profiler workflows from the OpenMe
 ## Requirements
 ### dbt Cloud Versions
 OpenMetadata is integrated with dbt Cloud up to version [1.8](https://docs.getdbt.com/docs/get-started-dbt) and will continue to work for future dbt Cloud versions.
-The Ingestion framework uses [dbt Cloud APIs](https://docs.getdbt.com/dbt-cloud/api-v2#/) to connect to  dbt Cloud and fetch metadata.
+The Ingestion framework uses [dbt Cloud APIs](https://docs.getdbt.com/dbt-cloud/api-v2#/) to connect to dbt Cloud and fetch metadata.
 ### dbt Cloud Permissions
 The dbt Cloud API User token or Service account token must have the permission to fetch metadata.
 To know more about permissions required refer [here](https://docs.getdbt.com/docs/dbt-cloud-apis/service-tokens#permissions-for-service-account-tokens).
@@ -57,7 +57,7 @@ For a complete guide on managing secrets in hybrid setups, see the [Hybrid Inges
 - **Project Ids** : Optional. Project IDs of your dbt Cloud Account to fetch metadata for. Look for the segment after "projects" in the URL. For instance, in a URL like `https://cloud.getdbt.com/accounts/123/projects/87477/jobs/73659994`, the job ID is `87477`. This will be a numeric value but in openmetadata we parse it as a string. If not passed all Projects under the Account id will be ingested.
 Note that if both `Job Ids` and `Project Ids` are passed then it will filter out the jobs from the passed projects. any `Job Ids` not belonging to the `Project Ids` will also be filtered out.
 - **Token** : The Authentication Token of your dbt Cloud API Account. To get your access token you can follow the docs [here](https://docs.getdbt.com/docs/dbt-cloud-apis/authentication).
-Make sure you have the necessary permissions on the token to run graphql queries and get job and run details. 
+Make sure you have the necessary permissions on the token to run graphql queries and get job and run details.
 </Step>
 <TestConnection />
 <ConfigureIngestion />

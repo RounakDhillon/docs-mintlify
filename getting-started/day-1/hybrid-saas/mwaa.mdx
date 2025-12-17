@@ -60,7 +60,7 @@ except ModuleNotFoundError:
 from airflow.utils.dates import days_ago
 
 from metadata.workflow.metadata import MetadataWorkflow
- 
+
 
 default_args = {
     "retries": 3,
@@ -94,7 +94,7 @@ with DAG(
     )
 ```
 
-Where you can update the YAML configuration and workflow classes accordingly. accordingly. Further examples on how to 
+Where you can update the YAML configuration and workflow classes accordingly. accordingly. Further examples on how to
 run the ingestion can be found on the documentation (e.g., [Snowflake](/connectors/database/snowflake)).
 
 <RunConnectorsClass />
@@ -115,7 +115,7 @@ We will now describe the steps, following the official AWS documentation.
 - The cluster needs a task to run in `FARGATE` mode.
 - The required image is `docker.getcollate.io/openmetadata/ingestion-base:x.y.z`
   - The same logic as above applies. The `x.y.z` version needs to match the server version. For example, `docker.getcollate.io/openmetadata/ingestion-base:1.3.1`
-  
+
 We have tested this process with a Task Memory of 512MB and Task CPU (unit) of 256. This can be tuned depending on the amount of metadata that needs to be ingested.
 
 When creating the Task Definition, take notes on the **log groups** assigned, as we will need them to prepare the MWAA Executor Role policies.
@@ -218,7 +218,7 @@ And for the Log Group permissions
         "arn:aws:logs:*:*:log-group:<ecs-mwaa-group>:*"
     ]
 }
-                
+
 ```
 
 Note how you need to replace the `region`, `account-id` and the `log group` names for your Airflow Environment and ECS.
@@ -297,7 +297,7 @@ with DAG(
     )
 ```
 
-Note that depending on the kind of workflow you will be deploying, the YAML configuration will need to updated following 
+Note that depending on the kind of workflow you will be deploying, the YAML configuration will need to updated following
 the official Collate docs, and the value of the `pipelineType` configuration will need to hold one of the following values:
 
 - `metadata`
@@ -398,10 +398,10 @@ default_args = {
 
 def metadata_ingestion_workflow():
     from metadata.workflow.metadata import MetadataWorkflow
-     
-    
+
+
     import yaml
-    
+
     config = """
 YAML config
     """
@@ -425,7 +425,7 @@ with DAG(
         python_callable=metadata_ingestion_workflow,
         requirements=['openmetadata-ingestion==1.0.5.0',
             'apache-airflow==2.4.3',  # note, v2.4.3 is the first version that does not conflict with Collate's 'tabulate' requirements
-            'apache-airflow-providers-amazon==6.0.0',  # Amazon Airflow provider is necessary for MWAA 
+            'apache-airflow-providers-amazon==6.0.0',  # Amazon Airflow provider is necessary for MWAA
             'watchtower',],
         system_site_packages=False,
         dag=dag,

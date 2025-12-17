@@ -309,7 +309,7 @@ We can now repeat the process to create a `Database` Entity. However, if we revi
 class CreateDatabaseRequest(BaseModel):
     class Config:
         extra = Extra.forbid
-    
+
     name: basic.EntityName = Field(
         ..., description='Name that identifies this database instance uniquely.'
     )
@@ -415,7 +415,7 @@ user = metadata.create_or_update(
 )
 ```
 
-Update our instance  of `create_table` to add the `owner` field (we need to use the `Create` class as we'll run a `PUT`), and update the Entity:
+Update our instance of `create_table` to add the `owner` field (we need to use the `Create` class as we'll run a `PUT`), and update the Entity:
 
 ```python
 from metadata.generated.schema.type.entityReference import EntityReference

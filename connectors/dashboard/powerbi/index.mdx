@@ -40,12 +40,12 @@ When configuring Azure Authentication, ensure that "Allow public client flows" i
 While configuring the PowerBI ingestion you can choose whether to use the PowerBI Admin APIs to retrieve the metadata or use the PowerBI Non-Admin APIs. Please check below for the the difference in their functionality:
 - Enabled (Use PowerBI Admin APIs)
 Using the admin APIs will fetch the dashboard and chart metadata from all the workspaces available in the PowerBI instance.
-<Tip> 
+<Tip>
 When using the PowerBI Admin APIs, the table and dataset information used to generate lineage is gathered using the PowerBI [Scan Result](https://learn.microsoft.com/en-us/rest/api/power-bi/admin/workspace-info-get-scan-result) API. This API has no limitations and hence does not restrict getting the necessary data for generating lineage.
 </Tip>
 - Disabled (Use Non-Admin PowerBI APIs)
 Using the non-admin APIs will only fetch the dashboard and chart metadata from the workspaces that have the security group of the service principal assigned to them.
-<Tip> 
+<Tip>
 When using the PowerBI Non-Admin APIs, the table and dataset information used to generate lineage is gathered using the PowerBI [Get Dataset Tables](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets/datasets-get-tables) API. This API only retrieves the table information if the dataset is a [Push Dataset](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets).
 Hence the lineage can only be created for push datasets in this case.
 For more information please visit the PowerBI official documentation [here](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets/datasets-get-tables#limitations).

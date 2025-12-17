@@ -60,7 +60,7 @@ For details on dbt meta follow the link [here](https://docs.getdbt.com/reference
 ```yml
 models:
   - name: customers
-    meta: 
+    meta:
       openmetadata:
         glossary: [
           'Test_Glossary.term_one',
@@ -76,7 +76,7 @@ models:
           - not_null
 ```
 
-After adding the Glossary term information to your schema.yml file, run your dbt workflow. 
+After adding the Glossary term information to your schema.yml file, run your dbt workflow.
 The generated `manifest.json` file will then include the FQNs under `node_name->meta->openmetadata->glossary` as `[ 'Test_Glossary.term_one', 'Test_Glossary.term_two.nested_term.more_nested_term' ]`
 
 ```json
@@ -112,7 +112,7 @@ To associate a glossary term with a specific column in your dbt model, follow th
 ```yml
 models:
   - name: customers
-    meta: 
+    meta:
       openmetadata:
         glossary: [
           'Test_Glossary.term_one',
@@ -123,7 +123,7 @@ models:
     columns:
       - name: customer_id
         description: This is a unique identifier for a customer
-        meta: 
+        meta:
           openmetadata:
             glossary: [
               'Test_Glossary.term_two.nested_term'
@@ -134,7 +134,7 @@ models:
 ```
 
 
-After adding the Glossary term information to your schema.yml file, run your dbt workflow. 
+After adding the Glossary term information to your schema.yml file, run your dbt workflow.
 The generated `manifest.json` file will then include the FQNs under `node_name->columns->column_name->meta->openmetadata->glossary` as `[ 'Test_Glossary.term_two.nested_term' ]`
 
 ```json

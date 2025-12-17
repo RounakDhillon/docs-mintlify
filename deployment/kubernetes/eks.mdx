@@ -27,7 +27,7 @@ This guide presumes you have AWS EKS Cluster already available.
 
 It is recommended to use [Amazon RDS](https://docs.aws.amazon.com/rds/index.html) and [Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/?id=docs_gateway) for Production Deployments.
 
-We support 
+We support
 
 - Amazon RDS (MySQL) engine version 8 or higher
 - Amazon RDS (PostgreSQL) engine version 12 or higher
@@ -37,8 +37,8 @@ We support
 When using AWS Services the SearchType Configuration for elastic search should be `opensearch`, for both cases ElasticSearch and OpenSearch, as you can see in the ElasticSearch configuration example below.
 </Tip>
 
-We recommend 
-- Amazon RDS to be in Multiple Availability Zones. 
+We recommend
+- Amazon RDS to be in Multiple Availability Zones.
 - Amazon OpenSearch (or ElasticSearch) Service with Multiple Availability Zones with minimum 2 Nodes.
 
 <Warning>
@@ -104,7 +104,7 @@ The below guide provides Persistent Volumes provisioning as static volumes (mean
 
 ## Provision EFS backed PVs, PVCs for Airflow DAGs and Airflow Logs
 
-Please note that we are using one AWS Elastic File System (EFS) service with subdirectories   as `airflow-dags` and `airflow-logs` with the reference in this documentation. Also, it is presumed that `airflow-dags` and `airflow-logs` directories are already available on that file system.
+Please note that we are using one AWS Elastic File System (EFS) service with subdirectories as `airflow-dags` and `airflow-logs` with the reference in this documentation. Also, it is presumed that `airflow-dags` and `airflow-logs` directories are already available on that file system.
 
 In order to create directories inside the AWS Elastic File System (EFS) you would need to follow these [steps](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions-per-user-subdirs.html).
 
@@ -112,17 +112,17 @@ In order to create directories inside the AWS Elastic File System (EFS) you woul
 
 ```yaml
 # dags_pv_pvc.yml
-apiVersion: v1 
-kind: PersistentVolume 
-metadata: 
-  name: openmetadata-dependencies-dags-pv 
-  labels: 
-    app: airflow-dags 
-spec: 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: openmetadata-dependencies-dags-pv
+  labels:
+    app: airflow-dags
+spec:
   capacity:
     storage: 10Gi
   storageClassName: ""
-  accessModes: 
+  accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -133,8 +133,8 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  labels: 
-    app: airflow-dags 
+  labels:
+    app: airflow-dags
   name: openmetadata-dependencies-dags-pvc
   namespace: default
 spec:
@@ -156,17 +156,17 @@ kubectl create -f dags_pv_pvc.yml
 
 ```yaml
 # logs_pv_pvc.yml
-apiVersion: v1 
-kind: PersistentVolume 
-metadata: 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: openmetadata-dependencies-logs-pv
-  labels: 
+  labels:
     app: airflow-logs
 spec:
   capacity:
     storage: 5Gi
   storageClassName: ""
-  accessModes: 
+  accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   csi:
@@ -179,7 +179,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: openmetadata-dependencies-logs-pvc
   namespace: default
-  labels: 
+  labels:
     app: airflow-dags
 spec:
   accessModes:
@@ -289,7 +289,7 @@ helm install openmetadata-dependencies open-metadata/openmetadata-dependencies -
 
 <Tip>
 
-The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml). 
+The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml).
 You can modify any configuration and deploy by passing your own `values.yaml`
 
 ```commandline
@@ -298,7 +298,7 @@ helm install openmetadata-dependencies open-metadata/openmetadata-dependencies -
 
 </Tip>
 
-Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart - 
+Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart -
 
 ```commandline
 helm install openmetadata open-metadata/openmetadata

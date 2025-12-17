@@ -43,7 +43,7 @@ import yaml
 
 from metadata.workflow.metadata import MetadataWorkflow
 
- 
+
 
 CONFIG = f"""
 source:
@@ -140,7 +140,7 @@ jobs:
 
 A very interesting option that GitHub Actions provide is the ability to get alerts in Slack after our action fails.
 
-This can become specially useful if we want to be notified when our metadata ingestion is not working as expected. 
+This can become specially useful if we want to be notified when our metadata ingestion is not working as expected.
 We can use the same setup as above with a couple of slight changes:
 
 ```yaml
@@ -179,6 +179,6 @@ We can use the same setup as above with a couple of slight changes:
 We have:
 
 - Marked the `Run Ingestion` step with a specific `id` and with `continue-on-error: true`. If anything happens, we don't want the action to stop.
-- We added a step with `slackapi/slack-github-action@v1.23.0`. By passing a Slack Webhook link via a secret, we can send any payload to a 
+- We added a step with `slackapi/slack-github-action@v1.23.0`. By passing a Slack Webhook link via a secret, we can send any payload to a
 - specific Slack channel. You can find more info on how to set up a Slack Webhook [here](https://api.slack.com/messaging/webhooks).
 - If our `ingestion` step fails, we still want to mark the action as failed, so we are forcing the failure we skipped before.

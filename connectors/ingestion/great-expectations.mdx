@@ -5,7 +5,7 @@ slug: /connectors/ingestion/great-expectations
 sidebarTitle: Great Expectations
 ---
 
-# Great Expectations 
+# Great Expectations
 For Data Quality tests the open source python package Great Expectations stands out from the crowd. For those of you who don't know, [Great Expectations](https://greatexpectations.io/) is a shared, open standard for data quality. It helps data teams eliminate pipeline debt, through data testing, documentation, and profiling. Learn more about the product in [their documentation](https://docs.greatexpectations.io/docs/).  With this tutorial, we show you how to configure Great Expectations to integrate with OpenMetadata and ingest your test results to your table service page.
 
 ## Requirements
@@ -38,9 +38,9 @@ action:
   class_name: OpenMetadataValidationAction
   config_file_path: path/to/ometa/config/file/
   database_service_name: <serviceName in OM>
-  database_name: <databaseName in OM> 
+  database_name: <databaseName in OM>
   schema_name: <schemaName in OM>
-  table_name: <tableName in OM> 
+  table_name: <tableName in OM>
   expectation_suite_table_config_map:
     my_first_suite_name:
         database_name: <databaseName in OM>
@@ -143,7 +143,7 @@ conn_string = f"postgresql+psycopg2://user:pw@host:port/db"
 
 data_source = context.sources.add_postgres(
     name="source_name",
-    connection_string=conn_string, 
+    connection_string=conn_string,
 )
 
 data_asset = data_source.add_table_asset(
@@ -288,7 +288,7 @@ checkpoint_result = checkpoint.run()
 ```
 
 ### Working with GX 1.x.x?
-In v1.x.x GX introduced significant changes to their SDK. One notable change was the removal of the `great_expectations` CLI. OpenMetadata introduced support for 1.x.x version through its `OpenMetadataValidationAction1xx` class. You will need to first `pip install 'open-metadata[great-expectations-1xx]'. Below is a complete example 
+In v1.x.x GX introduced significant changes to their SDK. One notable change was the removal of the `great_expectations` CLI. OpenMetadata introduced support for 1.x.x version through its `OpenMetadataValidationAction1xx` class. You will need to first `pip install 'open-metadata[great-expectations-1xx]'. Below is a complete example
 
 ```python
 import great_expectations as gx
@@ -301,7 +301,7 @@ conn_string = f"redshift+psycopg2://user:pw@host:port/db"
 
 data_source = context.data_sources.add_redshift(
     name="name",
-    connection_string=conn_string, 
+    connection_string=conn_string,
 )
 
 data_asset = data_source.add_table_asset(

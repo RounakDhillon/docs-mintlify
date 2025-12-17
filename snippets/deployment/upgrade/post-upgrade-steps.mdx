@@ -60,7 +60,7 @@ kubectl get jobs
 NAME                       STATUS     COMPLETIONS   DURATION   AGE
 cron-reindex-one           Complete   1/1           20s        109s
 ```
-4. view logs 
+4. view logs
 To view the logs use the below command.
 ```bash
 kubectl logs job/<job_name>
@@ -103,7 +103,7 @@ Create a one-time job from an existing CronJob using the following command:
 ```bash
 kubectl create job --from=cronjob/cron-reindex <job_name>
 ```
-<Tip> 
+<Tip>
 Replace `<job_name>` with the actual name of the job.
 </Tip>
 
@@ -123,7 +123,7 @@ kubectl get jobs
 NAME                       STATUS     COMPLETIONS   DURATION   AGE
 cron-deploy-pipeline-one   Complete   1/1           13s        3m35s
 ```
-4. view logs 
+4. view logs
 To view the logs use the below command.
 ```bash
 kubectl logs job/<job_name>
@@ -145,7 +145,7 @@ sh openmetadata-ops.sh [-dhV] [COMMAND]
 ```
 
 #### Commands
-* analyze-tables 
+* analyze-tables
 
 Migrates secrets from the database to the configured Secrets Manager. Note that this command does not support migrating between external Secrets Managers.
 

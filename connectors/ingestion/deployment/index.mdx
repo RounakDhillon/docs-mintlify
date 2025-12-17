@@ -18,7 +18,7 @@ adding the implementation to deploy workflows to another tool directly from the 
 Here we are talking about an internal implementation detail. Do not be confused about the information that is going to
 be shared here vs. the pipeline services supported as connectors for metadata extraction.
 
-For example, we use Airflow as an internal element to deploy and schedule ingestion workflows, but we can also extract 
+For example, we use Airflow as an internal element to deploy and schedule ingestion workflows, but we can also extract
 metadata from Airflow. Fivetran, for example, is a possible source, but we are not using it to deploy and schedule workflows.
 
 </Tip>
@@ -78,7 +78,7 @@ After creating a new workflow from the UI or when editing it, there are two call
 Based on its [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/ingestionPipelines/ingestionPipeline.json),
 there are a few properties about the Ingestion Pipeline we can highlight:
 
-**1.** `service`: a pipeline is linked via an Entity Reference to a Service Entity or a Test Suite Entity. From the service is 
+**1.** `service`: a pipeline is linked via an Entity Reference to a Service Entity or a Test Suite Entity. From the service is
 
 **2.** `pipelineType`: which represents the type of workflow to be created. This flag will be used down the line in the Orchestrator
     logic to properly create the required Python classes (e.g., `Workflow`, `ProfilerWorkflow`, `TestSuiteWorkflow`, etc.).
@@ -132,7 +132,7 @@ to deploy such pipeline, these are the calls that get triggered:
 
 ## Create the Ingestion Pipeline
 
-These are the details of such a call with the default parameters. 
+These are the details of such a call with the default parameters.
 
 ```
 Request URL: http://localhost:8585/api/v1/services/ingestionPipelines
@@ -308,7 +308,7 @@ the Pipeline Service implementation), and more specifically, helps us create the
 and whatever Airflow requires to create a DAG.
 
 We know that to create a new DAG in Airflow we need a Python file to be placed under the `AIRFLOW_HOME/dags` directory (by default).
-Then, calling the `/deploy` endpoint will make the necessary steps to create such a file. 
+Then, calling the `/deploy` endpoint will make the necessary steps to create such a file.
 
 What it is important here is to notice that in order to run a metadata ingestion workflow,
 we just need the following few lines of Python code:
@@ -316,7 +316,7 @@ we just need the following few lines of Python code:
 ```python
 from metadata.workflow.metadata import MetadataWorkflow
 
- 
+
 
 config = """
 <your YAML configuration>

@@ -9,9 +9,9 @@ sidebarTitle: Role policy mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/role_policy_mixin.py#L0")
 
 # module `role_policy_mixin`
-Mixin class containing Role and Policy specific methods 
+Mixin class containing Role and Policy specific methods
 
-To be used by OpenMetadata class 
+To be used by OpenMetadata class
 
 
 
@@ -20,9 +20,9 @@ To be used by OpenMetadata class
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/role_policy_mixin.py#L39")
 
 ## class `OMetaRolePolicyMixin`
-OpenMetadata API methods related to Roles and Policies. 
+OpenMetadata API methods related to Roles and Policies.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -41,9 +41,9 @@ patch_policy_rule(
 ) → Optional[Policy]
 ```
 
-Given a Policy ID, JSON PATCH the rule (add or remove). 
+Given a Policy ID, JSON PATCH the rule (add or remove).
 
-Args  entity_id: ID of the role to be patched  rule: The rule to add or remove  operation: The operation to perform, either "add" or "remove" Returns  Updated Entity 
+Args entity_id: ID of the role to be patched rule: The rule to add or remove operation: The operation to perform, either "add" or "remove" Returns Updated Entity
 
 ---
 
@@ -59,9 +59,9 @@ patch_role_policy(
 ) → Optional[Role]
 ```
 
-Given a Role ID, JSON PATCH the policies. 
+Given a Role ID, JSON PATCH the policies.
 
-Args  entity_id: ID of the role to be patched  policy_id: ID of the policy to be added or removed  operation: Operation to be performed. Either 'add' or 'remove' Returns  Updated Entity 
+Args entity_id: ID of the role to be patched policy_id: ID of the policy to be added or removed operation: Operation to be performed. Either 'add' or 'remove' Returns Updated Entity
 
 
 

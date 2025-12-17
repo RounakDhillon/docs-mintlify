@@ -9,7 +9,7 @@ sidebarTitle: Client
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/client.py#L0")
 
 # module `client`
-Python API REST wrapper and helpers 
+Python API REST wrapper and helpers
 
 
 
@@ -18,7 +18,7 @@ Python API REST wrapper and helpers
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/client.py#L29")
 
 ## class `RetryException`
-API Client retry exception 
+API Client retry exception
 
 
 
@@ -29,7 +29,7 @@ API Client retry exception
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/client.py#L35")
 
 ## class `APIError`
-Represent API related error. error.status_code will have http status code. 
+Represent API related error. error.status_code will have http status code.
 
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/client.py#L41")
 
@@ -48,30 +48,30 @@ __init__(error, http_error=None)
 
 #### property code
 
-Return error code 
+Return error code
 
 ---
 
 #### property request
 
-Handle requests error 
+Handle requests error
 
 ---
 
 #### property response
 
-Handle response error :return: 
+Handle response error :return:
 
 ---
 
 #### property status_code
 
-Return response status code 
+Return response status code
 
 
 
 **Returns:**
-  int 
+  int
 
 
 
@@ -84,7 +84,7 @@ Return response status code
 
 **Args:**
 
-`raw_data`: should we return api response raw or wrap it with  Entity objects. 
+`raw_data`: should we return api response raw or wrap it with Entity objects.
 
 
 
@@ -95,7 +95,7 @@ Return response status code
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/client.py#L111")
 
 ## class `REST`
-REST client wrapper to manage requests with retries, auth and error handling. 
+REST client wrapper to manage requests with retries, auth and error handling.
 
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/client.py#L117")
 
@@ -122,7 +122,7 @@ __init__(config: ClientConfig)
 close()
 ```
 
-Close requests session 
+Close requests session
 
 ---
 
@@ -134,17 +134,17 @@ Close requests session
 delete(path, data=None)
 ```
 
-DELETE method 
+DELETE method
 
 
 
 **Parameters:**
-  path (str):  data (): 
+  path (str):  data ():
 
 
 
 **Returns:**
-  Response 
+  Response
 
 ---
 
@@ -156,17 +156,17 @@ DELETE method
 get(path, data=None)
 ```
 
-GET method 
+GET method
 
 
 
 **Parameters:**
-  path (str):  data (): 
+  path (str):  data ():
 
 
 
 **Returns:**
-  Response 
+  Response
 
 ---
 
@@ -178,17 +178,17 @@ GET method
 patch(path, data=None)
 ```
 
-PATCH method 
+PATCH method
 
 
 
 **Parameters:**
-  path (str):  data (): 
+  path (str):  data ():
 
 
 
 **Returns:**
-  Response 
+  Response
 
 ---
 
@@ -200,17 +200,17 @@ PATCH method
 post(path, data=None)
 ```
 
-POST method 
+POST method
 
 
 
 **Parameters:**
-  path (str):  data (): 
+  path (str):  data ():
 
 
 
 **Returns:**
-  Response 
+  Response
 
 ---
 
@@ -222,17 +222,17 @@ POST method
 put(path, data=None)
 ```
 
-PUT method 
+PUT method
 
 
 
 **Parameters:**
-  path (str):  data (): 
+  path (str):  data ():
 
 
 
 **Returns:**
-  Response 
+  Response
 
 
 

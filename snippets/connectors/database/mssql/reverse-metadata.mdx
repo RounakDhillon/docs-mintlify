@@ -25,25 +25,25 @@ Here are examples of custom SQL queries for metadata changes:
 
 ```sql
 -- Update schema description
-IF NOT EXISTS (SELECT 1 
-               FROM {database}.sys.extended_properties 
+IF NOT EXISTS (SELECT 1
+               FROM {database}.sys.extended_properties
                WHERE name = N'MS_Description' And
-               major_id = SCHEMA_ID('{schema}') AND 
+               major_id = SCHEMA_ID('{schema}') AND
                minor_id = 0
      		)
 BEGIN
-    EXEC {database}.{schema}.sp_addextendedproperty 
-     @name = N'MS_Description', 
-     @value = N{description}, 
-     @level0type = N'SCHEMA', 
+    EXEC {database}.{schema}.sp_addextendedproperty
+     @name = N'MS_Description',
+     @value = N{description},
+     @level0type = N'SCHEMA',
      @level0name = N'{schema}'
 END
 ELSE
 BEGIN
-    EXEC {database}.{schema}.sp_updateextendedproperty 
-     @name = N'MS_Description', 
-     @value = N{description}, 
-     @level0type = N'SCHEMA', 
+    EXEC {database}.{schema}.sp_updateextendedproperty
+     @name = N'MS_Description',
+     @value = N{description},
+     @level0type = N'SCHEMA',
      @level0name = N'{schema}'
 END;
 ```

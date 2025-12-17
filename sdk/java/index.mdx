@@ -5,7 +5,7 @@ slug: /sdk/java
 sidebarTitle: Overview
 ---
 
-# Java SDK 
+# Java SDK
 
 We now present a high-level Java API as a type-safe and gentle wrapper for the OpenMetadata backend.
 
@@ -27,7 +27,7 @@ You can add the below Maven Dependency for OpenMetadata Java Client.
 
 ## Establish OpenMetadata Server Connection
 
-To create OpenMetadata Gateway, you will need to establish a connection with *OpenMetadata Server*. The following 
+To create OpenMetadata Gateway, you will need to establish a connection with *OpenMetadata Server*. The following
 inputs will be needed for the same.
 * Host Port: The url on which your instance of OpenMetadata is up and running.
 * ApiVersion: The value will be "v1".
@@ -48,7 +48,7 @@ Once the connection details are provided, you can create an OpenMetadata Gateway
 using the following piece of code.
 
 ```java
-// OpenMetadata Gateway                                     
+// OpenMetadata Gateway
 OpenMetadata openMetadataGateway = new OpenMetadata(server);
 ```
 
@@ -57,7 +57,7 @@ To use Java Client without any authentication, you can use `NoOpAuthenticationPr
 
 ```java
 NoOpAuthenticationProvider noOpAuthenticationProvider = new NoOpAuthenticationProvider();
-``` 
+```
 
 Establish the [OpenMetadata Server Connection](#establish-openmetadata-server-connection) and provide `noOpAuthenticationProvider` in the config.
 
@@ -92,7 +92,7 @@ server.setAuthProvider(OpenMetadataServerConnection.AuthProvider.GOOGLE);
 server.setSecurityConfig(googleSSOClientConfig);
 
 ```
- 
+
 ### Okta
 To set up Okta as the auth provider, the following details should be provided:
 * Client ID: Provide the client ID for the service application
@@ -227,5 +227,5 @@ String data = IOUtils.toString(response.body().asInputStream(), Charsets.UTF_8);
 
 ## More examples
 
-If you want more examples of using different Java SDK methods, you will find them in our demo repository 
+If you want more examples of using different Java SDK methods, you will find them in our demo repository
 [here](https://github.com/open-metadata/openmetadata-demo/tree/main/java-sdk-examples).

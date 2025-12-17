@@ -23,7 +23,7 @@ This guide presumes you have an on premises Kubernetes cluster setup, and you ar
 
 ### External Database and Search Engine as ElasticSearch / OpenSearch
 
-We support 
+We support
 
 - MySQL engine version 8 or higher
 - PostgreSQL engine version 12 or higher
@@ -252,7 +252,7 @@ helm install openmetadata-dependencies open-metadata/openmetadata-dependencies -
 
 <Tip>
 
-The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml). 
+The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml).
 You can modify any configuration and deploy by passing your own `values.yaml`
 
 ```commandline
@@ -261,7 +261,7 @@ helm install openmetadata-dependencies open-metadata/openmetadata-dependencies -
 
 </Tip>
 
-Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart - 
+Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart -
 
 ```commandline
 helm install openmetadata open-metadata/openmetadata

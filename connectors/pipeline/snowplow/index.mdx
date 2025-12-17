@@ -70,22 +70,22 @@ For Community deployments, provide:
   - Enrichment configurations
   - Storage loader configurations
   - Pipeline orchestration files
-  
+
   Example: `/opt/snowplow/configs`
-> **Important:**  
+> **Important:**
 > If you are using the **Configuration Path** option for Community deployments, you must run the ingestion workflow through the **CLI** instead of the UI. This is because the ingestion process needs direct access to your local filesystem, which is not available when running ingestion jobs from the UI or server.
 ### Additional Configuration
 - **Cloud Provider**: Select the cloud provider where your Snowplow infrastructure is deployed:
   - **AWS**: Amazon Web Services (default)
   - **GCP**: Google Cloud Platform
   - **Azure**: Microsoft Azure
-  
+
   This information helps optimize metadata extraction based on cloud-specific configurations.
 - **Pipeline Filter Pattern**: Optionally provide a regular expression pattern to exclude certain pipelines from ingestion. Examples:
   - Exclude test pipelines: `.*test.*`
   - Exclude development pipelines: `^dev-.*`
   - Exclude multiple patterns: `(.*test.*|.*dev.*|.*staging.*)`
-  
+
   Leave empty to ingest all available pipelines.
 </Step>
 <TestConnection />

@@ -9,9 +9,9 @@ sidebarTitle: Patch mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/patch_mixin.py#L0")
 
 # module `patch_mixin`
-Mixin class containing PATCH specific methods 
+Mixin class containing PATCH specific methods
 
-To be used by OpenMetadata class 
+To be used by OpenMetadata class
 
 **Global Variables**
 ---------------
@@ -31,7 +31,7 @@ update_column_tags(
 ) → None
 ```
 
-Inplace update for the incoming column list 
+Inplace update for the incoming column list
 
 
 ---
@@ -49,7 +49,7 @@ update_column_description(
 ) → None
 ```
 
-Inplace update for the incoming column list 
+Inplace update for the incoming column list
 
 
 ---
@@ -57,9 +57,9 @@ Inplace update for the incoming column list
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/patch_mixin.py#L104")
 
 ## class `OMetaPatchMixin`
-OpenMetadata API methods related to Tables. 
+OpenMetadata API methods related to Tables.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -74,19 +74,19 @@ To be inherited by OpenMetadata
 patch(entity: Type[~T], source: ~T, destination: ~T) → Optional[~T]
 ```
 
-Given an Entity type and Source entity and Destination entity, generate a JSON Patch and apply it. 
+Given an Entity type and Source entity and Destination entity, generate a JSON Patch and apply it.
 
-**Args:**  
+**Args:**
 
-`entity` (T): Entity Type  
+`entity` (T): Entity Type
 
-`source`: Source payload which is current state of the source in OpenMetadata  
+`source`: Source payload which is current state of the source in OpenMetadata
 
-`destination`: payload with changes applied to the source. 
+`destination`: payload with changes applied to the source.
 
-**Returns:**  
+**Returns:**
 
-Updated Entity 
+Updated Entity
 
 ---
 
@@ -102,7 +102,7 @@ patch_automation_workflow_response(
 ) → None
 ```
 
-Given an AutomationWorkflow, JSON PATCH the status and response. 
+Given an AutomationWorkflow, JSON PATCH the status and response.
 
 ---
 
@@ -119,21 +119,21 @@ patch_column_description(
 ) → Optional[~T]
 ```
 
-Given an Table , Column FQN, JSON PATCH the description of the column 
+Given an Table , Column FQN, JSON PATCH the description of the column
 
-**Args:**  
+**Args:**
 
-`src_table`: origin Table object  
+`src_table`: origin Table object
 
-`column_fqn`: FQN of the column to update  
+`column_fqn`: FQN of the column to update
 
-`description`: new description to add  
+`description`: new description to add
 
-`force`: if True, we will patch any existing description. Otherwise, we will maintain  the existing data. 
+`force`: if True, we will patch any existing description. Otherwise, we will maintain the existing data.
 
-**Returns:** 
+**Returns:**
 
-Updated Entity 
+Updated Entity
 
 ---
 
@@ -150,7 +150,7 @@ patch_column_tag(
 ) → Optional[~T]
 ```
 
-Will be deprecated in 1.3 
+Will be deprecated in 1.3
 
 ---
 
@@ -166,21 +166,21 @@ patch_column_tags(
 ) → Optional[~T]
 ```
 
-Given an Entity ID, JSON PATCH the tag of the column 
+Given an Entity ID, JSON PATCH the tag of the column
 
-**Args:**  
+**Args:**
 
-`entity_id`: ID  
+`entity_id`: ID
 
-`tag_label`: TagLabel to add or remove  
+`tag_label`: TagLabel to add or remove
 
-`column_name`: column to update  
+`column_name`: column to update
 
-`operation`: Patch Operation to add or remove 
+`operation`: Patch Operation to add or remove
 
-**Returns:** 
+**Returns:**
 
-Updated Entity 
+Updated Entity
 
 ---
 
@@ -197,21 +197,21 @@ patch_description(
 ) → Optional[~T]
 ```
 
-Given an Entity type and ID, JSON PATCH the description. 
+Given an Entity type and ID, JSON PATCH the description.
 
-**Args:**  
+**Args:**
 
-`entity` (T): Entity Type  
+`entity` (T): Entity Type
 
-`source`: source entity object  
+`source`: source entity object
 
-`description`: new description to add  
+`description`: new description to add
 
-`force`: if True, we will patch any existing description. Otherwise, we will maintain  the existing data. 
+`force`: if True, we will patch any existing description. Otherwise, we will maintain the existing data.
 
-**Returns:**  
+**Returns:**
 
-Updated Entity 
+Updated Entity
 
 ---
 
@@ -223,7 +223,7 @@ Updated Entity
 patch_domain(entity: BaseModel, domain: Domain) → Optional[BaseModel]
 ```
 
-Patch domain data for an Entity 
+Patch domain data for an Entity
 
 ---
 
@@ -239,9 +239,9 @@ Patch life cycle data for a entity
 
 **Args:**
 
-`entity`: Entity to update the life cycle for 
+`entity`: Entity to update the life cycle for
 
-`life_cycle_data`: Life Cycle data to add 
+`life_cycle_data`: Life Cycle data to add
 
 ---
 
@@ -258,21 +258,21 @@ patch_owner(
 ) → Optional[~T]
 ```
 
-Given an Entity type and ID, JSON PATCH the owner. If not owner Entity type and not owner ID are provided, the owner is removed. 
+Given an Entity type and ID, JSON PATCH the owner. If not owner Entity type and not owner ID are provided, the owner is removed.
 
-**Args:**  
+**Args:**
 
-`entity` (T): Entity Type of the entity to be patched  
+`entity` (T): Entity Type of the entity to be patched
 
-`entity_id`: ID of the entity to be patched  
+`entity_id`: ID of the entity to be patched
 
-`owner`: Entity Reference of the owner. If None, the owner will be removed  
+`owner`: Entity Reference of the owner. If None, the owner will be removed
 
-`force`: if True, we will patch any existing owner. Otherwise, we will maintain  the existing data. 
+`force`: if True, we will patch any existing owner. Otherwise, we will maintain the existing data.
 
-**Returns:**  
+**Returns:**
 
-Updated Entity 
+Updated Entity
 
 ---
 
@@ -287,19 +287,19 @@ patch_table_constraints(
 ) → Optional[~T]
 ```
 
-Given an Entity ID, JSON PATCH the table constraints of table 
+Given an Entity ID, JSON PATCH the table constraints of table
 
-**Args:**  
+**Args:**
 
-`source_table`: Origin table  
+`source_table`: Origin table
 
-`description`: new description to add  
+`description`: new description to add
 
 `table_constraints`: table constraints to add
 
-**Returns:**  
+**Returns:**
 
-Updated Entity 
+Updated Entity
 
 ---
 
@@ -316,7 +316,7 @@ patch_tag(
 ) → Optional[~T]
 ```
 
-Will be deprecated in 1.3 
+Will be deprecated in 1.3
 
 ---
 
@@ -333,21 +333,21 @@ patch_tags(
 ) → Optional[~T]
 ```
 
-Given an Entity type and ID, JSON PATCH the tag. 
+Given an Entity type and ID, JSON PATCH the tag.
 
-**Args:**  
+**Args:**
 
-`entity` (T): Entity Type  
+`entity` (T): Entity Type
 
-`source`: Source entity object  
+`source`: Source entity object
 
-`tag_label`: TagLabel to add or remove  
+`tag_label`: TagLabel to add or remove
 
-`operation`: Patch Operation to add or remove the tag. 
+`operation`: Patch Operation to add or remove the tag.
 
 **Returns:**
 
-Updated Entity 
+Updated Entity
 
 ---
 
@@ -363,13 +363,13 @@ patch_test_case_definition(
 ) → Optional[TestCase]
 ```
 
-Given a test case and a test case definition JSON PATCH the test case 
+Given a test case and a test case definition JSON PATCH the test case
 
-**Args:**  
+**Args:**
 
-`test_case`: test case object  
+`test_case`: test case object
 
-`test_case_definition`: test case definition to add 
+`test_case_definition`: test case definition to add
 
 
 

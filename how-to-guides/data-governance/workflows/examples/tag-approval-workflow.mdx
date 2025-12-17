@@ -10,12 +10,12 @@ collate: true
 
 ## Overview
 
-The **Tag Approval Workflow** ensures that new or modified tags meet required metadata standards before they are approved for use in the data catalog. This workflow validates essential tag information, routes qualifying tags for human approval, and updates their status accordingly.  
+The **Tag Approval Workflow** ensures that new or modified tags meet required metadata standards before they are approved for use in the data catalog. This workflow validates essential tag information, routes qualifying tags for human approval, and updates their status accordingly.
 By enforcing validation and approval steps, the workflow maintains high-quality, well-governed tagging across the organization.
 
 ## How the Workflow Works
 
-1. **Initial Tag Validation**  
+1. **Initial Tag Validation**
    When a tag enters the workflow, it is first checked for required metadata fields:
     - A valid **Display Name**
     - Assigned **Reviewers**
@@ -24,17 +24,17 @@ By enforcing validation and approval steps, the workflow maintains high-quality,
     - If **both requirements are met**, the workflow continues.
     - If **either requirement is missing**, the workflow stops and the tag status is set to **Rejected**.
 
-3. **Status Update: IN REVIEW**  
+3. **Status Update: IN REVIEW**
    For tags that pass the initial validation, the workflow automatically updates the tag’s status to **IN REVIEW**.
 
-4. **User Approval Step**  
+4. **User Approval Step**
    A designated reviewer receives an approval request to evaluate and approve or reject the tag.
 
 5. **Approval Decision Handling**
     - If the reviewer **approves** the tag, the workflow updates the tag’s status to **Approved**.
     - If the reviewer **rejects** the tag, the workflow updates the tag’s status to **Rejected**.
 
-6. **Workflow Completion**  
+6. **Workflow Completion**
    The workflow ends after the final approval or rejection status has been assigned.
 
 ## Workflow Diagram

@@ -47,15 +47,15 @@ graph TB
     OM --> DB[(MySQL/PostgreSQL)]
     OM --> ES[(Elasticsearch)]
     OM --> AM[Airflow]
-    
+
     subgraph "External Systems"
         DS1[Data Sources]
         DS2[BI Tools]
         DS3[Pipelines]
     end
-    
+
     DS1 --> OM
-    DS2 --> OM  
+    DS2 --> OM
     DS3 --> OM
 ```
 

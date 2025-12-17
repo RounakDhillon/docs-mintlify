@@ -15,7 +15,7 @@ for the non-managed follow only the steps related to the Airflow server and CLI.
 
 ### 1. Permissions needed
 
-These are the permissions required in the service account to enable the GCP Secret Manager in OpenMetadata. We recommend to use the role named `roles/secretmanager.secretAccessor` to grant necessary permissions. 
+These are the permissions required in the service account to enable the GCP Secret Manager in OpenMetadata. We recommend to use the role named `roles/secretmanager.secretAccessor` to grant necessary permissions.
 
 - resourcemanager.projects.get
 - resourcemanager.projects.list
@@ -58,7 +58,7 @@ As an alternative to editing the `airflow.cfg` file, we can also set the followi
 AIRFLOW__OPENMETADATA_SECRETS_MANAGER__GCP_PROJECT_ID= <gcp project id>
 ```
 
-If no parameters are provided for the GCP account, it will use Application Default Credentials (ADC). 
+If no parameters are provided for the GCP account, it will use Application Default Credentials (ADC).
 ADC will look for credentials in:
 
 1. Local development environment
@@ -83,13 +83,13 @@ run the following command:
 
 Make sure you are running it with the same environment variables required by the server.
 
-If everything goes as planned, all the data would be displayed using the parameters names which starts with 
-`/openmetadata/...` in your GCP Secret Manager console. The following image shows what it should look 
+If everything goes as planned, all the data would be displayed using the parameters names which starts with
+`/openmetadata/...` in your GCP Secret Manager console. The following image shows what it should look
 like:
 
 <img noZoom src="/public/images/deployment/secrets-manager/supported-implementations/gcp-secret-manager/gcp-secret-manager-console.png" alt="gcp-secret-manager-console" />
 
-**Note:** If we want to change the starting path for our secrets names from `openmetadata` to a different one, we have 
+**Note:** If we want to change the starting path for our secrets names from `openmetadata` to a different one, we have
 to change the property `clusterName` in our `openmetadata.yaml`. Also, if you inform the `prefix` value, it will be
 added before the `clusterName`, i.e., `/<prefix>/<clusterName>/<key>`
 

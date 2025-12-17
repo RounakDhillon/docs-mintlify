@@ -30,7 +30,7 @@ ingestion from within a simple Python script:
 
 ```python
 from metadata.workflow.metadata import MetadataWorkflow
- 
+
 
 # Specify your YAML configuration
 CONFIG = """
@@ -195,7 +195,7 @@ workflowConfig:
 
 Notice how:
 1. We specify the `secretsManagerProvider` pointing to `aws`, since that's the manager we are using.
-2. We set `secretsManagerLoader` as `env`. Since we're running this from our local, we'll let the AWS credentials to be 
+2. We set `secretsManagerLoader` as `env`. Since we're running this from our local, we'll let the AWS credentials to be
   loaded from the local env vars. (When running this using the UI, note that the generated workflows will have this
   value set as `airflow`!)
 3. We set the `jwtToken` value as `secret:/test/bot/ingestion-bot/config/jwttoken`, which tells the client that
@@ -537,7 +537,7 @@ metrics about your data and give you a high-level view of its shape, together wi
 
 This is an interesting previous step before creating Data Quality Workflows.
 
-You can find more information about this workflow [here](/how-to-guides/data-quality-observability/profiler/workflow).
+You can find more information about this workflow [here](/how-to-guides/data-quality-observability/profiler/profiler-workflow).
 
 <Steps>
 <Step title="Adding the imports">

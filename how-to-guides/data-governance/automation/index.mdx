@@ -88,13 +88,13 @@ When enabled:
 
 <Tip>
 
-This functionality is not designed to trigger actions based on test case results (e.g., fail/pass/aborted). 
+This functionality is not designed to trigger actions based on test case results (e.g., fail/pass/aborted).
 
 </Tip>
 
 For foundational concepts on test cases and their role in Collate's metadata model, refer to: [Test Cases in Collate](https://docs.getcollate.io/main-concepts/metadata-standard/schemas/tests?utm_source=chatgpt.com).
 
-- **Benefit**: 
+- **Benefit**:
 
   - Saves manual effort by enabling one-click bulk operations (add or remove) on test cases.
   - Enforces standardization of similar data quality checks across filtered assets.
@@ -154,10 +154,10 @@ As with other actions, you can choose to **Overwrite Metadata** or keep the exis
 The **Propagation Depth** feature allows you to limit how far metadata propagates through your lineage tree:
 
 - **Use Case**: In complex lineage with many edges, you might want to limit how far metadata flows to maintain control and relevance.
-- **Configuration**: 
+- **Configuration**:
   - Leave it blank to allow complete propagation
   - Set a positive integer (e.g., 1, 2, 3) to limit propagation to specific levels from the root
-- **How it works**: 
+- **How it works**:
   - Root entities (those with no upstream lineage) start at depth 0
   - Each downstream neighbor increases the depth by 1
   - Depth is calculated separately for each path from each root entity
@@ -167,13 +167,13 @@ The **Propagation Depth** feature allows you to limit how far metadata propagate
     - C is at depth 2
     - D is at depth 3
   - Setting depth to 2 means metadata flows only to assets at depth 2 or less (B and C in above example)
-  
-- **Advanced Scenario - Complex Lineage**: 
+
+- **Advanced Scenario - Complex Lineage**:
   - In scenarios with multiple parent paths (e.g., A → B → C and D → C), depth is calculated for each path independently
   - With propagation depth = 1: C would receive metadata from D (depth 1 from D) but not from A via B (depth 2 from A)
   - This path-aware approach provides precise control over which upstream sources contribute to each downstream asset
 
-**When to use**: 
+**When to use**:
 - When you have deep lineage chains and want to prevent metadata from propagating too far downstream
 - When you want to maintain control over which downstream assets receive propagated metadata
 - For performance optimization in very large lineage graphs
@@ -183,7 +183,7 @@ The **Propagation Depth** feature allows you to limit how far metadata propagate
 The **Stop Propagation** feature lets you halt metadata flow when certain conditions are matched (e.g., sensitive data markers are encountered):
 
 - **Use Case**: Prevent metadata propagation at specific condition.
-- **Supported Attributes**: 
+- **Supported Attributes**:
   - `description`: Stop when specific description text is found
   - `tags`: Stop when specific tags are present
   - `glossaryTerms`: Stop when specific glossary terms are found
@@ -199,7 +199,7 @@ The **Stop Propagation** feature lets you halt metadata flow when certain condit
 3. **Domain Transitions**: Stop when crossing into different business domains
 4. **Quality Thresholds**: Pause at specific tier levels
 
-**How it works**: 
+**How it works**:
 - The system evaluates metadata at each node during propagation
 - When matching any specified condition, propagation stops at that node
 - Intelligent matching handles various formats (HTML in descriptions, object types)

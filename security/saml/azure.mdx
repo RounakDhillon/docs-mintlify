@@ -64,14 +64,14 @@ Security requirements for your **production** environment:
 - You must always communicate via signed Request for both request from SP to IDP and response from IDP to SP.
 - To do so we need to add SP certificate to IDP , so that IDP can validate the signed Auth Request coming from SP.
 
-- Generate the certificate using below command and then upload the certificate to IDP. 
+- Generate the certificate using below command and then upload the certificate to IDP.
 ```shell
 openssl req -new -x509 -days 365 -nodes -sha256 -out saml.crt -keyout saml.pem
 openssl x509 -in saml.crt -out samlCER.cer -outform DER
 ```
 
 - Under `Single Sign-On` you will see SAML Certificates, click on `Verification Certificates`.
- 
+
 <img noZoom src="/public/images/deployment/security/saml/azure/saml-azure-11.png" alt="verification-certificate" />
 
 - You can then check the `Require Verification Certificates` and import the certification with .cer format we generated previously.

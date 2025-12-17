@@ -21,7 +21,7 @@ unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the Impala connector.
 Configure and schedule Impala metadata and profiler workflows from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
-- [Data Profiler](/how-to-guides/data-quality-observability/profiler/workflow)
+- [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Lineage](/how-to-guides/data-lineage/workflow)
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
@@ -43,7 +43,7 @@ For a complete guide on managing secrets in hybrid setups, see the [Hybrid Inges
 - **username**: Specify the User to connect to Impala. It should have enough privileges to read all the metadata.
 - **password**: Password to connect to Impala.
 - **hostPort**: Enter the fully qualified hostname and port number for your Impala deployment in the Host and Port field.
-- **authMechanism**: This parameter specifies the authentication method to use when connecting to the Impala server. Possible values are `NOSASL`, `PLAIN`, `GSSAPI`, `LDAP`, `JWT`. If you are using Kerberos authentication, you should set auth to `GSSAPI`. 
+- **authMechanism**: This parameter specifies the authentication method to use when connecting to the Impala server. Possible values are `NOSASL`, `PLAIN`, `GSSAPI`, `LDAP`, `JWT`. If you are using Kerberos authentication, you should set auth to `GSSAPI`.
 - **kerberosServiceName**: This parameter specifies the Kerberos service name to use for authentication. This should only be specified if using Kerberos authentication.
 - **databaseSchema**: Schema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single schema. When left blank, OpenMetadata Ingestion attempts to scan all the schemas.
 - **databaseName**: In OpenMetadata, the Database Service hierarchy works as follows:

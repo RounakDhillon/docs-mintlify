@@ -9,7 +9,7 @@ sidebarTitle: Service Mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/service_mixin.py#L0")
 
 # module `service_mixin`
-Helper mixin to handle services 
+Helper mixin to handle services
 
 
 
@@ -18,9 +18,9 @@ Helper mixin to handle services
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/service_mixin.py#L33")
 
 ## class `OMetaServiceMixin`
-OpenMetadata API methods related to service. 
+OpenMetadata API methods related to service.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -35,22 +35,22 @@ To be inherited by OpenMetadata
 create_service_from_source(entity: Type[~T], config: Source) → ~T
 ```
 
-Create a service of type T. 
+Create a service of type T.
 
-We need to extract from the WorkflowSource: 
-- name: serviceName 
-- serviceType: Type Enum 
+We need to extract from the WorkflowSource:
+- name: serviceName
+- serviceType: Type Enum
 - connection: (DatabaseConnection, DashboardConnection...)
 
 **Args:**
 
-`entity`: Service Type 
+`entity`: Service Type
 
-`config`: WorkflowSource 
+`config`: WorkflowSource
 
 **Returns:**
 
-Created Service 
+Created Service
 
 ---
 
@@ -62,19 +62,19 @@ Created Service
 get_create_service_from_source(entity: Type[~T], config: Source) → ~C
 ```
 
-Prepare a CreateService request from source config 
+Prepare a CreateService request from source config
 
 **Args:**
 
-`entity`: Service Type 
+`entity`: Service Type
 
-`config`: WorkflowSource 
+`config`: WorkflowSource
 
 **Returns:**
 
-CreateService request 
+CreateService request
 
-If the OpenMetadata Connection has storeServiceConnection set to false, we won't pass the connection details when creating the service. 
+If the OpenMetadata Connection has storeServiceConnection set to false, we won't pass the connection details when creating the service.
 
 ---
 
@@ -86,16 +86,16 @@ If the OpenMetadata Connection has storeServiceConnection set to false, we won't
 get_service_or_create(entity: Type[~T], config: Source) → ~T
 ```
 
-Fetches a service by name, or creates it using the WorkflowSource config 
+Fetches a service by name, or creates it using the WorkflowSource config
 
 **Args:**
 
 `entity`: Entity Type to get or create
 
-`config`: WorkflowSource 
+`config`: WorkflowSource
 
 **Returns:**
-Entity Service of T 
+Entity Service of T
 
 
 

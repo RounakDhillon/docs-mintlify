@@ -11,13 +11,13 @@ Learn how to capture lineage information directly from Airflow DAGs using the Op
 
 ## Introduction
 
-Obtaining metadata should be as simple as possible. Not only that, we want developers to be able to keep using their 
+Obtaining metadata should be as simple as possible. Not only that, we want developers to be able to keep using their
 tools without any major changes.
 
-We can directly use [Airflow code](https://airflow.apache.org/docs/apache-airflow/stable/lineage.html#lineage-backend) 
+We can directly use [Airflow code](https://airflow.apache.org/docs/apache-airflow/stable/lineage.html#lineage-backend)
 to help us track data lineage. What we want to achieve through this backend is the ability to link OpenMetadata Table Entities and the pipelines that have those instances as inputs or outputs.
 
-Being able to control and monitor these relationships can play a major role in helping discover and communicate issues 
+Being able to control and monitor these relationships can play a major role in helping discover and communicate issues
 to your company data practitioners and stakeholders.
 
 This document will guide you through the installation, configuration and internals of the process to help you unlock as
@@ -114,7 +114,7 @@ The backend will look for a Pipeline Service Entity with the name specified in t
 
 Each DAG processed by the backend will be created or updated as a Pipeline Entity linked to the above Pipeline Service.
 
-We are going to extract the task information and add it to the Pipeline task property list. Then, a 
+We are going to extract the task information and add it to the Pipeline task property list. Then, a
 DAG created with some tasks as the following random example:
 
 ```commandline
@@ -126,7 +126,7 @@ t2 and t3 as downstream tasks.
 
 ### Adding Lineage
 
-Airflow [Operators](https://airflow.apache.org/docs/apache-airflow/1.10.4/_api/airflow/models/baseoperator/index.html) 
+Airflow [Operators](https://airflow.apache.org/docs/apache-airflow/1.10.4/_api/airflow/models/baseoperator/index.html)
 contain the attributes `inlets` and `outlets`. When creating our tasks, we can pass any of these two
 parameters as follows:
 
@@ -140,13 +140,13 @@ BashOperator(
 )
 ```
 
-Note how in this example we are defining a Python `dict` with the key tables and value a `list`. 
+Note how in this example we are defining a Python `dict` with the key tables and value a `list`.
 This list should contain the FQN of tables ingested through any of our connectors or APIs.
 
-When each task is processed, we will use the OpenMetadata client to add the lineage information (upstream for inlets 
+When each task is processed, we will use the OpenMetadata client to add the lineage information (upstream for inlets
 and downstream for outlets) between the Pipeline and Table Entities.
 
-It is important to get the naming right, as we will fetch the Table Entity by its FQN. If no information is specified 
+It is important to get the naming right, as we will fetch the Table Entity by its FQN. If no information is specified
 in terms of lineage, we will just ingest the Pipeline Entity without adding further information.
 
 <Tip>

@@ -13,7 +13,7 @@ This guide outlines how to configure LDAP authentication for Kubernetes deployme
 
 ## Authentication Configuration
 
-```yaml 
+```yaml
 Update the `openmetadata.yaml` file with the following settings to enable LDAP authentication:
 openmetadata:
   config:
@@ -26,14 +26,14 @@ openmetadata:
         - "https://<your-domain>/api/v1/system/config/jwks" # Replace with your domain
       authority: "https://<your-domain>" # Replace with your domain
       enableSelfSignup: false
-      
+
       ldapConfiguration:
         host: "ldap.example.com"  # Replace with your LDAP server hostname
         port: 636  # Use 636 for secure LDAP (LDAPS) or 389 for standard LDAP
         dnAdminPrincipal: "cn=admin,dc=example,dc=com"
         dnAdminPassword:
           secretRef: ldap-admin-secret
-          secretKey: openmetadata-ldap-secret 
+          secretKey: openmetadata-ldap-secret
         userBaseDN: "ou=users,dc=example,dc=com"  # Base DN for LDAP users
         mailAttributeName: "email"  # Attribute for email in the LDAP schema
         sslEnabled: true  # Enable SSL for secure LDAP
@@ -41,7 +41,7 @@ openmetadata:
         trustStoreConfig:
           trustAllConfig:
             examineValidityDates: true  # Reject certificates outside the validity window
- 
+
     jwtTokenConfiguration:
       enabled: true  # Enable JWT tokens for secure communication
       # File Path on Airflow Container
@@ -137,7 +137,7 @@ openmetadata:
             trustStoreConfig:
                customTrustManagerConfig:
                trustStoreFilePath: /path/to/truststore.jks
-               trustStoreFilePassword: 
+               trustStoreFilePassword:
                   secretRef: ""
                   secretKey: ""
                trustStoreFileFormat: JKS

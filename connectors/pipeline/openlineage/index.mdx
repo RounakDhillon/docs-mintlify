@@ -28,7 +28,7 @@ Apart from being a specification, it is also a set of integrations collecting li
 ### Openlineage connector events
 OpenLineage connector consumes open lineage events from kafka broker and translates it to OpenMetadata Lineage information.
 1. #### Airflow OpenLineage events
-To Configure your Airflow instance 
+To Configure your Airflow instance
     1. To Configure your Airflow instance install appropriate provider in [Airflow](https://airflow.apache.org/docs/apache-airflow-providers-openlineage/stable/index.html)
     2. Configure OpenLineage Provider in [Airflow](https://airflow.apache.org/docs/apache-airflow-providers-openlineage/stable/guides/user.html#using-openlineage-integration)
         - Remember to use `kafka` transport mode here as OL events are collected from kafka topic. Detailed list of configuration options for OpenLineage can be found [here](https://openlineage.io/docs/client/python/#configuration)

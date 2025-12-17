@@ -20,7 +20,7 @@ class Source(IterStep, ABC):
     metadata: OpenMetadata
     connection_obj: Any
     service_connection: Any
-  
+
     # From the parent - Adding here just to showcase
     @abstractmethod
     def _iter(self) -> Iterable[Either]:

@@ -12,13 +12,13 @@ Note that this requires Collate 1.2.1 or higher.
 
 </Tip>
 
-While running the auto-classification workflow if you have enabled the `Generate Sample Data` flag in your profiler configuration, sample data will be ingested for all the tables included in the  auto-classification workflow. This data is a randomly sampled from the table and by default would contain 50 rows of data, which is now configurable.
+While running the auto-classification workflow if you have enabled the `Generate Sample Data` flag in your profiler configuration, sample data will be ingested for all the tables included in the auto-classification workflow. This data is a randomly sampled from the table and by default would contain 50 rows of data, which is now configurable.
 
 With Collate release 1.2.1, a new capability allows users to take advantage of this sample data by uploading
-it to an S3 bucket in Parquet format. This means that the random sample, once generated, can be stored in a standardized, 
-columnar storage format, facilitating efficient and scalable data analysis. 
+it to an S3 bucket in Parquet format. This means that the random sample, once generated, can be stored in a standardized,
+columnar storage format, facilitating efficient and scalable data analysis.
 
-To leverage this functionality, follow the documentation provided for uploading sample data to an S3 bucket in Parquet 
+To leverage this functionality, follow the documentation provided for uploading sample data to an S3 bucket in Parquet
 format as part of your profiling workflow.
 
 ## Configure the Sample Data Storage Credentials
@@ -72,7 +72,7 @@ The Collate UI will always show 50 or fewer rows of sample data. *Sample Data Ro
 
 <Tip>
 
-This parameter is effective for Snowflake only. 
+This parameter is effective for Snowflake only.
 
 </Tip>
 
@@ -147,20 +147,20 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 #### Collate Storage Config
 
 This option is useful when you want to skip uploading sample data of a schema or database from being uploaded to object storage.
-For example, consider the scenario where you have a database with three schemas A, B & C. You have configured the S3 Storage 
+For example, consider the scenario where you have a database with three schemas A, B & C. You have configured the S3 Storage
 credentials for your database and, if you do not have any storage configuration at database schema level, then by default the sample data of
-the tables in the schemas will be uploaded to the storage config. 
+the tables in the schemas will be uploaded to the storage config.
 
 Suppose that you do not wish to upload sample data of tables from schema A, then you can choose the Collate Storage Config option to achieve the same.
 
 ### Order of Precedence
 
-As described above, you can configure the storage configuration to upload the sample data at Database Service, Database or Database Schema level. The order of precedence for selecting the storage configuration would be 
+As described above, you can configure the storage configuration to upload the sample data at Database Service, Database or Database Schema level. The order of precedence for selecting the storage configuration would be
 
 ```
 Database Schema > Database > Database Service
 ```
 
-Which means that if you have configured the storage credentials at database schema level, the sample data of all the tables 
+Which means that if you have configured the storage credentials at database schema level, the sample data of all the tables
 would be uploaded with that storage config. If that is not configured, then the preference would be given to the database storage
 options and at last to the database service storage options.

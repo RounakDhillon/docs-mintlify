@@ -93,7 +93,7 @@ Here, you'll find the following important credentials:
 - Signing Secret – Used to verify that incoming requests (e.g., from Slack) are genuinely from Slack.
 
     Click Show next to each secret if you need to view the values. You can also regenerate them if needed using the Regenerate button, and after that you can share it with Collate Team.
- 
+
 Make sure to store these securely, as you'll need them to configure OAuth and validate request signatures later.
 
 <img noZoom src="/public/images/applications/slack-basic.png" alt="Basic Information page" />
@@ -140,7 +140,7 @@ Before installing the app to your workspace, configure the redirect URLs to ensu
 3. Click **Add New Redirect URL** and enter the redirect URL (e.g., https://sandbox.open-metadata.org/api/slack/callback).
 4. Click **Save URLs** to apply the changes.
 
-The redirect URL must exactly match the URL used in your OAuth request.  
+The redirect URL must exactly match the URL used in your OAuth request.
 This ensures Slack can return the authorization code to your backend after the user grants permissions.
 
 <img noZoom src="/public/images/applications/slack-redirect.png" alt="Configure Redirect URLs" />

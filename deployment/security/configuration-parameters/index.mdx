@@ -27,10 +27,10 @@ Also if you have enabled [JWT Tokens](/deployment/security/enable-jwt-tokens) th
 ## Client ID (id):
 The client ID provided by your OIDC provider. This is typically obtained when you register your application with the OIDC provider.
 
-## Type (type): 
+## Type (type):
 Specify the type of OIDC provider you are using (e.g., google, azure). This value is same as `provider` in `authenticationConfiguration`.
 
-## Client Secret (secret): 
+## Client Secret (secret):
 Replace with the client secret provided by your OIDC provider.
 
 ## Scope (scope):
@@ -63,13 +63,13 @@ Normally it's some initial SSO provider URL followed by `.well-known/openid-conf
 
 </Warning>
 
-## Use Nonce (useNonce): 
+## Use Nonce (useNonce):
 Set to true by Default, if you want to use nonce for replay attack protection during authentication. This does not need to be changed.
 
-## Preferred JWS Algorithm (preferredJwsAlgorithm): 
+## Preferred JWS Algorithm (preferredJwsAlgorithm):
 Specify the preferred JSON Web Signature (JWS) algorithm. Default is RS256 and need not be changed .
 
-## Response Type (responseType): 
+## Response Type (responseType):
 Define the response type for the authentication request. Default is code and need not be changed.
 
 ## Disable PKCE (disablePkce):
@@ -85,7 +85,7 @@ Also, this should match what you have configured in your OIDC provider.
 
 </Warning>
 
-## Server URL (serverUrl): 
+## Server URL (serverUrl):
 Specify the URL of your OM Server. Default is http://localhost:8585.
 
 ## Client Authentication Method (clientAuthenticationMethod):
@@ -110,117 +110,117 @@ For Azure SSO Provider this may be needed.
 
 </Warning>
 
-## Max Clock Skew (maxClockSkew): 
+## Max Clock Skew (maxClockSkew):
 Define the maximum acceptable clock skew between your application server and the OIDC server.
 
-## Custom Parameters (customParams): 
+## Custom Parameters (customParams):
 If you have any additional custom parameters required for OIDC configuration, specify them here.
 
 ## Config (config):
 The central configuration block for OpenMetadata.
 
 ## Provider (provider):
-Specifies the authentication method to be used. 
+Specifies the authentication method to be used.
 The default is `ldap`, but you can change it to another supported provider. Example: `google`, `azure`.
 
 ## Entity Id (entityId):
-The unique identifier for the SAML Identity Provider.  
+The unique identifier for the SAML Identity Provider.
 Example: `"https://mocksaml.com/api/saml/sso"`
-  
+
 ## SSO Login URL (ssoLoginUrl):
-The URL to which users are redirected for Single Sign-On (SSO) authentication.  
+The URL to which users are redirected for Single Sign-On (SSO) authentication.
 Example: `"https://saml.example.com/entityid"`
 
 ## IPDX509 Certificate (idpX509Certificate):
-The public certificate used by the IdP to sign SAML assertions.  
+The public certificate used by the IdP to sign SAML assertions.
 Example: `""` (empty string means no certificate provided, needs to be set with actual certificate)
 
 ## Authority URL (authorityUrl):
-The URL used for SAML login, typically a custom endpoint for your SAML provider.  
+The URL used for SAML login, typically a custom endpoint for your SAML provider.
 Example: `"http://localhost:8585/api/v1/saml/login"`
 
 ## Name ID (nameId):
-The format for the NameID element in the SAML response, usually representing the unique identifier of the user.  
+The format for the NameID element in the SAML response, usually representing the unique identifier of the user.
 Example: `"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"`
 
 ## ACS (acs):
-The Assertion Consumer Service (ACS) URL, where the IdP sends the SAML response after authentication.  
+The Assertion Consumer Service (ACS) URL, where the IdP sends the SAML response after authentication.
 Example: `"http://localhost:8585/api/v1/saml/acs"`
 
 ## SPX509 Certificate (spX509Certificate):
-The public certificate used by the Service Provider to verify the IdP's SAML response.  
+The public certificate used by the Service Provider to verify the IdP's SAML response.
 Example: `""` (empty string means no certificate provided, needs to be set with actual certificate)
 
 ## Strict Mode (strictMode):
-Whether to enforce strict compliance with the SAML standard, ensuring the response is fully validated.  
+Whether to enforce strict compliance with the SAML standard, ensuring the response is fully validated.
 Default: `false`
 
 ## Token Validity (tokenValidity):
-The validity period of the SAML token in seconds.  
+The validity period of the SAML token in seconds.
 Default: `"3600"` (1 hour)
 
 ## Send Encrypted Name ID (sendEncryptedNameId):
-Whether to send the NameID in an encrypted format in the SAML response.  
+Whether to send the NameID in an encrypted format in the SAML response.
 Default: `false`
 
 ## Send Signed Auth Request (sendSignedAuthRequest):
-Whether to sign the authentication request sent to the IdP.  
+Whether to sign the authentication request sent to the IdP.
 Default: `false`
 
 ## Sign SP Metadata (signSpMetadata):
-Whether to sign the Service Provider's metadata when exchanging SAML metadata with the IdP.  
+Whether to sign the Service Provider's metadata when exchanging SAML metadata with the IdP.
 Default: `false`
 
 ## Want Messages Signed (wantMessagesSigned):
-Whether the Service Provider expects SAML messages to be signed.  
+Whether the Service Provider expects SAML messages to be signed.
 Default: `false`
 
 ## Want Assertions Signed (wantAssertionsSigned):
-Whether the Service Provider expects SAML assertions to be signed.  
+Whether the Service Provider expects SAML assertions to be signed.
 Default: `false`
 
 ## Want Assertion Encrypted (wantAssertionEncrypted):
-Whether to encrypt the SAML assertion before sending it to the Service Provider.  
+Whether to encrypt the SAML assertion before sending it to the Service Provider.
 Default: `false`
 
 ## Want Name ID Encrypted (wantNameIdEncrypted):
-Whether to encrypt the NameID element in the SAML response.  
+Whether to encrypt the NameID element in the SAML response.
 Default: `false`
 
 ## Key Store File Path (keyStoreFilePath):
-The file path to the keystore file containing certificates and private keys used for signing and encryption.  
+The file path to the keystore file containing certificates and private keys used for signing and encryption.
 Example: `""` (empty string means no keystore file provided)
 
 ## KeyStore Alias (keyStoreAlias):
-The alias used to refer to the key inside the keystore file.  
+The alias used to refer to the key inside the keystore file.
 Example: `""` (empty string means no alias provided)
 
 ## KeyStore Password (keyStorePassword):
-The password used to access the keystore file.  
+The password used to access the keystore file.
 Example: `""` (empty string means no password provided)
 
 ## Class Name (className):
-Specifies the class that handles the authorization logic.  
+Specifies the class that handles the authorization logic.
 Default: `"org.openmetadata.service.security.DefaultAuthorizer"`
 
 ## Container Request Filter (containerRequestFilter):
-Specifies the request filter used to process authentication, especially for handling JWT tokens.  
+Specifies the request filter used to process authentication, especially for handling JWT tokens.
 Default: `"org.openmetadata.service.security.JwtFilter"`
 
 ## Initial Admins (initialAdmins):
-A list of users who will be granted administrative privileges during the initial setup.  
+A list of users who will be granted administrative privileges during the initial setup.
 Example: `["suresh"]`
 
 ## Principal Domain (principalDomain):
-The domain that is associated with user accounts.  
+The domain that is associated with user accounts.
 Default: `"open-metadata.org"`
 
 ## Authority (authority):
-The base URL of the OIDC authority.  
+The base URL of the OIDC authority.
 Example: Replace `{IssuerUrl}` with the URL of your custom OIDC provider.
 
 ## Client ID (clientId):
-The client ID for the application registered with the custom OIDC provider.  
+The client ID for the application registered with the custom OIDC provider.
 Replace `{client id}` with the actual client ID.
 
 ## Host (host):
@@ -249,25 +249,25 @@ Indicates if SSL is enabled for connecting to the LDAP server. Defaults to `true
 
 ## Custom Trust Manager Configuration (customTrustManagerConfig):
   - ### TrustStore FilePath (trustStoreFilePath):
-    Path to the custom trust store file. Default is empty.  
+    Path to the custom trust store file. Default is empty.
   - ### TrustStore File Password (trustStoreFilePassword):
-    Password for the trust store file. Default is empty.  
+    Password for the trust store file. Default is empty.
   - ### TrustStore File Format (trustStoreFileFormat):
-    Format of the trust store file. Default is empty.  
+    Format of the trust store file. Default is empty.
   - ### Verify Host Name (verifyHostname):
-    If hostname verification is enabled. Default is empty.  
+    If hostname verification is enabled. Default is empty.
   - ### Examine Validity Dates (examineValidityDates):
-    Whether to check validity dates for certificates. Default is empty.  
+    Whether to check validity dates for certificates. Default is empty.
 
 ## Host Name Configuration (hostNameConfig):
   - ### Allow Wild Cards (allowWildCards):
-    Allows wildcard certificates in hostnames. Default is empty.  
+    Allows wildcard certificates in hostnames. Default is empty.
   - ### Acceptable Host Names (acceptableHostNames):
-    A list of acceptable hostnames. Default is an empty list.  
+    A list of acceptable hostnames. Default is an empty list.
 
 ## JVM Default Configurations (jvmDefaultConfig):
   - ### Verify Host Name (verifyHostname):
-    Enables hostname verification using JVM defaults. Default is empty.  
+    Enables hostname verification using JVM defaults. Default is empty.
 
 ## Trust All Configurations (trustAllConfig):
   - ### Examine Validity Dates (examineValidityDates):

@@ -51,7 +51,7 @@ except ModuleNotFoundError:
 
 from metadata.config.common import load_config_file
 from metadata.workflow.metadata import MetadataWorkflow
- 
+
 
 from airflow.utils.dates import days_ago
 
@@ -164,8 +164,8 @@ This ensures that Airflow uses the system timezone, which is particularly import
 
 ### Key Notes
 
-- **Image Version**: Ensure the Docker image version matches your OpenMetadata server version (e.g., `openmetadata/ingestion-base:0.13.2`).  
-- **Pipeline Types**: Set the `pipelineType` to `metadata`, `usage`, `lineage`, `profiler`, or other supported values.  
+- **Image Version**: Ensure the Docker image version matches your OpenMetadata server version (e.g., `openmetadata/ingestion-base:0.13.2`).
+- **Pipeline Types**: Set the `pipelineType` to `metadata`, `usage`, `lineage`, `profiler`, or other supported values.
 - **No Installation Required**: The `DockerOperator` eliminates the need to install dependencies directly on the Airflow host.
 
 Another important point here is making sure that the Airflow will be able to run Docker commands to create the task.
@@ -214,7 +214,7 @@ default_args = {
 
 def metadata_ingestion_workflow():
     from metadata.workflow.metadata import MetadataWorkflow
-     
+
     import yaml
     config = """
         source:
@@ -272,9 +272,9 @@ with DAG(
 
 ### Key Notes
 
-**Function Rules**:  
-- Use a `def` function (not part of a class).  
-- All imports must occur inside the function.  
+**Function Rules**:
+- Use a `def` function (not part of a class).
+- All imports must occur inside the function.
 - Avoid referencing variables outside the function's scope.
 
 <RunConnectorsClass />

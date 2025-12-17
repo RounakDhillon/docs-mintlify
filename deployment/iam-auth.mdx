@@ -39,7 +39,7 @@ The `DB_USER_PASSWORD` is still required and cannot be empty. Set it to a random
 When using IAM authentication for AWS RDS, you must still provide a dummy value for the `DB_PASSWORD` environment variable. OpenMetadata automatically handles the IAM credentials internally. Ensure the following parameters are set for successful connection:
 
 - `DB_PARAMS=awsRegion=us-east-1&allowPublicKeyRetrieval=true&serverTimezone=UTC`
-- `DB_USE_SSL=true`  
+- `DB_USE_SSL=true`
 
 These settings ensure proper token generation and secure communication with the RDS instance.
 

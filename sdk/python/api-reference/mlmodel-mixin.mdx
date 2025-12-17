@@ -9,9 +9,9 @@ sidebarTitle: ML Model Mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/mlmodel_mixin.py#L0")
 
 # module `mlmodel_mixin`
-Mixin class containing Lineage specific methods 
+Mixin class containing Lineage specific methods
 
-To be used by OpenMetadata class 
+To be used by OpenMetadata class
 
 
 
@@ -20,9 +20,9 @@ To be used by OpenMetadata class
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/mlmodel_mixin.py#L49")
 
 ## class `OMetaMlModelMixin`
-OpenMetadata API methods related to MlModel. 
+OpenMetadata API methods related to MlModel.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -40,17 +40,17 @@ add_mlmodel_lineage(
 ) → Dict[str, Any]
 ```
 
-Iterates over MlModel's Feature Sources and add the lineage information. 
+Iterates over MlModel's Feature Sources and add the lineage information.
 
 **Args:**
 
-`model`: MlModel containing EntityReferences 
+`model`: MlModel containing EntityReferences
 
-`description`: Lineage description 
+`description`: Lineage description
 
 **Returns:**
 
-List of added lineage information 
+List of added lineage information
 
 ---
 
@@ -67,23 +67,23 @@ get_mlmodel_sklearn(
 ) → CreateMlModelRequest
 ```
 
-Get an MlModel Entity instance from a scikit-learn model. 
+Get an MlModel Entity instance from a scikit-learn model.
 
-Sklearn estimators all extend BaseEstimator. 
+Sklearn estimators all extend BaseEstimator.
 
 **Args:**
 
-`name`: MlModel name 
+`name`: MlModel name
 
-`model`: sklearn estimator 
+`model`: sklearn estimator
 
-`description`: MlModel description 
+`description`: MlModel description
 
-`service_name`: Service name to use when creating sklearn service 
+`service_name`: Service name to use when creating sklearn service
 
 **Returns:**
 
-OpenMetadata CreateMlModelRequest Entity 
+OpenMetadata CreateMlModelRequest Entity
 
 
 

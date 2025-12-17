@@ -65,7 +65,7 @@ with DAG(
     is_paused_upon_creation=False,
     catchup=False,
 ) as dag:
-    
+
 
     t0 = DummyOperator(
         task_id='task0',
@@ -74,7 +74,7 @@ with DAG(
             OMEntity(entity=Table, fqn="Table X", key="group_B"),
         ]
     )
-    
+
     t1 = DummyOperator(
         task_id='task10',
         outlets=[
@@ -91,7 +91,7 @@ We are passing inlets and outlets as a list of the `OMEntity` class, that lets u
 2. The FQN of the asset, which is the unique name of each asset in OpenMetadata, e.g., `serviceName.databaseName.schemaName.tableName`.
 3. The key to group the lineage if needed.
 
-This `OMEntity` class is defined following the example of Airflow's internal lineage 
+This `OMEntity` class is defined following the example of Airflow's internal lineage
 [models](https://github.com/apache/airflow/blob/main/airflow/lineage/entities.py).
 
 ## Keys
@@ -144,7 +144,7 @@ with DAG(
     is_paused_upon_creation=False,
     catchup=False,
 ) as dag:
-    
+
 
     t0 = DummyOperator(
         task_id='task0',
@@ -153,7 +153,7 @@ with DAG(
             {"entity": "table", "fqn": "Table X", "key": "group_B"},
         ]
     )
-    
+
     t1 = DummyOperator(
         task_id='task10',
         outlets=[
@@ -232,7 +232,7 @@ with DAG(
     is_paused_upon_creation=False,
     catchup=False,
 ) as dag:
-    
+
 
     t0 = DummyOperator(
         task_id='task0',
@@ -241,7 +241,7 @@ with DAG(
             "group_B": ["Table X"]
         }
     )
-    
+
     t1 = DummyOperator(
         task_id='task10',
         outlets={

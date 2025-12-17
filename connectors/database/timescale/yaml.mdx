@@ -133,13 +133,13 @@ This is a sample config for TimescaleDB:
 
 #### Source Configuration - Service Connection
 
- codeInfo srNumber=1 
+ codeInfo srNumber=1
 
 **username**: Specify the User to connect to TimescaleDB. It should have enough privileges to read all the metadata.
 
 
 
- codeInfo srNumber=2 
+ codeInfo srNumber=2
 
 **authType**: Choose from basic auth and IAM based auth.
 #### Basic Auth
@@ -148,7 +148,7 @@ This is a sample config for TimescaleDB:
 
 
 
- codeInfo srNumber=3 
+ codeInfo srNumber=3
 #### IAM BASED Auth
 
 - **awsAccessKeyId** & **awsSecretAccessKey**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
@@ -257,11 +257,11 @@ verify-full: The driver will negotiate an SSL connection, verify that the server
 
 
 
- /codeInfoContainer 
+ /codeInfoContainer
 
- codeBlock fileName="filename.yaml" 
+ codeBlock fileName="filename.yaml"
 
-```yaml  isCodeBlock=true 
+```yaml  isCodeBlock=true
 source:
   type: Timescale
   serviceName: local_timescale
@@ -269,40 +269,40 @@ source:
     config:
       type: Timescale
 ```
-```yaml  srNumber=1 
+```yaml  srNumber=1
       username: username  # REQUIRED
 ```
-```yaml  srNumber=2 
+```yaml  srNumber=2
       authType:
         password: <password>  # Basic Auth - most common
 ```
-```yaml  srNumber=3 
+```yaml  srNumber=3
       authType:
         awsConfig:  # IAM Auth for AWS RDS TimescaleDB
           awsAccessKeyId: access key id
           awsSecretAccessKey: access secret key
           awsRegion: aws region name
 ```
-```yaml  srNumber=4 
+```yaml  srNumber=4
       hostPort: localhost:5432  # REQUIRED - format: host:port
 ```
-```yaml  srNumber=5 
+```yaml  srNumber=5
       database: database  # REQUIRED - database name
 ```
-```yaml  srNumber=6 
+```yaml  srNumber=6
       ingestAllDatabases: true
 ```
-```yaml  srNumber=9 
+```yaml  srNumber=9
       # sslConfig:
             # caCertificate: "path/to/ca/certificate"
       # sslMode: disable #allow prefer require verify-ca verify-full
 ```
 
-```yaml  srNumber=7 
+```yaml  srNumber=7
       # connectionOptions:
       #   key: value
 ```
-```yaml  srNumber=8 
+```yaml  srNumber=8
       # connectionArguments:
       #   key: value
 ```
@@ -313,9 +313,9 @@ source:
 
 <WorkflowConfig />
 
- /codeBlock 
+ /codeBlock
 
- /codePreview 
+ /codePreview
 
 <IngestionCli />
 

@@ -9,7 +9,7 @@ sidebarTitle: Local kubernetes deployment
 
 This installation doc will help you start a OpenMetadata standalone instance on your local machine.
 
-[openmetadata-helm-charts](https://github.com/open-metadata/openmetadata-helm-charts) houses Kubernetes Helm charts 
+[openmetadata-helm-charts](https://github.com/open-metadata/openmetadata-helm-charts) houses Kubernetes Helm charts
 for deploying OpenMetadata and its dependencies (Elasticsearch, MySQL and Airflow) on a Kubernetes cluster.
 
 
@@ -70,7 +70,7 @@ helm repo add open-metadata https://helm.open-metadata.org/
 To verify, run `helm repo list` to ensure the OpenMetadata repository was added.
 
 ```commandline
-NAME        	URL                            
+NAME        	URL
 open-metadata	https://helm.open-metadata.org/
 ```
 
@@ -155,7 +155,7 @@ persistent volume claims (`pvc`). These will need to be manually cleaned after h
 
 ### Pods fail to start due to `ErrImagePull` issue
 
-Sometimes, kubernetes timeout pulling the docker images. In such cases, you will receive `ErrImagePull` issue. In order to resolve this, you can manually pull the required docker images in your kubernetes environment. 
+Sometimes, kubernetes timeout pulling the docker images. In such cases, you will receive `ErrImagePull` issue. In order to resolve this, you can manually pull the required docker images in your kubernetes environment.
 
 You can find the docker image name of the failing pods using the command below -
 

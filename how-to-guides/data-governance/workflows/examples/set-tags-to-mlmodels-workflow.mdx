@@ -8,35 +8,35 @@ sidebarTitle: Set Tags to ML Models Workflow
 # Set Tags to ML Model Workflow
 
 ## Overview
-The **Set Tags to ML Model Workflow** automatically evaluates machine learning model metadata and assigns the appropriate governance tag based on whether key documentation is complete.  
+The **Set Tags to ML Model Workflow** automatically evaluates machine learning model metadata and assigns the appropriate governance tag based on whether key documentation is complete.
 This ensures that every ML model in the catalog is clearly marked as **Complete** or **Incomplete**, improving transparency, governance, and readiness for downstream use.
 
 
 ## How the Workflow Works
 
-1. **Workflow Start**  
+1. **Workflow Start**
    The workflow is triggered for an ML model entity. It begins by reading the model’s metadata.
 
-2. **Check: NON-NULL Description**  
-   The workflow evaluates whether the ML model contains a valid, non-empty **Description** field.  
+2. **Check: NON-NULL Description**
+   The workflow evaluates whether the ML model contains a valid, non-empty **Description** field.
    This field is required to consider the model sufficiently documented.
 
 3. **Decision Outcome**
     - If the **Description is present**, the workflow follows the **TRUE** branch.
     - If the **Description is missing or empty**, it follows the **FALSE** branch.
 
-4. **TRUE Path: Set Complete Tag**  
+4. **TRUE Path: Set Complete Tag**
    When the model passes the description check:
     - The workflow automatically assigns the **Complete** tag to the ML model.
     - The workflow then proceeds to the **End** step.
 
-5. **FALSE Path: Set Incomplete Tag**  
+5. **FALSE Path: Set Incomplete Tag**
    If the model does not have a valid description:
     - The workflow assigns the **Incomplete** tag.
     - The workflow then ends.
 
-6. **Workflow Completion**  
-   After the appropriate tag is assigned, the workflow concludes.  
+6. **Workflow Completion**
+   After the appropriate tag is assigned, the workflow concludes.
    No human intervention is required.
 
 
@@ -59,7 +59,7 @@ Description is not set and empty for the Machine Learning Model and Tags are Emp
 
 ## After Workflow Execution
 
-Complete Tag is populated 
+Complete Tag is populated
 
 <img noZoom src="/public/images/how-to-guides/governance/MLModelAfter.png" alt="Set Tags To MLModel Workflow" />
 
@@ -69,16 +69,16 @@ InComplete Tag is populated
 
 ## Key Features
 
-- **Automated documentation validation**  
+- **Automated documentation validation**
   Ensures ML models meet basic metadata requirements.
 
-- **Automatic tag assignment**  
+- **Automatic tag assignment**
   Tags the model as **Complete** or **Incomplete** without manual action.
 
-- **Clear governance signals**  
+- **Clear governance signals**
   Stakeholders can quickly determine whether a model has sufficient documentation.
 
-- **Lightweight and fully automated**  
+- **Lightweight and fully automated**
   No approval or human-in-the-loop required.
 
 

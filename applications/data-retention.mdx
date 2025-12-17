@@ -22,13 +22,13 @@ As **OpenMetadata** processes events related to metadata changes and pipeline ex
 
 ## Configuration Options
 
-- **Configuration Key:** `changeEventRetentionPeriod`  
-  **Description:** The number of days to retain change event records  
+- **Configuration Key:** `changeEventRetentionPeriod`
+  **Description:** The number of days to retain change event records
   **Default Value:** `7`
 
 
-- **Configuration Key:** `activityThreadsRetentionPeriod`  
-  **Description:** The number of days to retain activity feed records  
+- **Configuration Key:** `activityThreadsRetentionPeriod`
+  **Description:** The number of days to retain activity feed records
   **Default Value:** `60`
 
 
@@ -48,12 +48,12 @@ The app deletes old records from the following internal tables:
 
 ## Implementation Details
 
-- **Schedule:** Runs weekly by default.  
-- **Cron:** `0 0 * * 0` (every Sunday at midnight).  
-- **Batch Processing:** Cleans up records in batches of 10,000.  
-- **Triggering:** Can be executed manually or allowed to run on schedule.  
-- **Application Class:** `org.openmetadata.service.apps.bundles.dataRetention.DataRetention`  
-- **Permission Requirement:** Requires admin privileges to configure or trigger.  
+- **Schedule:** Runs weekly by default.
+- **Cron:** `0 0 * * 0` (every Sunday at midnight).
+- **Batch Processing:** Cleans up records in batches of 10,000.
+- **Triggering:** Can be executed manually or allowed to run on schedule.
+- **Application Class:** `org.openmetadata.service.apps.bundles.dataRetention.DataRetention`
+- **Permission Requirement:** Requires admin privileges to configure or trigger.
 
 ## How to Access
 

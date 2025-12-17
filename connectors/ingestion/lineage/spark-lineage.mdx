@@ -215,18 +215,18 @@ After configuring the init script, you will need to update the spark config as w
 
 <img noZoom src="/public/images/connectors/spark/spark-config-set.png" alt="Spark Set Config" />
 
-these are the possible configurations that you can do, please refer the `Configuration` section above to get the detailed information about the same. 
+these are the possible configurations that you can do, please refer the `Configuration` section above to get the detailed information about the same.
 
 ```
 spark.extraListeners io.openlineage.spark.agent.OpenLineageSparkListener
 spark.openmetadata.transport.type openmetadata
-spark.openmetadata transport.pipelineSourceUrl http://<your-pipeline-host-port> 
-spark.openmetadata transport.pipelineDescription "your pipeline description" 
-spark.openmetadata.transport.hostPort https://<your-openmetadata-host-port> 
-spark openmetadata transport.pipelineServiceName demo_pipeline 
-spark.openmetadata transport.pipelineName demo_pipeline 
-spark.openmetadata transport.databaseServiceNames db-service-name1,db-service-name2 
-spark.openmetadata.transport.jwtToken <your-jwt-token> 
+spark.openmetadata transport.pipelineSourceUrl http://<your-pipeline-host-port>
+spark.openmetadata transport.pipelineDescription "your pipeline description"
+spark.openmetadata.transport.hostPort https://<your-openmetadata-host-port>
+spark openmetadata transport.pipelineServiceName demo_pipeline
+spark.openmetadata transport.pipelineName demo_pipeline
+spark.openmetadata transport.databaseServiceNames db-service-name1,db-service-name2
+spark.openmetadata.transport.jwtToken <your-jwt-token>
 spark.openmetadata.transport.timeout 30
 ```
 

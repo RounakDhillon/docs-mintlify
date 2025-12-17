@@ -22,7 +22,7 @@ In this section, we provide guides and references to use the Teradata connector.
 Configure and schedule Teradata metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-- [Data Profiler](/how-to-guides/data-quality-observability/profiler/workflow)
+- [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Lineage](/how-to-guides/data-lineage/workflow)
 - [Data Quality](/how-to-guides/data-quality-observability/quality/configure)
 - [Troubleshooting](/connectors/database/teradata/troubleshooting)
@@ -47,7 +47,7 @@ For a complete guide on managing secrets in hybrid setups, see the [Hybrid Inges
 </Tip>
 - **Username**: Specify the User to connect to Teradata.
 - **Password**: Password to connect to Teradata
-- **Logmech**: Specifies the logon authentication method. Possible values are TD2 (the default), JWT, LDAP, KRB5 for Kerberos, or TDNEGO.  
+- **Logmech**: Specifies the logon authentication method. Possible values are TD2 (the default), JWT, LDAP, KRB5 for Kerberos, or TDNEGO.
 - **LOGDATA**: Specifies additional data needed by a logon mechanism, such as a secure token, Distinguished Name, or a domain/realm name. LOGDATA values are specific to each logon mechanism.
 - **Host and Port**: Enter the fully qualified hostname and port number (default port for Teradata is 1025) for your Teradata deployment in the Host and Port field.
 - **Transaction Mode**: Specifies the transaction mode for the connection. Possible values are DEFAULT (the default), ANSI, or TERA.

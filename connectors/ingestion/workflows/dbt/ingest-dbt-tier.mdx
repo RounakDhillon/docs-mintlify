@@ -19,7 +19,7 @@ For dbt Tier, Tiers must be created or present in OpenMetadata beforehand for da
 
 ## Steps for ingesting dbt Tier
 
-### 1. Add a Tier at OpenMetadata or Select a Tier 
+### 1. Add a Tier at OpenMetadata or Select a Tier
 Tiering is an important concept of data classification in OpenMetadata. Tiers should be based on the importance of data. Using Tiers, data producers or owners can define the importance of data to an organization.
 
 For details on adding or selecting tiers, refer to the [OpenMetadata documentation](https://docs.open-metadata.org/v1.3.x/how-to-guides/data-governance/classification/tiers#what-are-tiers)
@@ -35,7 +35,7 @@ For more details on dbt meta field follow the link [here](https://docs.getdbt.co
 ```yml
 models:
   - name: customers
-    meta: 
+    meta:
       openmetadata:
         tier: 'Tier.Tier2'
 

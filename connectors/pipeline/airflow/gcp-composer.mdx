@@ -1,10 +1,10 @@
 ---
-title: Extract Metadata from GCP Composer 
+title: Extract Metadata from GCP Composer
 slug: /connectors/pipeline/airflow/gcp-composer
 sidebarTitle: GCP Composer
 ---
 
-# Extract Metadata from GCP Composer 
+# Extract Metadata from GCP Composer
 
 ## Requirements
 
@@ -21,7 +21,7 @@ Feel free to choose whatever approach adapts best to your current architecture a
 
 ## Using the Python Operator
 
-The most comfortable way to extract metadata out of GCP Composer  is by directly creating a DAG in there
+The most comfortable way to extract metadata out of GCP Composer is by directly creating a DAG in there
 that will handle the connection to the metadata database automatically and push the contents
 to your OpenMetadata server.
 
@@ -66,7 +66,7 @@ from airflow.utils.dates import days_ago
 
 from metadata.workflow.metadata import MetadataWorkflow
 
- 
+
 
 default_args = {
     "owner": "user_name",
@@ -130,7 +130,7 @@ with DAG(
 
 ## Using the Kubernetes Pod Operator
 
-In this second approach we won't need to install absolutely anything to the GCP Composer  environment. Instead,
+In this second approach we won't need to install absolutely anything to the GCP Composer environment. Instead,
 we will rely on the `KubernetesPodOperator` to use the underlying k8s cluster of Composer.
 
 Then, the code won't directly run using the hosts' environment, but rather inside a container that we created
@@ -160,7 +160,7 @@ connection:
   database: composer-2-0-28-airflow-2-2-5-5ab01d14
 ```
 
-For more information on how to shape the YAML describing the Airflow metadata extraction, you can refer 
+For more information on how to shape the YAML describing the Airflow metadata extraction, you can refer
 [here](/connectors/pipeline/airflow/cli#1-define-the-yaml-config).
 
 

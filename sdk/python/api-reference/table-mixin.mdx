@@ -9,9 +9,9 @@ sidebarTitle: Table Mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/table_mixin.py#L0")
 
 # module `table_mixin`
-Mixin class containing Table specific methods 
+Mixin class containing Table specific methods
 
-To be used by OpenMetadata class 
+To be used by OpenMetadata class
 
 **Global Variables**
 ---------------
@@ -23,9 +23,9 @@ To be used by OpenMetadata class
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/table_mixin.py#L51")
 
 ## class `OMetaTableMixin`
-OpenMetadata API methods related to Tables. 
+OpenMetadata API methods related to Tables.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -43,13 +43,13 @@ create_or_update_custom_metric(
 ) → Table
 ```
 
-Create or update custom metric. If custom metric name matches an existing one then it will be updated. 
+Create or update custom metric. If custom metric name matches an existing one then it will be updated.
 
 
 
 **Args:**
- 
- - `custom_metric` (CreateCustomMetricRequest):  custom metric to be create or updated 
+
+ - `custom_metric` (CreateCustomMetricRequest):  custom metric to be create or updated
 
 ---
 
@@ -68,13 +68,13 @@ Update the profileSample property of a Table, given its FQN.
 
 **Args:**
 
-`fqn`: Table FQN 
+`fqn`: Table FQN
 
-`profile_sample`: new profile sample to set 
+`profile_sample`: new profile sample to set
 
 **Returns:**
 
-Updated table 
+Updated table
 
 ---
 
@@ -86,19 +86,19 @@ Updated table
 get_latest_table_profile(fqn: FullyQualifiedEntityName) → Optional[Table]
 ```
 
-Get the latest profile data for a table 
+Get the latest profile data for a table
 
 
 
 **Args:**
- 
- - `fqn` (str):  table fully qualified name 
+
+ - `fqn` (str):  table fully qualified name
 
 
 
 **Returns:**
- 
- - `Optional[Table]`:  OM table object 
+
+ - `Optional[Table]`:  OM table object
 
 ---
 
@@ -117,29 +117,29 @@ get_profile_data(
 ) → EntityList[~T]
 ```
 
-Get profile data 
+Get profile data
 
 
 
 **Args:**
- 
- - `fqn` (str):  fullyQualifiedName 
- - `start_ts` (int):  start timestamp 
- - `end_ts` (int):  end timestamp 
- - `limit` (int, optional):  limit of record to return. Defaults to 100. 
- - `after` (_type_, optional):  use for API pagination. Defaults to None. profile_type (Union[Type[TableProfile], Type[ColumnProfile]], optional):  Profile type to retrieve. Defaults to TableProfile. 
+
+ - `fqn` (str):  fullyQualifiedName
+ - `start_ts` (int):  start timestamp
+ - `end_ts` (int):  end timestamp
+ - `limit` (int, optional):  limit of record to return. Defaults to 100.
+ - `after` (_type_, optional):  use for API pagination. Defaults to None. profile_type (Union[Type[TableProfile], Type[ColumnProfile]], optional):  Profile type to retrieve. Defaults to TableProfile.
 
 
 
 **Raises:**
- 
- - `TypeError`:  if `profile_type` is not TableProfile or ColumnProfile 
+
+ - `TypeError`:  if `profile_type` is not TableProfile or ColumnProfile
 
 
 
 **Returns:**
- 
- - `EntityList`:  EntityList list object 
+
+ - `EntityList`:  EntityList list object
 
 ---
 
@@ -151,9 +151,9 @@ Get profile data
 get_sample_data(table: Table) → Optional[Table]
 ```
 
-GET call for the /sampleData endpoint for a given Table 
+GET call for the /sampleData endpoint for a given Table
 
-Returns a Table entity with TableData (sampleData informed) 
+Returns a Table entity with TableData (sampleData informed)
 
 ---
 
@@ -168,13 +168,13 @@ ingest_profile_data(
 ) → Table
 ```
 
-PUT profile data for a table 
+PUT profile data for a table
 
 **Args:**
 
-`table`: Table Entity to update 
+`table`: Table Entity to update
 
-`table_profile`: Profile data to add 
+`table_profile`: Profile data to add
 
 ---
 
@@ -190,9 +190,9 @@ PUT data model for a table
 
 **Args:**
 
-`table`: Table Entity to update 
+`table`: Table Entity to update
 
-`data_model`: Model to add 
+`data_model`: Model to add
 
 ---
 
@@ -211,9 +211,9 @@ PUT sample data for a table
 
 **Args:**
 
-`table`: Table Entity to update 
+`table`: Table Entity to update
 
-`sample_data`: Data to add 
+`sample_data`: Data to add
 
 ---
 
@@ -232,9 +232,9 @@ POST frequently joined with for a table
 
 **Args:**
 
-`table`: Table Entity to update 
+`table`: Table Entity to update
 
-`table_join_request`: Join data to add 
+`table_join_request`: Join data to add
 
 ---
 
@@ -246,13 +246,13 @@ POST frequently joined with for a table
 publish_table_usage(table: Table, table_usage_request: UsageRequest) → None
 ```
 
-POST usage details for a Table 
+POST usage details for a Table
 
 **Args:**
 
-`table`: Table Entity to update 
+`table`: Table Entity to update
 
-`table_usage_request`: Usage data to add 
+`table_usage_request`: Usage data to add
 
 
 

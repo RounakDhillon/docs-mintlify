@@ -45,12 +45,12 @@ The Auto Classification Workflow enables automatic tagging of sensitive informat
 - When set to `true`, filtering patterns will be applied to the Fully Qualified Name of a table (e.g., `service_name.db_name.schema_name.table_name`).
 - When set to `false`, filtering applies only to raw table names.
 
-## Auto Classification Workflow Execution  
+## Auto Classification Workflow Execution
 
-To execute the **Auto Classification Workflow**, follow the steps below:  
+To execute the **Auto Classification Workflow**, follow the steps below:
 
-### 1. Install the Required Python Package  
-Ensure you have the correct OpenMetadata ingestion package installed, including the **PII Processor** module:  
+### 1. Install the Required Python Package
+Ensure you have the correct OpenMetadata ingestion package installed, including the **PII Processor** module:
 
 ```bash
 pip install "openmetadata-ingestion[pii-processor]"
@@ -85,13 +85,13 @@ source:
       storeSampleData: true
       enableAutoClassification: true
       databaseFilterPattern:
-        includes: 
+        includes:
           - hello-world-1234
       schemaFilterPattern:
-        includes: 
+        includes:
           - super_schema
       tableFilterPattern:
-        includes: 
+        includes:
           - abc
 
 processor:
@@ -131,22 +131,22 @@ This approach ensures that the Auto Classification Workflow is executed correctl
 
 ### To Execute the Auto Classification Workflow:
 
-1. **Create a Pipeline**  
+1. **Create a Pipeline**
    - Configure the Auto Classification JSON as demonstrated in the provided configuration example.
 
-2. **Run the Ingestion Pipeline**  
+2. **Run the Ingestion Pipeline**
    - Use OpenMetadata or an external scheduler like Argo to trigger the pipeline execution.
 
-3. **Validate Results**  
+3. **Validate Results**
    - Verify the metadata and tags applied to sensitive columns in the OpenMetadata UI.
 
 ### Expected Outcomes
 
-- **Automatic Tagging:**  
+- **Automatic Tagging:**
   Columns containing sensitive information (e.g., names, emails, SSNs) are automatically tagged based on predefined confidence levels.
 
-- **Enhanced Visibility:** 
+- **Enhanced Visibility:**
   Gain improved visibility and classification of sensitive data within your databases.
 
-- **Sample Data Integration:**  
+- **Sample Data Integration:**
   Store sample data to provide better insights during profiling and testing workflows.

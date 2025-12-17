@@ -9,7 +9,7 @@ sidebarTitle: Ometa API
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/ometa_api.py#L0")
 
 # module `ometa_api`
-OpenMetadata is the high level Python API that serves as a wrapper for the metadata-server API. It is based on the generated pydantic models from the JSON schemas and provides a typed approach to working with OpenMetadata entities. 
+OpenMetadata is the high level Python API that serves as a wrapper for the metadata-server API. It is based on the generated pydantic models from the JSON schemas and provides a typed approach to working with OpenMetadata entities.
 
 **Global Variables**
 ---------------
@@ -21,7 +21,7 @@ OpenMetadata is the high level Python API that serves as a wrapper for the metad
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/ometa_api.py#L73")
 
 ## class `MissingEntityTypeException`
-We are receiving an Entity Type[T] not covered in our suffix generation list 
+We are receiving an Entity Type[T] not covered in our suffix generation list
 
 
 
@@ -32,7 +32,7 @@ We are receiving an Entity Type[T] not covered in our suffix generation list
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/ometa_api.py#L80")
 
 ## class `InvalidEntityException`
-We receive an entity not supported in an operation 
+We receive an entity not supported in an operation
 
 
 
@@ -43,7 +43,7 @@ We receive an entity not supported in an operation
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/ometa_api.py#L86")
 
 ## class `EmptyPayloadException`
-Raise when receiving no data, even if no exception during the API call is received 
+Raise when receiving no data, even if no exception during the API call is received
 
 
 
@@ -54,11 +54,11 @@ Raise when receiving no data, even if no exception during the API call is receiv
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/ometa_api.py#L93")
 
 ## class `OpenMetadata`
-Generic interface to the OpenMetadata API 
+Generic interface to the OpenMetadata API
 
-It is a polymorphism on all our different Entities. 
+It is a polymorphism on all our different Entities.
 
-Specific functionalities to be inherited from Mixins 
+Specific functionalities to be inherited from Mixins
 
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/ometa_api.py#L130")
 
@@ -85,9 +85,9 @@ __init__(config: OpenMetadataConnection, raw_data: bool = False)
 close()
 ```
 
-Closing connection 
+Closing connection
 
-Returns  None 
+Returns None
 
 ---
 
@@ -99,7 +99,7 @@ Returns  None
 compute_percentile(entity: Union[Type[~T], str], date: str) → None
 ```
 
-Compute an entity usage percentile 
+Compute an entity usage percentile
 
 ---
 
@@ -111,9 +111,9 @@ Compute an entity usage percentile
 create_or_update(data: ~C) → ~T
 ```
 
-We allow CreateEntity for PUT, so we expect a type C. 
+We allow CreateEntity for PUT, so we expect a type C.
 
-We PUT to the endpoint and return the Entity generated result 
+We PUT to the endpoint and return the Entity generated result
 
 ---
 
@@ -130,9 +130,9 @@ delete(
 ) → None
 ```
 
-API call to delete an entity from entity ID 
+API call to delete an entity from entity ID
 
-Args  entity (T): entity Type  entity_id (basic.Uuid): entity ID Returns  None 
+Args entity (T): entity Type entity_id (basic.Uuid): entity ID Returns None
 
 ---
 
@@ -149,7 +149,7 @@ get_by_id(
 ) → Optional[~T]
 ```
 
-Return entity by ID or None 
+Return entity by ID or None
 
 ---
 
@@ -166,7 +166,7 @@ get_by_name(
 ) → Optional[~T]
 ```
 
-Return entity by name or None 
+Return entity by name or None
 
 ---
 
@@ -178,7 +178,7 @@ Return entity by name or None
 get_create_entity_type(entity: Type[~T]) → Type[~C]
 ```
 
-imports and returns the Create Type from an Entity Type T. We are following the expected path structure to import on-the-fly the necessary class and pass it to the consumer 
+imports and returns the Create Type from an Entity Type T. We are following the expected path structure to import on-the-fly the necessary class and pass it to the consumer
 
 ---
 
@@ -190,7 +190,7 @@ imports and returns the Create Type from an Entity Type T. We are following the 
 get_entity_from_create(create: Type[~C]) → Type[~T]
 ```
 
-Inversely, import the Entity type based on the create Entity class 
+Inversely, import the Entity type based on the create Entity class
 
 ---
 
@@ -202,17 +202,17 @@ Inversely, import the Entity type based on the create Entity class
 get_entity_reference(entity: Type[~T], fqn: str) → Optional[EntityReference]
 ```
 
-Helper method to obtain an EntityReference from a FQN and the Entity class. 
+Helper method to obtain an EntityReference from a FQN and the Entity class.
 
 **Args:**
 
-`entity`: Entity Class 
+`entity`: Entity Class
 
-`fqn`: Entity instance FQN 
+`fqn`: Entity instance FQN
 
 **Returns:**
 
-EntityReference or None 
+EntityReference or None
 
 ---
 
@@ -224,7 +224,7 @@ EntityReference or None
 get_module_path(entity: Type[~T]) → str
 ```
 
-Based on the entity, return the module path it is found inside generated 
+Based on the entity, return the module path it is found inside generated
 
 ---
 
@@ -236,7 +236,7 @@ Based on the entity, return the module path it is found inside generated
 get_suffix(entity: Type[~T]) → str
 ```
 
-Given an entity Type from the generated sources, return the endpoint to run requests. 
+Given an entity Type from the generated sources, return the endpoint to run requests.
 
 ---
 
@@ -248,7 +248,7 @@ Given an entity Type from the generated sources, return the endpoint to run requ
 health_check() → bool
 ```
 
-Run version api call. Return `true` if response is not None 
+Run version api call. Return `true` if response is not None
 
 ---
 
@@ -280,7 +280,7 @@ Utility method that paginates over all EntityLists to return a generator to fetc
 
 **Returns**:
 
-Generator that will be yielding all Entities 
+Generator that will be yielding all Entities
 
 ---
 
@@ -299,7 +299,7 @@ list_entities(
 ) → EntityList[~T]
 ```
 
-Helps us paginate over the collection 
+Helps us paginate over the collection
 
 ---
 
@@ -311,7 +311,7 @@ Helps us paginate over the collection
 list_services(entity: Type[~T]) → List[EntityList[~T]]
 ```
 
-Service listing does not implement paging 
+Service listing does not implement paging
 
 ---
 
@@ -326,7 +326,7 @@ list_versions(
 ) → EntityVersionHistory
 ```
 
-Version history of an entity 
+Version history of an entity
 
 ---
 
@@ -338,7 +338,7 @@ Version history of an entity
 update_file_name(create: Type[~C], file_name: str) → str
 ```
 
-Update the filename for services and schemas 
+Update the filename for services and schemas
 
 
 

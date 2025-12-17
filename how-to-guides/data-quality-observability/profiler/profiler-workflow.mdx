@@ -35,56 +35,56 @@ Here you can enter the Profiler Agent details.
 <img noZoom src="/public/images/features/ingestion/workflows/profiler/configure-profiler-workflow.png" alt="Set profiler configuration" />
 
 #### Profiler Options
-**Name**  
+**Name**
 Define the name of the Profiler Workflow. While we only support a single workflow for the Metadata and Usage ingestion, users can define different schedules and filters for Profiler workflows.
 
 As profiling is a costly task, this enables a fine-grained approach to profiling and running tests by specifying different filters for each pipeline.
 
-**Database filter pattern (Optional)**  
+**Database filter pattern (Optional)**
 regex expression to filter databases.
 
-**Schema filter pattern (Optional)**  
+**Schema filter pattern (Optional)**
 regex expression to filter schemas.
 
-**Table filter pattern (Optional)**  
+**Table filter pattern (Optional)**
 regex expression to filter tables.
 
-**Profile Sample (Optional)**  
+**Profile Sample (Optional)**
 Set the sample to be use by the profiler for the specific table.
 - `Percentage`: Value must be between 0 and 100 exclusive (0 < percentage < 100). This will sample the table based on a percentage
 - `Row Count`: The table will be sampled based on a number of rows (i.e. `1,000`, `2,000`), etc.
 
 ⚠️ This option is currently not support for Druid. Sampling leverage `RANDOM` functions in most database (some have specific sampling functions) and Druid provides neither of these option. We recommend using the partitioning or sample query option if you need to limit the amount of data scanned.
 
-**Enable Debug Log**  
+**Enable Debug Log**
 Set the Enable Debug Log toggle to set the logging level of the process to debug. You can check these logs in the Ingestion tab of the service and dig deeper into any errors you might find.
 
-**Include Views**  
+**Include Views**
 If activated the profiler will compute metric for view entity types. Note that it can have a negative impact on the profiler performance.
 
-**Use FQN For Filtering Views**  
+**Use FQN For Filtering Views**
 Set this flag when you want to apply the filters on Fully Qualified Names (e.g service_name.db_name.schema_name.table_name) instead of applying them to the raw name of the asset (e.g table_name).
 This Flag is useful in scenarios when you have different schemas with same name in multiple databases, or tables with same name in different schemas, and you want to filter out only one of them.
 
-**Compute Metrics**  
+**Compute Metrics**
 Set the Compute Metrics toggle off to not perform any metric computation during the profiler ingestion workflow. Used in combination with Ingest Sample Data toggle on allows you to only ingest sample data.
 
-**Advanced Configuration**  
+**Advanced Configuration**
 
-**Sample Data Rows Count**  
+**Sample Data Rows Count**
 Set the number of rows to ingest when Ingest Sample Data toggle is on. Defaults to 50.
 
-**Thread Count (Optional)**  
-Number of thread to use when computing metrics for the profiler. For Snowflake users we recommend setting it to 1. There is a known issue with one of the dependency (`snowflake-connector-python`) affecting projects with certain environments. 
+**Thread Count (Optional)**
+Number of thread to use when computing metrics for the profiler. For Snowflake users we recommend setting it to 1. There is a known issue with one of the dependency (`snowflake-connector-python`) affecting projects with certain environments.
 
-**Timeout in Seconds (Optional)**  
+**Timeout in Seconds (Optional)**
 This will set the duration a profiling job against a table should wait before interrupting its execution and moving on to profiling the next table. It is important to note that the profiler will wait for the hanging query to terminiate before killing the execution. If there is a risk for your profiling job to hang, it is important to also set a query/connection timeout on your database engine. The default value for the profiler timeout is 12-hours.
 
 ### 3. Schedule and Deploy
 After clicking Next, you will be redirected to the Scheduling form. This will be the same as the Metadata and Usage Ingestions. Select your desired schedule and click on Deploy to find the usage pipeline being added to the Service Ingestions.
 
 ### 4. Updating Profiler setting at the table level
-Once you have created your profiler you can adjust some behavior at the table level by going to the table and clicking on the profiler tab 
+Once you have created your profiler you can adjust some behavior at the table level by going to the table and clicking on the profiler tab
 
 <img noZoom src="/public/images/features/ingestion/workflows/profiler/accessing-table-profile-settings.png" alt="table profile settings" />
 
@@ -117,7 +117,7 @@ Once you have picked the `Interval Type` you will need to define the configurati
 
 `INGESTION-TIME` or `INTEGER-RANGE`
 - `Interval`: the interval value (e.g. `1`, `2`, etc.)
-- `Interval Unit`: 
+- `Interval Unit`:
   - `HOUR`
   - `DAY`
   - `MONTH`
@@ -234,7 +234,7 @@ processor:
   config: {}  # Remove braces if adding properties
     # tableConfig:
     #   - fullyQualifiedName: <table fqn>
-    #     profileSample: <number between 0 and 99> # default 
+    #     profileSample: <number between 0 and 99> # default
 
     #     profileSample: <number between 0 and 99> # default will be 100 if omitted
     #     columnConfig:
@@ -290,7 +290,7 @@ Profiling all the tables in your data platform might not be the most optimized a
 When setting up a profiler workflow, you have the possibility to filter out/in certain databases, schemas, or tables. Using this feature will greatly help you narrow down which table you want to profile.
 
 ### 2. Sampling and Partitioning your Tables
-On a table asset, you have the possibility to add a sample percentage/rows and a partitioning logic. Doing so will significantly reduce the amount of data scanned and the computing power required to perform the different operations. 
+On a table asset, you have the possibility to add a sample percentage/rows and a partitioning logic. Doing so will significantly reduce the amount of data scanned and the computing power required to perform the different operations.
 
 For sampling, you can set a sampling percentage at the workflow level.
 

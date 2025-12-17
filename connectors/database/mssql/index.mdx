@@ -25,7 +25,7 @@ Configure and schedule MSSQL metadata and profiler workflows from the OpenMetada
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Query Usage](/connectors/ingestion/workflows/usage)
-- [Data Profiler](/how-to-guides/data-quality-observability/profiler/workflow)
+- [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [Lineage](/connectors/ingestion/lineage)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
@@ -51,7 +51,7 @@ Make sure the SQL server that you are trying to connect is in running state.
 #### 2. Allow remote connection on MSSMS(Microsoft SQL Server Management Studio)
 This step allow the sql server to accept remote connection request.
 <img noZoom src="/public/images/connectors/mssql/remote-connection.png" alt="Remote Connection" />
-#### 3. Configure Windows Firewall 
+#### 3. Configure Windows Firewall
 If you are using SQL server on windows, you must configure the firewall on the computer running SQL Server to allow access.
 **Step 1**: On the Start menu, select Run, type WF.msc, and then select OK.
 **Step 2**: In the Windows Firewall with Advanced Security, in the left pane, right-click Inbound Rules, and then select New Rule in the action pane.

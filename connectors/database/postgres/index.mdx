@@ -24,7 +24,7 @@ Configure and schedule PostgreSQL metadata and profiler workflows from the OpenM
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Query Usage](/connectors/ingestion/workflows/usage)
-- [Data Profiler](/how-to-guides/data-quality-observability/profiler/workflow)
+- [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [Lineage](/connectors/ingestion/lineage)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
@@ -111,9 +111,9 @@ For a complete guide on managing secrets in hybrid setups, see the [Hybrid Inges
 </Tip>
 - **Username**: Specify the User to connect to PostgreSQL. It should have enough privileges to read all the metadata.
 - **Auth Type**: Basic Auth or IAM based auth to connect to instances / cloud rds.
-  - **Basic Auth**: 
+  - **Basic Auth**:
     - **Password**: Password to connect to PostgreSQL.
-  - **IAM Based Auth**: 
+  - **IAM Based Auth**:
     - **AWS Access Key ID** & **AWS Secret Access Key**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
   permission to access the resources that you are requesting. AWS uses the security credentials to authenticate and
   authorize your requests ([docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html)).
@@ -144,9 +144,9 @@ For a complete guide on managing secrets in hybrid setups, see the [Hybrid Inges
     This is a required field if you'd like to `AssumeRole`.
     Find more information on [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html).
     <Tip>
-    When using Assume Role authentication, ensure you provide the following details:  
-    - **AWS Region**: Specify the AWS region for your deployment.  
-    - **Assume Role ARN**: Provide the ARN of the role in your AWS account that OpenMetadata will assume.  
+    When using Assume Role authentication, ensure you provide the following details:
+    - **AWS Region**: Specify the AWS region for your deployment.
+    - **Assume Role ARN**: Provide the ARN of the role in your AWS account that OpenMetadata will assume.
     </Tip>
     - **Assume Role Session Name**: An identifier for the assumed role session. Use the role session name to uniquely identify a session when the same role
       is assumed by different principals or for different reasons.

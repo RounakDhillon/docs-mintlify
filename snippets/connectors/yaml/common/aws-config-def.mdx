@@ -8,7 +8,7 @@ An access key consists of:
 
 Both values must be provided together when using static credentials.
 
-For more information, see  
+For more information, see
 [Managing access keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
 
 AWS Session Token
@@ -23,7 +23,7 @@ AWS Region
 
 This is the **only required parameter** when configuring an AWS connection. Other credentials can be resolved automatically using environment variables, AWS profiles, or IAM roles.
 
-Learn more in the  
+Learn more in the
 [AWS Regions and Availability Zones documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
 
 Custom Endpoint URL
@@ -35,17 +35,17 @@ You may want to specify this when:
 - Connecting to local or AWS-compatible services
 - Overriding the default regional endpoint
 
-See  
+See
 [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) for details.
 
 AWS Profile Name
 
 **profileName** specifies the AWS CLI profile to use for authentication.
 
-Profiles store credentials and configuration in AWS config files.  
+Profiles store credentials and configuration in AWS config files.
 If not specified, the `default` profile is used.
 
-Learn more about  
+Learn more about
 [Named profiles for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
 
 Assume Role ARN
@@ -59,7 +59,7 @@ This is commonly used for:
 
 This field is **required** when using Assume Role authentication.
 
-See the  
+See the
 [AssumeRole API reference](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html).
 
 Assume Role Session Name
@@ -76,5 +76,5 @@ Assume Role Source Identity
 
 This value is recorded in AWS CloudTrail logs and can be used to trace actions performed using the assumed role.
 
-See  
+See
 [Source Identity in AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html).

@@ -9,9 +9,9 @@ sidebarTitle: ES Mixin
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/es_mixin.py#L0")
 
 # module `es_mixin`
-Mixin class containing Lineage specific methods 
+Mixin class containing Lineage specific methods
 
-To be used by OpenMetadata class 
+To be used by OpenMetadata class
 
 **Global Variables**
 ---------------
@@ -23,9 +23,9 @@ To be used by OpenMetadata class
 [<img noZoom src="https://img.shields.io/badge/-source-cccccc?style=flat-square" />](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/src/metadata/ingestion/ometa/mixins/es_mixin.py#L38")
 
 ## class `ESMixin`
-OpenMetadata API methods related to Elasticsearch. 
+OpenMetadata API methods related to Elasticsearch.
 
-To be inherited by OpenMetadata 
+To be inherited by OpenMetadata
 
 
 
@@ -54,19 +54,19 @@ Given a service_name and some filters, search for entities using ES
 
 **Args:**
 
-`entity_type`: Entity to look for 
+`entity_type`: Entity to look for
 
-`fqn_search_string`: string used to search by FQN. E.g., service.*.schema.table 
+`fqn_search_string`: string used to search by FQN. E.g., service.*.schema.table
 
-`from_count`: Records to expect 
+`from_count`: Records to expect
 
-`size`: Number of records 
+`size`: Number of records
 
-`fields`: Comma separated list of fields to be returned 
+`fields`: Comma separated list of fields to be returned
 
 **Returns:**
 
-List of entities 
+List of entities
 
 ---
 
@@ -92,7 +92,7 @@ get_query_with_lineage_filter(service_name: str) → str
 get_reindex_job_status(job_id: str) → Optional[EventPublisherResult]
 ```
 
-Method to fetch the elasticsearch reindex job status 
+Method to fetch the elasticsearch reindex job status
 
 ---
 
@@ -104,7 +104,7 @@ Method to fetch the elasticsearch reindex job status
 reindex_es(config: CreateEventPublisherJob) → Optional[EventPublisherResult]
 ```
 
-Method to trigger elasticsearch reindex 
+Method to trigger elasticsearch reindex
 
 
 

@@ -17,7 +17,7 @@ This document details the integration of Open Metadata with SAP systems, emphasi
 
 
 ## Steps
-### 1. ABAP Development Tools (ADT) 
+### 1. ABAP Development Tools (ADT)
 Using the Eclipse based [ABAP Development Tools (ADT)](https://tools.hana.ondemand.com/#abap) the Restful interfaces are built.
 
 ### 2. CDS Views
@@ -67,7 +67,7 @@ key l.as4vers,
 @AbapCatalog.preserveKey: true
 @AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Open Metadata Column'
-define view ZZ_I_DDIC_COL_CDS as select from dd03l l 
+define view ZZ_I_DDIC_COL_CDS as select from dd03l l
 left outer join dd03t t on
  (l.tabname = t.tabname and l.fieldname = t.fieldname and l.as4local = t.as4local and t.ddlanguage = 'E')
 {

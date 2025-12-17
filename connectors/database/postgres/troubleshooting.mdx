@@ -11,7 +11,7 @@ import Troubleshooting from '/snippets/connectors/troubleshooting.mdx'
 
 ## Troubleshooting: `pg_stat_statements` Relation Does Not Exist
 
-**Issue**  
+**Issue**
 When running a query through OpenMetadata, you may encounter the following error:
 
 
@@ -20,10 +20,10 @@ When running a query through OpenMetadata, you may encounter the following error
 LINE 9:         pg_stat_statements s
 ```
 
-**Cause**  
+**Cause**
 This error occurs because the PostgreSQL extension `pg_stat_statements` is not enabled. This extension is required to access query execution statistics, which are used by OpenMetadata for usage and performance insights.
 
-**Solution**  
+**Solution**
 Enable the `pg_stat_statements` extension in your PostgreSQL instance. You can do this by executing the following command as a superuser:
 
 ```sql
@@ -94,16 +94,16 @@ When trying to connect to a PostgreSQL server hosted on Azure/AWS using basic au
 
 This error generally indicates that the host trying to access the PostgreSQL server is not permitted according to the server's `pg_hba.conf` configuration, which manages authentication.
 
-1. **Whitelist the IP address**  
+1. **Whitelist the IP address**
    Ensure that the IP address provided by the OpenMetadata Service wizard is whitelisted in the Azure network firewall rules. You should also verify that the correct IP is added in the firewall for the database to allow connections from OpenMetadata.
 
-2. **Check pg_hba.conf File**  
+2. **Check pg_hba.conf File**
    While Azure-managed PostgreSQL doesn't allow direct access to modify the `pg_hba.conf` file, you can control access using Azure Firewall rules. Ensure that the IP address attempting to connect is allowed.
 
-3. **Verify Network Access**  
+3. **Verify Network Access**
    Ensure that the PostgreSQL server is accessible from the internet for the allowed IP addresses. If the server is behind a VPN or private network, adjust the network settings accordingly.
 
-4. **Adjust SSL Mode**  
+4. **Adjust SSL Mode**
    The error could also be related to SSL settings. Setting the SSL mode to `allow` can help resolve this issue. Modify the connection settings in the OpenMetadata Service configuration to:
 
 ```

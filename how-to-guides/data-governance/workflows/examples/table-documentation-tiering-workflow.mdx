@@ -17,30 +17,30 @@ A data governance team needs a consistent way to measure documentation quality a
 
 ## How the Workflow Works
 
-1. **Table and Column Evaluation**  
+1. **Table and Column Evaluation**
    The workflow scans each table and inspects all of its columns.
 
-2. **Validation of Required Metadata**  
+2. **Validation of Required Metadata**
    For each table, the workflow checks whether:
    - Table contains a **description**
-   - Required **owners** are present  
+   - Required **owners** are present
      If either condition is not met, the workflow terminates for that table and no certification is assigned.
 
-3. **Priority Type Check**  
-   The workflow verifies that the table’s **Custom Property: Enum Priority Type** is set to **Priority**.  
+3. **Priority Type Check**
+   The workflow verifies that the table’s **Custom Property: Enum Priority Type** is set to **Priority**.
    If not, the workflow ends for that table.
 
-4. **Documentation Completeness Calculation**  
+4. **Documentation Completeness Calculation**
    For eligible tables, the workflow calculates the percentage of columns that have complete descriptions.
 
-5. **Tier Assignment**  
+5. **Tier Assignment**
    Based on predefined completeness thresholds, the workflow assigns a certification tier:
    - **TIER1** — 100% of columns documented
    - **TIER2** — ≥ 75% documented
    - **TIER3** — ≥ 50% documented
    - **TIER4** — < 50% documented
 
-6. **Tier Update**  
+6. **Tier Update**
    The assigned tier is written back to the catalog or metadata store for visibility and governance reporting.
 
 ## Creating the Workflow

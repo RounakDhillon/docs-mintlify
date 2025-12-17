@@ -346,14 +346,14 @@ The threshold allows you to define a limit for which you test should pass or fai
 
 **Example**
 ```sql
-SELECT 
+SELECT
 customer_id
-FROM DUAL 
+FROM DUAL
 WHERE lifetime_value < 0;
 ```
 
 ```sql
-SELECT 
+SELECT
 customer_id
 FROM DUAL d
 INNER JOIN OTHER o ON d.id = o.id
@@ -369,9 +369,9 @@ WHERE lifetime_value < 0;
   parameterValues:
     - name: sqlExpression
       value: >
-        SELECT 
+        SELECT
         customer_tier
-        FROM DUAL 
+        FROM DUAL
         WHERE customer_tier = 'GOLD' and lifetime_value < 10000;
 ```
 
@@ -470,7 +470,7 @@ Integrity
 ```
 
 ### Compare 2 Tables for Differences
-Compare 2 tables for differences. Allows a user to check for integrity. 
+Compare 2 tables for differences. Allows a user to check for integrity.
 Supports comparing tables across different services.
 For example, you can compare a table in Snowflake with a table in Redshift.
 
@@ -495,7 +495,7 @@ Consistency
 * `useColumns`: The columns against which the comparison will done. If not provided it will use all the columns
 * `table2`: The table against which the comparison will be done. Must be the fully qualified name as defined in Collate
 * `threshold`: The threshold of different rows above which the test should fail -- default to 0
-* `where`: Any `where` clause to pass 
+* `where`: Any `where` clause to pass
 * `caseSensitiveColumns`: Whether the column comparison should be case sensitive or not. Default to `false`.
 
 **Behavior**
@@ -565,7 +565,7 @@ parameterValues:
 ```
 
 ### Table Data to Be Fresh [Collate]
-Validate the freshness of a table's data. 
+Validate the freshness of a table's data.
 
 **Dimension**:
 Accuracy
@@ -875,7 +875,7 @@ Validity
     - name: allowedValues
       value: '["forbidden1", "forbidden2"]'
     - name: matchEnum
-      value: ""  # or true  
+      value: ""  # or true
 ```
 
 **JSON Config**
@@ -896,7 +896,7 @@ Validity
         },
         {
             "name": "matchEnum",
-            "value": "" 
+            "value": ""
         }
     ]
 }
@@ -1269,7 +1269,7 @@ Accuracy
 **JSON Config**
 
 ```json
-{   
+{
     "name": "myTestName",
     "description": "test description",
     "columnName": "columnName",

@@ -71,7 +71,7 @@ openmetadata:
       host: <GCP_CLOUD_SQL_ENDPOINT_IP>
       port: 3306
       driverClass: com.mysql.cj.jdbc.Driver
-      dbScheme: mysql 
+      dbScheme: mysql
       dbUseSSL: true
       databaseName: <GCP_CLOUD_SQL_DATABASE_NAME>
       auth:
@@ -96,7 +96,7 @@ openmetadata:
       host: <GCP_CLOUD_SQL_ENDPOINT_IP>
       port: 5432
       driverClass: org.postgresql.Driver
-      dbScheme: postgresql 
+      dbScheme: postgresql
       dbUseSSL: true
       databaseName: <GCP_CLOUD_SQL_DATABASE_NAME>
       auth:
@@ -391,14 +391,14 @@ helm install openmetadata-dependencies open-metadata/openmetadata-dependencies -
 
 </Tip>
 
-The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml). 
+The above command uses configurations defined [here](https://raw.githubusercontent.com/open-metadata/openmetadata-helm-charts/main/charts/deps/values.yaml).
 You can modify any configuration and deploy by passing your own `values.yaml`
 
 ```commandline
 helm install openmetadata-dependencies open-metadata/openmetadata-dependencies --values <path-to-values-file>
 ```
 
-Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart - 
+Once the openmetadata dependencies helm chart deployed, you can then run the below command to install the openmetadata helm chart -
 
 ```commandline
 helm install openmetadata open-metadata/openmetadata --values <path-to-values-file>

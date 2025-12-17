@@ -45,12 +45,12 @@ When configuring Azure Authentication, ensure that "Allow public client flows" i
 While configuring the PowerBI ingestion you can choose whether to use the PowerBI Admin APIs to retrieve the metadata or use the PowerBI Non-Admin APIs. Please check below for the the difference in their functionality:
 - Enabled (Use PowerBI Admin APIs)
 Using the admin APIs will fetch the dashboard and chart metadata from all the workspaces available in the PowerBI instance.
-<Tip> 
+<Tip>
 When using the PowerBI Admin APIs, the table and dataset information used to generate lineage is gathered using the PowerBI [Scan Result](https://learn.microsoft.com/en-us/rest/api/power-bi/admin/workspace-info-get-scan-result) API. This API has no limitations and hence does not restrict getting the necessary data for generating lineage.
 </Tip>
 - Disabled (Use Non-Admin PowerBI APIs)
 Using the non-admin APIs will only fetch the dashboard and chart metadata from the workspaces that have the security group of the service principal assigned to them.
-<Tip> 
+<Tip>
 When using the PowerBI Non-Admin APIs, the table and dataset information used to generate lineage is gathered using the PowerBI [Get Dataset Tables](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets/datasets-get-tables) API. This API only retrieves the table information if the dataset is a [Push Dataset](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets).
 Hence the lineage can only be created for push datasets in this case.
 For more information please visit the PowerBI official documentation [here](https://learn.microsoft.com/en-us/rest/api/power-bi/push-datasets/datasets-get-tables#limitations).
@@ -184,7 +184,7 @@ tenantId: tenant  # REQUIRED - Azure AD tenant ID
 # useAdminApis: true (default)
 # Select one of local, azureConfig, gcsConfig, s3Config.
       # For Azure
-      # pbitFilesSource: 
+      # pbitFilesSource:
       #   pbitFileConfigType: azure  # Specify the storage type as Azure Blob Storage
       #   securityConfig:
       #     clientId: ""            # Azure application Client ID
@@ -201,9 +201,9 @@ tenantId: tenant  # REQUIRED - Azure AD tenant ID
       # GCP credentials configurations
       # We support two ways of authenticating to GCP: via GCP Credentials Values or GCP Credentials Path.
       # Option 1: Authenticate using GCP Credentials Values
-      # pbitFilesSource: 
+      # pbitFilesSource:
       #   pbitFileConfigType: gcs  # Specify the storage type as Google Cloud Storage
-      #   securityConfig: 
+      #   securityConfig:
       #     type: service_account  # Authentication type
       #     projectId: ""          # GCP project ID (can be single or multiple)
       #     privateKeyId: ""       # Private Key ID from GCP service account
@@ -218,7 +218,7 @@ tenantId: tenant  # REQUIRED - Azure AD tenant ID
       #     objectPrefix: ""       # Path prefix to locate files within the bucket
       #   pbitFilesExtractDir: /tmp/pbitFiles  # Local directory for extracted files
       # Option 2: Authenticate using Raw Credential Values
-      # pbitFilesSource: 
+      # pbitFilesSource:
       #   pbitFileConfigType: gcs  # Specify the storage type as Google Cloud Storage
       #   securityConfig:
       #     type: external_account # Authentication type

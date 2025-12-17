@@ -67,7 +67,7 @@ def should_reuse_existing_code(existing_code, new_requirement):
     - Modification effort < writing from scratch
     - Existing code is well-tested
     - Existing code is documented
-    
+
     CREATE NEW ONLY IF:
     - No similar code exists
     - Existing code would need >50% changes
@@ -301,7 +301,7 @@ TIME ESTIMATE: 4 hours
 1. **Step 1**: [Description] (15 min)
    - Reusing: [existing component]
    - New code: [what needs to be written]
-   
+
 2. **Step 2**: [Description] (30 min)
    - Reusing: [existing component]
    - New code: [what needs to be written]
@@ -367,28 +367,28 @@ APPROVAL_WORKFLOW = {
         "COMPLETE": "Task finished successfully",
         "REJECTED": "Plan rejected, revising"
     },
-    
+
     "valid_responses": {
         "APPROVED": "Proceed with implementation",
         "MODIFY": "Adjust plan based on feedback",
         "REJECT": "Create alternative plan",
         "CLARIFY": "Need more information"
     },
-    
+
     "on_approval": """
         1. Confirm approach selected
         2. Begin implementation EXACTLY as planned
         3. No deviations without re-approval
         4. Report progress at checkpoints
     """,
-    
+
     "on_modify": """
         1. Incorporate feedback
         2. Update plan document
         3. Re-submit for approval
         4. Wait for new approval
     """,
-    
+
     "on_reject": """
         1. Understand rejection reasons
         2. Research alternatives
@@ -418,13 +418,13 @@ def analyze_for_reuse(file_path):
         "validators": extract_validation_patterns(file_path),
         "transformers": extract_transformation_patterns(file_path)
     }
-    
+
     # Score reusability
     for component in patterns:
         component["reusability_score"] = calculate_reuse_potential(component)
         component["dependencies"] = analyze_dependencies(component)
         component["test_coverage"] = check_test_coverage(component)
-    
+
     return patterns
 ```
 
@@ -436,19 +436,19 @@ FOR each file:
       □ Factory classes to reuse
       □ Builder patterns to extend
       □ Singleton instances to utilize
-    
+
     Structural (for composition reuse):
       □ Adapters to leverage
       □ Decorators to apply
       □ Facades to utilize
       □ Proxies to reuse
-    
+
     Behavioral (for logic reuse):
       □ Strategy implementations
       □ Observer patterns
       □ Command patterns
       □ Template methods to override
-    
+
     Modern Patterns (for architecture reuse):
       □ Repository implementations
       □ Service layers
@@ -470,7 +470,7 @@ TASK_DECOMPOSITION:
         - name: "AuthenticationService"
           coverage: "100%"
           location: "src/services/auth.js"
-        - name: "ValidationMiddleware" 
+        - name: "ValidationMiddleware"
           coverage: "80%"
           location: "src/middleware/validation.js"
           modifications_needed: "Add new validation rule"
@@ -478,18 +478,18 @@ TASK_DECOMPOSITION:
         - name: "CustomBusinessLogic"
           reason: "Specific to this requirement"
           estimated_loc: 50
-    
+
     implementation_plan:
       phase_1_reuse:
         - step: "Import existing services"
         - step: "Configure for new use case"
         - step: "Test with existing test suite"
-      
+
       phase_2_extend:
         - step: "Extend base classes"
         - step: "Override specific methods"
         - step: "Add new properties"
-      
+
       phase_3_new:
         - step: "Implement only truly new logic"
         - step: "Integrate with existing system"
@@ -542,12 +542,12 @@ async def find_reusable_components(requirement):
         include=["functions", "classes", "modules"],
         similarity_threshold=0.7
     )
-    
+
     # Analyze each match for reusability
     for match in similar:
         match["can_reuse"] = await analyze_reusability(match)
         match["modification_effort"] = await estimate_modification(match)
-    
+
     return similar
 ```
 
@@ -628,22 +628,22 @@ REUSE_PRINCIPLES = {
 ```python
 class ImplementationGuard:
     """Ensures no implementation without approval"""
-    
+
     def __init__(self):
         self.approval_status = None
         self.approved_plan = None
         self.deviations = []
-    
+
     def can_implement(self, task):
         """Check if implementation is allowed"""
         if not self.approval_status:
             raise Exception("❌ NO APPROVAL! Must get plan approved first!")
-        
+
         if task not in self.approved_plan:
             raise Exception("❌ Task not in approved plan! Need re-approval!")
-        
+
         return True
-    
+
     def track_deviation(self, planned, actual):
         """Track any deviations from plan"""
         if planned != actual:
@@ -653,10 +653,10 @@ class ImplementationGuard:
                 "timestamp": now(),
                 "requires_reapproval": self.is_major_deviation(planned, actual)
             })
-            
+
             if self.is_major_deviation(planned, actual):
                 raise Exception("❌ Major deviation! Need re-approval!")
-    
+
     def is_major_deviation(self, planned, actual):
         """Determine if deviation requires re-approval"""
         return any([
@@ -745,11 +745,11 @@ def test_reuse_compliance():
     # Check for code duplication
     duplicates = find_duplicate_code()
     assert len(duplicates) == 0, f"Found duplicated code: {duplicates}"
-    
+
     # Verify reused components unchanged
     for component in reused_components:
         assert component.unchanged(), f"{component} was modified!"
-    
+
     # Check pattern consistency
     patterns = analyze_patterns(new_code)
     assert patterns.match(existing_patterns), "Not following patterns!"
@@ -765,7 +765,7 @@ def test_reuse_compliance():
 
 ### File: [filename.js]
 **Purpose**: [What this file does]
-**Reuses**: 
+**Reuses**:
 - `AuthService` from `/services/auth`
 - `validate()` from `/utils/validation`
 - Base class `Controller` from `/core`
@@ -786,7 +786,7 @@ class NewFeature extends Controller {  // Extending existing base
         super();
         this.auth = new AuthService();  // Reusing existing service
     }
-    
+
     // New method specific to this feature
     customBusinessLogic() {
         // Implementation
@@ -967,7 +967,7 @@ Claude: ✅ Approval received! Implementing Approach A with maximum reuse...
 
 [Progress updates every 30 minutes]
 
-Claude: ✅ Implementation complete! 
+Claude: ✅ Implementation complete!
 - Reused: 380 lines (76%)
 - New code: 120 lines (24%)
 - All tests passing
@@ -978,7 +978,7 @@ Claude: ✅ Implementation complete!
 
 ## END OF PROTOCOL
 
-Remember: 
+Remember:
 - **PLAN FIRST, GET APPROVAL, THEN IMPLEMENT**
 - **REUSE > REBUILD - Always check existing code**
 - **No cowboys - Follow the approved plan exactly**

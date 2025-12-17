@@ -102,15 +102,15 @@ source:
 
 <WorkflowConfig />
 <IngestionCli />
-> **Note for SSAS Lineage:**  
-> - The SSAS connector does **not** support view or query-based lineage extraction.  
-> - Instead, it supports **cross-database lineage**.  
+> **Note for SSAS Lineage:**
+> - The SSAS connector does **not** support view or query-based lineage extraction.
+> - Instead, it supports **cross-database lineage**.
 > - To enable cross-database lineage, you need to set the following options in your YAML under `sourceConfig.config`:
 >   - `processCrossDatabaseLineage: true`
 >   - `crossDatabaseServiceNames: [<list_of_other_database_service_names>]`
-> 
+>
 > Example:
-> 
+>
 > ```yaml
 > sourceConfig:
 >   config:

@@ -56,11 +56,11 @@ collate:
       databaseName: collate_db
       username: collate_user
       password: secure_password
-    
+
     elasticsearch:
       host: elasticsearch.default.svc.cluster.local
       port: 9200
-    
+
     airflow:
       host: http://airflow.default.svc.cluster.local:8080
       username: admin
@@ -94,7 +94,7 @@ postgresql:
   readReplicas:
     replicaCount: 2
 
-# Elasticsearch HA  
+# Elasticsearch HA
 elasticsearch:
   enabled: true
   replicas: 3

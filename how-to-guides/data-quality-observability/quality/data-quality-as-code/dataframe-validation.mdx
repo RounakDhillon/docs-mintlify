@@ -441,7 +441,7 @@ if result.success:
         TableRowCountToBeBetween(min_count=10000),
         ColumnValuesSumToBeBetween(column="amount", min_value=1000000)
     )
-    
+
     # Automatically publishes results for table tests only
     table_results = table_validator.run()
 ```

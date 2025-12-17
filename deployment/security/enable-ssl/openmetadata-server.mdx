@@ -8,13 +8,13 @@ collate: false
 
 # Enable SSL at the OpenMetadata Server
 
-The OpenMetadata Server is built using **Dropwizard** and **Jetty**. In this section, we will go through the steps 
-involved in setting up SSL for Jetty. 
+The OpenMetadata Server is built using **Dropwizard** and **Jetty**. In this section, we will go through the steps
+involved in setting up SSL for Jetty.
 
-If you would like a simple way to set up SSL, please refer to the guide using [Nginx](/deployment/security/enable-ssl/nginx). 
+If you would like a simple way to set up SSL, please refer to the guide using [Nginx](/deployment/security/enable-ssl/nginx).
 
 However, this step can be treated as an additional layer of adding SSL to OpenMetadata. In cases where one would use
-Nginx as a load balancer or AWS LB, you can set up SSL at the OpenMetadata server level such that traffic from the 
+Nginx as a load balancer or AWS LB, you can set up SSL at the OpenMetadata server level such that traffic from the
 load balancer to OpenMetadata is going through an encrypted channel.
 
 ## Create Self-Signed Certificate
@@ -37,36 +37,36 @@ OpenMetadata installation path under the `conf` directory.
 <img noZoom src="/public/images/deployment/security/enable-ssl/openmetadata-server/keystore-2.png" alt="keystore" />
 
 
-## Configure openmetadata.yaml 
+## Configure openmetadata.yaml
 
-Add the below section to your `openmetadata.yaml` under the `conf` directory. Please add the password you set for the 
+Add the below section to your `openmetadata.yaml` under the `conf` directory. Please add the password you set for the
 Keystore generated above in the config below.
 
 ```yaml
-server:                                                                                                                                                                                  
-  rootPath: '/api/*'                                                                                                                                                                     
-  applicationConnectors:                                                                                                                                                                 
-    - type: https                                                                                                                                                                        
-      port: ${SERVER_PORT:-8585}                                                                                                                                                         
-      keyStorePath: ./conf/openmetadata.keystore.jks                                                                                                                                     
-      keyStorePassword: test12                                                                                                                                                           
-      keyStoreType: JKS                                                                                                                                                                  
-      supportedProtocols: [TLSv1.2, TLSv1.5]                                                                                                                                      
+server:
+  rootPath: '/api/*'
+  applicationConnectors:
+    - type: https
+      port: ${SERVER_PORT:-8585}
+      keyStorePath: ./conf/openmetadata.keystore.jks
+      keyStorePassword: test12
+      keyStoreType: JKS
+      supportedProtocols: [TLSv1.2, TLSv1.5]
       excludedProtocols: [SSL, SSLv2, SSLv2Hello, SSLv3]
 ```
-                                                                                                                               
-## Access OpenMetadata server in the browser 
 
-These steps are not necessary if you used proper X509 certificated signed by trusted CA Authority. 
+## Access OpenMetadata server in the browser
 
-Since we used self-signed certificates, browsers such as Chrome or Brave will not allow you to visit 
+These steps are not necessary if you used proper X509 certificated signed by trusted CA Authority.
+
+Since we used self-signed certificates, browsers such as Chrome or Brave will not allow you to visit
 [https://localhost:8585](https://localhost:8585). You'll get the following error page and there is no way to proceed.
 
 <img noZoom src="/public/images/deployment/security/enable-ssl/openmetadata-server/browser.png" alt="browser" />
 
 However, the Safari browser allows you to visit if you click advanced and click proceed. To work around this issue, on
 OS X, you can import the certificate into the keychain and trust it so that browsers can trust and allow you to access
-OpenMetadata. 
+OpenMetadata.
 
 ### Export X509 certificate from Keystore
 

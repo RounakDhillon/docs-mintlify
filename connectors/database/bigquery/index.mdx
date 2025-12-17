@@ -27,7 +27,7 @@ Configure and schedule BigQuery metadata and profiler workflows from the OpenMet
 - [Metadata Ingestion](#metadata-ingestion)
     - [Incremental Extraction](/connectors/ingestion/workflows/metadata/incremental-extraction/bigquery)
 - [Query Usage](/connectors/ingestion/workflows/usage)
-- [Data Profiler](/how-to-guides/data-quality-observability/profiler/workflow)
+- [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Data Quality](/how-to-guides/data-quality-observability/quality/configure)
 - [Lineage](/connectors/ingestion/lineage)
 - [dbt Integration](/connectors/ingestion/workflows/dbt)
@@ -42,7 +42,7 @@ You need to create an service account in order to ingest metadata from bigquery 
 </Card>
 </Columns>
 <PartitionedTables />
-### Data Catalog API Permissions 
+### Data Catalog API Permissions
 - Go to [https://console.cloud.google.com/apis/library/datacatalog.googleapis.com](https://console.cloud.google.com/apis/library/datacatalog.googleapis.com)
 - Select the `GCP Project ID` that you want to enable the `Data Catalog API` on.
 - Click on `Enable API` which will enable the data catalog api on the respective project.
@@ -71,8 +71,8 @@ To execute metadata extraction and usage workflow successfully the user or the s
 If the user has `External Tables`, please attach relevant permissions needed for external tables, alongwith the above list of permissions.
 </Tip>
 <Tip>
-If you are using BigQuery and have sharded tables, you might want to consider using partitioned tables instead. Partitioned tables allow you to efficiently query data by date or other criteria, without having to manage multiple tables. Partitioned tables also have lower storage and query costs than sharded tables. 
-You can learn more about the benefits of partitioned tables [here](https://cloud.google.com/bigquery/docs/partitioned-tables#dt_partition_shard). 
+If you are using BigQuery and have sharded tables, you might want to consider using partitioned tables instead. Partitioned tables allow you to efficiently query data by date or other criteria, without having to manage multiple tables. Partitioned tables also have lower storage and query costs than sharded tables.
+You can learn more about the benefits of partitioned tables [here](https://cloud.google.com/bigquery/docs/partitioned-tables#dt_partition_shard).
 If you want to convert your existing sharded tables to partitioned tables, you can follow the steps in this [guide](https://cloud.google.com/bigquery/docs/creating-partitioned-tables#convert-date-sharded-tables).
 This will help you simplify your data management and optimize your performance in BigQuery.
 </Tip>
@@ -82,7 +82,7 @@ This will help you simplify your data management and optimize your performance i
 <Steps>
 <Step title="Connection Options">
 **Host and Port**: BigQuery APIs URL. By default, the API URL is `bigquery.googleapis.com` you can modify this if you have custom implementation of BigQuery.
-**GCP Credentials**: 
+**GCP Credentials**:
 You can authenticate with your bigquery instance using either `GCP Credentials Path` where you can specify the file path of the service account key or you can pass the values directly by choosing the `GCP Credentials Values` from the service account key file.
 You can check out [this](https://cloud.google.com/iam/docs/keys-create-delete#iam-service-account-keys-create-console) documentation on how to create the service account keys and download it.
 **GCP Credentials Values**: Passing the raw credential values provided by BigQuery. This requires us to provide the following information, all provided by BigQuery:
