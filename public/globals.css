@@ -959,3 +959,14 @@ article iframe,
   margin: 0;
   z-index: 50;
 }
+
+#assistant-entry {
+  margin-left: auto;
+  border: 2px solid #0BA5EC;
+  background-color: transparent;
+}
+
+#assistant-entry svg, #assistant-entry span {
+  color: #0BA5EC;
+  font-weight: 600;
+}
