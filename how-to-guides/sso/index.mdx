@@ -1,0 +1,77 @@
+---
+title: SSO Security | Collate Deployment Security
+description: Learn about authentication, encryption, secret management, and provider configurations for securing your platform deployment.
+slug: /how-to-guides/sso
+sidebarTitle: Overview
+--- 
+
+# SSO
+
+This section provides detailed instructions to secure the REST endpoints of the Collate Server.
+
+Collate has support for Google SSO, Okta SSO, custom OIDC, Auth0, Azure SSO, Amazon Cognito, and OneLogin as identity providers. Please see the next sections about how to configure them.
+
+Enabling Security is only required for your **Production** installation. If you are testing Collate, it will be easier 
+and faster to set up without security.
+
+<Note>
+
+Collate currently does not support the simultaneous use of multiple authentication mechanisms, such as combining SSO and Basic Authentication.
+
+</Note>
+
+<CardGroup cols={2}>
+  <Card
+    title="Auth0 SSO"
+    href="how-to-guides/sso/auth0"
+  >
+    Configure Auth0 SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="Azure SSO"
+    href="how-to-guides/sso/azure"
+  >
+    Configure Azure SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="Custom OIDC SSO"
+    href="how-to-guides/sso/custom-oidc"
+  >
+    Configure a custom OIDC SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="Google SSO"
+    href="how-to-guides/sso/google"
+  >
+    Configure Google SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="Okta SSO"
+    href="how-to-guides/sso/okta"
+  >
+    Configure Okta SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="Amazon Cognito SSO"
+    href="how-to-guides/sso/amazon-cognito"
+  >
+    Configure Amazon Cognito SSO to access the UI and APIs.
+  </Card>
+    <Card
+    title="SAML"
+    href="how-to-guides/sso/saml"
+  >
+    Configure SAML SSO to access the UI and APIs.
+  </Card>
+    <Card
+    title="LDAP"
+    href="/how-to-guides/sso/ldap"
+  >
+    Configure LDAP SSO to access the UI and APIs.
+  </Card>
+</CardGroup>
