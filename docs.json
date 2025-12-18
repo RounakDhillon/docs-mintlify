@@ -1648,5 +1648,10 @@
                 ]
             }
         ]
+    },
+    "integrations": {
+        "ga4": {
+            "measurementId": "GTM-554C968W"
+        }
     }
 }
