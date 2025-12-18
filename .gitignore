@@ -25,6 +25,9 @@ mono_crash.*
 [Dd]ebugPublic/
 # Exception: allow debug images in documentation
 !images/**/debug/
+# Exception: allow debug folder in connectors
+!public/images/connectors/debug/
+!connectors/**/debug/
 [Rr]elease/
 [Rr]eleases/
 x64/
