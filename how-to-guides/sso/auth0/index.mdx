@@ -13,9 +13,9 @@ import SsoTroubleshooting from '/snippets/deployment/sso-troubleshooting.mdx'
 
 - [Troubleshooting](#troubleshooting)
 
-Auth0 SSO enables users to log in to OpenMetadata using their Auth0 credentials via OAuth 2.0 and OpenID Connect (OIDC). This configuration supports **Confidential Clients** using both Client ID and Client Secret for secure backend authentication.
+Auth0 SSO enables users to log in to Collate using their Auth0 credentials via OAuth 2.0 and OpenID Connect (OIDC). This configuration supports **Confidential Clients** using both Client ID and Client Secret for secure backend authentication.
 
-This guide walks you through configuring OpenMetadata with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
+This guide walks you through configuring Collate with a Auth0 provider using **Confidential client** settings (Client ID + Client Secret).
 
 ## Overview
 
@@ -67,7 +67,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 - **Definition:** The Auth0 domain endpoint that issues tokens for your tenant.  
 - **Example:** `https://dev‑abc123.us.auth0.com/your‑auth0‑domain`  
-- **Why it matters:** Tells OpenMetadata which Auth0 tenant to authenticate against.  
+- **Why it matters:** Tells Collate which Auth0 tenant to authenticate against.  
 - **Note:**  
   - Replace `your‑auth0‑domain` with your Auth0 tenant ID  
   - For multi‑tenant use, you may use `common`
@@ -109,14 +109,14 @@ This section contains the form fields that must be completed when setting up Sin
 - **Definition:** Permissions requested from Auth0 during authentication.  
 - **Default:** `openid email profile`  
 - **Example:** `openid email profile User.Read`  
-- **Why it matters:** Determines what user information OpenMetadata can access.  
+- **Why it matters:** Determines what user information Collate can access.  
 - **Note:** Usually `openid email profile` is sufficient.
 
 ### OIDC Discovery URI
 
 - **Definition:** Auth0’s OpenID Connect metadata endpoint.  
 - **Example:** `https://dev‑abc123.us.auth0.com/your‑auth0‑domain/v2.0/.well‑known/openid‑configuration`  
-- **Why it matters:** Allows OpenMetadata to automatically discover Auth0’s OIDC endpoints.  
+- **Why it matters:** Allows Collate to automatically discover Auth0’s OIDC endpoints.  
 - **Note:** Replace `your‑auth0‑domain` with your actual tenant ID.
 
 ### OIDC Use Nonce
@@ -218,9 +218,9 @@ This section contains the form fields that must be completed when setting up Sin
 
 ### JWT Principal Claims Mapping
 
-- **Definition:** Maps JWT claims to OpenMetadata user attributes.  
+- **Definition:** Maps JWT claims to Collate user attributes.  
 - **Example:** `["email:email", "name:displayName", "firstName:given_name"]`  
-- **Why it matters:** Controls how user information from Auth0 maps to OpenMetadata profiles.  
+- **Why it matters:** Controls how user information from Auth0 maps to Collate profiles.  
 - **Note:** Format: `"openmetadata_field:jwt_claim"`
 
 ### Admin Principals

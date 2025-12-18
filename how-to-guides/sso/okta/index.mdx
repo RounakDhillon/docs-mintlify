@@ -13,9 +13,9 @@ import SsoTroubleshooting from '/snippets/deployment/sso-troubleshooting.mdx'
 
 - [Troubleshooting](#troubleshooting)
 
-Okta Single Sign-On (SSO) enables users to log in to OpenMetadata with their Okta credentials using **OAuth 2.0** and **OpenID Connect (OIDC)** protocols.
+Okta Single Sign-On (SSO) enables users to log in to Collate with their Okta credentials using **OAuth 2.0** and **OpenID Connect (OIDC)** protocols.
 
-This guide walks you through configuring OpenMetadata with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
+This guide walks you through configuring Collate with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
 
 ## Overview
 
@@ -46,7 +46,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 ### Enable Self Signup
 
-Allows users to create OpenMetadata accounts on first login.
+Allows users to create Collate accounts on first login.
 
 - **Options:** Enabled | Disabled
 - **Recommended:** Disabled (for tighter access control)
@@ -197,7 +197,7 @@ JWT fields used to identify the authenticated user.
 
 ### JWT Principal Claims Mapping
 
-Maps JWT claims to OpenMetadata user profile fields.
+Maps JWT claims to Collate user profile fields.
 
 - **Example:** `["email:email", "name:name", "firstName:given_name"]`
 - **Note:** Format: `"openmetadata_field:jwt_claim"`

@@ -16,7 +16,7 @@ AWS Cognito SSO enables users to log in using credentials from an AWS Cognito Us
 
 This configuration supports **Confidential Clients**, which use both Client ID and Client Secret for secure backend authentication.
 
-This guide walks you through configuring OpenMetadata with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
+This guide walks you through configuring Collate with a AWS Cognito provider using **Confidential client** settings (Client ID + Client Secret).
 
 ## Overview
 
@@ -56,7 +56,7 @@ This section contains the form fields that must be completed when setting up Sin
 ### Authority
 - **Definition:** AWS Cognito User Pool domain that issues tokens.  
 - **Example:** `https://cognito-idp.us-east-1.amazonaws.com/us-east-1_ABC123DEF`
-- **Why it matters:** Specifies which Cognito User Pool OpenMetadata authenticates against.
+- **Why it matters:** Specifies which Cognito User Pool Collate authenticates against.
 - **Note:** Use the format `https://cognito-idp.{region}.amazonaws.com/{user-pool-id}`.
 
 ### Public Key URLs
@@ -92,13 +92,13 @@ This section contains the form fields that must be completed when setting up Sin
 - **Definition:** Scopes requested from AWS Cognito during authentication.
 - **Default:** `openid email profile`
 - **Example:** `openid email profile aws.cognito.signin.user.admin`
-- **Why it matters:** Defines what user information OpenMetadata can access.
+- **Why it matters:** Defines what user information Collate can access.
 - **Note:** Must match scopes configured in your Cognito app client.
 
 ### OIDC Discovery URI
 - **Definition:** AWS Cognito’s OIDC metadata endpoint.
 - **Example:** `https://cognito-idp.us-east-1.amazonaws.com/us-east-1_ABC123DEF/.well-known/openid-configuration`
-- **Why it matters:** Allows OpenMetadata to auto-discover endpoints for tokens and authorization.
+- **Why it matters:** Allows Collate to auto-discover endpoints for tokens and authorization.
 - **Note:** Replace `{region}` and `{user-pool-id}` with your values.
 
 ### OIDC Use Nonce
@@ -182,12 +182,12 @@ This section contains the form fields that must be completed when setting up Sin
 - **Note:** Common Cognito claims include `cognito:username`, `email`, `sub`, `preferred_username`.
 
 ### JWT Principal Claims Mapping
-- **Definition:** Maps JWT claims to OpenMetadata user attributes.
+- **Definition:** Maps JWT claims to Collate user attributes.
 - **Example:** `["email:email", "name:name", "firstName:given_name"]`
 - **Note:** Use format `"openmetadata_field:jwt_claim"`.
 
 ### Admin Principals
-- **Definition:** Users with administrative privileges in OpenMetadata.
+- **Definition:** Users with administrative privileges in Collate.
 - **Example:** `["admin@company.com", "superuser@company.com"]`
 
 ### Principal Domain

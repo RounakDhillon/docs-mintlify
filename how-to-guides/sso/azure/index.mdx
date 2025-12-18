@@ -51,7 +51,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 - **Definition:** Azure AD endpoint that issues tokens for your tenant.
 - **Example:** `https://login.microsoftonline.com/your-tenant-id`
-- **Why it matters:** Tells OpenMetadata which Azure AD tenant to authenticate against.
+- **Why it matters:** Tells Collate which Azure AD tenant to authenticate against.
 - **Note:**
   - Replace `your-tenant-id` with your Azure AD tenant ID.
   - Use `common` for multi-tenant applications.
@@ -102,7 +102,7 @@ This section contains the form fields that must be completed when setting up Sin
 - **Definition:** Permissions requested from Azure AD.
 - **Default:** `openid email profile`
 - **Example:** `openid email profile User.Read`
-- **Why it matters:** Defines what user information OpenMetadata can access.
+- **Why it matters:** Defines what user information Collate can access.
 - **Note:** `openid email profile` is usually sufficient.
 
 ### 9. OIDC Discovery URI
@@ -208,21 +208,21 @@ This section contains the form fields that must be completed when setting up Sin
 
 - **Definition:** JWT fields used to identify users.
 - **Example:** `["preferred_username", "email", "sub"]`
-- **Why it matters:** Determines how users are mapped in OpenMetadata.
+- **Why it matters:** Determines how users are mapped in Collate.
 - **Note:** Common claims: `email`, `preferred_username`, `upn`, `sub`
 
 ### 24. JWT Principal Claims Mapping
 
-- **Definition:** Maps JWT claims to OpenMetadata user fields.
+- **Definition:** Maps JWT claims to Collate user fields.
 - **Example:**
   ```json
   ["email:email", "name:displayName", "firstName:given_name"]
-- **Why it matters:** Controls user profile mapping in OpenMetadata.
+- **Why it matters:** Controls user profile mapping in Collate.
 - **Note:** Format: `"openmetadata_field:jwt_claim"`
 
 ### 25. Admin Principals
 
-- **Definition:** Users granted admin access in OpenMetadata.  
+- **Definition:** Users granted admin access in Collate.  
 - **Example:** `["admin@company.com", "superuser@company.com"]`  
 - **Why it matters:** Grants full admin privileges.  
 - **Note:** Match these to your JWT claims.

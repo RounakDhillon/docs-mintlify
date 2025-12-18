@@ -1,6 +1,6 @@
 ---
-title: SAML SSO Configuration | OpenMetadata
-description: Step-by-step guide to configure SAML-based SSO using ADFS, Okta, or Shibboleth for secure enterprise authentication and federated login in OpenMetadata.
+title: SAML SSO Configuration | Collate
+description: Step-by-step guide to configure SAML-based SSO using ADFS, Okta, or Shibboleth for secure enterprise authentication and federated login in Collate.
 slug: /how-to-guides/sso/saml
 sidebarTitle: SAML SSO
 ---
@@ -12,9 +12,9 @@ import SsoTroubleshooting from '/snippets/deployment/sso-troubleshooting.mdx'
 
 - [Troubleshooting](#troubleshooting)
 
-SAML (Security Assertion Markup Language) SSO enables users to authenticate with enterprise identity providers such as ADFS, Shibboleth, or Okta. This setup allows secure, federated login to OpenMetadata through SAML assertions.
+SAML (Security Assertion Markup Language) SSO enables users to authenticate with enterprise identity providers such as ADFS, Shibboleth, or Okta. This setup allows secure, federated login to Collate through SAML assertions.
 
-This guide walks you through configuring OpenMetadata with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
+This guide walks you through configuring Collate with a SAML provider using **Confidential client** settings (Client ID + Client Secret).
 
 ## Overview
 
@@ -76,7 +76,7 @@ This section contains the form fields that must be completed when setting up Sin
 - **Example:** `https://openmetadata.company.com/api/v1/saml/acs`
 
 ### SP X.509 Certificate
-- **Definition:** OpenMetadata’s public certificate.
+- **Definition:** Collate’s public certificate.
 - **Note:** Required if you want to sign authentication requests.
 
 ### SP Private Key
@@ -93,7 +93,7 @@ This section contains the form fields that must be completed when setting up Sin
 - **Example:** 7200
 
 ### Send Signed Auth Request
-- **Definition:** Whether to sign SAML requests from OpenMetadata.
+- **Definition:** Whether to sign SAML requests from Collate.
 - **Default:** false
 - **Example:** true
 
@@ -118,11 +118,11 @@ This section contains the form fields that must be completed when setting up Sin
 - **Example:** `["preferred_username", "email", "sub"]`
 
 ### JWT Principal Claims Mapping
-- **Definition:** Maps SAML/JWT claims to OpenMetadata user fields.
+- **Definition:** Maps SAML/JWT claims to Collate user fields.
 - **Example:** `["email:email", "name:displayName", "firstName:given_name"]`
 
 ### Admin Principals
-- **Definition:** Users with admin access in OpenMetadata.
+- **Definition:** Users with admin access in Collate.
 - **Example:** `["admin@example.com", "security@example.com"]`
 
 ### Principal Domain

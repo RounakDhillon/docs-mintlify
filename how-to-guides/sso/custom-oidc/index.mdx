@@ -1,6 +1,6 @@
 ---
-title: Custom OIDC SSO Configuration | OpenMetadata
-description: Step-by-step guide to configure Custom OIDC-based SSO using ADFS, Okta, or Shibboleth for secure enterprise authentication and federated login in OpenMetadata.
+title: Custom OIDC SSO Configuration | Collate
+description: Step-by-step guide to configure Custom OIDC-based SSO using ADFS, Okta, or Shibboleth for secure enterprise authentication and federated login in Collate.
 slug: /how-to-guides/sso/custom-oidc
 sidebarTitle: Custom OIDC SSO 
 ---
@@ -15,7 +15,7 @@ import SsoTroubleshooting from '/snippets/deployment/sso-troubleshooting.mdx'
 
 Custom OIDC authentication enables integration with any OpenID Connect (OIDC) compliant identity provider such as Auth0, Google, Azure AD, PingIdentity, or internal enterprise solutions.
 
-This guide walks you through configuring OpenMetadata with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
+This guide walks you through configuring Collate with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
 
 ## Overview
 
@@ -97,7 +97,7 @@ This section contains the form fields that must be completed when setting up Sin
 - **Definition:** OAuth2 scopes requested from your provider.
 - **Default:** `openid profile email`
 - **Example:** `openid profile email groups`
-- **Why it matters:** Controls what user data OpenMetadata can access.
+- **Why it matters:** Controls what user data Collate can access.
 - **Common scopes:**
   - `openid` – Required for OIDC
   - `profile` – Access basic user profile
@@ -191,7 +191,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 ### JWT Principal Claims Mapping
 
-- **Definition:** Maps JWT claims to OpenMetadata user profile fields.
+- **Definition:** Maps JWT claims to Collate user profile fields.
 - **Example:** `["email:email", "name:name", "firstName:given_name"]`
 - **Format:** `"openmetadata_field:jwt_claim"`
 

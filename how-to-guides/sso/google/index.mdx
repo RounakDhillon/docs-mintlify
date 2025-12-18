@@ -47,7 +47,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 - **Definition:** Google’s OAuth 2.0 authorization server.
 - **Default & Example:** `https://accounts.google.com`
-- **Why it matters:** Specifies where OpenMetadata should send auth requests.
+- **Why it matters:** Specifies where Collate should send auth requests.
 - **Note:** Usually does not need to be changed.
 
 ### 3. Public Key URLs
@@ -93,7 +93,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 - **Definition:** Google OIDC metadata URL.
 - **Example:** `https://accounts.google.com/.well-known/openid-configuration`
-- **Why it matters:** Enables OpenMetadata to auto-discover endpoints.
+- **Why it matters:** Enables Collate to auto-discover endpoints.
 
 ### 9. OIDC Use Nonce
 
@@ -173,11 +173,11 @@ Options: id_token | code
 
 ### 20. JWT Principal Claims Mapping
 
-- **Definition:** Maps JWT claims to OpenMetadata user attributes.
+- **Definition:** Maps JWT claims to Collate user attributes.
 - **Example:**
   ```json
   ["email:email", "name:name", "firstName:given_name", "lastName:family_name"]
-- **Why it matters:** Maps identity information to OpenMetadata user profiles.
+- **Why it matters:** Maps identity information to Collate user profiles.
 - **Note:** Use the format `openmetadata_field:jwt_claim`.
 
 ### 21. Admin Principals

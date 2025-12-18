@@ -1,6 +1,6 @@
 ---
-title: LDAP SSO Configuration | OpenMetadata
-description: Step-by-step guide to configure LDAP-based SSO using Active Directory, OpenLDAP, or other LDAP-compatible directory services for secure enterprise authentication and federated login in OpenMetadata.
+title: LDAP SSO Configuration | Collate
+description: Step-by-step guide to configure LDAP-based SSO using Active Directory, OpenLDAP, or other LDAP-compatible directory services for secure enterprise authentication and federated login in Collate.
 slug: /how-to-guides/sso/ldap
 sidebarTitle: LDAP SSO
 ---
@@ -14,9 +14,9 @@ import SsoTroubleshooting from '/snippets/deployment/sso-troubleshooting.mdx'
 
 LDAP (Lightweight Directory Access Protocol) authentication enables users to log in using their enterprise directory credentials from systems such as **Active Directory**, **OpenLDAP**, or other LDAP-compatible identity providers.  
 
-This guide explains how to configure LDAP as an authentication source in OpenMetadata.
+This guide explains how to configure LDAP as an authentication source in Collate.
 
-This guide walks you through configuring OpenMetadata with a Custom OIDC provider using **Confidential client** settings (Client ID + Client Secret).
+This guide walks you through configuring Collate with a LDAP provider using **Confidential client** settings (Client ID + Client Secret).
 
 ## Overview
 
@@ -57,13 +57,13 @@ This section contains the form fields that must be completed when setting up Sin
 - **Definition:** Redirect URI where users land after LDAP authentication.
 - **Example:** `https://yourapp.company.com/callback`
 - **Why it matters:** Defines the return URL post-authentication.
-- **Note:** Typically your OpenMetadata application URL.
+- **Note:** Typically your Collate application URL.
 
 ### Authority
 
 - **Definition:** Base URL for the LDAP authentication authority.
 - **Example:** `https://yourapp.company.com/auth/ldap`
-- **Why it matters:** Defines the endpoint OpenMetadata uses for LDAP requests.
+- **Why it matters:** Defines the endpoint Collate uses for LDAP requests.
 - **Note:** Required for routing LDAP authentication calls.
 
 ### Enable Self Signup
@@ -137,7 +137,7 @@ This section contains the form fields that must be completed when setting up Sin
 - **Definition:** Enables secure LDAP (LDAPS).
 - **Default:** false
 - **Example:** true
-- **Why it matters:** Encrypts communication between OpenMetadata and LDAP.
+- **Why it matters:** Encrypts communication between Collate and LDAP.
 - **Note:**  
   - true → Use LDAPS (port 636)  
   - false → Use LDAP (port 389)
@@ -157,8 +157,8 @@ This section contains the form fields that must be completed when setting up Sin
 
 ### Admin Role Name
 
-- **Definition:** LDAP group that maps to OpenMetadata admin role.
-- **Example:** `OpenMetadata-Admins`
+- **Definition:** LDAP group that maps to Collate admin role.
+- **Example:** `Collate-Admins`
 - **Why it matters:** Members of this group get admin privileges.
 
 ### All Attribute Name
@@ -194,7 +194,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 ### Auth Roles Mapping
 
-- **Definition:** JSON mapping of LDAP groups to OpenMetadata roles.
+- **Definition:** JSON mapping of LDAP groups to Collate roles.
 - **Example:** `{"LDAP-Admins": "Admin", "LDAP-Users": "User"}`
 - **Why it matters:** Automatically assigns roles based on group membership.
 
@@ -263,7 +263,7 @@ This section contains the form fields that must be completed when setting up Sin
 
 ### JWT Principal Claims Mapping
 
-- **Definition:** Maps LDAP attributes to OpenMetadata user fields.
+- **Definition:** Maps LDAP attributes to Collate user fields.
 - **Example:** `["email:mail", "name:displayName", "firstName:givenName"]`
 
 ### Admin Principals
