@@ -1,0 +1,34 @@
+### Troubleshooting
+
+If users are automatically logged out and unable to log in again due to a bad authentication configuration, you can reset the security setup using the following command:
+
+```
+
+./bootstrap/openmetadata-ops.sh remove-security-config --force
+
+```
+
+After executing the command, **restart the server**. The authentication values from your YAML or Helm chart will then be reapplied on startup. The following tiles detail how to apply this configuration across Docker, Kubernetes, and Bare Metal deployments:
+
+<CardGroup cols={2}>
+  <Card
+    title="Docker Security"
+    href="/how-to-guides/sso/configuration/docker"
+  >
+    Configure SSO for your Docker deployment.
+  </Card>
+
+  <Card
+    title="Bare Metal Security"
+    href="/how-to-guides/sso/configuration/bare-metal"
+  >
+    Configure SSO for your bare metal deployment.
+  </Card>
+
+  <Card
+    title="Kubernetes Security"
+    href="/how-to-guides/sso/configuration/kubernetes"
+  >
+    Configure SSO for your Kubernetes deployment.
+  </Card>
+</CardGroup>
