@@ -1085,8 +1085,17 @@ div:has(> div > #chat-assistant-textarea) {
   color: #1570EF;
 }
 
-#assistant-entry:hover { 
-  background-color: #edf3fb;
+#assistant-entry:hover {
+  background: linear-gradient(45deg, #175CD3 0%, #1570EF 100%);
+}
+
+#assistant-entry:hover svg,
+#assistant-entry:hover span {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: white;
+  background-clip: unset;
+  color: white;
 }
 
 /* Parent container for search and assistant buttons */
