@@ -1303,10 +1303,22 @@
                                         ]
                                     },
                                     {
-                                        "group": "Anamoly Detection",
+                                        "group": "Anomaly Detection",
                                         "pages": [
-                                            "how-to-guides/data-quality-observability/anamoly-detection/index",
-                                            "how-to-guides/data-quality-observability/anamoly-detection/setting-up"
+                                            "how-to-guides/data-quality-observability/anomaly-detection/index",
+                                            "how-to-guides/data-quality-observability/anomaly-detection/setting-up"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Notification Templates",
+                                        "pages": [
+                                            "how-to-guides/data-quality-observability/notification-templates/index",
+                                            "how-to-guides/data-quality-observability/notification-templates/concepts-and-overview",
+                                            "how-to-guides/data-quality-observability/notification-templates/create-and-manage-templates",
+                                            "how-to-guides/data-quality-observability/notification-templates/handlebars-templating-guide",
+                                            "how-to-guides/data-quality-observability/notification-templates/template-context-reference",
+                                            "how-to-guides/data-quality-observability/notification-templates/custom-helpers-reference",
+                                            "how-to-guides/data-quality-observability/notification-templates/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -1478,7 +1490,6 @@
                                             "how-to-guides/admin-guide/roles-policies/use-cases"
                                         ]
                                     },
-                                    "how-to-guides/admin-guide/alerts",
                                     "how-to-guides/admin-guide/cli-ingestion-with-basic-auth",
                                     "how-to-guides/admin-guide/how-to-add-custom-logo",
                                     "how-to-guides/admin-guide/reindexing-search",
@@ -1524,6 +1535,20 @@
                                     "how-to-guides/guide-for-data-users/browser-ext"
                                 ]
                             },
+                            {
+		                        "group": "SSO",
+		                        "pages": [
+		                            "how-to-guides/sso/index",
+		                            "how-to-guides/sso/okta/index",
+		                            "how-to-guides/sso/auth0/index",
+		                            "how-to-guides/sso/azure/index",
+		                            "how-to-guides/sso/google/index",
+		                            "how-to-guides/sso/amazon-cognito-sso/index",
+		                            "how-to-guides/sso/custom-oidc/index",
+		                            "how-to-guides/sso/saml/index",
+		                            "how-to-guides/sso/ldap/index"
+		                        ]
+                           },
                             {
                                 "group": "SQL Studio",
                                 "pages": [
