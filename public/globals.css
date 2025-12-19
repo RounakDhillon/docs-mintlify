@@ -1082,12 +1082,14 @@ div:has(> div > #chat-assistant-textarea) {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 600;
+  color: #1570EF;
 }
 
-#assistant-entry:hover {
-  background: linear-gradient(45deg, #175CD3 0%, #1570EF 100%);
+#assistant-entry:hover #assistant-entry svg, #assistant-entry:hover #assistant-entry span { 
+  text-decoration: underline;
 }
 
-#assistant-entry:hover #assistant-entry svg, #assistant-entry:hover #assistant-entry span {
-  color: white;
+/* Parent container for search and assistant buttons */
+div:has(> #search-bar-entry):has(> #assistant-entry) {
+  flex-direction: row-reverse !important;
 }
