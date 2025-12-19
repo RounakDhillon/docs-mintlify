@@ -1143,7 +1143,7 @@
 		                            "how-to-guides/sso/auth0/index",
 		                            "how-to-guides/sso/azure/index",
 		                            "how-to-guides/sso/google/index",
-		                            "how-to-guides/sso/amazon-cognito-sso/index",
+		                            "how-to-guides/sso/amazon-cognito/index",
 		                            "how-to-guides/sso/custom-oidc/index",
 		                            "how-to-guides/sso/saml/index",
 		                            "how-to-guides/sso/ldap/index"
