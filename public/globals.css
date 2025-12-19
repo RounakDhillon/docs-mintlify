@@ -737,7 +737,7 @@ body:not(:has(.homepage-container)) .card [data-component-part="card-icon"] img 
 }
 
 /* Hide search bar only when homepage-container class is present */
-body:has(.homepage-container) #search-bar-entry {
+body:has(.homepage-container) #search-bar-entry, body:has(.homepage-container) #assistant-entry {
   display: none !important;
 }
 
@@ -749,7 +749,7 @@ body:has(.homepage-container) #search-bar-entry {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 750px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   padding: 0px 6px;
@@ -757,7 +757,7 @@ body:has(.homepage-container) #search-bar-entry {
 
 .homepage-search-input {
   width: 100%;
-  padding: 16px 58px;
+  padding: 18px 58px 18px 70px;
   border: 2px solid #EAECF5;
   border-radius: 100px;
   font-size: 16px;
@@ -773,22 +773,35 @@ body:has(.homepage-container) #search-bar-entry {
 }
 
 .homepage-search-input:hover {
-  border-color: #5469d4;
   background-color: #FFFFFF;
 }
 
 .homepage-search-input:focus {
   outline: none;
-  border-color: #5469d4;
   background-color: #FFFFFF;
   box-shadow: 0 0 0 3px rgba(84, 105, 212, 0.1);
 }
 
-.search-icon {
+.ask-ai-icon-button {
   position: absolute;
-  left: 32px;
+  left: 26px;
+  top: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.ask-ai-icon {
   color: #9CA3AF;
-  pointer-events: none;
+  pointer-events: auto;
+  width: 40px !important;
+  height: 40px !important;
 }
 
 .search-shortcut {
@@ -946,9 +959,106 @@ article iframe,
   color: #414651 !important;
 }
 
+/* Parent div of chat assistant sheet */
+div:has(> #chat-assistant-sheet) {
+  right: 30px !important;
+  border: none;
+}
+
 #chat-assistant-sheet {
-  margin-top: 2rem !important;
+  margin-top: 2.5rem !important;
   min-height: 90% !important;
+  border: 1px solid #EAECF5;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0px 2px 2px -1px #0A0D120A,
+              0px 4px 6px -2px #0A0D1208,
+              0px 12px 16px -4px #0A0D1214;
+  background: #0A0D12;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.chat-assistant-sheet-header span {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Change "Assistant" text to "Ask AI" */
+.chat-assistant-sheet-header span.font-semibold {
+  font-size: 0;
+}
+
+.chat-assistant-sheet-header span.font-semibold::before {
+  content: "Ask AI";
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.chat-assistant-sheet-header svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#chat-assistant-textarea {
+  background-color: #373A41;
+  border-radius: 100px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 12px;
+}
+
+#chat-assistant-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.chat-assistant-send-button {
+  width: 32px !important;
+  height: 32px !important;
+  bottom: 6px;
+  background-color: #2970FF;
+}
+
+.chat-assistant-send-button:hover {
+  background-color: #004EEB;
+}
+
+.chat-assistant-send-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Parent container of chat assistant textarea */
+div:has(> div > #chat-assistant-textarea) {
+  border: none !important;
+  background-color: #373A41;
+}
+
+#chat-content {
+  margin-top: 12px;
+}
+
+/* Chat assistant user message bubble */
+#chat-content .rounded-2xl.bg-gray-100 {
+  background: #22262F !important;
+}
+
+#chat-content button {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Chat assistant action buttons hover state */
+#chat-content button[aria-label*="Vote"]:hover,
+#chat-content button[aria-label="Copy chat response"]:hover {
+  color: #22262F;
+}
+
+#chat-content .whitespace-pre-line, #chat-content li {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Chat assistant message text */
+#chat-content .rounded-2xl.bg-gray-100 .text-gray-800,
+#chat-content .rounded-2xl.bg-gray-100 div {
+  color: #FFFFFFE5 !important;
 }
 
 .chat-assistant-floating-input {
@@ -962,11 +1072,22 @@ article iframe,
 
 #assistant-entry {
   margin-left: auto;
-  border: 2px solid #0BA5EC;
+  border: 2px solid #1570EF;
   background-color: transparent;
 }
 
 #assistant-entry svg, #assistant-entry span {
-  color: #0BA5EC;
+  background: linear-gradient(45deg, #175CD3 0%, #1570EF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-weight: 600;
+}
+
+#assistant-entry:hover {
+  background: linear-gradient(45deg, #175CD3 0%, #1570EF 100%);
+}
+
+#assistant-entry:hover #assistant-entry svg, #assistant-entry:hover #assistant-entry span {
+  color: white;
 }
