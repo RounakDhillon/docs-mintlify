@@ -1085,8 +1085,8 @@ div:has(> div > #chat-assistant-textarea) {
   color: #1570EF;
 }
 
-#assistant-entry:hover span { 
-  color: #0351bd;
+#assistant-entry:hover { 
+  background-color: gray;
 }
 
 /* Parent container for search and assistant buttons */
