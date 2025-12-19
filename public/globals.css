@@ -1085,8 +1085,8 @@ div:has(> div > #chat-assistant-textarea) {
   color: #1570EF;
 }
 
-#assistant-entry:hover #assistant-entry svg, #assistant-entry:hover #assistant-entry span { 
-  text-decoration: underline;
+#assistant-entry:hover span { 
+  color: #0351bd;
 }
 
 /* Parent container for search and assistant buttons */
