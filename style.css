@@ -73,6 +73,58 @@
     font-size: 14px;
 }
 
+.release-banner {
+    max-width: 1300px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(195, 201, 252, 0.5) 0%, rgba(142, 234, 252, 0.5) 100%);
+    padding: 48px 100px;
+    border-radius: 24px;
+}
+
+.banner-image {
+    width: 1200px;
+    border: 3px solid #BED2FB ;
+    border-radius: 16px;
+    box-shadow: 0px 2px 2px -1px #0A0D120A,
+                0px 4px 6px -2px #0A0D1208,
+                0px 12px 16px -4px #0A0D1214;
+}
+
+.release-banner-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.release-banner-content h2 {
+    color: #181D27;
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.release-banner-content p {
+    color: #414651;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.release-banner-content a {
+    background-color: white;
+    box-shadow: 0px 2px 2px -1px #0A0D120A,
+                0px 4px 6px -2px #0A0D1208,
+                0px 12px 16px -4px #0A0D1214;
+    padding: 12px 24px;
+    border-radius: 99px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #131313;            
+}
+
+.release-banner-content a:hover {
+    text-decoration: underline;
+}
+
 .guides,
 .highlights,
 .quick-links {
@@ -476,9 +528,21 @@ a.guide-card img {
     .home-footer {
         padding: 32px 56px;
     }
+
+    .release-banner {
+        padding: 40px 52px;
+    }
 }
 
 @media (max-width: 1024px) {
+    .release-banner-content {
+        flex-direction: column;
+    }
+
+    .release-banner h2 {
+        font-size: 28px;
+    }
+
     .video-content {
         grid-template-columns: repeat(1, 1fr);
         gap: 28px;
@@ -550,6 +614,10 @@ a.guide-card img {
         grid-template-columns: repeat(1, 1fr);
         max-width: auto;
         justify-items: center;
+    }
+
+    .release-banner {
+        padding: 40px 20px;
     }
 
     .guide-list {
