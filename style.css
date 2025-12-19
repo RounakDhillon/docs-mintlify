@@ -89,11 +89,11 @@
 
 .guide-list {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 24px;
     margin: 0 auto;
     margin-top: 52px;
-    max-width: 90%;
+    max-width: 100%;
 }
 
 .guide-card {
@@ -109,6 +109,7 @@
     gap: 16px;
     width: 100%;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .guide-card:hover {
