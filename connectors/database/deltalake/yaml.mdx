@@ -65,7 +65,7 @@ Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Metastore Configuration" lines="11">
+<ContentSection id={2} title="Metastore Configuration" lines="8-19">
 
 **Metastore Host Port**: Enter the Host & Port of Hive Metastore Service to configure the Spark Session. Either of `metastoreHostPort`, `metastoreDb` or `metastoreFilePath` is required.
 
@@ -93,7 +93,7 @@ You can also connect to the metastore by directly pointing to the Hive Metastore
 
 </ContentSection>
 
-<ContentSection id={5} title="Connection Arguments" lines="2">
+<ContentSection id={5} title="Connection Arguments" lines="23">
 
 **Connection Arguments (Optional)**: Key-Value pairs that will be used to pass extra `config` elements to the Spark Session builder.
 
@@ -173,7 +173,7 @@ Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="AWS Configuration" lines="88">
+<ContentSection id={2} title="AWS Configuration" lines="9-12">
 
 **awsAccessKeyId**: Enter your secure access key ID for your DynamoDB connection. The specified key ID should be authorized to read all databases you want to include in the metadata ingestion workflow.
 
@@ -183,7 +183,7 @@ Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={3} title="Bucket Configuration" lines="88">
+<ContentSection id={3} title="Bucket Configuration" lines="13-14">
 
 **bucketName**: The S3 bucket name where your Delta Lake tables are stored.
 
@@ -191,19 +191,19 @@ Configure the source type and service name for your Delta Lake connector.
 
 </ContentSection>
 
-<ContentSection id={4} title="Source Config" lines="25-68">
+<ContentSection id={4} title="Source Config" lines="15-58">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={5} title="Sink Configuration" lines="69-71">
+<ContentSection id={5} title="Sink Configuration" lines="59-61">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={6} title="Workflow Configuration" lines="72-88">
+<ContentSection id={6} title="Workflow Configuration" lines="62-78">
 
 <WorkflowConfigDef />
 

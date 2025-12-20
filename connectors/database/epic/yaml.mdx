@@ -50,19 +50,19 @@ Configure the source type and service name for your Epic FHIR connector.
 
 </ContentSection>
 
-<ContentSection id={3} title="FHIR Version" lines="7">
+<ContentSection id={3} title="FHIR Version" lines="8">
 
 **fhirVersion**: FHIR specification version supported (`R4`, `STU3`, or `DSTU2`).
 
 </ContentSection>
 
-<ContentSection id={4} title="Database Name" lines="2">
+<ContentSection id={4} title="Database Name" lines="10">
 
 **databaseName**: Optional name for the database in OpenMetadata. Defaults to `epic`.
 
 </ContentSection>
 
-<ContentSection id={5} title="Filter Patterns" lines="7">
+<ContentSection id={5} title="Filter Patterns" lines="13-23">
 
 **schemaFilterPattern / tableFilterPattern**: Regex filters to limit which FHIR resource categories (schemas) or resource types (tables) are ingested.
 

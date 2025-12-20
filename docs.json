@@ -207,8 +207,8 @@
                                         "group": "Domo Database",
                                         "pages": [
                                             "connectors/database/domo-database/index",
-                                            "connectors/database/domo-database/troubleshoot",
-                                            "connectors/database/domo-database/yaml"
+                                            "connectors/database/domo-database/yaml",
+                                            "connectors/database/domo-database/troubleshoot"
                                         ]
                                     },
                                     {

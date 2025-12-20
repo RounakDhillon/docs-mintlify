@@ -66,7 +66,7 @@ Configure the source type and service name for your Cassandra connector.
 
 </ContentSection>
 
-<ContentSection id={3} title="Host Port" lines="2">
+<ContentSection id={3} title="Host Port" lines="8">
 
 **hostPort**: When using the `cassandra` connection schema, the hostPort parameter specifies the host and port of the Cassandra. This should be specified as a string in the format `hostname:port`. E.g., `localhost:9042`.
 
@@ -100,13 +100,13 @@ Configure the source type and service name for your Cassandra connector.
 
 </ContentSection>
 
-<ContentSection id={7} title="Connection Arguments" lines="18">
+<ContentSection id={7} title="Connection Arguments" lines="18-19">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={8} title="SSL Configuration" lines="21">
+<ContentSection id={8} title="SSL Configuration" lines="20-23">
 
 The sslConfig and sslMode are used to configure the SSL (Secure Sockets Layer) connection between your application and the Cassandra server.
 
