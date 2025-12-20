@@ -354,7 +354,14 @@ Ensure that table data is being updated frequently enough to be considered fresh
 | Last update time ≤ `timeSinceUpdate`      | ✅ Success  |
 | Last update time > `timeSinceUpdate`      | ❌ Failed   |
 
-![Fresh](/public/images/how-to-guides/quality/table-test/fresh.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/public/images/how-to-guides/quality/table-test/fresh.mp4"
+></video>
 
 ## Column Tests
 Tests applied on top of Column metrics. Here is the list of all column tests:
@@ -392,7 +399,14 @@ Ensures each value in a column appears only once.
 | All values are unique        | ✅     |
 | Any duplicate value found    | ❌     |
 
-![Unique](/public/images/how-to-guides/quality/column-test/unique.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/public/images/how-to-guides/quality/column-test/unique.mp4"
+></video>
 
 ### Column Values to Be Not Null
 Ensures there are no NULL entries in the column.
@@ -411,7 +425,14 @@ Ensures there are no NULL entries in the column.
 | No NULLs present             | ✅     |
 | Any NULL value present       | ❌     |
 
-![Not Null](/public/images/how-to-guides/quality/column-test/not-null.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/public/images/how-to-guides/quality/column-test/not-null.mp4"
+></video>
 
 ### Column Values to Match Regex
 This test allows us to specify how many values in a column we expect that will match a certain regex expression. Please note that for certain databases we will fall back to SQL `LIKE` expression. The databases supporting regex pattern as of 0.13.2 are:
@@ -544,7 +565,14 @@ Ensures total missing values (NULL + defined "missing" strings) match a target c
 | Missing count = expected value                 | ✅     |
 | Missing count ≠ expected value                 | ❌     |
 
-![Missing Count](/public/images/how-to-guides/quality/column-test/missing-count.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/public/images/how-to-guides/quality/column-test/missing-count.mp4"
+></video>
 
 ### Column Values Lengths to Be Between
 Ensures that the length of each string value in the column is within a defined character range.
