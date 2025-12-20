@@ -330,7 +330,14 @@ Use this test to verify data consistency between two tables, even across differe
 - Trino
 - SAP Hana
 
-![Differences](/public/images/how-to-guides/quality/table-test/differences.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/public/images/how-to-guides/quality/table-test/differences.mp4"
+></video>
 
 ### Table Data to Be Fresh [Collate]
 Ensure that table data is being updated frequently enough to be considered fresh.
@@ -460,7 +467,14 @@ Ensures all values match a specified regular expression pattern.
 | All values match regex       | ✅     |
 | Any value does not match     | ❌     |
 
-![Match Regex](/public/images/how-to-guides/quality/column-test/match-regex.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/public/images/how-to-guides/quality/column-test/match-regex.mp4"
+></video>
 
 ### Column Values to not Match Regex
 This test allows us to specify values in a column we expect that will not match a certain regex expression. If the test find values matching the `forbiddenRegex` the test will fail. Please note that for certain databases we will fall back to SQL `LIKE` expression. The databases supporting regex pattern as of 0.13.2 are:
@@ -490,7 +504,14 @@ Ensures values do **not** match a restricted regex pattern.
 | No value matches forbidden pattern  | ✅     |
 | Any value matches the pattern       | ❌     |
 
-![Not Match Regex](/public/images/how-to-guides/quality/column-test/not-match-regex.gif)
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/public/images/how-to-guides/quality/column-test/not-match-regex.mp4"
+></video>
 
 ### Column Values to Be in Set
 Ensures values are within a predefined whitelist.
