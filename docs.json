@@ -1240,6 +1240,7 @@
                                             "how-to-guides/data-quality-observability/profiler/profiler-workflow",
                                             "how-to-guides/data-quality-observability/profiler/metrics",
                                             "how-to-guides/data-quality-observability/profiler/custom-metrics",
+                                            "how-to-guides/data-quality-observability/profiler/external-workflow",
                                             "how-to-guides/data-quality-observability/profiler/auto-pii-tagging",
                                             {
                                                 "group": "Spark Engine",
