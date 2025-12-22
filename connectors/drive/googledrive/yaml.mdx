@@ -3,9 +3,10 @@ title: Run the Google Drive Connector Externally
 description: Use YAML to configure Google Drive metadata ingestion with profiling and schema extraction.
 slug: /connectors/drive/googledrive/yaml
 sidebarTitle: Run Externally
-collate: true
+mode: "wide"
 ---
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
@@ -105,37 +106,107 @@ The workflow is modeled around the following
 
 This is a sample config for Google Drive:
 
-#### Source Configuration - Service Connection
+<CodePreview>
+<ContentPanel>
 
-**credentials**: GCP Credentials for Google Drive API. You can provide the credentials using:
-- **GCP Credentials Path**: Path to the service account JSON file
-- **GCP Credentials Values**: Direct JSON content of the service account credentials
+<ContentSection id={1} title="Source Configuration" lines="1-4">
 
-**delegatedEmail**: (Optional) Email address to impersonate using domain-wide delegation. Required if you want to access files owned by other users in your organization.
+Configure the source type and service name for your Google Drive connector.
 
-**driveId**: (Optional) Specific shared drive ID to connect to. If provided, only this shared drive will be processed.
+</ContentSection>
 
-**includeTeamDrives**: Include shared/team drives in metadata extraction. Default is `true`.
+<ContentSection id={2} title="Connection Type" lines="6">
 
-**includeGoogleSheets**: Extract metadata only for Google Sheets files. When enabled, only Google Sheets will be processed. Default is `false`.
+**type**: Set to `GoogleDrive` for Google Drive connections.
 
-**directoryFilterPattern**: (Optional) Regex pattern to include or exclude directories from metadata extraction.
+</ContentSection>
 
-**fileFilterPattern**: (Optional) Regex pattern to include or exclude files from metadata extraction.
+<ContentSection id={3} title="Credentials" lines="7-17">
 
-**spreadsheetFilterPattern**: (Optional) Regex pattern to include or exclude spreadsheets from metadata extraction (only applies when includeGoogleSheets is enabled).
+**credentials**: GCP credentials for Google Drive API. Provide the service account details via path or direct JSON values.
 
-**worksheetFilterPattern**: (Optional) Regex pattern to include or exclude worksheets within spreadsheets from metadata extraction (only applies when includeGoogleSheets is enabled).
+</ContentSection>
 
-**Connection Options (Optional)**: Enter the details for any additional connection options that can be sent during the connection. These details must be added as Key-Value pairs.
+<ContentSection id={4} title="Delegated Email" lines="18">
 
-**Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent during the connection. These details must be added as Key-Value pairs.
+**delegatedEmail (Optional)**: Email to impersonate using domain-wide delegation when accessing other users' files.
+
+</ContentSection>
+
+<ContentSection id={5} title="Drive ID" lines="19">
+
+**driveId (Optional)**: Shared drive ID to restrict ingestion to a specific drive.
+
+</ContentSection>
+
+<ContentSection id={6} title="Include Team Drives" lines="20">
+
+**includeTeamDrives**: Include shared/team drives in metadata extraction. Default `true`.
+
+</ContentSection>
+
+<ContentSection id={7} title="Include Google Sheets" lines="21">
+
+**includeGoogleSheets**: Limit extraction to Google Sheets files only. Default `false`.
+
+</ContentSection>
+
+<ContentSection id={8} title="Directory Filter Pattern" lines="22-26">
+
+**directoryFilterPattern (Optional)**: Include or exclude directories via regex patterns.
+
+</ContentSection>
+
+<ContentSection id={9} title="File Filter Pattern" lines="27-32">
+
+**fileFilterPattern (Optional)**: Include or exclude files via regex patterns.
+
+</ContentSection>
+
+<ContentSection id={10} title="Spreadsheet Filter Pattern" lines="33-37">
+
+**spreadsheetFilterPattern (Optional)**: Include or exclude spreadsheets when Google Sheets extraction is enabled.
+
+</ContentSection>
+
+<ContentSection id={11} title="Worksheet Filter Pattern" lines="38-42">
+
+**worksheetFilterPattern (Optional)**: Include or exclude worksheets within spreadsheets.
+
+</ContentSection>
+
+<ContentSection id={12} title="Connection Options" lines="43-44">
+
+**Connection Options (Optional)**: Additional connection options as key-value pairs.
+
+</ContentSection>
+
+<ContentSection id={13} title="Connection Arguments" lines="45-46">
+
+**Connection Arguments (Optional)**: Additional connection arguments (e.g., security/protocol) as key-value pairs.
+
+</ContentSection>
+
+<ContentSection id={14} title="Source Config" lines="47-90">
 
 <SourceConfigDef />
 
+</ContentSection>
+
+<ContentSection id={15} title="Sink Configuration" lines="91-93">
+
 <IngestionSinkDef />
 
+</ContentSection>
+
+<ContentSection id={16} title="Workflow Configuration" lines="94-110">
+
 <WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
 
 ```yaml
 source:
@@ -213,6 +284,9 @@ source:
 <IngestionSink />
 
 <WorkflowConfig />
+
+</CodePanel>
+</CodePreview>
 
 <IngestionCli />
 

@@ -60,7 +60,9 @@ This is a sample config for Airbyte:
 <ContentSection id={4} title="apiVersion" lines="10">
 **apiVersion**: Version of the Airbyte REST API by default `api/v1`.
 </ContentSection>
+<ContentSection id={3} title="SourceConfig" lines="11-30">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
 </ContentPanel>
@@ -77,9 +79,9 @@ source:
       password: <password>
       apiVersion: api/v1
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

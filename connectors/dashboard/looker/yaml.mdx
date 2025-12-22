@@ -93,7 +93,7 @@ Configure the source type and service name for your Looker connector.
 
 </ContentSection>
 
-<ContentSection id={5} title="GitHub Credentials" lines="12-14">
+<ContentSection id={5} title="GitHub Credentials" lines="10">
 
 **githubCredentials** (Optional): GitHub API credentials to extract LookML Views' information by parsing the source `.lkml` files. There are three
 properties we need to add in this case:
@@ -102,6 +102,24 @@ properties we need to add in this case:
 - **token**: Token to use the API. This is required for private repositories and to ensure we don't hit API limits.
 Follow these [steps](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-fine-grained-personal-access-token) in order to create a fine-grained personal access token.
 When configuring, give repository access to `Only select repositories` and choose the one containing your LookML files. Then, we only need `Repository Permissions` as `Read-only` for `Contents`.
+
+</ContentSection>
+
+<ContentSection id={6} title="Source Config" lines="15-57">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Sink Configuration" lines="58-60">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Workflow Configuration" lines="61-77">
+
+<WorkflowConfigDef />
 
 </ContentSection>
 
@@ -126,10 +144,10 @@ gitCredentials:
         token: XYZ
 ```
 
-</CodePanel>
-
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />

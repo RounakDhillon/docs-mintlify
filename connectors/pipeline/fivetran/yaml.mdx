@@ -71,10 +71,12 @@ By default OpenMetadata will use `https://api.fivetran.com` to connect to the Fi
 **limit**: Fivetran API Limit For Pagination.
 This refers to the maximum number of records that can be returned in a single page of results when using Fivetran's API for pagination.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={3} title="SourceConfig" lines="11-30">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -88,9 +90,9 @@ source:
       # hostPort: https://api.fivetran.com (default)
       # limit: 1000 (default)
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

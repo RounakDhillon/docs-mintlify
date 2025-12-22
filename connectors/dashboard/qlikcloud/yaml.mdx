@@ -46,48 +46,56 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Qlik Cloud:
+
 <CodePreview>
 
 <ContentPanel>
 
 <ContentSection id={1} title="Source Configuration" lines="1-3">
 
-Configure the source type and service name.
+Configure the source type and service name for your Qlik Cloud connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="token" lines="7">
+<ContentSection id={2} title="Token" lines="7">
 
-**token**: Qlik Cloud API Access Token
-
-Enter the JWT Bearer token generated from Qlik Management Console->API-Keys . Refer to [this](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-generate-api-keys.htm) document for more details.
-
-Example: `eyJhbGciOiJFU***`
+**token**: API token for Qlik Cloud.
 
 </ContentSection>
 
-<ContentSection id={3} title="hostPort" lines="8">
+<ContentSection id={3} title="Host Port" lines="8">
 
-**hostPort**: Qlik Cloud Tenant URL
-
-This field refers to the base url of your Qlik Cloud Portal, will be used for generating the redirect links for dashboards and charts.
-
-Example: `https://<TenantURL>.qlikcloud.com`
+**hostPort**: Qlik Cloud tenant URL.
 
 </ContentSection>
 
 <ContentSection id={4} title="spaceTypes" lines="9">
 
-**spaceTypes**: Qlik Cloud Space Types
+**spaceTypes**: Qlik Cloud space types to include.
 
-Select relevant space types of Qlik Cloud to filter the dashboards ingested into the platform.
+</ContentSection>
 
-Example: `Personal`, `Shared`, `Managed`, `Data`
+<ContentSection id={5} title="Source Config" lines="10-52">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={6} title="Sink Configuration" lines="53-55">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Workflow Configuration" lines="56-72">
+
+<WorkflowConfigDef />
 
 </ContentSection>
 
 </ContentPanel>
-<CodePanel fileName="connector_config.yaml">
+
+<CodePanel fileName="qlikcloud_config.yaml">
 
 ```yaml
 source:
@@ -96,15 +104,18 @@ source:
   serviceConnection:
     config:
       type: QlikCloud
-token: eyJhbGciOiJFU***
-hostPort: https://<TenantURL>.qlikcloud.com
-spaceTypes: ["Personal", "Shared", "Managed", "Data"]
+      token: eyJhbGciOiJFU***
+      hostPort: https://<TenantURL>.qlikcloud.com
+      spaceTypes: ["Personal", "Shared", "Managed", "Data"]
 ```
+
+<SourceConfig />
+
+<IngestionSink />
+
+<WorkflowConfig />
 
 </CodePanel>
 
 </CodePreview>
-<SourceConfig />
-<IngestionSink />
-<WorkflowConfig />
 <IngestionCli />

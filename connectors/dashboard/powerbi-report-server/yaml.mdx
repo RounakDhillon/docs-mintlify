@@ -69,6 +69,25 @@ Password to connect to PowerBI Report Server.
 **webPortalVirtualDirectory**
 Web Portal Virtual Directory name which you have configured in your PowerBI Report Server configuration manager.
 </ContentSection>
+
+<ContentSection id={6} title="Source Config" lines="11-53">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Sink Configuration" lines="54-56">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Workflow Configuration" lines="57-73">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 
@@ -85,9 +104,9 @@ password: password
 webPortalVirtualDirectory: Reports
 ```
 
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

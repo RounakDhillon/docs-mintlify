@@ -63,10 +63,12 @@ This is a sample config for NiFi:
     - **clientkeyPath**: Path to the client key file.
     **important**: This file should be accessible from where the ingestion workflow is running. For example, if you are using OpenMetadata Ingestion Docker container, this file should be in this container.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={2} title="SourceConfig" lines="17-36">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -86,9 +88,9 @@ source:
         # clientkeyPath: path/to/clientKey
 hostPort: http://localhost:8000
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

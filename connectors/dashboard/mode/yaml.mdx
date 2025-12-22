@@ -78,6 +78,25 @@ Name of the mode workspace from where the metadata is to be fetched.
 <ContentSection id={6} title="filterQueryParam" lines="11">
 **filterQueryParam**: Filter query parameter for some of the Mode API calls.
 </ContentSection>
+
+<ContentSection id={7} title="Source Config" lines="12-54">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="55-57">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="58-74">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 
@@ -95,9 +114,9 @@ workspace_name: workspace_name
 # filterQueryParam: ""
 ```
 
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

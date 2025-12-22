@@ -77,6 +77,24 @@ Configure the source type and service name for your Metabase connector.
 
 </ContentSection>
 
+<ContentSection id={5} title="Source Config" lines="10-52">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={6} title="Sink Configuration" lines="53-55">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Workflow Configuration" lines="56-72">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 
 <CodePanel fileName="metabase_config.yaml">
@@ -88,15 +106,18 @@ source:
   serviceConnection:
     config:
       type: Metabase
-username: <username>
-password: <password>
-hostPort: <hostPort>
+      username: <username>
+      password: <password>
+      hostPort: <hostPort>
 ```
+
+<SourceConfig />
+
+<IngestionSink />
+
+<WorkflowConfig />
 
 </CodePanel>
 
 </CodePreview>
-<SourceConfig />
-<IngestionSink />
-<WorkflowConfig />
 <IngestionCli />

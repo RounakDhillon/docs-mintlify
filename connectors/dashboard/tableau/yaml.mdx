@@ -68,7 +68,7 @@ Configure the source type and service name for your Tableau connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Authentication" lines="8-9">
+<ContentSection id={2} title="Authentication" lines="4">
 
 **For Basic Authentication:**
 
@@ -96,7 +96,7 @@ Configure the source type and service name for your Tableau connector.
 
 </ContentSection>
 
-<ContentSection id={6} title="SSL Configuration" lines="16-18">
+<ContentSection id={6} title="SSL Configuration" lines="16">
 
 **verifySSL**: Client SSL verification. Make sure to configure the SSLConfig if enabled. Supported values `no-ssl`, `ignore`, `validate`.
 
@@ -120,13 +120,19 @@ The `sourceConfig` is defined [here](https://github.com/open-metadata/OpenMetada
 
 </ContentSection>
 
-<ContentSection id={8} title="Sink Configuration" lines="74-76">
+<ContentSection id={8} title="Source Config" lines="31-73">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Sink Configuration" lines="74-76">
 
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
 
 </ContentSection>
 
-<ContentSection id={9} title="Workflow Configuration" lines="77-93">
+<ContentSection id={10} title="Workflow Configuration" lines="77-93">
 
 <WorkflowConfigDef />
 

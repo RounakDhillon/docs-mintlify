@@ -64,7 +64,9 @@ Note that if both `Job Ids` and `Project Ids` are passed then it will filter out
 **token**: The Authentication Token of your dbt cloud API Account. To get your access token you can follow the docs [here](https://docs.getdbt.com/docs/dbt-cloud-apis/authentication).
 Make sure you have the necessary permissions on the token to run graphql queries and get job and run details.
 </ContentSection>
+<ContentSection id={3} title="SourceConfig" lines="13-32">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
 </ContentPanel>
@@ -83,9 +85,9 @@ source:
       # projectIds: ["project_id_1", "project_id_2", "project_id_3"]
       token: auth_token
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

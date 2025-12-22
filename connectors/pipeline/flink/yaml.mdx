@@ -53,10 +53,12 @@ This is a sample config for Flink:
     - sslCertificate: SSL certificate for the server.
     - sslKey: Server root key for the connection.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={3} title="SourceConfig" lines="22-41">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -81,9 +83,9 @@ source:
           sample certificate
           -----END PRIVATE KEY-----
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

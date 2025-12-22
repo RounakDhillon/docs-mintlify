@@ -68,7 +68,10 @@ In terms of `connection` we support the following selections:
 <ContentSection id={2} title="numberOfStatus" lines="8">
 **numberOfStatus**: Number of status we want to look back to in every ingestion (e.g., Past executions from a DAG).
 </ContentSection>
+
+<ContentSection id={3} title="SourceConfig" lines="31-50">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
 </ContentPanel>
@@ -105,9 +108,9 @@ source:
         # hostPort: localhost:3306
         # databaseMode: ":memory:" (optional)
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

@@ -69,6 +69,25 @@ For example, you might set it to https://demo.microstrategy.com.
 - **Login Mode**: Login Mode for Microstrategy's REST API connection. You can authenticate with one of the following authentication modes: `Standard (1)`, `Anonymous (8)`. Default will be `Standard (1)`.
 If you're using demo account for Microstrategy, it will be needed to authenticate through loginMode `8`.
 </ContentSection>
+
+<ContentSection id={7} title="Source Config" lines="12-54">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="55-57">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="58-74">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 
@@ -86,9 +105,9 @@ projectName: project
 loginMode: "1"
 ```
 
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />
