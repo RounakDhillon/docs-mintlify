@@ -90,6 +90,24 @@ Configure the source type and service name for your Domo Dashboard connector.
 
 </ContentSection>
 
+<ContentSection id={7} title="Source Config" lines="12-54">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="55-57">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="58-74">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 
 <CodePanel fileName="domo_dashboard_config.yaml">
@@ -108,13 +126,11 @@ source:
       instanceDomain: https://<your>.domo.com
 ```
 
+<SourceConfig />
+<IngestionSink />
+<WorkflowConfig />
 </CodePanel>
 
 </CodePreview>
 
-<SourceConfig />
-
-<IngestionSink />
-
-<WorkflowConfig />
 <IngestionCli />

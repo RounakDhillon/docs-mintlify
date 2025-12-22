@@ -56,10 +56,12 @@ In terms of `connection` we support the following selections:
 - `Mssql`: Pass the required credentials to reach out this service. We will
   create a connection to the pointed database and read SSIS data from there.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={2} title="SourceConfig" lines="24-43">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -85,8 +87,6 @@ storageConnection:
           - bucket_name
 localProjectsPath: /home/user/repos/
 ```
-</CodePanel>
-</CodePreview>
 - For Local
 ```yaml
   localProjectsPath: /home/user/repos/
@@ -94,4 +94,6 @@ localProjectsPath: /home/user/repos/
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

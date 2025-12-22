@@ -61,7 +61,7 @@ Configure the source type and service name.
 
 </ContentSection>
 
-<ContentSection id={2} title="hostPort" lines="4-7">
+<ContentSection id={2} title="hostPort" lines="7">
 
 **hostPort**: The `Host and Post` parameter is common for all three modes of authentication which specifies the host and port of the Superset instance. This should be specified as a string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set the hostPort parameter to `https://org.superset.com:8088`.
 
@@ -83,7 +83,7 @@ Superset only supports basic or ldap authentication through APIs so if you have 
 
 </ContentSection>
 
-<ContentSection id={3} title="For MySQL Connection:" lines="7-11">
+<ContentSection id={3} title="For MySQL Connection:" lines="10">
 
 #### For MySQL Connection:
 
@@ -107,7 +107,7 @@ You can use Mysql Connection when you have SSO enabled and your Superset is back
 
 </ContentSection>
 
-<ContentSection id={4} title="For Postgres Connection:" lines="11">
+<ContentSection id={4} title="For Postgres Connection:" lines="10">
 
 #### For Postgres Connection:
 
@@ -126,6 +126,24 @@ You can use Postgres Connection when you have SSO enabled and your Superset is b
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to Postgres during the connection. These details must be added as Key-Value pairs.
   - In case you are using Single-Sign-On (SSO) for authentication, add the `authenticator` details in the Connection Arguments as a Key-Value pair as follows: `"authenticator" : "sso_login_url"`
+
+</ContentSection>
+
+<ContentSection id={5} title="Source Config" lines="27-69">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={6} title="Sink Configuration" lines="70-72">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Workflow Configuration" lines="73-89">
+
+<WorkflowConfigDef />
 
 </ContentSection>
 
@@ -162,13 +180,13 @@ hostPort: http://localhost:8088
         # database: superset
 ```
 
+<SourceConfig />
+<IngestionSink />
+<WorkflowConfig />
 </CodePanel>
 
 </CodePreview>
 
-<SourceConfig />
-<IngestionSink />
-<WorkflowConfig />
 ## Securing Superset Connection with SSL in OpenMetadata
 1. To establish secure connections between OpenMetadata and Superset, in the `YAML` under `sslConfig`, we need to add `caCertificate` and update the certificate path. Ensure that the certificates are accessible from the Airflow Server.
 ```yaml

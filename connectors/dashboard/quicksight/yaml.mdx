@@ -86,36 +86,56 @@ The workflow is QuickSightled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for QuickSight:
+
 <CodePreview>
 
 <ContentPanel>
 
 <ContentSection id={1} title="Source Configuration" lines="1-3">
 
-Configure the source type and service name.
+Configure the source type and service name for your QuickSight connector.
 
 </ContentSection>
 
 <ContentSection id={2} title="awsAccountId" lines="7">
 
-**awsAccountId**: AWS Account ID
+**awsAccountId**: AWS Account ID.
 
 </ContentSection>
 
 <ContentSection id={3} title="identityType" lines="8">
 
-**identityType**: The authentication method that the user uses to sign in.
+**identityType**: Authentication method used to sign in.
 
 </ContentSection>
 
-<ContentSection id={4} title="namespace" lines="8-9">
+<ContentSection id={4} title="namespace" lines="9">
 
-**namespace**: The Amazon QuickSight namespace that contains the dashboard IDs in this request ( To be provided when identityType is `ANONYMOUS` )
+**namespace**: Namespace to use (required for Anonymous identity type).
+
+</ContentSection>
+
+<ContentSection id={5} title="Source Config" lines="10-52">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={6} title="Sink Configuration" lines="53-55">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Workflow Configuration" lines="56-72">
+
+<WorkflowConfigDef />
 
 </ContentSection>
 
 </ContentPanel>
-<CodePanel fileName="connector_config.yaml">
+
+<CodePanel fileName="quicksight_config.yaml">
 
 ```yaml
 source:
@@ -124,15 +144,18 @@ source:
   serviceConnection:
     config:
       type: QuickSight
-awsAccountId: <aws-account-id>
-identityType: IAM #QUICKSIGHT, ANONYMOUS
-namespace: #to be provided if identityType is Anonymous
+      awsAccountId: <aws-account-id>
+      identityType: IAM #QUICKSIGHT, ANONYMOUS
+      namespace: #to be provided if identityType is Anonymous
 ```
+
+<SourceConfig />
+
+<IngestionSink />
+
+<WorkflowConfig />
 
 </CodePanel>
 
 </CodePreview>
-<SourceConfig />
-<IngestionSink />
-<WorkflowConfig />
 <IngestionCli />

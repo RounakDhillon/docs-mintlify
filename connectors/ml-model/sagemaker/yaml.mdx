@@ -72,8 +72,12 @@ This is a sample config for Sagemaker:
 <CodePreview>
 <ContentPanel>
 #### Source Configuration - Service Connection
+<ContentSection id={3} title="AWSConfig" lines="7-16">
 <AwsConfigDef />
+</ContentSection>
+<ContentSection id={4} title="SourceConfig" lines="17-22">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
 </ContentPanel>
@@ -91,10 +95,9 @@ source:
 ```
 
 <AwsConfig />
-
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

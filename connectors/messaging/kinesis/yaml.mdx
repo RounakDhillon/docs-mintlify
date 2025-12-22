@@ -71,12 +71,18 @@ The workflow is modeled around the following
 ### 1. Define the YAML Config
 This is a sample config for Kinesis:
 #### Source Configuration - Service Connection
-<AwsConfigDef />
-<SourceConfigDef />
-<IngestionSinkDef />
-<WorkflowConfigDef />
 <CodePreview>
 <ContentPanel>
+<ContentSection id={3} title="AWS Configuration" lines="7-16">
+<AwsConfigDef />
+</ContentSection>
+<ContentSection id={2} title="Source Configuration" lines="17-28">
+<SourceConfigDef />
+</ContentSection>
+<IngestionSinkDef />
+<ContentSection id={1} title="Workflow Configuration" lines="32-48">
+<WorkflowConfigDef />
+</ContentSection>
 <ContentSection id={1} title="Source Configuration" lines="1-3">
 Configure the source type and service name.
 </ContentSection>
@@ -95,10 +101,10 @@ source:
       type: Kinesis
       awsConfig:
 ```
-</CodePanel>
-</CodePreview>
 <AwsConfig />
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

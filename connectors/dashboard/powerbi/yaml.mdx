@@ -156,13 +156,32 @@ Refer to the section [here](/connectors/dashboard/powerbi#powerbi-admin-and-nona
 - Enabled (Use PowerBI Admin APIs)
 - Disabled (Use Non-Admin PowerBI APIs)
 </ContentSection>
-<ContentSection id={10} title="pbitFilesSource" lines="18-20">
+<ContentSection id={10} title="pbitFilesSource" lines="18">
 **pbitFilesSource**: Source to get the .pbit files to extract lineage information. Select one of local, azureConfig, gcsConfig, s3Config.
 - `pbitFileConfigType`: Determines the storage backend type (azure, gcs, or s3).
 - `securityConfig`: Authentication credentials for accessing the storage backend.
 - `prefixConfig`: Details of the location in the storage backend.
 - `pbitFilesExtractDir`: Specifies the local directory where extracted .pbit files will be stored for processing.
 </ContentSection>
+
+<ContentSection id={11} title="Source Config" lines="82-124">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={12} title="Sink Configuration" lines="125-127">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={13} title="Workflow Configuration" lines="128-144">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 
@@ -250,9 +269,9 @@ tenantId: tenant  # REQUIRED - Azure AD tenant ID
       #   pbitFilesExtractDir: /tmp/pbitFiles  # Local directory for extracted files
 ```
 
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

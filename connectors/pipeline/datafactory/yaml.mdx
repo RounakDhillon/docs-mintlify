@@ -71,7 +71,9 @@ This is a sample config for Data Factory:
 <ContentSection id={4} title="run_filter_days" lines="11">
 **run_filter_days**: The days range when filtering pipeline runs. It specifies how many days back from the current date to look for pipeline runs, and filter runs within the given period of days. Default is `7` days. `Optional`
 </ContentSection>
+<ContentSection id={3} title="SourceConfig" lines="17-36">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
 </ContentPanel>
@@ -90,9 +92,9 @@ source:
         run_filter_days: 7
 ```
 <AzureConfig />
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

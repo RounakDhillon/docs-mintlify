@@ -94,6 +94,24 @@ To get to know the Sigma REST API Version visit [here](https://help.sigmacomputi
 
 </ContentSection>
 
+<ContentSection id={6} title="Source Config" lines="11-53">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Sink Configuration" lines="54-56">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Workflow Configuration" lines="57-73">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 
@@ -110,10 +128,10 @@ clientSecret: client_secret
 apiVersion: v2
 ```
 
-</CodePanel>
-
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+
+</CodePreview>
 <IngestionCli />

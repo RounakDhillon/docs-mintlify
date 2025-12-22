@@ -56,10 +56,12 @@ In terms of `connection` we support the following selections:
 - `Mssql`: Pass the required credentials to reach out this service. We will
   create a connection to the pointed database and read Wherescape data from there.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={2} title="SourceConfig" lines="15-34">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -77,9 +79,9 @@ source:
         databaseSchema: db
         hostPort: localhost:1433
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

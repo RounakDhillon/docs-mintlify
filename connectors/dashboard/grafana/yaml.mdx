@@ -85,9 +85,21 @@ Configure database service prefixes for lineage extraction.
 
 </ContentSection>
 
-<ContentSection id={7} title="Sink Configuration" lines="16-18">
+<ContentSection id={7} title="Source Config" lines="10-15">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Sink Configuration" lines="16-18">
 
 To send the metadata to OpenMetadata, specify `type: metadata-rest`.
+
+</ContentSection>
+
+<ContentSection id={9} title="Workflow Configuration" lines="19-85">
+
+<WorkflowConfigDef />
 
 </ContentSection>
 
@@ -120,6 +132,9 @@ workflowConfig:
     authProvider: <OpenMetadata auth provider>
 ```
 
+<SourceConfig />
+<IngestionSink />
+<WorkflowConfig />
 </CodePanel>
 
 </CodePreview>
