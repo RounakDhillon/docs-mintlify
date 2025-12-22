@@ -832,13 +832,17 @@ body:has(.homepage-container) #search-bar-entry, body:has(.homepage-container) #
 
 body:has(.how-to-guides-container) #sidebar-content,
 body:has(.sdk-container) #sidebar-content,
-body:has(.connector-page) #sidebar-content {
+body:has(.connector-page) #sidebar-content,
+body:has(.getting-started-container) #sidebar-content,
+body:has(.collate-ai-container) #sidebar-content {
   display: none;
 }
 
 body:has(.how-to-guides-container) #content-container,
 body:has(.sdk-container) #content-container,
-body:has(.connector-page) #content-container {
+body:has(.connector-page) #content-container,
+body:has(.getting-started-container) #content-container,
+body:has(.collate-ai-container) #content-container {
   max-width: 1300px !important;
 }
 
