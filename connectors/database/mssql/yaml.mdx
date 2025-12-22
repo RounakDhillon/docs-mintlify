@@ -82,7 +82,7 @@ Configure the source type and service name for your MSSQL connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Scheme" lines="3">
+<ContentSection id={2} title="Scheme" lines="4-14">
 
 **scheme**: Defines how to connect to MSSQL. We support `mssql+pytds`, `mssql+pyodbc`, and `mssql+pymssql`.
 
@@ -112,19 +112,19 @@ Configure the source type and service name for your MSSQL connector.
 
 </ContentSection>
 
-<ContentSection id={7} title="Ingest All Databases" lines="10">
+<ContentSection id={7} title="Ingest All Databases" lines="15-58">
 
 **ingestAllDatabases**: If you need to ingest multiple databases - aside from the initial one above - you can enable this option.
 
 </ContentSection>
 
-<ContentSection id={8} title="URI String" lines="10">
+<ContentSection id={8} title="URI String" lines="59-61">
 
 **uriString**: In case of a `pyodbc` connection.
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Options" lines="11">
+<ContentSection id={9} title="Connection Options" lines="62-77">
 
 #### Advanced Configuration
 
@@ -132,7 +132,7 @@ Configure the source type and service name for your MSSQL connector.
 
 </ContentSection>
 
-<ContentSection id={10} title="Connection Arguments" lines="13">
+<ContentSection id={10} title="Connection Arguments" lines="78">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 

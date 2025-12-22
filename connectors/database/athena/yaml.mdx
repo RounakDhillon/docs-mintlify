@@ -168,55 +168,55 @@ Configure the source type and service name for your Athena connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Connection Type" lines="6">
+<ContentSection id={2} title="Connection Type" lines="2">
 
 **type**: Set to `Athena` for Athena connections.
 
 </ContentSection>
 
-<ContentSection id={3} title="AwsConfigDef" lines="7-16">
+<ContentSection id={3} title="AwsConfigDef" lines="4-13">
 
 <AwsConfigDef />
 
 </ContentSection>
 
-<ContentSection id={4} title="S3 Staging Directory" lines="17">
+<ContentSection id={4} title="S3 Staging Directory" lines="8">
 
 **s3StagingDir**: The S3 staging directory is an optional parameter. Enter a staging directory to override the default staging directory for AWS Athena.
 
 </ContentSection>
 
-<ContentSection id={5} title="Workgroup" lines="18">
+<ContentSection id={5} title="Workgroup" lines="9">
 
 **workgroup**: The Athena workgroup is an optional parameter. If you wish to have your Athena connection related to an existing AWS workgroup add your workgroup name here.
 
 </ContentSection>
 
-<ContentSection id={6} title="Connection Options" lines="19">
+<ContentSection id={6} title="Connection Options" lines="14-57">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={7} title="Connection Arguments" lines="21">
+<ContentSection id={7} title="Connection Arguments" lines="58-60">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={8} title="Source Config" lines="23-66">
+<ContentSection id={8} title="Source Config" lines="14-57">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={9} title="Sink Configuration" lines="67-69">
+<ContentSection id={9} title="Sink Configuration" lines="58-60">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={10} title="Workflow Configuration" lines="70-86">
+<ContentSection id={10} title="Workflow Configuration" lines="61-77">
 
 <WorkflowConfigDef />
 

@@ -91,13 +91,13 @@ Configure the source type and service name for your BigQuery connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="Connection Type" lines="6">
+<ContentSection id={2} title="Connection Type" lines="2">
 
 **type**: Set to `BigQuery` for BigQuery connections.
 
 </ContentSection>
 
-<ContentSection id={3} title="Credentials" lines="7-21">
+<ContentSection id={3} title="Credentials" lines="7-8">
 
 **credentials**: You can authenticate with your BigQuery instance using either `GCP Credentials Path` where you can specify the file path of the service account key or you can pass the values directly by choosing the `GCP Credentials Values` from the service account key file.
 
@@ -105,7 +105,7 @@ You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam
 
 </ContentSection>
 
-<ContentSection id={4} title="GCP Configuration" lines="8-21">
+<ContentSection id={4} title="GCP Configuration" lines="8">
 
 <div>
 
@@ -149,7 +149,7 @@ credentials:
 
 </ContentSection>
 
-<ContentSection id={5} title="Taxonomy Configuration" lines="22-23">
+<ContentSection id={5} title="Taxonomy Configuration" lines="9">
 
 <div>
 
@@ -167,13 +167,13 @@ If you have attached policy tags to the columns of table available in BigQuery, 
 
 </ContentSection>
 
-<ContentSection id={6} title="Usage Location" lines="24">
+<ContentSection id={6} title="Usage Location" lines="10">
 
 **Usage Location (Optional)**: Location used to query `INFORMATION_SCHEMA.JOBS_BY_PROJECT` to fetch usage data. You can pass multi-regions, such as `us` or `eu`, or your specific region such as `us-east1`. Australia and Asia multi-regions are not yet supported.
 
 </ContentSection>
 
-<ContentSection id={7} title="Cost Per TiB" lines="25">
+<ContentSection id={7} title="Cost Per TiB" lines="11">
 
 **Cost Per TiB (Optional)**: The cost (in USD) per tebibyte (TiB) of data processed during BigQuery usage analysis. This value is used to estimate query costs when analyzing usage metrics from `INFORMATION_SCHEMA.JOBS_BY_PROJECT`.
 
@@ -181,19 +181,19 @@ This setting does **not** affect actual billing—it is only used for internal r
 
 </ContentSection>
 
-<ContentSection id={8} title="Billing Project ID" lines="26">
+<ContentSection id={8} title="Billing Project ID" lines="12">
 
 **Billing Project ID (Optional)**: A billing project ID is a unique string used to identify and authorize your project for billing in Google Cloud.
 
 </ContentSection>
 
-<ContentSection id={9} title="Connection Options" lines="27">
+<ContentSection id={9} title="Connection Options" lines="13">
 
 **Connection Options (Optional)**: Enter the details for any additional connection options that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
 </ContentSection>
 
-<ContentSection id={10} title="Connection Arguments" lines="29">
+<ContentSection id={10} title="Connection Arguments" lines="14">
 
 **Connection Arguments (Optional)**: Enter the details for any additional connection arguments such as security or protocol configs that can be sent to database during the connection. These details must be added as Key-Value pairs.
 
@@ -201,19 +201,19 @@ This setting does **not** affect actual billing—it is only used for internal r
 
 </ContentSection>
 
-<ContentSection id={11} title="Source Config" lines="31-74">
+<ContentSection id={11} title="Source Config" lines="18-61">
 
 <SourceConfigDef />
 
 </ContentSection>
 
-<ContentSection id={12} title="Sink Configuration" lines="75-77">
+<ContentSection id={12} title="Sink Configuration" lines="62-64">
 
 <IngestionSinkDef />
 
 </ContentSection>
 
-<ContentSection id={13} title="Workflow Configuration" lines="78-94">
+<ContentSection id={13} title="Workflow Configuration" lines="65-81">
 
 <WorkflowConfigDef />
 

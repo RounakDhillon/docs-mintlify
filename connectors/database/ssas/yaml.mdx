@@ -76,6 +76,25 @@ Configure the source type and service name for your SSAS connector.
 
 </ContentSection>
 
+
+<ContentSection id={5} title="Source Config" lines="10-53">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={6} title="Sink Configuration" lines="54-56">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Workflow Configuration" lines="57-73">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 
 <CodePanel fileName="ssas_config.yaml">
@@ -92,15 +111,16 @@ source:
       password: password
 ```
 
-</CodePanel>
-
-</CodePreview>
-
 <SourceConfig />
 
 <IngestionSink />
 
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 > **Note for SSAS Lineage:**
 > - The SSAS connector does **not** support view or query-based lineage extraction.

@@ -132,6 +132,13 @@ You can download the ODBC driver from [here](https://learn.microsoft.com/en-us/s
 
 </ContentSection>
 
+
+<ContentSection id={9} title="Source Config" lines="21-64">
+
+<SourceConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 
 <CodePanel fileName="synapse_config.yaml">
@@ -159,15 +166,16 @@ connectionOptions:
       #   key: value
 ```
 
-</CodePanel>
-
-</CodePreview>
-
 <SourceConfig />
 
 <IngestionSink />
 
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <DataProfiler connector="synapse" />
 <AutoClassification connector="synapse" />

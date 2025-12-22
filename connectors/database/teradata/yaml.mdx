@@ -72,9 +72,16 @@ Configure the source type and service name for your Teradata connector.
 
 </ContentSection>
 
-<ContentSection id={4} title="hostPort" lines="9">
+<ContentSection id={4} title="hostPort" lines="9-53">
 
 **hostPort**: Enter the fully qualified hostname and port number for your Greenplum deployment in the Host and Port field.
+
+</ContentSection>
+
+
+<ContentSection id={5} title="Source Config" lines="10-53">
+
+<SourceConfigDef />
 
 </ContentSection>
 
@@ -94,15 +101,13 @@ password: <password>
 hostPort: teradata:1025
 ```
 
-</CodePanel>
-
-</CodePreview>
-
 <SourceConfig />
 
 <IngestionSink />
 
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />
 <Lineage connector="teradata" />
 <DataProfiler connector="teradata" />
