@@ -65,10 +65,12 @@ This is a sample config for Domo-Pipeline:
 <ContentSection id={5} title="Instance Domain" lines="11">
 **Instance Domain**: URL to connect to your Domo instance UI. For example `https://<your>.domo.com`.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={3} title="SourceConfig" lines="12-31">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -83,9 +85,9 @@ source:
       apiHost: api.domo.com
       instanceDomain: https://<your>.domo.com
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

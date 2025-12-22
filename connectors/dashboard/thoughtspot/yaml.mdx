@@ -93,9 +93,27 @@ Configure the source type and service name.
 
 </ContentSection>
 
-<ContentSection id={7} title="To send the metadata to" lines="22">
+<ContentSection id={7} title="To send the metadata to" lines="21">
 
 To send the metadata to OpenMetadata, specify `type: metadata-rest`.
+
+</ContentSection>
+
+<ContentSection id={8} title="Source Config" lines="16-20">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={9} title="Sink Configuration" lines="21-23">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={10} title="Workflow Configuration" lines="24-91">
+
+<WorkflowConfigDef />
 
 </ContentSection>
 
@@ -134,6 +152,9 @@ workflowConfig:
     authProvider: <OpenMetadata auth provider>
 ```
 
+<SourceConfig />
+<IngestionSink />
+<WorkflowConfig />
 </CodePanel>
 
 </CodePreview>

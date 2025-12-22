@@ -58,7 +58,9 @@ This is a sample config for Dagster:
 <ContentSection id={3} title="timeout" lines="9">
 **timeout** : Connection Time Limit Between OM and Dagster Graphql API in second
 </ContentSection>
+<ContentSection id={3} title="SourceConfig" lines="10-29">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
 </ContentPanel>
@@ -74,9 +76,9 @@ source:
       token: token
       # timeout: 1000
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

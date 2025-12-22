@@ -6,6 +6,7 @@ sidebarTitle: Run Externally
 mode: "wide"
 ---
 import SourceConfigDef from '/snippets/connectors/yaml/pipeline/source-config-def.mdx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import SourceConfig from '/snippets/connectors/yaml/pipeline/source-config.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -52,11 +53,19 @@ The workflow is modeled around the following
 [JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
 ### 1. Define the YAML Config
 This is a sample config for Glue:
+<CodePreview>
+<ContentPanel>
 #### Source Configuration - Service Connection
+<ContentSection id={1} title="awsConfig" lines="7">
 <AwsConfigDef />
+</ContentSection>
+<ContentSection id={2} title="SourceConfig" lines="8-27">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
+<CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
   type: gluepipeline
@@ -69,4 +78,6 @@ source:
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

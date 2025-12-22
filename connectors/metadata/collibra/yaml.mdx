@@ -3,13 +3,14 @@ title: Run the Collibra Connector Externally
 description: Use YAML to configure Collibra metadata integration and capture glossary terms, domains, and asset enrichment.
 slug: /connectors/metadata/collibra/yaml
 sidebarTitle: Run Externally
-collate: true
+mode: "wide"
 ---
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 
 <ConnectorDetailsHeader
 icon='/public/images/connectors/collibra.webp'
@@ -73,6 +74,11 @@ The workflow is modeled around the following
 
 ### 1. Define the YAML Config
 
+<CodePreview>
+<ContentPanel>
+
+<ContentSection id={10} title="SourceConfig" lines="5-25">
+
 #### Source Configuration - Service Connection
 
 **hostPort**: Host and port of the Collibra instance.
@@ -96,13 +102,16 @@ Examples:
 **enableEnrichment**: When enabled, the connector will enrich existing OpenMetadata assets with metadata from Collibra (descriptions, tags, owners) by matching Collibra assets to OpenMetadata entities. This will not create new assets, only update existing ones.
 
 By default, this is set to `false`.
-
+</ContentSection>
+<ContentSection id={10} title="Sink Configuration" lines="26-28">
 #### Sink Configuration
-
 To send the metadata to OpenMetadata, it needs to be specified as `type: metadata-rest`.
-
+</ContentSection>
+<ContentSection id={10} title="Workflow Configuration" lines="29-45">
 <WorkflowConfigDef />
-
+</ContentSection>
+</ContentPanel>
+<CodePanel fileName="atlas_config.yaml">
 ```yaml
 source:
   type: Collibra
@@ -151,5 +160,6 @@ sink:
 ```
 
 <WorkflowConfig />
-
+</CodePanel>
+</CodePreview>
 <IngestionCli />

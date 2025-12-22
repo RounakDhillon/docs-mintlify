@@ -63,10 +63,12 @@ This is a sample config for KafkaConnect:
 <ContentSection id={4} title="messagingServiceName" lines="12">
 **messagingServiceName**: Name of the Kafka Messaging Service associated with this KafkaConnect Pipeline Service. e.g. local_kafka.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={2} title="SourceConfig" lines="13-32">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -82,9 +84,9 @@ source:
         password: password
       # messagingServiceName: ""
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

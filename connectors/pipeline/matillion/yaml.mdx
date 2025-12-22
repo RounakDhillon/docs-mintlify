@@ -61,10 +61,12 @@ This is a sample config for Matillion:
 <ContentSection id={4} title="caCertificate" lines="11">
 **caCertificate** : CA Certificate to authenticate with the Matillion instance.
 </ContentSection>
-</ContentPanel>
+<ContentSection id={5} title="SourceConfig" lines="15-34">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
+</ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 ```yaml
 source:
@@ -82,9 +84,9 @@ source:
           sample caCertificateData
           -----END CERTIFICATE-----
 ```
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

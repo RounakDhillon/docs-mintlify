@@ -6,6 +6,7 @@ sidebarTitle: Run Externally
 collate: true
 mode: "wide"
 ---
+import SourceConfigDef from '/snippets/connectors/yaml/ml-model/source-config-def.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
@@ -60,6 +61,9 @@ You can checkout [this](https://cloud.google.com/iam/docs/keys-create-delete#iam
 **Location**:
 Location refers to the geographical region where your resources, such as datasets, models, and endpoints, are physically hosted.(e.g. `us-central1`, `europe-west4`)
 </ContentSection>
+<ContentSection id={3} title="SourceConfig" lines="27-70">
+<SourceConfigDef />
+</ContentSection>
 </ContentPanel>
 
 <CodePanel fileName="connector_config.yaml">
@@ -81,10 +85,9 @@ source:
 ```
 
 <GcpConfig />
-
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />

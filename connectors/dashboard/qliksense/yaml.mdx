@@ -63,14 +63,14 @@ Example: `wss://server.domain.com:4747` or `wss://server.domain.com[/virtual pro
 This field refers to the base url of your Qlik Sense Portal, will be used for generating the redirect links for dashboards and charts.
 Example: `https://server.domain.com` or `https://server.domain.com/<virtual-proxy-path>`
 </ContentSection>
-<ContentSection id={4} title="clientCertificate" lines="11-13">
+<ContentSection id={4} title="clientCertificate" lines="11">
 Since we use the Qlik Sense Engine APIs, we need to authenticate to those APIs using certificates generated on Qlik Management Console.
 In this approach we provide the path of the certificates to the certificate stored in the container or environment running the ingestion workflow.
 - **clientCertificate**: This field specifies the path of `client.pem` certificate required for authentication.
 - **clientKeyCertificate**: This field specifies the path of `client_key.pem` certificate required for authentication.
 - **rootCertificate**: This field specifies the path of `root.pem` certificate required for authentication.
 </ContentSection>
-<ContentSection id={5} title="Client Certificate Value" lines="13">
+<ContentSection id={5} title="Client Certificate Value" lines="12">
 In this approach we provide the content of the certificates to the relevant field.
 - **Client Certificate Value**: This field specifies the value of `client.pem` certificate required for authentication.
 - **Client Key Certificate Value**: This field specifies the value of `client_key.pem` certificate required for authentication.
@@ -101,6 +101,25 @@ You will have to replace new lines with `\n` and the final private key that you 
 <ContentSection id={8} title="validateHostName" lines="21">
 **validateHostName**: Enable/Disable this field to validate the host name against the provided certificates.
 </ContentSection>
+
+<ContentSection id={9} title="Source Config" lines="22-64">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={10} title="Sink Configuration" lines="65-67">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={11} title="Workflow Configuration" lines="68-84">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 <CodePanel fileName="connector_config.yaml">
 
@@ -128,11 +147,11 @@ userDirectory: user_dir
 validateHostName: false
 ```
 
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 ## Securing Qlik Sense Connection with SSL in OpenMetadata
 To establish secure connections between OpenMetadata and Qlik Sense, there are two ways to communicate: defining the certificate file path or using the certificates value.
 When using the local certificate file path, ensure that the certificates are accessible from the Airflow Server. You can specify the path for the `client certificate`, `client key certificate`, and `root certificate`.

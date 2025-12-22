@@ -55,13 +55,13 @@ This is a sample config for MLflow:
 <ContentSection id={2} title="registryUri" lines="8">
 **registryUri**: MLflow Model registry backend. E.g., mysql+pymysql://mlflow:password@localhost:3307/experiments
 </ContentSection>
+<ContentSection id={3} title="SourceConfig" lines="9-14">
 <SourceConfigDef />
+</ContentSection>
 <IngestionSinkDef />
 <WorkflowConfigDef />
 </ContentPanel>
-
 <CodePanel fileName="connector_config.yaml">
-
 ```yaml
 source:
   type: mlflow
@@ -72,10 +72,9 @@ source:
       trackingUri: http://localhost:5000
       registryUri: mysql+pymysql://mlflow:password@localhost:3307/experiments
 ```
-
-</CodePanel>
-</CodePreview>
 <SourceConfig />
 <IngestionSink />
 <WorkflowConfig />
+</CodePanel>
+</CodePreview>
 <IngestionCli />
