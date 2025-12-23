@@ -491,9 +491,13 @@ a.guide-card img {
 }
 
 .products-container {
-    max-width: 1100px;
+    max-width: 1150px;
     margin: 0 auto;
-    padding: 64px 16px 40px;
+    padding: 56px 16px 40px;
+}
+
+.products-container h1 {
+    font-size: 30px !important;
 }
 
 .products-container [data-as="p"]:first-of-type {

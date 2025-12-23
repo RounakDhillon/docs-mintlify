@@ -846,6 +846,10 @@ body:has(.collate-ai-container) #content-container {
   max-width: 1300px !important;
 }
 
+.collate-ai-container {
+  margin-top: 18px;
+}
+
 /* Iframe width adjustment for content pages (exclude homepage) */
 article iframe,
 .prose iframe {
