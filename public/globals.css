@@ -991,11 +991,11 @@ div:has(> #chat-assistant-sheet) {
 }
 
 /* Change "Assistant" text to "Ask AI" */
-.chat-assistant-sheet-header span.font-semibold {
+.chat-assistant-sheet-header span.font-medium {
   font-size: 0;
 }
 
-.chat-assistant-sheet-header span.font-semibold::before {
+.chat-assistant-sheet-header span.font-medium::before {
   content: "Ask AI";
   font-size: 0.875rem;
   font-weight: 600;
