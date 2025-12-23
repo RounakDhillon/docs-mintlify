@@ -539,6 +539,10 @@ a.link:hover {
   font-weight: 500;
 }
 
+#navbar .nav-tabs a[href^="/how-to-guides/"] {
+  display: none !important;
+}
+
 #navbar .nav-tabs .nav-tabs-item:hover {
   color: #181D27;
   text-decoration: none;

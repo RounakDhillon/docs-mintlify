@@ -1135,412 +1135,125 @@
                 "tab": "How-To Guides",
                 "groups": [
                     {
-                        "group": "How-to guides",
+                        "group": "How-To Guides",
                         "pages": [
                             "how-to-guides/index"
                         ]
-                    },
+                    }
+                ]
+            },
+            {
+                "tab": "MCP Server",
+                "groups": [
                     {
-                        "group": "Agentic Metadata Management",
-                        "icon": "/public/images/icons/agentic-metadata.svg",
+                        "group": "MCP Server",
                         "pages": [
-                            {
-                                "group": "MCP Server",
-                                "pages": [
-                                    "how-to-guides/mcp/index",
-                                    "how-to-guides/mcp/claude",
-                                    "how-to-guides/mcp/goose",
-                                    "how-to-guides/mcp/reference",
-                                    "how-to-guides/mcp/connect"
-                                ]
-                            }
+                            "how-to-guides/mcp/index",
+                            "how-to-guides/mcp/claude",
+                            "how-to-guides/mcp/goose",
+                            "how-to-guides/mcp/reference",
+                            "how-to-guides/mcp/connect"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Admin Guide",
+                "groups": [
+                    {
+                        "group": "Overview",
+                        "pages": [
+                            "how-to-guides/admin-guide/index"
                         ]
                     },
                     {
-                        "group": "Features in Collate",
-                        "icon": "/public/images/icons/features.svg",
+                        "group": "Admins",
                         "pages": [
+                            "how-to-guides/admin-guide/how-to-ingest-metadata",
+                            "how-to-guides/admin-guide/delete-service-connection",
+                            "how-to-guides/admin-guide/how-to-configure-sso-in-ui",
                             {
-                                "group": "Data Contracts",
+                                "group": "Manage Teams and Users",
                                 "pages": [
-                                    "how-to-guides/data-contracts/index",
-                                    "how-to-guides/data-contracts/create",
-                                    "how-to-guides/data-contracts/spec"
+                                    "how-to-guides/admin-guide/teams-and-users/index",
+                                    "how-to-guides/admin-guide/teams-and-users/team-structure-openmetadata",
+                                    "how-to-guides/admin-guide/teams-and-users/add-team",
+                                    "how-to-guides/admin-guide/teams-and-users/invite-users",
+                                    "how-to-guides/admin-guide/teams-and-users/add-users",
+                                    "how-to-guides/admin-guide/teams-and-users/change-team-type",
+                                    "how-to-guides/admin-guide/teams-and-users/scim-provisioning"
                                 ]
                             },
                             {
-                                "group": "Data Discovery",
+                                "group": "Advanced Guide for Roles and Policies",
                                 "pages": [
-                                    "how-to-guides/data-discovery/index",
-                                    "how-to-guides/data-discovery/discover",
-                                    "how-to-guides/data-discovery/hierarchy",
-                                    "how-to-guides/data-discovery/preview",
-                                    "how-to-guides/data-discovery/details",
-                                    "how-to-guides/data-discovery/advanced",
-                                    "how-to-guides/data-discovery/bulk-upload",
-                                    "how-to-guides/data-discovery/import",
-                                    "how-to-guides/data-discovery/export",
-                                    "how-to-guides/data-discovery/troubleshooting",
-                                    "how-to-guides/data-discovery/table-constraint",
-                                    {
-                                        "group": "OpenMetadata Chrome Extension",
-                                        "pages": [
-                                            "how-to-guides/data-discovery/collate-extension/index",
-                                            "how-to-guides/data-discovery/collate-extension/activity-feeds",
-                                            "how-to-guides/data-discovery/collate-extension/looking-up",
-                                            "how-to-guides/data-discovery/collate-extension/viewing-tasks"
-                                        ]
-                                    },
-                                    "how-to-guides/data-discovery/er-diagrams"
+                                    "how-to-guides/admin-guide/roles-policies/index",
+                                    "how-to-guides/admin-guide/roles-policies/authorization",
+                                    "how-to-guides/admin-guide/roles-policies/use-cases"
                                 ]
                             },
+                            "how-to-guides/admin-guide/cli-ingestion-with-basic-auth",
+                            "how-to-guides/admin-guide/how-to-add-custom-logo",
+                            "how-to-guides/admin-guide/reindexing-search",
+                            "how-to-guides/admin-guide/data-insights",
+                            "how-to-guides/admin-guide/permission-debugger",
                             {
-                                "group": "Data Collaboration",
+                                "group": "Persona and Landing Page Customization",
                                 "pages": [
-                                    "how-to-guides/data-collaboration/index",
-                                    "how-to-guides/data-collaboration/activity-feeds",
-                                    "how-to-guides/data-collaboration/conversation",
-                                    "how-to-guides/data-collaboration/tasks",
-                                    "how-to-guides/data-collaboration/request-description",
-                                    "how-to-guides/data-collaboration/request-tags",
-                                    "how-to-guides/data-collaboration/announcements",
-                                    "how-to-guides/data-collaboration/add-announcement",
-                                    "how-to-guides/data-collaboration/knowledge-center"
-                                ]
-                            },
-                            {
-                                "group": "Data Quality & Observability",
-                                "pages": [
-                                    "how-to-guides/data-quality-observability/index",
-                                    {
-                                        "group": "Data Quality",
-                                        "pages": [
-                                            "how-to-guides/data-quality-observability/quality/index",
-                                            "how-to-guides/data-quality-observability/quality/tab",
-                                            "how-to-guides/data-quality-observability/quality/overview",
-                                            "how-to-guides/data-quality-observability/quality/test",
-                                            "how-to-guides/data-quality-observability/quality/configure",
-                                            "how-to-guides/data-quality-observability/quality/tests-yaml",
-                                            "how-to-guides/data-quality-observability/quality/tests-ui",
-                                            "how-to-guides/data-quality-observability/quality/custom-tests",
-                                            "how-to-guides/data-quality-observability/quality/dimensional-validation",
-                                            {
-                                                "group": "Data Quality as Code",
-                                                "pages": [
-                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/index",
-                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/getting-started",
-                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-runner",
-                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/dataframe-validation",
-                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-definitions",
-                                                    "how-to-guides/data-quality-observability/quality/data-quality-as-code/advanced-usage"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "group": "Data Profiler",
-                                        "pages": [
-                                            "how-to-guides/data-quality-observability/profiler/index",
-                                            "how-to-guides/data-quality-observability/profiler/tab",
-                                            "how-to-guides/data-quality-observability/profiler/profiler-workflow",
-                                            "how-to-guides/data-quality-observability/profiler/metrics",
-                                            "how-to-guides/data-quality-observability/profiler/custom-metrics",
-                                            "how-to-guides/data-quality-observability/profiler/external-workflow",
-                                            "how-to-guides/data-quality-observability/profiler/auto-pii-tagging",
-                                            {
-                                                "group": "Spark Engine",
-                                                "pages": [
-                                                    "how-to-guides/data-quality-observability/profiler/spark-engine/index",
-                                                    "how-to-guides/data-quality-observability/profiler/spark-engine/prerequisites",
-                                                    "how-to-guides/data-quality-observability/profiler/spark-engine/partitioning",
-                                                    {
-                                                        "group": "Configuration",
-                                                        "pages": [
-                                                            "how-to-guides/data-quality-observability/profiler/spark-engine/configuration/index",
-                                                            "how-to-guides/data-quality-observability/profiler/spark-engine/configuration/ui-configuration",
-                                                            "how-to-guides/data-quality-observability/profiler/spark-engine/configuration/external-configuration"
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "group": "Data Observability",
-                                        "pages": [
-                                            "how-to-guides/data-quality-observability/observability/index",
-                                            "how-to-guides/data-quality-observability/observability/alerts",
-                                            "how-to-guides/data-quality-observability/observability/webhooks"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Alerts & Notifications",
-                                        "pages": [
-                                            "how-to-guides/data-quality-observability/alerts-notifications/index",
-                                            "how-to-guides/data-quality-observability/alerts-notifications/data-observability-alerts",
-                                            "how-to-guides/data-quality-observability/alerts-notifications/system-governance-notifications",
-                                            "how-to-guides/data-quality-observability/alerts-notifications/email-alerts-configuration",
-                                            "how-to-guides/data-quality-observability/alerts-notifications/slack-alerts-configuration",
-                                            "how-to-guides/data-quality-observability/alerts-notifications/microsoft-teams-alerts-configuration",
-                                            "how-to-guides/data-quality-observability/alerts-notifications/google-chat-alerts-configuration",
-                                            "how-to-guides/data-quality-observability/alerts-notifications/generic-webhook-alerts-configuration"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Incident Manager",
-                                        "pages": [
-                                            "how-to-guides/data-quality-observability/incident-manager/index",
-                                            "how-to-guides/data-quality-observability/incident-manager/workflow",
-                                            "how-to-guides/data-quality-observability/incident-manager/root-cause-analysis"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Anomaly Detection",
-                                        "pages": [
-                                            "how-to-guides/data-quality-observability/anomaly-detection/index",
-                                            "how-to-guides/data-quality-observability/anomaly-detection/setting-up"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Notification Templates",
-                                        "pages": [
-                                            "how-to-guides/data-quality-observability/notification-templates/index",
-                                            "how-to-guides/data-quality-observability/notification-templates/concepts-and-overview",
-                                            "how-to-guides/data-quality-observability/notification-templates/create-and-manage-templates",
-                                            "how-to-guides/data-quality-observability/notification-templates/handlebars-templating-guide",
-                                            "how-to-guides/data-quality-observability/notification-templates/template-context-reference",
-                                            "how-to-guides/data-quality-observability/notification-templates/custom-helpers-reference",
-                                            "how-to-guides/data-quality-observability/notification-templates/troubleshooting"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "group": "Data Lineage",
-                                "pages": [
-                                    "how-to-guides/data-lineage/index",
-                                    "how-to-guides/data-lineage/workflow",
-                                    "how-to-guides/data-lineage/explore",
-                                    "how-to-guides/data-lineage/column",
-                                    "how-to-guides/data-lineage/manual"
-                                ]
-                            },
-                            {
-                                "group": "Data Insights",
-                                "pages": [
-                                    "how-to-guides/data-insights/index",
-                                    "how-to-guides/data-insights/tiering",
-                                    "how-to-guides/data-insights/ingestion",
-                                    "how-to-guides/data-insights/kpi",
-                                    "how-to-guides/data-insights/report",
-                                    "how-to-guides/data-insights/cost-analysis",
-                                    "how-to-guides/data-insights/email-report",
-                                    "how-to-guides/data-insights/data-culture",
-                                    "how-to-guides/data-insights/custom-dashboard",
-                                    "how-to-guides/data-insights/service-insights"
-                                ]
-                            },
-                            {
-                                "group": "Data Governance",
-                                "pages": [
-                                    "how-to-guides/data-governance/index",
-                                    {
-                                        "group": "Automation",
-                                        "pages": [
-                                            "how-to-guides/data-governance/automation/index",
-                                            "how-to-guides/data-governance/automation/set-up-automation"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Glossary",
-                                        "pages": [
-                                            "how-to-guides/data-governance/glossary/index",
-                                            "how-to-guides/data-governance/glossary/glossary-term",
-                                            "how-to-guides/data-governance/glossary/setup",
-                                            "how-to-guides/data-governance/glossary/create-terms",
-                                            "how-to-guides/data-governance/glossary/import",
-                                            "how-to-guides/data-governance/glossary/export",
-                                            "how-to-guides/data-governance/glossary/approval",
-                                            "how-to-guides/data-governance/glossary/troubleshooting",
-                                            "how-to-guides/data-governance/glossary/styling",
-                                            "how-to-guides/data-governance/glossary/assets",
-                                            "how-to-guides/data-governance/glossary/best-practices"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Classification",
-                                        "pages": [
-                                            "how-to-guides/data-governance/classification/index",
-                                            "how-to-guides/data-governance/classification/assets",
-                                            "how-to-guides/data-governance/classification/request-tags",
-                                            "how-to-guides/data-governance/classification/sample-data-using-pii-tag",
-                                            {
-                                                "group": "Auto-Classification Workflow",
-                                                "pages": [
-                                                    "how-to-guides/data-governance/classification/auto-classification/index",
-                                                    "how-to-guides/data-governance/classification/auto-classification/workflow",
-                                                    "how-to-guides/data-governance/classification/auto-classification/external-workflow",
-                                                    "how-to-guides/data-governance/classification/auto-classification/auto-pii-tagging",
-                                                    "how-to-guides/data-governance/classification/auto-classification/external-sample-data"
-                                                ]
-                                            },
-                                            "how-to-guides/data-governance/classification/tiers",
-                                            "how-to-guides/data-governance/classification/best-practices"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Domains & Data Product",
-                                        "pages": [
-                                            "how-to-guides/data-governance/domains-&-data-products/index",
-                                            "how-to-guides/data-governance/domains-&-data-products/domains",
-                                            "how-to-guides/data-governance/domains-&-data-products/data-products"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Workflows",
-                                        "pages": [
-                                            "how-to-guides/data-governance/workflows/index",
-                                            "how-to-guides/data-governance/workflows/creating-a-new-workflow",
-                                            {
-                                                "group": "Default Workflows",
-                                                "pages": [
-                                                    "how-to-guides/data-governance/workflows/default-workflows/index",
-                                                    "how-to-guides/data-governance/workflows/default-workflows/glossary-approval",
-                                                    "how-to-guides/data-governance/workflows/default-workflows/table-certification",
-                                                    "how-to-guides/data-governance/workflows/default-workflows/dashboard-certification"
-                                                ]
-                                            },
-                                            {
-                                                "group": "Elements",
-                                                "pages": [
-                                                    "how-to-guides/data-governance/workflows/elements/index",
-                                                    {
-                                                        "group": "Triggers",
-                                                        "pages": [
-                                                            "how-to-guides/data-governance/workflows/elements/triggers/index",
-                                                            "how-to-guides/data-governance/workflows/elements/triggers/event-based-entity-trigger",
-                                                            "how-to-guides/data-governance/workflows/elements/triggers/periodic-batch-entity-trigger"
-                                                        ]
-                                                    },
-                                                    {
-                                                        "group": "Nodes",
-                                                        "pages": [
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/index",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/start-node",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/check-condition",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/set-action",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/user-approval-task",
-                                                            "how-to-guides/data-governance/workflows/elements/nodes/data-completeness-task"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "group": "Examples",
-                                                "pages": [
-                                                    "how-to-guides/data-governance/workflows/examples/index",
-                                                    "how-to-guides/data-governance/workflows/examples/tag-approval-workflow",
-                                                    "how-to-guides/data-governance/workflows/examples/table-documentation-tiering-workflow",
-                                                    "how-to-guides/data-governance/workflows/examples/set-tags-to-mlmodels-workflow"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "how-to-guides/data-governance/metrics"
+                                    "how-to-guides/admin-guide/persona-landing-page-customization/index",
+                                    "how-to-guides/admin-guide/persona-landing-page-customization/customizable-landing-page",
+                                    "how-to-guides/admin-guide/persona-landing-page-customization/defining-persona"
                                 ]
                             }
                         ]
-                    },
+                    }
+                ]
+            },
+            {
+                "tab": "Customer Support",
+                "groups": [
                     {
-                        "group": "Quick Start Guides",
-                        "icon": "/public/images/icons/quick-start-guide.svg",
+                        "group": "Customer Support",
                         "pages": [
-                            {
-                                "group": "Admin Guide",
-                                "pages": [
-                                    "how-to-guides/admin-guide/index",
-                                    "how-to-guides/admin-guide/how-to-ingest-metadata",
-                                    "how-to-guides/admin-guide/delete-service-connection",
-                                    "how-to-guides/admin-guide/how-to-configure-sso-in-ui",
-                                    {
-                                        "group": "Manage Teams and Users",
-                                        "pages": [
-                                            "how-to-guides/admin-guide/teams-and-users/index",
-                                            "how-to-guides/admin-guide/teams-and-users/team-structure-openmetadata",
-                                            "how-to-guides/admin-guide/teams-and-users/add-team",
-                                            "how-to-guides/admin-guide/teams-and-users/invite-users",
-                                            "how-to-guides/admin-guide/teams-and-users/add-users",
-                                            "how-to-guides/admin-guide/teams-and-users/change-team-type",
-                                            "how-to-guides/admin-guide/teams-and-users/scim-provisioning"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Advanced Guide for Roles and Policies",
-                                        "pages": [
-                                            "how-to-guides/admin-guide/roles-policies/index",
-                                            "how-to-guides/admin-guide/roles-policies/authorization",
-                                            "how-to-guides/admin-guide/roles-policies/use-cases"
-                                        ]
-                                    },
-                                    "how-to-guides/admin-guide/cli-ingestion-with-basic-auth",
-                                    "how-to-guides/admin-guide/how-to-add-custom-logo",
-                                    "how-to-guides/admin-guide/reindexing-search",
-                                    "how-to-guides/admin-guide/data-insights",
-                                    "how-to-guides/admin-guide/permission-debugger",
-                                    {
-                                        "group": "Persona and Landing Page Customization",
-                                        "pages": [
-                                            "how-to-guides/admin-guide/persona-landing-page-customization/index",
-                                            "how-to-guides/admin-guide/persona-landing-page-customization/customizable-landing-page",
-                                            "how-to-guides/admin-guide/persona-landing-page-customization/defining-persona"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "group": "Collate Customer Support",
-                                "pages": [
-                                    "how-to-guides/collate-customer-support/index",
-                                    "how-to-guides/collate-customer-support/open-ticket",
-                                    "how-to-guides/collate-customer-support/manage-users"
-                                ]
-                            },
-                            {
-                                "group": "Guide for Data Users",
-                                "pages": [
-                                    "how-to-guides/guide-for-data-users/index",
-                                    "how-to-guides/guide-for-data-users/basics-openmetadata",
-                                    "how-to-guides/guide-for-data-users/data-asset-tabs",
-                                    "how-to-guides/guide-for-data-users/description",
-                                    "how-to-guides/guide-for-data-users/request-description",
-                                    "how-to-guides/guide-for-data-users/data-ownership",
-                                    "how-to-guides/guide-for-data-users/follow-data-asset",
-                                    "how-to-guides/guide-for-data-users/tags",
-                                    "how-to-guides/guide-for-data-users/request-tags",
-                                    "how-to-guides/guide-for-data-users/glossary",
-                                    "how-to-guides/guide-for-data-users/custom",
-                                    "how-to-guides/guide-for-data-users/theme",
-                                    "how-to-guides/guide-for-data-users/announcements",
-                                    "how-to-guides/guide-for-data-users/add-announcement",
-                                    "how-to-guides/guide-for-data-users/versions",
-                                    "how-to-guides/guide-for-data-users/delete",
-                                    "how-to-guides/guide-for-data-users/browser-ext"
-                                ]
-                            },
-                            {
-                                "group": "SQL Studio",
-                                "pages": [
-                                    "how-to-guides/sql-studio/index",
-                                    "how-to-guides/sql-studio/admin-configuration",
-                                    "how-to-guides/sql-studio/user-authentication",
-                                    "how-to-guides/sql-studio/query-execution"
-                                ]
-                            }
+                            "how-to-guides/collate-customer-support/index",
+                            "how-to-guides/collate-customer-support/open-ticket",
+                            "how-to-guides/collate-customer-support/manage-users"
                         ]
-                    },
+                    }
+                ]
+            },
+            {
+                "tab": "Guide for Data Users",
+                "groups": [
+                    {
+                        "group": "Guide for Data Users",
+                        "pages": [
+                            "how-to-guides/guide-for-data-users/index",
+                            "how-to-guides/guide-for-data-users/basics-openmetadata",
+                            "how-to-guides/guide-for-data-users/data-asset-tabs",
+                            "how-to-guides/guide-for-data-users/description",
+                            "how-to-guides/guide-for-data-users/request-description",
+                            "how-to-guides/guide-for-data-users/data-ownership",
+                            "how-to-guides/guide-for-data-users/follow-data-asset",
+                            "how-to-guides/guide-for-data-users/tags",
+                            "how-to-guides/guide-for-data-users/request-tags",
+                            "how-to-guides/guide-for-data-users/glossary",
+                            "how-to-guides/guide-for-data-users/custom",
+                            "how-to-guides/guide-for-data-users/theme",
+                            "how-to-guides/guide-for-data-users/announcements",
+                            "how-to-guides/guide-for-data-users/add-announcement",
+                            "how-to-guides/guide-for-data-users/versions",
+                            "how-to-guides/guide-for-data-users/delete",
+                            "how-to-guides/guide-for-data-users/browser-ext"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "SSO",
+                "groups": [
                     {
                         "group": "SSO",
-                        "icon": "/public/images/icons/sso-group.svg",
                         "pages": [
                             "how-to-guides/sso/index",
                             "how-to-guides/sso/okta/index",
@@ -1551,6 +1264,358 @@
                             "how-to-guides/sso/custom-oidc/index",
                             "how-to-guides/sso/saml/index",
                             "how-to-guides/sso/ldap/index"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Data Contracts",
+                "groups": [
+                    {
+                        "group": "Data Contracts",
+                        "pages": [
+                            "how-to-guides/data-contracts/index",
+                            "how-to-guides/data-contracts/create",
+                            "how-to-guides/data-contracts/spec"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Data Discovery",
+                "groups": [
+                    {
+                        "group": "Data Discovery",
+                        "pages": [
+                            "how-to-guides/data-discovery/index"
+                        ]
+                    },
+                    {
+                        "group": "Data Discovery",
+                        "pages": [
+                            "how-to-guides/data-discovery/discover",
+                            "how-to-guides/data-discovery/hierarchy",
+                            "how-to-guides/data-discovery/preview",
+                            "how-to-guides/data-discovery/details",
+                            "how-to-guides/data-discovery/advanced",
+                            "how-to-guides/data-discovery/bulk-upload",
+                            "how-to-guides/data-discovery/import",
+                            "how-to-guides/data-discovery/export",
+                            "how-to-guides/data-discovery/troubleshooting",
+                            "how-to-guides/data-discovery/table-constraint",
+                            {
+                                "group": "OpenMetadata Chrome Extension",
+                                "pages": [
+                                    "how-to-guides/data-discovery/collate-extension/index",
+                                    "how-to-guides/data-discovery/collate-extension/activity-feeds",
+                                    "how-to-guides/data-discovery/collate-extension/looking-up",
+                                    "how-to-guides/data-discovery/collate-extension/viewing-tasks"
+                                ]
+                            },
+                            "how-to-guides/data-discovery/er-diagrams"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Data Collaboration",
+                "groups": [
+                    {
+                        "group": "Data Collaboration",
+                        "pages": [
+                            "how-to-guides/data-collaboration/index",
+                            "how-to-guides/data-collaboration/activity-feeds",
+                            "how-to-guides/data-collaboration/conversation",
+                            "how-to-guides/data-collaboration/tasks",
+                            "how-to-guides/data-collaboration/request-description",
+                            "how-to-guides/data-collaboration/request-tags",
+                            "how-to-guides/data-collaboration/announcements",
+                            "how-to-guides/data-collaboration/add-announcement",
+                            "how-to-guides/data-collaboration/knowledge-center"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Data Quality & Observability",
+                "groups": [
+                    {
+                        "group": "Overview",
+                        "pages": [
+                            "how-to-guides/data-quality-observability/index"
+                        ]
+                    },
+                    {
+                        "group": "Data Quality & Observability",
+                        "pages": [
+                            {
+                                "group": "Data Quality",
+                                "pages": [
+                                    "how-to-guides/data-quality-observability/quality/index",
+                                    "how-to-guides/data-quality-observability/quality/tab",
+                                    "how-to-guides/data-quality-observability/quality/overview",
+                                    "how-to-guides/data-quality-observability/quality/test",
+                                    "how-to-guides/data-quality-observability/quality/configure",
+                                    "how-to-guides/data-quality-observability/quality/tests-yaml",
+                                    "how-to-guides/data-quality-observability/quality/tests-ui",
+                                    "how-to-guides/data-quality-observability/quality/custom-tests",
+                                    "how-to-guides/data-quality-observability/quality/dimensional-validation",
+                                    {
+                                        "group": "Data Quality as Code",
+                                        "pages": [
+                                            "how-to-guides/data-quality-observability/quality/data-quality-as-code/index",
+                                            "how-to-guides/data-quality-observability/quality/data-quality-as-code/getting-started",
+                                            "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-runner",
+                                            "how-to-guides/data-quality-observability/quality/data-quality-as-code/dataframe-validation",
+                                            "how-to-guides/data-quality-observability/quality/data-quality-as-code/test-definitions",
+                                            "how-to-guides/data-quality-observability/quality/data-quality-as-code/advanced-usage"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Data Profiler",
+                                "pages": [
+                                    "how-to-guides/data-quality-observability/profiler/index",
+                                    "how-to-guides/data-quality-observability/profiler/tab",
+                                    "how-to-guides/data-quality-observability/profiler/profiler-workflow",
+                                    "how-to-guides/data-quality-observability/profiler/metrics",
+                                    "how-to-guides/data-quality-observability/profiler/custom-metrics",
+                                    "how-to-guides/data-quality-observability/profiler/auto-pii-tagging",
+                                    {
+                                        "group": "Spark Engine",
+                                        "pages": [
+                                            "how-to-guides/data-quality-observability/profiler/spark-engine/index",
+                                            "how-to-guides/data-quality-observability/profiler/spark-engine/prerequisites",
+                                            "how-to-guides/data-quality-observability/profiler/spark-engine/partitioning",
+                                            {
+                                                "group": "Configuration",
+                                                "pages": [
+                                                    "how-to-guides/data-quality-observability/profiler/spark-engine/configuration/index",
+                                                    "how-to-guides/data-quality-observability/profiler/spark-engine/configuration/ui-configuration",
+                                                    "how-to-guides/data-quality-observability/profiler/spark-engine/configuration/external-configuration"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Data Observability",
+                                "pages": [
+                                    "how-to-guides/data-quality-observability/observability/index",
+                                    "how-to-guides/data-quality-observability/observability/alerts",
+                                    "how-to-guides/data-quality-observability/observability/webhooks"
+                                ]
+                            },
+                            {
+                                "group": "Alerts & Notifications",
+                                "pages": [
+                                    "how-to-guides/data-quality-observability/alerts-notifications/index",
+                                    "how-to-guides/data-quality-observability/alerts-notifications/data-observability-alerts",
+                                    "how-to-guides/data-quality-observability/alerts-notifications/system-governance-notifications",
+                                    "how-to-guides/data-quality-observability/alerts-notifications/email-alerts-configuration",
+                                    "how-to-guides/data-quality-observability/alerts-notifications/slack-alerts-configuration",
+                                    "how-to-guides/data-quality-observability/alerts-notifications/microsoft-teams-alerts-configuration",
+                                    "how-to-guides/data-quality-observability/alerts-notifications/google-chat-alerts-configuration",
+                                    "how-to-guides/data-quality-observability/alerts-notifications/generic-webhook-alerts-configuration"
+                                ]
+                            },
+                            {
+                                "group": "Incident Manager",
+                                "pages": [
+                                    "how-to-guides/data-quality-observability/incident-manager/index",
+                                    "how-to-guides/data-quality-observability/incident-manager/workflow",
+                                    "how-to-guides/data-quality-observability/incident-manager/root-cause-analysis"
+                                ]
+                            },
+                            {
+                                "group": "Anomaly Detection",
+                                "pages": [
+                                    "how-to-guides/data-quality-observability/anomaly-detection/index",
+                                    "how-to-guides/data-quality-observability/anomaly-detection/setting-up"
+                                ]
+                            },
+                            {
+                                "group": "Notification Templates",
+                                "pages": [
+                                    "how-to-guides/data-quality-observability/notification-templates/index",
+                                    "how-to-guides/data-quality-observability/notification-templates/concepts-and-overview",
+                                    "how-to-guides/data-quality-observability/notification-templates/create-and-manage-templates",
+                                    "how-to-guides/data-quality-observability/notification-templates/handlebars-templating-guide",
+                                    "how-to-guides/data-quality-observability/notification-templates/template-context-reference",
+                                    "how-to-guides/data-quality-observability/notification-templates/custom-helpers-reference",
+                                    "how-to-guides/data-quality-observability/notification-templates/troubleshooting"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Data Lineage",
+                "groups": [
+                    {
+                        "group": "Data Lineage",
+                        "pages": [
+                            "how-to-guides/data-lineage/index",
+                            "how-to-guides/data-lineage/workflow",
+                            "how-to-guides/data-lineage/explore",
+                            "how-to-guides/data-lineage/column",
+                            "how-to-guides/data-lineage/manual"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Data Insights",
+                "groups": [
+                    {
+                        "group": "Data Insights",
+                        "pages": [
+                            "how-to-guides/data-insights/index",
+                            "how-to-guides/data-insights/tiering",
+                            "how-to-guides/data-insights/ingestion",
+                            "how-to-guides/data-insights/kpi",
+                            "how-to-guides/data-insights/report",
+                            "how-to-guides/data-insights/cost-analysis",
+                            "how-to-guides/data-insights/email-report",
+                            "how-to-guides/data-insights/data-culture",
+                            "how-to-guides/data-insights/custom-dashboard",
+                            "how-to-guides/data-insights/service-insights"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Data Governance",
+                "groups": [
+                    {
+                        "group": "Overview",
+                        "pages": [
+                            "how-to-guides/data-governance/index"
+                        ]
+                    },
+                    {
+                        "group": "Data Governance",
+                        "pages": [
+                            {
+                                "group": "Automations",
+                                "pages": [
+                                    "how-to-guides/data-governance/automation/index",
+                                    "how-to-guides/data-governance/automation/set-up-automation"
+                                ]
+                            },
+                            {
+                                "group": "Glossary",
+                                "pages": [
+                                    "how-to-guides/data-governance/glossary/index",
+                                    "how-to-guides/data-governance/glossary/glossary-term",
+                                    "how-to-guides/data-governance/glossary/setup",
+                                    "how-to-guides/data-governance/glossary/create-terms",
+                                    "how-to-guides/data-governance/glossary/import",
+                                    "how-to-guides/data-governance/glossary/export",
+                                    "how-to-guides/data-governance/glossary/approval",
+                                    "how-to-guides/data-governance/glossary/troubleshooting",
+                                    "how-to-guides/data-governance/glossary/styling",
+                                    "how-to-guides/data-governance/glossary/assets",
+                                    "how-to-guides/data-governance/glossary/best-practices"
+                                ]
+                            },
+                            {
+                                "group": "Classification",
+                                "pages": [
+                                    "how-to-guides/data-governance/classification/index",
+                                    "how-to-guides/data-governance/classification/assets",
+                                    "how-to-guides/data-governance/classification/request-tags",
+                                    "how-to-guides/data-governance/classification/sample-data-using-pii-tag",
+                                    {
+                                        "group": "Auto-Classification Workflow",
+                                        "pages": [
+                                            "how-to-guides/data-governance/classification/auto-classification/index",
+                                            "how-to-guides/data-governance/classification/auto-classification/workflow",
+                                            "how-to-guides/data-governance/classification/auto-classification/external-workflow",
+                                            "how-to-guides/data-governance/classification/auto-classification/auto-pii-tagging",
+                                            "how-to-guides/data-governance/classification/auto-classification/external-sample-data"
+                                        ]
+                                    },
+                                    "how-to-guides/data-governance/classification/tiers",
+                                    "how-to-guides/data-governance/classification/best-practices"
+                                ]
+                            },
+                            {
+                                "group": "Domains & Data Product",
+                                "pages": [
+                                    "how-to-guides/data-governance/domains-&-data-products/index",
+                                    "how-to-guides/data-governance/domains-&-data-products/domains",
+                                    "how-to-guides/data-governance/domains-&-data-products/data-products"
+                                ]
+                            },
+                            {
+                                "group": "Workflows",
+                                "pages": [
+                                    "how-to-guides/data-governance/workflows/index",
+                                    "how-to-guides/data-governance/workflows/creating-a-new-workflow",
+                                    {
+                                        "group": "Default Workflows",
+                                        "pages": [
+                                            "how-to-guides/data-governance/workflows/default-workflows/index",
+                                            "how-to-guides/data-governance/workflows/default-workflows/glossary-approval",
+                                            "how-to-guides/data-governance/workflows/default-workflows/table-certification",
+                                            "how-to-guides/data-governance/workflows/default-workflows/dashboard-certification"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Elements",
+                                        "pages": [
+                                            "how-to-guides/data-governance/workflows/elements/index",
+                                            {
+                                                "group": "Triggers",
+                                                "pages": [
+                                                    "how-to-guides/data-governance/workflows/elements/triggers/index",
+                                                    "how-to-guides/data-governance/workflows/elements/triggers/event-based-entity-trigger",
+                                                    "how-to-guides/data-governance/workflows/elements/triggers/periodic-batch-entity-trigger"
+                                                ]
+                                            },
+                                            {
+                                                "group": "Nodes",
+                                                "pages": [
+                                                    "how-to-guides/data-governance/workflows/elements/nodes/index",
+                                                    "how-to-guides/data-governance/workflows/elements/nodes/start-node",
+                                                    "how-to-guides/data-governance/workflows/elements/nodes/check-condition",
+                                                    "how-to-guides/data-governance/workflows/elements/nodes/set-action",
+                                                    "how-to-guides/data-governance/workflows/elements/nodes/user-approval-task",
+                                                    "how-to-guides/data-governance/workflows/elements/nodes/data-completeness-task"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "group": "Examples",
+                                        "pages": [
+                                            "how-to-guides/data-governance/workflows/examples/index",
+                                            "how-to-guides/data-governance/workflows/examples/tag-approval-workflow",
+                                            "how-to-guides/data-governance/workflows/examples/table-documentation-tiering-workflow",
+                                            "how-to-guides/data-governance/workflows/examples/set-tags-to-mlmodels-workflow"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "how-to-guides/data-governance/metrics"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "SQL Studio",
+                "groups": [
+                    {
+                        "group": "SQL Studio",
+                        "pages": [
+                            "how-to-guides/sql-studio/index",
+                            "how-to-guides/sql-studio/admin-configuration",
+                            "how-to-guides/sql-studio/user-authentication",
+                            "how-to-guides/sql-studio/query-execution"
                         ]
                     }
                 ]
