@@ -131,6 +131,12 @@ Configure the source type and service name for your Vertica connector.
 
 </ContentSection>
 
+<ContentSection id={7} title="Source Config" lines="15-58">
+
+<SourceConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 
 <CodePanel fileName="vertica_config.yaml">
@@ -152,15 +158,16 @@ hostPort: localhost:5432
       #   key: value
 ```
 
-</CodePanel>
-
-</CodePreview>
-
 <SourceConfig />
 
 <IngestionSink />
 
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <Lineage connector="vertica" />
 <DataProfiler connector="vertica" />

@@ -3,12 +3,14 @@ title: Run the TimescaleDB Connector Externally
 description: Use YAML to configure TimescaleDB metadata ingestion with profiling and schema extraction.
 slug: /connectors/database/timescale/yaml
 sidebarTitle: Run Externally
+mode: "wide"
 ---
 import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
 import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
 import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
 import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
 import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
@@ -131,107 +133,157 @@ The workflow is modeled around the following
 
 This is a sample config for TimescaleDB:
 
-#### Source Configuration - Service Connection
+<CodePreview>
 
- codeInfo srNumber=1
+<ContentPanel>
 
-**username**: Specify the User to connect to TimescaleDB. It should have enough privileges to read all the metadata.
+<ContentSection id={1} title="Source Configuration" lines="1-3">
 
+Configure the source type and service name for your TimescaleDB connector.
 
+</ContentSection>
 
- codeInfo srNumber=2
+<ContentSection id={2} title="Username" lines="7">
 
-**authType**: Choose from basic auth and IAM based auth.
-#### Basic Auth
+**username**: Specify the user to connect to TimescaleDB. It should have enough privileges to read all the metadata.
 
-**password**: Password comes under Basic Auth type.
+</ContentSection>
 
+<ContentSection id={3} title="Basic Authentication" lines="8-9">
 
+**authType**: Choose from basic auth and IAM-based auth.  
+**password**: Password for basic authentication.
 
- codeInfo srNumber=3
-#### IAM BASED Auth
+</ContentSection>
 
-- **awsAccessKeyId** & **awsSecretAccessKey**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
-  permission to access the resources that you are requesting. AWS uses the security credentials to authenticate and
-  authorize your requests ([docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html)).
+<ContentSection id={4} title="IAM Authentication" lines="12">
 
-Access keys consist of two parts: An **access key ID** (for example, `AKIAIOSFODNN7EXAMPLE`), and a **secret access key** (for example, `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`).
+<div>
 
-You must use both the access key ID and secret access key together to authenticate your requests.
+**awsAccessKeyId** & **awsSecretAccessKey**: AWS credentials to authenticate requests ([docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html)).
 
-You can find further information on how to manage your access keys [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
+</div>
 
-**awsSessionToken**: If you are using temporary credentials to access your services, you will need to inform the AWS Access Key ID
-and AWS Secrets Access Key. Also, these will include an AWS Session Token.
+<div>
 
+**awsRegion**: AWS region where the TimescaleDB instance is running. Required when using IAM auth.
 
-**awsRegion**: Each AWS Region is a separate geographic area in which AWS clusters data centers ([docs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html)).
+</div>
 
-As AWS can have instances in multiple regions, we need to know the region the service you want reach belongs to.
+<div>
 
-Note that the AWS Region is the only required parameter when configuring a connection. When connecting to the
-services programmatically, there are different ways in which we can extract and use the rest of AWS configurations.
+**assumeRoleArn / assumeRoleSessionName**: (Optional) Use an IAM role for cross-account access. Provide the role ARN and (optionally) a session name.
 
-You can find further information about configuring your credentials [here](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#configuring-credentials).
+</div>
 
+</ContentSection>
 
-**endPointURL**: To connect programmatically to an AWS service, you use an endpoint. An *endpoint* is the URL of the
-entry point for an AWS web service. The AWS SDKs and the AWS Command Line Interface (AWS CLI) automatically use the
-default endpoint for each service in an AWS Region. But you can specify an alternate endpoint for your API requests.
+<ContentSection id={5} title="Host Port" lines="15">
 
-Find more information on [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html).
+**hostPort**: Fully qualified hostname and port for your TimescaleDB deployment (format: `host:port`).
 
+</ContentSection>
 
-**profileName**: A named profile is a collection of settings and credentials that you can apply to a AWS CLI command.
-When you specify a profile to run a command, the settings and credentials are used to run that command.
-Multiple named profiles can be stored in the config and credentials files.
+<ContentSection id={6} title="Database" lines="16">
 
-You can inform this field if you'd like to use a profile other than `default`.
+**database**: Initial database to connect to. Set `ingestAllDatabases: true` to ingest all databases.
 
-Find here more information about [Named profiles for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
+</ContentSection>
 
+<ContentSection id={7} title="Ingest All Databases" lines="17">
 
-**assumeRoleArn**: Typically, you use `AssumeRole` within your account or for cross-account access. In this field you'll set the
-`ARN` (Amazon Resource Name) of the policy of the other account.
+**ingestAllDatabases**: When true, ingests data from all databases. Use `databaseFilterPattern` if you need to scope further.
 
-A user who wants to access a role in a different account must also have permissions that are delegated from the account
-administrator. The administrator must attach a policy that allows the user to call `AssumeRole` for the `ARN` of the role in the other account.
+</ContentSection>
 
-This is a required field if you'd like to `AssumeRole`.
+<ContentSection id={8} title="SSL Configuration" lines="18">
 
-Find more information on [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html).
+**sslConfig / sslMode**: Optional SSL settings. Provide `caCertificate` and choose an SSL mode (`disable`, `allow`, `prefer`, `require`, `verify-ca`, `verify-full`).
 
-<Tip>
-When using Assume Role authentication, ensure you provide the following details:
-- **AWS Region**: Specify the AWS region for your deployment.
-- **Assume Role ARN**: Provide the ARN of the role in your AWS account that OpenMetadata will assume.
-</Tip>
+</ContentSection>
 
-**assumeRoleSessionName**: An identifier for the assumed role session. Use the role session name to uniquely identify a session when the same role
-is assumed by different principals or for different reasons.
+<ContentSection id={9} title="Connection Options" lines="21">
 
-By default, we'll use the name `OpenMetadataSession`.
+Optional key-value pairs sent as additional connection options.
 
-Find more information about the [Role Session Name](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=An%20identifier%20for%20the%20assumed%20role%20session.).
+</ContentSection>
 
+<ContentSection id={10} title="Connection Arguments" lines="23">
 
-**assumeRoleSourceIdentity**: The source identity specified by the principal that is calling the `AssumeRole` operation. You can use source identity
-information in AWS CloudTrail logs to determine who took actions with a role.
+Optional key-value pairs for connection arguments (e.g., SSO `authenticator` URL).
 
-Find more information about [Source Identity](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=Required%3A%20No-,SourceIdentity,-The%20source%20identity).
+</ContentSection>
 
-
-**hostPort**: Enter the fully qualified hostname and port number for your TimescaleDB deployment in the Host and Port field.
-
-**database**: Initial TimescaleDB database to connect to. If you want to ingest all databases, set ingestAllDatabases to true.
-
-**ingestAllDatabases**: Ingest data from all databases in TimescaleDB. You can use databaseFilterPattern on top of this.
+<ContentSection id={11} title="Source Config" lines="25-68">
 
 <SourceConfigDef />
 
+</ContentSection>
+
+<ContentSection id={12} title="Sink Configuration" lines="69-71">
+
 <IngestionSinkDef />
 
+</ContentSection>
+
+<ContentSection id={13} title="Workflow Configuration" lines="72-88">
+
 <WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="timescale_config.yaml">
+
+```yaml
+source:
+  type: Timescale
+  serviceName: local_timescale
+  serviceConnection:
+    config:
+      type: Timescale
+      username: username  # REQUIRED
+      authType:
+        password: <password>  # Basic Auth - most common
+      # authType:
+      #   awsConfig:  # IAM Auth for AWS RDS TimescaleDB
+      #     awsAccessKeyId: access key id
+      #     awsSecretAccessKey: access secret key
+      #     awsRegion: aws region name
+      hostPort: localhost:5432  # REQUIRED - format: host:port
+      database: database  # REQUIRED - database name
+      ingestAllDatabases: true
+      # sslConfig:
+      #   caCertificate: "path/to/ca/certificate"
+      # sslMode: disable #allow prefer require verify-ca verify-full
+      # connectionOptions:
+      #   key: value
+      # connectionArguments:
+      #   key: value
+```
+
+<SourceConfig />
+
+<IngestionSink />
+
+<WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
+<IngestionCli />
+
+<QueryUsage />
+
+<Lineage />
+
+<DataProfiler />
+
+<AutoClassification />
+
+<DataQuality />
 
 #### Advanced Configuration
 
@@ -253,81 +305,6 @@ prefer (the default): The driver will try to negotiate an SSL connection but if 
 require: The driver will try to negotiate an SSL connection. If the server does not support SSL, the driver will not fall back to a non-SSL connection.
 verify-ca: The driver will negotiate an SSL connection and verify that the server certificate is issued by a trusted certificate authority (CA).
 verify-full: The driver will negotiate an SSL connection, verify that the server certificate is issued by a trusted CA and check that the server host name matches the one in the certificate.
-
-
-
-
- /codeInfoContainer
-
- codeBlock fileName="filename.yaml"
-
-```yaml  isCodeBlock=true
-source:
-  type: Timescale
-  serviceName: local_timescale
-  serviceConnection:
-    config:
-      type: Timescale
-```
-```yaml  srNumber=1
-      username: username  # REQUIRED
-```
-```yaml  srNumber=2
-      authType:
-        password: <password>  # Basic Auth - most common
-```
-```yaml  srNumber=3
-      authType:
-        awsConfig:  # IAM Auth for AWS RDS TimescaleDB
-          awsAccessKeyId: access key id
-          awsSecretAccessKey: access secret key
-          awsRegion: aws region name
-```
-```yaml  srNumber=4
-      hostPort: localhost:5432  # REQUIRED - format: host:port
-```
-```yaml  srNumber=5
-      database: database  # REQUIRED - database name
-```
-```yaml  srNumber=6
-      ingestAllDatabases: true
-```
-```yaml  srNumber=9
-      # sslConfig:
-            # caCertificate: "path/to/ca/certificate"
-      # sslMode: disable #allow prefer require verify-ca verify-full
-```
-
-```yaml  srNumber=7
-      # connectionOptions:
-      #   key: value
-```
-```yaml  srNumber=8
-      # connectionArguments:
-      #   key: value
-```
-
-<SourceConfig />
-
-<IngestionSink />
-
-<WorkflowConfig />
-
- /codeBlock
-
- /codePreview
-
-<IngestionCli />
-
-<QueryUsage />
-
-<Lineage />
-
-<DataProfiler />
-
-<AutoClassification />
-
-<DataQuality />
 
 ## Securing TimescaleDB Connection with SSL in OpenMetadata
 

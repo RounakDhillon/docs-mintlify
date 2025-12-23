@@ -11,6 +11,10 @@ import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/
 import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
 import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
+import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
 
 <ConnectorDetailsHeader
 icon='/public/images/connectors/epic.png'
@@ -62,15 +66,28 @@ Configure the source type and service name for your Epic FHIR connector.
 
 </ContentSection>
 
-<ContentSection id={5} title="Filter Patterns" lines="13-23">
+<ContentSection id={5} title="Filter Patterns" lines="11-54">
 
 **schemaFilterPattern / tableFilterPattern**: Regex filters to limit which FHIR resource categories (schemas) or resource types (tables) are ingested.
 
 </ContentSection>
 
-<ContentSection id={6} title="Sink Configuration" lines="24-26">
+
+<ContentSection id={6} title="Source Config" lines="11-54">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={7} title="Sink Configuration" lines="55-57">
 
 <IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={8} title="Workflow Configuration" lines="58-74">
+
+<WorkflowConfigDef />
 
 </ContentSection>
 
@@ -89,23 +106,13 @@ source:
       fhirVersion: R4  # REQUIRED
       # Optional:
       # databaseName: epic
-# Optional filters
-sourceConfig:
-  config:
-    # schemaFilterPattern:
-    #   includes:
-    #     - Clinical
-    #   excludes:
-    #     - Archived
-    # tableFilterPattern:
-    #   includes:
-    #     - Patient
-    #   excludes:
-    #     - ".*Test.*"
-sink:
-  type: metadata-rest
-  config: {}
 ```
+
+<SourceConfig />
+
+<IngestionSink />
+
+<WorkflowConfig />
 
 </CodePanel>
 

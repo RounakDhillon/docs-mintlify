@@ -83,7 +83,7 @@ Configure the source type and service name for your Unity Catalog connector.
 
 </ContentSection>
 
-<ContentSection id={2} title="catalog" lines="2">
+<ContentSection id={2} title="catalog" lines="7">
 
 **catalog**: Catalog of the data source(Example: hive_metastore). This is optional parameter, if you would like to restrict the metadata reading to a single catalog. When left blank, OpenMetadata Ingestion attempts to scan all the catalog.
 
@@ -128,6 +128,13 @@ Configure the source type and service name for your Unity Catalog connector.
 
 </ContentSection>
 
+
+<ContentSection id={9} title="Source Config" lines="17-60">
+
+<SourceConfigDef />
+
+</ContentSection>
+
 </ContentPanel>
 
 <CodePanel fileName="unity_catalog_config.yaml">
@@ -151,15 +158,16 @@ connectionTimeout: 120
       #   key: value
 ```
 
-</CodePanel>
-
-</CodePreview>
-
 <SourceConfig />
 
 <IngestionSink />
 
 <WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
 <IngestionCli />
 <QueryUsage connector="unitycatalog" />
 <Lineage connector="unitycatalog" />
