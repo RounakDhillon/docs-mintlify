@@ -38,6 +38,11 @@
     "interaction": {
         "drilldown": true
     },
+    "seo": {
+        "metatags": {
+            "canonical": "https://docs.getcollate.io/"
+        }
+    },
     "navigation": {
         "tabs": [
             {

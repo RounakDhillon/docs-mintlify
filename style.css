@@ -4,6 +4,10 @@
     padding: 0px 10px 40px;
 }
 
+.collate-ai-iframe {
+    margin: 32px 0px 40px;
+}
+
 .banner-content {
     padding: 96px 0;
     background: radial-gradient(46.63% 44.4% at 50% 50%, rgba(201, 207, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
