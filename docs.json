@@ -71,7 +71,7 @@
                                         "group": "Hybrid SaaS",
                                         "pages": [
                                             "getting-started/day-1/hybrid-saas/index",
-                                            "getting-started/day-1/hybrid-saas/hybrid-ingestion-runner"
+                                            "getting-started/day-1/hybrid-saas/local-ingestion-agent"
                                         ]
                                     }
                                 ]
