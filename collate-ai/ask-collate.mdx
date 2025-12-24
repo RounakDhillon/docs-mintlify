@@ -8,7 +8,9 @@ collate: true
 
 # Ask Collate
 
-Ask Collate is the AI assistant inside Collate. It lets you explore data assets, generate or fix SQL, visualize insights, and enforce governance using natural language. Responses are grounded in the metadata, lineage, and usage information ingested into Collate.
+Ask Collate is the AI assistant inside Collate. It lets you explore data assets, generate and run SQL queries, visualize insights, and enforce governance using natural language based on Collate’s Unified Knowledge Graph.
+
+Moreover, AskCollate runs with the permissions granted to the user, ensuring compliance with every performed action.
 
 ## What you can do
 
@@ -21,24 +23,16 @@ Ask Collate is the AI assistant inside Collate. It lets you explore data assets,
   allowFullScreen>
 </iframe>
 
-- Ask plain-language questions to discover tables, dashboards, owners, or usage patterns.
-- Generate SQL with explanations you can review before running in your warehouse.
-- Fix or optimize SQL by pasting an existing query and requesting improvements.
-- Summarize metadata to understand table purpose, lineage, quality signals, and owners.
-- Create and manage glossary terms, tags, and data quality tests through prompts.
+- Navigate your data with plain-language and understand what’s the best asset to handle your use case.
+- Run SQL queries, discover insights and visualize results.
+- Dive deep into assets’ lineage and health.
+- Understand your company’s language with the glossary, create new terms, and apply metadata changes.
 
 ## Prerequisites
 
 - Collate AI is installed and enabled in your workspace.
 - Metadata, lineage, and usage ingestion jobs are running so Ask Collate has context.
 - You have permissions to view and act on the assets you are asking about.
-
-## How to use
-
-1. Click the **Ask Collate** chat icon in the Collate UI.
-2. Enter your question in plain language; no SQL is required to start.
-3. Use follow-up prompts to refine the answer, adjust filters, or change the visualization.
-4. Review the generated SQL or insights, then run or apply them in your preferred workflow.
 
 ## Core Capabilities
 
@@ -49,16 +43,25 @@ Ask Collate is the AI assistant inside Collate. It lets you explore data assets,
 - **Lineage**: Visualize upstream and downstream dependencies to perform impact analysis.
 - **Govern**: Create or edit glossary terms, assign owners, and tag assets from the chat.
 
-## Reliable Prompt Patterns
-
-- "Show me top marketing tables by usage this month. Only certified assets."
-- "What does the `orders` table store and who owns it?"
-- "Write a query for the last 90 days of active users by region."
-- "Here is my query. Can you make it faster and explain the changes?"
-- "Which Tier 1 assets are missing descriptions?"
-- "Show lineage for `customer_360` and highlight downstream dashboards."
-
 ## Use cases
+
+Let’s imagine a company trying to assess sales for a new product launched to the market. Different personas will have different needs and goals, and they all can use AskCollate to help get their job done for this project.
+
+### Data steward: glossary and tagging
+
+<iframe
+  width="800"
+  height="450"
+  src="https://www.youtube.com/embed/5Qa3VwOd8To"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen>
+</iframe>
+
+- **Prompt**: "Do we have a definition for revenue?"
+- **Result**: Searches glossary terms and suggests creating one if missing.
+- **Prompt**: "Create a term for revenue calculation and tag relevant Snowflake tables."
+- **Result**: Adds the term, links it to assets such as `order_items`, and tracks ownership.
 
 ### Data analyst: assess eco-friendly product performance
 
@@ -102,22 +105,6 @@ Ask Collate is the AI assistant inside Collate. It lets you explore data assets,
 - **Result**: Surfaces outliers (for example, negative `unit_price` values).
 - **Prompt**: "Create test cases for the products table."
 - **Result**: Suggests completeness, uniqueness, range, and integrity tests and records who requested them.
-
-### Data steward: glossary and tagging
-
-<iframe
-  width="800"
-  height="450"
-  src="https://www.youtube.com/embed/5Qa3VwOd8To"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen>
-</iframe>
-
-- **Prompt**: "Do we have a definition for revenue?"
-- **Result**: Searches glossary terms and suggests creating one if missing.
-- **Prompt**: "Create a term for revenue calculation and tag relevant Snowflake tables."
-- **Result**: Adds the term, links it to assets such as `order_items`, and tracks ownership.
 
 ## Best practices
 

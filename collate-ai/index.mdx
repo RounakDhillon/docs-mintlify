@@ -10,40 +10,33 @@ collate: true
 # Collate AI
 
 <div className="collate-ai-iframe">
-<iframe width="800" height="450" src="https://www.youtube.com/embed/6glMYLzxNqk?start=0&end=260" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/XauK0jEr3jI?start=0&end=260" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 </div>
 
-Collate AI is an AI-powered tool within Collate that simplifies and enhances metadata management. By integrating generative AI, Collate AI assists users in automating the documentation of data assets, writing and optimizing SQL queries, and interacting with data through natural language. This first-of-its-kind data copilot improves productivity by automating tedious tasks and providing intelligent insights into your data environment.
+Collate AI brings generative AI to metadata management, making it effortless to document data assets, generate and optimize SQL, and explore data using simple language. It boosts productivity by automating routine workflows and empowering all users from analysts to engineers to get more value from their data.
 
 ## Key Features
 
 <Columns cols={2}>
-<Card icon='/public/images/icons/mcp.svg' title="MCP Server" href="/how-to-guides/mcp" horizontal>
-  Enable AI agent communication with metadata to add context and take intelligent and automated action
-</Card>
 <Card icon='/public/images/icons/askcollate.svg' title="AskCollate" href="/collate-ai/ask-collate" horizontal>
-  Your conversational interface for querying metadata, documentation, lineage, and governance controls.
-</Card>
-<Card icon='/public/images/icons/tier.svg' title="Collate AI Tier Agent" href="/collate-ai/tier-agent" horizontal>
-  Classify Business-Critical Data with Collate AI Tier Agent.
-</Card>
-<Card icon="/public/images/icons/qualityagent.svg" title="Collate AI Quality Agent" href="/collate-ai/quality-agent" horizontal>
-  Enhance Data Quality with Collate AI Quality Agent.
-</Card>
-<Card icon='/public/images/icons/autopilot.svg' title="Autopilot" href="/collate-ai/collate-ai-autopilot-workflows" horizontal>
-  Streamlining Metadata with Collate AI and Autopilot Integration.
+  An AI agent that provides conversational analytics and data management capabilities built upon Collate’s Knowledge Graph.
 </Card>
 <Card icon='/public/images/icons/documentation.svg' title="Collate AI Documentation Agent" href="/collate-ai/documentation-agent" horizontal>
-  Automate Metadata Descriptions with Collate AI Documentation Agent.
+  Automate description generation based on the context of your data.
+</Card>
+<Card icon='/public/images/icons/tier.svg' title="Collate AI Tier Agent" href="/collate-ai/tier-agent" horizontal>
+  Classify business-critical data assets by usage & impact.
+</Card>
+<Card icon="/public/images/icons/qualityagent.svg" title="Collate AI Quality Agent" href="/collate-ai/quality-agent" horizontal>
+  Automatically create Data Quality tests to ensure health and stability.
+</Card>
+<Card icon='/public/images/icons/autopilot.svg' title="Autopilot" href="/collate-ai/collate-ai-autopilot-workflows" horizontal>
+  Streamline metadata ingestion capabilities for every service in your Data Platform.
+</Card>
+<Card icon='/public/images/icons/mcp.svg' title="MCP Server" href="/collate-ai/mcp" horizontal>
+  An embedded, secure and enterprise-ready MCP server to bring metadata context to your AI agents.
 </Card>
 </Columns>
-
-- **Automated Data Documentation**: Automatically generates metadata descriptions for tables and columns, saving time and effort for data owners and stewards.
-- **Natural Language SQL Query Generation**: Allows users to interact with Collate AI through a chatbot to generate SQL queries by simply asking questions in plain English.
-- **SQL Query Optimization and Fixing**: Capable of optimizing and troubleshooting SQL queries to improve their performance and efficiency.
-- **AI-Driven Test Automation**: Automatically suggests and deploys relevant data quality tests based on table constraints and similarity with other assets, streamlining your data validation efforts.
-- **Automated Tier Classification**: Uses data lineage and usage analytics to intelligently assign Tier levels, helping teams prioritize and govern critical data assets.
-- **Natural Language Search**: Search for data assets using plain, user-friendly phrases — no complex syntax required. NLP interprets your query to return relevant results.
 
 Examples:
 
@@ -52,56 +45,10 @@ Examples:
 
 Click the icon again to switch back to standard search.
 
-## Why Collate AI is Useful
+## Why Collate AI
 
-### Metadata Management Challenges
+Data only gains value when it is contextualized within your organization and your business. This requires understanding not only the data, but how the data is being used by different user personas, who owns it, and what is the business impact of each specific asset.
 
-Managing metadata across multiple data assets can be overwhelming due to the influx of new data and changing team dynamics. Collate AI addresses these challenges by:
-
-- Automating metadata description generation.
-- Simplifying the creation and optimization of SQL queries.
-- Reducing manual effort and enhancing data quality.
-
-### Time-Saving Features
-
-Documenting thousands of tables manually is tedious and time-consuming. Collate AI automates metadata generation, allowing data teams to focus on high-value tasks and ensuring that data assets are consistently documented and understood across the organization.
-
-## Use Cases
-
-### 1. Automatic Data Asset Documentation
-
-<img noZoom src="/public/images/collate-ai/reviewing-generated-metadata.png" alt="Automatic Data Asset Documentation" />
-
-- **Problem**: Manually creating metadata descriptions for large datasets is labor-intensive and error-prone.
-- **Solution**: Collate AI’s generative AI automates the process, analyzing database structures and suggesting accurate descriptions for tables and columns.
-- **How It Works**: After configuring Collate AI, it scans the database schema and generates metadata descriptions automatically. Users can review these descriptions and approve or reject them in bulk or individually.
-- **Benefit**: Streamlines the documentation process, ensuring consistent and up-to-date metadata across all datasets.
-
-### 2. Natural Language SQL Query Generation
-
-<img noZoom src="/public/images/collate-ai/using-collate-ai-chatbot-2.png" alt="Natural Language SQL Query Generation" />
-
-- **Problem**: Non-technical users often struggle with writing SQL queries to extract insights from databases.
-- **Solution**: Collate AI’s chatbot allows users to ask questions in natural language, generating SQL queries and providing explanations to help extract the required data quickly and easily.
-- **How It Works**: Users can click on the Collate AI chatbot widget and ask questions like "Show me sales data from last quarter." Collate AI generates the corresponding SQL query and explains its logic.
-- **Benefit**: Democratizes data access by enabling users of all technical levels to interact with data without deep SQL knowledge.
-
-### 3. SQL Query Optimization and Troubleshooting
-
-<img noZoom src="/public/images/collate-ai/fixing-sql-queries-3.png" alt="SQL Query Optimization and Troubleshooting" />
-
-- **Problem**: SQL queries can become complex and inefficient, leading to performance issues and increased costs.
-- **Solution**: Collate AI optimizes inefficient queries to improve performance, saving both time and resources.
-- **How It Works**: If a query runs too long, users can request Collate AI to optimize it. Collate AI provides a more efficient SQL query version that can be implemented immediately.
-- **Benefit**: Enhances query performance, reduces costs associated with inefficient queries, and speeds up data processing.
-
-### 4. Fixing SQL Queries
-
-<img noZoom src="/public/images/collate-ai/fixing-sql-queries-4.png" alt="Fixing SQL Queries" />
-
-- **Problem**: Complex queries can cause issues even for SQL experts.
-- **Solution**: Collate AI can fix problematic SQL queries, ensuring they run correctly and efficiently.
-- **How It Works**: Users can ask Collate AI, "Can you fix this query for me?" It analyzes the query, detects issues, and returns a corrected version ready for use.
-- **Benefit**: Simplifies writing and maintaining queries, allowing data teams to focus on analysis rather than troubleshooting.
+Collate manages a Unified Knowledge Graph encompassing both your data and your organization’s semantics, which is the foundation to let your teams scale with your data by bringing automations and bridging the gap between people and data.
 
 </div>

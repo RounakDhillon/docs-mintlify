@@ -1121,15 +1121,30 @@
             },
             {
                 "tab": "Collate AI",
-                "pages": [
-                    "collate-ai/index",
-                    "collate-ai/ask-collate",
-                    "collate-ai/collate-ai-autopilot-workflows",
-                    "collate-ai/how-to-use-collate-ai",
-                    "collate-ai/tier-agent",
-                    "collate-ai/quality-agent",
-                    "collate-ai/documentation-agent"
-                ]
+                "groups": [
+                    {
+                        "group": "Collate AI",
+                        "pages": [
+                            "collate-ai/index",
+                            "collate-ai/ask-collate",
+                            "collate-ai/collate-ai-autopilot-workflows",
+                            "collate-ai/how-to-use-collate-ai",
+                            "collate-ai/tier-agent",
+                            "collate-ai/quality-agent",
+                            "collate-ai/documentation-agent"
+                        ]
+                    },
+                        {
+                            "group": "MCP Server",
+                            "pages": [
+                                "collate-ai/mcp/index",
+                                "collate-ai/mcp/connect",
+                                "collate-ai/mcp/claude",
+                                "collate-ai/mcp/goose",
+                                "collate-ai/mcp/reference"
+                            ]
+                        }
+                    ]
             },
             {
                 "tab": "How-To Guides",
@@ -1138,21 +1153,6 @@
                         "group": "How-To Guides",
                         "pages": [
                             "how-to-guides/index"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "MCP Server",
-                "groups": [
-                    {
-                        "group": "MCP Server",
-                        "pages": [
-                            "how-to-guides/mcp/index",
-                            "how-to-guides/mcp/claude",
-                            "how-to-guides/mcp/goose",
-                            "how-to-guides/mcp/reference",
-                            "how-to-guides/mcp/connect"
                         ]
                     }
                 ]
