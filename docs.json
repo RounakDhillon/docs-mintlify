@@ -1121,15 +1121,30 @@
             },
             {
                 "tab": "Collate AI",
-                "pages": [
-                    "collate-ai/index",
-                    "collate-ai/ask-collate",
-                    "collate-ai/collate-ai-autopilot-workflows",
-                    "collate-ai/how-to-use-collate-ai",
-                    "collate-ai/tier-agent",
-                    "collate-ai/quality-agent",
-                    "collate-ai/documentation-agent"
-                ]
+                "groups": [
+                    {
+                        "group": "Collate AI",
+                        "pages": [
+                            "collate-ai/index",
+                            "collate-ai/ask-collate",
+                            "collate-ai/collate-ai-autopilot-workflows",
+                            "collate-ai/how-to-use-collate-ai",
+                            "collate-ai/tier-agent",
+                            "collate-ai/quality-agent",
+                            "collate-ai/documentation-agent"
+                        ]
+                    },
+                        {
+                            "group": "MCP Server",
+                            "pages": [
+                                "collate-ai/mcp/index",
+                                "collate-ai/mcp/connect",
+                                "collate-ai/mcp/claude",
+                                "collate-ai/mcp/goose",
+                                "collate-ai/mcp/reference"
+                            ]
+                        }
+                    ]
             },
             {
                 "tab": "How-To Guides",
@@ -1138,21 +1153,6 @@
                         "group": "How-To Guides",
                         "pages": [
                             "how-to-guides/index"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "MCP Server",
-                "groups": [
-                    {
-                        "group": "MCP Server",
-                        "pages": [
-                            "how-to-guides/mcp/index",
-                            "how-to-guides/mcp/claude",
-                            "how-to-guides/mcp/goose",
-                            "how-to-guides/mcp/reference",
-                            "how-to-guides/mcp/connect"
                         ]
                     }
                 ]
@@ -1401,14 +1401,6 @@
                                 ]
                             },
                             {
-                                "group": "Data Observability",
-                                "pages": [
-                                    "how-to-guides/data-quality-observability/observability/index",
-                                    "how-to-guides/data-quality-observability/observability/alerts",
-                                    "how-to-guides/data-quality-observability/observability/webhooks"
-                                ]
-                            },
-                            {
                                 "group": "Alerts & Notifications",
                                 "pages": [
                                     "how-to-guides/data-quality-observability/alerts-notifications/index",
@@ -1418,7 +1410,19 @@
                                     "how-to-guides/data-quality-observability/alerts-notifications/slack-alerts-configuration",
                                     "how-to-guides/data-quality-observability/alerts-notifications/microsoft-teams-alerts-configuration",
                                     "how-to-guides/data-quality-observability/alerts-notifications/google-chat-alerts-configuration",
-                                    "how-to-guides/data-quality-observability/alerts-notifications/generic-webhook-alerts-configuration"
+                                    "how-to-guides/data-quality-observability/alerts-notifications/generic-webhook-alerts-configuration",
+                                    {
+                                        "group": "Notification Templates",
+                                        "pages": [
+                                            "how-to-guides/data-quality-observability/alerts-notifications/notification-templates/index",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/notification-templates/concepts-and-overview",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/notification-templates/create-and-manage-templates",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/notification-templates/handlebars-templating-guide",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/notification-templates/template-context-reference",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/notification-templates/custom-helpers-reference",
+                                            "how-to-guides/data-quality-observability/alerts-notifications/notification-templates/troubleshooting"
+                                        ]
+                                    }
                                 ]
                             },
                             {
@@ -1434,18 +1438,6 @@
                                 "pages": [
                                     "how-to-guides/data-quality-observability/anomaly-detection/index",
                                     "how-to-guides/data-quality-observability/anomaly-detection/setting-up"
-                                ]
-                            },
-                            {
-                                "group": "Notification Templates",
-                                "pages": [
-                                    "how-to-guides/data-quality-observability/notification-templates/index",
-                                    "how-to-guides/data-quality-observability/notification-templates/concepts-and-overview",
-                                    "how-to-guides/data-quality-observability/notification-templates/create-and-manage-templates",
-                                    "how-to-guides/data-quality-observability/notification-templates/handlebars-templating-guide",
-                                    "how-to-guides/data-quality-observability/notification-templates/template-context-reference",
-                                    "how-to-guides/data-quality-observability/notification-templates/custom-helpers-reference",
-                                    "how-to-guides/data-quality-observability/notification-templates/troubleshooting"
                                 ]
                             }
                         ]
