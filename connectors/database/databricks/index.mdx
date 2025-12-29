@@ -22,7 +22,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
 unavailableFeatures={["Stored Procedures", "Tags", "Owners"]} />
 <Tip>
-As per the [documentation](https://docs.databricks.com/en/data-governance/unity-catalog/tags.html#manage-tags-with-sql-commands) here, note that we only support metadata `tag` extraction for databricks version 13.3 version and higher.
+As per the [documentation](https://docs.databricks.com/en/data-governance/unity-catalog/tags.html#manage-tags-with-sql-commands) here, note that we only support metadata `tag` extraction for Databricks version 13.3 version and higher.
 </Tip>
 In this section, we provide guides and references to use the Databricks connector.
 Configure and schedule Databricks metadata and profiler workflows from the OpenMetadata UI:
@@ -65,7 +65,7 @@ These permissions allow access to Databricks system tables that track query acti
 Adjust &lt;user&gt;, &lt;catalog_name&gt;, &lt;schema_name&gt;, and &lt;table_name&gt; according to your specific deployment and security requirements.
 </Tip>
 ## Unity Catalog
-If you are using unity catalog in Databricks, then checkout the [Unity Catalog](/connectors/database/unity-catalog) connector.
+If you are using Unity Catalog in Databricks, then checkout the [Unity Catalog](/connectors/database/unity-catalog) connector.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Databricks"} selectServicePath={"/public/images/connectors/databricks/select-service.png"} addNewServicePath={"/public/images/connectors/databricks/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/databricks/service-connection.png"} />
 # Connection Details
