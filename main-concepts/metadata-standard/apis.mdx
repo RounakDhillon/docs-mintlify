@@ -26,7 +26,7 @@ Following REST API conventions are followed for Resource URIs:
 - The REST API calls return a response with JSON `Content-Type` and `Content-Length` that includes the length of the response.
 - All responses include the Resource ID field even though the id was provided in the request to simplify the consumption
   of the response at the client.
-- Entity names and field names use `camelCase` per Javascript naming convention.
+ - Entity names and field names use `camelCase` per JavaScript naming convention.
 - All resources include an attribute `href` with Resource URI. All relationship fields of an entity will also
   include `href` links to the related resource for easy access.
 - Unknown fields sent by the client in API requests are not ignored to ensure the data sent by the client is not dropped
