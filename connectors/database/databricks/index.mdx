@@ -6,7 +6,6 @@ sidebarTitle: Overview
 ---
 import ReverseMetadata from '/snippets/connectors/database/databricks/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
-import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
 import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
@@ -38,12 +37,6 @@ Configure and schedule Databricks metadata and profiler workflows from the OpenM
 - [Reverse Metadata](#reverse-metadata)
 <ExternalIngestionDeployment />
 ## Requirements
-### Python Requirements
-<PythonRequirements />
-To run the Databricks ingestion, you will need to install:
-```bash
-pip3 install "openmetadata-ingestion[databricks]"
-```
 ### Permission Requirement
 To enable full functionality of metadata extraction, profiling, usage, and lineage features in OpenMetadata, the following permissions must be granted to the relevant users in your Databricks environment.
 ### Metadata and Profiling Permissions
