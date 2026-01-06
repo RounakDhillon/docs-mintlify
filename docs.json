@@ -587,9 +587,9 @@
                                     {
                                         "group": "Power BI Report Server",
                                         "pages": [
-                                            "connectors/dashboard/powerbi-report-server/index",
-                                            "connectors/dashboard/powerbi-report-server/yaml",
-                                            "connectors/dashboard/powerbi-report-server/troubleshooting"
+                                            "connectors/dashboard/powerbireportserver/index",
+                                            "connectors/dashboard/powerbireportserver/yaml",
+                                            "connectors/dashboard/powerbireportserver/troubleshooting"
                                         ]
                                     },
                                     {
