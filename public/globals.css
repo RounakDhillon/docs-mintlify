@@ -973,12 +973,15 @@ article iframe,
 
 /* Parent div of chat assistant sheet */
 div:has(> #chat-assistant-sheet) {
-  right: 30px !important;
   border: none;
 }
 
+div:has(> #chat-assistant-sheet) .cursor-col-resize {
+  display: none !important;
+}
+
 #chat-assistant-sheet {
-  margin-top: 2.5rem !important;
+  margin-top: 0.4rem !important;
   min-height: 90% !important;
   border: 1px solid #EAECF5;
   border-top-left-radius: 24px;
@@ -1071,15 +1074,6 @@ div:has(> div > #chat-assistant-textarea) {
 #chat-content .rounded-2xl.bg-gray-100 .text-gray-800,
 #chat-content .rounded-2xl.bg-gray-100 div {
   color: #FFFFFFE5 !important;
-}
-
-.chat-assistant-floating-input {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  left: auto !important;
-  margin: 0;
-  z-index: 50;
 }
 
 #assistant-entry {
