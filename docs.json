@@ -1134,17 +1134,17 @@
                             "collate-ai/documentation-agent"
                         ]
                     },
-                        {
-                            "group": "MCP Server",
-                            "pages": [
-                                "collate-ai/mcp/index",
-                                "collate-ai/mcp/connect",
-                                "collate-ai/mcp/claude",
-                                "collate-ai/mcp/goose",
-                                "collate-ai/mcp/reference"
-                            ]
-                        }
-                    ]
+                    {
+                        "group": "MCP Server",
+                        "pages": [
+                            "collate-ai/mcp/index",
+                            "collate-ai/mcp/connect",
+                            "collate-ai/mcp/claude",
+                            "collate-ai/mcp/goose",
+                            "collate-ai/mcp/reference"
+                        ]
+                    }
+                ]
             },
             {
                 "tab": "How-To Guides",
@@ -1738,6 +1738,40 @@
             }
         ]
     },
+    "redirects": [
+        {
+            "source": "/main-concepts/*",
+            "destination": "/"
+        },
+        {
+            "source": "/security/oidc",
+            "destination": "/how-to-guides/sso"
+        },
+        {
+            "source": "/security/one-login",
+            "destination": "/how-to-guides/sso"
+        },
+        {
+            "source": "/security/keycloak",
+            "destination": "/how-to-guides/sso"
+        },
+        {
+            "source": "/security/saml*",
+            "destination": "/how-to-guides/sso"
+        },
+        {
+            "source": "/security/*",
+            "destination": "/how-to-guides/sso/*"
+        },
+        {
+            "source": "/collateai/*",
+            "destination": "/collate-ai/*"
+        },
+        {
+            "source": "/how-to-guides/mcp/*",
+            "destination": "/collate-ai/mcp/*"
+        }
+    ],
     "integrations": {
         "ga4": {
             "measurementId": "GTM-554C968W"
