@@ -225,6 +225,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "Dremio",
+                                        "pages": [
+                                            "connectors/database/dremio/index",
+                                            "connectors/database/dremio/yaml",
+                                            "connectors/database/dremio/troubleshooting"
+                                        ]
+                                    },
+                                    {
                                         "group": "Druid",
                                         "pages": [
                                             "connectors/database/druid/index",

@@ -1,0 +1,97 @@
+---
+title: Dremio Connector | Collate Database Integration Guide
+description: Connect Dremio to Collate with our comprehensive connector guide. Setup instructions, configuration steps, and metadata synchronization details.
+slug: /connectors/database/dremio
+sidebarTitle: Overview
+---
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import TestConnection from '/snippets/connectors/test-connection.mdx'
+import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
+import ConfigureIngestion from '/snippets/connectors/database/configure-ingestion.mdx'
+import AdvancedConfiguration from '/snippets/connectors/database/advanced-configuration.mdx'
+import { MetadataIngestionUi } from '/snippets/components/MetadataIngestionUi.jsx'
+import Related from '/snippets/connectors/database/related.mdx'
+
+<ConnectorDetailsHeader
+icon='/public/images/icons/dremio.webp'
+name="Dremio"
+stage="BETA"
+availableFeatures={["Metadata", "Query Usage", "Lineage"]}
+unavailableFeatures={["Data Profiler", "Data Quality", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification", "Owners", "Tags", "Stored Procedures"]} />
+In this section, we provide guides and references to use the Dremio connector.
+Configure and schedule Dremio metadata workflows from the Collate UI:
+- [Requirements](#requirements)
+- [Metadata Ingestion](#metadata-ingestion)
+- [Lineage](/how-to-guides/data-lineage/workflow)
+- [Run Externally](/connectors/database/dremio/yaml)
+- [Troubleshooting](/connectors/database/dremio/troubleshooting)
+## Requirements
+Dremio connector supports both:
+- **Dremio Cloud (SaaS)**: Fully managed cloud platform
+- **Dremio Software**: Self-hosted on-premises or in your own cloud infrastructure
+### Dremio Cloud Requirements
+To connect to Dremio Cloud, you will need:
+- **Cloud Region**: The region where your Dremio Cloud organization is hosted (US or EU)
+- **Personal Access Token (PAT)**: A token generated from your Dremio Cloud account settings
+- **Project ID**: Your Dremio Cloud project identifier
+#### Generate a Personal Access Token
+1. Log into your Dremio Cloud account.
+2. Navigate to **Settings** > **Personal Access Tokens**.
+3. Select **Add Token**.
+4. Provide a description (for example, "Collate Integration").
+5. Set an expiration period.
+6. Select **Create**.
+7. Copy the generated token.
+#### Find your Project ID
+1. Log into your Dremio Cloud account.
+2. Check the URL in your browser: `https://app.dremio.cloud/projects/{PROJECT_ID}/...`.
+3. The Project ID is the alphanumeric string after `/projects/`.
+4. Alternatively, go to **Project Settings** to view your Project ID.
+### Dremio Software Requirements
+To connect to Dremio Software (self-hosted), you will need:
+- **Host and Port**: The URL of your Dremio Software instance (for example, `http://localhost:9047` or `https://dremio.example.com:9047`)
+- **Username**: A user account with privileges to read catalog metadata
+- **Password**: The password for the user account
+### Permissions Required
+#### Dremio Cloud
+- **Catalog Access**: Ability to view sources and spaces
+- **Dataset Read**: Permission to view datasets and their metadata
+- **Query History** (optional): Access to `sys.project.history.jobs` for usage and lineage extraction
+#### Dremio Software
+- **Catalog Access**: Ability to view sources and spaces
+- **Dataset Read**: Permission to view datasets and their metadata
+- **System Tables** (optional): Access to job history tables in the `sys` schema for usage and lineage extraction
+<Note>
+The connector uses Dremio's REST API and SQL interfaces for metadata extraction. Access to query history is optional. If the user does not have permission to access job history, metadata extraction will still work, but usage and lineage information will not be available.
+</Note>
+## Metadata Ingestion
+<MetadataIngestionUi connector={"Dremio"} selectServicePath={"/public/images/connectors/dremio/select-service.png"} addNewServicePath={"/public/images/connectors/dremio/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/dremio/service-connection.png"} />
+# Connection Details
+<Steps>
+<Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields such as passwords, API keys, or private keys must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
+- **Authentication Type**: Choose Dremio Cloud (SaaS) or Dremio Software (self-hosted).
+- **region**: Dremio Cloud region where your organization is hosted (US or EU).
+- **personalAccessToken**: Personal Access Token for authenticating with Dremio Cloud.
+- **projectId**: Dremio Cloud Project ID.
+- **hostPort**: URL to your self-hosted Dremio Software instance, including protocol and port.
+- **username**: Username for authenticating with Dremio Software.
+- **password**: Password for the Dremio Software user account.
+- **database**: Optional. Restrict metadata ingestion to a specific namespace (source or space).
+- **databaseFilterPattern**: Regex pattern to include or exclude namespaces (sources/spaces) based on their names.
+- **schemaFilterPattern**: Regex pattern to include or exclude folders based on their names.
+- **tableFilterPattern**: Regex pattern to include or exclude tables and views based on their names.
+</Step>
+<AdvancedConfiguration />
+<TestConnection />
+<ConfigureIngestion />
+<IngestionScheduleAndDeploy />
+</Steps>
+<Related />
