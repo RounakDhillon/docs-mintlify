@@ -1217,7 +1217,8 @@
                         "pages": [
                             "how-to-guides/collate-customer-support/index",
                             "how-to-guides/collate-customer-support/open-ticket",
-                            "how-to-guides/collate-customer-support/manage-users"
+                            "how-to-guides/collate-customer-support/manage-users",
+                            "how-to-guides/collate-customer-support/grant-access"
                         ]
                     }
                 ]
