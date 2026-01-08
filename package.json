@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "mint dev"
+    "dev": "mint dev", 
+    "broken-links": "mint broken-links"
   },
   "repository": {
     "type": "git",
