@@ -71,7 +71,7 @@
                                         "group": "Hybrid SaaS",
                                         "pages": [
                                             "getting-started/day-1/hybrid-saas/index",
-                                            "getting-started/day-1/hybrid-saas/hybrid-ingestion-runner"
+                                            "getting-started/day-1/hybrid-saas/local-ingestion-agent"
                                         ]
                                     }
                                 ]
@@ -1131,6 +1131,8 @@
                             "collate-ai/how-to-use-collate-ai",
                             "collate-ai/tier-agent",
                             "collate-ai/quality-agent",
+                            "collate-ai/documentation-agent",
+                            "/collate-ai/quality-agent"
                             "collate-ai/documentation-agent"
                         ]
                     },

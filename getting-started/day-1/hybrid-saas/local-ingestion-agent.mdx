@@ -1,0 +1,76 @@
+---
+title: ocal Ingestion Runner | Secure Metadata Ingestion for Collate
+description: Learn how to securely ingest metadata using the Collate Ingestion Agent in your own infrastructure. Ideal for private networks and hybrid SaaS setups.
+slug: /getting-started/day-1/hybrid-saas/local-ingestion-agent
+sidebarTitle: Local Ingestion Agent
+collate: true
+---
+
+# Local Ingestion Agent
+
+<iframe src="https://drive.google.com/file/d/16-2l9EYBE9DjlHepPKTpVFvashMy1buu/preview" width="800" height="450" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+The Local Ingestion Agent is designed to facilitate metadata ingestion for hybrid deployments, allowing organizations to securely push metadata from their infrastructure into the Collate platform without exposing their internal systems. It provides a secure and efficient way for running ingestion workflows while maintaining full control over data processing within your network.
+
+The main difference between the Local Ingestion Agent and the Hybrid Runner[link to docs Hybrid SaaS page] is that the Local Ingestion Agent can quickly be set up in your own laptop, without relying on any other infrastructure.
+
+### Overview
+
+The Collate Ingestion Agent is ideal for scenarios where running connectors on-premises is necessary, providing a secure and efficient way to process metadata within your infrastructure. This eliminates concerns about data privacy and streamlines the ingestion process.
+
+With the Collate Ingestion Agent, you can:
+- Set up ingestion workflows easily from a UI.
+- Handle the end-to-end metadata extraction workflows: metadata, profiling, lineage, usage, dbt, auto classification and data quality.
+
+### Setting Up the Collate Ingestion Agent
+
+#### 1. Prepare Your Environment
+You need to be able to run Docker images on your laptop.
+Run the following commands:
+
+1. Log in to Docker with the credentials provided by Collate to authenticate. You can reach out to support@getcollate.io to your credentials.
+
+```shell
+docker login --username AWS -p eyJwY... 118146679784.dkr.ecr.eu-west-1.amazonaws.com 
+```
+
+2. Run the Docker Image to start the Local Agent:
+
+```shell
+docker run -it --rm -p 8001:8001 -e CL_BASE_DIR='/ingestion/collate/collate-local-webserver/' -v ./.collate:/ingestion/collate/collate-local-webserver/.collate 118146679784.dkr.ecr.eu-west-1.amazonaws.com/collate-customers-local-ingestion:<collate-version>
+```
+
+#### 2. Configure the Agent
+
+#### Access the Local Agent UI:
+- Open your browser and navigate to http://localhost:8001
+
+#### Set Up the Connection:
+- Enter your Collate platform URL (e.g., https://(your-company).getcollate.io/api).
+- Add the ingestion bot token from the Collate settings under Settings > Bots > Ingestion Bot.
+
+#### 3. Add a New Service
+
+1. Navigate to the Database Services section in the Ingestion Agent UI
+2. Click Add New Service and select the database type
+3. Enter the necessary service configuration
+4. Test the connection to ensure the service is properly configured
+
+
+#### 4. Run Metadata Ingestion
+
+1. After creating the service, navigate to the Ingestion tab and click Add Ingestion.
+2. Select the ingestion type (e.g., metadata) and specify any additional configurations for the workflow.
+3. Run the ingestion & Monitor the logs in real-time to track the ingestion process.
+
+#### 5. Verify Ingested Data
+
+1. Return to the Collate platform at https://(your-company).getcollate.io and refresh the database services page. Your new service will appear there now.
+2.Verify that the ingested metadata, including schemas, tables, and column details, is available.
+
+### Additional Features
+
+The Collate Ingestion Agent supports various ingestion workflows, allowing you to:
+- **Generate YAML Configurations**: Download YAML files for external scheduling.
+- **Manage Ingestion Types**: Run metadata, profiling, lineage, usage, and other workflows as needed.
+- **Monitor Progress**: View logs and monitor real-time ingestion activity.
