@@ -8,27 +8,60 @@ If users are automatically logged out and unable to log in again due to a bad au
 
 ```
 
-After executing the command, **restart the server**. The authentication values from your YAML or Helm chart will then be reapplied on startup. The following tiles detail how to apply this configuration across Docker, Kubernetes, and Bare Metal deployments:
+After executing the command, **restart the server**. The authentication values from your YAML or Helm chart will then be reapplied on startup. The following tiles detail how to apply this configuration:
 
 <CardGroup cols={2}>
   <Card
-    title="Docker Security"
-    href="/how-to-guides/sso/configuration/docker"
+    title="Auth0 SSO"
+    href="/how-to-guides/sso/auth0"
   >
-    Configure SSO for your Docker deployment.
+    Configure Auth0 SSO to access the UI and APIs.
   </Card>
 
   <Card
-    title="Bare Metal Security"
-    href="/how-to-guides/sso/configuration/bare-metal"
+    title="Azure SSO"
+    href="/how-to-guides/sso/azure"
   >
-    Configure SSO for your bare metal deployment.
+    Configure Azure SSO to access the UI and APIs.
   </Card>
 
   <Card
-    title="Kubernetes Security"
-    href="/how-to-guides/sso/configuration/kubernetes"
+    title="Custom OIDC SSO"
+    href="/how-to-guides/sso/custom-oidc"
   >
-    Configure SSO for your Kubernetes deployment.
+    Configure a custom OIDC SSO to access the UI and APIs.
+  </Card>
+  <Card
+    title="Google SSO"
+    href="/how-to-guides/sso/google"
+  >
+    Configure Google SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="Okta SSO"
+    href="/how-to-guides/sso/okta"
+  >
+    Configure Okta SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="Amazon Cognito SSO"
+    href="/how-to-guides/sso/amazon-cognito"
+  >
+    Configure Amazon Cognito SSO to access the UI and APIs.
+  </Card>
+<Card
+    title="SAML"
+    href="/how-to-guides/sso/saml"
+  >
+    Configure SAML SSO to access the UI and APIs.
+  </Card>
+
+  <Card
+    title="LDAP"
+    href="/how-to-guides/sso/ldap"
+  >
+    Configure LDAP SSO to access the UI and APIs.
   </Card>
 </CardGroup>
