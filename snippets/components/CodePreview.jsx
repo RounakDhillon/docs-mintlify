@@ -228,9 +228,23 @@ export const CodePanel = ({
   
   const handleCopy = (e) => {
     const btn = e.currentTarget;
-    const text =
-      codeContentRef.current?.innerText ||
-      codeContentRef.current?.textContent;
+
+    // Extract only the code text from .code-line elements
+    const codeLines = codeContentRef.current?.querySelectorAll('.code-line');
+    if (!codeLines || codeLines.length === 0) return;
+
+    // Get text from each code line, excluding line numbers and buttons
+    const text = Array.from(codeLines)
+      .map(line => {
+        // Clone the line to avoid modifying the DOM
+        const clone = line.cloneNode(true);
+        // Remove line numbers if they exist
+        const lineNumber = clone.querySelector('.line-number');
+        if (lineNumber) lineNumber.remove();
+        // Return only the text content
+        return clone.textContent;
+      })
+      .join('\n');
 
     if (!text) return;
 
