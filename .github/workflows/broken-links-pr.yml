@@ -1,0 +1,202 @@
+name: Broken Links Check - PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**.mdx'
+      - '**.md'
+      - 'docs.json'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-broken-links:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          PUPPETEER_SKIP_DOWNLOAD=true npm install
+        env:
+          NODE_ENV: production
+
+      - name: Run broken links check
+        id: broken_links
+        run: |
+          echo "Running broken links check..."
+          OUTPUT=$(./node_modules/.bin/mint broken-links 2>&1)
+          EXIT_CODE=$?
+          echo "$OUTPUT"
+          
+          # Save output to file for parsing
+          echo "$OUTPUT" > broken-links-output.txt
+          
+          # Check if the command failed for genuine errors
+          # The mint broken-links command normally exits with 0 even when broken links are found
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "::error::Broken links check failed with exit code $EXIT_CODE"
+            exit 1
+          fi
+          
+          # Extract the summary line (e.g., "found 91 broken links in 47 files")
+          SUMMARY=$(echo "$OUTPUT" | grep -E "found [0-9]+ broken links" || echo "No broken links found")
+          echo "summary=$SUMMARY" >> $GITHUB_OUTPUT
+          
+          # Check if there are any broken links (non-zero count)
+          if echo "$SUMMARY" | grep -qE "found [1-9][0-9]* broken links"; then
+            echo "has_broken_links=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_broken_links=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get changed files
+        id: changed_files
+        run: |
+          # Get list of changed .mdx, .md, and .json files in this PR
+          git diff --name-only ${{ github.event.pull_request.base.sha }}...HEAD | grep -E '\.(mdx?|json)$' > changed-files.txt || echo "" > changed-files.txt
+          echo "Changed files:"
+          cat changed-files.txt
+
+      - name: Filter broken links for changed files
+        id: filter_links
+        run: |
+          # Create a script to filter broken links for changed files
+          cat > filter-links.sh << 'EOF'
+          #!/bin/bash
+          
+          OUTPUT_FILE="broken-links-output.txt"
+          CHANGED_FILES="changed-files.txt"
+          
+          # Read changed files into associative array for O(1) lookup
+          declare -A CHANGED_FILES_MAP
+          while IFS= read -r file; do
+            if [ -n "$file" ]; then
+              CHANGED_FILES_MAP["$file"]=1
+            fi
+          done < "$CHANGED_FILES"
+          
+          # Check if we have any changed files
+          if [ ${#CHANGED_FILES_MAP[@]} -eq 0 ]; then
+            echo "No changed files to check."
+            exit 0
+          fi
+          
+          # Parse broken links output and filter for changed files
+          FILTERED_OUTPUT=""
+          CURRENT_FILE=""
+          SHOULD_INCLUDE_FILE=false
+          
+          while IFS= read -r line; do
+            # Check if line is a file path (file paths end with .mdx, .md, or .json)
+            if [[ $line =~ ^[a-zA-Z0-9] ]] && ([[ $line == *.mdx ]] || [[ $line == *.md ]] || [[ $line == *.json ]]); then
+              CURRENT_FILE="$line"
+              # Check if this file is in changed files using O(1) lookup
+              if [ -n "${CHANGED_FILES_MAP[$CURRENT_FILE]:-}" ]; then
+                SHOULD_INCLUDE_FILE=true
+                FILTERED_OUTPUT+="${CURRENT_FILE}"$'\n'
+              else
+                SHOULD_INCLUDE_FILE=false
+              fi
+            elif $SHOULD_INCLUDE_FILE && [[ $line =~ ^[[:space:]]*⎿ ]]; then
+              # This is a broken link for a changed file
+              FILTERED_OUTPUT+="${line}"$'\n'
+            fi
+          done < "$OUTPUT_FILE"
+          
+          if [ -z "$FILTERED_OUTPUT" ]; then
+            echo "No broken links found in changed files."
+          else
+            printf '%s' "$FILTERED_OUTPUT"
+          fi
+          EOF
+          
+          chmod +x filter-links.sh
+          FILTERED=$(./filter-links.sh)
+          
+          # Save filtered output
+          echo "$FILTERED" > filtered-links.txt
+          
+          # Escape for GitHub output
+          {
+            echo 'filtered<<FILTERED_LINKS_EOF'
+            echo "$FILTERED"
+            echo 'FILTERED_LINKS_EOF'
+          } >> $GITHUB_OUTPUT
+
+      - name: Post PR comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const summary = '${{ steps.broken_links.outputs.summary }}';
+            const hasBrokenLinks = '${{ steps.broken_links.outputs.has_broken_links }}' === 'true';
+            const filteredLinks = fs.readFileSync('filtered-links.txt', 'utf8');
+            
+            // Read full output for overall repository status
+            const fullOutput = fs.readFileSync('broken-links-output.txt', 'utf8');
+            
+            // Create comment body
+            let commentBody = '## 🔗 Broken Links Check Report\n\n';
+            
+            if (hasBrokenLinks) {
+              commentBody += `### 📊 Overall Repository Status\n\`\`\`\n${summary}\n\`\`\`\n\n`;
+              
+              commentBody += '### 📝 Broken Links in Changed Files\n';
+              if (filteredLinks.trim() && filteredLinks !== 'No broken links found in changed files.') {
+                commentBody += '```\n' + filteredLinks + '\n```\n\n';
+              } else {
+                commentBody += '✅ No broken links found in the files changed by this PR.\n\n';
+              }
+              
+              commentBody += '<details>\n<summary>📋 Full Repository Report (click to expand)</summary>\n\n';
+              commentBody += '```\n' + fullOutput + '\n```\n';
+              commentBody += '</details>\n';
+            } else {
+              commentBody += '✅ **No broken links found!**\n';
+            }
+            
+            commentBody += '\n---\n*This check was performed automatically. Please review and fix any broken links before merging.*';
+            
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('🔗 Broken Links Check Report')
+            );
+            
+            // Post or update comment
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }

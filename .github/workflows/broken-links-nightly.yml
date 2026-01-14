@@ -1,0 +1,219 @@
+name: Broken Links Check - Nightly
+
+on:
+  schedule:
+    # Run every day at 2:00 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: read
+
+jobs:
+  check-broken-links:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          PUPPETEER_SKIP_DOWNLOAD=true npm install
+        env:
+          NODE_ENV: production
+
+      - name: Run broken links check
+        id: broken_links
+        run: |
+          echo "Running broken links check..."
+          OUTPUT=$(./node_modules/.bin/mint broken-links 2>&1)
+          EXIT_CODE=$?
+          echo "$OUTPUT"
+          
+          # Save output to file
+          echo "$OUTPUT" > broken-links-output.txt
+          
+          # Check if the command failed for genuine errors
+          # The mint broken-links command normally exits with 0 even when broken links are found
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo "::error::Broken links check failed with exit code $EXIT_CODE"
+            exit 1
+          fi
+          
+          # Extract the summary line
+          SUMMARY=$(echo "$OUTPUT" | grep -E "found [0-9]+ broken links" || echo "No broken links found")
+          echo "summary=$SUMMARY" >> $GITHUB_OUTPUT
+          
+          # Check if there are any broken links (non-zero count)
+          if echo "$SUMMARY" | grep -qE "found [1-9][0-9]* broken links"; then
+            echo "has_broken_links=true" >> $GITHUB_OUTPUT
+            # Count total broken links
+            TOTAL_LINKS=$(echo "$SUMMARY" | grep -oE "[0-9]+" | head -1)
+            echo "total_links=$TOTAL_LINKS" >> $GITHUB_OUTPUT
+            # Count files with broken links
+            TOTAL_FILES=$(echo "$SUMMARY" | grep -oE "[0-9]+" | tail -1)
+            echo "total_files=$TOTAL_FILES" >> $GITHUB_OUTPUT
+          else
+            echo "has_broken_links=false" >> $GITHUB_OUTPUT
+            echo "total_links=0" >> $GITHUB_OUTPUT
+            echo "total_files=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Prepare Slack message
+        id: slack_message
+        run: |
+          OUTPUT_FILE="broken-links-output.txt"
+          HAS_BROKEN_LINKS="${{ steps.broken_links.outputs.has_broken_links }}"
+          SUMMARY="${{ steps.broken_links.outputs.summary }}"
+          TOTAL_LINKS="${{ steps.broken_links.outputs.total_links }}"
+          TOTAL_FILES="${{ steps.broken_links.outputs.total_files }}"
+          REPO_URL="https://github.com/${{ github.repository }}"
+          
+          if [ "$HAS_BROKEN_LINKS" = "true" ]; then
+            # Create a truncated version of the output for Slack (first 100 lines)
+            TRUNCATED_OUTPUT=$(head -100 "$OUTPUT_FILE")
+            
+            # Add truncation note if output was truncated
+            LINE_COUNT=$(wc -l < "$OUTPUT_FILE")
+            if [ "$LINE_COUNT" -gt 100 ]; then
+              TRUNCATED_OUTPUT="${TRUNCATED_OUTPUT}"$'\n\n'"[Output truncated to first 100 lines. See full report in workflow artifacts.]"
+            fi
+            
+            # Create JSON payload for Slack using jq for proper escaping
+            jq -n \
+              --arg repo "${{ github.repository }}" \
+              --arg repo_url "$REPO_URL" \
+              --arg date "$(date -u +"%Y-%m-%d %H:%M UTC")" \
+              --arg total_links "$TOTAL_LINKS" \
+              --arg total_files "$TOTAL_FILES" \
+              --arg output "$TRUNCATED_OUTPUT" \
+              --arg run_url "$REPO_URL/actions/runs/${{ github.run_id }}" \
+              '{
+                "blocks": [
+                  {
+                    "type": "header",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "🔗 Broken Links Detection Report",
+                      "emoji": true
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": ("*Repository:*\n<" + $repo_url + "|" + $repo + ">")
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": ("*Date:*\n" + $date)
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": ("*Total Broken Links:*\n" + $total_links)
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": ("*Files Affected:*\n" + $total_files)
+                      }
+                    ]
+                  },
+                  {
+                    "type": "divider"
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": ("*Sample of Broken Links:*\n```" + $output + "```")
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": ("📄 *Full report is available in the <" + $run_url + "|GitHub Actions workflow run>*")
+                    }
+                  }
+                ]
+              }' > slack-payload.json
+          else
+            # Create success message for Slack using jq
+            jq -n \
+              --arg repo "${{ github.repository }}" \
+              --arg repo_url "$REPO_URL" \
+              --arg date "$(date -u +"%Y-%m-%d %H:%M UTC")" \
+              '{
+                "blocks": [
+                  {
+                    "type": "header",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "✅ Broken Links Check Passed",
+                      "emoji": true
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": ("*Repository:*\n<" + $repo_url + "|" + $repo + ">")
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": ("*Date:*\n" + $date)
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "No broken links detected in the documentation. 🎉"
+                    }
+                  }
+                ]
+              }' > slack-payload.json
+          fi
+          
+          cat slack-payload.json
+
+      - name: Send Slack notification
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -z "$SLACK_WEBHOOK_URL" ]; then
+            echo "::warning::SLACK_WEBHOOK_URL secret is not set. Skipping Slack notification."
+            echo "Please add SLACK_WEBHOOK_URL to repository secrets to enable Slack notifications."
+            exit 0
+          fi
+          
+          curl -X POST \
+            -H 'Content-type: application/json' \
+            --data @slack-payload.json \
+            "$SLACK_WEBHOOK_URL"
+          
+          echo "✅ Slack notification sent successfully"
+
+      - name: Upload broken links report
+        if: steps.broken_links.outputs.has_broken_links == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: broken-links-report-${{ github.run_number }}
+          path: broken-links-output.txt
+          retention-days: 30
