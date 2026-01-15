@@ -989,6 +989,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "MuleSoft",
+                                        "pages": [
+                                            "connectors/pipeline/mulesoft/index",
+                                            "connectors/pipeline/mulesoft/yaml",
+                                            "connectors/pipeline/mulesoft/troubleshooting"
+                                        ]
+                                    },
+                                    {
                                         "group": "NiFi",
                                         "pages": [
                                             "connectors/pipeline/nifi/index",
