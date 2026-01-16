@@ -68,9 +68,14 @@
                                 "pages": [
                                     "getting-started/day-1/index",
                                     {
-                                        "group": "Hybrid SaaS",
+                                        "group": "Premium Users",
                                         "pages": [
-                                            "getting-started/day-1/hybrid-saas/index",
+                                            "getting-started/day-1/hybrid-saas/index"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Free-tier Users",
+                                        "pages": [
                                             "getting-started/day-1/hybrid-saas/local-ingestion-agent"
                                         ]
                                     }
