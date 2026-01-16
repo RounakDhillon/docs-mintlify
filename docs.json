@@ -1141,7 +1141,8 @@
                             "collate-ai/mcp/connect",
                             "collate-ai/mcp/claude",
                             "collate-ai/mcp/goose",
-                            "collate-ai/mcp/reference"
+                            "collate-ai/mcp/reference",
+                            "collate-ai/mcp/cursor"
                         ]
                     }
                 ]
