@@ -80,7 +80,7 @@ To solve this issue, you can edit your Service Connection by adding the followin
 - Key: `autocommit`
 - Value: `true`
 
-<img noZoom src="/public/images/connectors/azuresql/autocommit.png" alt="autocommit" />
+<img src="/public/images/connectors/azuresql/autocommit.png" alt="autocommit" />
 
 * **Cannot open server '[server name]' requested by the login. Client with IP address '[your IP]' is not allowed to access the server**
 
@@ -89,7 +89,7 @@ This is an exception you can get when trying to connect to AzureSQL using SQLAlc
 
 To solve this issue, you need to add your IP address in firewall rules for your Azure SQL instance.
 
-<img noZoom src="/public/images/connectors/azuresql/azure-firewall.png" alt="azure sql firewall rules" />
+<img src="/public/images/connectors/azuresql/azure-firewall.png" alt="azure sql firewall rules" />
 
 ## Databricks
 
@@ -124,13 +124,13 @@ Here are the steps to get `hostPort`, `token` and `http_path`.
 First login to Azure Databricks and from side bar select SQL Warehouse (In SQL section)
 
 
-<img noZoom src="/public/images/connectors/databricks/select-sql-warehouse.png" alt="Select Sql Warehouse" />
+<img src="/public/images/connectors/databricks/select-sql-warehouse.png" alt="Select Sql Warehouse" />
 
 
 Now click on sql Warehouse from the SQL Warehouses list.
 
 
-<img noZoom src="/public/images/connectors/databricks/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
+<img src="/public/images/connectors/databricks/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
 
 
 Now inside that page go to Connection details section.
@@ -138,19 +138,19 @@ In this page Server hostname and Port is your `hostPort`, HTTP path is your `htt
 
 
 
-<img noZoom src="/public/images/connectors/databricks/Connection-details.png" alt="Connection details" />
+<img src="/public/images/connectors/databricks/Connection-details.png" alt="Connection details" />
 
 
 In Connection details section page click on Create a personal access token.
 
-<img noZoom src="/public/images/connectors/databricks/Open-create-tocken-page.png" alt="Open create tocken" />
+<img src="/public/images/connectors/databricks/Open-create-tocken-page.png" alt="Open create tocken" />
 
 
 
 Now In this page you can create new `token`.
 
 
-<img noZoom src="/public/images/connectors/databricks/Generate-token.png" alt="Generate tocken" />
+<img src="/public/images/connectors/databricks/Generate-token.png" alt="Generate tocken" />
 
 ## Domo Database
 
@@ -160,7 +160,7 @@ Learn how to resolve the most common problems people encounter in the Domo Datab
 * You can find your `clientId` by [logging](https://developer.domo.com/) into your domo instance.
 * After that click on `My Account`> `Manage Clients`(if created).
 
-<img noZoom src="/public/images/connectors/domo-database/client-id.png" alt="Client-id" />
+<img src="/public/images/connectors/domo-database/client-id.png" alt="Client-id" />
 
 ### Where to find accessToken?
 * You need to generate accessToken.
@@ -168,13 +168,13 @@ Learn how to resolve the most common problems people encounter in the Domo Datab
 * Click on the `MORE` button on navbar, after that click on `Admin`.
 * Under `Authentication` you will find `Access tokens`.
 
-<img noZoom src="/public/images/connectors/domo-database/access-token.png" alt="Access Token" />
+<img src="/public/images/connectors/domo-database/access-token.png" alt="Access Token" />
 
 
 ### Where can I find my scopes?
 * Scopes can be find Under `Manage Clients` section in `My Account` (If client not found, click [here](#how-to-find-clientid))
 
-<img noZoom src="/public/images/connectors/domo-database/scopes.jpeg" alt="Scopes" />
+<img src="/public/images/connectors/domo-database/scopes.jpeg" alt="Scopes" />
 
 ## Hive
 
@@ -343,7 +343,7 @@ does not match host name \"<host>:<port>\"
 
 If you get this error that time please pass `{'sslmode': 'verify-ca'}` in the connection arguments.
 
-<img noZoom src="/public/images/connectors/redshift/service-connection-arguments.png" alt="Configure service connection" />
+<img src="/public/images/connectors/redshift/service-connection-arguments.png" alt="Configure service connection" />
 
 ### Metdata Ingestion Failure
 
@@ -413,13 +413,13 @@ Here are the steps to get `hostPort`, `token` and `http_path`.
 First login to Azure Databricks and from side bar select SQL Warehouse (In SQL section)
 
 
-<img noZoom src="/public/images/connectors/unitycatalog/select-sql-warehouse.png" alt="Select Sql Warehouse" />
+<img src="/public/images/connectors/unitycatalog/select-sql-warehouse.png" alt="Select Sql Warehouse" />
 
 
 Now click on sql Warehouse from the SQL Warehouses list.
 
 
-<img noZoom src="/public/images/connectors/unitycatalog/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
+<img src="/public/images/connectors/unitycatalog/Open-sql-warehouse.png" alt="Open Sql Warehouse" />
 
 
 Now inside that page go to Connection details section.
@@ -427,19 +427,19 @@ In this page Server hostname and Port is your `hostPort`, HTTP path is your `htt
 
 
 
-<img noZoom src="/public/images/connectors/unitycatalog/Connection-details.png" alt="Connection details" />
+<img src="/public/images/connectors/unitycatalog/Connection-details.png" alt="Connection details" />
 
 
 In Connection details section page click on Create a personal access token.
 
-<img noZoom src="/public/images/connectors/unitycatalog/Open-create-token-page.png" alt="Open create token" />
+<img src="/public/images/connectors/unitycatalog/Open-create-token-page.png" alt="Open create token" />
 
 
 
 Now In this page you can create new `token`.
 
 
-<img noZoom src="/public/images/connectors/unitycatalog/Generate-token.png" alt="Generate token" />
+<img src="/public/images/connectors/unitycatalog/Generate-token.png" alt="Generate token" />
 
 ## Vertica
 

@@ -13,17 +13,17 @@ sidebarTitle: CreateThread
 
 - **`message`** *(string)*: Message.
 - **`from`** *(string)*: Name of the User (regular user or bot) posting the message.
-- **`addressedTo`**: User or team this thread is addressed to in format `<#E::{entities}::{entityName}::{field}::{fieldValue}>`. Refer to *[../../type/basic.json](../../type/basic.json)*.
-- **`about`**: Data asset about which this thread is created for with format `<#E::{entities}::{entityType}::{field}::{fieldValue}>`. Refer to *[../../type/basic.json](../../type/basic.json)*.
-- **`type`**: Refer to *[../../entity/feed/thread.json](../../entity/feed/thread.json)*.
-- **`taskDetails`**: Refer to *[#/definitions/createTaskDetails](createTaskDetails)*.
-- **`announcementDetails`**: Refer to *[../../entity/feed/thread.json](../../entity/feed/thread.json)*.
-- **`chatbotDetails`**: Details about the Chatbot conversation. This is only applicable if thread is of type Chatbot. Refer to *[../../entity/feed/thread.json](../../entity/feed/thread.json)*.
+- **`addressedTo`**: User or team this thread is addressed to in format `<#E::{entities}::{entityName}::{field}::{fieldValue}>`. Refer to *[../../type/basic](../../type/basic)*.
+- **`about`**: Data asset about which this thread is created for with format `<#E::{entities}::{entityType}::{field}::{fieldValue}>`. Refer to *[../../type/basic](../../type/basic)*.
+- **`type`**: Refer to *[../../entity/feed/thread](../../entity/feed/thread)*.
+- **`taskDetails`**: Refer to *[#/definitions/createTaskDetails](#definitions)*.
+- **`announcementDetails`**: Refer to *[../../entity/feed/thread](../../entity/feed/thread)*.
+- **`chatbotDetails`**: Details about the Chatbot conversation. This is only applicable if thread is of type Chatbot. Refer to *[../../entity/feed/thread](../../entity/feed/thread)*.
 ## Definitions
 
 - **`createTaskDetails`** *(object)*: Details about the task. This is only applicable if thread is of type task. Cannot contain additional properties.
-  - **`type`**: Refer to *[../../entity/feed/thread.json](../../entity/feed/thread.json)*.
-  - **`assignees`**: List of users or teams the task is assigned to. Refer to *[../../type/entityReferenceList.json](../../type/entityReferenceList.json)*.
+  - **`type`**: Refer to *[../../entity/feed/thread](../../entity/feed/thread)*.
+  - **`assignees`**: List of users or teams the task is assigned to. Refer to *[../../type/entityreferencelist](../../type/entityreferencelist)*.
   - **`oldValue`** *(string)*: The value of old object for which the task is created.
   - **`suggestion`** *(string)*: The suggestion object for the task provided by the creator.
 

@@ -17,7 +17,7 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 - Provide a redirect URL as a Auth Code Flow.
 - Click on Register.
 
-<img noZoom src="/public/images/deployment/security/azure/create-web-registration.png" alt="create-app" />
+<img src="/public/images/deployment/security/azure/create-web-registration.png" alt="create-app" />
 
 
 
@@ -25,7 +25,7 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 
 - The `Client ID` and the `Tenant ID` are displayed in the Overview section of the registered application.
 
-<img noZoom src="/public/images/deployment/security/azure/web-client-secret.png" alt="create-app" />
+<img src="/public/images/deployment/security/azure/web-client-secret.png" alt="create-app" />
 
 - When passing the details for `authority`, the `Tenant ID` is added to the URL as shown in the example
   below. `https://login.microsoftonline.com/TenantID`
@@ -36,12 +36,15 @@ import ConfigureIngestion from '/snippets/deployment/configure-ingestion.mdx'
 
 <ConfigureIngestion />
 
-<CardGroup cols={2}>
-<Card title="Azure SSO - Public" href="/deployment/security/azure/public-client" >
-  Configure Azure SSO using the Public client type.
+<CardGroup cols={3}>
+<Card title="Docker" href="/deployment/security/azure/docker" >
+  Configure Azure SSO for Docker deployment.
 </Card>
-<Card title="Azure SSO - Confidential" href="/deployment/security/azure/confidential-client" >
-  Configure Azure SSO using the Confidential client type.
+<Card title="Kubernetes" href="/deployment/security/azure/kubernetes" >
+  Configure Azure SSO for Kubernetes deployment.
+</Card>
+<Card title="Bare Metal" href="/deployment/security/azure/bare-metal" >
+  Configure Azure SSO for Bare Metal deployment.
 </Card>
 </CardGroup>
 

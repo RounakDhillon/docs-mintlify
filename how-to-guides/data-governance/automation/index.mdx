@@ -33,7 +33,7 @@ Managing metadata manually can be challenging, particularly in dynamic environme
 
 ### 1. Bulk Description
 
-<img noZoom src="/public/images/how-to-guides/governance/automator-description.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/automator-description.png" alt="Getting started with Automation" />
 
 - **Problem**: Many datasets lack descriptions, making it difficult for users to understand the data's purpose and contents. Sometimes, the same column description needs to be added to multiple datasets.
 - **Solution**: Automations can bulk-apply descriptions to tables and columns, ensuring that all data assets are consistently documented.
@@ -45,7 +45,7 @@ For the Action Configuration:
 
 ### 2. Bulk Ownership and Domain Assignment
 
-<img noZoom src="/public/images/how-to-guides/governance/bulk-ownership-and.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/bulk-ownership-and.png" alt="Getting started with Automation" />
 
 - **Problem**: Many data assets lack proper ownership and domain assignment, leading to governance and accountability issues. Manually assigning owners can be error-prone and time-consuming.
 - **Solution**: Automations can bulk-assign ownership and domains to datasets, ensuring all data assets are correctly categorized and owned. This process can be applied to tables, schemas, or other assets within Collate.
@@ -56,7 +56,7 @@ For the Action Configuration:
 
 ### 3. Bulk Tagging and Glossary Term Assignment
 
-<img noZoom src="/public/images/how-to-guides/governance/bulk-tagging-glossary.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/bulk-tagging-glossary.png" alt="Getting started with Automation" />
 
 - **Problem**: Manually applying the same tags or glossary terms to multiple datasets can be inefficient and inconsistent.
 - **Solution**: Automations allow users to bulk-apply tags (e.g., PII) or glossary terms (e.g., Customer ID) to specific datasets, ensuring uniformity across the platform.
@@ -68,9 +68,9 @@ For the Action Configuration:
 
 ### 4. Bulk Test cases Assignment
 
-<img noZoom src="/public/images/how-to-guides/governance/add-test-case.png" alt="Add Test Cases" />
+<img src="/public/images/how-to-guides/governance/add-test-case.png" alt="Add Test Cases" />
 
-<img noZoom src="/public/images/how-to-guides/governance/remove-test-case.png" alt="Remove Test Cases" />
+<img src="/public/images/how-to-guides/governance/remove-test-case.png" alt="Remove Test Cases" />
 
 - **Problem**: Manually assigning or removing test cases for individual data assets is time-consuming and error-prone, especially at scale. For teams managing hundreds or thousands of assets, this repetitive process creates friction, reduces consistency, and delays the rollout of standardized data quality checks.
 - **Solution**: The Add Test Cases and Remove Test Cases actions in Automator allow users to manage test case assignments in bulk. Instead of individually configuring test cases on each asset, users can apply or remove a common test case (of the same type and configuration) across all filtered data assets in a single step.
@@ -127,7 +127,7 @@ Example Use Case:
 
 ### 5. Metadata Propagation via Lineage
 
-<img noZoom src="/public/images/how-to-guides/governance/metadata-propogation.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/metadata-propogation.png" alt="Getting started with Automation" />
 
 - **Problem**: When metadata such as tags, descriptions, or glossary terms are updated in one part of the data lineage, they may not be propagated across related datasets, leading to inconsistencies.
 - **Solution**: Use automations to propagate metadata across related datasets, ensuring that all relevant data inherits the correct metadata properties from the source dataset.
@@ -147,7 +147,7 @@ As with other actions, you can choose to **Overwrite Metadata** or keep the exis
 
 #### Advanced Propagation Controls
 
-<img noZoom src="/public/images/how-to-guides/governance/automator-propagation-advance-config.png" alt="Automation advanced propagation controls" />
+<img src="/public/images/how-to-guides/governance/automator-propagation-advance-config.png" alt="Automation advanced propagation controls" />
 
 ##### Propagation Depth
 
@@ -164,7 +164,7 @@ Propagation Depth Mode only works when the Propagation Depth field is set. Leavi
 
 ##### Propagation Depth Mode - Root (Default)
 
-<img noZoom src="/public/images/how-to-guides/governance/propagation-depth-root.png" alt="Propagation Depth Root Mode" />
+<img src="/public/images/how-to-guides/governance/propagation-depth-root.png" alt="Propagation Depth Root Mode" />
 
 **Description**: This mode calculates depth starting from root entities (nodes with no upstream lineage). It is the default behavior.
 **Use Case**: Used when you want to limit metadata propagation of the lineage graph downstream considering root as reference for depth-count.
@@ -210,7 +210,7 @@ If Propagation Depth = 1:
 
 ##### Propagation Depth Mode - Data Asset (New)
 
-<img noZoom src="/public/images/how-to-guides/governance/propagation-depth-data.png" alt="Propagation Depth Data Asset Mode" />
+<img src="/public/images/how-to-guides/governance/propagation-depth-data.png" alt="Propagation Depth Data Asset Mode" />
 
 **Description**: This mode allows propagation to be limited based on distance from the target asset (i.e., the asset being propagated to). Depth is calculated in reverse – from the selected asset upstream.
 **Use Case**: Used when you want to propagate metadata to specific data assets and only include metadata from a fixed number of upstream levels.
@@ -299,7 +299,7 @@ Stop Conditions Examples:
 
 ### 5. Automatic PII Detection and Tagging
 
-<img noZoom src="/public/images/how-to-guides/governance/automatic-detection.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/automatic-detection.png" alt="Getting started with Automation" />
 
 <Warning>
 

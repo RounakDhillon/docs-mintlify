@@ -24,13 +24,13 @@ Before configuring SQL Studio for any database service:
 
 1. Navigate to **Settings** → **Services** → **Database Services**
 
-<img noZoom src="/public/images/how-to-guides/sql_studio/default_admin_page.png" alt="Database Services List" />
+<img src="/public/images/how-to-guides/sql_studio/default_admin_page.png" alt="Database Services List" />
 
 2. Select the database service you want to configure (e.g., `my-bigquery`, `production-snowflake`)
 3. Click on the **Query Runner** tab
 4. Click **Configure Connection** to begin setup
 
-<img noZoom src="/public/images/how-to-guides/sql_studio/admin_auth_types.png" alt="Query Runner Configuration - Authentication Types" />
+<img src="/public/images/how-to-guides/sql_studio/admin_auth_types.png" alt="Query Runner Configuration - Authentication Types" />
 
 <Tip>
 
@@ -83,7 +83,7 @@ Collate SSO leverages your existing Google SSO configuration in Collate to authe
    - Scope: (automatically set to include BigQuery scope: `https://www.googleapis.com/auth/bigquery`)
    - Redirect URL: (auto-generated based on your Collate domain)
 
-<img noZoom src="/public/images/how-to-guides/sql_studio/admin_collatesso_auth.png" alt="Collate SSO Configuration" />
+<img src="/public/images/how-to-guides/sql_studio/admin_collatesso_auth.png" alt="Collate SSO Configuration" />
 
 3. Click **Save Configuration**
 
@@ -95,7 +95,7 @@ Collate SSO leverages your existing Google SSO configuration in Collate to authe
 
 7. Click **Save** again to apply changes
 
-<img noZoom src="/public/images/how-to-guides/sql_studio/page_after_admin_config_done.png" alt="Query Runner Configuration Complete" />
+<img src="/public/images/how-to-guides/sql_studio/page_after_admin_config_done.png" alt="Query Runner Configuration Complete" />
 
 **Prerequisites**:
 - Google OIDC SSO must be configured in Collate (Settings → Security → SSO)
@@ -145,7 +145,7 @@ OAuth allows users to authenticate directly with Google OAuth 2.0, separate from
    - **Redirect URL**: `https://your-collate-domain.com/api/v1/queryRunner/oauth/callback` (verify exact match)
    - **Scope**: `https://www.googleapis.com/auth/bigquery` (default)
 
-<img noZoom src="/public/images/how-to-guides/sql_studio/admin_oauth_auth.png" alt="OAuth Configuration" />
+<img src="/public/images/how-to-guides/sql_studio/admin_oauth_auth.png" alt="OAuth Configuration" />
 
 3. Toggle **Enabled** to ON to activate
 
@@ -167,7 +167,7 @@ Basic Authentication allows users to provide their own GCP Service Account crede
 
 1. In the Query Runner configuration form, select **Authentication Type** → **Basic**
 
-<img noZoom src="/public/images/how-to-guides/sql_studio/admin_basic_auth.png" alt="Basic Authentication Configuration" />
+<img src="/public/images/how-to-guides/sql_studio/admin_basic_auth.png" alt="Basic Authentication Configuration" />
 
 2. Toggle **Enabled** to ON to activate
 
@@ -380,7 +380,7 @@ After configuring authentication, you must enable SQL Studio for users:
 1. In the Query Runner configuration, toggle **Enabled** to ON
 2. Click **Save Configuration**
 
-<img noZoom src="/public/images/how-to-guides/sql_studio/enable_sql_studio.png" alt="Enable SQL Studio" />
+<img src="/public/images/how-to-guides/sql_studio/enable_sql_studio.png" alt="Enable SQL Studio" />
 
 Once enabled, the service will appear in SQL Studio for all users with appropriate permissions.
 
