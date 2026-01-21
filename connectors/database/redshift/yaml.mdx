@@ -47,6 +47,10 @@ Redshift user must grant `SELECT` privilege on table [SVV_TABLE_INFO](https://do
 CREATE USER test_user with PASSWORD 'password';
 GRANT SELECT ON TABLE svv_table_info to test_user;
 ```
+<Note>
+The Redshift connector supports both Amazon Redshift Provisioned (cluster) and Amazon Redshift Serverless starting from release 1.11.5. The connector automatically detects the deployment type during ingestion and uses the appropriate system views for query and lineage extraction. No additional configuration changes are required.
+</Note>
+
 ### Python Requirements
 <PythonRequirements />
 To run the Redshift ingestion, you will need to install:
