@@ -1366,6 +1366,7 @@
                                     "how-to-guides/data-quality-observability/quality/tests-yaml",
                                     "how-to-guides/data-quality-observability/quality/tests-ui",
                                     "how-to-guides/data-quality-observability/quality/custom-tests",
+                                    "how-to-guides/data-quality-observability/quality/rules-library",
                                     "how-to-guides/data-quality-observability/quality/dimensional-validation",
                                     {
                                         "group": "Data Quality as Code",
