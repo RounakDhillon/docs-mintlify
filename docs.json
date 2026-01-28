@@ -1200,8 +1200,20 @@
                             "how-to-guides/admin-guide/cli-ingestion-with-basic-auth",
                             "how-to-guides/admin-guide/how-to-add-custom-logo",
                             "how-to-guides/admin-guide/reindexing-search",
+                            "how-to-guides/admin-guide/search-configuration-settings",
                             "how-to-guides/admin-guide/data-insights",
                             "how-to-guides/admin-guide/permission-debugger",
+                            {
+                                "group": "Applications",
+                                "pages": [
+                                    "how-to-guides/admin-guide/applications/index",
+                                    "how-to-guides/admin-guide/applications/reverse-metadata",
+                                    "how-to-guides/admin-guide/applications/autopilot",
+                                    "how-to-guides/admin-guide/applications/query-runner",
+                                    "how-to-guides/admin-guide/applications/slack",
+                                    "how-to-guides/admin-guide/applications/data-retention"
+                                ]
+                            },
                             {
                                 "group": "Persona and Landing Page Customization",
                                 "pages": [
