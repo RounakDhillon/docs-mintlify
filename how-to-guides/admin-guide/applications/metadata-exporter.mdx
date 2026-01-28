@@ -1,0 +1,160 @@
+---
+title: Metadata Exporter Application
+slug: /how-to-guides/admin-guide/applications/metadata-exporter
+sidebarTitle: Metadata Exporter
+collate: true
+---
+
+# Metadata Exporter Application
+
+The **Metadata Exporter** application enables organizations to export **Data Quality (DQ)** test results (pass/fail flags, rule IDs, asset metadata, timestamps) and **profile data** into downstream analytical or data storage systems such as **Snowflake**, **BigQuery**, and **Databricks**.
+
+## Overview
+
+This capability supports:
+
+- Feeding downstream dashboards (Power BI, Tableau).
+- Triggering alerting and remediation workflows.
+- Historical tracking and versioning of data quality scores (DQI).
+
+## Key Features
+
+- Supports **Snowflake**, **Databricks**, and **BigQuery** destinations.
+- Manual or scheduled export runs.
+- Selective export of data quality events or profile data.
+
+## How to Access
+
+1. Go to **Settings > Applications > Metadata Exporter**.
+
+<img noZoom src="/public/images/applications/exporter/exporter1.png" alt="Metadata Exporter Navigation" />
+
+2. Review available tabs: **Schedule**, **Configuration**, **Recent Runs**.
+
+<img noZoom src="/public/images/applications/exporter/exporter2.png" alt="Metadata Exporter Tabs" />
+
+## Configuration Options
+
+### Ingestion Runner
+
+Defines the agent responsible for executing the ingestion pipeline.
+
+- **Example:** `Collate SaaS Agent`
+
+### Connection Configuration
+
+Establishes connectivity to your export destination (Snowflake, BigQuery, Databricks).
+
+<img noZoom src="/public/images/applications/exporter/exporter3.png" alt="Configuration" />
+
+#### Snowflake Configuration
+
+| Field | Description |
+|-------|-------------|
+| **Service Type** | Snowflake |
+| **Username** | Snowflake user login |
+| **Password** | User password (optional if using private key) |
+| **Account** | Snowflake account identifier (e.g., `AAAAA-99999`) |
+| **Role** | Snowflake role to assume (e.g., `ACCOUNTADMIN`) |
+| **Database** | Target database (e.g., `OBS_ANALYTICS`) |
+| **Warehouse** | Target virtual warehouse (e.g., `COMPUTE_WH`) |
+| **Query Tag** | Optional tagging for traceability |
+| **Private Key & Passphrase** | For key-pair auth (optional, secure) |
+
+**Advanced Option**
+
+- **Client Session Keep Alive**: Useful for long-running exports.
+
+#### BigQuery Configuration
+
+| Field | Description |
+|-------|-------------|
+| **Service Type** | Must be `BigQuery` |
+| **Project ID** | GCP project where the BigQuery dataset resides |
+| **Dataset ID** | Target dataset where the metadata will be exported |
+| **Table Name** | Destination table name (BQ table to export metadata to) |
+| **Service Account JSON** | Contents of the service account key in JSON format with write access |
+| **Location** | BigQuery region (e.g., `us-central1`) |
+
+<Tip>
+
+Ensure the service account has the **BigQuery Data Editor** and **BigQuery Job User** roles.
+
+</Tip>
+
+#### Databricks Configuration
+
+| Field | Description |
+|-------|-------------|
+| **Service Type** | Must be `Databricks` |
+| **Host URL** | Databricks workspace URL (e.g., `https://<region>.azuredatabricks.net`) |
+| **Token** | Personal Access Token (PAT) for API authentication |
+| **Cluster ID** | Target cluster where jobs will run |
+| **Database Name** | Target database within the Databricks environment |
+| **Schema Name** | Schema (if applicable) |
+| **Table Name** | Destination table to store metadata |
+| **Path (Optional)** | DBFS path or external location (if exporting to files instead of a table) |
+
+**Requirements**
+
+- The token must have workspace-wide read/write access.
+- The cluster must have access to the target database or mount location.
+
+### Export Range
+
+Defines the temporal scope of the data to be exported.
+
+| Field | Description |
+|-------|-------------|
+| **Range Type** (`exportRange.rangeType`) | Options: `ALL`, `LATEST`, or `DATE_RANGE` |
+| **Interval** (`exportRange.interval`) | Used with `DATE_RANGE` (e.g., `7`) |
+| **Unit** (`exportRange.unit`) | Time unit for the interval (e.g., `days`, `hours`) |
+| **Event Types** | Select which types of DQ events to export (`All`, or specific types) |
+| **Backfill** | Enable to process historical data on first run |
+
+<img noZoom src="/public/images/applications/exporter/exporter4.png" alt="Export Range" />
+
+### Table Configuration
+
+Specifies the target table where exported metadata will be written.
+
+| Field | Description |
+|-------|-------------|
+| **Database Name** (`tableConfiguration.databaseName`) | e.g., `OBS_ANALYTICS` |
+| **Schema Name** (`tableConfiguration.schemaName`) | e.g., `OBS_DATA` |
+| **Table Name** (`tableConfiguration.tableName`) | e.g., `COLLATE_METADATA` |
+
+<img noZoom src="/public/images/applications/exporter/exporter5.png" alt="Table Configuration" />
+
+## Scheduling
+
+Configure how often the metadata export runs:
+
+- **Manual**: Click `Run Now` on the Schedule tab.
+- **Scheduled**: Set up periodic exports (feature roadmap).
+
+<img noZoom src="/public/images/applications/exporter/exporter6.png" alt="Scheduling" />
+
+## Monitoring Runs
+
+Under the **Recent Runs** tab:
+
+- View status: **Success** or **Failed**.
+- Check run time, duration, logs, and the configuration used.
+
+A successful export shows **Status: Success**, with details on execution duration and timestamps.
+
+<img noZoom src="/public/images/applications/exporter/exporter7.png" alt="Monitoring Runs" />
+
+## Metadata Exporter Application Parameters
+
+| Key | Description |
+|-----|-------------|
+| `exportRange.rangeType` | Defines range (`ALL`, `LATEST`, `DATE_RANGE`) |
+| `exportRange.interval` | Interval number for `DATE_RANGE` |
+| `exportRange.unit` | Time unit (`days`, `hours`) |
+| `eventTypes` | Event types to export |
+| `Backfill` | Boolean, historical data processing |
+| `tableConfiguration.databaseName` | Target DB |
+| `tableConfiguration.schemaName` | Target schema |
+| `tableConfiguration.tableName` | Target table |
