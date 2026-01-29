@@ -10,19 +10,19 @@ export const MetadataIngestionUi = ({ connector, selectServicePath, addNewServic
 
         Once a Service is created, it can be used to configure your ingestion workflows.
 
-        <img noZoom src="/public/images/connectors/visit-services-page.png" alt="Visit Services Page" />
+        <img src="/public/images/connectors/visit-services-page.png" alt="Visit Services Page" />
       </Step>
 
       <Step title="Create a New Service">
         Click on _Add New Service_ to start the Service creation.
 
-        <img noZoom src="/public/images/connectors/create-new-service.png" alt="Create a new Service" />
+        <img src="/public/images/connectors/create-new-service.png" alt="Create a new Service" />
       </Step>
 
       <Step title="Select the Service Type">
         Select {connector} as the Service type and click _Next_.
 
-        {selectServicePath && <img noZoom src={selectServicePath} alt="Select Service" />}
+        {selectServicePath && <img src={selectServicePath} alt="Select Service" />}
       </Step>
 
       <Step title="Name and Describe your Service">
@@ -37,7 +37,7 @@ export const MetadataIngestionUi = ({ connector, selectServicePath, addNewServic
 
         Note that when the name is set, it cannot be changed.
 
-        {addNewServicePath && <img noZoom src={addNewServicePath} alt="Add New Service" />}
+        {addNewServicePath && <img src={addNewServicePath} alt="Add New Service" />}
       </Step>
 
       <Step title="Configure the Service Connection">
@@ -46,7 +46,7 @@ export const MetadataIngestionUi = ({ connector, selectServicePath, addNewServic
         Please follow the instructions below to properly configure the Service to read from your sources. You will also find
         helper documentation on the right-hand side panel in the UI.
 
-        {serviceConnectionPath && <img noZoom src={serviceConnectionPath} alt="Configure Service connection" />}
+        {serviceConnectionPath && <img src={serviceConnectionPath} alt="Configure Service connection" />}
       </Step>
     </Steps>
   );

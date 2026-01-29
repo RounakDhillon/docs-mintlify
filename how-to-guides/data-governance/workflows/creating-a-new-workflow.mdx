@@ -18,7 +18,7 @@ Begin by navigating to:
 
 This opens the initial workflow creation screen.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-CreateWorkflow.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-CreateWorkflow.png" alt="SetTagsToMLModelWorkflow" />
 
 Here you provide:
 
@@ -33,7 +33,7 @@ Click **Save and Next** to continue.
 After creating the workflow, you must configure the **Start** node.
 This determines *which assets* the workflow applies to and *when it runs*.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-StartNode.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-StartNode.png" alt="SetTagsToMLModelWorkflow" />
 
 Configure the following:
 
@@ -49,7 +49,7 @@ Click **Save**.
 
 Next, add a **Check Condition** node to verify whether the ML model has a description.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-CheckDescription.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-CheckDescription.png" alt="SetTagsToMLModelWorkflow" />
 
 Fill in the details:
 
@@ -66,7 +66,7 @@ Click **Save** to add the check.
 If the description **is present**, the workflow should assign a **Complete** tag.
 Connect the TRUE branch of the condition check to a Set Action node.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-TrueCondition.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-TrueCondition.png" alt="SetTagsToMLModelWorkflow" />
 
 Set:
 
@@ -80,7 +80,7 @@ Click **Save**.
 
 Now configure the action that applies the `MachineLearning.Complete` tag.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-SetCompleteTag.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-SetCompleteTag.png" alt="SetTagsToMLModelWorkflow" />
 
 Provide:
 
@@ -95,7 +95,7 @@ Click **Save**.
 
 If the description is **missing**, tag the ML model as **Incomplete**.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-FalseCondition.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-FalseCondition.png" alt="SetTagsToMLModelWorkflow" />
 
 Here, set:
 
@@ -108,7 +108,7 @@ Click **Save**.
 
 Configure the action to apply the `MachineLearning.InComplete` tag.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-SetIncompleteTag.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-SetIncompleteTag.png" alt="SetTagsToMLModelWorkflow" />
 
 Set:
 
@@ -123,7 +123,7 @@ Click **Save**.
 
 Both the TRUE and FALSE action nodes should connect to an **End** node, marking workflow completion.
 
-<img noZoom src="/public/images/how-to-guides/governance/SetMLModelTag-EndCondition.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetMLModelTag-EndCondition.png" alt="SetTagsToMLModelWorkflow" />
 
 This ensures the workflow automatically stops after tagging the model appropriately.
 
@@ -131,7 +131,7 @@ This ensures the workflow automatically stops after tagging the model appropriat
 
 Once all nodes and connections are in place, your workflow should look like this:
 
-<img noZoom src="/public/images/how-to-guides/governance/SetTagsToMLModelWorkflow.png" alt="SetTagsToMLModelWorkflow" />
+<img src="/public/images/how-to-guides/governance/SetTagsToMLModelWorkflow.png" alt="SetTagsToMLModelWorkflow" />
 
 - **TRUE → Apply Complete Tag**
 - **FALSE → Apply Incomplete Tag**
@@ -143,7 +143,7 @@ This workflow fully automates documentation completeness tagging for ML models.
 
 To execute an on-demand workflow, click **Run Now** This immediately triggers the workflow based on its configuration.
 
-<img noZoom src="/public/images/how-to-guides/governance/RunAWorkflow.png" alt="Running a Periodic Batch Workflow" />
+<img src="/public/images/how-to-guides/governance/RunAWorkflow.png" alt="Running a Periodic Batch Workflow" />
 
 ## Best Practices
 

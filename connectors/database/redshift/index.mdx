@@ -42,6 +42,9 @@ CREATE USER test_user with PASSWORD 'password';
 -- Grant SELECT on table
 GRANT SELECT ON TABLE svv_table_info to test_user;
 ```
+<Note>
+The Redshift connector supports both Amazon Redshift Provisioned (cluster) and Amazon Redshift Serverless starting from release 1.11.5. The connector automatically detects the deployment type during ingestion and uses the appropriate system views for query and lineage extraction. No additional configuration changes are required.
+</Note>
 <Tip>
 Ensure that the ingestion user has **USAGE** privileges on the schema containing the views. If additional access is needed, run the following command:
 ```sql
@@ -92,6 +95,6 @@ For more information, you can visit [Redshift SSL documentation](https://docs.aw
 ## Securing Redshift Connection with SSL in OpenMetadata
 To establish secure connections between OpenMetadata and a Redshift database, you can configure SSL using different SSL modes provided by Redshift, each offering varying levels of security.
 Under `Advanced Config`, specify the SSL mode appropriate for your connection, such as `prefer`, `verify-ca`, `allow`, and others. After selecting the SSL mode, provide the CA certificate used for SSL validation (`caCertificate`). Note that Redshift requires only the CA certificate for SSL validation.
-<img noZoom src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
+<img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 <ReverseMetadata />
 <Related />

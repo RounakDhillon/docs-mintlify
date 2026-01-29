@@ -1,0 +1,193 @@
+---
+title: Run the Dremio Connector Externally
+description: Use YAML to configure Dremio metadata ingestion for Dremio Cloud and Dremio Software.
+slug: /connectors/database/dremio/yaml
+sidebarTitle: Run Externally
+mode: "wide"
+---
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
+import Lineage from '/snippets/connectors/yaml/lineage.mdx'
+import QueryUsage from '/snippets/connectors/yaml/query-usage.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
+import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
+import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
+import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+
+<ConnectorDetailsHeader
+icon='/public/images/connectors/dremio.webp'
+name="Dremio"
+stage="BETA"
+availableFeatures={["Metadata", "Query Usage", "Lineage"]}
+unavailableFeatures={["Data Profiler", "Data Quality", "Column-level Lineage", "dbt", "Sample Data", "Auto-Classification", "Owners", "Tags", "Stored Procedures"]} />
+In this section, we provide guides and references to use the Dremio connector.
+Configure and schedule Dremio metadata workflows from the OpenMetadata UI:
+- [Requirements](#requirements)
+- [Metadata Ingestion](#metadata-ingestion)
+- [Query Usage](#query-usage)
+- [Lineage](#lineage)
+<ExternalIngestionDeployment />
+## Requirements
+Dremio connector supports both Dremio Cloud (SaaS) and Dremio Software (self-hosted).
+Make sure you have the Dremio Cloud region, personal access token, and project ID, or the Dremio Software host, username, and password.
+### Python Requirements
+<PythonRequirements />
+To run the Dremio ingestion, you will need to install:
+```bash
+pip3 install "openmetadata-ingestion[dremio]"
+```
+## Metadata Ingestion
+All connectors are defined as JSON Schemas.
+[Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/dremioConnection.json)
+you can find the structure to create a connection to Dremio.
+In order to create and run a Metadata Ingestion workflow, we will follow
+the steps to create a YAML configuration able to connect to the source,
+process the Entities if needed, and reach the OpenMetadata server.
+The workflow is modeled around the following
+[JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
+### 1. Define the YAML Config
+This is a sample config for Dremio:
+
+<CodePreview>
+
+<ContentPanel>
+
+<ContentSection id={1} title="Source Configuration" lines="1-3">
+
+Configure the source type and service name for your Dremio connector.
+
+</ContentSection>
+
+<ContentSection id={2} title="authType" lines="7">
+
+**authType**: Choose Dremio Cloud or Dremio Software authentication.
+
+</ContentSection>
+
+<ContentSection id={3} title="region" lines="8">
+
+**region**: Dremio Cloud region where your organization is hosted (US or EU).
+
+</ContentSection>
+
+<ContentSection id={4} title="personalAccessToken" lines="9">
+
+**personalAccessToken**: Personal Access Token for authenticating with Dremio Cloud.
+
+</ContentSection>
+
+<ContentSection id={5} title="projectId" lines="10">
+
+**projectId**: Dremio Cloud Project ID.
+
+</ContentSection>
+
+<ContentSection id={6} title="hostPort" lines="12">
+
+**hostPort**: URL to your self-hosted Dremio Software instance, including protocol and port.
+
+</ContentSection>
+
+<ContentSection id={7} title="username" lines="13">
+
+**username**: Username for authenticating with Dremio Software.
+
+</ContentSection>
+
+<ContentSection id={8} title="password" lines="14">
+
+**password**: Password for the Dremio Software user account.
+
+</ContentSection>
+
+<ContentSection id={9} title="database" lines="15">
+
+**database**: Optional. Restrict metadata ingestion to a specific namespace (source or space).
+
+</ContentSection>
+
+<ContentSection id={10} title="databaseFilterPattern" lines="16-19">
+
+**databaseFilterPattern**: Regex pattern to include or exclude namespaces (sources/spaces).
+
+</ContentSection>
+
+<ContentSection id={11} title="schemaFilterPattern" lines="20-22">
+
+**schemaFilterPattern**: Regex pattern to include or exclude folders.
+
+</ContentSection>
+
+<ContentSection id={12} title="tableFilterPattern" lines="23-24">
+
+**tableFilterPattern**: Regex pattern to include or exclude tables and views.
+
+</ContentSection>
+
+<ContentSection id={13} title="Source Config" lines="25-68">
+
+<SourceConfigDef />
+
+</ContentSection>
+
+<ContentSection id={14} title="Sink Configuration" lines="69-71">
+
+<IngestionSinkDef />
+
+</ContentSection>
+
+<ContentSection id={15} title="Workflow Configuration" lines="72-90">
+
+<WorkflowConfigDef />
+
+</ContentSection>
+
+</ContentPanel>
+
+<CodePanel fileName="dremio_config.yaml">
+
+```yaml
+source:
+  type: dremio
+  serviceName: local_dremio
+  serviceConnection:
+    config:
+      type: Dremio
+      authType: Cloud
+      region: US
+      personalAccessToken: your_personal_access_token
+      projectId: abc123-def456-789012
+      # authType: Software
+      # hostPort: http://localhost:9047
+      # username: your_username
+      # password: your_password
+      # database: Sales
+      # databaseFilterPattern:
+      #   includes:
+      #     - "^(Sales|Marketing|Finance)$"
+      # schemaFilterPattern:
+      #   includes:
+      #     - ".*reports.*"
+      # tableFilterPattern:
+      #   includes:
+      #     - "^fact_.*"
+```
+
+<SourceConfig />
+
+<IngestionSink />
+
+<WorkflowConfig />
+
+</CodePanel>
+
+</CodePreview>
+
+<IngestionCli />
+<QueryUsage connector="dremio" />
+<Lineage connector="dremio" />

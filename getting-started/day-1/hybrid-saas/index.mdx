@@ -1,14 +1,14 @@
 ---
 title: Hybrid Ingestion Runner | Secure Metadata Workflows in Your Cloud
-description: Learn to configure and manage Hybrid Ingestion Runner to securely execute workflows in your cloud using AWS, Azure, or GCP secrets—without exposing credentials.
+description: Learn to configure and manage Hybrid Ingestion Runner to securely execute workflows in your cloud using AWS, Azure, or GCP secrets-without exposing credentials.
 slug: /getting-started/day-1/hybrid-saas
-sidebarTitle: Overview
+sidebarTitle: Hybrid Ingestion Runner
 collate: true
 ---
 
 # Hybrid Ingestion Runner
 
-The **Hybrid Ingestion Runner** is a component designed to enable Collate customers operating in hybrid environments to securely execute ingestion workflows within their own cloud infrastructure. In this setup, your SaaS instance is hosted on Collate’s cloud, while the workflows are going to deployed and executed within your private cloud. The Hybrid Runner acts as a bridge between these two environments, allowing ingestion workflows to be triggered and managed remotely—without requiring the customer to share secrets or sensitive credentials with Collate. It securely receives workflow execution requests and orchestrates them locally, maintaining full control and data privacy within the customer’s environment.
+The **Hybrid Ingestion Runner** is a component designed to enable Collate customers operating in hybrid environments to securely execute ingestion workflows within their own cloud infrastructure. In this setup, your SaaS instance is hosted on Collate’s cloud, while the workflows are going to deployed and executed within your private cloud. The Hybrid Runner acts as a bridge between these two environments, allowing ingestion workflows to be triggered and managed remotely-without requiring the customer to share secrets or sensitive credentials with Collate. It securely receives workflow execution requests and orchestrates them locally, maintaining full control and data privacy within the customer’s environment.
 
 ## Prerequisites
 
@@ -29,9 +29,9 @@ Once your DevOps team has installed and configured the Hybrid Runner, follow the
 
 > If the runner is not connected, reach out to Collate support.
 
-<img noZoom src="/public/images/getting-started/ingestion-runner-preferences.png" />
+<img src="/public/images/getting-started/ingestion-runner-preferences.png" />
 
-<img noZoom src="/public/images/getting-started/ingestion-runner-list.png" />
+<img src="/public/images/getting-started/ingestion-runner-list.png" />
 
 ### 2. Create a New Service
 
@@ -40,7 +40,7 @@ Once your DevOps team has installed and configured the Hybrid Runner, follow the
 - Fill in the service details.
 - In the “Ingestion Runner” dropdown, choose the hybrid runner.
 
-<img noZoom src="/public/images/getting-started/ingestion-runner-service.png" />
+<img src="/public/images/getting-started/ingestion-runner-service.png" />
 
 > Even if you're operating in hybrid mode, you can still choose "Collate SaaS Runner" to run the ingestion workflow within Collate's SaaS environment.
 
@@ -48,7 +48,7 @@ Once your DevOps team has installed and configured the Hybrid Runner, follow the
 
 When executing workflows on your Hybrid environment, you have to use your existing cloud provider's Secrets Manager to store sensitive credentials (like passwords or token), and reference them securely in Collate via the Hybrid Runner.
 
-Collate never stores or accesses these secrets directly—only the Hybrid Runner retrieves them at runtime from your own infrastructure.
+Collate never stores or accesses these secrets directly-only the Hybrid Runner retrieves them at runtime from your own infrastructure.
 
 **Steps:**
 
@@ -60,7 +60,7 @@ Collate never stores or accesses these secrets directly—only the Hybrid Runner
 When creating a secret, store the value as-is (e.g., `password123`) without any additional formatting or encoding. The Hybrid Runner will handle the retrieval and decryption of the secret value at runtime.
 For example, in AWS Secrets Manager, you can click on `Store a new secret` > `Other type of secret` > `Plaintext`. You need to paste the secret as-is, without any other formatting (such as quotes, JSON, etc.).
 
-<img noZoom src="/public/images/getting-started/hybrid-create-secret.png" />
+<img src="/public/images/getting-started/hybrid-create-secret.png" />
 
 Finally, in the service connection form in Collate, reference the secret using the `secret:` prefix followed by the full path to your secret.
 
@@ -77,3 +77,56 @@ Note that this approach to handling secrets only works for values that are consi
 You can identify these values since they mask the typing and have an icon on the right that toggles showing or hiding the input values.
 
 </Tip>
+
+## Metrics Exposure for Prometheus
+
+The Collate hybrid agent exposes operational metrics in a Prometheus-compatible format via an HTTP endpoint. These metrics are designed to support observability, enabling integration with Prometheus and similar monitoring systems.
+The exposed metrics provide insight into agent state, activity, and performance. These may evolve over time, and users are encouraged to inspect the /metrics endpoint directly for the latest set of available metrics.
+
+### Example
+
+An example metric exposed by the agent:
+
+```yaml
+
+# HELP collate_hybrid_agent_connected Is the agent connected to the server? (0 = No, 1 = Yes)
+# TYPE collate_hybrid_agent_connected gauge
+collate_hybrid_agent_connected 1.0
+
+```
+
+### Configuration
+
+Metrics exposure can be configured via the following settings:
+
+```yaml
+
+metricsServerConfiguration:
+  port: ${METRICS_SERVER_PORT:-8989}
+  path: ${METRICS_SERVER_PATH:-/metrics}
+
+```
+
+- port: Port on which the metrics endpoint will be served (default: 8989)
+- path: HTTP path for accessing metrics (default: /metrics)
+
+
+These parameters support environment variable overrides for flexibility across deployment environments.
+
+### Accessing Metrics
+
+Once configured, metrics can be accessed at the following endpoint:
+
+```php-template
+
+http://<agent-host>:<port>/<path>
+
+```
+
+For example, with default settings:
+
+```bash
+
+http://localhost:8989/metrics
+
+```

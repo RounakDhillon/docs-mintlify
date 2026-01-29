@@ -40,7 +40,7 @@
     },
     "seo": {
         "metatags": {
-            "canonical": "https://docs.getcollate.io/"
+            "canonical": "https://docs.getcollate.io"
         }
     },
     "navigation": {
@@ -68,9 +68,14 @@
                                 "pages": [
                                     "getting-started/day-1/index",
                                     {
-                                        "group": "Hybrid SaaS",
+                                        "group": "Premium Users",
                                         "pages": [
-                                            "getting-started/day-1/hybrid-saas/index",
+                                            "getting-started/day-1/hybrid-saas/index"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Free-tier Users",
+                                        "pages": [
                                             "getting-started/day-1/hybrid-saas/local-ingestion-agent"
                                         ]
                                     }
@@ -222,6 +227,14 @@
                                             "connectors/database/doris/index",
                                             "connectors/database/doris/yaml",
                                             "connectors/database/doris/troubleshooting"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Dremio",
+                                        "pages": [
+                                            "connectors/database/dremio/index",
+                                            "connectors/database/dremio/yaml",
+                                            "connectors/database/dremio/troubleshooting"
                                         ]
                                     },
                                     {
@@ -1195,8 +1208,21 @@
                             "how-to-guides/admin-guide/cli-ingestion-with-basic-auth",
                             "how-to-guides/admin-guide/how-to-add-custom-logo",
                             "how-to-guides/admin-guide/reindexing-search",
+                            "how-to-guides/admin-guide/search-configuration-settings",
                             "how-to-guides/admin-guide/data-insights",
                             "how-to-guides/admin-guide/permission-debugger",
+                            {
+                                "group": "Applications",
+                                "pages": [
+                                    "how-to-guides/admin-guide/applications/index",
+                                    "how-to-guides/admin-guide/applications/reverse-metadata",
+                                    "how-to-guides/admin-guide/applications/autopilot",
+                                    "how-to-guides/admin-guide/applications/query-runner",
+                                    "how-to-guides/admin-guide/applications/metadata-exporter",
+                                    "how-to-guides/admin-guide/applications/slack",
+                                    "how-to-guides/admin-guide/applications/data-retention"
+                                ]
+                            },
                             {
                                 "group": "Persona and Landing Page Customization",
                                 "pages": [
@@ -1238,6 +1264,7 @@
                             "how-to-guides/guide-for-data-users/follow-data-asset",
                             "how-to-guides/guide-for-data-users/tags",
                             "how-to-guides/guide-for-data-users/request-tags",
+                            "how-to-guides/guide-for-data-users/personal-access-token",
                             "how-to-guides/guide-for-data-users/glossary",
                             "how-to-guides/guide-for-data-users/custom",
                             "how-to-guides/guide-for-data-users/theme",
@@ -1360,6 +1387,7 @@
                                     "how-to-guides/data-quality-observability/quality/tests-yaml",
                                     "how-to-guides/data-quality-observability/quality/tests-ui",
                                     "how-to-guides/data-quality-observability/quality/custom-tests",
+                                    "how-to-guides/data-quality-observability/quality/rules-library",
                                     "how-to-guides/data-quality-observability/quality/dimensional-validation",
                                     {
                                         "group": "Data Quality as Code",

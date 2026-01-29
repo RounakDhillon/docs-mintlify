@@ -33,7 +33,7 @@ Managing metadata manually can be challenging, particularly in dynamic environme
 
 ### 1. Bulk Description
 
-<img noZoom src="/public/images/how-to-guides/governance/automator-description.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/automator-description.png" alt="Getting started with Automation" />
 
 - **Problem**: Many datasets lack descriptions, making it difficult for users to understand the data's purpose and contents. Sometimes, the same column description needs to be added to multiple datasets.
 - **Solution**: Automations can bulk-apply descriptions to tables and columns, ensuring that all data assets are consistently documented.
@@ -45,7 +45,7 @@ For the Action Configuration:
 
 ### 2. Bulk Ownership and Domain Assignment
 
-<img noZoom src="/public/images/how-to-guides/governance/bulk-ownership-and.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/bulk-ownership-and.png" alt="Getting started with Automation" />
 
 - **Problem**: Many data assets lack proper ownership and domain assignment, leading to governance and accountability issues. Manually assigning owners can be error-prone and time-consuming.
 - **Solution**: Automations can bulk-assign ownership and domains to datasets, ensuring all data assets are correctly categorized and owned. This process can be applied to tables, schemas, or other assets within Collate.
@@ -56,7 +56,7 @@ For the Action Configuration:
 
 ### 3. Bulk Tagging and Glossary Term Assignment
 
-<img noZoom src="/public/images/how-to-guides/governance/bulk-tagging-glossary.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/bulk-tagging-glossary.png" alt="Getting started with Automation" />
 
 - **Problem**: Manually applying the same tags or glossary terms to multiple datasets can be inefficient and inconsistent.
 - **Solution**: Automations allow users to bulk-apply tags (e.g., PII) or glossary terms (e.g., Customer ID) to specific datasets, ensuring uniformity across the platform.
@@ -68,9 +68,9 @@ For the Action Configuration:
 
 ### 4. Bulk Test cases Assignment
 
-<img noZoom src="/public/images/how-to-guides/governance/add-test-case.png" alt="Add Test Cases" />
+<img src="/public/images/how-to-guides/governance/add-test-case.png" alt="Add Test Cases" />
 
-<img noZoom src="/public/images/how-to-guides/governance/remove-test-case.png" alt="Remove Test Cases" />
+<img src="/public/images/how-to-guides/governance/remove-test-case.png" alt="Remove Test Cases" />
 
 - **Problem**: Manually assigning or removing test cases for individual data assets is time-consuming and error-prone, especially at scale. For teams managing hundreds or thousands of assets, this repetitive process creates friction, reduces consistency, and delays the rollout of standardized data quality checks.
 - **Solution**: The Add Test Cases and Remove Test Cases actions in Automator allow users to manage test case assignments in bulk. Instead of individually configuring test cases on each asset, users can apply or remove a common test case (of the same type and configuration) across all filtered data assets in a single step.
@@ -127,7 +127,7 @@ Example Use Case:
 
 ### 5. Metadata Propagation via Lineage
 
-<img noZoom src="/public/images/how-to-guides/governance/metadata-propogation.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/metadata-propogation.png" alt="Getting started with Automation" />
 
 - **Problem**: When metadata such as tags, descriptions, or glossary terms are updated in one part of the data lineage, they may not be propagated across related datasets, leading to inconsistencies.
 - **Solution**: Use automations to propagate metadata across related datasets, ensuring that all relevant data inherits the correct metadata properties from the source dataset.
@@ -147,36 +147,117 @@ As with other actions, you can choose to **Overwrite Metadata** or keep the exis
 
 #### Advanced Propagation Controls
 
-<img noZoom src="/public/images/how-to-guides/governance/automator-propagation-advance-config.png" alt="Automation advanced propagation controls" />
+<img src="/public/images/how-to-guides/governance/automator-propagation-advance-config.png" alt="Automation advanced propagation controls" />
 
 ##### Propagation Depth
 
-The **Propagation Depth** feature allows you to limit how far metadata propagates through your lineage tree:
+The **Propagation Depth** feature allows you to control how far metadata propagates through your lineage graph. It includes two modes:
 
-- **Use Case**: In complex lineage with many edges, you might want to limit how far metadata flows to maintain control and relevance.
-- **Configuration**:
-  - Leave it blank to allow complete propagation
-  - Set a positive integer (e.g., 1, 2, 3) to limit propagation to specific levels from the root
-- **How it works**:
-  - Root entities (those with no upstream lineage) start at depth 0
-  - Each downstream neighbor increases the depth by 1
-  - Depth is calculated separately for each path from each root entity
-  - Example: In lineage A → B → C → D
-    - A is at depth 0 (root)
-    - B is at depth 1
-    - C is at depth 2
-    - D is at depth 3
-  - Setting depth to 2 means metadata flows only to assets at depth 2 or less (B and C in above example)
+- Root (Default)
+- Data Asset (New)
 
-- **Advanced Scenario - Complex Lineage**:
-  - In scenarios with multiple parent paths (e.g., A → B → C and D → C), depth is calculated for each path independently
-  - With propagation depth = 1: C would receive metadata from D (depth 1 from D) but not from A via B (depth 2 from A)
-  - This path-aware approach provides precise control over which upstream sources contribute to each downstream asset
+<Note>
 
-**When to use**:
-- When you have deep lineage chains and want to prevent metadata from propagating too far downstream
-- When you want to maintain control over which downstream assets receive propagated metadata
-- For performance optimization in very large lineage graphs
+Propagation Depth Mode only works when the Propagation Depth field is set. Leaving this field blank would complete the propagation from the root.
+
+</Note>
+
+##### Propagation Depth Mode - Root (Default)
+
+<img src="/public/images/how-to-guides/governance/propagation-depth-root.png" alt="Propagation Depth Root Mode" />
+
+**Description**: This mode calculates depth starting from root entities (nodes with no upstream lineage). It is the default behavior.
+**Use Case**: Used when you want to limit metadata propagation of the lineage graph downstream considering root as reference for depth-count.
+
+Configuration:
+- Only valid if Propagation Depth value is set (must be a positive integer e.g. 1, 2, 3)
+  - Limits metadata propagation from the root to that many levels.
+- Select Root as Propagation Depth Mode
+
+How it works:
+
+- Depth starts at 0 for the root node.
+- Each downstream node increases depth by +1.
+- Depth is evaluated per path.
+
+**Example**:
+
+Lineage: A → B → C → D
+
+- A (Depth 0 - root)
+- B (Depth 1)
+- C (Depth 2)
+- D (Depth 3)
+
+If Propagation Depth = 2, metadata will only reach B and C. D will be excluded.
+
+**Advanced Example with Multiple Parents:**
+
+Lineage:
+- A → B → C
+- D → C
+
+If Propagation Depth = 1:
+
+- C receives metadata from D (depth = 1)
+- C does not receive metadata from A (A → B → C = depth 2)
+
+**When to use:**
+
+- You want a strict top-down metadata flow from root entities
+- Your lineage tree is deep and you want to control data flow scope
+- You aim to optimize performance in large graphs
+
+##### Propagation Depth Mode - Data Asset (New)
+
+<img src="/public/images/how-to-guides/governance/propagation-depth-data.png" alt="Propagation Depth Data Asset Mode" />
+
+**Description**: This mode allows propagation to be limited based on distance from the target asset (i.e., the asset being propagated to). Depth is calculated in reverse – from the selected asset upstream.
+**Use Case**: Used when you want to propagate metadata to specific data assets and only include metadata from a fixed number of upstream levels.
+
+**Configuration:**
+
+- Only valid if Propagation Depth value is set (must be a positive integer e.g. 1, 2, 3)
+   - Limits metadata propagation values to data-asset from that many levels.
+- Select Data Asset as Propagation Depth Mode
+
+##### How it works:
+
+- Depth starts at 0 from the target asset (e.g., D)
+- Each upstream node increases depth by +1
+- Only upstream nodes within the defined depth are considered for propagation
+
+**Example**:
+
+Lineage: A → B → C → D
+Target: D
+Propagation Depth: 2 
+Mode: Data Asset
+
+- D (Depth 0 - target)
+- C (Depth 1)
+- B (Depth 2)
+- A (Depth 3)
+
+Only B and C will contribute metadata. A will be excluded as it’s in depth more than 2 from D as reference.
+
+**Comparison with Root Mode (same example)**:
+
+- In Root Mode, propagation starts from A and flows downwards
+- In Data Asset Mode, propagation still flows downwards but depth calculation starts from D.
+- The flow of metadata is always upstream → downstream. Only the depth calculation changes
+
+
+When to use:
+
+- When propagating metadata to a specific data asset and only want recent (proximate) sources
+- For more targeted metadata control in complex graphs
+
+Notes
+
+- Propagation Depth Mode selection is only applicable if a numeric depth is specified.
+- If Propagation Depth is empty, propagation is unrestricted, and the mode selection is ignored.
+- Default behavior (if no mode selected) is Root Mode.
 
 ##### Stop Propagation Conditions
 
@@ -218,7 +299,7 @@ Stop Conditions Examples:
 
 ### 5. Automatic PII Detection and Tagging
 
-<img noZoom src="/public/images/how-to-guides/governance/automatic-detection.png" alt="Getting started with Automation" />
+<img src="/public/images/how-to-guides/governance/automatic-detection.png" alt="Getting started with Automation" />
 
 <Warning>
 

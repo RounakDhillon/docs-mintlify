@@ -86,9 +86,9 @@ You can use Postgres Connection when you have SSO enabled and your Superset is b
 </Steps>
 ## Securing Superset Connection with SSL in OpenMetadata
 1. To establish secure connections between OpenMetadata and Superset, navigate to the `Advanced Config` section. We need to update the `Certificate Path` and ensure that the certificates are accessible from the Airflow Server.
-  <img noZoom src="/public/images/connectors/ssl_superset.png" alt="Supertset API SSL Configuration" height="450px" />
+  <img src="/public/images/connectors/ssl_superset.png" alt="Supertset API SSL Configuration" height="450px" />
 2. To establish secure connections between OpenMetadata and Superset's MySQL database, you need to configure SSL certificates appropriately. If you only require SSL validation, specify the `caCertificate` to use the CA certificate for validating the server's certificate. For mutual authentication, where both client and server need to authenticate each other, you must provide all three parameters: `ssl_key` for the client’s private key, `ssl_cert` for the client’s SSL certificate, and `ssl_ca` for the CA certificate to validate the server’s certificate.
-<img noZoom src="/public/images/connectors/ssl_superset_mysql.png" alt="MySQL SSL Configuration" height="450px" />
+<img src="/public/images/connectors/ssl_superset_mysql.png" alt="MySQL SSL Configuration" height="450px" />
 3. To establish secure connections between OpenMetadata and Superset's PostgreSQL database, you can configure SSL using different SSL modes provided by PostgreSQL, each offering varying levels of security.Under `PostgresConnection Advanced Config`, specify the SSL mode appropriate for your connection, such as `prefer`, `verify-ca`, `allow`, and others. After selecting the SSL mode, provide the CA certificate used for SSL validation (`caCertificate`). Note that PostgreSQL requires only the CA certificate for SSL validation.
-<img noZoom src="/public/images/connectors/ssl_superset_postgres.png" alt="Postgres SSL Configuration" height="450px" />
+<img src="/public/images/connectors/ssl_superset_postgres.png" alt="Postgres SSL Configuration" height="450px" />
 <DashboardLineage />
