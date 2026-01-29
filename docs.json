@@ -989,7 +989,7 @@
                                         ]
                                     },
                                     {
-                                        "group": "MuleSoft",
+                                        "group": "Mulesoft",
                                         "pages": [
                                             "connectors/pipeline/mulesoft/index",
                                             "connectors/pipeline/mulesoft/yaml",
