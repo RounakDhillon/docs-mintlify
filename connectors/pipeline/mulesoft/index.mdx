@@ -1,0 +1,90 @@
+---
+title: Mulesoft Connector | Collate Anypoint Platform Guide
+description: Connect Mulesoft Anypoint Platform to Collate with our comprehensive pipeline connector guide. Step-by-step setup, configuration, and metadata extraction for seamless integration.
+slug: /connectors/pipeline/mulesoft
+sidebarTitle: Overview
+---
+
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import TestConnection from '/snippets/connectors/test-connection.mdx'
+import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+import AdvancedConfiguration from '/snippets/connectors/pipeline/advanced-configuration.mdx'
+import { MetadataIngestionUi } from '/snippets/components/MetadataIngestionUi.jsx'
+import Related from '/snippets/connectors/pipeline/related.mdx'
+
+<ConnectorDetailsHeader
+  icon='/public/images/connectors/mulesoft.webp'
+  name="Mulesoft"
+  stage="BETA"
+  availableFeatures={["Metadata", "Lineage"]}
+  unavailableFeatures={["Owners", "Tags"]}
+/>
+
+In this section, we provide guides and references to use the Mulesoft Anypoint Platform connector.
+
+Configure and schedule Mulesoft metadata workflows from the Collate UI:
+
+- [Requirements](#requirements)
+- [Metadata Ingestion](#metadata-ingestion)
+- [Troubleshooting](/connectors/pipeline/mulesoft/troubleshooting)
+
+## Requirements
+
+### Metadata
+
+To extract metadata from MuleSoft Anypoint Platform, you need either:
+
+- **Basic Authentication**: Username and password with appropriate permissions
+- **OAuth 2.0 Connected App**: Client ID and Client Secret for OAuth authentication
+
+The user or connected app needs to have permissions to:
+- Access and read applications in the specified organization
+- Query CloudHub and Runtime Manager APIs
+- Read environment configurations
+
+You can find more details about MuleSoft Anypoint Platform authentication in the [official documentation](https://docs.mulesoft.com/access-management/authentication).
+
+### Permissions
+
+The authenticated user or connected app should have:
+- Read access to applications in the target organization and environments
+- Permissions to view application details and configurations
+- Access to CloudHub or Runtime Manager depending on deployment type
+
+## Metadata Ingestion
+
+<MetadataIngestionUi
+  connector={"Mulesoft"}
+  selectServicePath={"/public/images/connectors/mulesoft/select-service.png"}
+  addNewServicePath={"/public/images/connectors/mulesoft/add-new-service.png"}
+  serviceConnectionPath={"/public/images/connectors/mulesoft/service-connection.png"}
+/>
+
+## Connection Options
+
+<Steps>
+  <Step title="Connection Options">
+    - **Host and Port**: MuleSoft Anypoint Platform URL. Use `https://anypoint.mulesoft.com` for US cloud, `https://eu1.anypoint.mulesoft.com` for EU cloud, or your on-premises URL.
+
+    - **Authentication**: Choose between two authentication methods:
+      - **Basic Authentication**: Provide username and password
+      - **OAuth 2.0 Client Credentials (Connected App)**: Provide Client ID and Client Secret
+
+    - **Organization ID** *(Optional)*: Anypoint Platform Organization ID. If not provided, the connector will use the user's default organization.
+
+    - **Environment ID** *(Optional)*: Anypoint Platform Environment ID. If not provided, the connector will discover all accessible environments.
+
+    - **Application Filter Pattern** *(Optional)*: Regex to filter MuleSoft applications by name for selective ingestion.
+  </Step>
+
+  <AdvancedConfiguration />
+
+  <TestConnection />
+
+  <ConfigureIngestion />
+
+  <IngestionScheduleAndDeploy />
+</Steps>
+
+<Related />
