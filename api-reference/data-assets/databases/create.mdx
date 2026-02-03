@@ -1,0 +1,138 @@
+---
+title: Create a Database
+description: Create a new database within a database service
+sidebarTitle: Create
+api: PUT /v1/databases
+---
+
+Create a new database within a database service.
+
+## Parameters
+
+<ParamField body="name" type="string" required>
+  Name of the database. Must be unique within the parent service.
+</ParamField>
+
+<ParamField body="service" type="string" required>
+  Fully qualified name of the parent DatabaseService.
+</ParamField>
+
+<ParamField body="displayName" type="string">
+  Human-readable display name for the database.
+</ParamField>
+
+<ParamField body="description" type="string">
+  Description of the database in Markdown format.
+</ParamField>
+
+<ParamField body="retentionPeriod" type="string">
+  Data retention period in ISO 8601 duration format (e.g., `P365D`).
+</ParamField>
+
+<ParamField body="owners" type="EntityReference[]">
+  Owner users or teams to assign.
+</ParamField>
+
+<ParamField body="domain" type="string">
+  Fully qualified name of the domain to assign.
+</ParamField>
+
+<ParamField body="tags" type="TagLabel[]">
+  Tags to apply to the database.
+</ParamField>
+
+<ParamField body="extension" type="object">
+  Custom property values.
+</ParamField>
+
+<RequestExample>
+```bash BASE URL
+https://your-company.getcollate.io/api/v1
+```
+</RequestExample>
+
+<RequestExample>
+```python Python SDK
+from metadata.sdk import configure
+from metadata.sdk.entities import Database
+from metadata.generated.schema.api.data.createDatabase import CreateDatabaseRequest
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+request = CreateDatabaseRequest(
+    name="analytics",
+    displayName="Analytics Database",
+    service="snowflake_prod",
+    description="Central analytics data warehouse",
+    retentionPeriod="P365D"
+)
+
+database = Database.create(request)
+print(f"Created: {database.fullyQualifiedName}")
+```
+</RequestExample>
+
+<RequestExample>
+```java Java SDK
+import org.openmetadata.sdk.entities.Databases;
+import org.openmetadata.schema.api.data.CreateDatabaseRequest;
+
+CreateDatabaseRequest request = new CreateDatabaseRequest()
+    .withName("analytics")
+    .withDisplayName("Analytics Database")
+    .withService("snowflake_prod")
+    .withDescription("Central analytics data warehouse")
+    .withRetentionPeriod("P365D");
+
+Database database = Databases.create(request);
+```
+</RequestExample>
+
+<RequestExample>
+```bash cURL
+curl -X PUT "https://your-company.getcollate.io/api/v1/databases" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "analytics",
+    "displayName": "Analytics Database",
+    "service": "snowflake_prod",
+    "description": "Central analytics data warehouse",
+    "retentionPeriod": "P365D"
+  }'
+```
+</RequestExample>
+
+<ResponseExample>
+```json Response
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "analytics",
+  "fullyQualifiedName": "snowflake_prod.analytics",
+  "displayName": "Analytics Database",
+  "description": "Central analytics data warehouse",
+  "service": {
+    "id": "service-uuid",
+    "type": "databaseService",
+    "name": "snowflake_prod"
+  },
+  "serviceType": "Snowflake",
+  "retentionPeriod": "P365D",
+  "version": 0.1
+}
+```
+</ResponseExample>
+
+---
+
+## Error Handling
+
+| Code | Error Type | Description |
+|------|-----------|-------------|
+| `400` | `BAD_REQUEST` | Invalid request body or missing required fields |
+| `401` | `UNAUTHORIZED` | Invalid or missing authentication token |
+| `403` | `FORBIDDEN` | User lacks permission to create databases |
+| `409` | `ENTITY_ALREADY_EXISTS` | Database with same name already exists in service |

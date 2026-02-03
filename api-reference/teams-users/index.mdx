@@ -1,0 +1,218 @@
+---
+title: Teams & Users
+description: Manage users, teams, and bot accounts
+sidebarTitle: Overview
+mode: "wide"
+---
+
+# Teams & Users
+
+Manage user accounts, teams, and service accounts (bots) for your organization.
+
+## Users
+
+### List Users
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.ingestion.ometa.ometa_api import OpenMetadata
+from metadata.generated.schema.entity.teams.user import User
+
+metadata = OpenMetadata(config)
+
+for user in metadata.list_all_entities(entity=User, limit=100):
+    print(f"{user.name}: {user.email}")
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X GET "https://your-company.getcollate.io/api/v1/users?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+### Get User by Name
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.teams.user import User
+
+user = metadata.get_by_name(entity=User, fqn="john.doe")
+print(f"ID: {user.id}")
+print(f"Email: {user.email}")
+print(f"Teams: {[t.name for t in (user.teams or [])]}")
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X GET "https://your-company.getcollate.io/api/v1/users/name/john.doe?fields=teams,roles" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+### Create User
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/users" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "jane.smith",
+    "email": "jane.smith@company.com",
+    "displayName": "Jane Smith",
+    "description": "Data Engineer",
+    "isAdmin": false,
+    "teams": [{"id": "team-uuid", "type": "team"}]
+  }'
+```
+</Tab>
+</Tabs>
+
+## Teams
+
+### List Teams
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X GET "https://your-company.getcollate.io/api/v1/teams?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Include users and roles
+curl -X GET "https://your-company.getcollate.io/api/v1/teams?fields=users,defaultRoles&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+### Create Team
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/teams" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "data-platform",
+    "displayName": "Data Platform Team",
+    "description": "Platform engineering for data infrastructure",
+    "teamType": "Group",
+    "isJoinable": true,
+    "defaultRoles": [{"id": "role-uuid", "type": "role"}]
+  }'
+```
+</Tab>
+</Tabs>
+
+### Add User to Team
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/teams/{team-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/users/-",
+      "value": {"id": "user-uuid", "type": "user"}
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Bots (Service Accounts)
+
+Bots are service accounts for automation and integrations.
+
+### List Bots
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X GET "https://your-company.getcollate.io/api/v1/bots?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+### Create Bot
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/bots" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "ci-cd-bot",
+    "displayName": "CI/CD Automation Bot",
+    "description": "Bot for CI/CD pipeline integrations",
+    "botUser": {
+      "name": "ci-cd-bot",
+      "email": "ci-cd-bot@company.com",
+      "isBot": true
+    }
+  }'
+```
+</Tab>
+</Tabs>
+
+### Generate Bot Token
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Get bot token
+curl -X GET "https://your-company.getcollate.io/api/v1/bots/name/ingestion-bot/token" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Revoke and regenerate token
+curl -X PUT "https://your-company.getcollate.io/api/v1/bots/{bot-id}/revokeToken" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Team Types
+
+| Type | Description |
+|------|-------------|
+| `Organization` | Top-level organization |
+| `BusinessUnit` | Business unit within organization |
+| `Division` | Division within business unit |
+| `Department` | Department within division |
+| `Group` | Working group or team |
+
+## User Fields
+
+| Field | Description |
+|-------|-------------|
+| `name` | Username (unique identifier) |
+| `displayName` | Full display name |
+| `email` | Email address |
+| `isAdmin` | Admin privileges |
+| `teams` | Team memberships |
+| `roles` | Assigned roles |
+| `personas` | Assigned personas |
+| `isBot` | Bot/service account flag |
+
+## Endpoints Summary
+
+| Resource | Endpoints |
+|----------|-----------|
+| Users | `GET/PUT/PATCH/DELETE /v1/users/{id}` |
+| Teams | `GET/PUT/PATCH/DELETE /v1/teams/{id}` |
+| Bots | `GET/PUT/PATCH/DELETE /v1/bots/{id}` |
+| Roles | `GET/PUT/PATCH/DELETE /v1/roles/{id}` |

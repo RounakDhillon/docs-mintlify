@@ -1,0 +1,127 @@
+---
+title: Retrieve a Database Schema
+description: Retrieve a schema by ID or fully qualified name
+sidebarTitle: Retrieve
+---
+
+Retrieve a database schema by ID or fully qualified name.
+
+## Endpoints
+
+```
+GET /v1/databaseSchemas/{id}
+GET /v1/databaseSchemas/name/{fqn}
+```
+
+## Path Parameters
+
+<ParamField path="id" type="uuid">
+  Unique identifier of the schema.
+</ParamField>
+
+<ParamField path="fqn" type="string">
+  Fully qualified name of the schema (e.g., `snowflake_prod.analytics.public`).
+</ParamField>
+
+## Query Parameters
+
+<ParamField query="fields" type="string">
+  Comma-separated list of fields to include. Options: `owners`, `tags`, `domain`, `tables`, `usageSummary`, `extension`.
+</ParamField>
+
+<RequestExample>
+```python Python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseSchema
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# By name
+schema = DatabaseSchema.retrieve_by_name(
+    "snowflake_prod.analytics.public",
+    fields=["owners", "tags", "tables", "domain"]
+)
+
+# By ID
+schema = DatabaseSchema.retrieve("550e8400-e29b-41d4-a716-446655440000")
+
+print(f"Name: {schema.name}")
+print(f"FQN: {schema.fullyQualifiedName}")
+print(f"Database: {schema.database.fullyQualifiedName}")
+
+# List tables in this schema
+if schema.tables:
+    for table in schema.tables:
+        print(f"  Table: {table.name}")
+```
+
+```java Java
+import org.openmetadata.sdk.entities.DatabaseSchemas;
+
+// By name
+DatabaseSchema schema = DatabaseSchemas.retrieveByName(
+    "snowflake_prod.analytics.public",
+    List.of("owners", "tags", "tables", "domain")
+);
+
+// By ID
+DatabaseSchema schema = DatabaseSchemas.retrieve("550e8400-e29b-41d4-a716-446655440000");
+
+System.out.println("Name: " + schema.getName());
+System.out.println("FQN: " + schema.getFullyQualifiedName());
+System.out.println("Database: " + schema.getDatabase().getFullyQualifiedName());
+
+// Access tables
+if (schema.getTables() != null) {
+    for (EntityReference table : schema.getTables()) {
+        System.out.println("  Table: " + table.getName());
+    }
+}
+```
+
+```bash cURL
+# By FQN
+curl "https://your-company.getcollate.io/api/v1/databaseSchemas/name/snowflake_prod.analytics.public?fields=owners,tags,tables,domain" \
+  -H "Authorization: Bearer $TOKEN"
+
+# By ID
+curl "https://your-company.getcollate.io/api/v1/databaseSchemas/550e8400-e29b-41d4-a716-446655440000?fields=owners,tags" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</RequestExample>
+
+<ResponseExample>
+```json Response
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "public",
+  "fullyQualifiedName": "snowflake_prod.analytics.public",
+  "displayName": "Public Schema",
+  "description": "Default schema for analytics tables",
+  "database": {
+    "id": "database-uuid",
+    "type": "database",
+    "name": "analytics",
+    "fullyQualifiedName": "snowflake_prod.analytics"
+  },
+  "owners": [
+    {
+      "id": "team-uuid",
+      "type": "team",
+      "name": "data-platform"
+    }
+  ],
+  "tables": [
+    {
+      "id": "table-uuid",
+      "type": "table",
+      "name": "customers"
+    }
+  ],
+  "version": 0.1
+}
+```
+</ResponseExample>

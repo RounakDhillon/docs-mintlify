@@ -1,0 +1,108 @@
+---
+title: The Topic Object
+description: Attributes of the topic entity
+sidebarTitle: The Topic Object
+mode: "wide"
+---
+
+<ResponseField name="id" type="uuid" required>
+  Unique identifier for the topic.
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+  Name of the topic. Must be unique within the parent service.
+</ResponseField>
+
+<ResponseField name="fullyQualifiedName" type="string">
+  Fully qualified name in format `{service}.{topic}`.
+</ResponseField>
+
+<ResponseField name="displayName" type="string">
+  Human-readable display name for the topic.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Description of the topic in Markdown format.
+</ResponseField>
+
+<ResponseField name="partitions" type="integer">
+  Number of partitions in the topic.
+</ResponseField>
+
+<ResponseField name="replicationFactor" type="integer">
+  Replication factor for the topic.
+</ResponseField>
+
+<ResponseField name="retentionSize" type="long">
+  Retention size in bytes.
+</ResponseField>
+
+<ResponseField name="maximumMessageSize" type="integer">
+  Maximum message size in bytes.
+</ResponseField>
+
+<ResponseField name="cleanupPolicies" type="string[]">
+  Cleanup policies (e.g., "delete", "compact").
+</ResponseField>
+
+<ResponseField name="messageSchema" type="Schema">
+  Message schema (Avro, JSON, Protobuf).
+</ResponseField>
+
+<ResponseField name="service" type="EntityReference" required>
+  Reference to the parent MessagingService.
+</ResponseField>
+
+<ResponseField name="owners" type="EntityReference[]">
+  Owners of the topic (users or teams).
+</ResponseField>
+
+<ResponseField name="domain" type="EntityReference">
+  Domain this topic belongs to.
+</ResponseField>
+
+<ResponseField name="tags" type="TagLabel[]">
+  Tags and classifications applied to this topic.
+</ResponseField>
+
+<ResponseField name="version" type="number">
+  Entity version number, incremented on updates.
+</ResponseField>
+
+<ResponseField name="deleted" type="boolean">
+  Whether the topic has been soft-deleted.
+</ResponseField>
+
+<ResponseExample>
+```json The Topic Object
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "orders.created",
+  "fullyQualifiedName": "kafka_prod.orders.created",
+  "displayName": "Order Created Events",
+  "description": "Events published when a new order is created",
+  "service": {
+    "id": "service-uuid",
+    "type": "messagingService",
+    "name": "kafka_prod"
+  },
+  "partitions": 12,
+  "replicationFactor": 3,
+  "retentionSize": 1073741824,
+  "maximumMessageSize": 1048576,
+  "cleanupPolicies": ["delete"],
+  "messageSchema": {
+    "schemaType": "Avro",
+    "schemaText": "..."
+  },
+  "owners": [
+    {
+      "id": "team-uuid",
+      "type": "team"
+    }
+  ],
+  "version": 0.1,
+  "deleted": false
+}
+```
+</ResponseExample>

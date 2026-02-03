@@ -1,0 +1,344 @@
+---
+title: Update Table
+description: Update table metadata using PUT or PATCH operations
+sidebarTitle: Update
+mode: "wide"
+---
+
+# Update a Table
+
+Update table metadata. Use PUT for full replacement or PATCH for partial updates.
+
+## Endpoints
+
+```
+PUT  /api/v1/tables           # Create or replace (upsert)
+PATCH /api/v1/tables/{id}     # Partial update using JSON Patch
+```
+
+## PUT: Create or Replace
+
+Creates a new table or replaces an existing one. All fields must be provided.
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.ingestion.ometa.ometa_api import OpenMetadata
+from metadata.generated.schema.api.data.createTable import CreateTableRequest
+from metadata.generated.schema.entity.data.table import Column, DataType
+
+metadata = OpenMetadata(config)
+
+# Full update using PUT
+create_request = CreateTableRequest(
+    name="customers",
+    databaseSchema="mysql_prod.analytics.public",
+    description="Updated customer master data",
+    tableType="Regular",
+    columns=[
+        Column(name="customer_id", dataType=DataType.BIGINT),
+        Column(name="email", dataType=DataType.VARCHAR, dataLength=255),
+        Column(name="first_name", dataType=DataType.VARCHAR),
+        Column(name="last_name", dataType=DataType.VARCHAR),
+        Column(name="phone", dataType=DataType.VARCHAR),  # New column
+    ]
+)
+
+table = metadata.create_or_update(data=create_request)
+print(f"Updated table version: {table.version}")
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/tables" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "customers",
+    "databaseSchema": "mysql_prod.analytics.public",
+    "description": "Updated customer master data",
+    "tableType": "Regular",
+    "columns": [
+      {"name": "customer_id", "dataType": "BIGINT"},
+      {"name": "email", "dataType": "VARCHAR", "dataLength": 255},
+      {"name": "first_name", "dataType": "VARCHAR"},
+      {"name": "last_name", "dataType": "VARCHAR"},
+      {"name": "phone", "dataType": "VARCHAR"}
+    ]
+  }'
+```
+</Tab>
+</Tabs>
+
+## PATCH: Partial Update
+
+Update specific fields using JSON Patch operations. More efficient for small changes.
+
+### JSON Patch Operations
+
+| Operation | Description | Example |
+|-----------|-------------|---------|
+| `add` | Add a new value | Add a tag |
+| `remove` | Remove a value | Remove owner |
+| `replace` | Replace a value | Update description |
+| `move` | Move a value | - |
+| `copy` | Copy a value | - |
+| `test` | Test a value | Verify before update |
+
+### Update Description
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.data.table import Table
+
+# Get the table first
+table = metadata.get_by_name(entity=Table, fqn="mysql_prod.analytics.public.customers")
+
+# Update description using patch
+metadata.patch_description(
+    entity=Table,
+    source=table,
+    description="Primary customer table containing all customer PII data"
+)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import javax.json.Json;
+import javax.json.JsonPatch;
+
+TablesApi tablesApi = client.buildClient(TablesApi.class);
+
+// Create JSON Patch
+JsonPatch patch = Json.createPatchBuilder()
+    .replace("/description", "Primary customer table containing all customer PII data")
+    .build();
+
+Table updated = tablesApi.patchTable(
+    UUID.fromString("550e8400-e29b-41d4-a716-446655440000"),
+    patch
+);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "replace", "path": "/description", "value": "Primary customer table containing all customer PII data"}
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Update Owner
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.data.table import Table
+from metadata.generated.schema.type.entityReference import EntityReference
+
+# Get table
+table = metadata.get_by_name(entity=Table, fqn="mysql_prod.analytics.public.customers")
+
+# Set owner
+owner = EntityReference(id="user-uuid", type="user")
+metadata.patch_owner(entity=Table, source=table, owner=owner)
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Set owner
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "add", "path": "/owner", "value": {"id": "user-uuid", "type": "user"}}
+  ]'
+
+# Remove owner
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "remove", "path": "/owner"}
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Add Tags
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.type.tagLabel import TagLabel, TagSource, State, LabelType
+
+# Get table
+table = metadata.get_by_name(entity=Table, fqn="mysql_prod.analytics.public.customers")
+
+# Add tag
+tag = TagLabel(
+    tagFQN="PII.Sensitive",
+    source=TagSource.Classification,
+    state=State.Confirmed,
+    labelType=LabelType.Manual
+)
+metadata.patch_tag(entity=Table, source=table, tag_label=tag)
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/tags/-",
+      "value": {
+        "tagFQN": "PII.Sensitive",
+        "source": "Classification",
+        "state": "Confirmed",
+        "labelType": "Manual"
+      }
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Update Column Description
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.data.table import Table
+
+# Update a specific column's description
+table = metadata.get_by_name(
+    entity=Table,
+    fqn="mysql_prod.analytics.public.customers",
+    fields=["columns"]
+)
+
+# Find the column index
+for i, col in enumerate(table.columns):
+    if col.name == "email":
+        metadata.patch_column_description(
+            table=table,
+            column_fqn=f"{table.fullyQualifiedName}.email",
+            description="Customer primary email address - PII"
+        )
+        break
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Update column at index 1
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "replace", "path": "/columns/1/description", "value": "Customer primary email address - PII"}
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Add Column Tags
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Add tag to column at index 1
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/columns/1/tags/-",
+      "value": {
+        "tagFQN": "PII.Sensitive",
+        "source": "Classification"
+      }
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Multiple Updates in One Request
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "replace", "path": "/description", "value": "Updated description"},
+    {"op": "add", "path": "/owner", "value": {"id": "user-uuid", "type": "user"}},
+    {"op": "add", "path": "/tags/-", "value": {"tagFQN": "Tier.Tier1", "source": "Classification"}}
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Response
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "customers",
+  "fullyQualifiedName": "mysql_prod.analytics.public.customers",
+  "description": "Updated description",
+  "version": 0.5,
+  "updatedAt": 1704153600000,
+  "updatedBy": "admin",
+  "changeDescription": {
+    "fieldsAdded": [...],
+    "fieldsUpdated": [...],
+    "fieldsDeleted": [...]
+  },
+  ...
+}
+```
+
+## Versioning
+
+Each update increments the entity version:
+- Minor changes (description, tags): +0.1
+- Major changes (columns, schema): +1.0
+
+View version history:
+
+```bash
+# Get all versions
+curl -X GET "https://your-company.getcollate.io/api/v1/tables/550e8400.../versions" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get specific version
+curl -X GET "https://your-company.getcollate.io/api/v1/tables/550e8400.../versions/0.3" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+## Errors
+
+| Code | Error Type | Description |
+|------|-----------|-------------|
+| `400` | `BAD_REQUEST` | Invalid patch operation or value |
+| `401` | `UNAUTHORIZED` | Invalid or missing token |
+| `403` | `FORBIDDEN` | User lacks permission to update |
+| `404` | `ENTITY_NOT_FOUND` | Table not found |
+| `412` | `PRECONDITION_FAILED` | Version conflict (use latest version) |

@@ -1,0 +1,723 @@
+---
+title: Database Services
+description: Create and manage connections to your databases and data warehouses
+sidebarTitle: Database Services
+mode: "wide"
+---
+
+A **Database Service** represents a connection to a database, data warehouse, or data lake platform like Snowflake, PostgreSQL, BigQuery, or Databricks.
+
+<Info>
+Entity schema follows the [OpenMetadata Standard](https://openmetadatastandards.org/metadata-specifications/entities/database-service/).
+</Info>
+
+## What is a Database Service?
+
+A Database Service is the **top-level entity** in the database hierarchy. It contains:
+
+- Connection configuration to your database platform
+- All databases, schemas, tables, and stored procedures discovered from that platform
+- Metadata (owner, tags, domain) that can be inherited by child entities
+
+```
+DatabaseService (this page)
+└── Database
+    └── DatabaseSchema
+        ├── Table
+        │   └── Column
+        └── StoredProcedure
+```
+
+## Inheritance
+
+When you set an **owner** or **domain** on a Database Service, it is inherited by all child entities:
+
+- Setting an owner on `snowflake_prod` makes that owner responsible for all databases, schemas, and tables under it
+- Assigning a domain to `snowflake_prod` groups all child entities under that domain
+
+This allows you to manage metadata at scale without updating each entity individually.
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `PUT` | `/v1/services/databaseServices` | Create or update a service |
+| `GET` | `/v1/services/databaseServices` | List services |
+| `GET` | `/v1/services/databaseServices/{id}` | Get by ID |
+| `GET` | `/v1/services/databaseServices/name/{name}` | Get by name |
+| `PATCH` | `/v1/services/databaseServices/{id}` | Update a service |
+| `DELETE` | `/v1/services/databaseServices/{id}` | Delete a service |
+
+---
+
+## The Database Service Object
+
+<ResponseField name="id" type="uuid" required>
+  Unique identifier for the database service.
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+  Name of the database service. Must be unique across all database services.
+</ResponseField>
+
+<ResponseField name="fullyQualifiedName" type="string">
+  Fully qualified name. For services, this equals the name.
+</ResponseField>
+
+<ResponseField name="displayName" type="string">
+  Human-readable display name for the service.
+</ResponseField>
+
+<ResponseField name="serviceType" type="enum" required>
+  Type of database. One of: `Snowflake`, `BigQuery`, `Redshift`, `Postgres`, `MySQL`, `Databricks`, `Athena`, and [many more](https://openmetadatastandards.org/metadata-specifications/entities/database-service/).
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Description in Markdown format.
+</ResponseField>
+
+<ResponseField name="connection" type="object" required>
+  Connection configuration specific to the service type.
+</ResponseField>
+
+<ResponseField name="owners" type="EntityReference[]">
+  Owners of the service (users or teams). Inherited by all child entities.
+</ResponseField>
+
+<ResponseField name="domain" type="EntityReference">
+  Domain this service belongs to. Inherited by all child entities.
+</ResponseField>
+
+<ResponseField name="tags" type="TagLabel[]">
+  Tags and classifications applied to this service.
+</ResponseField>
+
+<ResponseField name="version" type="number">
+  Entity version number, incremented on updates.
+</ResponseField>
+
+<ResponseField name="deleted" type="boolean">
+  Whether the service has been soft-deleted.
+</ResponseField>
+
+```json Example Response
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "snowflake_prod",
+  "fullyQualifiedName": "snowflake_prod",
+  "displayName": "Snowflake Production",
+  "serviceType": "Snowflake",
+  "description": "Production Snowflake data warehouse",
+  "connection": {
+    "config": {
+      "type": "Snowflake",
+      "username": "admin",
+      "account": "company.us-east-1",
+      "warehouse": "COMPUTE_WH",
+      "database": "ANALYTICS"
+    }
+  },
+  "owners": [
+    {
+      "id": "team-uuid",
+      "type": "team",
+      "name": "data-platform"
+    }
+  ],
+  "version": 0.1,
+  "deleted": false
+}
+```
+
+---
+
+## Create a Database Service
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService
+from metadata.generated.schema.api.services.createDatabaseService import CreateDatabaseServiceRequest
+from metadata.generated.schema.entity.services.databaseService import (
+    DatabaseServiceType,
+    DatabaseConnection,
+)
+from metadata.generated.schema.entity.services.connections.database.snowflakeConnection import SnowflakeConnection
+
+# Configure the SDK
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# Create the service
+request = CreateDatabaseServiceRequest(
+    name="snowflake_prod",
+    displayName="Snowflake Production",
+    serviceType=DatabaseServiceType.Snowflake,
+    connection=DatabaseConnection(
+        config=SnowflakeConnection(
+            username="admin",
+            account="company.us-east-1",
+            warehouse="COMPUTE_WH"
+        )
+    ),
+    description="Production Snowflake data warehouse"
+)
+
+service = DatabaseService.create(request)
+print(f"Created: {service.fullyQualifiedName}")
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.OpenMetadataClient;
+import org.openmetadata.sdk.config.OpenMetadataConfig;
+import org.openmetadata.sdk.entities.DatabaseServices;
+import org.openmetadata.schema.api.services.CreateDatabaseServiceRequest;
+import org.openmetadata.schema.entity.services.DatabaseService;
+import org.openmetadata.schema.entity.services.DatabaseServiceType;
+
+// Initialize client
+OpenMetadataConfig config = OpenMetadataConfig.builder()
+    .serverUrl("https://your-company.getcollate.io/api")
+    .accessToken("your-token")
+    .build();
+OpenMetadataClient client = new OpenMetadataClient(config);
+DatabaseServices.setDefaultClient(client);
+
+// Create the service
+CreateDatabaseServiceRequest request = new CreateDatabaseServiceRequest()
+    .withName("snowflake_prod")
+    .withDisplayName("Snowflake Production")
+    .withServiceType(DatabaseServiceType.Snowflake)
+    .withDescription("Production Snowflake data warehouse");
+
+DatabaseService service = DatabaseServices.create(request);
+System.out.println("Created: " + service.getFullyQualifiedName());
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/services/databaseServices" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "snowflake_prod",
+    "displayName": "Snowflake Production",
+    "serviceType": "Snowflake",
+    "connection": {
+      "config": {
+        "type": "Snowflake",
+        "username": "admin",
+        "account": "company.us-east-1",
+        "warehouse": "COMPUTE_WH"
+      }
+    },
+    "description": "Production Snowflake data warehouse"
+  }'
+```
+</Tab>
+</Tabs>
+
+---
+
+## Retrieve a Database Service
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# By name
+service = DatabaseService.retrieve_by_name(
+    "snowflake_prod",
+    fields=["owners", "tags", "domain"]
+)
+
+# By ID
+service = DatabaseService.retrieve("550e8400-e29b-41d4-a716-446655440000")
+
+print(f"Name: {service.name}")
+print(f"Type: {service.serviceType}")
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.entities.DatabaseServices;
+
+// By name
+DatabaseService service = DatabaseServices.retrieveByName(
+    "snowflake_prod",
+    List.of("owners", "tags", "domain")
+);
+
+// By ID
+DatabaseService service = DatabaseServices.retrieve("550e8400-e29b-41d4-a716-446655440000");
+
+System.out.println("Name: " + service.getName());
+System.out.println("Type: " + service.getServiceType());
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# By name
+curl "https://your-company.getcollate.io/api/v1/services/databaseServices/name/snowflake_prod?fields=owners,tags,domain" \
+  -H "Authorization: Bearer $TOKEN"
+
+# By ID
+curl "https://your-company.getcollate.io/api/v1/services/databaseServices/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+---
+
+## List Database Services
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService
+from metadata.sdk.entities.database_service import DatabaseServiceListParams
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# List all services with auto-pagination
+for service in DatabaseService.list().auto_paging_iterable():
+    print(f"{service.name}: {service.serviceType}")
+
+# List with parameters
+params = DatabaseServiceListParams.builder() \
+    .limit(50) \
+    .fields(["owners", "tags"]) \
+    .build()
+
+services = DatabaseService.list(params)
+for service in services.get_data():
+    print(service.name)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.entities.DatabaseServices;
+import org.openmetadata.sdk.entities.DatabaseServiceListParams;
+
+// List with auto-pagination
+for (DatabaseService service : DatabaseServices.list().autoPagingIterable()) {
+    System.out.println(service.getName() + ": " + service.getServiceType());
+}
+
+// List with parameters
+DatabaseServiceListParams params = DatabaseServiceListParams.builder()
+    .limit(50)
+    .fields(List.of("owners", "tags"))
+    .build();
+
+DatabaseServiceCollection services = DatabaseServices.list(params);
+for (DatabaseService service : services.getData()) {
+    System.out.println(service.getName());
+}
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl "https://your-company.getcollate.io/api/v1/services/databaseServices?limit=50&fields=owners,tags" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+### Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `limit` | integer | Maximum results per page (default: 10, max: 1000000) |
+| `before` | string | Cursor for backward pagination |
+| `after` | string | Cursor for forward pagination |
+| `fields` | string | Comma-separated fields to include |
+| `include` | string | Include `all`, `deleted`, or `non-deleted` (default) |
+
+---
+
+## Update a Database Service
+
+### Update Description
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+service = DatabaseService.retrieve_by_name("snowflake_prod")
+service.description = "Enterprise Snowflake data warehouse for analytics"
+updated = DatabaseService.update(service.id, service)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.entities.DatabaseServices;
+
+DatabaseService service = DatabaseServices.retrieveByName("snowflake_prod");
+service.setDescription("Enterprise Snowflake data warehouse for analytics");
+DatabaseService updated = DatabaseServices.update(service.getId(), service);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/services/databaseServices/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "replace", "path": "/description", "value": "Enterprise Snowflake data warehouse"}
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Set Owner
+
+Setting an owner on a service makes them responsible for **all child entities** (databases, schemas, tables, stored procedures).
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService, Team
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# Get the team to set as owner
+team = Team.retrieve_by_name("data-platform")
+
+# Update the service owner
+service = DatabaseService.retrieve_by_name("snowflake_prod")
+service.owners = [{"id": str(team.id), "type": "team"}]
+updated = DatabaseService.update(service.id, service)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.entities.DatabaseServices;
+import org.openmetadata.sdk.entities.Teams;
+import org.openmetadata.schema.type.EntityReference;
+
+// Get the team
+Team team = Teams.retrieveByName("data-platform");
+
+// Update the service owner
+DatabaseService service = DatabaseServices.retrieveByName("snowflake_prod");
+service.setOwners(List.of(
+    new EntityReference()
+        .withId(team.getId())
+        .withType("team")
+));
+DatabaseService updated = DatabaseServices.update(service.getId(), service);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/services/databaseServices/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "add", "path": "/owners", "value": [{"id": "team-uuid", "type": "team"}]}
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Set Domain
+
+Setting a domain on a service groups **all child entities** under that domain.
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService, Domain
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# Get the domain
+domain = Domain.retrieve_by_name("Sales")
+
+# Update the service domain
+service = DatabaseService.retrieve_by_name("snowflake_prod")
+service.domain = {"id": str(domain.id), "type": "domain"}
+updated = DatabaseService.update(service.id, service)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.entities.DatabaseServices;
+import org.openmetadata.sdk.entities.Domains;
+import org.openmetadata.schema.type.EntityReference;
+
+// Get the domain
+Domain domain = Domains.retrieveByName("Sales");
+
+// Update the service domain
+DatabaseService service = DatabaseServices.retrieveByName("snowflake_prod");
+service.setDomain(
+    new EntityReference()
+        .withId(domain.getId())
+        .withType("domain")
+);
+DatabaseService updated = DatabaseServices.update(service.getId(), service);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/services/databaseServices/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "add", "path": "/domain", "value": {"id": "domain-uuid", "type": "domain"}}
+  ]'
+```
+</Tab>
+</Tabs>
+
+### Add Tags
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+service = DatabaseService.retrieve_by_name("snowflake_prod", fields=["tags"])
+service.tags = [
+    {"tagFQN": "Tier.Tier1", "labelType": "Manual", "state": "Confirmed"},
+    {"tagFQN": "PII.Sensitive", "labelType": "Manual", "state": "Confirmed"}
+]
+updated = DatabaseService.update(service.id, service)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.entities.DatabaseServices;
+import org.openmetadata.schema.type.TagLabel;
+
+DatabaseService service = DatabaseServices.retrieveByName("snowflake_prod", List.of("tags"));
+service.setTags(List.of(
+    new TagLabel()
+        .withTagFQN("Tier.Tier1")
+        .withLabelType(TagLabel.LabelType.Manual)
+        .withState(TagLabel.State.Confirmed),
+    new TagLabel()
+        .withTagFQN("PII.Sensitive")
+        .withLabelType(TagLabel.LabelType.Manual)
+        .withState(TagLabel.State.Confirmed)
+));
+DatabaseService updated = DatabaseServices.update(service.getId(), service);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/services/databaseServices/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "add", "path": "/tags/-", "value": {"tagFQN": "Tier.Tier1", "labelType": "Manual", "state": "Confirmed"}}
+  ]'
+```
+</Tab>
+</Tabs>
+
+---
+
+## Delete a Database Service
+
+<Warning>
+Deleting a Database Service with `recursive=true` will delete **all** databases, schemas, tables, and stored procedures under it. This action cannot be undone with a hard delete.
+</Warning>
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# Soft delete (can be restored)
+DatabaseService.delete("550e8400-e29b-41d4-a716-446655440000")
+
+# Hard delete with all child entities
+DatabaseService.delete(
+    "550e8400-e29b-41d4-a716-446655440000",
+    recursive=True,
+    hard_delete=True
+)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.entities.DatabaseServices;
+
+// Soft delete
+DatabaseServices.delete("550e8400-e29b-41d4-a716-446655440000");
+
+// Hard delete with all child entities
+DatabaseServices.delete(
+    "550e8400-e29b-41d4-a716-446655440000",
+    true,  // recursive
+    true   // hardDelete
+);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Soft delete
+curl -X DELETE "https://your-company.getcollate.io/api/v1/services/databaseServices/{id}" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Hard delete with all child entities
+curl -X DELETE "https://your-company.getcollate.io/api/v1/services/databaseServices/{id}?hardDelete=true&recursive=true" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+---
+
+## Connection Configurations
+
+### Snowflake
+
+```json
+{
+  "type": "Snowflake",
+  "username": "admin",
+  "account": "company.us-east-1",
+  "warehouse": "COMPUTE_WH",
+  "database": "ANALYTICS",
+  "role": "ANALYTICS_ROLE"
+}
+```
+
+### BigQuery
+
+```json
+{
+  "type": "BigQuery",
+  "credentials": {
+    "gcpConfig": {
+      "type": "service_account",
+      "projectId": "my-project",
+      "privateKeyId": "key-id",
+      "privateKey": "-----BEGIN PRIVATE KEY-----...",
+      "clientEmail": "service@project.iam.gserviceaccount.com"
+    }
+  }
+}
+```
+
+### PostgreSQL
+
+```json
+{
+  "type": "Postgres",
+  "username": "postgres_user",
+  "authType": {"password": "secret"},
+  "hostPort": "postgres.example.com:5432",
+  "database": "analytics"
+}
+```
+
+### MySQL
+
+```json
+{
+  "type": "Mysql",
+  "username": "mysql_user",
+  "authType": {"password": "secret"},
+  "hostPort": "mysql.example.com:3306",
+  "databaseSchema": "production"
+}
+```
+
+---
+
+## Service Types
+
+| Type | Description |
+|------|-------------|
+| `Snowflake` | Snowflake Data Cloud |
+| `BigQuery` | Google BigQuery |
+| `Redshift` | Amazon Redshift |
+| `Postgres` | PostgreSQL |
+| `MySQL` | MySQL |
+| `Databricks` | Databricks Lakehouse |
+| `Athena` | Amazon Athena |
+| `Trino` | Trino (formerly Presto SQL) |
+| `Hive` | Apache Hive |
+| `MSSQL` | Microsoft SQL Server |
+| `Oracle` | Oracle Database |
+
+See [all supported database types](https://openmetadatastandards.org/metadata-specifications/entities/database-service/) for the complete list.
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Databases" icon="database" href="/api-reference/data-assets/databases">
+    Manage databases within this service
+  </Card>
+  <Card title="Tables" icon="table" href="/api-reference/data-assets/tables">
+    Manage tables within schemas
+  </Card>
+</CardGroup>

@@ -1,0 +1,388 @@
+---
+title: Create Table
+description: Create a new table entity in the catalog
+sidebarTitle: Create
+mode: "wide"
+---
+
+# Create a Table
+
+Creates a new table entity in the specified database schema.
+
+<Note>
+Tables are typically created through metadata ingestion. Use this API for manual registration or programmatic catalog population.
+</Note>
+
+## Endpoint
+
+```
+POST /api/v1/tables
+```
+
+Or use PUT for upsert (create or update):
+
+```
+PUT /api/v1/tables
+```
+
+## Request Body
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `name` | string | Yes | Table name (unique within schema) |
+| `databaseSchema` | string | Yes | FQN of the parent schema |
+| `columns` | Column[] | Yes | Array of column definitions |
+| `description` | string | No | Markdown description |
+| `displayName` | string | No | Human-friendly display name |
+| `tableType` | string | No | `Regular`, `View`, `External`, etc. |
+| `owner` | EntityReference | No | Owner reference |
+| `tags` | TagLabel[] | No | Tags to apply |
+| `tableConstraints` | TableConstraint[] | No | Table-level constraints |
+| `tablePartition` | TablePartition | No | Partition configuration |
+
+### Column Object
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | string | Yes | Column name |
+| `dataType` | string | Yes | Data type (BIGINT, VARCHAR, etc.) |
+| `dataLength` | integer | No | Length for VARCHAR/CHAR |
+| `description` | string | No | Column description |
+| `constraint` | string | No | `PRIMARY_KEY`, `UNIQUE`, `NOT_NULL` |
+| `tags` | TagLabel[] | No | Column-level tags |
+| `children` | Column[] | No | Nested columns for STRUCT |
+
+## Examples
+
+### Create a Simple Table
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.ingestion.ometa.ometa_api import OpenMetadata
+from metadata.generated.schema.api.data.createTable import CreateTableRequest
+from metadata.generated.schema.entity.data.table import Column, DataType, Constraint
+
+metadata = OpenMetadata(config)
+
+# Define columns
+columns = [
+    Column(
+        name="customer_id",
+        dataType=DataType.BIGINT,
+        description="Primary key - unique customer identifier",
+        constraint=Constraint.PRIMARY_KEY
+    ),
+    Column(
+        name="email",
+        dataType=DataType.VARCHAR,
+        dataLength=255,
+        description="Customer email address",
+        constraint=Constraint.NOT_NULL
+    ),
+    Column(
+        name="first_name",
+        dataType=DataType.VARCHAR,
+        dataLength=100,
+        description="Customer first name"
+    ),
+    Column(
+        name="last_name",
+        dataType=DataType.VARCHAR,
+        dataLength=100,
+        description="Customer last name"
+    ),
+    Column(
+        name="created_at",
+        dataType=DataType.TIMESTAMP,
+        description="Account creation timestamp"
+    )
+]
+
+# Create the table
+create_request = CreateTableRequest(
+    name="customers",
+    databaseSchema="mysql_prod.analytics.public",
+    description="Customer master data containing account information",
+    tableType="Regular",
+    columns=columns
+)
+
+table = metadata.create_or_update(data=create_request)
+print(f"Created table: {table.fullyQualifiedName}")
+print(f"ID: {table.id}")
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.client.api.TablesApi;
+import org.openmetadata.schema.api.data.CreateTable;
+import org.openmetadata.schema.entity.data.Table;
+import org.openmetadata.schema.type.Column;
+
+TablesApi tablesApi = client.buildClient(TablesApi.class);
+
+// Define columns
+List<Column> columns = List.of(
+    new Column()
+        .withName("customer_id")
+        .withDataType(Column.DataType.BIGINT)
+        .withDescription("Primary key - unique customer identifier")
+        .withConstraint(Column.Constraint.PRIMARY_KEY),
+    new Column()
+        .withName("email")
+        .withDataType(Column.DataType.VARCHAR)
+        .withDataLength(255)
+        .withDescription("Customer email address")
+        .withConstraint(Column.Constraint.NOT_NULL),
+    new Column()
+        .withName("first_name")
+        .withDataType(Column.DataType.VARCHAR)
+        .withDataLength(100)
+        .withDescription("Customer first name"),
+    new Column()
+        .withName("last_name")
+        .withDataType(Column.DataType.VARCHAR)
+        .withDataLength(100)
+        .withDescription("Customer last name"),
+    new Column()
+        .withName("created_at")
+        .withDataType(Column.DataType.TIMESTAMP)
+        .withDescription("Account creation timestamp")
+);
+
+// Create the table
+CreateTable createRequest = new CreateTable()
+    .withName("customers")
+    .withDatabaseSchema("mysql_prod.analytics.public")
+    .withDescription("Customer master data containing account information")
+    .withTableType(Table.TableType.REGULAR)
+    .withColumns(columns);
+
+Table table = tablesApi.createOrUpdateTable(createRequest);
+System.out.println("Created table: " + table.getFullyQualifiedName());
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/tables" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "customers",
+    "databaseSchema": "mysql_prod.analytics.public",
+    "description": "Customer master data containing account information",
+    "tableType": "Regular",
+    "columns": [
+      {
+        "name": "customer_id",
+        "dataType": "BIGINT",
+        "description": "Primary key - unique customer identifier",
+        "constraint": "PRIMARY_KEY"
+      },
+      {
+        "name": "email",
+        "dataType": "VARCHAR",
+        "dataLength": 255,
+        "description": "Customer email address",
+        "constraint": "NOT_NULL"
+      },
+      {
+        "name": "first_name",
+        "dataType": "VARCHAR",
+        "dataLength": 100,
+        "description": "Customer first name"
+      },
+      {
+        "name": "last_name",
+        "dataType": "VARCHAR",
+        "dataLength": 100,
+        "description": "Customer last name"
+      },
+      {
+        "name": "created_at",
+        "dataType": "TIMESTAMP",
+        "description": "Account creation timestamp"
+      }
+    ]
+  }'
+```
+</Tab>
+</Tabs>
+
+### Create Table with Tags and Owner
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.api.data.createTable import CreateTableRequest
+from metadata.generated.schema.type.tagLabel import TagLabel, LabelType, State, TagSource
+
+create_request = CreateTableRequest(
+    name="orders",
+    databaseSchema="mysql_prod.analytics.public",
+    description="Order transactions",
+    tableType="Regular",
+    columns=[
+        Column(
+            name="order_id",
+            dataType=DataType.BIGINT,
+            constraint=Constraint.PRIMARY_KEY
+        ),
+        Column(
+            name="customer_id",
+            dataType=DataType.BIGINT,
+            description="FK to customers table"
+        ),
+        Column(
+            name="total_amount",
+            dataType=DataType.DECIMAL,
+            description="Order total in USD"
+        )
+    ],
+    owner={"id": "user-uuid", "type": "user"},
+    tags=[
+        TagLabel(
+            tagFQN="Tier.Tier1",
+            source=TagSource.Classification,
+            state=State.Confirmed,
+            labelType=LabelType.Manual
+        )
+    ]
+)
+
+table = metadata.create_or_update(data=create_request)
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/tables" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "orders",
+    "databaseSchema": "mysql_prod.analytics.public",
+    "description": "Order transactions",
+    "tableType": "Regular",
+    "columns": [
+      {"name": "order_id", "dataType": "BIGINT", "constraint": "PRIMARY_KEY"},
+      {"name": "customer_id", "dataType": "BIGINT"},
+      {"name": "total_amount", "dataType": "DECIMAL"}
+    ],
+    "owner": {"id": "user-uuid", "type": "user"},
+    "tags": [
+      {"tagFQN": "Tier.Tier1", "source": "Classification"}
+    ]
+  }'
+```
+</Tab>
+</Tabs>
+
+### Create Table with Nested Columns (STRUCT)
+
+<Tabs>
+<Tab title="Python">
+```python
+create_request = CreateTableRequest(
+    name="events",
+    databaseSchema="bigquery_prod.analytics.events",
+    description="Event log with nested user properties",
+    columns=[
+        Column(name="event_id", dataType=DataType.STRING),
+        Column(name="event_type", dataType=DataType.STRING),
+        Column(
+            name="user_properties",
+            dataType=DataType.STRUCT,
+            description="Nested user data",
+            children=[
+                Column(name="user_id", dataType=DataType.STRING),
+                Column(name="email", dataType=DataType.STRING),
+                Column(
+                    name="address",
+                    dataType=DataType.STRUCT,
+                    children=[
+                        Column(name="street", dataType=DataType.STRING),
+                        Column(name="city", dataType=DataType.STRING),
+                        Column(name="country", dataType=DataType.STRING)
+                    ]
+                )
+            ]
+        ),
+        Column(name="timestamp", dataType=DataType.TIMESTAMP)
+    ]
+)
+
+table = metadata.create_or_update(data=create_request)
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/tables" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "events",
+    "databaseSchema": "bigquery_prod.analytics.events",
+    "description": "Event log with nested user properties",
+    "columns": [
+      {"name": "event_id", "dataType": "STRING"},
+      {"name": "event_type", "dataType": "STRING"},
+      {
+        "name": "user_properties",
+        "dataType": "STRUCT",
+        "description": "Nested user data",
+        "children": [
+          {"name": "user_id", "dataType": "STRING"},
+          {"name": "email", "dataType": "STRING"},
+          {
+            "name": "address",
+            "dataType": "STRUCT",
+            "children": [
+              {"name": "street", "dataType": "STRING"},
+              {"name": "city", "dataType": "STRING"},
+              {"name": "country", "dataType": "STRING"}
+            ]
+          }
+        ]
+      },
+      {"name": "timestamp", "dataType": "TIMESTAMP"}
+    ]
+  }'
+```
+</Tab>
+</Tabs>
+
+## Response
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "customers",
+  "fullyQualifiedName": "mysql_prod.analytics.public.customers",
+  "description": "Customer master data containing account information",
+  "version": 0.1,
+  "updatedAt": 1704067200000,
+  "updatedBy": "admin",
+  "href": "https://your-company.getcollate.io/api/v1/tables/550e8400...",
+  "tableType": "Regular",
+  "columns": [...],
+  "databaseSchema": {...},
+  "database": {...},
+  "service": {...},
+  "deleted": false
+}
+```
+
+## Errors
+
+| Code | Error Type | Description |
+|------|-----------|-------------|
+| `400` | `BAD_REQUEST` | Invalid column definition or missing required fields |
+| `401` | `UNAUTHORIZED` | Invalid or missing token |
+| `403` | `FORBIDDEN` | User lacks permission to create tables |
+| `404` | `ENTITY_NOT_FOUND` | Database schema not found |
+| `409` | `ENTITY_ALREADY_EXISTS` | Table with same name exists in schema |

@@ -1,0 +1,317 @@
+---
+title: Tags
+description: Add, remove, and manage tags on entities
+sidebarTitle: Tags
+mode: "wide"
+---
+
+# Managing Tags
+
+Tags and classifications help organize and govern data assets. Tags can be applied at the entity level (e.g., table) or component level (e.g., column).
+
+## Tag Types
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Classification Tags** | Built-in or custom classifications | `PII.Sensitive`, `Tier.Tier1` |
+| **Glossary Terms** | Business glossary references | `Business Glossary.Customer ID` |
+
+## Add Tags to Entity
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.ingestion.ometa.ometa_api import OpenMetadata
+from metadata.generated.schema.entity.data.table import Table
+from metadata.generated.schema.type.tagLabel import (
+    TagLabel, TagSource, State, LabelType
+)
+
+metadata = OpenMetadata(config)
+
+# Get the table
+table = metadata.get_by_name(
+    entity=Table,
+    fqn="sample_data.ecommerce_db.shopify.dim_customer"
+)
+
+# Add a classification tag
+tag = TagLabel(
+    tagFQN="PII.Sensitive",
+    source=TagSource.Classification,
+    state=State.Confirmed,
+    labelType=LabelType.Manual
+)
+
+metadata.patch_tag(entity=Table, source=table, tag_label=tag)
+print("Tag added successfully")
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.client.api.TablesApi;
+import javax.json.Json;
+import javax.json.JsonPatch;
+
+TablesApi tablesApi = client.buildClient(TablesApi.class);
+
+// Get table
+Table table = tablesApi.getTableByFQN("sample_data.ecommerce_db.shopify.dim_customer", "tags", null);
+
+// Add tag
+JsonPatch patch = Json.createPatchBuilder()
+    .add("/tags/-", Json.createObjectBuilder()
+        .add("tagFQN", "PII.Sensitive")
+        .add("source", "Classification")
+        .add("state", "Confirmed")
+        .add("labelType", "Manual")
+        .build())
+    .build();
+
+Table updated = tablesApi.patchTable(table.getId(), patch);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/tags/-",
+      "value": {
+        "tagFQN": "PII.Sensitive",
+        "source": "Classification",
+        "state": "Confirmed",
+        "labelType": "Manual"
+      }
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Add Multiple Tags
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/tags/-",
+      "value": {"tagFQN": "PII.Sensitive", "source": "Classification"}
+    },
+    {
+      "op": "add",
+      "path": "/tags/-",
+      "value": {"tagFQN": "Tier.Tier1", "source": "Classification"}
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Add Tags to Columns
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.data.table import Table
+from metadata.generated.schema.type.tagLabel import TagLabel, TagSource
+
+# Get table with columns
+table = metadata.get_by_name(
+    entity=Table,
+    fqn="sample_data.ecommerce_db.shopify.dim_customer",
+    fields=["columns"]
+)
+
+# Add tag to specific column
+tag = TagLabel(
+    tagFQN="PII.Sensitive",
+    source=TagSource.Classification
+)
+
+metadata.patch_column_tag(
+    table=table,
+    column_fqn="sample_data.ecommerce_db.shopify.dim_customer.email",
+    tag_label=tag
+)
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Add tag to column at index 2
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/columns/2/tags/-",
+      "value": {
+        "tagFQN": "PII.Sensitive",
+        "source": "Classification"
+      }
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Remove Tags
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Remove tag at index 0 from entity
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "remove",
+      "path": "/tags/0"
+    }
+  ]'
+
+# Remove tag from column
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "remove",
+      "path": "/columns/2/tags/0"
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## List Available Tags
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# List all classifications
+curl -X GET "https://your-company.getcollate.io/api/v1/classifications?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# List tags in a classification
+curl -X GET "https://your-company.getcollate.io/api/v1/tags?parent=PII&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.classification.classification import Classification
+from metadata.generated.schema.entity.classification.tag import Tag
+
+# List classifications
+classifications = metadata.list_all_entities(entity=Classification)
+for c in classifications:
+    print(f"Classification: {c.name}")
+
+# List tags in a classification
+tags = metadata.list_entities(
+    entity=Tag,
+    params={"parent": "PII"}
+)
+for tag in tags.entities:
+    print(f"  Tag: {tag.fullyQualifiedName}")
+```
+</Tab>
+</Tabs>
+
+## Add Glossary Term
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/tags/-",
+      "value": {
+        "tagFQN": "Business Glossary.Customer.Customer ID",
+        "source": "Glossary",
+        "state": "Confirmed",
+        "labelType": "Manual"
+      }
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Common Classification Tags
+
+| Tag FQN | Description |
+|---------|-------------|
+| `PII.Sensitive` | Personally identifiable information |
+| `PII.NonSensitive` | Non-sensitive PII |
+| `PersonalData.Personal` | Personal data (GDPR) |
+| `Tier.Tier1` | Critical/production data |
+| `Tier.Tier2` | Important data |
+| `Tier.Tier3` | Less critical data |
+
+## Tag Label Properties
+
+| Property | Values | Description |
+|----------|--------|-------------|
+| `source` | `Classification`, `Glossary` | Tag origin |
+| `state` | `Suggested`, `Confirmed` | Confirmation status |
+| `labelType` | `Manual`, `Propagated`, `Automated`, `Derived` | How tag was applied |
+
+## Bulk Tag Operations
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.data.table import Table
+from metadata.generated.schema.type.tagLabel import TagLabel, TagSource
+
+# Tag to apply
+tag = TagLabel(tagFQN="Tier.Tier1", source=TagSource.Classification)
+
+# Tables to tag
+tables = [
+    "sample_data.ecommerce_db.shopify.dim_customer",
+    "sample_data.ecommerce_db.shopify.fact_orders",
+    "sample_data.ecommerce_db.shopify.dim_product",
+]
+
+for fqn in tables:
+    table = metadata.get_by_name(entity=Table, fqn=fqn)
+    metadata.patch_tag(entity=Table, source=table, tag_label=tag)
+    print(f"Tagged: {fqn}")
+```
+</Tab>
+</Tabs>
+
+## Query by Tag
+
+Find entities with specific tags:
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Search for tables with PII tag
+curl -X GET "https://your-company.getcollate.io/api/v1/search/query?q=*&index=table_search_index&query_filter=%7B%22query%22%3A%7B%22bool%22%3A%7B%22must%22%3A%5B%7B%22term%22%3A%7B%22tags.tagFQN%22%3A%22PII.Sensitive%22%7D%7D%5D%7D%7D%7D" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
