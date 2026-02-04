@@ -1808,6 +1808,10 @@
         {
             "source": "/how-to-guides/mcp/*",
             "destination": "/collate-ai/mcp/*"
+        },
+        {
+            "source": "/how-to-guides/data-quality-observability/profiler/workflow",
+            "destination": "/how-to-guides/data-quality-observability/profiler/profiler-workflow"
         }
     ],
     "integrations": {
