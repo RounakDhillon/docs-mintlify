@@ -1,0 +1,259 @@
+---
+title: Microsoft Teams Integration Setup Guide
+description: Set up the Microsoft Teams bot integration with Collate, including Azure Bot registration, credentials, and Teams app setup.
+slug: /how-to-guides/admin-guide/applications/microsoft-teams-integration
+sidebarTitle: Microsoft Teams Integration
+---
+
+# Microsoft Teams Integration Setup Guide
+
+This guide explains how to set up the Microsoft Teams bot integration with Collate.
+
+## Prerequisites
+
+- Azure subscription with admin access
+- Collate instance with public HTTPS endpoint
+- Microsoft Teams workspace
+
+## Step 1: Create Azure Bot Registration
+
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Search for "Azure Bot" and click **Create**
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mti1.png" alt="Create Azure Bot Registration" />
+
+3. Fill in the required fields:
+   - **Bot handle**: `collate-bot` (or your preferred name)
+   - **Subscription**: Select your Azure subscription
+   - **Resource group**: Create new or use existing
+   - **Pricing tier**: Free (F0) for testing, Standard for production
+   - **Type of App**: Multi Tenant (recommended) or Single Tenant
+   - **Creation type**: Create new Microsoft App ID
+4. Click **Review + Create**, then **Create**
+
+## Step 2: Get App Credentials
+
+1. After deployment completes, go to your Bot resource
+2. Click **Configuration** in the left menu
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mst-config.png" alt="Configuration" />
+
+3. Copy the **Microsoft App ID** - you will need this later
+4. Click **Manage Password** next to Microsoft App ID
+5. In the App Registration page, go to **Certificates & secrets**
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mti2.png" alt="Certificates & secrets" />
+
+6. Click **New client secret**
+7. Add a description (e.g., "Collate Bot Secret") and set expiration
+8. Click **Add** and **immediately copy the secret value** (it's only shown once)
+
+## Step 3: Configure Messaging Endpoint
+
+1. In your Azure Bot resource, go to **Configuration**
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mst-config.png" alt="Configuration" />
+
+2. Set the **Messaging endpoint** to:
+   ```
+   https://<your-collate-domain>/api/v1/teams/messages
+   ```
+   Replace `<your-collate-domain>` with your actual Collate server domain.
+3. Click **Apply**
+
+## Step 4: Enable Teams Channel
+
+1. In your Azure Bot, go to **Channels**
+2. Click the **Microsoft Teams** icon
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mti3.png" alt="Enable Teams Channel" />
+
+3. Read and accept the terms of service
+4. Click **Apply**
+5. The Teams channel should now show status "Running"
+
+## Step 5: Configure in Collate
+
+1. Log into Collate as an Admin user
+2. Navigate to **Settings** > **Applications**
+3. Find **Microsoft Teams** in the application marketplace
+4. Click **Install**
+5. Enter the configuration:
+   - **Microsoft App ID**: The App ID from Step 2
+   - **Microsoft App Password**: The client secret from Step 2
+   - **Microsoft App Tenant ID**: Leave empty for multi-tenant bots, or enter your tenant ID for single-tenant
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mti4.png" alt="Configure in Collate" />
+
+6. Click **Save**
+
+## Step 5.b: Setup Microsoft App API permissions
+   - Click on API Permissions under Manage on left side bar in your Microsoft Registered App
+   - Click on add a Permission
+   - Select Microsoft Graph and under that Application permissions
+   - Search for User.Read.All or User.ReadBasic.All
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mti5.png" alt="Configure in Collate" />
+
+   - Select any one of above permission and click add permissions
+
+
+## Step 6: Add Bot to Teams
+
+### Option A: Multi-tenant Bots (from Azure Portal)
+1. In Azure Bot > Channels > Teams, click **Open in Teams**
+2. Click **Add** to add the bot to your personal chat
+
+### Option B: Single-tenant Bots (requires App Package)
+
+Single-tenant bots don't appear in Teams app search. You must create and upload an app package.
+
+#### Create the App Package
+
+1. Navigate to the app-package directory:
+   ```bash
+   cd docs/integrations/teams/app-package
+   ```
+
+2. Generate the icons (if not already present):
+   ```bash
+   python3 create_icons.py
+   ```
+
+3. Edit `manifest.json`:
+   - Replace `YOUR_MICROSOFT_APP_ID` with your Azure App ID (appears twice)
+   - Replace `YOUR_COLLATE_DOMAIN` with your Collate domain (e.g., `collate.example.com`)
+
+```json
+
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.0",
+  "id": "<YOUR_MICROSOFT_APP_ID>",
+  "packageName": "io.collate.teams",
+  "developer": {
+    "name": "Collate",
+    "websiteUrl": "https://www.getcollate.io",
+    "privacyUrl": "https://www.getcollate.io/privacy",
+    "termsOfUseUrl": "https://www.getcollate.io/terms"
+  },
+  "name": {
+    "short": "Collate Bot",
+    "full": "Collate AI Assistant"
+  },
+  "description": {
+    "short": "Chat with Collate AI",
+    "full": "Collate Teams bot for searching entities and AI-powered data insights"
+  },
+  "icons": {
+    "outline": "<your_icon.png>",
+    "color": "<your_color.png>"
+  },
+  "accentColor": "#7147E8",
+  "bots": [
+    {
+      "botId": "<YOUR_MICROSOFT_APP_ID>",
+      "scopes": [
+        "personal",
+        "team",
+        "groupchat"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "<YOUR_COLLATE_DOMAIN>"
+  ]
+}
+
+```
+
+4. Create the zip package:
+   ```bash
+   zip collate-teams-bot.zip manifest.json color.png outline.png
+   ```
+
+#### Upload to Teams
+
+**For personal use:**
+1. Open Microsoft Teams
+2. Click **Apps** in the left sidebar
+3. Click **Manage your apps** at the bottom
+4. Click **Upload an app** → **Upload a custom app**
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mti6.png" alt="Upload a custom app" />
+
+5. Select `collate-teams-bot.zip`
+6. Click **Add**
+
+**For organization-wide deployment (requires Teams admin):**
+1. Go to [Teams Admin Center](https://admin.teams.microsoft.com)
+2. Navigate to **Teams apps** → **Manage apps**
+3. Click **Upload** and select your zip file
+4. Approve the app for your organization
+
+<img noZoom src="/public/images/applications/microsoft-team-integration/mti7.png" alt="App Permission" />
+
+### Option C: Search in Teams (Multi-tenant only)
+1. In Microsoft Teams, go to Apps
+2. Search for your bot name
+3. Click **Add** to add to personal chat, or add to a specific channel
+
+## Step 7: Test the Integration
+
+1. Send a message to the bot: "Hello"
+2. The bot should respond with a welcome message
+3. Try some example queries:
+   - "Search for tables"
+   - "What dashboards do we have?"
+   - "Show me the lineage for [table name]"
+
+## Troubleshooting
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| Bot not found in Teams search | Single-tenant bot | Single-tenant bots require app package upload (see Step 6 Option B) |
+| "You do not have permission" error | Single-tenant or org policy | Upload app package manually or contact Teams admin |
+| Bot not responding | Messaging endpoint incorrect | Verify the endpoint URL in Azure Bot Configuration |
+| 401 Unauthorized | Invalid credentials | Double-check App ID and Password match Azure configuration |
+| No AI responses | AI Platform not enabled | Ensure AI Platform is enabled in Collate configuration |
+| Timeout errors | Network issues | Check network connectivity between Teams and Collate server |
+| Bot added but can't message | Teams channel not enabled | Verify Teams channel is enabled in Azure Bot Channels |
+| Can't upload custom app | Sideloading disabled | Ask Teams admin to enable custom app uploads in admin center |
+
+## Security Considerations
+
+- **Credential Storage**: The Microsoft App Password is stored encrypted in the Collate database
+- **HTTPS Required**: The messaging endpoint must use HTTPS
+- **Secret Rotation**: Consider rotating the client secret periodically
+- **Single-tenant**: For enterprise deployments, consider using single-tenant bot registration
+
+## Architecture Overview
+
+```
+Microsoft Teams
+      |
+      v
+Azure Bot Framework
+      |
+      v (HTTPS POST to /api/v1/teams/messages)
+Collate Server
+      |
+      v
+AI Platform (gRPC)
+      |
+      v
+Response sent back to Teams
+```
+
+## Additional Resources
+
+- [Azure Bot Service Documentation](https://docs.microsoft.com/en-us/azure/bot-service/)
+- [Microsoft Teams Bot Development](https://docs.microsoft.com/en-us/microsoftteams/platform/bots/what-are-bots)
+- [Adaptive Cards Documentation](https://adaptivecards.io/)
