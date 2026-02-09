@@ -234,24 +234,6 @@ Single-tenant bots don't appear in Teams app search. You must create and upload 
 - **Secret Rotation**: Consider rotating the client secret periodically
 - **Single-tenant**: For enterprise deployments, consider using single-tenant bot registration
 
-## Architecture Overview
-
-```
-Microsoft Teams
-      |
-      v
-Azure Bot Framework
-      |
-      v (HTTPS POST to /api/v1/teams/messages)
-Collate Server
-      |
-      v
-AI Platform (gRPC)
-      |
-      v
-Response sent back to Teams
-```
-
 ## Additional Resources
 
 - [Azure Bot Service Documentation](https://docs.microsoft.com/en-us/azure/bot-service/)
