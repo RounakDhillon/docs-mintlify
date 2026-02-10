@@ -699,9 +699,14 @@ body:not(:has(.homepage-container)) .card [data-component-part="card-icon"] img 
   top: 132px !important;
   height: calc(100vh - 132px) !important;
 }
-
-.sidebar-group-header:not(:has(.sidebar-group-icon)) {
+.sidebar-group-header {
   display: none;
+}
+
+/* Show header if the UL right after it has api-reference links */
+.my-2:has(ul.sidebar-group a[href^="/api-reference"])
+  > .sidebar-group-header {
+  display: flex;
 }
 
 .sidebar-group-header h5 {
@@ -1118,4 +1123,46 @@ div:has(> div > #chat-assistant-textarea) {
 /* Parent container for search and assistant buttons */
 div:has(> #search-bar-entry):has(> #assistant-entry) {
   flex-direction: row-reverse !important;
+}
+
+div[data-component-part="code-group-tab-bar"] p {
+  margin-top: 0px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  border: 1px solid #EAECF5;
+  border-radius: 12px;
+}
+
+table thead {
+  background-color: #F8F9FC;
+}
+
+table th {
+  padding: 12px 24px !important;
+  text-align: left;
+  font-weight: 600;
+  color: #181D27;
+  border-bottom: 2px solid #EAECF5;
+}
+
+table td {
+  padding: 12px 24px !important;
+  color: #414651;
+  border-bottom: 1px solid #EAECF5;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tr:hover {
+  background-color: #F8F9FC;
+}
+
+.space-x-2>:not([hidden])~:not([hidden]) {
+  margin: 0px;
 }

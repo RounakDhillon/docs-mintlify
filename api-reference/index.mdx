@@ -1,0 +1,154 @@
+---
+title: API Reference
+description: Programmatic access to your Collate data catalog
+sidebarTitle: Introduction
+---
+
+import { CodeLayout } from '/snippets/components/CodeLayout/CodeLayout.jsx'
+
+# Collate API Reference
+
+The Collate API provides programmatic access to all metadata in your data catalog. Build integrations, automate workflows, and manage your data assets using our REST API or native SDKs.
+
+## Base URL
+
+All API requests should be made to your Collate instance. For self-hosted deployments, use your configured host.
+
+<RequestExample>
+```bash Base URL
+https://{your-company}.getcollate.io/api/v1
+```
+</RequestExample>
+
+<ResponseExample>
+```bash Self hosted Base URL
+https://your-host.com/api/v1
+```
+</ResponseExample>
+
+## Quick Start
+
+Get started with a simple API call to list tables in your catalog:
+
+<CodeGroup dropdown>
+```python Python
+from metadata.ingestion.ometa.ometa_api import OpenMetadata
+from metadata.generated.schema.entity.services.connections.metadata.openMetadataConnection import (
+    OpenMetadataConnection,
+)
+from metadata.generated.schema.security.client.openMetadataJWTClientConfig import (
+    OpenMetadataJWTClientConfig,
+)
+
+# Configure connection
+server_config = OpenMetadataConnection(
+    hostPort="https://your-company.getcollate.io/api",
+    authProvider="openmetadata",
+    securityConfig=OpenMetadataJWTClientConfig(
+        jwtToken="your-jwt-token"
+    ),
+)
+
+# Create client
+metadata = OpenMetadata(server_config)
+
+# List tables
+tables = metadata.list_all_entities(entity=Table)
+for table in tables:
+    print(f"{table.fullyQualifiedName}: {table.description}")
+```
+
+```java Java
+import org.openmetadata.client.api.TablesApi;
+import org.openmetadata.client.gateway.OpenMetadata;
+import org.openmetadata.client.model.Table;
+import org.openmetadata.schema.services.connections.metadata.OpenMetadataConnection;
+
+// Configure connection
+OpenMetadataConnection config = new OpenMetadataConnection();
+config.setHostPort("https://your-company.getcollate.io/api");
+config.setAuthProvider(AuthProvider.OPENMETADATA);
+
+OpenMetadataJWTClientConfig jwtConfig = new OpenMetadataJWTClientConfig();
+jwtConfig.setJwtToken("your-jwt-token");
+config.setSecurityConfig(jwtConfig);
+
+// Create client
+OpenMetadata client = new OpenMetadata(config);
+TablesApi tablesApi = client.buildClient(TablesApi.class);
+
+// List tables
+TableList tables = tablesApi.listTables(null, 10, null, null, null);
+for (Table table : tables.getData()) {
+    System.out.println(table.getFullyQualifiedName());
+}
+```
+
+```go Go
+curl -X GET "https://your-company.getcollate.io/api/v1/tables?limit=10" \
+  -H "Authorization: Bearer your-jwt-token" \
+  -H "Content-Type: application/json"
+```
+</CodeGroup>
+
+## Authentication
+
+All API requests require authentication using a JWT Bearer token. You can obtain a token by:
+
+1. <strong>Bot Token</strong>: Go to <strong>Settings &gt; Bots</strong> in the Collate UI to create a service account
+2. <strong>Personal Access Token</strong>: Go to your <strong>Profile &gt; Access Tokens</strong> to generate a personal token
+
+<CodeGroup>
+```bash Authorization
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+</CodeGroup>
+
+<CardGroup cols={2}>
+<Card title="Authentication Guide" icon="key" href="/api-reference/authentication">
+  Learn more about authentication methods and token management
+</Card>
+</CardGroup>
+
+## SDKs
+
+We provide official SDKs for Python and Java:
+
+<CardGroup cols={2}>
+  <Card title="Python SDK" icon="python" href="/sdk/python">
+    Install with `pip install openmetadata-ingestion`
+  </Card>
+  <Card title="Java SDK" icon="java" href="/sdk/java">
+    Available via Maven Central
+  </Card>
+</CardGroup>
+
+## Error Handling
+
+The API uses conventional HTTP response codes:
+
+| Code | Description |
+|------|-------------|
+| `200` | Success |
+| `201` | Created |
+| `400` | Bad Request - Invalid parameters |
+| `401` | Unauthorized - Invalid or missing token |
+| `403` | Forbidden - Insufficient permissions |
+| `404` | Not Found - Resource doesn't exist |
+| `409` | Conflict - Resource already exists |
+| `500` | Internal Server Error |
+
+## Rate Limits
+
+API requests are subject to rate limiting to ensure fair usage. If you exceed the rate limit, you'll receive a `429 Too Many Requests` response.
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="Support" icon="headset" href="mailto:support@getcollate.io">
+    Contact our support team
+  </Card>
+  <Card title="Community" icon="slack" href="https://slack.open-metadata.org">
+    Join the OpenMetadata Slack community
+  </Card>
+</CardGroup>

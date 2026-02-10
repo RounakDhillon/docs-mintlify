@@ -1751,6 +1751,482 @@
                         ]
                     }
                 ]
+            },
+            {
+                "tab": "API",
+                "groups": [
+                    {
+                        "group": "API Reference",
+                        "pages": [
+                            "api-reference/index",
+                            "api-reference/authentication",
+                            "api-reference/errors",
+                            "api-reference/pagination"
+                        ]
+                    },
+                    {
+                        "group": "Data Assets",
+                        "pages": [
+                            "api-reference/data-assets/index",
+                            {
+                                "group": "Databases",
+                                "pages": [
+                                    "api-reference/data-assets/databases-overview",
+                                    {
+                                        "group": "Database Services",
+                                        "pages": [
+                                            "api-reference/data-assets/database-services/index",
+                                            "api-reference/data-assets/database-services/list",
+                                            "api-reference/data-assets/database-services/create",
+                                            "api-reference/data-assets/database-services/retrieve",
+                                            "api-reference/data-assets/database-services/update",
+                                            "api-reference/data-assets/database-services/delete",
+                                            "api-reference/data-assets/database-services/versions",
+                                            "api-reference/data-assets/database-services/import-export"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Databases",
+                                        "pages": [
+                                            "api-reference/data-assets/databases/index",
+                                            "api-reference/data-assets/databases/list",
+                                            "api-reference/data-assets/databases/create",
+                                            "api-reference/data-assets/databases/retrieve",
+                                            "api-reference/data-assets/databases/update",
+                                            "api-reference/data-assets/databases/delete",
+                                            "api-reference/data-assets/databases/versions",
+                                            "api-reference/data-assets/databases/import-export",
+                                            "api-reference/data-assets/databases/advanced"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Database Schemas",
+                                        "pages": [
+                                            "api-reference/data-assets/database-schemas/index",
+                                            "api-reference/data-assets/database-schemas/list",
+                                            "api-reference/data-assets/database-schemas/create",
+                                            "api-reference/data-assets/database-schemas/retrieve",
+                                            "api-reference/data-assets/database-schemas/update",
+                                            "api-reference/data-assets/database-schemas/delete",
+                                            "api-reference/data-assets/database-schemas/versions",
+                                            "api-reference/data-assets/database-schemas/import-export",
+                                            "api-reference/data-assets/database-schemas/advanced"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Tables",
+                                        "pages": [
+                                            "api-reference/data-assets/tables/index",
+                                            "api-reference/data-assets/tables/list",
+                                            "api-reference/data-assets/tables/create",
+                                            "api-reference/data-assets/tables/retrieve",
+                                            "api-reference/data-assets/tables/update",
+                                            "api-reference/data-assets/tables/delete",
+                                            "api-reference/data-assets/tables/versions",
+                                            "api-reference/data-assets/tables/import-export",
+                                            "api-reference/data-assets/tables/sample-data",
+                                            "api-reference/data-assets/tables/profiler",
+                                            "api-reference/data-assets/tables/observability",
+                                            "api-reference/data-assets/tables/relationships",
+                                            "api-reference/data-assets/tables/custom-metrics",
+                                            "api-reference/data-assets/tables/followers-votes"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Stored Procedures",
+                                        "pages": [
+                                            "api-reference/data-assets/stored-procedures/index",
+                                            "api-reference/data-assets/stored-procedures/list",
+                                            "api-reference/data-assets/stored-procedures/create",
+                                            "api-reference/data-assets/stored-procedures/retrieve",
+                                            "api-reference/data-assets/stored-procedures/update",
+                                            "api-reference/data-assets/stored-procedures/delete",
+                                            "api-reference/data-assets/stored-procedures/versions",
+                                            "api-reference/data-assets/stored-procedures/followers-votes"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Messaging",
+                                "pages": [
+                                    {
+                                        "group": "Messaging Services",
+                                        "pages": [
+                                            "api-reference/data-assets/messaging-services/index",
+                                            "api-reference/data-assets/messaging-services/list",
+                                            "api-reference/data-assets/messaging-services/create",
+                                            "api-reference/data-assets/messaging-services/retrieve",
+                                            "api-reference/data-assets/messaging-services/update",
+                                            "api-reference/data-assets/messaging-services/delete",
+                                            "api-reference/data-assets/messaging-services/versions",
+                                            "api-reference/data-assets/messaging-services/import-export"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Topics",
+                                        "pages": [
+                                            "api-reference/data-assets/topics/index",
+                                            "api-reference/data-assets/topics/list",
+                                            "api-reference/data-assets/topics/create",
+                                            "api-reference/data-assets/topics/retrieve",
+                                            "api-reference/data-assets/topics/update",
+                                            "api-reference/data-assets/topics/delete",
+                                            "api-reference/data-assets/topics/versions",
+                                            "api-reference/data-assets/topics/followers-votes"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Dashboards",
+                                "pages": [
+                                    {
+                                        "group": "Dashboard Services",
+                                        "pages": [
+                                            "api-reference/data-assets/dashboard-services/index",
+                                            "api-reference/data-assets/dashboard-services/list",
+                                            "api-reference/data-assets/dashboard-services/create",
+                                            "api-reference/data-assets/dashboard-services/retrieve",
+                                            "api-reference/data-assets/dashboard-services/update",
+                                            "api-reference/data-assets/dashboard-services/delete",
+                                            "api-reference/data-assets/dashboard-services/versions",
+                                            "api-reference/data-assets/dashboard-services/import-export"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Dashboards",
+                                        "pages": [
+                                            "api-reference/data-assets/dashboards/index",
+                                            "api-reference/data-assets/dashboards/list",
+                                            "api-reference/data-assets/dashboards/create",
+                                            "api-reference/data-assets/dashboards/retrieve",
+                                            "api-reference/data-assets/dashboards/update",
+                                            "api-reference/data-assets/dashboards/delete",
+                                            "api-reference/data-assets/dashboards/versions",
+                                            "api-reference/data-assets/dashboards/followers-votes"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Charts",
+                                        "pages": [
+                                            "api-reference/data-assets/charts/index",
+                                            "api-reference/data-assets/charts/list",
+                                            "api-reference/data-assets/charts/create",
+                                            "api-reference/data-assets/charts/retrieve",
+                                            "api-reference/data-assets/charts/update",
+                                            "api-reference/data-assets/charts/delete",
+                                            "api-reference/data-assets/charts/versions"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Pipelines",
+                                "pages": [
+                                    {
+                                        "group": "Pipeline Services",
+                                        "pages": [
+                                            "api-reference/data-assets/pipeline-services/index",
+                                            "api-reference/data-assets/pipeline-services/list",
+                                            "api-reference/data-assets/pipeline-services/create",
+                                            "api-reference/data-assets/pipeline-services/retrieve",
+                                            "api-reference/data-assets/pipeline-services/update",
+                                            "api-reference/data-assets/pipeline-services/delete",
+                                            "api-reference/data-assets/pipeline-services/versions",
+                                            "api-reference/data-assets/pipeline-services/import-export"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Pipelines",
+                                        "pages": [
+                                            "api-reference/data-assets/pipelines/index",
+                                            "api-reference/data-assets/pipelines/list",
+                                            "api-reference/data-assets/pipelines/create",
+                                            "api-reference/data-assets/pipelines/retrieve",
+                                            "api-reference/data-assets/pipelines/update",
+                                            "api-reference/data-assets/pipelines/delete",
+                                            "api-reference/data-assets/pipelines/versions",
+                                            "api-reference/data-assets/pipelines/followers-votes"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "ML Models",
+                                "pages": [
+                                    {
+                                        "group": "ML Model Services",
+                                        "pages": [
+                                            "api-reference/data-assets/mlmodel-services/index",
+                                            "api-reference/data-assets/mlmodel-services/list",
+                                            "api-reference/data-assets/mlmodel-services/create",
+                                            "api-reference/data-assets/mlmodel-services/retrieve",
+                                            "api-reference/data-assets/mlmodel-services/update",
+                                            "api-reference/data-assets/mlmodel-services/delete",
+                                            "api-reference/data-assets/mlmodel-services/versions"
+                                        ]
+                                    },
+                                    {
+                                        "group": "ML Models",
+                                        "pages": [
+                                            "api-reference/data-assets/mlmodels/index",
+                                            "api-reference/data-assets/mlmodels/list",
+                                            "api-reference/data-assets/mlmodels/create",
+                                            "api-reference/data-assets/mlmodels/retrieve",
+                                            "api-reference/data-assets/mlmodels/update",
+                                            "api-reference/data-assets/mlmodels/delete",
+                                            "api-reference/data-assets/mlmodels/versions",
+                                            "api-reference/data-assets/mlmodels/followers-votes"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Storage",
+                                "pages": [
+                                    {
+                                        "group": "Storage Services",
+                                        "pages": [
+                                            "api-reference/data-assets/storage-services/index",
+                                            "api-reference/data-assets/storage-services/list",
+                                            "api-reference/data-assets/storage-services/create",
+                                            "api-reference/data-assets/storage-services/retrieve",
+                                            "api-reference/data-assets/storage-services/update",
+                                            "api-reference/data-assets/storage-services/delete",
+                                            "api-reference/data-assets/storage-services/versions"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Containers",
+                                        "pages": [
+                                            "api-reference/data-assets/containers/index",
+                                            "api-reference/data-assets/containers/list",
+                                            "api-reference/data-assets/containers/create",
+                                            "api-reference/data-assets/containers/retrieve",
+                                            "api-reference/data-assets/containers/update",
+                                            "api-reference/data-assets/containers/delete",
+                                            "api-reference/data-assets/containers/versions"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Search Indexes",
+                                "pages": [
+                                    "api-reference/data-assets/search-indexes/index",
+                                    "api-reference/data-assets/search-indexes/list",
+                                    "api-reference/data-assets/search-indexes/create",
+                                    "api-reference/data-assets/search-indexes/retrieve",
+                                    "api-reference/data-assets/search-indexes/update",
+                                    "api-reference/data-assets/search-indexes/delete",
+                                    "api-reference/data-assets/search-indexes/versions",
+                                    "api-reference/data-assets/search-indexes/followers-votes"
+                                ]
+                            },
+                            {
+                                "group": "API Services",
+                                "pages": [
+                                    {
+                                        "group": "API Collections",
+                                        "pages": [
+                                            "api-reference/data-assets/api-collections/index",
+                                            "api-reference/data-assets/api-collections/list",
+                                            "api-reference/data-assets/api-collections/create",
+                                            "api-reference/data-assets/api-collections/retrieve",
+                                            "api-reference/data-assets/api-collections/update",
+                                            "api-reference/data-assets/api-collections/delete",
+                                            "api-reference/data-assets/api-collections/versions"
+                                        ]
+                                    },
+                                    {
+                                        "group": "API Endpoints",
+                                        "pages": [
+                                            "api-reference/data-assets/api-endpoints/index",
+                                            "api-reference/data-assets/api-endpoints/list",
+                                            "api-reference/data-assets/api-endpoints/create",
+                                            "api-reference/data-assets/api-endpoints/retrieve",
+                                            "api-reference/data-assets/api-endpoints/update",
+                                            "api-reference/data-assets/api-endpoints/delete",
+                                            "api-reference/data-assets/api-endpoints/versions"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "group": "Discovery",
+                        "pages": [
+                            "api-reference/discovery/index",
+                            "api-reference/discovery/search",
+                            "api-reference/discovery/field-query"
+                        ]
+                    },
+                    {
+                        "group": "Data Contracts",
+                        "pages": [
+                            "api-reference/data-contracts/index",
+                            "api-reference/data-contracts/create",
+                            "api-reference/data-contracts/list",
+                            "api-reference/data-contracts/retrieve",
+                            "api-reference/data-contracts/update",
+                            "api-reference/data-contracts/delete",
+                            "api-reference/data-contracts/versions",
+                            "api-reference/data-contracts/validate",
+                            "api-reference/data-contracts/odcs"
+                        ]
+                    },
+                    {
+                        "group": "Teams & Users",
+                        "pages": [
+                            "api-reference/teams-and-users/index",
+                            {
+                                "group": "Users",
+                                "pages": [
+                                    "api-reference/teams-and-users/users/index",
+                                    "api-reference/teams-and-users/users/list",
+                                    "api-reference/teams-and-users/users/create",
+                                    "api-reference/teams-and-users/users/retrieve",
+                                    "api-reference/teams-and-users/users/update",
+                                    "api-reference/teams-and-users/users/delete",
+                                    "api-reference/teams-and-users/users/versions"
+                                ]
+                            },
+                            {
+                                "group": "Teams",
+                                "pages": [
+                                    "api-reference/teams-and-users/teams/index",
+                                    "api-reference/teams-and-users/teams/list",
+                                    "api-reference/teams-and-users/teams/create",
+                                    "api-reference/teams-and-users/teams/retrieve",
+                                    "api-reference/teams-and-users/teams/update",
+                                    "api-reference/teams-and-users/teams/delete",
+                                    "api-reference/teams-and-users/teams/versions"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "group": "Data Governance",
+                        "pages": [
+                            "api-reference/governance/index",
+                            {
+                                "group": "Domains",
+                                "pages": [
+                                    "api-reference/governance/domains/index",
+                                    "api-reference/governance/domains/list",
+                                    "api-reference/governance/domains/create",
+                                    "api-reference/governance/domains/retrieve",
+                                    "api-reference/governance/domains/update",
+                                    "api-reference/governance/domains/delete",
+                                    "api-reference/governance/domains/versions"
+                                ]
+                            },
+                            {
+                                "group": "Data Products",
+                                "pages": [
+                                    "api-reference/governance/data-products/index",
+                                    "api-reference/governance/data-products/list",
+                                    "api-reference/governance/data-products/create",
+                                    "api-reference/governance/data-products/retrieve",
+                                    "api-reference/governance/data-products/update",
+                                    "api-reference/governance/data-products/delete",
+                                    "api-reference/governance/data-products/versions",
+                                    "api-reference/governance/data-products/ports-assets"
+                                ]
+                            },
+                            {
+                                "group": "Glossaries",
+                                "pages": [
+                                    "api-reference/governance/glossaries/index",
+                                    "api-reference/governance/glossaries/list",
+                                    "api-reference/governance/glossaries/create",
+                                    "api-reference/governance/glossaries/retrieve",
+                                    "api-reference/governance/glossaries/update",
+                                    "api-reference/governance/glossaries/delete",
+                                    "api-reference/governance/glossaries/versions"
+                                ]
+                            },
+                            {
+                                "group": "Glossary Terms",
+                                "pages": [
+                                    "api-reference/governance/glossary-terms/index",
+                                    "api-reference/governance/glossary-terms/list",
+                                    "api-reference/governance/glossary-terms/create",
+                                    "api-reference/governance/glossary-terms/retrieve",
+                                    "api-reference/governance/glossary-terms/update",
+                                    "api-reference/governance/glossary-terms/delete",
+                                    "api-reference/governance/glossary-terms/versions"
+                                ]
+                            },
+                            {
+                                "group": "Classifications",
+                                "pages": [
+                                    "api-reference/governance/classifications/index",
+                                    "api-reference/governance/classifications/list",
+                                    "api-reference/governance/classifications/create",
+                                    "api-reference/governance/classifications/retrieve",
+                                    "api-reference/governance/classifications/update",
+                                    "api-reference/governance/classifications/delete",
+                                    "api-reference/governance/classifications/versions"
+                                ]
+                            },
+                            {
+                                "group": "Tags",
+                                "pages": [
+                                    "api-reference/governance/tags/index",
+                                    "api-reference/governance/tags/list",
+                                    "api-reference/governance/tags/create",
+                                    "api-reference/governance/tags/retrieve",
+                                    "api-reference/governance/tags/update",
+                                    "api-reference/governance/tags/delete",
+                                    "api-reference/governance/tags/versions"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "group": "Data Quality",
+                        "pages": [
+                            "api-reference/data-quality/index",
+                            {
+                                "group": "Test Definitions",
+                                "pages": [
+                                    "api-reference/data-quality/test-definitions/index",
+                                    "api-reference/data-quality/test-definitions/list",
+                                    "api-reference/data-quality/test-definitions/retrieve",
+                                    "api-reference/data-quality/test-definitions/create"
+                                ]
+                            },
+                            {
+                                "group": "Test Suites",
+                                "pages": [
+                                    "api-reference/data-quality/test-suites/index",
+                                    "api-reference/data-quality/test-suites/list",
+                                    "api-reference/data-quality/test-suites/create",
+                                    "api-reference/data-quality/test-suites/retrieve",
+                                    "api-reference/data-quality/test-suites/update",
+                                    "api-reference/data-quality/test-suites/delete",
+                                    "api-reference/data-quality/test-suites/versions"
+                                ]
+                            },
+                            {
+                                "group": "Test Cases",
+                                "pages": [
+                                    "api-reference/data-quality/test-cases/index",
+                                    "api-reference/data-quality/test-cases/list",
+                                    "api-reference/data-quality/test-cases/create",
+                                    "api-reference/data-quality/test-cases/retrieve",
+                                    "api-reference/data-quality/test-cases/update",
+                                    "api-reference/data-quality/test-cases/delete",
+                                    "api-reference/data-quality/test-cases/versions",
+                                    "api-reference/data-quality/test-cases/results"
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },
@@ -1821,6 +2297,14 @@
             "destination": "/how-to-guides/data-quality-observability/profiler/profiler-workflow"
         }
     ],
+    "api": {
+        "mdx": {
+            "server": "https://sandbox.getcollate.io/api",
+            "auth": {
+                "method": "bearer"
+            }
+        }
+    },
     "integrations": {
         "ga4": {
             "measurementId": "GTM-554C968W"
