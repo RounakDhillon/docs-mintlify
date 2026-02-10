@@ -1,0 +1,238 @@
+---
+title: Delete Table
+description: Soft or hard delete a table from the catalog
+sidebarTitle: Delete
+mode: "wide"
+---
+
+# Delete a Table
+
+Deletes a table entity from the catalog. Supports both soft delete (recoverable) and hard delete (permanent).
+
+## Endpoints
+
+```
+DELETE /api/v1/tables/{id}
+DELETE /api/v1/tables/name/{fqn}
+```
+
+## Parameters
+
+### Path Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | UUID | Table ID |
+| `fqn` | string | Fully qualified name |
+
+### Query Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `hardDelete` | boolean | `false` | Permanently delete if true |
+| `recursive` | boolean | `false` | Delete child entities if true |
+
+## Soft Delete (Default)
+
+Soft delete marks the table as deleted but retains the data. The table can be restored later.
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.ingestion.ometa.ometa_api import OpenMetadata
+from metadata.generated.schema.entity.data.table import Table
+
+metadata = OpenMetadata(config)
+
+# Soft delete by ID
+metadata.delete(
+    entity=Table,
+    entity_id="550e8400-e29b-41d4-a716-446655440000",
+    soft_delete=True
+)
+
+# Or by FQN
+table = metadata.get_by_name(entity=Table, fqn="mysql_prod.analytics.public.customers")
+metadata.delete(
+    entity=Table,
+    entity_id=table.id,
+    soft_delete=True
+)
+
+print("Table soft deleted")
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.client.api.TablesApi;
+import java.util.UUID;
+
+TablesApi tablesApi = client.buildClient(TablesApi.class);
+
+// Soft delete (default)
+tablesApi.deleteTable(
+    UUID.fromString("550e8400-e29b-41d4-a716-446655440000"),
+    false,  // hardDelete
+    false   // recursive
+);
+
+System.out.println("Table soft deleted");
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Soft delete by ID
+curl -X DELETE "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Soft delete by FQN
+curl -X DELETE "https://your-company.getcollate.io/api/v1/tables/name/mysql_prod.analytics.public.customers" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Hard Delete
+
+Hard delete permanently removes the table and all its metadata. This action cannot be undone.
+
+<Warning>
+Hard delete permanently removes all table metadata, lineage, quality tests, and history. Use with caution.
+</Warning>
+
+<Tabs>
+<Tab title="Python">
+```python
+# Hard delete - permanent removal
+metadata.delete(
+    entity=Table,
+    entity_id="550e8400-e29b-41d4-a716-446655440000",
+    hard_delete=True
+)
+
+print("Table permanently deleted")
+```
+</Tab>
+
+<Tab title="Java">
+```java
+// Hard delete - permanent removal
+tablesApi.deleteTable(
+    UUID.fromString("550e8400-e29b-41d4-a716-446655440000"),
+    true,   // hardDelete
+    false   // recursive
+);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Hard delete by ID
+curl -X DELETE "https://your-company.getcollate.io/api/v1/tables/550e8400-e29b-41d4-a716-446655440000?hardDelete=true" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Hard delete by FQN
+curl -X DELETE "https://your-company.getcollate.io/api/v1/tables/name/mysql_prod.analytics.public.customers?hardDelete=true" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Recursive Delete
+
+Use recursive delete to remove dependent entities. Not typically needed for tables (they're leaf entities).
+
+```bash
+curl -X DELETE "https://your-company.getcollate.io/api/v1/tables/550e8400...?recursive=true" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+## Restore a Soft-Deleted Table
+
+Soft-deleted tables can be restored:
+
+<Tabs>
+<Tab title="Python">
+```python
+# Restore a soft-deleted table
+metadata.restore(
+    entity=Table,
+    entity_id="550e8400-e29b-41d4-a716-446655440000"
+)
+
+print("Table restored")
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/tables/restore" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"id": "550e8400-e29b-41d4-a716-446655440000"}'
+```
+</Tab>
+</Tabs>
+
+## List Deleted Tables
+
+Query for soft-deleted tables:
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# List all deleted tables
+curl -X GET "https://your-company.getcollate.io/api/v1/tables?include=deleted&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get a specific deleted table
+curl -X GET "https://your-company.getcollate.io/api/v1/tables/550e8400...?include=deleted" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Response
+
+Successful delete returns 200 OK with the deleted entity:
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "customers",
+  "fullyQualifiedName": "mysql_prod.analytics.public.customers",
+  "deleted": true,
+  "version": 0.6,
+  "updatedAt": 1704153600000,
+  "updatedBy": "admin",
+  ...
+}
+```
+
+## Errors
+
+| Code | Error Type | Description |
+|------|-----------|-------------|
+| `401` | `UNAUTHORIZED` | Invalid or missing token |
+| `403` | `FORBIDDEN` | User lacks permission to delete |
+| `404` | `ENTITY_NOT_FOUND` | Table not found |
+| `409` | `ENTITY_LOCKED` | Table is locked (deletion in progress) |
+
+## Best Practices
+
+<Steps>
+  <Step title="Prefer soft delete">
+    Use soft delete as the default. It allows recovery if needed.
+  </Step>
+  <Step title="Review before hard delete">
+    Hard delete should only be used for cleanup of test data or erroneous entries.
+  </Step>
+  <Step title="Check dependencies">
+    Review lineage and quality tests before deleting tables that may be referenced.
+  </Step>
+  <Step title="Use automation carefully">
+    When automating deletes, implement safeguards to prevent accidental data loss.
+  </Step>
+</Steps>

@@ -1,0 +1,139 @@
+---
+title: Services
+description: Services are the top-level entities that represent connections to your data platforms
+sidebarTitle: Overview
+mode: "wide"
+---
+
+# Services
+
+In Collate, a **Service** represents a connection to an external data platform. Services are the top-level entities in the metadata hierarchy and define how Collate connects to and extracts metadata from your data infrastructure.
+
+## What is a Service?
+
+A Service contains:
+- **Connection configuration** - Credentials, hostnames, and settings to connect to your data platform
+- **Service type** - The type of platform (Snowflake, PostgreSQL, Tableau, etc.)
+- **Metadata** - Owner, tags, domain, and description that apply to all child assets
+
+## Service Types
+
+| Service Type | Description | Child Entities |
+|--------------|-------------|----------------|
+| **Database Service** | Relational databases, data warehouses, and data lakes | Database → Schema → Table, Stored Procedure |
+| **Dashboard Service** | BI and visualization platforms | Dashboard, Chart, Data Model |
+| **Pipeline Service** | Orchestration and ETL tools | Pipeline → Task |
+| **Messaging Service** | Streaming and messaging platforms | Topic |
+| **ML Model Service** | Machine learning platforms | ML Model |
+| **Storage Service** | Object storage platforms | Container |
+
+## Entity Hierarchy
+
+Services sit at the top of the entity hierarchy. All metadata flows down from services:
+
+```
+Service (connection to platform)
+└── Database / Dashboard / Pipeline / Topic / etc.
+    └── Schema / Chart / Task / etc.
+        └── Table / etc.
+            └── Column
+```
+
+## Inheritance
+
+When you set metadata on a Service, it can be **inherited** by all child entities:
+
+- **Owner** - Setting an owner on a Database Service makes that owner responsible for all databases, schemas, tables, and stored procedures under it
+- **Domain** - Assigning a domain to a Service groups all child assets under that domain
+- **Tags** - Tags applied to a Service can propagate to child entities
+
+This inheritance model allows you to efficiently manage metadata at scale.
+
+## Service Endpoints
+
+All services follow a consistent REST API pattern:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `PUT` | `/v1/services/{serviceType}` | Create or update a service |
+| `GET` | `/v1/services/{serviceType}` | List services |
+| `GET` | `/v1/services/{serviceType}/{id}` | Get service by ID |
+| `GET` | `/v1/services/{serviceType}/name/{name}` | Get service by name |
+| `PATCH` | `/v1/services/{serviceType}/{id}` | Partially update a service |
+| `DELETE` | `/v1/services/{serviceType}/{id}` | Delete a service |
+
+Where `{serviceType}` is one of:
+- `databaseServices`
+- `dashboardServices`
+- `pipelineServices`
+- `messagingServices`
+- `mlmodelServices`
+- `storageServices`
+
+## Quick Start
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.sdk import configure
+from metadata.sdk.entities import DatabaseService
+
+# Configure the SDK
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# List all database services
+for service in DatabaseService.list().auto_paging_iterable():
+    print(f"{service.name}: {service.serviceType}")
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.sdk.OpenMetadataClient;
+import org.openmetadata.sdk.config.OpenMetadataConfig;
+import org.openmetadata.sdk.entities.DatabaseServices;
+
+// Initialize client
+OpenMetadataConfig config = OpenMetadataConfig.builder()
+    .serverUrl("https://your-company.getcollate.io/api")
+    .accessToken("your-token")
+    .build();
+OpenMetadataClient client = new OpenMetadataClient(config);
+DatabaseServices.setDefaultClient(client);
+
+// List all database services
+for (DatabaseService service : DatabaseServices.list().autoPagingIterable()) {
+    System.out.println(service.getName() + ": " + service.getServiceType());
+}
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl "https://your-company.getcollate.io/api/v1/services/databaseServices" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+---
+
+## Available Services
+
+<CardGroup cols={2}>
+  <Card title="Database Services" icon="database" href="/api-reference/services/database">
+    Snowflake, PostgreSQL, MySQL, BigQuery, and more
+  </Card>
+  <Card title="Dashboard Services" icon="chart-pie" href="/api-reference/services/dashboard">
+    Tableau, Looker, Power BI, Metabase, and more
+  </Card>
+  <Card title="Pipeline Services" icon="diagram-project" href="/api-reference/services/pipeline">
+    Airflow, Dagster, dbt, Fivetran, and more
+  </Card>
+  <Card title="Messaging Services" icon="envelope" href="/api-reference/services/messaging">
+    Kafka, Pulsar, Kinesis, and more
+  </Card>
+</CardGroup>

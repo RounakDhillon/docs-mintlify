@@ -1,0 +1,100 @@
+---
+title: The Dashboard Object
+description: Attributes of the dashboard entity
+sidebarTitle: The Dashboard Object
+mode: "wide"
+---
+
+<ResponseField name="id" type="uuid" required>
+  Unique identifier for the dashboard.
+</ResponseField>
+
+<ResponseField name="name" type="string" required>
+  Name of the dashboard. Must be unique within the parent service.
+</ResponseField>
+
+<ResponseField name="fullyQualifiedName" type="string">
+  Fully qualified name in format `{service}.{dashboard}`.
+</ResponseField>
+
+<ResponseField name="displayName" type="string">
+  Human-readable display name for the dashboard.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Description of the dashboard in Markdown format.
+</ResponseField>
+
+<ResponseField name="dashboardUrl" type="string">
+  URL to the dashboard in the source system.
+</ResponseField>
+
+<ResponseField name="dashboardType" type="string">
+  Type of dashboard (e.g., Report, Dashboard).
+</ResponseField>
+
+<ResponseField name="service" type="EntityReference" required>
+  Reference to the parent DashboardService.
+</ResponseField>
+
+<ResponseField name="charts" type="EntityReference[]">
+  Charts contained in this dashboard.
+</ResponseField>
+
+<ResponseField name="dataModels" type="EntityReference[]">
+  Data models associated with this dashboard.
+</ResponseField>
+
+<ResponseField name="owners" type="EntityReference[]">
+  Owners of the dashboard (users or teams).
+</ResponseField>
+
+<ResponseField name="domain" type="EntityReference">
+  Domain this dashboard belongs to.
+</ResponseField>
+
+<ResponseField name="tags" type="TagLabel[]">
+  Tags and classifications applied to this dashboard.
+</ResponseField>
+
+<ResponseField name="version" type="number">
+  Entity version number, incremented on updates.
+</ResponseField>
+
+<ResponseField name="deleted" type="boolean">
+  Whether the dashboard has been soft-deleted.
+</ResponseField>
+
+<ResponseExample>
+```json The Dashboard Object
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "sales_overview",
+  "fullyQualifiedName": "tableau_prod.sales_overview",
+  "displayName": "Sales Overview Dashboard",
+  "description": "Executive dashboard showing key sales metrics",
+  "dashboardUrl": "https://tableau.company.com/views/SalesOverview",
+  "service": {
+    "id": "service-uuid",
+    "type": "dashboardService",
+    "name": "tableau_prod"
+  },
+  "charts": [
+    {
+      "id": "chart-uuid",
+      "type": "chart",
+      "name": "revenue_trend"
+    }
+  ],
+  "owners": [
+    {
+      "id": "user-uuid",
+      "type": "user",
+      "name": "john.doe"
+    }
+  ],
+  "version": 0.1,
+  "deleted": false
+}
+```
+</ResponseExample>

@@ -1,0 +1,217 @@
+---
+title: List Databases
+description: List all databases with optional filtering and pagination
+sidebarTitle: List
+api: GET /v1/databases
+---
+
+List all databases with optional filtering and pagination.
+
+## Query Parameters
+
+<ParamField query="service" type="string">
+  Filter by service fully qualified name.
+</ParamField>
+
+<ParamField query="domain" type="string">
+  Filter by domain fully qualified name.
+</ParamField>
+
+<ParamField query="limit" type="integer" default="10">
+  Maximum number of results to return (max: 1000000).
+</ParamField>
+
+<ParamField query="before" type="string">
+  Cursor for backward pagination.
+</ParamField>
+
+<ParamField query="after" type="string">
+  Cursor for forward pagination.
+</ParamField>
+
+<ParamField query="fields" type="string">
+  Comma-separated list of fields to include. See [Supported Fields](#supported-fields) below.
+</ParamField>
+
+<ParamField query="include" type="string" default="non-deleted">
+  Include `all`, `deleted`, or `non-deleted` entities.
+</ParamField>
+
+<RequestExample>
+```bash BASE URL
+https://your-company.getcollate.io/api/v1
+```
+</RequestExample>
+
+<RequestExample>
+```python Python SDK
+from metadata.sdk import configure
+from metadata.sdk.entities import Database
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# List all with auto-pagination
+for database in Database.list().auto_paging_iterable():
+    print(f"{database.fullyQualifiedName}")
+
+# Filter by service
+for database in Database.list(service="snowflake_prod").auto_paging_iterable():
+    print(f"{database.name}: {database.description}")
+
+# With fields
+databases = Database.list(
+    service="snowflake_prod",
+    fields=["owners", "usageSummary"],
+    limit=50
+)
+```
+</RequestExample>
+
+<RequestExample>
+```java Java SDK
+import org.openmetadata.sdk.entities.Databases;
+
+// List with auto-pagination
+for (Database database : Databases.list().autoPagingIterable()) {
+    System.out.println(database.getFullyQualifiedName());
+}
+
+// Filter by service
+for (Database database : Databases.list()
+        .service("snowflake_prod")
+        .autoPagingIterable()) {
+    System.out.println(database.getName());
+}
+```
+</RequestExample>
+
+<RequestExample>
+```bash cURL
+# List all
+curl "https://your-company.getcollate.io/api/v1/databases?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Filter by service
+curl "https://your-company.getcollate.io/api/v1/databases?service=snowflake_prod&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# With fields
+curl "https://your-company.getcollate.io/api/v1/databases?service=snowflake_prod&fields=owners,usageSummary&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</RequestExample>
+
+<ResponseExample>
+```json Response
+{
+  "data": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "analytics",
+      "fullyQualifiedName": "snowflake_prod.analytics",
+      "displayName": "Analytics Database",
+      "service": {
+        "id": "service-uuid",
+        "type": "databaseService",
+        "name": "snowflake_prod"
+      },
+      "serviceType": "Snowflake"
+    },
+    {
+      "id": "660e8400-e29b-41d4-a716-446655440001",
+      "name": "raw_data",
+      "fullyQualifiedName": "snowflake_prod.raw_data",
+      "displayName": "Raw Data",
+      "service": {
+        "id": "service-uuid",
+        "type": "databaseService",
+        "name": "snowflake_prod"
+      },
+      "serviceType": "Snowflake"
+    }
+  ],
+  "paging": {
+    "after": "eyJsYXN0SWQiOiI2NjBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDEifQ==",
+    "total": 42
+  }
+}
+```
+</ResponseExample>
+
+---
+
+## Supported Fields
+
+Use the `fields` parameter to include additional data in the response. By default, only basic fields are returned.
+
+| Field | Description |
+|-------|-------------|
+| `owners` | List of owners (teams and users) assigned to the database |
+| `tags` | Classification tags applied to the database |
+| `domain` | Domain assignment for governance |
+| `dataProducts` | Data products this database belongs to |
+| `databaseSchemas` | Child schemas within this database |
+| `usageSummary` | Usage statistics and query counts |
+| `location` | Storage location information |
+| `extension` | Custom properties defined on this database |
+| `sourceHash` | Hash of the source metadata for change detection |
+| `lifeCycle` | Lifecycle information (created, accessed, updated dates) |
+| `votes` | User votes and ratings |
+| `followers` | Users following this database for updates |
+
+### Example: Request Multiple Fields
+
+<RequestExample>
+```python Python SDK
+from metadata.sdk import configure
+from metadata.sdk.entities import Database
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# List with multiple fields
+databases = Database.list(
+    service="snowflake_prod",
+    fields=["owners", "tags", "domain", "usageSummary"],
+    limit=50
+)
+
+for db in databases.entities:
+    print(f"{db.fullyQualifiedName}")
+    if db.owners:
+        print(f"  Owners: {[o.name for o in db.owners]}")
+    if db.tags:
+        print(f"  Tags: {[t.tagFQN for t in db.tags]}")
+```
+</RequestExample>
+
+<RequestExample>
+```java Java SDK
+import org.openmetadata.sdk.entities.Databases;
+
+var result = Databases.list()
+    .service("snowflake_prod")
+    .fields("owners", "tags", "domain", "usageSummary")
+    .limit(50)
+    .execute();
+
+for (Database db : result.getData()) {
+    System.out.println(db.getFullyQualifiedName());
+    if (db.getOwners() != null) {
+        db.getOwners().forEach(o -> System.out.println("  Owner: " + o.getName()));
+    }
+}
+```
+</RequestExample>
+
+<RequestExample>
+```bash cURL
+curl "https://your-company.getcollate.io/api/v1/databases?service=snowflake_prod&fields=owners,tags,domain,usageSummary&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</RequestExample>

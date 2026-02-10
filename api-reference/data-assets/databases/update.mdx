@@ -1,0 +1,383 @@
+---
+title: Update a Database
+description: Update database metadata including description, owners, tags, domain, and custom properties
+sidebarTitle: Update
+api: PATCH /v1/databases/{id}
+---
+
+<div className="sdk-api-container">
+
+Update database metadata using JSON Patch operations. The SDK handles patch generation automatically.
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  Unique identifier of the database (UUID format).
+</ParamField>
+
+## Common Operations
+
+### Update Description
+
+Replace the description text for a database.
+
+<CodeGroup title="UPDATE DESCRIPTION">
+```python Python
+from metadata.sdk import configure
+from metadata.sdk.entities import Database
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+database.description = "Central analytics data warehouse"
+updated = Database.update(database)
+```
+
+```java Java
+import org.openmetadata.sdk.entities.Databases;
+
+Database database = Databases.getByName("snowflake_prod.analytics");
+database.setDescription("Central analytics data warehouse");
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "replace", "path": "/description", "value": "Central analytics data warehouse"}]'
+```
+</CodeGroup>
+
+### Update Display Name
+
+Set a human-friendly display name that appears in the UI.
+
+<CodeGroup title="UPDATE DISPLAY NAME">
+```python Python
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+database.displayName = "Analytics Data Warehouse"
+updated = Database.update(database)
+```
+
+```java Java
+Database database = Databases.getByName("snowflake_prod.analytics");
+database.setDisplayName("Analytics Data Warehouse");
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "add", "path": "/displayName", "value": "Analytics Data Warehouse"}]'
+```
+</CodeGroup>
+
+### Set Team Owner
+
+Assign a team as the owner of the database.
+
+<CodeGroup title="SET TEAM OWNER">
+```python Python
+from metadata.sdk import to_entity_reference, Teams
+
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+team = Teams.retrieve_by_name("data-platform")
+database.owners = [to_entity_reference(team)]
+updated = Database.update(database)
+```
+
+```java Java
+import org.openmetadata.sdk.entities.Teams;
+import org.openmetadata.sdk.EntityReferences;
+
+Database database = Databases.getByName("snowflake_prod.analytics");
+Team team = Teams.getByName("data-platform");
+database.setOwners(List.of(EntityReferences.from(team)));
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "add", "path": "/owners", "value": [{"id": "team-uuid", "type": "team"}]}]'
+```
+</CodeGroup>
+
+### Set Multiple Owners
+
+Assign both teams and individual users as co-owners.
+
+<CodeGroup title="SET MULTIPLE OWNERS">
+```python Python
+from metadata.sdk import to_entity_reference, Teams, Users
+
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+team = Teams.retrieve_by_name("data-platform")
+user = Users.retrieve_by_name("john.doe")
+database.owners = [to_entity_reference(team), to_entity_reference(user)]
+updated = Database.update(database)
+```
+
+```java Java
+Database database = Databases.getByName("snowflake_prod.analytics");
+Team team = Teams.getByName("data-platform");
+User user = Users.getByName("john.doe");
+database.setOwners(List.of(
+    EntityReferences.from(team),
+    EntityReferences.from(user)
+));
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "add", "path": "/owners", "value": [
+    {"id": "team-uuid", "type": "team"},
+    {"id": "user-uuid", "type": "user"}
+  ]}]'
+```
+</CodeGroup>
+
+### Remove Owners
+
+Clear all ownership assignments from the database.
+
+<CodeGroup title="REMOVE OWNERS">
+```python Python
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+database.owners = None
+updated = Database.update(database)
+```
+
+```java Java
+Database database = Databases.getByName("snowflake_prod.analytics");
+database.setOwners(null);
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "remove", "path": "/owners"}]'
+```
+</CodeGroup>
+
+### Add Tags
+
+Add classification tags to the database.
+
+<CodeGroup title="ADD TAGS">
+```python Python
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+database.add_tag("Tier.Tier1")
+updated = Database.update(database)
+```
+
+```java Java
+Database database = Databases.getByName("snowflake_prod.analytics");
+database.addTag("Tier.Tier1");
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "add", "path": "/tags/-", "value": {
+    "tagFQN": "Tier.Tier1",
+    "labelType": "Manual",
+    "state": "Confirmed",
+    "source": "Classification"
+  }}]'
+```
+</CodeGroup>
+
+### Set Domain
+
+Associate the database with a business domain.
+
+<CodeGroup title="SET DOMAIN">
+```python Python
+from metadata.sdk import to_entity_reference, Domains
+
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+domain = Domains.retrieve_by_name("Sales")
+database.domain = to_entity_reference(domain)
+updated = Database.update(database)
+```
+
+```java Java
+import org.openmetadata.sdk.entities.Domains;
+
+Database database = Databases.getByName("snowflake_prod.analytics");
+Domain domain = Domains.getByName("Sales");
+database.setDomain(EntityReferences.from(domain));
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "add", "path": "/domain", "value": {"id": "domain-uuid", "type": "domain"}}]'
+```
+</CodeGroup>
+
+### Set Retention Period
+
+Define data retention using ISO 8601 duration format: `P30D` (30 days), `P6M` (6 months), `P1Y` (1 year).
+
+<CodeGroup title="SET RETENTION PERIOD">
+```python Python
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+database.retentionPeriod = "P1Y"
+updated = Database.update(database)
+```
+
+```java Java
+Database database = Databases.getByName("snowflake_prod.analytics");
+database.setRetentionPeriod("P1Y");
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "add", "path": "/retentionPeriod", "value": "P1Y"}]'
+```
+</CodeGroup>
+
+### Multiple Updates
+
+Update multiple fields in a single request.
+
+<CodeGroup title="MULTIPLE UPDATES">
+```python Python
+from metadata.sdk import configure, to_entity_reference, Teams, Domains
+from metadata.sdk.entities import Database
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+
+# Update multiple fields
+database.description = "Central analytics data warehouse"
+database.displayName = "Analytics DW"
+
+team = Teams.retrieve_by_name("data-platform")
+database.owners = [to_entity_reference(team)]
+
+domain = Domains.retrieve_by_name("Sales")
+database.domain = to_entity_reference(domain)
+
+database.retentionPeriod = "P1Y"
+
+# Save all changes
+updated = Database.update(database)
+```
+
+```java Java
+import org.openmetadata.sdk.entities.*;
+import org.openmetadata.sdk.EntityReferences;
+
+Database database = Databases.getByName("snowflake_prod.analytics");
+
+// Update multiple fields
+database.setDescription("Central analytics data warehouse");
+database.setDisplayName("Analytics DW");
+
+Team team = Teams.getByName("data-platform");
+database.setOwners(List.of(EntityReferences.from(team)));
+
+Domain domain = Domains.getByName("Sales");
+database.setDomain(EntityReferences.from(domain));
+
+database.setRetentionPeriod("P1Y");
+
+// Save all changes
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op": "replace", "path": "/description", "value": "Central analytics data warehouse"},
+    {"op": "add", "path": "/displayName", "value": "Analytics DW"},
+    {"op": "add", "path": "/owners", "value": [{"id": "team-uuid", "type": "team"}]},
+    {"op": "add", "path": "/retentionPeriod", "value": "P1Y"}
+  ]'
+```
+</CodeGroup>
+
+<RequestExample>
+```python Python SDK
+from metadata.sdk import configure
+from metadata.sdk.entities import Database
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+database = Database.retrieve_by_name("snowflake_prod.analytics")
+database.description = "Central analytics data warehouse"
+updated = Database.update(database)
+```
+
+```java Java SDK
+import org.openmetadata.sdk.entities.Databases;
+
+Database database = Databases.getByName("snowflake_prod.analytics");
+database.setDescription("Central analytics data warehouse");
+Database updated = Databases.update(database.getId(), database);
+```
+
+```bash cURL
+curl -X PATCH "https://your-company.getcollate.io/api/v1/databases/{id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op": "replace", "path": "/description", "value": "New description"}]'
+```
+</RequestExample>
+
+<ResponseExample>
+```json Response
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "analytics",
+  "fullyQualifiedName": "snowflake_prod.analytics",
+  "displayName": "Analytics DW",
+  "description": "Central analytics data warehouse",
+  "version": 0.5
+}
+```
+</ResponseExample>
+
+---
+
+## Error Handling
+
+| Code | Error Type | Description |
+|------|-----------|-------------|
+| `400` | `BAD_REQUEST` | Invalid patch operation or malformed JSON |
+| `401` | `UNAUTHORIZED` | Invalid or missing authentication token |
+| `403` | `FORBIDDEN` | User lacks permission to update this database |
+| `404` | `ENTITY_NOT_FOUND` | Database with given ID not found |
+| `412` | `PRECONDITION_FAILED` | Version conflict - fetch latest version and retry |
+
+</div>

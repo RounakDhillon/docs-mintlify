@@ -1,0 +1,124 @@
+---
+title: List Topics
+description: List all topics with optional filtering and pagination
+sidebarTitle: List
+---
+
+List all topics with optional filtering and pagination.
+
+## Endpoint
+
+```
+GET /v1/topics
+```
+
+## Query Parameters
+
+<ParamField query="service" type="string">
+  Filter by service name.
+</ParamField>
+
+<ParamField query="limit" type="integer" default="10">
+  Maximum number of results to return (max: 1000000).
+</ParamField>
+
+<ParamField query="before" type="string">
+  Cursor for backward pagination.
+</ParamField>
+
+<ParamField query="after" type="string">
+  Cursor for forward pagination.
+</ParamField>
+
+<ParamField query="fields" type="string">
+  Comma-separated list of fields to include.
+</ParamField>
+
+<ParamField query="include" type="string" default="non-deleted">
+  Include `all`, `deleted`, or `non-deleted` entities.
+</ParamField>
+
+<RequestExample>
+```python Python
+from metadata.sdk import configure
+from metadata.sdk.entities import Topic
+
+configure(
+    host="https://your-company.getcollate.io/api",
+    jwt_token="your-jwt-token"
+)
+
+# List all topics with auto-pagination
+for topic in Topic.list().auto_paging_iterable():
+    print(f"{topic.fullyQualifiedName}: {topic.partitions} partitions")
+
+# Filter by service
+for topic in Topic.list(service="kafka_prod").auto_paging_iterable():
+    print(f"{topic.name}")
+```
+
+```java Java
+import org.openmetadata.sdk.entities.Topics;
+
+// List with auto-pagination
+for (Topic topic : Topics.list().autoPagingIterable()) {
+    System.out.println(topic.getFullyQualifiedName() + ": " + topic.getPartitions() + " partitions");
+}
+
+// Filter by service
+for (Topic topic : Topics.list().service("kafka_prod").autoPagingIterable()) {
+    System.out.println(topic.getName());
+}
+```
+
+```bash cURL
+# List all topics
+curl "https://your-company.getcollate.io/api/v1/topics?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Filter by service
+curl "https://your-company.getcollate.io/api/v1/topics?service=kafka_prod&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Include schema
+curl "https://your-company.getcollate.io/api/v1/topics?fields=messageSchema,owners,tags&limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</RequestExample>
+
+<ResponseExample>
+```json Response
+{
+  "data": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "orders.created",
+      "fullyQualifiedName": "kafka_prod.orders.created",
+      "displayName": "Order Created Events",
+      "partitions": 12,
+      "service": {
+        "id": "service-uuid",
+        "type": "messagingService",
+        "name": "kafka_prod"
+      }
+    },
+    {
+      "id": "660e8400-e29b-41d4-a716-446655440001",
+      "name": "orders.updated",
+      "fullyQualifiedName": "kafka_prod.orders.updated",
+      "displayName": "Order Updated Events",
+      "partitions": 12,
+      "service": {
+        "id": "service-uuid",
+        "type": "messagingService",
+        "name": "kafka_prod"
+      }
+    }
+  ],
+  "paging": {
+    "after": "cursor-string",
+    "total": 38
+  }
+}
+```
+</ResponseExample>

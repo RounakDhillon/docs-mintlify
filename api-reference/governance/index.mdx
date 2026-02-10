@@ -1,0 +1,190 @@
+---
+title: Governance
+description: Manage glossaries, classifications, domains, and policies
+sidebarTitle: Overview
+mode: "wide"
+---
+
+# Data Governance
+
+The Governance APIs help you manage organizational structures for data governance including glossaries, classifications, domains, and access policies.
+
+## Governance Resources
+
+<CardGroup cols={2}>
+  <Card title="Glossaries" icon="book" href="/api-reference/governance/glossaries">
+    Business glossaries with term definitions
+  </Card>
+  <Card title="Classifications" icon="tags" href="/api-reference/governance/classifications">
+    Tag taxonomies for data classification
+  </Card>
+  <Card title="Domains" icon="sitemap" href="/api-reference/governance/domains">
+    Organizational domains for data ownership
+  </Card>
+  <Card title="Policies" icon="shield" href="/api-reference/governance/policies">
+    Access control and governance policies
+  </Card>
+</CardGroup>
+
+## Glossaries
+
+Glossaries contain business terms that provide consistent definitions across your organization.
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Create a glossary
+curl -X PUT "https://your-company.getcollate.io/api/v1/glossaries" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Business Glossary",
+    "displayName": "Business Glossary",
+    "description": "Standard business terminology"
+  }'
+
+# Create a glossary term
+curl -X PUT "https://your-company.getcollate.io/api/v1/glossaryTerms" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Customer ID",
+    "glossary": "Business Glossary",
+    "description": "Unique identifier for a customer account",
+    "synonyms": ["customer_id", "cust_id", "client_id"]
+  }'
+
+# List glossaries
+curl -X GET "https://your-company.getcollate.io/api/v1/glossaries?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Classifications
+
+Classifications are tag taxonomies for categorizing data.
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Create a classification
+curl -X PUT "https://your-company.getcollate.io/api/v1/classifications" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "DataSensitivity",
+    "description": "Data sensitivity classification"
+  }'
+
+# Create a tag within classification
+curl -X PUT "https://your-company.getcollate.io/api/v1/tags" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Confidential",
+    "classification": "DataSensitivity",
+    "description": "Confidential data - internal use only"
+  }'
+
+# List classifications
+curl -X GET "https://your-company.getcollate.io/api/v1/classifications?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Domains
+
+Domains represent organizational areas that own data assets.
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Create a domain
+curl -X PUT "https://your-company.getcollate.io/api/v1/domains" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Sales",
+    "displayName": "Sales Domain",
+    "description": "Sales and revenue data",
+    "domainType": "Consumer",
+    "experts": [{"id": "user-uuid", "type": "user"}]
+  }'
+
+# Add entity to domain
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/domain",
+      "value": {"id": "domain-uuid", "type": "domain"}
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Data Products
+
+Data products are curated datasets published by domains.
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Create a data product
+curl -X PUT "https://your-company.getcollate.io/api/v1/dataProducts" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Customer 360",
+    "displayName": "Customer 360 Dataset",
+    "description": "Unified customer view combining CRM, transactions, and support data",
+    "domain": "Sales",
+    "owner": {"id": "team-uuid", "type": "team"},
+    "assets": [
+      {"id": "table-uuid-1", "type": "table"},
+      {"id": "table-uuid-2", "type": "table"}
+    ]
+  }'
+```
+</Tab>
+</Tabs>
+
+## Policies and Roles
+
+Manage access control:
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# List roles
+curl -X GET "https://your-company.getcollate.io/api/v1/roles?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# List policies
+curl -X GET "https://your-company.getcollate.io/api/v1/policies?limit=50" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get policy details
+curl -X GET "https://your-company.getcollate.io/api/v1/policies/name/DataStewardPolicy" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Endpoints Summary
+
+| Resource | Endpoints |
+|----------|-----------|
+| Glossaries | `/v1/glossaries` |
+| Glossary Terms | `/v1/glossaryTerms` |
+| Classifications | `/v1/classifications` |
+| Tags | `/v1/tags` |
+| Domains | `/v1/domains` |
+| Data Products | `/v1/dataProducts` |
+| Roles | `/v1/roles` |
+| Policies | `/v1/policies` |

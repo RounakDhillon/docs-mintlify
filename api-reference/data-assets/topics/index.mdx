@@ -1,0 +1,55 @@
+---
+title: Topics
+description: Create and manage messaging topic entities
+sidebarTitle: Topics
+mode: "wide"
+---
+
+**Topics** represent messaging and streaming data assets from platforms like Kafka, Pulsar, and Kinesis.
+
+<Info>
+Entity schema follows the [OpenMetadata Standard](https://openmetadatastandards.org/metadata-specifications/entities/topic/).
+</Info>
+
+## Entity Hierarchy
+
+Topics are children of Messaging Services:
+
+```
+MessagingService
+└── Topic (this page)
+```
+
+## Inheritance
+
+When you set an **owner** or **domain** on a Messaging Service, it is inherited by all child topics.
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `PUT` | `/v1/topics` | [Create or update a topic](/api-reference/data-assets/topics/create) |
+| `GET` | `/v1/topics` | [List topics](/api-reference/data-assets/topics/list) |
+| `GET` | `/v1/topics/{id}` | [Get by ID](/api-reference/data-assets/topics/retrieve) |
+| `GET` | `/v1/topics/name/{fqn}` | [Get by fully qualified name](/api-reference/data-assets/topics/retrieve) |
+| `PATCH` | `/v1/topics/{id}` | [Update a topic](/api-reference/data-assets/topics/update) |
+| `DELETE` | `/v1/topics/{id}` | [Delete a topic](/api-reference/data-assets/topics/delete) |
+| `PUT` | `/v1/topics/{id}/sampleData` | Add sample data |
+
+---
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="The Topic Object" icon="tower-broadcast" href="/api-reference/data-assets/topics/object">
+    View topic object attributes
+  </Card>
+  <Card title="Messaging Services" icon="server" href="/api-reference/services/messaging">
+    Configure messaging service connections
+  </Card>
+  <Card title="Lineage" icon="diagram-project" href="/api-reference/lineage">
+    Track streaming data lineage
+  </Card>
+</CardGroup>

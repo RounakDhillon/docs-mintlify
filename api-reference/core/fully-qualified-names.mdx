@@ -1,0 +1,310 @@
+---
+title: Fully Qualified Names
+description: Understanding the FQN naming convention for entities
+sidebarTitle: Fully Qualified Names
+mode: "wide"
+---
+
+# Fully Qualified Names (FQN)
+
+A Fully Qualified Name (FQN) is a unique, hierarchical identifier for every entity in Collate. FQNs provide a human-readable way to reference entities across the catalog.
+
+## FQN Format
+
+FQNs follow a dot-separated hierarchical structure that reflects the entity's position in the data hierarchy:
+
+```
+service.database.schema.table.column
+```
+
+### Examples
+
+| Entity Type | FQN Example |
+|-------------|-------------|
+| Database Service | `mysql_prod` |
+| Database | `mysql_prod.analytics` |
+| Database Schema | `mysql_prod.analytics.public` |
+| Table | `mysql_prod.analytics.public.customers` |
+| Column | `mysql_prod.analytics.public.customers.email` |
+| Dashboard Service | `tableau_prod` |
+| Dashboard | `tableau_prod.Sales Dashboard` |
+| Pipeline | `airflow_prod.etl_customers` |
+| Topic | `kafka_prod.user-events` |
+
+## FQN Structure by Entity Type
+
+### Database Hierarchy
+
+```
+{database_service}.{database}.{schema}.{table}.{column}
+```
+
+- **Service**: `snowflake_prod`
+- **Database**: `snowflake_prod.ANALYTICS`
+- **Schema**: `snowflake_prod.ANALYTICS.PUBLIC`
+- **Table**: `snowflake_prod.ANALYTICS.PUBLIC.CUSTOMERS`
+- **Column**: `snowflake_prod.ANALYTICS.PUBLIC.CUSTOMERS.customer_id`
+
+### Dashboard Hierarchy
+
+```
+{dashboard_service}.{dashboard}
+```
+
+- **Service**: `tableau_prod`
+- **Dashboard**: `tableau_prod.Sales Performance`
+- **Chart**: `tableau_prod.Sales Performance.Revenue by Region`
+
+### Pipeline Hierarchy
+
+```
+{pipeline_service}.{pipeline}
+```
+
+- **Service**: `airflow_prod`
+- **Pipeline**: `airflow_prod.etl_daily_sales`
+- **Task**: `airflow_prod.etl_daily_sales.extract_orders`
+
+### Messaging Hierarchy
+
+```
+{messaging_service}.{topic}
+```
+
+- **Service**: `kafka_prod`
+- **Topic**: `kafka_prod.user-events`
+
+### Governance Entities
+
+```
+{glossary}.{term}
+```
+
+- **Glossary**: `Business Glossary`
+- **Term**: `Business Glossary.Customer.Customer ID`
+
+## Using FQNs in the API
+
+### Retrieve by FQN
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.data.table import Table
+
+# Get table by FQN
+table = metadata.get_by_name(
+    entity=Table,
+    fqn="mysql_prod.analytics.public.customers"
+)
+
+print(table.id)  # UUID
+print(table.fullyQualifiedName)  # mysql_prod.analytics.public.customers
+```
+</Tab>
+
+<Tab title="Java">
+```java
+// Get table by FQN
+Table table = tablesApi.getTableByFQN(
+    "mysql_prod.analytics.public.customers",
+    "owner,columns",  // fields
+    null  // include
+);
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Get table by FQN
+curl -X GET "https://your-company.getcollate.io/api/v1/tables/name/mysql_prod.analytics.public.customers" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+### FQN in Create Requests
+
+When creating entities, you reference parent entities by FQN:
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.api.data.createTable import CreateTableRequest
+
+# Reference parent schema by FQN
+create_request = CreateTableRequest(
+    name="orders",
+    databaseSchema="mysql_prod.analytics.public",  # Parent FQN
+    columns=[...]
+)
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PUT "https://your-company.getcollate.io/api/v1/tables" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "orders",
+    "databaseSchema": "mysql_prod.analytics.public",
+    "columns": [...]
+  }'
+```
+</Tab>
+</Tabs>
+
+### FQN in Tag Operations
+
+```bash
+# Add tag to entity by FQN
+curl -X PUT "https://your-company.getcollate.io/api/v1/tables/name/mysql_prod.analytics.public.customers/tags" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '[{"tagFQN": "PII.Sensitive", "source": "Classification"}]'
+```
+
+## Special Characters
+
+FQNs support special characters in entity names by escaping with quotes:
+
+| Scenario | Name | FQN |
+|----------|------|-----|
+| Space in name | `Sales Data` | `service."Sales Data"` |
+| Dot in name | `schema.v2` | `service."schema.v2"` |
+| Quote in name | `user's table` | `service."user\'s table"` |
+
+### Examples with Special Characters
+
+```bash
+# Table with space in name
+curl -X GET "https://your-company.getcollate.io/api/v1/tables/name/mysql_prod.analytics.public.\"Customer Orders\"" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Dashboard with special characters
+curl -X GET "https://your-company.getcollate.io/api/v1/dashboards/name/tableau_prod.\"Sales & Revenue\"" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+## FQN vs ID
+
+Both FQN and ID uniquely identify entities:
+
+| Attribute | FQN | ID (UUID) |
+|-----------|-----|-----------|
+| Format | `service.db.schema.table` | `550e8400-e29b-41d4-a716-446655440000` |
+| Human-readable | Yes | No |
+| Stability | Changes if entity renamed | Never changes |
+| Best for | Interactive use, scripts | Stable references, foreign keys |
+
+### When to Use Each
+
+**Use FQN when:**
+- Writing scripts or documentation
+- Referencing entities in configuration
+- Human-readable logging
+- Interactive API exploration
+
+**Use ID when:**
+- Storing references in code or databases
+- Entity references that must survive renames
+- Performance-critical lookups
+- Internal system integrations
+
+## Building FQNs Programmatically
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.utils.fqn import fqn_build
+
+# Build table FQN
+table_fqn = fqn_build(
+    service_name="mysql_prod",
+    database_name="analytics",
+    schema_name="public",
+    table_name="customers"
+)
+# Result: "mysql_prod.analytics.public.customers"
+
+# Build column FQN
+column_fqn = fqn_build(
+    service_name="mysql_prod",
+    database_name="analytics",
+    schema_name="public",
+    table_name="customers",
+    column_name="email"
+)
+# Result: "mysql_prod.analytics.public.customers.email"
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.schema.utils.FullyQualifiedName;
+
+// Build table FQN
+String tableFqn = FullyQualifiedName.build(
+    "mysql_prod",
+    "analytics",
+    "public",
+    "customers"
+);
+// Result: "mysql_prod.analytics.public.customers"
+```
+</Tab>
+</Tabs>
+
+## Parsing FQNs
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.utils.fqn import split
+
+# Parse FQN into components
+fqn = "mysql_prod.analytics.public.customers"
+parts = split(fqn)
+
+# parts = ["mysql_prod", "analytics", "public", "customers"]
+service = parts[0]  # mysql_prod
+database = parts[1]  # analytics
+schema = parts[2]    # public
+table = parts[3]     # customers
+```
+</Tab>
+</Tabs>
+
+## Common Patterns
+
+### Filter by Parent FQN
+
+```bash
+# List all tables in a specific schema
+curl -X GET "https://your-company.getcollate.io/api/v1/tables?databaseSchema=mysql_prod.analytics.public&limit=100" \
+  -H "Authorization: Bearer $TOKEN"
+
+# List all tables in a specific database
+curl -X GET "https://your-company.getcollate.io/api/v1/tables?database=mysql_prod.analytics&limit=100" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+### Bulk Operations by FQN
+
+```python
+# Update tags for multiple tables by FQN pattern
+fqns = [
+    "mysql_prod.analytics.public.customers",
+    "mysql_prod.analytics.public.orders",
+    "mysql_prod.analytics.public.products"
+]
+
+for fqn in fqns:
+    table = metadata.get_by_name(entity=Table, fqn=fqn)
+    metadata.patch_tag(
+        entity=Table,
+        source=table,
+        tag_label=TagLabel(tagFQN="PII.Sensitive")
+    )
+```

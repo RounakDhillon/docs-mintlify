@@ -1,0 +1,237 @@
+---
+title: Owners
+description: Set and manage entity ownership
+sidebarTitle: Owners
+mode: "wide"
+---
+
+# Managing Owners
+
+Ownership helps define accountability for data assets. Owners can be individual users or teams.
+
+## Set Owner
+
+Assign an owner to an entity.
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.ingestion.ometa.ometa_api import OpenMetadata
+from metadata.generated.schema.entity.data.table import Table
+from metadata.generated.schema.type.entityReference import EntityReference
+
+metadata = OpenMetadata(config)
+
+# Get the table
+table = metadata.get_by_name(
+    entity=Table,
+    fqn="sample_data.ecommerce_db.shopify.dim_customer"
+)
+
+# Set user as owner
+owner = EntityReference(
+    id="user-uuid-here",
+    type="user"
+)
+metadata.patch_owner(entity=Table, source=table, owner=owner)
+
+# Or set team as owner
+team_owner = EntityReference(
+    id="team-uuid-here",
+    type="team"
+)
+metadata.patch_owner(entity=Table, source=table, owner=team_owner)
+```
+</Tab>
+
+<Tab title="Java">
+```java
+import org.openmetadata.client.api.TablesApi;
+import org.openmetadata.schema.type.EntityReference;
+import javax.json.Json;
+import javax.json.JsonPatch;
+
+TablesApi tablesApi = client.buildClient(TablesApi.class);
+
+// Get table
+Table table = tablesApi.getTableByFQN("sample_data.ecommerce_db.shopify.dim_customer", null, null);
+
+// Create owner reference
+JsonPatch patch = Json.createPatchBuilder()
+    .add("/owner", Json.createObjectBuilder()
+        .add("id", "user-uuid-here")
+        .add("type", "user")
+        .build())
+    .build();
+
+Table updated = tablesApi.patchTable(table.getId(), patch);
+System.out.println("Owner set: " + updated.getOwner().getName());
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+# Set user as owner
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/owner",
+      "value": {
+        "id": "user-uuid-here",
+        "type": "user"
+      }
+    }
+  ]'
+
+# Set team as owner
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/owner",
+      "value": {
+        "id": "team-uuid-here",
+        "type": "team"
+      }
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Find User or Team ID
+
+Before setting an owner, you need their UUID.
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Find user by name
+curl -X GET "https://your-company.getcollate.io/api/v1/users/name/john.doe" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Find team by name
+curl -X GET "https://your-company.getcollate.io/api/v1/teams/name/data-platform" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Search for users
+curl -X GET "https://your-company.getcollate.io/api/v1/users?limit=10" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.teams.user import User
+from metadata.generated.schema.entity.teams.team import Team
+
+# Get user by name
+user = metadata.get_by_name(entity=User, fqn="john.doe")
+print(f"User ID: {user.id}")
+
+# Get team by name
+team = metadata.get_by_name(entity=Team, fqn="data-platform")
+print(f"Team ID: {team.id}")
+```
+</Tab>
+</Tabs>
+
+## Remove Owner
+
+Clear ownership from an entity.
+
+<Tabs>
+<Tab title="Python">
+```python
+# Remove owner
+metadata.patch_owner(entity=Table, source=table, owner=None)
+```
+</Tab>
+
+<Tab title="HTTP">
+```bash
+curl -X PATCH "https://your-company.getcollate.io/api/v1/tables/{table-id}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "remove",
+      "path": "/owner"
+    }
+  ]'
+```
+</Tab>
+</Tabs>
+
+## Bulk Update Owners
+
+Set owners for multiple entities:
+
+<Tabs>
+<Tab title="Python">
+```python
+from metadata.generated.schema.entity.data.table import Table
+from metadata.generated.schema.entity.teams.team import Team
+from metadata.generated.schema.type.entityReference import EntityReference
+
+# Get the team
+team = metadata.get_by_name(entity=Team, fqn="data-platform")
+owner = EntityReference(id=str(team.id), type="team")
+
+# Tables to update
+table_fqns = [
+    "sample_data.ecommerce_db.shopify.dim_customer",
+    "sample_data.ecommerce_db.shopify.dim_product",
+    "sample_data.ecommerce_db.shopify.fact_orders",
+]
+
+for fqn in table_fqns:
+    table = metadata.get_by_name(entity=Table, fqn=fqn)
+    metadata.patch_owner(entity=Table, source=table, owner=owner)
+    print(f"Set owner for: {fqn}")
+```
+</Tab>
+</Tabs>
+
+## Query by Owner
+
+Find all entities owned by a user or team:
+
+<Tabs>
+<Tab title="HTTP">
+```bash
+# Using search API to find tables by owner
+curl -X GET "https://your-company.getcollate.io/api/v1/search/query?q=*&index=table_search_index&query_filter=%7B%22query%22%3A%7B%22bool%22%3A%7B%22must%22%3A%5B%7B%22term%22%3A%7B%22owner.id%22%3A%22user-uuid%22%7D%7D%5D%7D%7D%7D" \
+  -H "Authorization: Bearer $TOKEN"
+```
+</Tab>
+</Tabs>
+
+## Owner Types
+
+| Type | Description | Example |
+|------|-------------|---------|
+| `user` | Individual user account | Data engineer, analyst |
+| `team` | Team or group | "Data Platform", "Analytics" |
+
+## Best Practices
+
+<Steps>
+  <Step title="Prefer team ownership">
+    Teams provide continuity when individuals change roles.
+  </Step>
+  <Step title="Define clear ownership hierarchy">
+    Tables should be owned, schemas by teams, databases by platform teams.
+  </Step>
+  <Step title="Automate ownership assignment">
+    Use ingestion pipelines to set owners based on source system metadata.
+  </Step>
+  <Step title="Review orphaned assets">
+    Regularly audit assets without owners.
+  </Step>
+</Steps>
