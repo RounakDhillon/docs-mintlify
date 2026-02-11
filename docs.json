@@ -1652,116 +1652,22 @@
                 ]
             },
             {
-                "tab": "SDK & API",
+                "tab": "SDKs & APIs",
                 "groups": [
                     {
-                        "group": "SDK",
-                        "pages": [
-                            "sdk/index",
-                            "sdk/openmetadata-standards"
-                        ]
-                    },
-                    {
-                        "group": "SDKs",
-                        "pages": [
-                            {
-                                "group": "Python SDK",
-                                "pages": [
-                                    "sdk/python/index",
-                                    {
-                                        "group": "Entities",
-                                        "pages": [
-                                            "sdk/python/entities/index",
-                                            "sdk/python/entities/ml-model"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Ingestion",
-                                        "pages": [
-                                            "sdk/python/ingestion/index",
-                                            "sdk/python/ingestion/lineage",
-                                            "sdk/python/ingestion/tags"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Build a Connector",
-                                        "pages": [
-                                            "sdk/python/build-connector/index",
-                                            "sdk/python/build-connector/source",
-                                            "sdk/python/build-connector/stage",
-                                            "sdk/python/build-connector/sink",
-                                            "sdk/python/build-connector/bulk-sink"
-                                        ]
-                                    },
-                                    {
-                                        "group": "API Reference",
-                                        "pages": [
-                                            "sdk/python/api-reference/index",
-                                            "sdk/python/api-reference/auth-provider",
-                                            "sdk/python/api-reference/client-utils",
-                                            "sdk/python/api-reference/client",
-                                            "sdk/python/api-reference/credentials",
-                                            "sdk/python/api-reference/dashboard-mixin",
-                                            "sdk/python/api-reference/data-insight-mixin",
-                                            "sdk/python/api-reference/es-mixin",
-                                            "sdk/python/api-reference/ingestion-pipeline-mixin",
-                                            "sdk/python/api-reference/lineage-mixin",
-                                            "sdk/python/api-reference/mlmodel-mixin",
-                                            "sdk/python/api-reference/models",
-                                            "sdk/python/api-reference/ometa-api",
-                                            "sdk/python/api-reference/patch-mixin",
-                                            "sdk/python/api-reference/patch-mixin-utils",
-                                            "sdk/python/api-reference/pipeline-mixin",
-                                            "sdk/python/api-reference/provider-registry",
-                                            "sdk/python/api-reference/query-mixin",
-                                            "sdk/python/api-reference/role-policy-mixin",
-                                            "sdk/python/api-reference/routes",
-                                            "sdk/python/api-reference/search-index-mixin",
-                                            "sdk/python/api-reference/server-mixin",
-                                            "sdk/python/api-reference/service-mixin",
-                                            "sdk/python/api-reference/table-mixin",
-                                            "sdk/python/api-reference/tests-mixin",
-                                            "sdk/python/api-reference/topic-mixin",
-                                            "sdk/python/api-reference/user-mixin",
-                                            "sdk/python/api-reference/utils",
-                                            "sdk/python/api-reference/version-mixin"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "group": "Go SDK",
-                                "pages": [
-                                    "sdk/go/index"
-                                ]
-                            },
-                            {
-                                "group": "Java SDK",
-                                "pages": [
-                                    "sdk/java/index",
-                                    "sdk/java/info"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "group": "API",
-                        "pages": [
-                            "sdk/api"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "API",
-                "groups": [
-                    {
-                        "group": "API Reference",
+                        "group": "Introduction",
                         "pages": [
                             "api-reference/index",
+                            "api-reference/getting-started",
                             "api-reference/authentication",
                             "api-reference/errors",
                             "api-reference/pagination"
+                        ]
+                    },
+                    {
+                        "group": "OpenMetadata Standards",
+                        "pages": [
+                            "sdk/openmetadata-standards"
                         ]
                     },
                     {
