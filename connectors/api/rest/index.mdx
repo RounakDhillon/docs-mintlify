@@ -23,7 +23,15 @@ Configure and schedule REST metadata workflows from the OpenMetadata UI:
 - [Troubleshooting](/connectors/api/rest/troubleshooting)
 ## Requirements
 ### Generate OpenAPI Schema URL
-- Generate OpenAPI schema URL for your service[OpenAPI spec](https://swagger.io/specification/#openapi-document)
+
+- Generate OpenAPI schema URL for your service [OpenAPI spec](https://swagger.io/specification/#openapi-document)
+
+Provide a publicly accessible URL that points directly to your service’s OpenAPI specification file.
+
+#### Supported Formats
+- JSON (`.json`)
+- YAML (`.yaml` or `.yml`)
+
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"REST"} selectServicePath={"/public/images/connectors/rest/select-service.png"} addNewServicePath={"/public/images/connectors/rest/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/rest/service-connection.png"} />
 #### Connection Options
