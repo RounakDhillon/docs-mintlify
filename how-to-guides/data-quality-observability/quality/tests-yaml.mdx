@@ -662,9 +662,6 @@ Uniqueness
   columnName: columnName
   testDefinitionName: columnValuesToBeUnique
   computePassedFailedRowCount: <true or false>
-  parameterValues:
-    - name: columnNames
-      value: true
 ```
 
 **JSON Config**
@@ -674,13 +671,7 @@ Uniqueness
     "name": "myTestName",
     "description": "test description",
     "columnName": "columnName",
-    "testDefinitionName": "columnValuesToBeUnique",
-    "parameterValues": [
-        {
-            "name": "columnNames",
-            "value": true
-        }
-    ]
+    "testDefinitionName": "columnValuesToBeUnique"
 }
 ```
 
@@ -709,9 +700,6 @@ Completeness
   columnName: columnName
   testDefinitionName: columnValuesToBeNotNull
   computePassedFailedRowCount: <true or false>
-  parameterValues:
-    - name: columnValuesToBeNotNull
-      value: true
 ```
 
 **JSON Config**
@@ -721,13 +709,7 @@ Completeness
     "name": "myTestName",
     "description": "test description",
     "columnName": "columnName",
-    "testDefinitionName": "columnValuesToBeNotNull",
-    "parameterValues": [
-        {
-            "name": "columnValuesToBeNotNull",
-            "value": true
-        }
-    ]
+    "testDefinitionName": "columnValuesToBeNotNull"
 }
 ```
 
