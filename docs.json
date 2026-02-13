@@ -1293,15 +1293,64 @@
                     {
                         "group": "SSO",
                         "pages": [
-                            "how-to-guides/sso/index",
-                            "how-to-guides/sso/okta/index",
-                            "how-to-guides/sso/auth0/index",
-                            "how-to-guides/sso/azure/index",
-                            "how-to-guides/sso/google/index",
-                            "how-to-guides/sso/amazon-cognito-sso/index",
-                            "how-to-guides/sso/custom-oidc/index",
-                            "how-to-guides/sso/saml/index",
-                            "how-to-guides/sso/ldap/index"
+                            "how-to-guides/sso/index"
+                        ]
+                    },
+                    {
+                        "group": "SSO",
+                        "pages": [
+                            {
+                                "group": "Okta",
+                                "pages": [
+                                    "how-to-guides/sso/okta/index",
+                                    "how-to-guides/sso/okta/auth-code-flow"
+                                ]
+                            },
+                            {
+                                "group": "Auth0",
+                                "pages": [
+                                    "how-to-guides/sso/auth0/index",
+                                    "how-to-guides/sso/auth0/auth-code-flow"
+                                ]
+                            },
+                            {
+                                "group": "Azure",
+                                "pages": [
+                                    "how-to-guides/sso/azure/index",
+                                    "how-to-guides/sso/azure/auth-code-flow"
+                                ]
+                            },
+                            {
+                                "group": "Google",
+                                "pages": [
+                                    "how-to-guides/sso/google/index",
+                                    "how-to-guides/sso/google/auth-code-flow"
+                                ]
+                            },
+                            {
+                                "group": "Amazon Cognito",
+                                "pages": [
+                                    "how-to-guides/sso/amazon-cognito/index"
+                                ]
+                            },
+                            {
+                                "group": "Custom OIDC",
+                                "pages": [
+                                    "how-to-guides/sso/custom-oidc/index"
+                                ]
+                            },
+                            {
+                                "group": "SAML",
+                                "pages": [
+                                    "how-to-guides/sso/saml/index"
+                                ]
+                            },
+                            {
+                                "group": "LDAP",
+                                "pages": [
+                                    "how-to-guides/sso/ldap/index"
+                                ]
+                            }
                         ]
                     }
                 ]
