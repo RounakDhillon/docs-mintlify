@@ -206,6 +206,37 @@
                                         ]
                                     },
                                     {
+                                        "group": "dbt",
+                                        "pages": [
+                                            "connectors/database/dbt/index",
+                                            "connectors/database/dbt/dbt-cloud-api-guide",
+                                            {
+                                                "group": "dbt Core",
+                                                "pages": [
+                                                    "connectors/database/dbt/storage-configuration-overview",
+                                                    "connectors/database/dbt/storage-s3-guide",
+                                                    "connectors/database/dbt/storage-gcs-guide",
+                                                    "connectors/database/dbt/storage-azure-guide",
+                                                    "connectors/database/dbt/storage-http-guide",
+                                                    "connectors/database/dbt/storage-local-guide"
+                                                ]
+                                            },
+                                            "connectors/database/dbt/configure-dbt-workflow",
+                                            "connectors/database/dbt/run-dbt-workflow-externally",
+                                            "connectors/database/dbt/auto-ingest-dbt-core",
+                                            "connectors/database/dbt/ingest-dbt-owner",
+                                            "connectors/database/dbt/ingest-dbt-descriptions",
+                                            "connectors/database/dbt/ingest-dbt-tags",
+                                            "connectors/database/dbt/ingest-dbt-tier",
+                                            "connectors/database/dbt/ingest-dbt-domain",
+                                            "connectors/database/dbt/ingest-dbt-custom-properties",
+                                            "connectors/database/dbt/ingest-dbt-glossary",
+                                            "connectors/database/dbt/ingest-dbt-lineage",
+                                            "connectors/database/dbt/setup-multiple-dbt-projects",
+                                            "connectors/database/dbt/dbt-troubleshooting"
+                                        ]
+                                    },
+                                    {
                                         "group": "Delta Lake",
                                         "pages": [
                                             "connectors/database/deltalake/index",
@@ -695,94 +726,6 @@
                                 ]
                             },
                             {
-                                "group": "Ingestion",
-                                "pages": [
-                                    "connectors/ingestion/index",
-                                    "connectors/ingestion/best-practices",
-                                    "connectors/ingestion/great-expectations",
-                                    {
-                                        "group": "Deployment",
-                                        "pages": [
-                                            "connectors/ingestion/deployment/index"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Lineage",
-                                        "pages": [
-                                            "connectors/ingestion/lineage/index",
-                                            "connectors/ingestion/lineage/edit-lineage-manually",
-                                            "connectors/ingestion/lineage/export-lineage",
-                                            "connectors/ingestion/lineage/spark-lineage"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Versioning",
-                                        "pages": [
-                                            "connectors/ingestion/versioning/index",
-                                            "connectors/ingestion/versioning/change-events",
-                                            "connectors/ingestion/versioning/change-feeds",
-                                            "connectors/ingestion/versioning/event-notification-via-webhooks"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Workflows",
-                                        "pages": [
-                                            "connectors/ingestion/workflows/index",
-                                            {
-                                                "group": "Metadata",
-                                                "pages": [
-                                                    "connectors/ingestion/workflows/metadata/index",
-                                                    "connectors/ingestion/workflows/metadata/filter-patterns/index",
-                                                    "connectors/ingestion/workflows/metadata/filter-patterns/database",
-                                                    {
-                                                        "group": "Incremental Extraction",
-                                                        "pages": [
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/index",
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/bigquery",
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/redshift",
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/snowflake"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "group": "Usage",
-                                                "pages": [
-                                                    "connectors/ingestion/workflows/usage/index",
-                                                    "connectors/ingestion/workflows/usage/filter-query-set",
-                                                    "connectors/ingestion/workflows/usage/usage-workflow-query-logs"
-                                                ]
-                                            },
-                                            {
-                                                "group": "Lineage",
-                                                "pages": [
-                                                    "connectors/ingestion/workflows/lineage/index",
-                                                    "connectors/ingestion/workflows/lineage/filter-query-set",
-                                                    "connectors/ingestion/workflows/lineage/lineage-workflow-query-logs"
-                                                ]
-                                            },
-                                            {
-                                                "group": "dbt",
-                                                "pages": [
-                                                    "connectors/ingestion/workflows/dbt/index",
-                                                    "connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui",
-                                                    "connectors/ingestion/workflows/dbt/run-dbt-workflow-externally",
-                                                    "connectors/ingestion/workflows/dbt/auto-ingest-dbt-core",
-                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-owner",
-                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-descriptions",
-                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-tags",
-                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-tier",
-                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-glossary",
-                                                    "connectors/ingestion/workflows/dbt/ingest-dbt-lineage",
-                                                    "connectors/ingestion/workflows/dbt/setup-multiple-dbt-projects",
-                                                    "connectors/ingestion/workflows/dbt/dbt-troubleshooting"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
                                 "group": "Messaging",
                                 "pages": [
                                     "connectors/messaging/index",
@@ -1126,6 +1069,77 @@
                                             "connectors/storage/s3/index",
                                             "connectors/storage/s3/yaml",
                                             "connectors/storage/s3/troubleshooting"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Ingestion",
+                                "pages": [
+                                    "connectors/ingestion/index",
+                                    "connectors/ingestion/best-practices",
+                                    "connectors/ingestion/great-expectations",
+                                    {
+                                        "group": "Deployment",
+                                        "pages": [
+                                            "connectors/ingestion/deployment/index"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Lineage",
+                                        "pages": [
+                                            "connectors/ingestion/lineage/index",
+                                            "connectors/ingestion/lineage/edit-lineage-manually",
+                                            "connectors/ingestion/lineage/export-lineage",
+                                            "connectors/ingestion/lineage/spark-lineage"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Versioning",
+                                        "pages": [
+                                            "connectors/ingestion/versioning/index",
+                                            "connectors/ingestion/versioning/change-events",
+                                            "connectors/ingestion/versioning/change-feeds",
+                                            "connectors/ingestion/versioning/event-notification-via-webhooks"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Workflows",
+                                        "pages": [
+                                            "connectors/ingestion/workflows/index",
+                                            {
+                                                "group": "Metadata",
+                                                "pages": [
+                                                    "connectors/ingestion/workflows/metadata/index",
+                                                    "connectors/ingestion/workflows/metadata/filter-patterns/index",
+                                                    "connectors/ingestion/workflows/metadata/filter-patterns/database",
+                                                    {
+                                                        "group": "Incremental Extraction",
+                                                        "pages": [
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/index",
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/bigquery",
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/redshift",
+                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/snowflake"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "group": "Usage",
+                                                "pages": [
+                                                    "connectors/ingestion/workflows/usage/index",
+                                                    "connectors/ingestion/workflows/usage/filter-query-set",
+                                                    "connectors/ingestion/workflows/usage/usage-workflow-query-logs"
+                                                ]
+                                            },
+                                            {
+                                                "group": "Lineage",
+                                                "pages": [
+                                                    "connectors/ingestion/workflows/lineage/index",
+                                                    "connectors/ingestion/workflows/lineage/filter-query-set",
+                                                    "connectors/ingestion/workflows/lineage/lineage-workflow-query-logs"
+                                                ]
+                                            }
                                         ]
                                     }
                                 ]
@@ -2218,6 +2232,62 @@
         {
             "source": "/main-concepts/*",
             "destination": "/"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt",
+            "destination": "/connectors/database/dbt"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/configure-dbt-workflow-from-ui",
+            "destination": "/connectors/database/dbt/configure-dbt-workflow"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/auto-ingest-dbt-core",
+            "destination": "/connectors/database/dbt/auto-ingest-dbt-core"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/run-dbt-workflow-externally",
+            "destination": "/connectors/database/dbt/run-dbt-workflow-externally"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-owner",
+            "destination": "/connectors/database/dbt/ingest-dbt-owner"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-descriptions",
+            "destination": "/connectors/database/dbt/ingest-dbt-descriptions"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-tags",
+            "destination": "/connectors/database/dbt/ingest-dbt-tags"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-tier",
+            "destination": "/connectors/database/dbt/ingest-dbt-tier"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-glossary",
+            "destination": "/connectors/database/dbt/ingest-dbt-glossary"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-domain",
+            "destination": "/connectors/database/dbt/ingest-dbt-domain"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-custom-properties",
+            "destination": "/connectors/database/dbt/ingest-dbt-custom-properties"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/ingest-dbt-lineage",
+            "destination": "/connectors/database/dbt/ingest-dbt-lineage"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/setup-multiple-dbt-projects",
+            "destination": "/connectors/database/dbt/setup-multiple-dbt-projects"
+        },
+        {
+            "source": "/connectors/ingestion/workflows/dbt/dbt-troubleshooting",
+            "destination": "/connectors/database/dbt/dbt-troubleshooting"
         },
         {
             "source": "/security/oidc",
