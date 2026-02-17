@@ -2298,6 +2298,10 @@
             "destination": "/how-to-guides/sso"
         },
         {
+            "source": "/how-to-guides/data-governance/classification/auto",
+            "destination": "/how-to-guides/data-governance/classification/auto-classification"
+        },
+        {
             "source": "/security/keycloak",
             "destination": "/how-to-guides/sso"
         },
