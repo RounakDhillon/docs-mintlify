@@ -1,0 +1,3 @@
+[submodule "docs-om"]
+	path = docs-om
+	url = https://github.com/open-metadata/docs-om
