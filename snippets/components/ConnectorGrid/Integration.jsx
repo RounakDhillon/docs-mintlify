@@ -42,6 +42,11 @@ export const Integrations = () => {
                     link: '/connectors/database/bigquery',
                 },
                 {
+                    name: 'BurstIQ',
+                    image: '/public/images/connectors/burstiq.webp',
+                    link: '/connectors/database/burstiq',
+                },
+                {
                     name: 'Cassandra',
                     image: '/public/images/connectors/cassandra.webp',
                     link: '/connectors/database/cassandra',

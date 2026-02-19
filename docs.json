@@ -158,6 +158,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "BurstIQ",
+                                        "pages": [
+                                            "connectors/database/burstiq/index",
+                                            "connectors/database/burstiq/yaml",
+                                            "connectors/database/burstiq/troubleshooting"
+                                        ]
+                                    },
+                                    {
                                         "group": "Cassandra",
                                         "pages": [
                                             "connectors/database/cassandra/index",
