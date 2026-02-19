@@ -21,6 +21,10 @@ availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", 
 unavailableFeatures={[]} />
 In this section, we provide guides and references to use the Snowflake connector.
 Configure and schedule Snowflake metadata and profiler workflows from the OpenMetadata UI:
+
+<Note>
+**Iceberg Table Support**: Collate supports ingestion and profiling of Iceberg tables through Snowflake. If your Iceberg tables are accessible via Snowflake, use this connector — it provides full metadata ingestion and profiler support for Iceberg tables without requiring a separate Iceberg connector.
+</Note>
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
     - [Incremental Extraction](/connectors/ingestion/workflows/metadata/incremental-extraction/snowflake)

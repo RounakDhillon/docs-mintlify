@@ -25,6 +25,10 @@ As per the [documentation](https://docs.databricks.com/en/data-governance/unity-
 </Tip>
 In this section, we provide guides and references to use the Databricks connector.
 Configure and schedule Databricks metadata and profiler workflows from the OpenMetadata UI:
+
+<Note>
+**Iceberg Table Support**: Collate supports ingestion and profiling of Iceberg tables through Databricks. If your Iceberg tables are accessible via Databricks (or Unity Catalog), use this connector — it provides full metadata ingestion and profiler support for Iceberg tables without requiring a separate Iceberg connector.
+</Note>
 - [Requirements](#requirements)
 - [Unity Catalog](#unity-catalog)
 - [Metadata Ingestion](#metadata-ingestion)

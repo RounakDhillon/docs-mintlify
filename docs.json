@@ -341,14 +341,6 @@
                                         ]
                                     },
                                     {
-                                        "group": "Iceberg",
-                                        "pages": [
-                                            "connectors/database/iceberg/index",
-                                            "connectors/database/iceberg/yaml",
-                                            "connectors/database/iceberg/troubleshooting"
-                                        ]
-                                    },
-                                    {
                                         "group": "Impala",
                                         "pages": [
                                             "connectors/database/impala/index",
