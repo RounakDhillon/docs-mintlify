@@ -1,8 +1,8 @@
 ---
-title: Snowflake Connector | Collate Cloud Data Warehouse
-description: Connect Snowflake to Collate with our comprehensive database connector guide. Easy setup, metadata extraction, and data lineage tracking.
-slug: /connectors/database/snowflake
-sidebarTitle: SaaS/BYOC
+title: Snowflake Hybrid Runner | Collate Cloud Data Warehouse
+description: Connect Snowflake to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/snowflake/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ReverseMetadata from '/snippets/connectors/database/snowflake/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -111,6 +111,15 @@ GRANT APPLY TAG TO ROLE NEW_ROLE;
 ```
 Depending on your view ddl you can grant the relevant privileged as per above queries.
 <ReverseMetadata />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

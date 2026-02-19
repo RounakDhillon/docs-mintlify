@@ -489,7 +489,7 @@
                                         "group": "Snowflake",
                                         "pages": [
                                             "connectors/database/snowflake/index",
-                                            "connectors/database/snowflake/yaml",
+                                            "connectors/database/snowflake/hybrid-runner",
                                             "connectors/database/snowflake/troubleshooting"
                                         ]
                                     },
@@ -2237,6 +2237,10 @@
         ]
     },
     "redirects": [
+        {
+            "source": "/connectors/database/snowflake/yaml",
+            "destination": "/connectors/database/snowflake/hybrid-runner"
+        },
         {
             "source": "/main-concepts/*",
             "destination": "/"
