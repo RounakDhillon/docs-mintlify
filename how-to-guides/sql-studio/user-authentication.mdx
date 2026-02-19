@@ -16,7 +16,7 @@ Before connecting to a database service in SQL Studio:
 - SQL Studio (Query Runner) application must be installed by an administrator
 - At least one database service must be configured for SQL Studio by your administrator
 - You must have the necessary permissions to access the database service in Collate
-- For Basic Authentication: You need your database credentials (service account, username/password, or private key)
+- For Basic Authentication: You need your database credentials (Service Account JSON, Username + Password, or Key Pair)
 
 ## Accessing SQL Studio
 
@@ -256,7 +256,7 @@ OAuth requires you to authenticate directly with the database service provider (
 
 ## How Basic Authentication Works
 
-Basic Authentication requires you to manually enter credentials such as username/password, service account keys, or private keys. Credentials are encrypted and stored securely.
+Basic Authentication requires you to manually enter credentials such as Username + Password, Service Account JSON, or Key Pair. Credentials are encrypted and stored securely.
 
 **Key Benefits**:
 - Works with any credential type
@@ -340,24 +340,24 @@ If your administrator enabled user-configurable fields:
 
 ### Credentials Required
 
-Choose one authentication method:
+Choose one of the following:
 
 **Option A: Username + Password**
-- Snowflake username
-- Snowflake password
+- Snowflake Username
+- Snowflake Password
 
-**Option B: Username + Private Key + Passphrase**
-- Snowflake username
-- RSA private key (PEM format)
-- Private key passphrase (required)
+**Option B: Username + Key Pair (Private Key + Passphrase)**
+- Snowflake Username
+- RSA Private Key (PEM format)
+- Private Key Passphrase (required)
 
 ### Where to Get Credentials
 
-**For Username/Password**:
+**For Username + Password**:
 - Provided by your Snowflake administrator
 - You can reset your password in Snowflake web UI
 
-**For Key Pair Authentication**:
+**For Username + Key Pair**:
 
 1. Generate RSA key pair with passphrase:
 ```bash
@@ -398,7 +398,7 @@ ALTER USER my_username SET RSA_PUBLIC_KEY='MIIBIjANBgkqhki...';
    **For Password-based auth**:
    - Enter **Password**
 
-   **For Key-pair auth**:
+   **For Key Pair auth**:
    - Paste your **Private Key** (entire PEM key including headers)
    - Enter **Passphrase** (required)
 
@@ -434,6 +434,40 @@ Leave these blank to use defaults from the service connection configuration.
 
 ---
 
+## Trino / Redshift / PostgreSQL / MSSQL Basic Authentication
+
+### Credentials Required
+
+- Username
+- Password
+
+### Connecting with Basic Auth
+
+#### Step 1: Select Service
+
+1. In SQL Studio, select the database service (Trino, Redshift, PostgreSQL, or MSSQL) from the dropdown
+2. Click **Configure Connection**
+
+#### Step 2: Enter Credentials
+
+1. **Username**: Enter your database username (required)
+2. **Password**: Enter your database password (required)
+
+#### Step 3: Test Connection
+
+1. Click **Test Connection**
+2. SQL Studio validates your credentials
+3. Connection status changes to **Pending** 🟡
+4. Wait for test to complete
+
+#### Step 4: Save Configuration
+
+1. If test succeeds, click **Save**
+2. Your credentials are encrypted and stored
+3. Connection status changes to **Connected** 🟢
+
+---
+
 ## Troubleshooting Basic Authentication
 
 ### Test Connection Fails
@@ -450,9 +484,14 @@ Leave these blank to use defaults from the service connection configuration.
 **For Snowflake**:
 - Verify username and password are correct
 - Check that your account is not locked
-- For key-pair: Ensure public key is uploaded to Snowflake
-- For key-pair: Verify private key format (should be PKCS#8 format)
+- For Key Pair: Ensure public key is uploaded to Snowflake
+- For Key Pair: Verify private key format (should be PKCS#8 format)
 - Check that account, warehouse, database, schema exist
+
+**For Redshift, PostgreSQL, MSSQL**:
+- Verify username and password are correct
+- Check that the database server is accessible from Collate
+- Verify your user account has appropriate permissions
 
 ### "Permission Denied" Errors
 
@@ -468,6 +507,18 @@ Leave these blank to use defaults from the service connection configuration.
 - Check role has `USAGE` permission on warehouse
 - Verify role has `SELECT` permission on databases/schemas
 - Run `SHOW GRANTS TO ROLE <your_role>;` in Snowflake to verify permissions
+
+**For Redshift**:
+- Verify user has `SELECT` permission on the target schemas/tables
+- Check cluster security groups allow connections from Collate
+
+**For PostgreSQL**:
+- Verify user has `SELECT` permission on the target schemas/tables
+- Check `pg_hba.conf` allows connections from Collate
+
+**For MSSQL**:
+- Verify user has `SELECT` permission on the target databases/schemas
+- Check firewall rules allow connections from Collate
 
 ### Private Key Format Issues (Snowflake)
 
@@ -492,7 +543,7 @@ To see all services you've connected to:
 
 1. In SQL Studio, look at the service list in the sidebar
 2. Each service shows:
-   - Service name and type (BigQuery, Snowflake, Trino)
+   - Service name and type (BigQuery, Trino, Snowflake, Redshift, PostgreSQL, MSSQL)
    - Connection status indicator (🟢 Connected, ⚪ Not Connected)
    - Last connected timestamp (hover over status)
 

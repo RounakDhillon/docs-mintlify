@@ -241,7 +241,7 @@ This returns JSON with `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET`.
 
 <Tip>
 
-**Recommended for**: Username/password or key-pair authentication
+**Recommended for**: Username + Password OR Username + Key Pair authentication
 
 </Tip>
 
@@ -257,16 +257,16 @@ This returns JSON with `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET`.
 4. Click **Save Configuration**
 
 **User Requirements**:
-- Users must have Snowflake credentials (username/password or key-pair)
-- For key-pair auth, users must upload their public key to Snowflake
+- Users must have Snowflake credentials (Username + Password OR Username + Key Pair)
+- For Key Pair auth, users must upload their public key to Snowflake
 
 ---
 
 ## Trino Configuration
 
-Trino (Starburst) currently supports OAuth only.
+Trino (Starburst) supports OAuth and Basic Authentication.
 
-### Authentication Method: OAuth
+### Authentication Method 1: OAuth
 
 <Tip>
 
@@ -302,6 +302,49 @@ Trino (Starburst) currently supports OAuth only.
 
 ---
 
+### Authentication Method 2: Basic Authentication
+
+<Tip>
+
+**Recommended for**: Username + Password authentication when OAuth is not available
+
+</Tip>
+
+**Setup Steps**:
+
+1. In the Query Runner configuration form, select **Authentication Type** → **Basic**
+2. Toggle **Enabled** to ON to activate
+3. Click **Save Configuration**
+
+**User Requirements**:
+- Users must have Trino credentials (Username + Password)
+
+---
+
+## Redshift / PostgreSQL / MSSQL Configuration
+
+Redshift, PostgreSQL, and MSSQL support Basic Authentication only.
+
+### Authentication Method: Basic Authentication
+
+<Tip>
+
+**Recommended for**: Username + Password authentication
+
+</Tip>
+
+**Setup Steps**:
+
+1. In the Query Runner configuration form, select **Authentication Type** → **Basic**
+2. Toggle **Enabled** to ON to activate
+3. Click **Save Configuration**
+
+**User Requirements**:
+- Users must have valid credentials (Username + Password) for the respective database service
+- Users must have appropriate permissions on the database
+
+---
+
 ## Configuration Best Practices
 
 ### Choosing Authentication Methods
@@ -313,7 +356,11 @@ Trino (Starburst) currently supports OAuth only.
 | **Automated/service account access** | Basic Authentication |
 | **Snowflake with OAuth integration** | OAuth |
 | **Snowflake without OAuth** | Basic Authentication |
-| **Trino/Starburst** | OAuth (only option) |
+| **Trino/Starburst with OAuth** | OAuth |
+| **Trino/Starburst without OAuth** | Basic Authentication |
+| **Redshift** | Basic Authentication |
+| **PostgreSQL** | Basic Authentication |
+| **MSSQL** | Basic Authentication |
 
 ### User Configurable Fields
 

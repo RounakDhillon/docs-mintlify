@@ -1717,7 +1717,8 @@
                             "how-to-guides/sql-studio/index",
                             "how-to-guides/sql-studio/admin-configuration",
                             "how-to-guides/sql-studio/user-authentication",
-                            "how-to-guides/sql-studio/query-execution"
+                            "how-to-guides/sql-studio/query-execution",
+                            "how-to-guides/sql-studio/hybrid-runner"
                         ]
                     }
                 ]

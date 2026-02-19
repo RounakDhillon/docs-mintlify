@@ -40,12 +40,92 @@ SQL Studio currently supports:
 - **BigQuery**
 - **Snowflake**
 - **Trino** (Starburst)
+- **Redshift**
+- **PostgreSQL**
+- **MSSQL**
 
 Each service supports different authentication methods and has service-specific configuration options. See [Admin Configuration](/how-to-guides/sql-studio/admin-configuration) for detailed setup instructions.
+
+### Authentication Options per Service
+
+| Service | Basic | Collate SSO | External OAuth |
+|---------|-------|-------------|----------------|
+| **BigQuery** | ✅ | ✅ | ✅ |
+| **Snowflake** | ✅ | - | ✅ |
+| **Trino** | ✅ | - | ✅ |
+| **Redshift** | ✅ | - | - |
+| **PostgreSQL** | ✅ | - | - |
+| **MSSQL** | ✅ | - | - |
 
 ## Authentication Methods
 
 SQL Studio supports three authentication methods, each designed for different use cases:
+
+| Method | User Experience | Admin Setup | Use Case |
+|--------|----------------|-------------|----------|
+| **Basic Auth** | Manual credential entry | Minimal - just enable mode | Service accounts, key-based access |
+| **External OAuth** | One-time OAuth popup | Moderate - requires OAuth app setup | OAuth-enabled services with separate IdP |
+| **Collate SSO** | Seamless - no additional login | Minimal - auto-configured | Google Workspace organizations |
+
+## How to Configure Authentication Methods
+
+### Basic Authentication
+
+**Best for**: Service accounts, automated access, or when OAuth is not available
+
+Basic Authentication allows users to provide direct credentials such as Username + Password or Service Account JSON.
+
+**How it works**:
+
+**Admin Setup**:
+- Admin selects authentication type as "Basic" in the database service configuration
+- Admin saves the configuration
+
+**User Connection**:
+- Users enter their own credentials in SQL Studio
+- Credentials are encrypted and stored securely
+- Credentials remain valid until manually changed by the user
+
+**Supported services**:
+- **BigQuery** (GCP Service Account JSON)
+- **Snowflake** (Username + Password OR Username + Key Pair)
+- **Trino** (Username + Password)
+- **Redshift** (Username + Password)
+- **PostgreSQL** (Username + Password)
+- **MSSQL** (Username + Password)
+
+**Admin setup**: Admins enable Basic Auth mode - users provide their own credentials.
+
+### External OAuth
+
+**Best for**: Organizations that want OAuth authentication but use a different SSO provider or email & password for Collate login
+
+External OAuth allows users to authenticate directly with the database service provider (Google (for BigQuery), Snowflake, Starburst (for Trino)) using OAuth 2.0, separate from their Collate login.
+
+**How it works**:
+
+**Admin Setup**:
+- Admin fills in the OAuth configuration fields:
+  - Client ID (required)
+  - Client Secret (required)
+  - Redirect URL (optional)
+  - Scope (optional)
+- Admin saves the configuration
+
+**User Connection**:
+- Users click "Connect" in SQL Studio for the configured database service
+- Users are redirected to the database provider's authentication page (Google for BigQuery, Snowflake for Snowflake, Azure AD for Trino)
+- Users authenticate with their database provider credentials
+- Access token exchange happens automatically
+- OAuth tokens are securely stored and used for query execution
+
+**Supported services**:
+- **BigQuery** (Google OAuth)
+- **Snowflake** (Snowflake Security Integration - Custom OAuth)
+- **Trino** (Starburst OAuth Client)
+
+**Admin setup**: Admins must configure OAuth client credentials (Client ID, Client Secret) for each service.
+
 
 ### Collate SSO
 
@@ -78,70 +158,6 @@ Collate SSO leverages your existing Google SSO configuration in Collate to authe
 
 **Admin setup**: Minimal or no configuration required - OAuth credentials (Client ID, Client Secret, Scope) are automatically pulled from Collate's SSO settings.
 
-### External OAuth
-
-**Best for**: Organizations that want OAuth authentication but use a different SSO provider or email & password for Collate login
-
-External OAuth allows users to authenticate directly with the database service provider (Google (for BigQuery), Snowflake, Starburst (for Trino)) using OAuth 2.0, separate from their Collate login.
-
-**How it works**:
-
-**Admin Setup**:
-- Admin fills in the OAuth configuration fields:
-  - Client ID (required)
-  - Client Secret (required)
-  - Redirect URL (optional)
-  - Scope (optional)
-- Admin saves the configuration
-
-**User Connection**:
-- Users click "Connect" in SQL Studio for the configured database service
-- Users are redirected to the database provider's authentication page (Google for BigQuery, Snowflake for Snowflake, Azure AD for Trino)
-- Users authenticate with their database provider credentials
-- Access token exchange happens automatically
-- OAuth tokens are securely stored and used for query execution
-
-**Supported services**:
-- **BigQuery** (Google OAuth)
-- **Snowflake** (Snowflake Security Integration - Custom Oauth)
-- **Trino** (Starburst OAuth Client)
-
-**Admin setup**: Admins must configure OAuth client credentials (Client ID, Client Secret) for each service.
-
-### Basic Authentication
-
-**Best for**: Service accounts, automated access, or when OAuth is not available
-
-Basic Authentication allows users to provide direct credentials such as username/password or service account keys.
-
-**How it works**:
-
-**Admin Setup**:
-- Admin selects authentication type as "Basic" in the database service configuration
-- Admin saves the configuration
-
-**User Connection**:
-- Users enter their own credentials in SQL Studio:
-  - BigQuery: Service Account JSON credentials
-  - Snowflake: Username/Password or Private Key + Passphrase
-  - Trino: Username/Password
-- Credentials are encrypted and stored securely
-- Credentials remain valid until manually changed by the user
-
-**Supported services**:
-- **BigQuery** (GCP Service Account JSON)
-- **Snowflake** (Username/Password or Key Pair)
-- **Trino** (Username/Password)
-
-**Admin setup**: Admins enable Basic Auth mode - users provide their own credentials.
-
-## Authentication Comparison
-
-| Method | User Experience | Admin Setup | Use Case |
-|--------|----------------|-------------|----------|
-| **Collate SSO** | Seamless - no additional login | Minimal - auto-configured | Google Workspace organizations |
-| **External OAuth** | One-time OAuth popup | Moderate - requires OAuth app setup | OAuth-enabled services with separate IdP |
-| **Basic Auth** | Manual credential entry | Minimal - just enable mode | Service accounts, key-based access |
 
 ## Getting Started
 

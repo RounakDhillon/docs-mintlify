@@ -1,0 +1,112 @@
+---
+title: SQL Studio with Hybrid Runner | Collate SQL Studio Guide
+description: Learn how SQL Studio works with the Hybrid Ingestion Runner to execute queries securely within your own cloud infrastructure, keeping credentials and data in your environment.
+slug: /how-to-guides/sql-studio/hybrid-runner
+sidebarTitle: Hybrid Runner
+---
+
+# SQL Studio with Hybrid Runner
+
+SQL Studio integrates seamlessly with Collate's **[Hybrid Ingestion Runner](/getting-started/day-1/hybrid-saas)**, ensuring that query execution happens within your own cloud infrastructure. This means credentials never leave your environment and query traffic stays inside your network — the same security model used for metadata ingestion.
+
+## How It Works
+
+When you create a database service in Collate, you select an **Ingestion Runner** — either the **Collate SaaS Runner** (hosted by Collate) or a **Hybrid Runner** (deployed in your infrastructure). SQL Studio's Query Runner inherits whichever runner is configured for the service. There is no separate runner selection for SQL Studio.
+
+### Runner Inheritance
+
+```
+Service Creation
+     │
+     ├── Ingestion Runner: Collate SaaS Runner
+     │       └── Query Runner uses: Collate SaaS Runner
+     │
+     └── Ingestion Runner: Hybrid Runner
+             └── Query Runner uses: Hybrid Runner
+```
+
+When a user triggers a **test connection** or **executes a query** in SQL Studio, the backend's pipeline client routes the request to the same runner that handles the service's ingestion workflows. This is identical to how metadata ingestion, profiling, and lineage workflows are dispatched.
+
+### Execution Flow
+
+The following diagram illustrates how a query flows through the system when a Hybrid Runner is configured:
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                     COLLATE SaaS (Cloud)                         │
+│                                                                  │
+│  1. User writes & runs query in SQL Studio                       │
+│  2. Backend receives request                                     │
+│  3. Pipeline client identifies runner for the service            │
+│  4. Request is dispatched to the Hybrid Runner                   │
+│                                                                  │
+└──────────────────────────┬───────────────────────────────────────┘
+                           │  Secure channel
+                           ▼
+┌──────────────────────────────────────────────────────────────────┐
+│               YOUR INFRASTRUCTURE (Hybrid Runner)                │
+│                                                                  │
+│  5. Hybrid Runner receives the execution request                 │
+│  6. Credentials are fetched from your Secrets Manager            │
+│     (AWS / Azure / GCP / Kubernetes, etc.)                       │
+│  7. Runner connects to the database and executes the query       │
+│  8. Results are returned to the Collate SaaS backend             │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                     COLLATE SaaS (Cloud)                         │
+│                                                                  │
+│  9. Backend returns results to the user's browser                │
+│                                                                  │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+### Key Points
+
+- **Same runner, same path**: The Query Runner uses the exact same runner as the service's ingestion pipelines. If your service is configured with a Hybrid Runner, SQL Studio queries automatically go through it.
+- **No extra configuration**: There is no separate runner setting for SQL Studio. The runner choice is made once at service creation time.
+- **Credential isolation**: When using a Hybrid Runner, credentials stored in your Secrets Manager (AWS, Azure, GCP, Kubernetes, etc.) are fetched at runtime by the runner in your infrastructure. Collate's SaaS never accesses or stores these secrets directly.
+
+## Comparing SaaS Runner vs Hybrid Runner for SQL Studio
+
+| Aspect | Collate SaaS Runner | Hybrid Runner |
+|--------|---------------------|---------------|
+| **Query execution location** | Collate's cloud | Your infrastructure |
+| **Credential storage** | Encrypted in Collate | Your Secrets Manager (AWS/Azure/GCP/K8s, etc.) |
+| **Network path** | Collate cloud → Your database | Your infra → Your database (internal) |
+| **Setup effort** | None (default) | Requires Hybrid Runner deployment |
+| **Best for** | Cloud-hosted databases with public endpoints | Private databases, strict compliance requirements |
+
+## Prerequisites
+
+Before using SQL Studio with a Hybrid Runner, ensure the following are in place:
+
+1. **Hybrid Runner deployed and connected** — Verify in **Settings > Preferences > Ingestion Runners** that your runner shows as **Connected**
+2. **Service created with the Hybrid Runner selected** — The database service must have the Hybrid Runner chosen as its Ingestion Runner during service creation
+3. **Query Runner application installed** — Install the [Query Runner](/applications/query-runner) app from the Marketplace
+4. **SQL Studio configured for the service** — Complete the [Admin Configuration](/how-to-guides/sql-studio/admin-configuration) for the service
+5. **Secrets stored in your Secrets Manager** — Service connection credentials must be stored in your Secrets Manager (AWS, Azure, GCP, Kubernetes, etc.) and referenced with the `secret:` prefix
+
+## How Secrets Are Handled
+
+SQL Studio's secret handling depends on which runner is configured for the service:
+
+### With Collate SaaS Runner
+
+- User credentials (OAuth tokens, passwords, service account keys) are encrypted and stored in Collate's database
+- The SaaS Runner uses these credentials directly when executing queries
+
+### With Hybrid Runner
+
+- **Service connection credentials** (host, port, account) are stored in your Secrets Manager and referenced with the `secret:` prefix (e.g., `secret:/my/database/password`)
+- **User authentication credentials** (Basic Auth) — Users also enter secret references (using the `secret:` prefix) instead of raw credentials. At runtime, the Hybrid Runner fetches these from your Secrets Manager within your infrastructure.
+- At runtime, the Hybrid Runner fetches all referenced secrets from your Secrets Manager and establishes the database connection — entirely within your infrastructure. Collate's SaaS never accesses these secrets directly.
+
+## Next Steps
+
+- **Set up the Hybrid Runner**: Follow the [Hybrid Ingestion Runner](/getting-started/day-1/hybrid-saas) guide for deployment and configuration
+- **Configure SQL Studio**: See [Admin Configuration](/how-to-guides/sql-studio/admin-configuration) for service-level setup
+- **Connect as a user**: See [User Authentication](/how-to-guides/sql-studio/user-authentication) to authenticate and connect to your services
+- **Start querying**: Head to [Query Execution](/how-to-guides/sql-studio/query-execution) to learn how to write and run queries
