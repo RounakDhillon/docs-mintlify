@@ -722,6 +722,14 @@
                                             "connectors/drive/googledrive/yaml",
                                             "connectors/drive/googledrive/troubleshooting"
                                         ]
+                                    },
+                                    {
+                                        "group": "SFTP",
+                                        "pages": [
+                                            "connectors/drive/sftp/index",
+                                            "connectors/drive/sftp/yaml",
+                                            "connectors/drive/sftp/troubleshooting"
+                                        ]
                                     }
                                 ]
                             },
