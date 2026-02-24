@@ -86,11 +86,11 @@ Perfect for:
 - High-performance services
 
 ```go
-import "github.com/open-metadata/collate-go-client"
+import "github.com/open-metadata/openmetadata-sdk/openmetadata-go-client/pkg/ometa"
 
-client := collate.NewClient(
-    "http://localhost:8585/api",
-    "your-jwt-token",
+client := ometa.NewClient(
+    "http://localhost:8585",
+    ometa.WithToken("your-jwt-token"),
 )
 ```
 

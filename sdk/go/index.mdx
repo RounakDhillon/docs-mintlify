@@ -1,223 +1,363 @@
 ---
 title: Go SDK
+description: 'Type-safe Go client for the Collate API'
 slug: /sdk/go
 sidebarTitle: Overview
 ---
 
 # Go SDK
 
-We now present a high-level Go API as a gentle wrapper to interact with the OpenMetadata API.
+The Collate Go SDK provides a type-safe, auto-generated client library for Go applications to interact with the Collate API. Built from OpenAPI specifications, it offers strongly typed services for 60+ entity types with automatic pagination, retry logic, and comprehensive error handling.
 
-The open-source OpenMetadata SDK for Go simplifies provisioning, managing, and using OpenMetadata resources from the Go application code. \
-The OpenMetadata SDK for Go modules build on top of the underlying OpenMetadata REST API, allows you to use those APIs through familiar Go paradigms.
+You can find the source code in the [GitHub repository](https://github.com/open-metadata/openmetadata-sdk/tree/main/openmetadata-go-client). As an open-source project, contributions are always welcome!
 
-You can find the source code for the OpenMetadata libraries in the [GitHub repository](https://github.com/open-metadata/openmetadata-sdk/tree/main/openmetadata-go-client). As an open-source project, contributions are always welcome!
+## Requirements
 
-You can add the module to your application with the below command
+- Go 1.24 or higher
+
+## Installation
 
 ```sh
-go get github.com/open-metadata/openmetadata-sdk/openmetadata-go-client
+go get github.com/open-metadata/openmetadata-sdk/openmetadata-go-client@latest
 ```
 
-## Establish OpenMetadata Server Connection
+## Quick Start
 
-To create OpenMetadata Gateway, you will need to establish a connection with *OpenMetadata Server*. The following inputs will be needed:
-* `BaseURL`: The url on which your instance of OpenMetadata is up and running (include the port if you need to e.g. http://localhost:8585).
-* `APIVersion`: pass an empty string -- this will be `v1` for now.
-* `Retry`: number of time the request should retry if the status code returned is in `RetryCodes`. Use `0` to use the default value
-* `RetryWait`: number of second to wait betwee retries. Pass 0 to use the default value
-* `RetryCodes`: HTTP status that will trigger a retry. Pass `nil` to use the default
-* `AuthTokenMode`: defaults to `Bearer`
-* `AccessToken`: JWT token use to authenticate the request
+### Basic Connection
 
 ```go
-// main.go
 package main
 
 import (
-	"github.com/open-metadata/openmetadata-sdk/openmetadata-go-client/pkg/ometa"
+    "context"
+    "fmt"
+    "log"
+
+    "github.com/open-metadata/openmetadata-sdk/openmetadata-go-client/pkg/ometa"
 )
 
 func main() {
-    restConfig := ometa.NewRestConfig(
-		"http://localhost:8585",
-		"", // APIVersion
-		0, // Retry -> defaults to 3
-		0, // RetryWait -> defaults to 30 seconds
-		nil, // RetryCodes -> defaults to [429, 504]
-		"JWTToken",
-	)
-}
-```
+    client := ometa.NewClient(
+        "http://localhost:8585",
+        ometa.WithToken("your-jwt-token"),
+    )
 
+    ctx := context.Background()
 
-## Create OpenMetadata Gateway
-
-Once the connection details are provided, you can create an OpenMetadata Gateway
-using the following piece of code.
-
-```go
-// main.go
-...
-
-func main() {
-    ...
-    rest := ometa.NewRest(restConfig)
-}
-```
-
-## How to Use APIs Using the Go Client
-Once you have instantiated a `Rest` object you can call any of the 4 methods to perform any kind of operation against OpenMetadata API
-
-### `Get` method
-**Method signature**
-```go
-func (rest Rest) Get(
-	path string,
-	header http.Header,
-	extraHeader map[string][]string,
-	queryParams map[string]string) (map[string]any, error)
-```
-
-**Example**
-```go
-// main.go
-...
-func main() {
-    ...
-    path := "tables"
-	body, err := rest.Get(path, nil, nil, nil)
-}
-```
-
-
-### `Post` method
-**Method signature**
-```go
-func (rest Rest) Post(
-	path string,
-	data map[string]interface{},
-	header http.Header,
-	extraHeader map[string][]string,
-	queryParams map[string]string) (map[string]any, error)
-```
-
-**Example**
-```go
-// main.go
-...
-func main() {
-    ...
-    path := "tables"
-    data := map[string]interface{}{
-        "name":           "goClientTestTable",
-        "databaseSchema": "sample_data.ecommerce_db.shopify",
-        "columns": []map[string]interface{}{
-            {
-                "name":     "columnOne",
-                "dataType": "NUMBER",
-            },
-            {
-                "name":     "columnTwo",
-                "dataType": "NUMBER",
-            },
-        },
+    // List all tables
+    for table, err := range client.Tables.List(ctx, nil) {
+        if err != nil {
+            log.Fatal(err)
+        }
+        fmt.Println(table.Name)
     }
-	body, err := rest.Post(path, data, nil, nil, nil)
 }
 ```
 
-### `Put` method
-**Method signature**
+### Client Configuration Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `WithToken(token)` | JWT Bearer token for authentication | `""` |
+| `WithAPIVersion(v)` | Override API version | `"v1"` |
+| `WithRetry(count, wait)` | Retry attempts and wait duration | 3 retries, 30s wait |
+| `WithHTTPClient(c)` | Custom `*http.Client` | Default client |
+
 ```go
-func (rest Rest) Put(
-	path string,
-	data map[string]interface{},
-	header http.Header,
-	extraHeader map[string][]string,
-	queryParams map[string]string) (map[string]any, error)
+client := ometa.NewClient(
+    "http://localhost:8585",
+    ometa.WithToken("your-jwt-token"),
+    ometa.WithRetry(5, 10*time.Second),
+    ometa.WithAPIVersion("v1"),
+)
 ```
 
-**Example**
+Retryable status codes are `429` (Too Many Requests) and `504` (Gateway Timeout).
+
+## Core Functionality
+
+### Available Services
+
+The client exposes typed services for all entity types. Here are the most commonly used:
+
+**Data Assets:** `Tables`, `Topics`, `Dashboards`, `Pipelines`, `Charts`, `Containers`, `SearchIndexes`, `StoredProcedures`, `Queries`
+
+**Data Organization:** `Databases`, `DatabaseSchemas`, `APICollections`, `APIEndpoints`
+
+**Governance:** `Glossaries`, `GlossaryTerms`, `Classifications`, `Tags`, `DataProducts`, `Domains`, `Policies`
+
+**Quality:** `TestCases`, `TestSuites`, `TestDefinitions`
+
+**Services:** `DatabaseServices`, `DashboardServices`, `PipelineServices`, `MessagingServices`, `SearchServices`, `StorageServices`
+
+**People & Access:** `Users`, `Teams`, `Roles`, `Bots`
+
+**Other:** `IngestionPipelines`, `EventSubscriptions`, `MlModels`
+
+### Standard Operations
+
+All services follow the same consistent pattern with these methods:
+
+#### List
+
+Returns a Go iterator (`iter.Seq2`) that handles pagination automatically.
+
 ```go
-// main.go
-...
-func main() {
-    ...
-    path := "tables"
-	data := map[string]interface{}{
-		"name":           "goClientTestTable",
-		"databaseSchema": "sample_data.ecommerce_db.shopify",
-		"columns": []map[string]interface{}{
-			{
-				"name":     "columnOne",
-				"dataType": "NUMBER",
-			},
-			{
-				"name":     "columnTwo",
-				"dataType": "NUMBER",
-			},
-			{
-				"name":     "columnThree",
-				"dataType": "NUMBER",
-			},
-		},
-	}
-	body, err := rest.Put(path, data, nil, nil, nil)
+for table, err := range client.Tables.List(ctx, &ometa.ListTablesParams{
+    Limit:  ometa.Int32(100),
+    Fields: ometa.Str("*"),
+}) {
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(table.Name)
 }
 ```
 
-### `Patch` method
-**Method signature**
+#### GetByID
+
+Retrieve an entity by UUID.
+
 ```go
-func (rest Rest) Patch(
-	path string,
-	data []map[string]interface{},
-	header http.Header,
-	extraHeader map[string][]string,
-	queryParams map[string]string) (map[string]any, error)
+table, err := client.Tables.GetByID(ctx, "uuid-here", &ometa.GetTableByIDParams{
+    Fields: ometa.Str("*"),
+})
 ```
 
-**Example**
+#### GetByName
+
+Retrieve an entity by fully qualified name (FQN).
+
 ```go
-// main.go
-...
-func main() {
-    ...
-    path := "tables"
-	patchPath := fmt.Sprintf("tables/%s", id)
-	data := []map[string]interface{}{
-		{
-			"op":    "add",
-			"path":  "/description",
-			"value": "This is a test table",
-		},
-	}
-	body, err := rest.Patch(path, data, nil, nil, nil)
+table, err := client.Tables.GetByName(ctx, "service.database.schema.table", nil)
+```
+
+#### Create
+
+Create a new entity.
+
+```go
+table, err := client.Tables.Create(ctx, &ometa.CreateTable{
+    Name:           "customers",
+    DatabaseSchema: "production.analytics_db.public",
+    Columns: []ometa.Column{
+        {Name: "id", DataType: "INT"},
+        {Name: "email", DataType: "STRING"},
+    },
+    Description: ometa.Str("Customer master data"),
+})
+```
+
+#### CreateOrUpdate
+
+Upsert an entity - creates if it doesn't exist, updates if it does.
+
+```go
+table, err := client.Tables.CreateOrUpdate(ctx, &ometa.CreateTable{
+    Name:           "customers",
+    DatabaseSchema: "production.analytics_db.public",
+    Columns: []ometa.Column{
+        {Name: "id", DataType: "INT"},
+        {Name: "email", DataType: "STRING"},
+    },
+    Description: ometa.Str("Updated description"),
+})
+```
+
+#### Patch
+
+Apply JSON Patch operations (RFC 6902) to update specific fields.
+
+```go
+table, err := client.Tables.Patch(ctx, "uuid-here", []ometa.JSONPatchOp{
+    {Op: "add", Path: "/description", Value: "New description"},
+    {Op: "replace", Path: "/displayName", Value: "Customer Records"},
+})
+```
+
+#### Delete / DeleteByName
+
+Delete an entity by ID or fully qualified name. Supports soft and hard deletes.
+
+```go
+// Soft delete by ID
+err := client.Tables.Delete(ctx, "uuid-here", &ometa.DeleteTableParams{
+    HardDelete: ometa.Bool(false),
+})
+
+// Hard delete by name
+err := client.Tables.DeleteByName(ctx, "service.database.schema.table", &ometa.DeleteTable1Params{
+    HardDelete: ometa.Bool(true),
+})
+```
+
+#### Restore
+
+Restore a soft-deleted entity.
+
+```go
+table, err := client.Tables.Restore(ctx, &ometa.RestoreEntity{
+    Id: entityUUID,
+})
+```
+
+#### ListVersions / GetVersion
+
+Access entity version history.
+
+```go
+// Get all versions
+history, err := client.Tables.ListVersions(ctx, "uuid-here")
+
+// Get specific version
+table, err := client.Tables.GetVersion(ctx, "uuid-here", "0.2")
+```
+
+## Pointer Helpers
+
+Since many fields are optional (pointers), the SDK provides helper functions:
+
+```go
+ometa.Str("value")     // returns *string
+ometa.Bool(true)       // returns *bool
+ometa.Int32(100)       // returns *int32
+ometa.Int64(100)       // returns *int64
+ometa.Float32(1.0)     // returns *float32
+ometa.Float64(1.0)     // returns *float64
+ometa.Ptr(value)       // returns *T (generic, works with any type)
+```
+
+## Error Handling
+
+```go
+table, err := client.Tables.GetByID(ctx, "some-id", nil)
+
+if ometa.IsNotFound(err) {
+    fmt.Println("Table not found")
+} else if ometa.IsConflict(err) {
+    fmt.Println("Conflict detected")
+} else if err != nil {
+    if apiErr, ok := err.(*ometa.APIError); ok {
+        fmt.Printf("API Error: %d - %s\n", apiErr.StatusCode, apiErr.Message)
+    }
+    log.Fatal(err)
 }
 ```
 
-### `Delete` method
-**Method signature**
+The `APIError` type provides:
+- `StatusCode` - HTTP status code
+- `Code` - API error code
+- `Message` - Error message
+
+## Common Use Cases
+
+### Create a Database Service, Database, Schema, and Table
+
 ```go
-func (rest Rest) Delete(
-	path string,
-	header http.Header,
-	extraHeader map[string][]string,
-	queryParams map[string]string) (map[string]any, error)
+ctx := context.Background()
+
+// Create database service
+svc, err := client.DatabaseServices.Create(ctx, &ometa.CreateDatabaseService{
+    Name:        "postgres-prod",
+    ServiceType: "Postgres",
+})
+
+// Create database
+db, err := client.Databases.Create(ctx, &ometa.CreateDatabase{
+    Name:    "analytics",
+    Service: "postgres-prod",
+})
+
+// Create schema
+schema, err := client.DatabaseSchemas.Create(ctx, &ometa.CreateDatabaseSchema{
+    Name:     "public",
+    Database: "postgres-prod.analytics",
+})
+
+// Create table
+table, err := client.Tables.Create(ctx, &ometa.CreateTable{
+    Name:           "events",
+    DatabaseSchema: "postgres-prod.analytics.public",
+    Columns: []ometa.Column{
+        {
+            Name:     "event_id",
+            DataType: "INT",
+        },
+        {
+            Name:        "event_type",
+            DataType:    "STRING",
+            Description: ometa.Str("Type of event"),
+        },
+        {
+            Name:     "created_at",
+            DataType: "TIMESTAMP",
+        },
+    },
+    Description: ometa.Str("Application event log"),
+})
 ```
 
-**Example**
+### Iterate Over All Tables
+
 ```go
-// main.go
-...
-func main() {
-    ...
-	path := fmt.Sprintf("tables/%s", id)
-	queryParams := map[string]string{
-		"hardDelete": "true",
-		"recursive":  "true",
-	}
-	rest.Delete(path, nil, nil, queryParams)
+ctx := context.Background()
+count := 0
+
+for table, err := range client.Tables.List(ctx, &ometa.ListTablesParams{
+    Limit:  ometa.Int32(50),
+    Fields: ometa.Str("*"),
+}) {
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("%s (FQN: %s)\n", table.Name, *table.FullyQualifiedName)
+    count++
 }
+
+fmt.Printf("Total: %d tables\n", count)
 ```
+
+### Update Metadata with Patch
+
+```go
+ctx := context.Background()
+
+table, err := client.Tables.Patch(ctx, tableID, []ometa.JSONPatchOp{
+    {Op: "add", Path: "/description", Value: "Production customer data"},
+    {Op: "add", Path: "/displayName", Value: "Customer Records"},
+})
+```
+
+### Soft Delete and Restore
+
+```go
+ctx := context.Background()
+
+// Soft delete
+err := client.Tables.Delete(ctx, tableID, &ometa.DeleteTableParams{
+    HardDelete: ometa.Bool(false),
+})
+
+// Restore
+restored, err := client.Tables.Restore(ctx, &ometa.RestoreEntity{
+    Id: tableID,
+})
+```
+
+### Context with Timeout
+
+```go
+ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+defer cancel()
+
+table, err := client.Tables.GetByName(ctx, "service.db.schema.table", nil)
+```
+
+## Best Practices
+
+1. **Use context timeouts**: Always set appropriate timeouts for API calls to avoid hanging requests
+2. **Handle pagination with iterators**: Use `range` with `List` methods - the SDK handles cursor-based pagination automatically
+3. **Prefer GetByName over GetByID**: Fully qualified names are more readable and easier to manage
+4. **Use Patch for partial updates**: Prefer `Patch` over `CreateOrUpdate` when updating specific fields to avoid overwriting other data
+5. **Check errors with helpers**: Use `ometa.IsNotFound()` and `ometa.IsConflict()` for common error handling patterns
+6. **Soft delete first**: Use soft deletes in production and reserve hard deletes for cleanup operations
