@@ -953,6 +953,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "Microsoft Fabric Pipeline",
+                                        "pages": [
+                                            "connectors/pipeline/microsoftfabricpipeline/index",
+                                            "connectors/pipeline/microsoftfabricpipeline/yaml",
+                                            "connectors/pipeline/microsoftfabricpipeline/troubleshooting"
+                                        ]
+                                    },
+                                    {
                                         "group": "Mulesoft",
                                         "pages": [
                                             "connectors/pipeline/mulesoft/index",

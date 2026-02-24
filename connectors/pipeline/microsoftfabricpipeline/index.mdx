@@ -1,0 +1,79 @@
+---
+title: Microsoft Fabric Pipeline Connector | Collate Pipeline Guide
+description: Connect Microsoft Fabric Data Factory pipelines to Collate with our comprehensive pipeline connector guide. Step-by-step setup, configuration, and metadata extraction for seamless integration.
+slug: /connectors/pipeline/microsoftfabricpipeline
+sidebarTitle: Overview
+---
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import TestConnection from '/snippets/connectors/test-connection.mdx'
+import IngestionScheduleAndDeploy from '/snippets/connectors/ingestion-schedule-and-deploy.mdx'
+import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
+import { MetadataIngestionUi } from '/snippets/components/MetadataIngestionUi.jsx'
+import Related from '/snippets/connectors/pipeline/related.mdx'
+
+<ConnectorDetailsHeader
+  icon='/public/images/connectors/microsoftfabric.webp'
+  name="Microsoft Fabric Pipeline"
+  stage="BETA"
+  collateOnly={true}
+  availableFeatures={["Metadata", "Pipeline Status"]}
+  unavailableFeatures={["Lineage", "Owners", "Tags"]}
+/>
+In this section, we provide guides and references to use the Microsoft Fabric Pipeline connector.
+Configure and schedule Microsoft Fabric pipeline metadata workflows from the Collate UI:
+- [Requirements](#requirements)
+- [Metadata Ingestion](#metadata-ingestion)
+- [Troubleshooting](/connectors/pipeline/microsoftfabricpipeline/troubleshooting)
+
+<Note>
+This connector is available exclusively in **Collate** and is not part of the open-source OpenMetadata distribution.
+</Note>
+
+## Requirements
+### Metadata
+To extract pipeline metadata from Microsoft Fabric, you need to authenticate using an **Azure Service Principal**. The Service Principal must have the following:
+- A registered Azure AD application with `clientId`, `clientSecret`, and `tenantId`
+- The Service Principal must be added as a **Member** of the Microsoft Fabric workspace containing the Data Pipelines
+- In the **Microsoft Fabric Admin Portal**, the setting **"Service Principals can use Fabric APIs"** must be enabled
+
+The connector uses the Microsoft Fabric REST API to:
+- List all Data Pipelines in the specified workspace
+- Retrieve pipeline activity (task) definitions
+- Fetch pipeline run history with activity-level execution status
+
+### Azure Service Principal Setup
+
+1. Register an application in [Azure Active Directory](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)
+2. Create a client secret under **Certificates & secrets**
+3. Note the **Application (client) ID**, **Directory (tenant) ID**, and the **client secret value**
+4. In the Microsoft Fabric Admin Portal, enable **"Service Principals can use Fabric APIs"** under **Developer settings**
+5. In your Fabric workspace, add the Service Principal as a **Member** or **Admin**
+6. Note the **Workspace ID** from the workspace URL: `https://app.fabric.microsoft.com/groups/<workspace-id>/...`
+
+You can find more details in the [Microsoft Fabric documentation](https://learn.microsoft.com/en-us/fabric/admin/metadata-scanning-enable-read-only-apis).
+
+## Metadata Ingestion
+
+<MetadataIngestionUi
+  connector={"MicrosoftFabricPipeline"}
+  selectServicePath={"/public/images/connectors/microsoftfabricpipeline/select-service.png"}
+  addNewServicePath={"/public/images/connectors/microsoftfabricpipeline/add-new-service.png"}
+  serviceConnectionPath={"/public/images/connectors/microsoftfabricpipeline/service-connection.png"}
+/>
+
+## Connection Options
+
+<Steps>
+  <Step title="Connection Options">
+    - **Workspace ID**: The Microsoft Fabric workspace ID where the pipelines are located. Found in the workspace URL: `https://app.fabric.microsoft.com/groups/<workspace-id>/...`.
+    - **Client ID**: Azure Application (client) ID for Service Principal authentication.
+    - **Client Secret**: Azure Application client secret for Service Principal authentication.
+    - **Tenant ID**: Azure Directory (tenant) ID for Service Principal authentication.
+    - **Authority URI** *(Optional)*: Azure Active Directory authority URI. Defaults to `https://login.microsoftonline.com/`.
+    - **Pipeline Filter Pattern** *(Optional)*: Regex to only include/exclude pipelines that match the pattern.
+  </Step>
+  <TestConnection />
+  <ConfigureIngestion />
+  <IngestionScheduleAndDeploy />
+</Steps>
+<Related />

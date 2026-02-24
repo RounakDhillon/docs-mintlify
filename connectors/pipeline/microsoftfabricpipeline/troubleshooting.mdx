@@ -1,0 +1,116 @@
+---
+title: Microsoft Fabric Pipeline Troubleshooting Guide | Collate Support
+description: Fix Microsoft Fabric pipeline connector issues fast with Collate's troubleshooting guide. Get solutions for common problems, error codes, and connection failures.
+slug: /connectors/pipeline/microsoftfabricpipeline/troubleshooting
+sidebarTitle: Troubleshooting
+---
+
+import Troubleshooting from '/snippets/connectors/troubleshooting.mdx'
+
+<Troubleshooting />
+
+## Service Principal Authentication Failed
+
+If you encounter authentication errors when connecting to Microsoft Fabric:
+
+```yaml
+Authentication failed: AADSTS7000215: Invalid client secret provided
+```
+
+This indicates that the client secret for the Azure Service Principal is either incorrect, expired, or not properly configured.
+
+### Resolution
+
+1. **Verify the Client Secret**: Log in to the [Azure Portal](https://portal.azure.com) and navigate to **Azure Active Directory > App registrations**.
+2. Select your application and go to **Certificates & secrets**.
+3. Check if the client secret has expired. If so, create a new client secret.
+4. Update the Microsoft Fabric Pipeline connector configuration with the new client secret value.
+
+## Service Principal Not Added to Workspace
+
+If you encounter errors related to missing permissions:
+
+```yaml
+Error: Access denied. The service principal does not have access to this workspace
+```
+
+This indicates that the Service Principal has not been added as a member of the Fabric Workspace.
+
+### Resolution
+
+1. Open Microsoft Fabric and navigate to the Workspace containing your Data Pipelines.
+2. Click on **Workspace settings** (gear icon).
+3. Go to the **Access** tab and click **Add people or groups**.
+4. Search for your Service Principal by its Application (client) ID or name.
+5. Add it with at least **Member** role to enable pipeline metadata extraction.
+
+## Fabric APIs Not Enabled
+
+If you encounter errors about disabled APIs:
+
+```yaml
+Error: Service principals are not allowed to use Fabric APIs
+```
+
+This indicates that the **"Service Principals can use Fabric APIs"** setting is disabled in the Microsoft Fabric Admin Portal.
+
+### Resolution
+
+1. Log in to the [Microsoft Fabric Admin Portal](https://app.fabric.microsoft.com/admin-portal).
+2. Navigate to **Tenant settings > Developer settings**.
+3. Enable the setting **"Service principals can use Fabric APIs"**.
+4. Specify which security groups can use the API, or enable it for the entire organization.
+5. Wait a few minutes for the change to propagate.
+
+More details can be found in the [Microsoft Fabric documentation](https://learn.microsoft.com/en-us/fabric/admin/service-admin-portal-developer).
+
+## Invalid Workspace ID
+
+If you encounter workspace-related errors:
+
+```yaml
+Error: Workspace 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' not found
+```
+
+This indicates that the workspace ID specified in the configuration is incorrect or the Service Principal does not have access to it.
+
+### Resolution
+
+1. Open Microsoft Fabric and navigate to your workspace.
+2. The workspace ID is found in the URL: `https://app.fabric.microsoft.com/groups/<workspace-id>/...`
+3. Copy the workspace ID from the URL and update the connector configuration.
+4. Ensure the Service Principal has been added as a member of this workspace.
+
+## Pipeline Run History Not Available
+
+If pipeline metadata is ingested but run history is missing:
+
+```yaml
+Warning: No pipeline runs found for pipeline 'MyPipeline'
+```
+
+This may occur if pipelines have not been executed recently or if the Service Principal lacks permissions to view run history.
+
+### Resolution
+
+1. Verify that the pipeline has been executed at least once in Microsoft Fabric.
+2. Ensure the Service Principal has **Member** or **Admin** role in the workspace (not just **Viewer**).
+3. Check the pipeline filter pattern in the connector configuration to ensure the pipeline is not being excluded.
+4. Verify that the pipeline is not in a different workspace than the one specified in the configuration.
+
+## Connection Timeout Issues
+
+If you encounter timeout errors when connecting to Microsoft Fabric APIs:
+
+```yaml
+TimeoutError: Connection timeout after 30 seconds
+```
+
+This may occur if the Fabric API is not accessible or if there are network connectivity issues.
+
+### Resolution
+
+1. **Verify Network Access**: Ensure that the system running the ingestion can reach the Microsoft Fabric API endpoints.
+2. **Check Firewall Rules**: Verify that outbound HTTPS (port 443) traffic to `*.fabric.microsoft.com` is allowed.
+3. **Retry the Connection**: Transient network issues may cause timeouts. Try running the ingestion again.
+4. **Check Fabric Service Status**: Visit the [Microsoft 365 Service Health Dashboard](https://admin.microsoft.com/Adminportal/Home#/servicehealth) to verify there are no ongoing outages.
