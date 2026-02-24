@@ -502,6 +502,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "StarRocks",
+                                        "pages": [
+                                            "connectors/database/starrocks/index",
+                                            "connectors/database/starrocks/yaml",
+                                            "connectors/database/starrocks/troubleshooting"
+                                        ]
+                                    },
+                                    {
                                         "group": "Synapse",
                                         "pages": [
                                             "connectors/database/synapse/index",
