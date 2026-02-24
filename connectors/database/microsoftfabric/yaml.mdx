@@ -1,0 +1,207 @@
+---
+title: Run the Microsoft Fabric Connector Externally
+description: Use YAML to configure Microsoft Fabric ingestion in Collate, enabling structured metadata extraction for Fabric Warehouses and Lakehouses using Azure Service Principal authentication.
+slug: /connectors/database/microsoftfabric/yaml
+sidebarTitle: Run Externally
+mode: "wide"
+---
+import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
+import { CodePreview, ContentPanel, ContentSection, CodePanel } from '/snippets/components/CodePreview.jsx'
+import AutoClassification from '/snippets/connectors/yaml/auto-classification.mdx'
+import DataProfiler from '/snippets/connectors/yaml/data-profiler.mdx'
+import IngestionSinkDef from '/snippets/connectors/yaml/ingestion-sink-def.mdx'
+import WorkflowConfigDef from '/snippets/connectors/yaml/workflow-config-def.mdx'
+import IngestionCli from '/snippets/connectors/yaml/ingestion-cli.mdx'
+import PythonRequirements from '/snippets/connectors/python-requirements.mdx'
+import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
+import IngestionSink from '/snippets/connectors/yaml/ingestion-sink.mdx'
+import WorkflowConfig from '/snippets/connectors/yaml/workflow-config.mdx'
+import SourceConfigDef from '/snippets/connectors/yaml/database/source-config-def.mdx'
+import SourceConfig from '/snippets/connectors/yaml/database/source-config.mdx'
+import DataQuality from '/snippets/connectors/yaml/data-quality.mdx'
+
+<ConnectorDetailsHeader
+  icon='/public/images/connectors/microsoftfabric.webp'
+  name="Microsoft Fabric"
+  stage="BETA"
+  collateOnly={true}
+  availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "Stored Procedures"]}
+  unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "Tags"]}
+/>
+In this section, we provide guides and references to use the Microsoft Fabric connector.
+Configure and schedule Microsoft Fabric metadata workflows from the Collate UI:
+- [Requirements](#requirements)
+- [Metadata Ingestion](#metadata-ingestion)
+- [Data Profiler](#data-profiler)
+- [Data Quality](#data-quality)
+<ExternalIngestionDeployment />
+## Requirements
+### Python Requirements
+<PythonRequirements />
+To run the Microsoft Fabric ingestion, you will need to install:
+```bash
+pip3 install "collate-ingestion[microsoftfabric]"
+```
+## Metadata Ingestion
+All connectors are defined as JSON Schemas.
+[Here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/database/microsoftFabricConnection.json)
+you can find the structure to create a connection to Microsoft Fabric.
+In order to create and run a Metadata Ingestion workflow, we will follow
+the steps to create a YAML configuration able to connect to the source,
+process the Entities if needed, and reach the Collate server.
+The workflow is modeled around the following
+[JSON Schema](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/metadataIngestion/workflow.json)
+### 1. Define the YAML Config
+This is a sample config for Microsoft Fabric:
+<CodePreview>
+  <ContentPanel>
+    <ContentSection id={1} title="Source Configuration" lines="1-3">
+      Configure the source type and service name for your Microsoft Fabric connector.
+    </ContentSection>
+    <ContentSection id={2} title="Host and Port" lines="7">
+      **hostPort**: SQL endpoint of the Microsoft Fabric Warehouse or Lakehouse. This should be the fully qualified domain name with port (e.g., `your-workspace.datawarehouse.fabric.microsoft.com:1433`).
+    </ContentSection>
+    <ContentSection id={3} title="Client ID" lines="8">
+      **clientId**: Azure Application (client) ID for Service Principal authentication. Found in the Azure AD app registration overview page.
+    </ContentSection>
+    <ContentSection id={4} title="Client Secret" lines="9">
+      **clientSecret**: Azure Application client secret value. Created under **Certificates & secrets** in the Azure AD app registration.
+    </ContentSection>
+    <ContentSection id={5} title="Tenant ID" lines="10">
+      **tenantId**: Azure Directory (tenant) ID. Found in the Azure AD overview page or app registration overview.
+    </ContentSection>
+    <ContentSection id={6} title="Database" lines="11">
+      **database** (Optional): Name of the specific Fabric Warehouse or Lakehouse to ingest. When left blank, Collate Ingestion attempts to scan all databases.
+    </ContentSection>
+    <ContentSection id={7} title="Driver" lines="12">
+      **driver** (Optional): ODBC driver version. Defaults to `ODBC Driver 18 for SQL Server`.
+    </ContentSection>
+    <ContentSection id={8} title="Ingest All Databases" lines="13">
+      **ingestAllDatabases** (Optional): When `true`, ingest all Warehouses and Lakehouses in Microsoft Fabric. Can be combined with `databaseFilterPattern`. Defaults to `false`.
+    </ContentSection>
+    <ContentSection id={9} title="Schema Filter Pattern" lines="14-19">
+      **schemaFilterPattern** (Optional): Regex to only include/exclude schemas. System schemas (`db_*`, `guest`, `information_schema`, `sys`) are excluded by default.
+    </ContentSection>
+    <ContentSection id={10} title="Table Filter Pattern" lines="20-23">
+      **tableFilterPattern** (Optional): Regex to only include/exclude tables that match the pattern.
+    </ContentSection>
+    <ContentSection id={11} title="Database Filter Pattern" lines="24-28">
+      **databaseFilterPattern** (Optional): Regex to only include/exclude databases (Warehouses/Lakehouses) that match the pattern.
+    </ContentSection>
+    <ContentSection id={12} title="Source Config" lines="29-72">
+      <SourceConfigDef />
+    </ContentSection>
+    <ContentSection id={13} title="Sink Configuration" lines="73-75">
+      <IngestionSinkDef />
+    </ContentSection>
+    <ContentSection id={14} title="Workflow Configuration" lines="76-92">
+      <WorkflowConfigDef />
+    </ContentSection>
+  </ContentPanel>
+  <CodePanel fileName="microsoftfabric_config.yaml">
+```yaml
+source:
+  type: microsoftfabric
+  serviceName: local_microsoftfabric
+  serviceConnection:
+    config:
+      type: MicrosoftFabric
+      hostPort: your-workspace.datawarehouse.fabric.microsoft.com:1433
+      clientId: your-client-id
+      clientSecret: your-client-secret
+      tenantId: your-tenant-id
+      # database: MyWarehouse
+      # driver: ODBC Driver 18 for SQL Server
+      # ingestAllDatabases: false
+      # schemaFilterPattern:
+      #   excludes:
+      #     - ^db_.*
+      #     - ^guest$
+      #     - ^information_schema$
+      #     - ^sys$
+      # tableFilterPattern:
+      #   includes:
+      #     - fact_.*
+      #     - dim_.*
+      # databaseFilterPattern:
+      #   includes:
+      #     - prod_.*
+      #   excludes:
+      #     - test_.*
+```
+<SourceConfig />
+<IngestionSink />
+<WorkflowConfig />
+</CodePanel>
+</CodePreview>
+### Configuration Examples
+#### Basic Configuration
+```yaml
+source:
+  type: microsoftfabric
+  serviceName: fabric_prod
+  serviceConnection:
+    config:
+      type: MicrosoftFabric
+      hostPort: your-workspace.datawarehouse.fabric.microsoft.com:1433
+      clientId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      clientSecret: your_client_secret_value
+      tenantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+```
+#### Single Warehouse with Schema Filtering
+```yaml
+source:
+  type: microsoftfabric
+  serviceName: fabric_analytics
+  serviceConnection:
+    config:
+      type: MicrosoftFabric
+      hostPort: your-workspace.datawarehouse.fabric.microsoft.com:1433
+      clientId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      clientSecret: your_client_secret_value
+      tenantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      database: SalesWarehouse
+      schemaFilterPattern:
+        includes:
+          - sales_.*
+          - marketing_.*
+        excludes:
+          - ^db_.*
+          - ^sys$
+          - ^information_schema$
+      tableFilterPattern:
+        includes:
+          - fact_.*
+          - dim_.*
+```
+#### Ingest All Warehouses and Lakehouses
+```yaml
+source:
+  type: microsoftfabric
+  serviceName: fabric_all
+  serviceConnection:
+    config:
+      type: MicrosoftFabric
+      hostPort: your-workspace.datawarehouse.fabric.microsoft.com:1433
+      clientId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      clientSecret: your_client_secret_value
+      tenantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      ingestAllDatabases: true
+      databaseFilterPattern:
+        includes:
+          - prod_.*
+          - analytics_.*
+        excludes:
+          - test_.*
+          - dev_.*
+```
+<IngestionCli />
+<DataProfiler connector="microsoftfabric" />
+<AutoClassification connector="microsoftfabric" />
+<DataQuality />
+## Related
+<Columns cols={2}>
+  <Card title="Configure Ingestion Externally" href="/deployment/ingestion">
+    Deploy, configure, and manage the ingestion workflows externally.
+  </Card>
+</Columns>

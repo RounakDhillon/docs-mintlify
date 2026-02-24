@@ -357,6 +357,14 @@
                                         ]
                                     },
                                     {
+                                        "group": "Microsoft Fabric",
+                                        "pages": [
+                                            "connectors/database/microsoftfabric/index",
+                                            "connectors/database/microsoftfabric/yaml",
+                                            "connectors/database/microsoftfabric/troubleshooting"
+                                        ]
+                                    },
+                                    {
                                         "group": "MongoDB",
                                         "pages": [
                                             "connectors/database/mongodb/index",

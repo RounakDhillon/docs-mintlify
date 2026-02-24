@@ -1,0 +1,108 @@
+---
+title: Microsoft Fabric Troubleshooting Guide | Collate Support
+description: Fix Microsoft Fabric connector issues fast with Collate's troubleshooting guide. Get solutions for common problems, error codes, and connection failures.
+slug: /connectors/database/microsoftfabric/troubleshooting
+sidebarTitle: Troubleshooting
+---
+
+import Troubleshooting from '/snippets/connectors/troubleshooting.mdx'
+
+<Troubleshooting />
+
+## Service Principal Authentication Failed
+
+If you encounter authentication errors when connecting to Microsoft Fabric:
+
+```yaml
+Authentication failed: AADSTS7000215: Invalid client secret provided
+```
+
+This indicates that the client secret for the Azure Service Principal is either incorrect, expired, or not properly configured.
+
+### Resolution
+
+1. **Verify the Client Secret**: Log in to the [Azure Portal](https://portal.azure.com) and navigate to **Azure Active Directory > App registrations**.
+2. Select your application and go to **Certificates & secrets**.
+3. Check if the client secret has expired. If so, create a new client secret.
+4. Update the Microsoft Fabric connector configuration with the new client secret value.
+
+## Service Principal Not Added to Workspace
+
+If you encounter errors related to missing permissions:
+
+```yaml
+Error: Access denied. The service principal does not have access to this workspace
+```
+
+This indicates that the Service Principal has not been added as a member of the Fabric Workspace.
+
+### Resolution
+
+1. Open Microsoft Fabric and navigate to the Workspace containing your Warehouses/Lakehouses.
+2. Click on **Workspace settings** (gear icon).
+3. Go to the **Access** tab and click **Add people or groups**.
+4. Search for your Service Principal by its Application (client) ID or name.
+5. Add it with at least **Viewer** role to enable metadata extraction.
+
+## ODBC Driver Not Found
+
+If you encounter ODBC driver errors:
+
+```yaml
+pyodbc.Error: ('01000', "[01000] [unixODBC][Driver Manager]Can't open lib 'ODBC Driver 18 for SQL Server'")
+```
+
+This indicates that the required ODBC driver is not installed on the system running the ingestion.
+
+### Resolution
+
+**For Linux:**
+```bash
+curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
+sudo apt-get update
+sudo ACCEPT_EULA=Y apt-get install -y msodbcsql18
+```
+
+**For macOS:**
+```bash
+brew tap microsoft/mssql-release https://github.com/Microsoft/homebrew-mssql-release
+brew update
+brew install msodbcsql18
+```
+
+**For Windows:**
+Download and install the ODBC Driver from [Microsoft's official page](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server).
+
+## Connection Timeout Issues
+
+If you encounter timeout errors when connecting to Microsoft Fabric:
+
+```yaml
+TimeoutError: Connection timeout after 30 seconds
+```
+
+This may occur if the SQL endpoint is not accessible or if there are network connectivity issues.
+
+### Resolution
+
+1. **Verify the Host and Port**: Ensure that the `hostPort` value is correct (e.g., `your-workspace.datawarehouse.fabric.microsoft.com:1433`).
+2. **Check Network Access**: Verify that the system running the ingestion can reach the Microsoft Fabric SQL endpoint.
+3. **Firewall Rules**: Ensure that port 1433 is open and not blocked by firewalls.
+4. **Workspace Status**: Verify that the Microsoft Fabric Workspace and Warehouse/Lakehouse are active and running.
+
+## Database Not Found
+
+If the specified database cannot be found:
+
+```yaml
+Error: Database 'MyWarehouse' does not exist
+```
+
+This indicates that the database name specified in the configuration does not match any Warehouse or Lakehouse in your Microsoft Fabric workspace.
+
+### Resolution
+
+1. Log in to Microsoft Fabric and verify the exact name of your Warehouse or Lakehouse.
+2. Update the `database` field in the connector configuration with the correct name (case-sensitive).
+3. Alternatively, leave the `database` field empty to scan all databases, or set `ingestAllDatabases: true` to ingest from all Warehouses and Lakehouses.
