@@ -49,7 +49,7 @@ Here you can enter the Lineage Agent details:
 
 **Result Limit:** Set the limit for the query log results to be run at a time. This is the **number of rows**.
 
-**Filter Condition:** We execute a query on query history table of the respective data source to perform the query analysis and extract the lineage and usage information. This field will be useful when you want to restrict some queries from being part of this analysis. In this field you can specify a sql condition that will be applied on the query history result set. You can check more about [Usage Query Filtering here](/connectors/ingestion/workflows/usage/filter-query-set).
+**Filter Condition:** We execute a query on query history table of the respective data source to perform the query analysis and extract the lineage and usage information. This field will be useful when you want to restrict some queries from being part of this analysis. In this field you can specify a sql condition that will be applied on the query history result set. You can check more about [Usage Query Filtering here](/how-to-guides/guide-for-data-users/ingestion/workflows/usage/filter-query-set).
 
 ### 3. Schedule and Deploy
 
@@ -64,11 +64,11 @@ After clicking Next, you will be redirected to the Scheduling form. This will be
 
 We can also generate lineage through [dbt ingestion](/connectors/database/dbt/configure-dbt-workflow). The dbt workflow can fetch queries that carry lineage information. For a dbt ingestion pipeline, the path to the Catalog and Manifest files must be specified. We also fetch the column level lineage through dbt.
 
-You can learn more about [lineage ingestion here](/connectors/ingestion/lineage).
+You can learn more about [lineage ingestion here](/how-to-guides/guide-for-data-users/ingestion/lineage).
 
 ## Query Logs using CSV File
 
-Lineage ingestion is supported for a few connectors as mentioned earlier. For the unsupported connectors, you can set up [Lineage Workflows using Query Logs](/connectors/ingestion/workflows/lineage/lineage-workflow-query-logs) using a CSV file.
+Lineage ingestion is supported for a few connectors as mentioned earlier. For the unsupported connectors, you can set up [Lineage Workflows using Query Logs](/how-to-guides/guide-for-data-users/ingestion/workflows/lineage/lineage-workflow-query-logs) using a CSV file.
 
 ## Manual Lineage
 

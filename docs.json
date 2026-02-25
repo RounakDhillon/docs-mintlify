@@ -1104,77 +1104,6 @@
                                         ]
                                     }
                                 ]
-                            },
-                            {
-                                "group": "Ingestion",
-                                "pages": [
-                                    "connectors/ingestion/index",
-                                    "connectors/ingestion/best-practices",
-                                    "connectors/ingestion/great-expectations",
-                                    {
-                                        "group": "Deployment",
-                                        "pages": [
-                                            "connectors/ingestion/deployment/index"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Lineage",
-                                        "pages": [
-                                            "connectors/ingestion/lineage/index",
-                                            "connectors/ingestion/lineage/edit-lineage-manually",
-                                            "connectors/ingestion/lineage/export-lineage",
-                                            "connectors/ingestion/lineage/spark-lineage"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Versioning",
-                                        "pages": [
-                                            "connectors/ingestion/versioning/index",
-                                            "connectors/ingestion/versioning/change-events",
-                                            "connectors/ingestion/versioning/change-feeds",
-                                            "connectors/ingestion/versioning/event-notification-via-webhooks"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Workflows",
-                                        "pages": [
-                                            "connectors/ingestion/workflows/index",
-                                            {
-                                                "group": "Metadata",
-                                                "pages": [
-                                                    "connectors/ingestion/workflows/metadata/index",
-                                                    "connectors/ingestion/workflows/metadata/filter-patterns/index",
-                                                    "connectors/ingestion/workflows/metadata/filter-patterns/database",
-                                                    {
-                                                        "group": "Incremental Extraction",
-                                                        "pages": [
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/index",
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/bigquery",
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/redshift",
-                                                            "connectors/ingestion/workflows/metadata/incremental-extraction/snowflake"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "group": "Usage",
-                                                "pages": [
-                                                    "connectors/ingestion/workflows/usage/index",
-                                                    "connectors/ingestion/workflows/usage/filter-query-set",
-                                                    "connectors/ingestion/workflows/usage/usage-workflow-query-logs"
-                                                ]
-                                            },
-                                            {
-                                                "group": "Lineage",
-                                                "pages": [
-                                                    "connectors/ingestion/workflows/lineage/index",
-                                                    "connectors/ingestion/workflows/lineage/filter-query-set",
-                                                    "connectors/ingestion/workflows/lineage/lineage-workflow-query-logs"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -1328,7 +1257,72 @@
                             "how-to-guides/guide-for-data-users/add-announcement",
                             "how-to-guides/guide-for-data-users/versions",
                             "how-to-guides/guide-for-data-users/delete",
-                            "how-to-guides/guide-for-data-users/browser-ext"
+                            "how-to-guides/guide-for-data-users/browser-ext",
+                            {
+                                "group": "Ingestion",
+                                "pages": [
+                                    "how-to-guides/guide-for-data-users/ingestion/index",
+                                    "how-to-guides/guide-for-data-users/ingestion/best-practices",
+                                    "how-to-guides/guide-for-data-users/ingestion/great-expectations",
+                                    {
+                                        "group": "Lineage",
+                                        "pages": [
+                                            "how-to-guides/guide-for-data-users/ingestion/lineage/index",
+                                            "how-to-guides/guide-for-data-users/ingestion/lineage/edit-lineage-manually",
+                                            "how-to-guides/guide-for-data-users/ingestion/lineage/export-lineage",
+                                            "how-to-guides/guide-for-data-users/ingestion/lineage/spark-lineage"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Versioning",
+                                        "pages": [
+                                            "how-to-guides/guide-for-data-users/ingestion/versioning/index",
+                                            "how-to-guides/guide-for-data-users/ingestion/versioning/change-events",
+                                            "how-to-guides/guide-for-data-users/ingestion/versioning/change-feeds",
+                                            "how-to-guides/guide-for-data-users/ingestion/versioning/event-notification-via-webhooks"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Workflows",
+                                        "pages": [
+                                            "how-to-guides/guide-for-data-users/ingestion/workflows/index",
+                                            {
+                                                "group": "Metadata",
+                                                "pages": [
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/metadata/index",
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/metadata/filter-patterns/index",
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/metadata/filter-patterns/database",
+                                                    {
+                                                        "group": "Incremental Extraction",
+                                                        "pages": [
+                                                            "how-to-guides/guide-for-data-users/ingestion/workflows/metadata/incremental-extraction/index",
+                                                            "how-to-guides/guide-for-data-users/ingestion/workflows/metadata/incremental-extraction/bigquery",
+                                                            "how-to-guides/guide-for-data-users/ingestion/workflows/metadata/incremental-extraction/redshift",
+                                                            "how-to-guides/guide-for-data-users/ingestion/workflows/metadata/incremental-extraction/snowflake"
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "group": "Usage",
+                                                "pages": [
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/usage/index",
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/usage/filter-query-set",
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/usage/usage-workflow-query-logs"
+                                                ]
+                                            },
+                                            {
+                                                "group": "Lineage",
+                                                "pages": [
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/lineage/index",
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/lineage/filter-query-set",
+                                                    "how-to-guides/guide-for-data-users/ingestion/workflows/lineage/lineage-workflow-query-logs"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ]
@@ -2361,6 +2355,14 @@
         {
             "source": "/how-to-guides/data-quality-observability/profiler/workflow",
             "destination": "/how-to-guides/data-quality-observability/profiler/profiler-workflow"
+        },
+        {
+            "source": "/connectors/ingestion",
+            "destination": "/how-to-guides/guide-for-data-users/ingestion"
+        },
+        {
+            "source": "/connectors/ingestion/:path*",
+            "destination": "/how-to-guides/guide-for-data-users/ingestion/:path*"
         }
     ],
     "api": {
