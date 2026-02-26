@@ -558,6 +558,14 @@ a.link:hover {
   font-weight: 600;
 }
 
+/* Highlight the How-To Guides tab when on any how-to-guides sub-page */
+#navbar .nav-tabs:has(a[href^="/how-to-guides/"].text-primary) a.nav-tabs-item[href="/how-to-guides"] {
+  color: white;
+  background-color: #252B37;
+  border-radius: 100px;
+  font-weight: 600;
+}
+
 #navbar .h-10 {
   height: auto !important;
 }
