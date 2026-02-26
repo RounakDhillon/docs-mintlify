@@ -82,6 +82,11 @@ export const Integrations = () => {
                     link: '/connectors/database/domo-database',
                 },
                 {
+                    name: 'Dremio',
+                    image: '/public/images/connectors/dremio.webp',
+                    link: '/connectors/database/dremio',
+                },
+                {
                     name: 'Druid',
                     image: '/public/images/connectors/druid.webp',
                     link: '/connectors/database/druid',
@@ -145,6 +150,11 @@ export const Integrations = () => {
                     name: 'MariaDB',
                     image: '/public/images/connectors/mariadb.webp',
                     link: '/connectors/database/mariadb',
+                },
+                {
+                    name: 'Microsoft Fabric',
+                    image: '/public/images/connectors/microsoftfabric.webp',
+                    link: '/connectors/database/microsoftfabric',
                 },
                 {
                     name: 'Microsoft SSAS',
@@ -220,6 +230,11 @@ export const Integrations = () => {
                     name: 'SQLite',
                     image: '/public/images/connectors/sqlite.webp',
                     link: '/connectors/database/sqlite',
+                },
+                {
+                    name: 'StarRocks',
+                    image: '/public/images/connectors/starrocks.webp',
+                    link: '/connectors/database/starrocks',
                 },
                 {
                     name: 'Synapse',
@@ -412,6 +427,11 @@ export const Integrations = () => {
                     link: '/connectors/pipeline/ssis',
                 },
                 {
+                    name: 'Mulesoft',
+                    image: '/public/images/connectors/mulesoft.webp',
+                    link: '/connectors/pipeline/mulesoft',
+                },
+                {
                     name: 'Snowplow',
                     image: '/public/images/connectors/snowplow.png',
                     link: '/connectors/pipeline/snowplow',
@@ -515,6 +535,11 @@ export const Integrations = () => {
                     name: 'Google Drive',
                     image: '/public/images/connectors/googledrive.webp',
                     link: '/connectors/drive/googledrive',
+                },
+                {
+                    name: 'SFTP',
+                    image: '/public/images/connectors/sftp.webp',
+                    link: '/connectors/drive/sftp',
                 },
             ],
         },

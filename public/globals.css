@@ -756,6 +756,13 @@ body:not(:has(.homepage-container)) .mdx-content h1::before,
   flex-shrink: 0;
 }
 
+h1.ConnectorName::before {
+  margin-top: -40px;
+  position: absolute;
+  top: -2px;
+  left: 0px;
+}
+
 /* Hide search bar only when homepage-container class is present */
 body:has(.homepage-container) #search-bar-entry, body:has(.homepage-container) #assistant-entry {
   display: none !important;
@@ -985,6 +992,10 @@ article iframe,
 
 .callout [data-component-part="callout-content"] {
   color: #414651 !important;
+}
+
+.chat-assistant-floating-input {
+  max-width: 370px !important;
 }
 
 /* Parent div of chat assistant sheet */

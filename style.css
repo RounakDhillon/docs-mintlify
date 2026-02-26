@@ -95,7 +95,8 @@
 }
 
 .release-banner-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 50px;
     align-items: center;
 }
@@ -372,7 +373,7 @@ a.guide-card img {
 
 .explore-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .explore-items {
@@ -695,7 +696,7 @@ a.guide-card img {
 
 @media (max-width: 1024px) {
     .release-banner-content {
-        flex-direction: column;
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .release-banner h2 {
