@@ -2,7 +2,7 @@
 title: Cassandra Connector | Collate Database Integration
 description: Connect Cassandra to Collate with our database connector. Step-by-step setup guide, configuration options, and metadata extraction for your NoSQL database.
 slug: /connectors/database/cassandra
-sidebarTitle: SaaS/BYOC
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -32,9 +32,16 @@ To extract metadata using the Cassandra connector, ensure the user in the connec
 # Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **Username**: Username to connect to Cassandra. This user must have the necessary permissions to perform metadata extraction and table queries.
-- **Host Port**: When using the `cassandra` connection schema, the hostPort parameter specifies the host and port of the Cassandra. This should be specified as a string in the format `hostname:port`. E.g., `localhost:9042`.
-- **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
+- **Host Port**: When using the `cassandra` connecion schema, the hostPort parameter specifies the host and port of the Cassandra. This should be specified as a string in the format `hostname:port`. E.g., `localhost:9042`.- **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
 **Auth Type**: Following authentication types are supported:
 1. **Basic Authentication**:
 We'll use the user credentials to connect to Cassandra
@@ -64,6 +71,15 @@ In order to integrate SSL in the Metadata Ingestion Config, the user will have t
 To establish secure connections between OpenMetadata and a Cassandra database, you can use any SSL mode provided by Cassandra, except disable.
 Under `Advanced Config`, after selecting the SSL mode, provide the CA certificate, SSL certificate and SSL key.
 <img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

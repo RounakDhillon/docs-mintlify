@@ -2,7 +2,7 @@
 title: CockroachDB Connector | Collate Integration Guide
 description: Set up CockroachDB connector in Collate to discover, catalog, and manage your database metadata. Complete integration guide with configuration steps.
 slug: /connectors/database/cockroach
-sidebarTitle: SaaS/BYOC
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -25,11 +25,25 @@ Configure and schedule Cockroach metadata workflows from the OpenMetadata UI:
 - [Data Quality](/how-to-guides/data-quality-observability/quality)
 - [Troubleshooting](/connectors/database/cockroach/troubleshooting)
 ## Requirements
+To use the Cockroach connector with the Hybrid Ingestion Runner, ensure:
+- You have a running CockroachDB cluster (self‑hosted or cloud) reachable from the Hybrid Runner environment.
+- Network access (host, port, and any VPN/firewall rules) allows the Hybrid Runner to connect to Cockroach.
+- A database user exists with sufficient read privileges to list databases, schemas, tables, views, and columns.
+- TLS and certificates are configured, if required by your Cockroach deployment.
+- The Hybrid Ingestion Runner is installed and configured, and can reach both CockroachDB and the Collate SaaS control plane.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"CockroachDB"} selectServicePath={"/public/images/connectors/cockroach/select-service.png"} addNewServicePath={"/public/images/connectors/cockroach/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/cockroach/service-connection.png"} />
 # Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **Username**: Specify the User to connect to Cockroach. It should have enough privileges to read all the metadata.
 - **Auth Type**: Basic Auth or IAM based auth to connect to instances / cloud rds.
   - **Basic Auth**:
@@ -55,6 +69,15 @@ In order to integrate SSL in the Metadata Ingestion Config, the user will have t
 To establish secure connections between OpenMetadata and a Cockroach database, you can configure SSL using different SSL modes provided by Cockroach, each offering varying levels of security.
 Under `Advanced Config`, specify the SSL mode appropriate for your connection, such as `prefer`, `verify-ca`, `allow`, and others. After selecting the SSL mode, provide the CA certificate used for SSL validation (`caCertificate`). Note that Cockroach requires only the CA certificate for SSL validation.
 <img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

@@ -2,7 +2,7 @@
 title: ClickHouse Connector | Collate Database Integration
 description: Learn how to connect ClickHouse databases to Collate with our comprehensive connector guide. Setup instructions, configuration options, and trouble...
 slug: /connectors/database/clickhouse
-sidebarTitle: SaaS/BYOC
+sidebarTitle: Hybrid Runner
 ---
 import ReverseMetadata from '/snippets/connectors/database/clickhouse/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -26,7 +26,6 @@ Configure and schedule Clickhouse metadata and profiler workflows from the OpenM
   - [Usage \& Lineage](#usage-&-lineage)
 - [Metadata Ingestion](#metadata-ingestion)
     - [Connection Options](#connection-options)
-    - [Metadata Ingestion Options](#metadata-ingestion-options)
 - [Troubleshooting](/connectors/database/clickhouse/troubleshooting)
 - [Related](#related)
 - [Reverse Metadata](#reverse-metadata)
@@ -54,6 +53,14 @@ For the usage and lineage workflow, the user will need `SELECT` privilege. You c
 # Connection Options
 <Steps>
 <Step title="Connection Options">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **Username**: Specify the User to connect to Clickhouse. It should have enough privileges to read all the metadata.
 - **Password**: Password to connect to Clickhouse.
 - **Host and Port**: Enter the fully qualified hostname and port number for your Clickhouse deployment in the Host and Port field.
@@ -67,6 +74,15 @@ For the usage and lineage workflow, the user will need `SELECT` privilege. You c
 <IngestionScheduleAndDeploy />
 </Steps>
 <ReverseMetadata />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 
