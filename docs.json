@@ -1759,6 +1759,16 @@
                         ]
                     },
                     {
+                        "group": "AI SDK",
+                        "pages": [
+                            "sdk/ai",
+                            "sdk/ai/invoke",
+                            "sdk/ai/create-agent",
+                            "sdk/ai/create-persona",
+                            "sdk/ai/mcp-tools"
+                        ]
+                    },
+                    {
                         "group": "OpenMetadata Standards",
                         "pages": [
                             "sdk/openmetadata-standards"
