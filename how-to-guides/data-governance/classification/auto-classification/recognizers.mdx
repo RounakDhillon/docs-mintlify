@@ -1,0 +1,252 @@
+---
+title: Custom recognizers for Auto-Classification | Collate Documentation
+description: Configure custom detection rules to automatically identify and tag sensitive data using pattern matching, exact terms, and pre-built recognizers.
+slug: /how-to-guides/data-governance/classification/auto-classification/recognizers
+sidebarTitle: Custom recognizers
+---
+
+# Custom recognizers
+
+Custom recognizers let you configure detection rules that automatically identify and tag sensitive data during profiling and ingestion. Unlike the default auto-classification, recognizers give you full control over what patterns to detect and how to tag them.
+
+## What are recognizers?
+
+recognizers are configurable detection rules attached to classification tags. When profiling runs, recognizers analyze your data and automatically apply tags when they detect matching patterns. Each auto-applied tag includes metadata showing which recognizer detected it and the confidence score.
+
+**Key benefits:**
+- **Customizable detection**: Define your own patterns for organization-specific data (employee IDs, internal codes, custom formats)
+- **Multiple detection methods**: Use regex patterns, exact terms, or 45+ pre-built detectors
+- **Learning from feedback**: Users can report false positives, which automatically refine recognizer behavior
+- **Confidence-based tagging**: Set minimum confidence thresholds to control precision
+
+## Recognizer types
+
+### Pattern recognizers
+
+Use regular expressions to match structured data formats.
+
+**Best for:**
+- Emails, phone numbers, IP addresses
+- Custom organizational patterns (employee IDs: `EMP-\d{5}`)
+- Any data following predictable patterns
+
+**Example:**
+```
+Pattern: \b\d{3}[-.]?\d{3}[-.]?\d{4}\b
+Detects: US phone numbers (123-456-7890, 123.456.7890)
+```
+
+### Exact Terms recognizers
+
+Match specific values from a predefined list.
+
+**Best for:**
+- Known sensitive values (internal project codes, department names)
+- Fixed vocabularies (country codes, status values)
+- Cases requiring exact matches (no pattern variation)
+
+**Example:**
+```
+Terms: ["PROJECT_ALPHA", "PROJECT_BETA", "PROJECT_GAMMA"]
+Detects: Exact matches of confidential project codes
+```
+
+### Predefined recognizers
+
+Built-in detectors from Microsoft Presidio (45+ recognizers).
+
+**Best for:**
+- Standard PII (credit cards, SSNs, passports)
+- International identifiers (IBANs, UK NHS numbers, ES NIF)
+- When you don't want to write custom regex
+
+**Categories:**
+- **Financial**: CreditCardRecognizer, IbanRecognizer, UsBankRecognizer
+- **Personal ID**: UsSsnRecognizer, UsPassportRecognizer, InPanRecognizer, InAadhaarRecognizer
+- **Healthcare**: NhsRecognizer, MedicalLicenseRecognizer
+- **Contact**: EmailRecognizer, PhoneRecognizer, UrlRecognizer
+
+## Creating a Recognizer
+
+1. Navigate to **Govern > Classification**
+2. Select a classification (e.g., "PII")
+3. Click on a tag within that classification
+4. Go to the **recognizers** tab
+5. Click **Add Recognizer**
+   <img src="/public/images/how-to-guides/governance/recognizers-page.png" alt="recognizers Page" />
+6. Configure the recognizer:
+   - **Name**: Unique identifier (e.g., `email_pattern`)
+   - **Display Name**: Human-readable name (e.g., "Email Pattern Detector")
+   - **Description**: What this recognizer detects
+   - **Target**: Choose where to analyze:
+     - **Content**: Analyze actual data values
+     - **Column Name**: Analyze only column/field names
+   - **Confidence Threshold**: Minimum score (0.0-1.0) to apply tag (default: 0.6)
+   <img src="/public/images/how-to-guides/governance/new-recognizer.png" alt="New Recognizer Form" />
+7. Configure type-specific settings (see below)
+8. Click **Submit**
+
+### Pattern Recognizer Settings
+
+- **Patterns**: Add one or more regex patterns, each with:
+  - **Name**: Descriptive label
+  - **Regex**: Regular expression
+  - **Score**: Confidence for this pattern (0.0-1.0)
+- **Context Words** (optional): Words that boost confidence when found near matches (e.g., ["email", "contact"] for email detection)
+- **Regex Flags**: Configure case sensitivity, multi-line, etc.
+
+**Example: Email Detection**
+```
+Name: email_pattern
+Target: Content
+Patterns:
+  - Name: "Standard Email"
+    Regex: [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}
+    Score: 0.9
+Context: ["email", "e-mail", "contact"]
+Confidence Threshold: 0.7
+```
+
+### Exact Terms Settings
+
+- **Exact Terms**: List of exact strings to match
+- **Ignore Case**: Whether to match case-insensitively
+
+**Example: Internal Codes**
+```
+Name: internal_dept_codes
+Target: Content
+Exact Terms:
+  - DEPT_001_CONFIDENTIAL
+  - DEPT_002_RESTRICTED
+Ignore Case: true
+Confidence Threshold: 0.9
+```
+
+### Predefined Recognizer Settings
+
+- **Predefined Recognizer**: Select from dropdown (e.g., "UsSsnRecognizer")
+- **Context Words** (optional): Boost confidence with context (e.g., ["SSN", "social security"])
+- **Supported Language**: Select language if recognizer supports multiple
+
+**Example: SSN Detection**
+```
+Name: us_ssn_detector
+Target: Content
+Predefined Recognizer: UsSsnRecognizer
+Context: ["SSN", "social", "security"]
+Confidence Threshold: 0.8
+```
+
+## Managing recognizers
+
+### View all recognizers
+
+The recognizers tab displays all recognizers for a tag with columns:
+- **Enabled**: Toggle to activate/deactivate
+- **Name** & **Description**
+- **Type**: Pattern, Exact Terms, Predefined, or Context
+- **Target**: Content or Column Name
+- **Exceptions**: Number of entities excluded from this recognizer
+- **Confidence**: Confidence threshold
+
+### Filter & Search
+
+Use filters to narrow the list:
+- **Type**: Pattern, Exact Terms, Predefined, Context
+- **Target**: Content, Column Name
+- **Enabled**: Enabled, Disabled
+
+Use the search box to find recognizers by name or description.
+
+### Edit a Recognizer
+
+1. Click **Edit** (pencil icon) in the Actions column
+2. Modify fields in the form
+3. Click **Submit**
+
+**Note**: Changes only apply to future classification runs, not retroactively.
+
+### Delete a Recognizer
+
+1. Click **Delete** (trash icon) in the Actions column
+2. Confirm deletion
+
+**Warning**: Deleting a recognizer does not remove tags it previously applied. You must manually remove those tags if needed.
+
+### Enable/Disable recognizers
+
+Use the toggle switch in the Enabled column to temporarily stop a recognizer without deleting it. Changes take effect on the next classification run.
+
+### Managing Exceptions
+
+Click the **Exceptions** count to view entities where this recognizer should not run. Exceptions are automatically added when [feedback is approved](/how-to-guides/data-governance/classification/auto-classification/feedback).
+
+You can manually delete exceptions:
+1. Click exceptions count
+2. View list in the exceptions panel
+3. Click delete on specific exceptions
+4. Confirm removal
+
+## Best Practices
+
+### Creating effective recognizers
+
+1. **Start with high confidence**: Begin with threshold 0.7-0.8, adjust if needed
+2. **Test patterns first**: Validate regex patterns with sample data before creating the recognizer
+3. **Use context words**: Add relevant context to reduce false positives
+4. **Multiple patterns**: Create separate patterns for different formats (e.g., phone: `(123)456-7890` vs `123-456-7890`)
+5. **Descriptive names**: Use clear, searchable names and descriptions
+
+### Managing False Positives
+
+1. **Review feedback regularly**: Check pending feedback from users
+2. **Adjust thresholds**: If too many false positives, increase confidence threshold
+3. **Refine patterns**: Edit patterns to be more specific
+4. **Add context words**: Boost confidence for true positives with relevant context
+
+### Performance Tips
+
+1. **Target appropriately**: Use "Column Name" target when possible (faster than content analysis)
+2. **Disable unused recognizers**: Deactivate recognizers you no longer need
+3. **Combine patterns**: Use one recognizer with multiple patterns instead of many single-pattern recognizers
+4. **Limit context words**: Keep context word lists concise (under 20 words)
+
+## Troubleshooting
+
+### Recognizer Not Detecting Data
+
+**Check:**
+- Recognizer is Enabled
+- Confidence threshold not too high
+- Pattern syntax is correct (test with a regex tool)
+- Target matches your use case (Content vs Column Name)
+- Entity is not in the exception list
+- Profiler and auto-classification are enabled in ingestion config
+
+### Too Many False Positives
+
+**Solutions:**
+- Increase confidence threshold
+- Add context words for true positives
+- Make patterns more specific
+- Consider using exact terms recognizer instead
+- Let users submit feedback to build exception lists
+
+### Pattern Not Matching
+
+**Common issues:**
+- Missing escape characters in regex (use `\\d` not `\d`)
+- Incorrect regex flags (check case sensitivity, multi-line)
+- Pattern too specific or too broad
+- Test your pattern at [regex101.com](https://regex101.com) first
+
+## Next Steps
+
+<Card title="Tag Feedback & Approval" href="/how-to-guides/data-governance/classification/auto-classification/feedback">
+  Learn how to report false positives and improve recognizer accuracy through user feedback
+</Card>
+
+<Card title="Auto PII Tagging" href="/how-to-guides/data-governance/classification/auto-classification/auto-pii-tagging">
+  Understand the default PII tagging logic
+</Card>

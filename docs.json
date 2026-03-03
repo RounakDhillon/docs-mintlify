@@ -1658,6 +1658,8 @@
                                             "how-to-guides/data-governance/classification/auto-classification/workflow",
                                             "how-to-guides/data-governance/classification/auto-classification/external-workflow",
                                             "how-to-guides/data-governance/classification/auto-classification/auto-pii-tagging",
+                                            "how-to-guides/data-governance/classification/auto-classification/recognizers",
+                                            "how-to-guides/data-governance/classification/auto-classification/feedback",
                                             "how-to-guides/data-governance/classification/auto-classification/external-sample-data"
                                         ]
                                     },
