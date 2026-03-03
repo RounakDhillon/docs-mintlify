@@ -1765,6 +1765,14 @@
                         ]
                     },
                     {
+                        "group": "Java",
+                        "pages": [
+                            "sdk/java",
+                            "sdk/java/info",
+                            "sdk/java/lineage"
+                        ]
+                    },
+                    {
                         "group": "Data Assets",
                         "pages": [
                             "api-reference/data-assets/index",
@@ -2061,6 +2069,16 @@
                             "api-reference/discovery/index",
                             "api-reference/discovery/search",
                             "api-reference/discovery/field-query"
+                        ]
+                    },
+                    {
+                        "group": "Lineage",
+                        "pages": [
+                            "api-reference/lineage/index",
+                            "api-reference/lineage/get",
+                            "api-reference/lineage/add",
+                            "api-reference/lineage/delete",
+                            "api-reference/lineage/export"
                         ]
                     },
                     {
