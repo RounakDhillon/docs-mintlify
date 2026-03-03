@@ -1761,25 +1761,13 @@
                     {
                         "group": "AI SDK",
                         "pages": [
-                            "sdk/ai",
-                            "sdk/ai/invoke",
-                            "sdk/ai/create-agent",
-                            "sdk/ai/create-persona",
-                            "sdk/ai/mcp-tools"
+                            "sdk/ai-sdk"
                         ]
                     },
                     {
                         "group": "OpenMetadata Standards",
                         "pages": [
                             "sdk/openmetadata-standards"
-                        ]
-                    },
-                    {
-                        "group": "Java",
-                        "pages": [
-                            "sdk/java",
-                            "sdk/java/info",
-                            "sdk/java/lineage"
                         ]
                     },
                     {
