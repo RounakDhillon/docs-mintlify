@@ -1,8 +1,8 @@
 ---
-title: ServiceNow Connector | Collate Integration Guide
+title: ServiceNow Connector | Collate Integration Guide | Hybrid Runner
 description: Connect ServiceNow to Collate to automatically discover, catalog, and manage your ServiceNow metadata. Step-by-step configuration guide.
-slug: /connectors/database/servicenow
-sidebarTitle: Overview
+slug: /connectors/database/servicenow/hybrid-runner
+sidebarTitle: Hybrid Runner
 Collate: true
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -33,6 +33,14 @@ To fetch metadata from ServiceNow into OpenMetadata you will need:
 # Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **ServiceNow Instance URL**: Your ServiceNow instance URL (e.g., `https://your-instance.service-now.com`).
 - **Username**: Username to connect to ServiceNow. This user should have read access to `sys_db_object` and `sys_dictionary` tables.
 - **Password**: Password to connect to ServiceNow.

@@ -1,8 +1,8 @@
 ---
-title: S3 Datalake Connector | Collate Cloud Storage Guide
+title: S3 Datalake Connector | Collate Cloud Storage Guide | Hybrid Runner
 description: Connect your S3 data lake to Collate with our comprehensive database connector guide. Setup instructions, configuration examples, and best practices included.
-slug: /connectors/database/s3-datalake
-sidebarTitle: Overview
+slug: /connectors/database/s3-datalake/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -54,6 +54,14 @@ To execute metadata extraction AWS account should have enough access to fetch re
 ## Connection Details
 <Steps>
 <Step title="Connection Details for AWS">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **AWS Access Key ID** & **AWS Secret Access Key**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
   permission to access the resources that you are requesting. AWS uses the security credentials to authenticate and
   authorize your requests ([docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html)).

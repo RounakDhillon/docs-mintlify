@@ -424,7 +424,7 @@
                                         "group": "Redshift",
                                         "pages": [
                                             "connectors/database/redshift/index",
-                                            "connectors/database/redshift/yaml",
+                                            "connectors/database/redshift/hybrid-runner",
                                             "connectors/database/redshift/troubleshooting"
                                         ]
                                     },
@@ -432,7 +432,7 @@
                                         "group": "S3 Datalake",
                                         "pages": [
                                             "connectors/database/s3-datalake/index",
-                                            "connectors/database/s3-datalake/yaml",
+                                            "connectors/database/s3-datalake/hybrid-runner",
                                             "connectors/database/s3-datalake/troubleshooting"
                                         ]
                                     },
@@ -440,7 +440,7 @@
                                         "group": "Salesforce",
                                         "pages": [
                                             "connectors/database/salesforce/index",
-                                            "connectors/database/salesforce/yaml",
+                                            "connectors/database/salesforce/hybrid-runner",
                                             "connectors/database/salesforce/troubleshooting"
                                         ]
                                     },
@@ -449,7 +449,7 @@
                                         "pages": [
                                             "connectors/database/sap-erp/index",
                                             "connectors/database/sap-erp/setup-sap-apis",
-                                            "connectors/database/sap-erp/yaml",
+                                            "connectors/database/sap-erp/hybrid-runner",
                                             "connectors/database/sap-erp/troubleshooting"
                                         ]
                                     },
@@ -457,7 +457,7 @@
                                         "group": "SAP HANA",
                                         "pages": [
                                             "connectors/database/sap-hana/index",
-                                            "connectors/database/sap-hana/yaml",
+                                            "connectors/database/sap-hana/hybrid-runner",
                                             "connectors/database/sap-hana/troubleshooting"
                                         ]
                                     },
@@ -465,7 +465,7 @@
                                         "group": "SAS",
                                         "pages": [
                                             "connectors/database/sas/index",
-                                            "connectors/database/sas/yaml",
+                                            "connectors/database/sas/hybrid-runner",
                                             "connectors/database/sas/troubleshooting"
                                         ]
                                     },
@@ -473,7 +473,7 @@
                                         "group": "ServiceNow",
                                         "pages": [
                                             "connectors/database/servicenow/index",
-                                            "connectors/database/servicenow/yaml",
+                                            "connectors/database/servicenow/hybrid-runner",
                                             "connectors/database/servicenow/troubleshooting"
                                         ]
                                     },
@@ -2327,6 +2327,34 @@
         {
             "source": "/connectors/database/db2/yaml",
             "destination": "/connectors/database/db2/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/redshift/yaml",
+            "destination": "/connectors/database/redshift/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/s3-datalake/yaml",
+            "destination": "/connectors/database/s3-datalake/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/salesforce/yaml",
+            "destination": "/connectors/database/salesforce/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/sap-erp/yaml",
+            "destination": "/connectors/database/sap-erp/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/sap-hana/yaml",
+            "destination": "/connectors/database/sap-hana/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/sas/yaml",
+            "destination": "/connectors/database/sas/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/servicenow/yaml",
+            "destination": "/connectors/database/servicenow/hybrid-runner"
         },
         {
             "source": "/main-concepts/*",

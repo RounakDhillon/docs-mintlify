@@ -1,8 +1,8 @@
 ---
-title: SAP ERP Connector | Collate Enterprise Integration
+title: SAP ERP Connector | Collate Enterprise Integration | Hybrid Runner
 description: Connect SAP ERP to Collate with our comprehensive database connector guide. Setup instructions, configuration steps, and metadata extraction tips.
-slug: /connectors/database/sap-erp
-sidebarTitle: Overview
+slug: /connectors/database/sap-erp/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -32,6 +32,14 @@ Follow the guide [here](/connectors/database/sap-erp/setup-sap-apis) to setup th
 # Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **Host and Port**: This parameter specifies the host and port of the SAP ERP instance. This should be specified as a string in the format `https://hostname.com`.
 - **API Key**: API Key to authenticate the SAP ERP APIs.
 - **database**: Optional name to give to the database in OpenMetadata. If left blank, we will use `default` as the database name.

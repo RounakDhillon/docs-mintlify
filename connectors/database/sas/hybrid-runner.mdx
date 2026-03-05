@@ -1,8 +1,8 @@
 ---
-title: SAS Connector | Collate Analytics Integration Guide
+title: SAS Connector | Collate Analytics Integration Guide | Hybrid Runner
 description: Connect SAS databases to Collate with our comprehensive connector guide. Step-by-step setup, configuration, and metadata extraction instructions.
-slug: /connectors/database/sas
-sidebarTitle: Overview
+slug: /connectors/database/sas/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -31,6 +31,14 @@ Prepare the SAS Service and configure the Ingestion:
 # Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **ServerHost**: Host and port of the SAS Viya deployment.
 - **Username**: Username to connect to SAS Viya. This user should have privileges to read all the metadata in SAS Information Catalog.
 - **Password**: Password to connect to SAS Viya.
@@ -49,4 +57,3 @@ Prepare the SAS Service and configure the Ingestion:
     Learn more about how to troubleshoot common SAS connector issues and resolve configuration or ingestion errors.
   </Card>
 </Columns>
-

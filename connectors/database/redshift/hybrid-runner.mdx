@@ -1,8 +1,8 @@
 ---
-title: Redshift Connector | Collate AWS Data Warehouse
+title: Redshift Connector | Collate AWS Data Warehouse | Hybrid Runner
 description: Connect Amazon Redshift to Collate Easily with our comprehensive database connector guide. Setup instructions, configuration tips, and metadata ext...
-slug: /connectors/database/redshift
-sidebarTitle: Overview
+slug: /connectors/database/redshift/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ReverseMetadata from '/snippets/connectors/database/redshift/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -61,6 +61,14 @@ It is recommmended to exclude the schema "information_schema" from the metadata 
 # Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **Username**: Specify the User to connect to Redshift. It should have enough privileges to read all the metadata.
 - **Password**: Password to connect to Redshift.
 - **Database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.

@@ -1,8 +1,8 @@
 ---
-title: Salesforce Connector | Collate CRM Integration Guide
+title: Salesforce Connector | Collate CRM Integration Guide | Hybrid Runner
 description: Connect Salesforce to Collate with our comprehensive database connector guide. Setup instructions, configuration tips, and metadata extraction made easy.
-slug: /connectors/database/salesforce
-sidebarTitle: Overview
+slug: /connectors/database/salesforce/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import Troubleshooting from '/snippets/connectors/troubleshooting.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -34,6 +34,14 @@ These are the permissions you will require to fetch the metadata from Salesforce
 # Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **Username**: Username to connect to the Salesforce. This user should have the access as defined in requirements.
 - **Password**: Password to connect to Salesforce.
 - **Security Token**: Salesforce Security Token is required to access the metadata through APIs. You can checkout [this doc](https://help.salesforce.com/s/articleView?id=sf.user_security_token.htm&type=5) on how to get the security token.
@@ -73,7 +81,7 @@ In order to integrate SSL in the Metadata Ingestion Config, the user will have t
 <IngestionScheduleAndDeploy />
 </Steps>
 ## Securing Salesforce Connection with SSL in OpenMetadata
-To establish secure connections between OpenMetadata and Salesforce, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`.  Alternatively, if both client and server require mutual authentication, you’ll need to use all three parameters: `ssl_key`, `ssl_cert`, and `ssl_ca`. In this case, `ssl_cert` is used for the client’s SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `ssl_ca` for the CA certificate to validate the server’s certificate.
+To establish secure connections between OpenMetadata and Salesforce, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`.  Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl_key`, `ssl_cert`, and `ssl_ca`. In this case, `ssl_cert` is used for the client's SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `ssl_ca` for the CA certificate to validate the server's certificate.
 <img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 ## Troubleshooting
 
