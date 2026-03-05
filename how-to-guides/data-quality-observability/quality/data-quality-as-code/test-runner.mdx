@@ -13,7 +13,7 @@ The `TestRunner` class provides a fluent API for executing data quality tests ag
 - [Overview](#overview)
 - [Basic Usage](#basic-usage)
 - [Complete Example](#complete-example)
-- [Running Tests from OpenMetadata's UI](#running-tests-from-openmetadata-ui)
+- [Running Tests from Collate's UI](#running-tests-from-openmetadata-ui)
 - [Customizing Test Metadata](#customizing-test-metadata)
 - [Configuring Row Count Computation](#configuring-row-count-computation)
 - [Test Runner Configuration](#test-runner-configuration)
@@ -33,7 +33,7 @@ The `TestRunner` class provides a fluent API for executing data quality tests ag
 TestRunner enables you to:
 
 - Execute tests defined in code against cataloged tables
-- Run tests previously configured in the OpenMetadata UI
+- Run tests previously configured in the Collate UI
 - Load test definitions from YAML workflow files
 - Validate data at the table and column levels
 - Get detailed test results for programmatic handling
@@ -186,7 +186,7 @@ else:
 
 ## Running Tests from OpenMetadata UI
 
-Instead of defining tests in code, you can run tests that data stewards have configured in the OpenMetadata UI. This enables a collaborative workflow where:
+Instead of defining tests in code, you can run tests that data stewards have configured in the Collate UI. This enables a collaborative workflow where:
 
 - **Data stewards** define and maintain test criteria in the UI
 - **Engineers** execute those tests automatically in pipelines
@@ -487,7 +487,7 @@ results = runner.run()
 
 #### AWS and AWS Parameters Store
 
-**OpenMetadata's ingestion extras**: `aws` (e.g `pip install 'openmetadata-ingestion[aws]'`)
+**Collate's ingestion extras**: `aws` (e.g `pip install 'openmetadata-ingestion[aws]'`)
 
 **SecretsManagerProvider: (one of)**
 - `SecretsManagerProvider.aws`
@@ -502,7 +502,7 @@ results = runner.run()
 
 #### Azure Key Vault
 
-**OpenMetadata's ingestion extras**: `azure` (e.g `pip install 'openmetadata-ingestion[azure]'`)
+**Collate's ingestion extras**: `azure` (e.g `pip install 'openmetadata-ingestion[azure]'`)
 
 **SecretsManagerProvider: (one of)**
 - `SecretsManagerProvider.azure_kv`
@@ -516,7 +516,7 @@ results = runner.run()
 
 #### Google Cloud Secret Manager
 
-**OpenMetadata's ingestion extras**: `gcp` (e.g `pip install 'openmetadata-ingestion[gcp]'`)
+**Collate's ingestion extras**: `gcp` (e.g `pip install 'openmetadata-ingestion[gcp]'`)
 
 **SecretsManagerProvider:** `SecretsManagerProvider.gcp`
 

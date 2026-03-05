@@ -16,14 +16,14 @@ When the task executes, it will ingest:
 
 ## Installation
 
-The Lineage Operator can be directly installed to the Airflow instances as part of the usual OpenMetadata Python
+The Lineage Operator can be directly installed to the Airflow instances as part of the usual Collate Python
 distribution:
 
 ```commandline
 pip3 install "openmetadata-ingestion==x.y.z"
 ```
 
-Where `x.y.z` is the version of your OpenMetadata server, e.g., 0.13.0. It is important that server and client
+Where `x.y.z` is the version of your Collate server, e.g., 0.13.0. It is important that server and client
 versions match.
 
 **It requires the version `0.13.1` or higher**.
@@ -152,7 +152,7 @@ with DAG(
 ## Retrieving the OpenMetadataConnection from Airflow
 
 In 0.13.1 we have also added an `OpenMetadataHook`, which can be configured from the UI to safely store
-the parameters to connect to OpenMetadata.
+the parameters to connect to Collate.
 
 Go to the Airflow UI > Admin > Connection and create a new `OpenMetadata` connection as follows:
 
@@ -179,7 +179,7 @@ OpenMetadataLineageOperator(
 
 ### OpenMetadataHook with HTTPS and SSL
 
-If the OpenMetadata server connection needs to happen through HTTPS, update the `Schema` accordingly to `https`.
+If the Collate server connection needs to happen through HTTPS, update the `Schema` accordingly to `https`.
 
 For SSL parameters we have two options:
 

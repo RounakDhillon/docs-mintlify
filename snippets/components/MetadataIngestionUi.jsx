@@ -6,7 +6,7 @@ export const MetadataIngestionUi = ({ connector, selectServicePath, addNewServic
 
         The first step is to ingest the metadata from your sources. To do that, you first need to create a Service connection first.
 
-        This Service will be the bridge between OpenMetadata and your source system.
+        This Service will be the bridge between Collate and your source system.
 
         Once a Service is created, it can be used to configure your ingestion workflows.
 
@@ -30,7 +30,7 @@ export const MetadataIngestionUi = ({ connector, selectServicePath, addNewServic
 
         <h4>Service Name</h4>
 
-        OpenMetadata uniquely identifies Services by their **Service Name**. Provide
+        Collate uniquely identifies Services by their **Service Name**. Provide
         a name that distinguishes your deployment from other Services, including
         the other {connector} Services that you might be ingesting metadata
         from.

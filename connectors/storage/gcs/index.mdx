@@ -17,7 +17,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Structured Containers"]}
 unavailableFeatures={["Unstructured Containers"]} />
 This page contains the setup guide and reference information for the GCS connector.
-Configure and schedule GCS metadata workflows from the OpenMetadata UI:
+Configure and schedule GCS metadata workflows from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/storage/gcs/troubleshooting)
@@ -29,7 +29,7 @@ For all the buckets that we want to ingest, we need to provide the following:
 - `storage.buckets.list`
 - `storage.objects.get`
 - `storage.objects.list`
-### OpenMetadata Manifest
+### Collate Manifest
 In any other connector, extracting metadata happens automatically. In this case, we will be able to extract high-level
 metadata from buckets, but in order to understand their internal structure we need users to provide an `openmetadata.json`
 file at the bucket root.

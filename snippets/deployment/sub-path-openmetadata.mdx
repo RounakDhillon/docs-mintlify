@@ -1,6 +1,6 @@
-# Subpath in OpenMetadata
+# Subpath in Collate
 
-To configure **OpenMetadata** to operate under a subpath (e.g., `/openmetadata`)—useful when deploying behind a reverse proxy or load balancer—you need to adjust specific settings in the `openmetadata.yaml` configuration file.
+To configure **Collate** to operate under a subpath (e.g., `/openmetadata`)—useful when deploying behind a reverse proxy or load balancer—you need to adjust specific settings in the `openmetadata.yaml` configuration file.
 
 ---
 
@@ -66,7 +66,7 @@ assets:
 
 ## Deployment Considerations
 
-- **Reverse Proxy Configuration**: Ensure that your reverse proxy (e.g., NGINX, Apache) is configured to forward requests to the OpenMetadata application with the correct subpath.
+- **Reverse Proxy Configuration**: Ensure that your reverse proxy (e.g., NGINX, Apache) is configured to forward requests to the Collate application with the correct subpath.
 
 - **Environment Variables**: You can override the default base path by setting the BASE_PATH environment variable in your deployment environment. Ensure that related parameters such as basePath, applicationContextPath, rootPath, and publicKeyUrl are updated to reflect this change.
 

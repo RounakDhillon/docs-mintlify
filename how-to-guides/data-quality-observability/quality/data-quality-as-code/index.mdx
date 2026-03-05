@@ -60,7 +60,7 @@ result.publish("MySQL.default.db.table")    # Publishes results to OpenMetadata
 Define tests in three flexible ways:
 
 1. **Inline code**: Define tests directly in your Python code
-2. **From OpenMetadata**: Load test definitions configured in the OpenMetadata UI
+2. **From OpenMetadata**: Load test definitions configured in the Collate UI
 3. **From YAML files**: Load test configurations from YAML workflow files
 
 ### Comprehensive Test Library
@@ -176,10 +176,10 @@ result = validator.run(
 
 ## Architecture
 
-Data Quality as Code integrates seamlessly with OpenMetadata's existing data quality infrastructure:
+Data Quality as Code integrates seamlessly with Collate's existing data quality infrastructure:
 
 1. **Test Definitions**: Tests can be defined in code, loaded from OpenMetadata, or imported from YAML files
-2. **Execution Engine**: Leverages OpenMetadata's proven test execution engine
+2. **Execution Engine**: Leverages Collate's proven test execution engine
 3. **Result Publishing**: Test results can be published back to OpenMetadata for visualization and alerting
 4. **Service Connections**: Automatically uses service connections configured in OpenMetadata
 

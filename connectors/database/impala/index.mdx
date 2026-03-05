@@ -19,7 +19,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the Impala connector.
-Configure and schedule Impala metadata and profiler workflows from the OpenMetadata UI:
+Configure and schedule Impala metadata and profiler workflows from the Collate UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Lineage](/how-to-guides/data-lineage/workflow)
@@ -57,6 +57,6 @@ For a complete guide on managing secrets in hybrid setups, see the [Hybrid Inges
 <IngestionScheduleAndDeploy />
 </Steps>
 ## Securing Impala Connection with SSL in OpenMetadata
-To configure SSL for secure connections between OpenMetadata and an Impala database, add the key `use_ssl` with a value of `true` to the `connectionArguments` to enable SSL. Additionally, include the key `ca_cert` with the path to the CA certificate file as its value. Ensure that the certificate file is accessible by the server, and if deploying via Docker or Kubernetes, update the CA certificate in the OpenMetadata server to reflect these changes.
+To configure SSL for secure connections between OpenMetadata and an Impala database, add the key `use_ssl` with a value of `true` to the `connectionArguments` to enable SSL. Additionally, include the key `ca_cert` with the path to the CA certificate file as its value. Ensure that the certificate file is accessible by the server, and if deploying via Docker or Kubernetes, update the CA certificate in the Collate server to reflect these changes.
 <img src="/public/images/connectors/ssl_Impala.png" alt="SSL Configuration" height="450px" />
 <Related />

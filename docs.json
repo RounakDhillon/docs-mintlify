@@ -1433,7 +1433,7 @@
                             "how-to-guides/data-discovery/troubleshooting",
                             "how-to-guides/data-discovery/table-constraint",
                             {
-                                "group": "OpenMetadata Chrome Extension",
+                                "group": "Collate Chrome Extension",
                                 "pages": [
                                     "how-to-guides/data-discovery/collate-extension/index",
                                     "how-to-guides/data-discovery/collate-extension/activity-feeds",

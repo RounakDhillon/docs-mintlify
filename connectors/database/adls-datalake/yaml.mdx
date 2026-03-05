@@ -26,7 +26,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the ADLS Datalake connector.
-Configure and schedule ADLS Datalake metadata and profiler workflows from the OpenMetadata UI:
+Configure and schedule ADLS Datalake metadata and profiler workflows from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [dbt Integration](#dbt-integration)
@@ -46,7 +46,7 @@ pip3 install "openmetadata-ingestion[datalake-azure]"
 ```
 ## Metadata Ingestion
 All connectors are defined as JSON Schemas. Here you can find the structure to create a connection to Datalake.
-In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the OpenMetadata server.
+In order to create and run a Metadata Ingestion workflow, we will follow the steps to create a YAML configuration able to connect to the source, process the Entities if needed, and reach the Collate server.
 The workflow is modeled around the following JSON Schema.
 ## 1. Define the YAML Config
 

@@ -32,7 +32,7 @@ availableFeatures={[
   ]}
 />
 In this section, we provide guides and references to use the Athena connector.
-Configure and schedule Athena metadata and profiler workflows from the OpenMetadata UI:
+Configure and schedule Athena metadata and profiler workflows from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
     - [Connection Details](#connection-details)
@@ -135,7 +135,7 @@ And is defined as:
 }
 ```
 ### LF-Tags
-Athena connector ingests and creates LF-tags in OpenMetadata with LF-tag key mapped to OpenMetadata's classification and the values mapped to tag labels. To ingest LF-tags provide the appropriate permissions as to the resources as mentioned above and enable the `includeTags` toggle in the ingestion config.
+Athena connector ingests and creates LF-tags in OpenMetadata with LF-tag key mapped to Collate's classification and the values mapped to tag labels. To ingest LF-tags provide the appropriate permissions as to the resources as mentioned above and enable the `includeTags` toggle in the ingestion config.
 <Tip>If you have external services other than glue and facing permission issues, add the permissions to the list above.</Tip>
 ## Metadata Ingestion
 <MetadataIngestionUi connector="Athena" selectServicePath="/public/images/connectors/athena/select-service.png" addNewServicePath="/public/images/connectors/athena/add-new-service.png" serviceConnectionPath="/public/images/connectors/athena/service-connection.png" />

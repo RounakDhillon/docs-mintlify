@@ -23,7 +23,7 @@ Feel free to choose whatever approach adapts best to your current architecture a
 
 The most comfortable way to extract metadata out of GCP Composer is by directly creating a DAG in there
 that will handle the connection to the metadata database automatically and push the contents
-to your OpenMetadata server.
+to your Collate server.
 
 The drawback here? You need to install `openmetadata-ingestion` directly on the host. This might have some
 incompatibilities with your current Python environment and/or the internal (and changing) Composer requirements.
@@ -231,7 +231,7 @@ be changed, and the `env_vars`. The `main.py` script that gets shipped within th
 as they are shown, so only modify the content of the config YAML, but not this dictionary.
 
 Note that the example uses the image `openmetadata/ingestion-base:0.13.2`. Update that accordingly for higher version
-once they are released. Also, the image version should be aligned with your OpenMetadata server version to avoid
+once they are released. Also, the image version should be aligned with your Collate server version to avoid
 incompatibilities.
 
 ```python
@@ -251,7 +251,7 @@ You can find more information about the `KubernetesPodOperator` and how to tune 
 
 # OpenMetadata Server Config
 
-The easiest approach here is to generate a bot with a **JWT** token directly from the OpenMetadata UI. You can then use
+The easiest approach here is to generate a bot with a **JWT** token directly from the Collate UI. You can then use
 the following workflow config:
 
 ```yaml

@@ -6,9 +6,9 @@ sidebarTitle: Spark Lineage
 
 # Spark Lineage Ingestion
 
-A spark job may involve movement/transfer of data which may result into a data lineage, to capture such lineages you can make use of `OpenMetadata Spark Agent` which you can configure with your spark session and capture these spark lineages into your OpenMetadata instance.
+A spark job may involve movement/transfer of data which may result into a data lineage, to capture such lineages you can make use of `Collate Spark Agent` which you can configure with your spark session and capture these spark lineages into your Collate instance.
 
-In this guide we will explain how you can make use of the `OpenMetadata Spark Agent` to capture such lineage.
+In this guide we will explain how you can make use of the `Collate Spark Agent` to capture such lineage.
 
 - [Requirements](#requirements)
 - [Configuration](#configuration)
@@ -17,14 +17,14 @@ In this guide we will explain how you can make use of the `OpenMetadata Spark Ag
 
 ## Requirement
 
-To use the `OpenMetadata Spark Agent`, you will have to download the latest jar from [here](https://github.com/open-metadata/openmetadata-spark-agent/releases).
+To use the `Collate Spark Agent`, you will have to download the latest jar from [here](https://github.com/open-metadata/openmetadata-spark-agent/releases).
 
 We support spark version 3.1 and above.
 
 
 ## Configuration
 
-While configuring the spark session, in this guide we will make use of PySpark to demonstrate the use of `OpenMetadata Spark Agent`
+While configuring the spark session, in this guide we will make use of PySpark to demonstrate the use of `Collate Spark Agent`
 
 
 <Steps>
@@ -35,13 +35,13 @@ Once you have downloaded the jar from [here](https://github.com/open-metadata/op
 `openmetadata-spark-agent.jar` comes with a custom spark listener i.e. `io.openlineage.spark.agent.OpenLineageSparkListener` you will need to add this as `extraListeners` spark configuration.
 </Step>
 <Step title="`spark.openmetadata.transport.hostPort`: Specify the host &">
-`spark.openmetadata.transport.hostPort`: Specify the host & port of the instance where your OpenMetadata is hosted.
+`spark.openmetadata.transport.hostPort`: Specify the host & port of the instance where your Collate is hosted.
 </Step>
 <Step title="`spark.openmetadata.transport.type` is required configura...">
 `spark.openmetadata.transport.type` is required configuration with value as `openmetadata`.
 </Step>
 <Step title="`spark.openmetadata.transport.jwtToken`: Specify your Ope...">
-`spark.openmetadata.transport.jwtToken`: Specify your OpenMetadata Jwt token here. Checkout [this](/deployment/security/enable-jwt-tokens#generate-token) documentation on how you can generate a jwt token in OpenMetadata.
+`spark.openmetadata.transport.jwtToken`: Specify your Collate JWT token here. Checkout [this](/deployment/security/enable-jwt-tokens#generate-token) documentation on how you can generate a JWT token in Collate.
 </Step>
 <Step title="`spark.openmetadata.transport.pipelineServiceName`: This ...">
 `spark.openmetadata.transport.pipelineServiceName`: This spark job will be creating a new pipeline service of type `Spark`, use this configuration to customize the pipeline service name.
@@ -60,10 +60,10 @@ Note: If the pipeline with the specified name already exists then we will be upd
 `spark.openmetadata.transport.pipelineDescription`: Provide pipeline description using this spark configuration.
 </Step>
 <Step title="`spark.openmetadata.transport.databaseServiceNames`: Prov...">
-`spark.openmetadata.transport.databaseServiceNames`: Provide the comma separated list of database service names which contains the source tables used in this job. If you do not provide this configuration then we will be searching through all the services available in openmetadata.
+`spark.openmetadata.transport.databaseServiceNames`: Provide the comma separated list of database service names which contains the source tables used in this job. If you do not provide this configuration then we will be searching through all the services available in Collate.
 </Step>
 <Step title="`spark.openmetadata.transport.timeout`: Provide the timeo...">
-`spark.openmetadata.transport.timeout`: Provide the timeout to communicate with OpenMetadata APIs.
+`spark.openmetadata.transport.timeout`: Provide the timeout to communicate with Collate APIs.
 </Step>
 <Step title="In this job we are">
 In this job we are reading data from `employee` table and moving it to another table `employee_new` of within same mysql source.
@@ -136,7 +136,7 @@ spark.stop()
 ```
 
 
-Once this pyspark job get finished you will see a new pipeline service with name `my_pipeline_service` generated in your openmetadata instance which would contain a pipeline with name `my_pipeline` as per the above example and you should also see lineage between the table `employee` and `employee_new` via `my_pipeline`.
+Once this pyspark job get finished you will see a new pipeline service with name `my_pipeline_service` generated in your Collate instance which would contain a pipeline with name `my_pipeline` as per the above example and you should also see lineage between the table `employee` and `employee_new` via `my_pipeline`.
 
 
 <img src="/public/images/connectors/spark/spark-pipeline-service.png" alt="Spark Pipeline Service" />
@@ -150,17 +150,17 @@ Once this pyspark job get finished you will see a new pipeline service with name
 
 ## Using Spark Agent with Databricks
 
-Follow the below steps in order to use OpenMetadata Spark Agent with databricks.
+Follow the below steps in order to use Collate Spark Agent with databricks.
 
 ### 1. Upload the jar to compute cluster
 
-To use the `OpenMetadata Spark Agent`, you will have to download the latest jar from [here](https://github.com/open-metadata/openmetadata-spark-agent/releases) and upload it to your databricks compute cluster.
+To use the `Collate Spark Agent`, you will have to download the latest jar from [here](https://github.com/open-metadata/openmetadata-spark-agent/releases) and upload it to your databricks compute cluster.
 
 To upload the jar you can visit the compute details page and then go to the libraries tab
 
 <img src="/public/images/connectors/spark/spark-upload-jar.png" alt="Spark Upload Jar" />
 
-Click on the "Install Now" button and choose `dbfs` mode and upload the `OpenMetadata Spark Agent` jar.
+Click on the "Install Now" button and choose `dbfs` mode and upload the `Collate Spark Agent` jar.
 
 <img src="/public/images/connectors/spark/spark-upload-jar-2.png" alt="Spark Upload Jar" />
 
@@ -230,18 +230,18 @@ spark.openmetadata.transport.jwtToken <your-jwt-token>
 spark.openmetadata.transport.timeout 30
 ```
 
-After all these steps are completed you can start/restart your compute instance and you are ready to extract the lineage from spark to OpenMetadata.
+After all these steps are completed you can start/restart your compute instance and you are ready to extract the lineage from spark to Collate.
 
 
 ## Using Spark Agent with Glue
 
-Follow the below steps in order to use OpenMetadata Spark Agent with glue.
+Follow the below steps in order to use Collate Spark Agent with glue.
 
-### 1. Specify the OpenMetadata Spark Agent JAR URL
+### 1. Specify the Collate Spark Agent JAR URL
 
-1. Upload the OpenMetadata Spark Agent Jar to S3
+1. Upload the Collate Spark Agent Jar to S3
 2. Navigate to the glue job,In the Job details tab, navigate to Advanced properties → Libraries → Dependent Jars path
-3. Add the S3 url of OpenMetadata Spark Agent Jar in the Dependent Jars path.
+3. Add the S3 url of Collate Spark Agent Jar in the Dependent Jars path.
 
 <img src="/public/images/connectors/spark/glue-job-jar.png" alt="Glue Job Configure Jar" />
 

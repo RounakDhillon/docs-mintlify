@@ -14,7 +14,7 @@ stage="Beta"
 availableFeatures={["Reverse Metadata (Collate Only)"]}
 unavailableFeatures={[]} />
 In this section, we provide guides and references to use the Apache Ranger connector for reverse metadata ingestion.
-Configure and schedule Apache Ranger reverse metadata workflows from the OpenMetadata UI:
+Configure and schedule Apache Ranger reverse metadata workflows from the Collate UI:
 - [Requirements](#requirements)
 - [Reverse Metadata Ingestion](#reverse-metadata-ingestion)
 - [Connection Details](#connection-details)
@@ -64,7 +64,7 @@ During reverse metadata ingestion, OpenMetadata creates **only the mapping** bet
 
 #### Policy Management
 
-The actual application of tag-based policies—such as access control, data masking, or row-level filtering—is handled **entirely by Apache Ranger**. OpenMetadata's role is limited to:
+The actual application of tag-based policies—such as access control, data masking, or row-level filtering—is handled **entirely by Apache Ranger**. Collate's role is limited to:
 1. Syncing tag metadata from OpenMetadata to actual data sources
 2. Creating tag-to-resource mappings in Ranger
 3. Keeping these mappings synchronized as tags change in OpenMetadata

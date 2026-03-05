@@ -20,7 +20,7 @@ We will use the generic terms from Airflow, as the most common used tool, but th
     connectivity issues, individual assets’ errors,...) there is usually no point on running automatic retries. For
     heavy workflows failing in the middle of processing, it will just incur in extra costs.
 
-    Note that for internal communications between the Ingestion Workflow and the OpenMetadata APIs, we already have an
+    Note that for internal communications between the Ingestion Workflow and the Collate APIs, we already have an
     internal retry in place in case of intermittent networking issues.
 - **DAGs should not have a catch-up**: Any ingestion will be based on the current state of data and metadata. If old
     runs were skipped for any reason, there is no point in triggering past executions as they won’t be adding any value.
@@ -56,7 +56,7 @@ We will use the generic terms from Airflow, as the most common used tool, but th
 
 Here we will discuss different errors that you might encounter when running a workflow:
 
-- **Connection errors**: When deploying ingestions from the OpenMetadata UI you have the possibility to test the
+- **Connection errors**: When deploying ingestions from the Collate UI you have the possibility to test the
     connection when configuring the service. This connection test happens at the Airflow host configured with OpenMetadata.
     If instead, you are running your ingestion workflows from any external system, you’ll need to validate that the host
     where the ingestion runs has the proper network settings to reach both the source system and OpenMetadata.

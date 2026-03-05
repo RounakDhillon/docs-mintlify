@@ -103,7 +103,7 @@ Once you have a JWT token, configure the SDK in your Python code:
 from metadata.sdk import configure
 
 configure(
-    host="http://localhost:8585/api",  # Your OpenMetadata API URL
+    host="http://localhost:8585/api",  # Your Collate API URL
     jwt_token="your-jwt-token-here"
 )
 ```
@@ -133,7 +133,7 @@ The `configure()` function accepts the following parameters:
 
 | Parameter   | Type | Required | Description                                              | Environment Variable     |
 |-------------|------|----------|----------------------------------------------------------|--------------------------|
-| `host`      | `str` | No       | OpenMetadata API URL (e.g., `http://localhost:8585/api`) | `OPENMETADATA_HOST`      |
+| `host`      | `str` | No       | Collate API URL (e.g., `http://localhost:8585/api`) | `OPENMETADATA_HOST`      |
 | `jwt_token` | `str` | No       | JWT authentication token                                 | `OPENMETADATA_JWT_TOKEN` |
 
 ## Verify Installation
