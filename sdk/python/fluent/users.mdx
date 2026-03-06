@@ -1,0 +1,104 @@
+---
+title: Users | Python Fluent API | Collate
+description: Create, retrieve, update, delete, and search user entities using the Collate Python Fluent API.
+slug: /sdk/python/fluent/users
+sidebarTitle: Users
+---
+
+# Users
+
+The `Users` class provides CRUD operations for user metadata.
+
+**FQN format:** `username` (just the username — no service prefix)
+
+## Import
+
+```python
+from metadata.sdk import configure, Users
+from metadata.generated.schema.api.teams.createUser import CreateUserRequest
+
+configure(host="https://your-instance.getcollate.io/api", jwt_token="your-token")
+```
+
+## Create
+
+```python
+user = Users.create(
+    CreateUserRequest(
+        name="alice.smith",
+        email="alice.smith@example.com",
+        displayName="Alice Smith",
+        description="Data Engineer",
+    )
+)
+print(user.fullyQualifiedName)  # "alice.smith"
+```
+
+## Retrieve
+
+```python
+# By ID
+user = Users.retrieve("user-uuid")
+
+# By username
+user = Users.retrieve_by_name("alice.smith")
+
+# With fields
+user = Users.retrieve_by_name("alice.smith", fields=["teams", "roles", "follows"])
+```
+
+## List
+
+```python
+# Single page
+page = Users.list(limit=50)
+
+# All users
+all_users = Users.list_all()
+print(f"Total users: {len(all_users)}")
+```
+
+## Update
+
+```python
+user = Users.retrieve_by_name("alice.smith")
+user.description = "Senior Data Engineer"
+Users.update(user)
+```
+
+## Delete
+
+```python
+Users.delete("user-uuid")
+Users.delete("user-uuid", hard_delete=True)
+```
+
+## Search
+
+```python
+results = Users.search("alice", size=5)
+for user in results:
+    print(f"{user.name} <{user.email}>")
+```
+
+## Using Users as Entity Owners
+
+A common pattern is setting users (or teams) as owners of data assets:
+
+```python
+from metadata.sdk import configure, Users, Tables, to_entity_reference
+
+configure(host="...", jwt_token="...")
+
+user = Users.retrieve_by_name("alice.smith")
+table = Tables.retrieve_by_name("my_service.my_db.public.orders")
+table.owners = [to_entity_reference(user)]
+Tables.update(table)
+```
+
+## Version History
+
+```python
+versions = Users.get_versions("user-uuid")
+v = Users.get_specific_version("user-uuid", "0.2")
+```

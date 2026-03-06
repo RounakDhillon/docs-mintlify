@@ -1,0 +1,101 @@
+---
+title: Python Fluent API | Collate
+description: The modern Collate Python SDK uses entity-specific classes for all metadata operations — a clean, type-safe interface that replaces the legacy mixin architecture.
+slug: /sdk/python/fluent
+sidebarTitle: Overview
+---
+
+# Python Fluent API
+
+The Collate Python SDK provides entity-specific classes for reading and writing metadata. Each class — `Tables`, `Databases`, `Users`, etc. — shares the same CRUD interface and connects to a globally-configured client.
+
+## Installation
+
+```bash
+pip install collate-ingestion
+```
+
+<Tip>Match the SDK version to your Collate instance version.</Tip>
+
+## Configuration
+
+```python
+from metadata.sdk import configure
+
+# Explicit credentials
+configure(
+    host="https://your-instance.getcollate.io/api",
+    jwt_token="your-jwt-token",
+)
+```
+
+Call `configure()` once at startup — all entity class calls use it automatically.
+
+You can also read credentials from environment variables:
+
+```bash
+export OPENMETADATA_HOST="https://your-instance.getcollate.io/api"
+export OPENMETADATA_JWT_TOKEN="your-jwt-token"
+```
+
+```python
+from metadata.sdk import configure
+
+configure()  # reads from env
+```
+
+## Global Functions
+
+| Function | Description |
+|----------|-------------|
+| `configure(host, jwt_token)` | Initialize the SDK with server credentials. |
+| `client()` | Return the active `OpenMetadata` client. |
+| `reset()` | Close and clear the cached client. |
+| `to_entity_reference(entity)` | Convert an entity to an `EntityReference` dict. |
+
+### Entity references
+
+Many metadata fields (owners, domains, etc.) expect `EntityReference` dicts rather than full entity objects. Use `to_entity_reference()` to convert:
+
+```python
+from metadata.sdk import configure, to_entity_reference, Users, Databases
+
+configure(host="...", jwt_token="...")
+
+user = Users.retrieve_by_name("alice")
+db = Databases.retrieve_by_name("my_service.my_db", fields=["owners"])
+db.owners = [to_entity_reference(user)]
+Databases.update(db)
+```
+
+## BaseEntity Operations
+
+All entity classes inherit these methods:
+
+| Method | Description |
+|--------|-------------|
+| `Entity.create(request)` | Create or upsert an entity. |
+| `Entity.retrieve(id, *, fields)` | Fetch by UUID. |
+| `Entity.retrieve_by_name(fqn, *, fields)` | Fetch by fully-qualified name. |
+| `Entity.list(*, limit, after, fields, filters)` | Fetch one page. |
+| `Entity.list_all(*, batch_size, fields, filters)` | Fetch all (auto-paginated). |
+| `Entity.update(entity)` | Patch using source/destination diff. |
+| `Entity.delete(id, *, recursive, hard_delete)` | Soft or hard delete. |
+| `Entity.search(query, *, size)` | Search by FQN substring. |
+| `Entity.export_csv(name).execute()` | Export as CSV. |
+| `Entity.import_csv(name).with_data(csv).execute()` | Bulk import from CSV. |
+| `Entity.get_versions(id)` | All historical versions. |
+| `Entity.get_specific_version(id, version)` | One specific version. |
+| `Entity.restore(id)` | Restore a soft-deleted entity. |
+
+## Entity Classes
+
+| Class | Description |
+|-------|-------------|
+| [Tables](/sdk/python/fluent/tables) | Database tables |
+| [Databases](/sdk/python/fluent/databases) | Databases |
+| [DatabaseSchemas](/sdk/python/fluent/database-schemas) | Database schemas |
+| [DatabaseServices](/sdk/python/fluent/database-services) | Database service connections |
+| [Dashboards](/sdk/python/fluent/dashboards) | BI dashboards |
+| [Pipelines](/sdk/python/fluent/pipelines) | Data pipelines |
+| [Users](/sdk/python/fluent/users) | Users |

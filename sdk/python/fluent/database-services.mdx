@@ -1,0 +1,96 @@
+---
+title: Database Services | Python Fluent API | Collate
+description: Create, retrieve, update, delete, and manage database service connections using the Collate Python Fluent API.
+slug: /sdk/python/fluent/database-services
+sidebarTitle: Database Services
+---
+
+# Database Services
+
+The `DatabaseServices` class provides CRUD operations for database service connections (e.g. Postgres, BigQuery, Snowflake).
+
+**FQN format:** `service_name`
+
+## Import
+
+```python
+from metadata.sdk import configure, DatabaseServices
+from metadata.generated.schema.api.services.createDatabaseService import CreateDatabaseServiceRequest
+from metadata.generated.schema.entity.services.databaseService import DatabaseServiceType
+from metadata.generated.schema.entity.services.connections.database.postgresConnection import PostgresConnection
+
+configure(host="https://your-instance.getcollate.io/api", jwt_token="your-token")
+```
+
+## Create
+
+```python
+from metadata.generated.schema.entity.services.connections.database.common.basicAuth import BasicAuth
+
+service = DatabaseServices.create(
+    CreateDatabaseServiceRequest(
+        name="my_postgres",
+        serviceType=DatabaseServiceType.Postgres,
+        connection={
+            "config": PostgresConnection(
+                hostPort="localhost:5432",
+                username="admin",
+                authType=BasicAuth(password="password"),
+                database="analytics",
+            )
+        },
+        description="Production Postgres cluster",
+    )
+)
+print(service.fullyQualifiedName)  # "my_postgres"
+```
+
+## Retrieve
+
+```python
+# By ID
+service = DatabaseServices.retrieve("service-uuid")
+
+# By name (the FQN is just the service name)
+service = DatabaseServices.retrieve_by_name("my_postgres")
+
+# With fields
+service = DatabaseServices.retrieve_by_name("my_postgres", fields=["owners", "tags"])
+```
+
+## List
+
+```python
+# Single page
+page = DatabaseServices.list(limit=50)
+
+# All services
+all_services = DatabaseServices.list_all()
+for svc in all_services:
+    print(f"{svc.name} ({svc.serviceType})")
+```
+
+## Update
+
+```python
+service = DatabaseServices.retrieve_by_name("my_postgres")
+service.description = "Production Postgres — updated"
+DatabaseServices.update(service)
+```
+
+## Delete
+
+```python
+# Soft delete
+DatabaseServices.delete("service-uuid")
+
+# Hard delete — removes the service and all child entities
+DatabaseServices.delete("service-uuid", recursive=True, hard_delete=True)
+```
+
+## Version History
+
+```python
+versions = DatabaseServices.get_versions("service-uuid")
+v = DatabaseServices.get_specific_version("service-uuid", "0.2")
+```

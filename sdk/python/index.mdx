@@ -163,66 +163,35 @@ DatabaseService -> Database -> Schema -> Table
 
 This will help us showcase how we can reuse the same syntax with the three different Entities.
 
-### 1. Initialize OpenMetadata
-OpenMetadata is the class holding the connection to the API and handling the requests. We can instantiate this by passing the proper configuration to reach the server API:
+### 1. Configure the SDK
+
+Call `configure()` once at startup — all entity class calls share the established connection automatically:
 
 ```python
-from metadata.ingestion.ometa.ometa_api import OpenMetadata
-from metadata.generated.schema.entity.services.connections.metadata.openMetadataConnection import (
-    OpenMetadataConnection, AuthProvider,
-)
-from metadata.generated.schema.security.client.openMetadataJWTClientConfig import OpenMetadataJWTClientConfig
+from metadata.sdk import configure
 
-server_config = OpenMetadataConnection(
-    hostPort="http://localhost:8585/api",
-    authProvider=AuthProvider.openmetadata,
-    securityConfig=OpenMetadataJWTClientConfig(
-        jwtToken="<YOUR-INGESTION-BOT-JWT-TOKEN>",
-    ),
+configure(
+    host="http://localhost:8585/api",
+    jwt_token="<YOUR-INGESTION-BOT-JWT-TOKEN>",
 )
-metadata = OpenMetadata(server_config)
 ```
 
-For local development, we can get a JWT token for the ingestion bot as described [here](/deployment/security/enable-jwt-tokens#generate-token) and use that when we specify the `jwtToken`. For a real-world deployment, we can also use [different authentication methods](/deployment/security) and specify other settings of the connection (such as `sslConfig`).
+For local development, get a JWT token for the ingestion bot as described [here](/deployment/security/enable-jwt-tokens#generate-token). For production, see [authentication methods](/deployment/security).
 
-Below is an example of how the user can configure `sslConfig` using `Python SDK`.
+You can also pass credentials via environment variables:
+
+```bash
+export OPENMETADATA_HOST="http://localhost:8585/api"
+export OPENMETADATA_JWT_TOKEN="<YOUR-INGESTION-BOT-JWT-TOKEN>"
+```
 
 ```python
-from metadata.generated.schema.security.ssl.validateSSLClientConfig import ValidateSslClientConfig
-from metadata.generated.schema.entity.services.connections.metadata.openMetadataConnection import (
-    AuthProvider,
-    OpenMetadataConnection
-)
-from metadata.generated.schema.security.client.openMetadataJWTClientConfig import OpenMetadataJWTClientConfig
-from metadata.ingestion.ometa.ometa_api import OpenMetadata
-
-
-server_config = OpenMetadataConnection(
-    hostPort="http://localhost:8585/api",
-    authProvider=AuthProvider.openmetadata,
-    securityConfig=OpenMetadataJWTClientConfig(
-        jwtToken="<YOUR-INGESTION-BOT-JWT-TOKEN>",
-    ),
-    verifySSL="validate" # ignore, validate or no-ssl,
-    sslConfig=ValidateSslClientConfig(caCertificate="/path/to/rootCert"),
-)
-
-metadata = OpenMetadata(server_config)
+configure()  # reads from env
 ```
-
 
 <Tip>
-
-The OpenMetadataConnection is defined as a JSON Schema as well. You can check the definition [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/entity/services/connections/metadata/openMetadataConnection.json)
+For the full SDK reference including SSL configuration and all entity classes, see the [Python Fluent API](/sdk/python/fluent) page.
 </Tip>
-
-From this point onwards, we will interact with the API by using `OpenMetadata` methods.
-
-An interesting validation we can already make at this point is verifying that the service is reachable and healthy. To do so, we can validate the `Bool` output from:
-
-```json
-metadata.health_check()  # `True` means we are alright :)
-```
 
 ### 2. Create the DatabaseService
 Following the hierarchy, we need to start by defining a `DatabaseService`. This will be system hosting our `Database`, which will contain the `Table`.
@@ -237,11 +206,11 @@ As we are just creating Entities right now, we'll stick to the `pydantic` models
 Let's imagine that we are defining a MySQL:
 
 ```python
+from metadata.sdk import DatabaseServices
 from metadata.generated.schema.api.services.createDatabaseService import (
     CreateDatabaseServiceRequest,
 )
 from metadata.generated.schema.entity.services.databaseService import (
-    DatabaseService,
     DatabaseServiceType,
     DatabaseConnection,
 )
@@ -279,20 +248,14 @@ create_service.json()
 Executing the actual creation is easy! As our `create_service` variable already holds the proper datatype, there is a single line to execute:
 
 ```python
-service_entity = metadata.create_or_update(data=create_service)
+service_entity = DatabaseServices.create(create_service)
 ```
 
 <Tip>
-
-**Important:** The `create_or_update()` method uses PUT operations with server-side business rules that may prevent certain field overwrites for data integrity reasons. This applies to various entities where certain fields are protected for business or data integrity purposes.
-
-If you need to override existing metadata fields, consider using patch methods instead:
-- For descriptions: Use `patch_description(force=True)`
-- For general metadata: Use `patch(override_metadata=True)`
-
+`create()` is idempotent — it calls `createOrUpdate` under the hood. If a service with the same name already exists, it is updated.
 </Tip>
 
-Moreover, running a `create_or_update` will return us the Entity type, so we can explore its attributes easily:
+The call returns the entity type, so we can explore its attributes easily:
 
 ```python
 type(service_entity)
@@ -338,15 +301,14 @@ In the case of the `owner` field, repeating the exercise and reviewing the requi
 
 The `id` we actually saw it by printing the `service_entity` JSON. However, let's imagine that it did not happen, and the only information we have from the `DatabaseService` is its name.
 
-To retrieve the `id`, we should then ask the `metadata` to find our Entity by its FQN:
+To retrieve it, use `retrieve_by_name` — the same pattern works for any entity class:
 
 ```python
-service_query = metadata.get_by_name(entity=DatabaseService, fqn="test-service-table")
+service_query = DatabaseServices.retrieve_by_name("test-service-table")
 ```
 
-We have just used the `get_by_name` method. This method is the same that we will use for any Entity. This is why as an argument, we need to provide the `entity` field. Again, instead of relying on error-prone handwritten parameters, we can just pass the `pydantic` model we expect to get back. In our case, a `DatabaseService`.
-
 ```python
+from metadata.sdk import Databases
 from metadata.generated.schema.api.data.createDatabase import (
     CreateDatabaseRequest,
 )
@@ -356,13 +318,14 @@ create_db = CreateDatabaseRequest(
     service=service_entity.fullyQualifiedName,
 )
 
-db_entity = metadata.create_or_update(create_db)
+db_entity = Databases.create(create_db)
 ```
 
 ### 4. Create the Schema
 With the addition of the Schema Entity in 0.10, we now also need to create a Schema, which will be the one containing the Tables. As this entity is a link between other entities, an Entity Reference will be required too.
 
 ```python
+from metadata.sdk import DatabaseSchemas
 from metadata.generated.schema.api.data.createDatabaseSchema import (
     CreateDatabaseSchemaRequest,
 )
@@ -372,18 +335,18 @@ create_schema = CreateDatabaseSchemaRequest(
     database=db_entity.fullyQualifiedName
 )
 
-schema_entity = metadata.create_or_update(data=create_schema)
+schema_entity = DatabaseSchemas.create(create_schema)
 ```
 
 ### 5. Create the Table
 Now that we have all the preparations ready, we can just reuse the same steps to create the `Table`:
 
 ```python
+from metadata.sdk import Tables
 from metadata.generated.schema.api.data.createTable import CreateTableRequest
 from metadata.generated.schema.entity.data.table import (
     Column,
     DataType,
-    Table,
 )
 
 create_table = CreateTableRequest(
@@ -392,7 +355,7 @@ create_table = CreateTableRequest(
     columns=[Column(name="id", dataType=DataType.BIGINT)],
 )
 
-table_entity = metadata.create_or_update(create_table)
+table_entity = Tables.create(create_table)
 ```
 
 ### 6. Update the Table
@@ -401,36 +364,35 @@ Let's now update the `Table` by adding an owner. This will require us to create 
 First, make sure that no owner has been set during the creation:
 
 ```python
-print(table_entity.owner)
+print(table_entity.owners)
 # None
 ```
 
 Now, create a `User`:
 
 ```python
+from metadata.sdk import Users
 from metadata.generated.schema.api.teams.createUser import CreateUserRequest
 
-user = metadata.create_or_update(
-    data=CreateUserRequest(name="random-user", email="random@user.com"),
-)
+user = Users.create(CreateUserRequest(name="random-user", email="random@user.com"))
 ```
 
-Update our instance of `create_table` to add the `owner` field (we need to use the `Create` class as we'll run a `PUT`), and update the Entity:
+Retrieve the table, set the owner, and update:
 
 ```python
-from metadata.generated.schema.type.entityReference import EntityReference
+from metadata.sdk import to_entity_reference
 
-create_table.owner = EntityReference(id=user.id, type="user")
-updated_table_entity = metadata.create_or_update(create_table)
+table_entity = Tables.retrieve_by_name("test-service-table.test-db.test-schema.test")
+table_entity.owners = [to_entity_reference(user)]
+updated_table_entity = Tables.update(table_entity)
 
-print(updated_table_entity.owner)
-# EntityReference(id=Uuid(__root__=UUID('48793f0c-5308-45c1-9bf4-06a82c8d7bf9')), type='user', name='random-user', description=None, displayName=None, href=Href(__root__=AnyUrl('http://localhost:8585/api/v1/users/48793f0c-5308-45c1-9bf4-06a82c8d7bf9', scheme='http', host='localhost', host_type='int_domain', port='8585', path='/api/v1/users/48793f0c-5308-45c1-9bf4-06a82c8d7bf9')))
+print(updated_table_entity.owners)
 ```
 
-If we did not save the `updated_table_entity` variable, we should need to query it to review the `owner` field. We can run the `get_by_name` using the proper FQN definition for `Table`s:
+If we need to re-fetch the table later to review any field, use `retrieve_by_name`:
 
 ```python
-my_table = metadata.get_by_name(entity=Table, fqn="test-service-table.test-db.test-schema.test")
+my_table = Tables.retrieve_by_name("test-service-table.test-db.test-schema.test")
 ```
 
 <Tip>
@@ -444,20 +406,13 @@ In those cases, the `get` method won't fail, but instead will return None. Note 
 Finally, we can clean up the Table by running the `delete` method:
 
 ```python
-metadata.delete(entity=Table, entity_id=my_table.id)
+Tables.delete(my_table.id)
 ```
 
 We could directly clean up the service itself with a Hard and Recursive delete. Note that this is ok for this test, but beware when working with production data!
 
 ```python
-service_id = metadata.get_by_name(
-    entity=DatabaseService, fqn="test-service-table"
-).id
+service = DatabaseServices.retrieve_by_name("test-service-table")
 
-metadata.delete(
-    entity=DatabaseService,
-    entity_id=service_id,
-    recursive=True,
-    hard_delete=True,
-)
+DatabaseServices.delete(service.id, recursive=True, hard_delete=True)
 ```

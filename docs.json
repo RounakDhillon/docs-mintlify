@@ -1771,6 +1771,19 @@
                         ]
                     },
                     {
+                        "group": "Python SDK",
+                        "pages": [
+                            "sdk/python/fluent/index",
+                            "sdk/python/fluent/tables",
+                            "sdk/python/fluent/databases",
+                            "sdk/python/fluent/database-schemas",
+                            "sdk/python/fluent/database-services",
+                            "sdk/python/fluent/dashboards",
+                            "sdk/python/fluent/pipelines",
+                            "sdk/python/fluent/users"
+                        ]
+                    },
+                    {
                         "group": "Data Assets",
                         "pages": [
                             "api-reference/data-assets/index",

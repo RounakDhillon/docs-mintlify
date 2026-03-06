@@ -1,0 +1,93 @@
+---
+title: Database Schemas | Python Fluent API | Collate
+description: Create, retrieve, update, delete, and search database schema entities using the Collate Python Fluent API.
+slug: /sdk/python/fluent/database-schemas
+sidebarTitle: Database Schemas
+---
+
+# Database Schemas
+
+The `DatabaseSchemas` class provides CRUD operations for database schema metadata.
+
+**FQN format:** `service_name.database_name.schema_name`
+
+## Import
+
+```python
+from metadata.sdk import configure, DatabaseSchemas
+from metadata.generated.schema.api.data.createDatabaseSchema import CreateDatabaseSchemaRequest
+
+configure(host="https://your-instance.getcollate.io/api", jwt_token="your-token")
+```
+
+## Create
+
+```python
+schema = DatabaseSchemas.create(
+    CreateDatabaseSchemaRequest(
+        name="public",
+        database="my_postgres.analytics",
+        description="Default public schema",
+    )
+)
+print(schema.fullyQualifiedName)  # "my_postgres.analytics.public"
+```
+
+## Retrieve
+
+```python
+# By ID
+schema = DatabaseSchemas.retrieve("schema-uuid")
+
+# By FQN
+schema = DatabaseSchemas.retrieve_by_name("my_postgres.analytics.public")
+
+# With fields
+schema = DatabaseSchemas.retrieve_by_name(
+    "my_postgres.analytics.public",
+    fields=["owners", "tags"],
+)
+```
+
+## List
+
+```python
+# Single page
+page = DatabaseSchemas.list(limit=50)
+
+# All schemas
+all_schemas = DatabaseSchemas.list_all()
+
+# Filter by database
+schemas = DatabaseSchemas.list_all(filters={"database": "my_postgres.analytics"})
+```
+
+## Update
+
+```python
+schema = DatabaseSchemas.retrieve_by_name("my_postgres.analytics.public")
+schema.description = "Updated schema description"
+DatabaseSchemas.update(schema)
+```
+
+## Delete
+
+```python
+DatabaseSchemas.delete("schema-uuid")
+DatabaseSchemas.delete("schema-uuid", recursive=True)
+```
+
+## Search
+
+```python
+results = DatabaseSchemas.search("public")
+for schema in results:
+    print(schema.fullyQualifiedName)
+```
+
+## CSV Export / Import
+
+```python
+csv_content = DatabaseSchemas.export_csv("my_postgres.analytics").execute()
+DatabaseSchemas.import_csv("my_postgres.analytics").with_data(csv_content).execute()
+```

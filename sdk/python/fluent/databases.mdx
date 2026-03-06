@@ -1,0 +1,101 @@
+---
+title: Databases | Python Fluent API | Collate
+description: Create, retrieve, update, delete, and search database entities using the Collate Python Fluent API.
+slug: /sdk/python/fluent/databases
+sidebarTitle: Databases
+---
+
+# Databases
+
+The `Databases` class provides CRUD operations for database metadata.
+
+**FQN format:** `service_name.database_name`
+
+## Import
+
+```python
+from metadata.sdk import configure, Databases
+from metadata.generated.schema.api.data.createDatabase import CreateDatabaseRequest
+
+configure(host="https://your-instance.getcollate.io/api", jwt_token="your-token")
+```
+
+## Create
+
+```python
+database = Databases.create(
+    CreateDatabaseRequest(
+        name="analytics",
+        service={"id": "service-uuid", "type": "databaseService", "name": "my_postgres"},
+        description="Analytics data warehouse",
+    )
+)
+print(database.fullyQualifiedName)  # "my_postgres.analytics"
+```
+
+## Retrieve
+
+```python
+# By ID
+database = Databases.retrieve("database-uuid")
+
+# By FQN
+database = Databases.retrieve_by_name("my_postgres.analytics")
+
+# With fields
+database = Databases.retrieve_by_name(
+    "my_postgres.analytics",
+    fields=["owners", "tags", "domain"],
+)
+```
+
+## List
+
+```python
+# Single page
+page = Databases.list(limit=50)
+
+# All databases
+all_dbs = Databases.list_all()
+print(f"Total: {len(all_dbs)}")
+
+# Filter by service
+dbs = Databases.list_all(filters={"service": "my_postgres"})
+```
+
+## Update
+
+```python
+db = Databases.retrieve_by_name("my_postgres.analytics")
+db.description = "Analytics warehouse — updated"
+Databases.update(db)
+```
+
+## Delete
+
+```python
+Databases.delete("database-uuid")
+Databases.delete("database-uuid", recursive=True, hard_delete=True)
+```
+
+## Search
+
+```python
+results = Databases.search("analytics")
+for db in results:
+    print(db.fullyQualifiedName)
+```
+
+## CSV Export / Import
+
+```python
+csv_content = Databases.export_csv("my_postgres").execute()
+Databases.import_csv("my_postgres").with_data(csv_content).execute()
+```
+
+## Version History
+
+```python
+versions = Databases.get_versions("database-uuid")
+v = Databases.get_specific_version("database-uuid", "0.2")
+```

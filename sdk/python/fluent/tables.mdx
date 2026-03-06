@@ -1,0 +1,218 @@
+---
+title: Tables | Python Fluent API | Collate
+description: Create, retrieve, update, delete, search, and annotate database tables using the Collate Python Fluent API.
+slug: /sdk/python/fluent/tables
+sidebarTitle: Tables
+---
+
+# Tables
+
+The `Tables` class provides CRUD operations for database table metadata, plus table-specific helpers for tagging, column descriptions, custom metrics, and sample data.
+
+**FQN format:** `service_name.database_name.schema_name.table_name`
+
+## Import
+
+```python
+from metadata.sdk import configure, Tables
+from metadata.generated.schema.api.data.createTable import CreateTableRequest
+from metadata.generated.schema.entity.data.table import Column, DataType
+
+configure(host="https://your-instance.getcollate.io/api", jwt_token="your-token")
+```
+
+## Create
+
+```python
+table = Tables.create(
+    CreateTableRequest(
+        name="orders",
+        databaseSchema="my_postgres.analytics.public",
+        columns=[
+            Column(name="id", dataType=DataType.BIGINT),
+            Column(name="customer_id", dataType=DataType.BIGINT),
+            Column(name="total", dataType=DataType.DOUBLE),
+        ],
+        description="Customer order records",
+    )
+)
+print(table.fullyQualifiedName)  # "my_service.my_db.public.orders"
+```
+
+<Tip>
+`create()` is idempotent — it calls `createOrUpdate` under the hood. If a table with the same FQN already exists, it is updated.
+</Tip>
+
+## Retrieve
+
+### By ID
+
+```python
+table = Tables.retrieve("550e8400-e29b-41d4-a716-446655440000")
+```
+
+### By fully-qualified name
+
+```python
+table = Tables.retrieve_by_name("my_service.my_db.public.orders")
+```
+
+### With specific fields
+
+```python
+table = Tables.retrieve_by_name(
+    "my_service.my_db.public.orders",
+    fields=["columns", "tags", "owners", "followers"],
+)
+```
+
+Available fields include: `columns`, `tags`, `owners`, `followers`, `domain`, `description`, `sampleData`, `tableConstraints`, `customMetrics`.
+
+## List
+
+### Single page
+
+```python
+page = Tables.list(limit=25)
+for table in page.entities:
+    print(table.name)
+
+# Fetch next page
+if page.after:
+    next_page = Tables.list(limit=25, after=page.after)
+```
+
+### All tables (auto-paginated)
+
+```python
+all_tables = Tables.list_all(batch_size=100)
+print(f"Total tables: {len(all_tables)}")
+```
+
+### With filters
+
+```python
+tables = Tables.list_all(
+    fields=["tags", "owners"],
+    filters={"database": "my_service.my_db"},
+)
+```
+
+## Update
+
+```python
+table = Tables.retrieve_by_name("my_service.my_db.public.orders")
+table.description = "Updated description"
+Tables.update(table)
+```
+
+`update()` computes a JSON Patch diff between the fetched entity and your modified version.
+
+## Delete
+
+```python
+# Soft delete (recoverable)
+Tables.delete("table-uuid")
+
+# Soft delete with child entities
+Tables.delete("table-uuid", recursive=True)
+
+# Permanent hard delete
+Tables.delete("table-uuid", hard_delete=True)
+```
+
+## Search
+
+```python
+results = Tables.search("orders", size=10)
+for table in results:
+    print(table.fullyQualifiedName)
+```
+
+## Table-Specific Operations
+
+### Add a tag
+
+Attach a classification or glossary tag by its FQN:
+
+```python
+Tables.add_tag("table-uuid", tag_fqn="PII.Sensitive")
+Tables.add_tag("table-uuid", tag_fqn="Glossary.Finance.Revenue")
+```
+
+### Update a column description
+
+```python
+Tables.update_column_description(
+    "table-uuid",
+    column_name="customer_id",
+    description="Foreign key referencing the customers table",
+)
+```
+
+### Add a custom metric
+
+```python
+from metadata.generated.schema.api.tests.createCustomMetric import CreateCustomMetricRequest
+
+Tables.add_custom_metric(
+    "table-uuid",
+    custom_metric=CreateCustomMetricRequest(
+        name="revenue_sum",
+        expression="SUM(total)",
+        description="Total revenue across all orders",
+        columnName="total",
+    ),
+)
+```
+
+### Add sample data
+
+```python
+from metadata.generated.schema.entity.data.table import TableData
+
+Tables.add_sample_data(
+    "table-uuid",
+    sample_data=TableData(
+        columns=["id", "customer_id", "total"],
+        rows=[[1, 42, 99.99], [2, 17, 249.00]],
+    ),
+)
+```
+
+### Get sample data
+
+```python
+table = Tables.get_sample_data("table-uuid")
+print(table.sampleData)
+```
+
+## CSV Export / Import
+
+```python
+# Export table definitions to CSV
+csv_content = Tables.export_csv("my_service.my_db.public").execute()
+
+# Import table definitions from CSV
+Tables.import_csv("my_service.my_db.public").with_data(csv_content).execute()
+
+# Dry run to preview import without committing
+Tables.import_csv("my_service.my_db.public").with_data(csv_content).set_dry_run(True).execute()
+```
+
+## Version History
+
+```python
+# All versions
+versions = Tables.get_versions("table-uuid")
+
+# Specific version
+v = Tables.get_specific_version("table-uuid", "0.2")
+```
+
+## Restore
+
+```python
+# Restore a soft-deleted table
+Tables.restore("table-uuid")
+```

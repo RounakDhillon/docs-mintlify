@@ -1,0 +1,101 @@
+---
+title: Dashboards | Python Fluent API | Collate
+description: Create, retrieve, update, delete, and search BI dashboard entities using the Collate Python Fluent API.
+slug: /sdk/python/fluent/dashboards
+sidebarTitle: Dashboards
+---
+
+# Dashboards
+
+The `Dashboards` class provides CRUD operations for BI dashboard metadata (Looker, Tableau, Superset, etc.).
+
+**FQN format:** `service_name.dashboard_name`
+
+## Import
+
+```python
+from metadata.sdk import configure, Dashboards
+from metadata.generated.schema.api.data.createDashboard import CreateDashboardRequest
+
+configure(host="https://your-instance.getcollate.io/api", jwt_token="your-token")
+```
+
+## Create
+
+```python
+dashboard = Dashboards.create(
+    CreateDashboardRequest(
+        name="revenue_overview",
+        service="my_superset",
+        description="Executive revenue overview",
+        sourceUrl="https://superset.example.com/superset/dashboard/1",
+    )
+)
+print(dashboard.fullyQualifiedName)  # "my_superset.revenue_overview"
+```
+
+## Retrieve
+
+```python
+# By ID
+dashboard = Dashboards.retrieve("dashboard-uuid")
+
+# By FQN
+dashboard = Dashboards.retrieve_by_name("my_superset.revenue_overview")
+
+# With fields
+dashboard = Dashboards.retrieve_by_name(
+    "my_superset.revenue_overview",
+    fields=["owners", "tags", "charts", "domain"],
+)
+```
+
+## List
+
+```python
+# Single page
+page = Dashboards.list(limit=25)
+
+# All dashboards
+all_dashboards = Dashboards.list_all()
+
+# Filter by service
+dashboards = Dashboards.list_all(filters={"service": "my_superset"})
+```
+
+## Update
+
+```python
+dashboard = Dashboards.retrieve_by_name("my_superset.revenue_overview")
+dashboard.description = "Updated executive revenue dashboard"
+Dashboards.update(dashboard)
+```
+
+## Delete
+
+```python
+Dashboards.delete("dashboard-uuid")
+Dashboards.delete("dashboard-uuid", recursive=True, hard_delete=True)
+```
+
+## Search
+
+```python
+results = Dashboards.search("revenue", size=10)
+for d in results:
+    print(d.fullyQualifiedName)
+```
+
+## CSV Export / Import
+
+```python
+csv_content = Dashboards.export_csv("my_superset").execute()
+Dashboards.import_csv("my_superset").with_data(csv_content).execute()
+```
+
+## Version History
+
+```python
+versions = Dashboards.get_versions("dashboard-uuid")
+v = Dashboards.get_specific_version("dashboard-uuid", "0.2")
+```
