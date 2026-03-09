@@ -1,8 +1,8 @@
 ---
 title: BigTable Connector | Collate Database Integration
 description: Connect Google Cloud Bigtable to Collate with our comprehensive database connector guide. Setup instructions, configuration steps, and metadata extraction tips.
-slug: /connectors/database/bigtable
-sidebarTitle: SaaS/BYOC
+slug: /connectors/database/bigtable/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -19,7 +19,7 @@ stage="PROD"
 availableFeatures={["Metadata"]}
 unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Owners", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]} />
 In this section, we provide guides and references to use the BigTable connector.
-Configure and schedule BigTable metadata and profiler workflows from the Collate UI:
+Configure and schedule BigTable metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/database/bigtable/troubleshooting)
@@ -80,6 +80,15 @@ the GCP credentials empty. This is why they are not marked as required.
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

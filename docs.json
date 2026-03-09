@@ -119,7 +119,7 @@
                                         "group": "ADLS Datalake",
                                         "pages": [
                                             "connectors/database/adls-datalake/index",
-                                            "connectors/database/adls-datalake/yaml",
+                                            "connectors/database/adls-datalake/hybrid-runner",
                                             "connectors/database/adls-datalake/troubleshooting"
                                         ]
                                     },
@@ -127,7 +127,7 @@
                                         "group": "Athena",
                                         "pages": [
                                             "connectors/database/athena/index",
-                                            "connectors/database/athena/yaml",
+                                            "connectors/database/athena/hybrid-runner",
                                             "connectors/database/athena/troubleshooting"
                                         ]
                                     },
@@ -135,7 +135,7 @@
                                         "group": "AzureSQL",
                                         "pages": [
                                             "connectors/database/azuresql/index",
-                                            "connectors/database/azuresql/yaml",
+                                            "connectors/database/azuresql/hybrid-runner",
                                             "connectors/database/azuresql/troubleshooting"
                                         ]
                                     },
@@ -144,7 +144,7 @@
                                         "pages": [
                                             "connectors/database/bigquery/index",
                                             "connectors/database/bigquery/create-credentials",
-                                            "connectors/database/bigquery/yaml",
+                                            "connectors/database/bigquery/hybrid-runner",
                                             "connectors/database/bigquery/troubleshooting"
                                         ]
                                     },
@@ -153,7 +153,7 @@
                                         "pages": [
                                             "connectors/database/bigtable/index",
                                             "connectors/database/bigtable/roles",
-                                            "connectors/database/bigtable/yaml",
+                                            "connectors/database/bigtable/hybrid-runner",
                                             "connectors/database/bigtable/troubleshooting"
                                         ]
                                     },
@@ -161,7 +161,7 @@
                                         "group": "BurstIQ",
                                         "pages": [
                                             "connectors/database/burstiq/index",
-                                            "connectors/database/burstiq/yaml",
+                                            "connectors/database/burstiq/hybrid-runner",
                                             "connectors/database/burstiq/troubleshooting"
                                         ]
                                     },
@@ -2292,6 +2292,30 @@
         {
             "source": "/connectors/database/snowflake/yaml",
             "destination": "/connectors/database/snowflake/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/adls-datalake/yaml",
+            "destination": "/connectors/database/adls-datalake/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/athena/yaml",
+            "destination": "/connectors/database/athena/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/azuresql/yaml",
+            "destination": "/connectors/database/azuresql/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/bigquery/yaml",
+            "destination": "/connectors/database/bigquery/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/bigtable/yaml",
+            "destination": "/connectors/database/bigtable/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/burstiq/yaml",
+            "destination": "/connectors/database/burstiq/hybrid-runner"
         },
         {
             "source": "/connectors/database/cassandra/yaml",

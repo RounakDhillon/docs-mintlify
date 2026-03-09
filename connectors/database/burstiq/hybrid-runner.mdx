@@ -1,8 +1,8 @@
 ---
 title: BurstIQ Connector | Collate LifeGraph Database Guide
 description: Connect BurstIQ LifeGraph to Collate with our comprehensive database connector guide. Step-by-step setup, configuration, and metadata extraction for seamless integration.
-slug: /connectors/database/burstiq
-sidebarTitle: SaaS/BYOC
+slug: /connectors/database/burstiq/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -23,7 +23,7 @@ import Related from '/snippets/connectors/database/related.mdx'
 
 In this section, we provide guides and references to use the BurstIQ LifeGraph connector.
 
-Configure and schedule BurstIQ metadata and profiler workflows from the Collate UI:
+Configure and schedule BurstIQ metadata and profiler workflows from the OpenMetadata UI:
 
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
@@ -72,10 +72,6 @@ Executing the profiler workflow or data quality tests will require the user to h
 
     - **Realm Name**: BurstIQ Keycloak realm name (e.g., 'ems' from https://auth.burstiq.com/realms/ems). This identifies your organization's authentication realm.
 
-    - **BurstIQ SDZ Name**: BurstIQ Secure Data Zone (SDZ) name for API requests.
-
-    - **BurstIQ Customer Name**: BurstIQ customer name for API requests.
-
     - **Table Filter Pattern** *(Optional)*: Regex to only include/exclude dictionaries (tables) that match the pattern.
   </Step>
 
@@ -87,6 +83,15 @@ Executing the profiler workflow or data quality tests will require the user to h
 
   <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

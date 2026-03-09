@@ -1,8 +1,8 @@
 ---
 title: BigQuery | Collate Connector Setup & Integration Guide
 description: Connect BigQuery to Collate seamlessly with our comprehensive database connector guide. Setup instructions, configuration tips, and metadata extrac...
-slug: /connectors/database/bigquery
-sidebarTitle: SaaS/BYOC
+slug: /connectors/database/bigquery/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import PartitionedTables from '/snippets/connectors/database/partitioned-tables.mdx'
@@ -22,14 +22,14 @@ stage="PROD"
 availableFeatures={["Metadata", "Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "dbt", "Tags", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
 unavailableFeatures={["Owners"]} />
 In this section, we provide guides and references to use the BigQuery connector.
-Configure and schedule BigQuery metadata and profiler workflows from the Collate UI:
+Configure and schedule BigQuery metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-    - [Incremental Extraction](/how-to-guides/guide-for-data-users/ingestion/workflows/metadata/incremental-extraction/bigquery)
-- [Query Usage](/how-to-guides/guide-for-data-users/ingestion/workflows/usage)
+    - [Incremental Extraction](/connectors/ingestion/workflows/metadata/incremental-extraction/bigquery)
+- [Query Usage](/connectors/ingestion/workflows/usage)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Data Quality](/how-to-guides/data-quality-observability/quality/configure)
-- [Lineage](/how-to-guides/guide-for-data-users/ingestion/lineage)
+- [Lineage](/connectors/ingestion/lineage)
 - [dbt Integration](/connectors/database/dbt)
 - [Troubleshooting](/connectors/database/bigquery/troubleshooting)
 - [Reverse Metadata](#reverse-metadata)
@@ -134,6 +134,15 @@ credentials:
 ### Cross Project Lineage
 We support cross-project lineage, but the data must be ingested within a single service. This means you need to perform lineage ingestion for just one service while including multiple projects.
 <ReverseMetadata />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 
