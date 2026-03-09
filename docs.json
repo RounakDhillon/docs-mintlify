@@ -1215,7 +1215,8 @@
                                 "pages": [
                                     "how-to-guides/admin-guide/persona-landing-page-customization/index",
                                     "how-to-guides/admin-guide/persona-landing-page-customization/customizable-landing-page",
-                                    "how-to-guides/admin-guide/persona-landing-page-customization/defining-persona"
+                                    "how-to-guides/admin-guide/persona-landing-page-customization/defining-persona",
+                                    "how-to-guides/admin-guide/persona-landing-page-customization/persona-configuration-and-precedence"
                                 ]
                             }
                         ]

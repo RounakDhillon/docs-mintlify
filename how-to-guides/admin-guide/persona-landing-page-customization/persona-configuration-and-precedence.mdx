@@ -1,0 +1,104 @@
+---
+title: "Persona Configuration and Precedence | Collate Admin Guide"
+description: "Learn how to configure and manage Persona precedence at user and organizational levels in Collate"
+slug: /how-to-guides/admin-guide/persona-landing-page-customization/persona-configuration-and-precedence
+sidebarTitle: Configuration and Precedence
+---
+
+# Persona Configuration and Precedence
+
+## Persona Precedence Logic
+
+To clarify how Personas take effect:
+
+- **User-level Default Persona** (highest priority)
+- **Organization-level Default Persona** (fallback)
+
+<Note>
+If a user has a Default Persona explicitly assigned at the user level, that Persona will take precedence. If no user-level Persona is defined, the system will apply the Organization-level Default Persona associated with the user's role.
+</Note>
+
+### Effective Persona Resolution Flow
+
+```
+If (User Default Persona exists)
+   Apply User Default Persona
+Else
+   Apply Organization Default Persona (based on role)
+```
+
+## 1. Setting a Persona at the Organizational Level
+
+This section explains how to configure a Default Persona for the entire organization.
+
+### Steps
+
+1. Navigate to **Settings**
+2. Select **Persona**
+<img src="/public/images/how-to-guides/admin-guide/persona-1.png" alt="Select Persona Settings" />
+3. From the list of available roles, select the role you want to configure
+   - Example: Data Steward
+<img src="/public/images/how-to-guides/admin-guide/persona-data.png" alt="Select Data Steward Role" />
+4. Click the three dots (⋮) at the top-right corner of the selected role
+5. Select **Set as Default**
+<img src="/public/images/how-to-guides/admin-guide/persona-data-default.png" alt="Set as Default Persona" />
+
+Once marked, this Persona becomes the default for all users associated with that role, unless a user-level Persona overrides it.
+
+### Example: Customizing the Navigation Menu
+
+You can customize the left-side navigation menu using Personas.
+
+#### Steps
+
+1. Navigate to **Settings**
+2. Select **Persona**
+<img src="/public/images/how-to-guides/admin-guide/persona-1.png" alt="Select Persona Settings" />
+3. Open the Persona you want to edit
+<img src="/public/images/how-to-guides/admin-guide/persona-data.png" alt="Open Persona to Edit" />
+4. Go to **Navigation Settings**
+<img src="/public/images/how-to-guides/admin-guide/persona-data-navigation.png" alt="Navigate to Navigation Settings" />
+5. Enable the options you want to display in the left sidebar
+<img src="/public/images/how-to-guides/admin-guide/persona-data-navigation-options.png" alt="Enable Navigation Options" />
+
+Only the enabled options will appear in the left-hand navigation menu for users assigned to this Persona.
+
+## 2. Defining a User Persona
+
+This section explains how to assign or override a Persona for an individual user.
+
+### Steps
+
+1. Navigate to **Settings**
+2. Go to **Team and User Management**
+<img src="/public/images/how-to-guides/admin-guide/user-persona1.png" alt="Team and User Management" />
+3. Select **Users**
+<img src="/public/images/how-to-guides/admin-guide/user-persona2.png" alt="Select Users" />
+4. Search for the user you want to update
+<img src="/public/images/how-to-guides/admin-guide/user-persona3.png" alt="Search for User" />
+5. Open the user profile
+
+You can configure the following fields:
+
+- **Default Persona**
+- **Organization**
+- **Domain**
+- **Roles**
+
+<img src="/public/images/how-to-guides/admin-guide/user-persona4.png" alt="Configure User Profile Fields" />
+
+These settings determine how the user interacts with the system, including:
+
+- Navigation visibility
+- Feature access
+- Permissions
+- Overall user experience in Collate
+
+## Summary
+
+| Level | Scope | Priority |
+|-------|-------|----------|
+| User-level Persona | Individual user | High |
+| Organization-level Persona | Role-based default | Fallback |
+
+A user-level Default Persona overrides the Organization-level Default Persona. If no user-level Persona is defined, the Organization-level Persona applies.
