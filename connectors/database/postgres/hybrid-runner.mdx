@@ -1,8 +1,8 @@
 ---
-title: PostgreSQL Connector | Collate Database Integration
-description: Connect PostgreSQL to Collate with our comprehensive database connector guide. Step-by-step setup, configuration examples, and metadata extraction tips.
-slug: /connectors/database/postgres
-sidebarTitle: Overview
+title: PostgreSQL Hybrid Runner | Collate Database Integration
+description: Connect PostgreSQL to Collate using the Hybrid Runner deployment. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/postgres/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ReverseMetadata from '/snippets/connectors/database/postgres/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -20,7 +20,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Owners", "Tags", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
 unavailableFeatures={["Stored Procedures Lineage"]} />
 In this section, we provide guides and references to use the PostgreSQL connector.
-Configure and schedule PostgreSQL metadata and profiler workflows from the Collate UI:
+Configure and schedule PostgreSQL metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Query Usage](/how-to-guides/guide-for-data-users/ingestion/workflows/usage)
@@ -86,15 +86,15 @@ When executing stored procedures in PostgreSQL, lineage extraction relies on cap
 To ensure OpenMetadata captures lineage from stored procedures, follow these steps:
 1. **Enable Logging for All Statements**
 Modify the `postgresql.conf` file and set:
-   ```ini
-   log_statement = 'all'
-   ```
- This will log all executed SQL statements, including those inside stored procedures.
+   ```ini
+   log_statement = 'all'
+   ```
+ This will log all executed SQL statements, including those inside stored procedures.
 2. **Configure `pg_stat_statements` to Track Nested Queries**
 By default, `pg_stat_statements` may only capture top-level procedure calls and not the internal queries. To change this behavior, update:
-   ```ini
-   pg_stat_statements.track = 'all'
-   ```
+   ```ini
+   pg_stat_statements.track = 'all'
+   ```
 This ensures that statements executed within procedures are recorded.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Postgres"} selectServicePath={"/public/images/connectors/postgres/select-service.png"} addNewServicePath={"/public/images/connectors/postgres/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/postgres/service-connection.png"} />
@@ -172,6 +172,15 @@ For IAM authentication, it is recommended to choose the `allow` mode or another 
 </Tip>
 <img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 <ReverseMetadata />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

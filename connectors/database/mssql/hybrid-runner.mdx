@@ -1,8 +1,8 @@
 ---
-title: MSSQL Connector | Collate SQL Server Integration Guide
-description: Connect your Microsoft SQL Server to Collate with our comprehensive MSSQL connector guide. Step-by-step setup, configuration, and metadata extraction.
-slug: /connectors/database/mssql
-sidebarTitle: Overview
+title: MSSQL Hybrid Runner | Collate SQL Server Integration Guide
+description: Connect your Microsoft SQL Server to Collate using the Hybrid Runner deployment. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/mssql/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ReverseMetadata from '/snippets/connectors/database/mssql/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -20,7 +20,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Query Usage", "Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Stored Procedures", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
 unavailableFeatures={["Owners", "Tags", "SSIS packages"]} />
 In this section, we provide guides and references to use the MSSQL connector.
-Configure and schedule MSSQL metadata and profiler workflows from the Collate UI:
+Configure and schedule MSSQL metadata and profiler workflows from the OpenMetadata UI:
 - [Remote-Connection](#for-remote-connection)
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
@@ -80,6 +80,15 @@ For details step please refer to this [link](https://docs.microsoft.com/en-us/sq
 <IngestionScheduleAndDeploy />
 </Steps>
 <ReverseMetadata />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

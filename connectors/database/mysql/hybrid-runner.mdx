@@ -1,8 +1,8 @@
 ---
-title: MySQL Connector | Collate Database Integration Guide
-description: Set up MySQL database connector for Collate to automatically discover, catalog, and manage your MySQL metadata. Step-by-step configuration guide.
-slug: /connectors/database/mysql
-sidebarTitle: Overview
+title: MySQL Hybrid Runner | Collate Database Integration Guide
+description: Set up MySQL database connector for Collate using the Hybrid Runner deployment. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/mysql/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ReverseMetadata from '/snippets/connectors/database/mysql/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -20,7 +20,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "View Column-level Lineage", "Query Usage", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification"]}
 unavailableFeatures={["Owners", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the MySQL connector.
-Configure and schedule MySQL metadata and profiler workflows from the Collate UI:
+Configure and schedule MySQL metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
@@ -174,6 +174,15 @@ Executing the profiler workflow or data quality tests, will require the user to 
 To establish secure connections between OpenMetadata and MySQL, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`.  Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl_key`, `ssl_cert`, and `ssl_ca`. In this case, `ssl_cert` is used for the client's SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `ssl_ca` for the CA certificate to validate the server's certificate.
 <img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 <ReverseMetadata />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

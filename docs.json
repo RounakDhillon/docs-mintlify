@@ -352,7 +352,7 @@
                                         "group": "MariaDB",
                                         "pages": [
                                             "connectors/database/mariadb/index",
-                                            "connectors/database/mariadb/yaml",
+                                            "connectors/database/mariadb/hybrid-runner",
                                             "connectors/database/mariadb/troubleshooting"
                                         ]
                                     },
@@ -360,7 +360,7 @@
                                         "group": "Microsoft Fabric",
                                         "pages": [
                                             "connectors/database/microsoftfabric/index",
-                                            "connectors/database/microsoftfabric/yaml",
+                                            "connectors/database/microsoftfabric/hybrid-runner",
                                             "connectors/database/microsoftfabric/troubleshooting"
                                         ]
                                     },
@@ -368,7 +368,7 @@
                                         "group": "MongoDB",
                                         "pages": [
                                             "connectors/database/mongodb/index",
-                                            "connectors/database/mongodb/yaml",
+                                            "connectors/database/mongodb/hybrid-runner",
                                             "connectors/database/mongodb/troubleshooting"
                                         ]
                                     },
@@ -376,15 +376,15 @@
                                         "group": "MSSQL",
                                         "pages": [
                                             "connectors/database/mssql/index",
-                                            "connectors/database/mssql/troubleshoot",
-                                            "connectors/database/mssql/yaml"
+                                            "connectors/database/mssql/hybrid-runner",
+                                            "connectors/database/mssql/troubleshoot"
                                         ]
                                     },
                                     {
                                         "group": "MySQL",
                                         "pages": [
                                             "connectors/database/mysql/index",
-                                            "connectors/database/mysql/yaml",
+                                            "connectors/database/mysql/hybrid-runner",
                                             "connectors/database/mysql/troubleshooting"
                                         ]
                                     },
@@ -392,7 +392,7 @@
                                         "group": "Oracle",
                                         "pages": [
                                             "connectors/database/oracle/index",
-                                            "connectors/database/oracle/yaml",
+                                            "connectors/database/oracle/hybrid-runner",
                                             "connectors/database/oracle/troubleshooting"
                                         ]
                                     },
@@ -400,7 +400,7 @@
                                         "group": "PinotDB",
                                         "pages": [
                                             "connectors/database/pinotdb/index",
-                                            "connectors/database/pinotdb/yaml",
+                                            "connectors/database/pinotdb/hybrid-runner",
                                             "connectors/database/pinotdb/troubleshooting"
                                         ]
                                     },
@@ -408,7 +408,7 @@
                                         "group": "Postgres",
                                         "pages": [
                                             "connectors/database/postgres/index",
-                                            "connectors/database/postgres/yaml",
+                                            "connectors/database/postgres/hybrid-runner",
                                             "connectors/database/postgres/troubleshooting"
                                         ]
                                     },
@@ -416,7 +416,7 @@
                                         "group": "Presto",
                                         "pages": [
                                             "connectors/database/presto/index",
-                                            "connectors/database/presto/yaml",
+                                            "connectors/database/presto/hybrid-runner",
                                             "connectors/database/presto/troubleshooting"
                                         ]
                                     },
@@ -2316,6 +2316,42 @@
         {
             "source": "/connectors/database/db2/yaml",
             "destination": "/connectors/database/db2/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/mariadb/yaml",
+            "destination": "/connectors/database/mariadb/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/microsoftfabric/yaml",
+            "destination": "/connectors/database/microsoftfabric/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/mongodb/yaml",
+            "destination": "/connectors/database/mongodb/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/mssql/yaml",
+            "destination": "/connectors/database/mssql/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/mysql/yaml",
+            "destination": "/connectors/database/mysql/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/oracle/yaml",
+            "destination": "/connectors/database/oracle/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/pinotdb/yaml",
+            "destination": "/connectors/database/pinotdb/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/postgres/yaml",
+            "destination": "/connectors/database/postgres/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/presto/yaml",
+            "destination": "/connectors/database/presto/hybrid-runner"
         },
         {
             "source": "/connectors/database/redshift/yaml",

@@ -1,8 +1,8 @@
 ---
-title: Microsoft Fabric Connector | Collate Database Guide
-description: Connect Microsoft Fabric Warehouses and Lakehouses to Collate with our comprehensive database connector guide. Step-by-step setup, configuration, and metadata extraction for seamless integration.
-slug: /connectors/database/microsoftfabric
-sidebarTitle: Overview
+title: Microsoft Fabric Hybrid Runner | Collate Database Guide
+description: Connect Microsoft Fabric Warehouses and Lakehouses to Collate using the Hybrid Runner deployment. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/microsoftfabric/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -73,6 +73,15 @@ Executing the profiler workflow or data quality tests will require the Service P
   <ConfigureIngestion />
   <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

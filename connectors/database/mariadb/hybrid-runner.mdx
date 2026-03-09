@@ -1,8 +1,8 @@
 ---
-title: MariaDB Connector | Collate Database Integration Guide
-description: Connect MariaDB to Collate with our comprehensive database connector guide. Easy setup, configuration steps, and metadata extraction for your data catalog.
-slug: /connectors/database/mariadb
-sidebarTitle: Overview
+title: MariaDB Hybrid Runner | Collate Database Integration Guide
+description: Connect MariaDB to Collate using the Hybrid Runner deployment. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/mariadb/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -19,7 +19,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "View Column-level Lineage", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the MariaDB connector.
-Configure and schedule MariaDB metadata and profiler workflows from the Collate UI:
+Configure and schedule MariaDB metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
@@ -57,6 +57,15 @@ Executing the profiler workflow or data quality tests, will require the user to 
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 
