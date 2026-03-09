@@ -1,8 +1,8 @@
 ---
-title: Sigma Connector | Collate Dashboard Integration Guide
-description: Connect Sigma Analytics to Collate seamlessly. Learn how to configure the Sigma dashboard connector for automated metadata extraction and lineage tracking.
-slug: /connectors/dashboard/sigma
-sidebarTitle: SaaS/BYOC
+title: Sigma Hybrid Runner | Collate Dashboard Integration Guide
+description: Connect Sigma Analytics to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/dashboard/sigma/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -53,6 +53,15 @@ To get to know the Sigma REST API Version visit [here](https://help.sigmacomputi
 <IngestionScheduleAndDeploy />
 </Steps>
 <DashboardLineage />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

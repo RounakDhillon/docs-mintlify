@@ -1,8 +1,8 @@
 ---
-title: Tableau Connector | Collate Integration Guide
-description: Connect Tableau dashboards to Collate with our comprehensive connector guide. Setup instructions, configuration options, and metadata extraction steps.
-slug: /connectors/dashboard/tableau
-sidebarTitle: SaaS/BYOC
+title: Tableau Hybrid Runner | Collate Integration Guide
+description: Connect Tableau dashboards to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/dashboard/tableau/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ReverseMetadata from '/snippets/connectors/dashboard/tableau/reverse-metadata.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -109,9 +109,18 @@ For more information to get a Personal Access Token please visit this [link](htt
 <IngestionScheduleAndDeploy />
 </Steps>
 ## Securing Tableau Connection with SSL in OpenMetadata
-To establish secure connections between OpenMetadata and Tableau, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`. Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl key`, `ssl cert`, and `caCertificate`. In this case, `ssl_cert` is used for the client’s SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `caCertificate` for the CA certificate to validate the server’s certificate.
+To establish secure connections between OpenMetadata and Tableau, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`. Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl key`, `ssl cert`, and `caCertificate`. In this case, `ssl_cert` is used for the client's SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `caCertificate` for the CA certificate to validate the server's certificate.
   <img src="/public/images/connectors/ssl_tableau.png" alt="SSL Configuration" height="450px" />
 <DashboardLineage />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

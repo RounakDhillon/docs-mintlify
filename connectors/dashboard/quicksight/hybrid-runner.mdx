@@ -1,8 +1,8 @@
 ---
-title: QuickSight Connector | Collate Dashboard Integration
-description: Connect Amazon QuickSight to Collate with our comprehensive dashboard connector guide. Step-by-step setup, configuration, and metadata extraction.
-slug: /connectors/dashboard/quicksight
-sidebarTitle: SaaS/BYOC
+title: QuickSight Hybrid Runner | Collate Dashboard Integration
+description: Connect Amazon QuickSight to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/dashboard/quicksight/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -117,6 +117,15 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 <IngestionScheduleAndDeploy />
 </Steps>
 <DashboardLineage />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

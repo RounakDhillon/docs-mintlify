@@ -1,8 +1,8 @@
 ---
-title: ThoughtSpot Connector | Collate Integration Guide
-description: Learn how to configure and use the ThoughtSpot connector in Collate. Includes setup, authentication, API access, metadata ingestion, and lineage.
-slug: /connectors/dashboard/thoughtspot
-sidebarTitle: SaaS/BYOC
+title: ThoughtSpot Hybrid Runner | Collate Integration Guide
+description: Learn how to configure and use the ThoughtSpot connector in Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/dashboard/thoughtspot/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -83,6 +83,15 @@ Enable debug logging to troubleshoot issues:
 export LOG_LEVEL=DEBUG
 ```
 This will provide detailed information about API calls, data extraction, and lineage creation.
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

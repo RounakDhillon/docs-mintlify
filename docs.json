@@ -656,8 +656,8 @@
                                         "group": "Qlik Cloud",
                                         "pages": [
                                             "connectors/dashboard/qlikcloud/index",
+                                            "connectors/dashboard/qlikcloud/hybrid-runner",
                                             "connectors/dashboard/qlikcloud/api_keys",
-                                            "connectors/dashboard/qlikcloud/yaml",
                                             "connectors/dashboard/qlikcloud/troubleshooting"
                                         ]
                                     },
@@ -665,8 +665,8 @@
                                         "group": "Qlik Sense",
                                         "pages": [
                                             "connectors/dashboard/qliksense/index",
+                                            "connectors/dashboard/qliksense/hybrid-runner",
                                             "connectors/dashboard/qliksense/certificates",
-                                            "connectors/dashboard/qliksense/yaml",
                                             "connectors/dashboard/qliksense/troubleshooting"
                                         ]
                                     },
@@ -674,7 +674,7 @@
                                         "group": "QuickSight",
                                         "pages": [
                                             "connectors/dashboard/quicksight/index",
-                                            "connectors/dashboard/quicksight/yaml",
+                                            "connectors/dashboard/quicksight/hybrid-runner",
                                             "connectors/dashboard/quicksight/troubleshooting"
                                         ]
                                     },
@@ -682,7 +682,7 @@
                                         "group": "Redash",
                                         "pages": [
                                             "connectors/dashboard/redash/index",
-                                            "connectors/dashboard/redash/yaml",
+                                            "connectors/dashboard/redash/hybrid-runner",
                                             "connectors/dashboard/redash/troubleshooting"
                                         ]
                                     },
@@ -690,7 +690,7 @@
                                         "group": "Sigma",
                                         "pages": [
                                             "connectors/dashboard/sigma/index",
-                                            "connectors/dashboard/sigma/yaml",
+                                            "connectors/dashboard/sigma/hybrid-runner",
                                             "connectors/dashboard/sigma/troubleshooting"
                                         ]
                                     },
@@ -698,8 +698,8 @@
                                         "group": "Superset",
                                         "pages": [
                                             "connectors/dashboard/superset/index",
+                                            "connectors/dashboard/superset/hybrid-runner",
                                             "connectors/dashboard/superset/sso",
-                                            "connectors/dashboard/superset/yaml",
                                             "connectors/dashboard/superset/troubleshooting"
                                         ]
                                     },
@@ -707,7 +707,7 @@
                                         "group": "Tableau",
                                         "pages": [
                                             "connectors/dashboard/tableau/index",
-                                            "connectors/dashboard/tableau/yaml",
+                                            "connectors/dashboard/tableau/hybrid-runner",
                                             "connectors/dashboard/tableau/troubleshooting"
                                         ]
                                     },
@@ -715,7 +715,7 @@
                                         "group": "ThoughtSpot",
                                         "pages": [
                                             "connectors/dashboard/thoughtspot/index",
-                                            "connectors/dashboard/thoughtspot/yaml",
+                                            "connectors/dashboard/thoughtspot/hybrid-runner",
                                             "connectors/dashboard/thoughtspot/troubleshooting"
                                         ]
                                     }
@@ -2404,6 +2404,38 @@
         {
             "source": "/connectors/database/servicenow/yaml",
             "destination": "/connectors/database/servicenow/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/qlikcloud/yaml",
+            "destination": "/connectors/dashboard/qlikcloud/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/qliksense/yaml",
+            "destination": "/connectors/dashboard/qliksense/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/quicksight/yaml",
+            "destination": "/connectors/dashboard/quicksight/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/redash/yaml",
+            "destination": "/connectors/dashboard/redash/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/sigma/yaml",
+            "destination": "/connectors/dashboard/sigma/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/superset/yaml",
+            "destination": "/connectors/dashboard/superset/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/tableau/yaml",
+            "destination": "/connectors/dashboard/tableau/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/thoughtspot/yaml",
+            "destination": "/connectors/dashboard/thoughtspot/hybrid-runner"
         },
         {
             "source": "/main-concepts/*",
