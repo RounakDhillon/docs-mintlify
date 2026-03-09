@@ -575,7 +575,7 @@
                                         "group": "Domo Dashboard",
                                         "pages": [
                                             "connectors/dashboard/domo-dashboard/index",
-                                            "connectors/dashboard/domo-dashboard/yaml",
+                                            "connectors/dashboard/domo-dashboard/hybrid-runner",
                                             "connectors/dashboard/domo-dashboard/troubleshooting"
                                         ]
                                     },
@@ -583,7 +583,7 @@
                                         "group": "Grafana",
                                         "pages": [
                                             "connectors/dashboard/grafana/index",
-                                            "connectors/dashboard/grafana/yaml",
+                                            "connectors/dashboard/grafana/hybrid-runner",
                                             "connectors/dashboard/grafana/troubleshooting"
                                         ]
                                     },
@@ -591,7 +591,7 @@
                                         "group": "Hex",
                                         "pages": [
                                             "connectors/dashboard/hex/index",
-                                            "connectors/dashboard/hex/yaml",
+                                            "connectors/dashboard/hex/hybrid-runner",
                                             "connectors/dashboard/hex/troubleshooting"
                                         ]
                                     },
@@ -599,7 +599,7 @@
                                         "group": "Lightdash",
                                         "pages": [
                                             "connectors/dashboard/lightdash/index",
-                                            "connectors/dashboard/lightdash/yaml",
+                                            "connectors/dashboard/lightdash/hybrid-runner",
                                             "connectors/dashboard/lightdash/troubleshooting"
                                         ]
                                     },
@@ -607,7 +607,7 @@
                                         "group": "Looker",
                                         "pages": [
                                             "connectors/dashboard/looker/index",
-                                            "connectors/dashboard/looker/yaml",
+                                            "connectors/dashboard/looker/hybrid-runner",
                                             "connectors/dashboard/looker/troubleshooting"
                                         ]
                                     },
@@ -615,7 +615,7 @@
                                         "group": "Metabase",
                                         "pages": [
                                             "connectors/dashboard/metabase/index",
-                                            "connectors/dashboard/metabase/yaml",
+                                            "connectors/dashboard/metabase/hybrid-runner",
                                             "connectors/dashboard/metabase/troubleshooting"
                                         ]
                                     },
@@ -623,7 +623,7 @@
                                         "group": "MicroStrategy",
                                         "pages": [
                                             "connectors/dashboard/microstrategy/index",
-                                            "connectors/dashboard/microstrategy/yaml",
+                                            "connectors/dashboard/microstrategy/hybrid-runner",
                                             "connectors/dashboard/microstrategy/troubleshooting"
                                         ]
                                     },
@@ -631,7 +631,7 @@
                                         "group": "Mode",
                                         "pages": [
                                             "connectors/dashboard/mode/index",
-                                            "connectors/dashboard/mode/yaml",
+                                            "connectors/dashboard/mode/hybrid-runner",
                                             "connectors/dashboard/mode/troubleshooting"
                                         ]
                                     },
@@ -639,8 +639,8 @@
                                         "group": "Power BI",
                                         "pages": [
                                             "connectors/dashboard/powerbi/index",
+                                            "connectors/dashboard/powerbi/hybrid-runner",
                                             "connectors/dashboard/powerbi/powerbi-pbit-lineage",
-                                            "connectors/dashboard/powerbi/yaml",
                                             "connectors/dashboard/powerbi/troubleshooting"
                                         ]
                                     },
@@ -648,7 +648,7 @@
                                         "group": "Power BI Report Server",
                                         "pages": [
                                             "connectors/dashboard/powerbireportserver/index",
-                                            "connectors/dashboard/powerbireportserver/yaml",
+                                            "connectors/dashboard/powerbireportserver/hybrid-runner",
                                             "connectors/dashboard/powerbireportserver/troubleshooting"
                                         ]
                                     },

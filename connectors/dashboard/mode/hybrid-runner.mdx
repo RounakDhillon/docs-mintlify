@@ -1,8 +1,8 @@
 ---
-title: Mode Connector | Collate Dashboard Integration Guide
-description: Connect Mode Analytics dashboards to Collate with our comprehensive connector guide. Easy setup, configuration steps, and metadata extraction instructions.
-slug: /connectors/dashboard/mode
-sidebarTitle: SaaS/BYOC
+title: Mode Hybrid Runner | Collate Dashboard Integration Guide
+description: Hybrid Runner - Deploy the ingestion agent in your environment for secure, private network metadata extraction from Mode Analytics dashboards to Collate.
+slug: /connectors/dashboard/mode/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -50,6 +50,16 @@ Name of the mode workspace from where the metadata is to be fetched.
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
+
 <DashboardLineage />
 
 ## Troubleshooting

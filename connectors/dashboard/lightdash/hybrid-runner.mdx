@@ -1,8 +1,8 @@
 ---
-title: Lightdash Connector | Collate Dashboard Integration
-description: Connect Lightdash to Collate with our comprehensive dashboard connector guide. Set up data lineage, metadata extraction, and BI integration easily.
-slug: /connectors/dashboard/lightdash
-sidebarTitle: SaaS/BYOC
+title: Lightdash Hybrid Runner | Collate Dashboard Integration
+description: Hybrid Runner - Deploy the ingestion agent in your environment for secure, private network metadata extraction from Lightdash dashboards to Collate.
+slug: /connectors/dashboard/lightdash/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -43,6 +43,16 @@ To integrate Lightdash, ensure you are using OpenMetadata version 1.2.x or highe
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
+
 <DashboardLineage />
 
 ## Troubleshooting

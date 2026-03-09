@@ -1,8 +1,8 @@
 ---
-title: PowerBI Connector | Collate Integration Documentation
-description: Connect Power BI to Collate with our comprehensive dashboard connector guide. Setup instructions, configuration tips, and metadata extraction made simple.
-slug: /connectors/dashboard/powerbi
-sidebarTitle: SaaS/BYOC
+title: PowerBI Hybrid Runner | Collate Integration Documentation
+description: Hybrid Runner - Deploy the ingestion agent in your environment for secure, private network metadata extraction from Power BI dashboards to Collate.
+slug: /connectors/dashboard/powerbi/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -37,7 +37,7 @@ OpenMetadata does not support Power BI usage ingestion because the Power BI Usag
 When configuring Azure Authentication, ensure that "Allow public client flows" is enabled. This setting is required to support authentication for public client applications.
 </Tip>
 ### PowerBI Admin and Non-Admin APIs:
-While configuring the PowerBI ingestion you can choose whether to use the PowerBI Admin APIs to retrieve the metadata or use the PowerBI Non-Admin APIs. Please check below for the the difference in their functionality:
+While configuring the PowerBI ingestion you can choose whether to use the PowerBI Admin APIs to retrieve the metadata or use the PowerBI Non-Admin APIs. Please check below for the difference in their functionality:
 - Enabled (Use PowerBI Admin APIs)
 Using the admin APIs will fetch the dashboard and chart metadata from all the workspaces available in the PowerBI instance.
 <Tip>
@@ -55,11 +55,11 @@ Follow the steps below to configure the account setup for PowerBI connector:
 ### Step 1: Enable API permissions from the PowerBI Admin console
 We extract the information from PowerBI using APIs, this is a manual step a PowerBI Admin needs to do to ensure we can get the right information.
 Login to the [Power BI](https://app.powerbi.com/) as Admin and from `Tenant` settings allow below permissions.
-- Allow service principles to use Power BI APIs
+- Allow service principals to use Power BI APIs
 - Allow service principals to use read-only Power BI admin APIs
 - Enhance admin APIs responses with detailed metadata
 ### Step 2: Create the App in Azure AD
-Please follow the steps mentioned [here](https://docs.microsoft.com/en-us/power-bi/developer/embedded/embed-service-principal) for setting up the Azure AD application service principle.
+Please follow the steps mentioned [here](https://docs.microsoft.com/en-us/power-bi/developer/embedded/embed-service-principal) for setting up the Azure AD application service principal.
 ### Step 3: Provide necessary API permissions to the Azure AD app
 Go to the `Azure Ad app registrations` page, select your app and add the dashboard permissions to the app for PowerBI service and grant admin consent for the same:
 The required permissions are:
@@ -123,6 +123,16 @@ Refer to the section [here](/connectors/dashboard/powerbi#powerbi-admin-and-nona
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
+
 <DashboardLineage />
 
 ## Troubleshooting

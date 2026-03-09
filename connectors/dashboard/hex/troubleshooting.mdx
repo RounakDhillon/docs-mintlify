@@ -6,4 +6,26 @@ sidebarTitle: Troubleshooting
 ---
 import Troubleshooting from '/snippets/connectors/troubleshooting.mdx'
 
+### Common Issues
+
+#### Authentication Failures
+- Verify that your API token is valid and hasn't expired
+- Check that the token type matches your access level (personal vs workspace)
+- Ensure the API token has necessary permissions
+
+#### Missing Projects
+- For personal tokens: Verify you have access to the projects
+- For workspace tokens: Confirm admin privileges
+- Check the dashboard filter pattern configuration
+
+#### Connection Timeouts
+- Verify the hostPort URL is correct
+- Check network connectivity to Hex
+- For on-premise installations, ensure firewall rules allow access
+
+#### Rate Limiting
+- Hex APIs may have rate limits
+- Consider adjusting the ingestion schedule if you encounter rate limit errors
+- Contact Hex support if persistent rate limiting issues occur
+
 <Troubleshooting />

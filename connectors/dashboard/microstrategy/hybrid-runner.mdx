@@ -1,8 +1,8 @@
 ---
-title: MicroStrategy Connector | Collate Integration Guide
-description: Connect MicroStrategy dashboards to Collate with our comprehensive connector guide. Setup instructions, configuration options, and metadata extraction steps.
-slug: /connectors/dashboard/microstrategy
-sidebarTitle: SaaS/BYOC
+title: MicroStrategy Hybrid Runner | Collate Integration Guide
+description: Hybrid Runner - Deploy the ingestion agent in your environment for secure, private network metadata extraction from MicroStrategy dashboards to Collate.
+slug: /connectors/dashboard/microstrategy/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -49,6 +49,15 @@ If you're using demo account for Microstrategy, it will be needed to authenticat
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 
