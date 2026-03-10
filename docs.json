@@ -1218,6 +1218,12 @@
                                     "how-to-guides/admin-guide/persona-landing-page-customization/defining-persona",
                                     "how-to-guides/admin-guide/persona-landing-page-customization/persona-configuration-and-precedence"
                                 ]
+                            },
+                            {
+                                "group": "Audit Logs",
+                                "pages": [
+                                    "how-to-guides/admin-guide/audit-logs/index"
+                                ]
                             }
                         ]
                     }
