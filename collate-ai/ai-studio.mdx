@@ -1,0 +1,222 @@
+---
+title: Create and Manage AI Agents with Collate AI Studio
+slug: /collate-ai/ai-studio
+sidebarTitle: AI Studio
+collate: true
+---
+
+# Collate AI Studio
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/L5Zd8T87KK0?si=Fs3EnYwE-JbZgjJ3"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen>
+</iframe>
+
+AI Studio allows you to create and manage AI agents and personas in the Collate Semantic Intelligence Platform. These agents help automate tasks such as metadata discovery, governance reviews, and data quality workflows.
+
+AI Studio provides a UI experience where users can define how an agent behaves, what tools it can use, and what task it should perform.
+
+## Access AI Studio
+
+1. Open the left navigation menu
+2. Select **Ask Collate**
+
+<img src="/public/images/collate-ai/ai-studio1.png" alt="Select Ask Collate from navigation menu" />
+
+3. Click **AI Studio**
+
+<img src="/public/images/collate-ai/ai-studio2.png" alt="AI Studio main page" />
+
+The AI Studio page displays both system agents and user-created agents. From here you can review existing agents or create a new one.
+
+## Edit an Existing Agent
+
+Collate includes system agents such as the documentation agent, tier agent, and data quality agent. You can review and update how these agents behave.
+
+For example, you may want descriptions generated in a different language or change how detailed the responses are.
+
+### Steps
+
+1. Open the left navigation menu
+2. Select **Ask Collate**
+
+<img src="/public/images/collate-ai/ai-studio1.png" alt="Select Ask Collate from navigation menu" />
+
+3. Select **AI Studio**
+
+<img src="/public/images/collate-ai/ai-studio2.png" alt="AI Studio main page" />
+
+4. Open an existing agent such as **Documentation Agent**
+
+<img src="/public/images/collate-ai/ai-studio16.png" alt="Open existing agent" />
+
+5. Review the persona, tools, and prompt used by the agent
+6. Edit the prompt to change the behavior
+
+**Example change:**
+```
+Write descriptions in Spanish for documentation updates.
+```
+
+<img src="/public/images/collate-ai/ai-studio17.png" alt="Edit agent prompt" />
+
+7. Save the changes
+
+The agent will now follow the updated instructions.
+
+## Create an AI Agent
+
+AI agents perform tasks based on a defined persona, selected tools, and a natural language prompt.
+
+In this example, we create an agent to support a PII audit.
+
+### Step 1: Create a New Agent
+
+In AI Studio, click **New Agent**.
+
+<img src="/public/images/collate-ai/ai-studio3.png" alt="Click New Agent button" />
+
+Enter a name and description and then click on **Save and Next**.
+
+**Example:**
+- **Name:** PII Audit Agent
+- **Description:** Supports PII audit and metadata review
+
+<img src="/public/images/collate-ai/ai-studio4.png" alt="Enter agent name and description" />
+
+### Step 2: Select a Persona
+
+Choose a persona that defines the agent’s role and expertise.
+
+For this example, select **Data Steward** and save.
+
+<img src="/public/images/collate-ai/ai-studio5.png" alt="Select persona for agent" />
+
+<Info>
+System personas include curated knowledge and responsibilities. They help the agent understand how to approach tasks such as governance or documentation.
+</Info>
+
+### Step 3: Select Agent Tools
+
+Choose the capabilities the agent needs.
+
+For a PII audit, select:
+- **Metadata Management**
+- **Discovery and Search**
+
+<img src="/public/images/collate-ai/ai-studio6.png" alt="Select agent tools" />
+
+These tools allow the agent to explore assets and work with metadata.
+
+### Step 4: Define the Task
+
+Provide a natural language prompt describing what the agent should do.
+
+**Example prompt:**
+```
+Help identify assets relevant to a PII audit. Search metadata and review related data assets.
+```
+
+<img src="/public/images/collate-ai/ai-studio7.png" alt="Define agent task prompt" />
+
+This prompt becomes the default instruction for the agent.
+
+### Step 5: Select a Bot
+
+Choose the application bot that will execute the agent actions.
+
+<img src="/public/images/collate-ai/ai-studio8.png" alt="Select bot for agent" />
+
+<Warning>
+Bots act as service accounts and control what the agent can access and modify. The permissions of the bot define the guardrails for the agent.
+</Warning>
+
+For more details, see [Roles Based Access Control (RBAC)](/how-to-guides/admin-guide/roles-policies/authorization#roles-based-access-controls-rbac-search).
+
+### Step 6: Save the Agent
+
+Click **Save** to create the agent.
+
+The agent now appears in the AI Studio agent list. You can now use this agent in Ask Collate or interact with it programmatically using the AI SDK.
+
+See [AI SDK documentation](/sdk/ai-sdk) to learn how to send requests to this agent from applications and automation workflows.
+
+<img src="/public/images/collate-ai/ai-studio9.png" alt="Agent created successfully" />
+
+## Create a Custom Persona
+
+Personas define how an agent thinks and behaves. If system personas do not meet your needs, you can create your own.
+
+### Step 1: Open Personas
+
+1. Go to **AI Studio**
+
+<img src="/public/images/collate-ai/ai-studio2.png" alt="AI Studio main page" />
+
+2. Select the **Personas** tab
+
+<img src="/public/images/collate-ai/ai-studio10.png" alt="Personas tab in AI Studio" />
+
+This page shows system personas and user-created personas.
+
+### Step 2: Create a New Persona
+
+Click **New Persona**.
+
+<img src="/public/images/collate-ai/ai-studio11.png" alt="Click New Persona button" />
+
+Provide the following information:
+- **Name**
+- **Description**
+- **Detailed prompt**
+
+<img src="/public/images/collate-ai/ai-studio12.png" alt="Enter persona details" />
+
+The prompt should describe the role, expertise, and responsibilities of the persona.
+
+### Step 3: Save the Persona
+
+Click **Save**.
+
+<img src="/public/images/collate-ai/ai-studio14.png" alt="Save persona" />
+
+The persona can now be selected when creating new agents.
+
+<img src="/public/images/collate-ai/ai-studio15.png" alt="select persona when creating new agents" />
+
+## System and Custom Agents
+
+AI Studio includes two types of agents:
+
+### System Agents
+Built into the platform and support tasks such as documentation, tiering, and data quality.
+
+### Custom Agents
+Created by users to automate specific workflows.
+
+## Interact with Agents Using AI SDK
+
+Agents created in AI Studio can also be used in applications through the AI SDK.
+
+The AI SDK allows developers to send natural language requests to Collate agents and receive responses that use the platform metadata context.
+
+**Example use cases:**
+- Automating governance checks
+- Generating data reports
+- Supporting GDPR or compliance workflows
+- Integrating Collate intelligence into internal AI systems
+
+The SDK can be used with languages such as Python, TypeScript, or Java.
+
+## Best Practices
+
+- Choose a persona that matches the role of the agent
+- Enable only the tools needed for the task
+- Write prompts in clear natural language
+- Assign the correct bot to control access and permissions

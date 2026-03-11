@@ -1122,6 +1122,7 @@
                         "group": "Collate AI",
                         "pages": [
                             "collate-ai/index",
+                            "collate-ai/ai-studio",
                             "collate-ai/ask-collate",
                             "collate-ai/collate-ai-autopilot-workflows",
                             "collate-ai/how-to-use-collate-ai",
