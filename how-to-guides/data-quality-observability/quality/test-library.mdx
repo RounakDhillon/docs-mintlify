@@ -1,13 +1,13 @@
 ---
-title: Rules Library | Custom SQL-Based Data Quality Tests
+title: Test Library | Custom SQL-Based Data Quality Tests
 description: Create reusable custom data quality tests using SQL queries with dynamic parameters for table and column-level validations.
-slug: /how-to-guides/data-quality-observability/quality/rules-library
-sidebarTitle: Rules Library
+slug: /how-to-guides/data-quality-observability/quality/test-library
+sidebarTitle: Test Library
 ---
 
-# Rules Library
+# Test Library
 
-The **Rules Library** allows administrators to create custom, reusable data quality test definitions using SQL queries. You can define SQL-based validation rules with dynamic parameters that are resolved at runtime. This provides a flexible way to implement organization-specific data quality checks without writing custom code.
+The **Test Library** allows administrators to create custom, reusable data quality test definitions using SQL queries. You can define SQL-based validation rules with dynamic parameters that are resolved at runtime. This provides a flexible way to implement organization-specific data quality checks without writing custom code.
 
 ## Key Features
 
@@ -17,17 +17,17 @@ The **Rules Library** allows administrators to create custom, reusable data qual
 - **Table and Column Level**: Support for both table-level and column-level validations
 - **Enable/Disable Tests**: Control which test definitions are available for use
 
-## Accessing the Rules Library
+## Accessing the Test Library
 
-The Rules Library is accessible to administrators through the **Settings** menu. Navigate to **Settings > Rules Library** to manage your custom test definitions.
+The Test Library is accessible to administrators through the **Observability** menu. Navigate to **Observability > Test Library** to manage your custom test definitions.
 
-<img src="/public/images/how-to-guides/quality/rule_library_main_page.png" alt="Rules Library Main Page" />
+<img src="/public/images/how-to-guides/quality/rule_library_main_page.png" alt="Test Library Main Page" />
 
 ## Creating a Custom Test Definition
 
 ### Step 1: Open the Test Definition Form
 
-From the Rules Library page, click **Add Test Definition** to open the creation form.
+From the Test Library page, click **Add Test Definition** to open the creation form.
 
 <img src="/public/images/how-to-guides/quality/rule_library_edit_test.png" alt="Test Definition Form" />
 
@@ -171,7 +171,7 @@ Choose which database services can execute this test. This ensures the SQL synta
 
 ### Step 6: Save the Test Definition
 
-Click **Save** to create the test definition. It will now appear in the Rules Library and be available for creating test cases.
+Click **Save** to create the test definition. It will now appear in the Test Library and be available for creating test cases.
 
 ## Managing Test Definitions
 
@@ -196,7 +196,7 @@ Click the delete icon on a test definition row to remove it. Note that you canno
 
 ## Using Custom Test Definitions
 
-Once you have created a test definition in the Rules Library, it becomes available when creating test cases.
+Once you have created a test definition in the Test Library, it becomes available when creating test cases.
 
 ### Creating a Test Case from a Custom Definition
 
@@ -231,11 +231,11 @@ The test will execute as part of your data quality workflow, and the SQL express
 
 ## Permissions
 
-The Rules Library is restricted to administrators. The following permissions apply:
+The Test Library is restricted to administrators. The following permissions apply:
 
 | Action | Required Role |
 |--------|---------------|
-| View Rules Library | Admin |
+| View Test Library | Admin |
 | Create Test Definition | Admin |
 | Edit Test Definition | Admin |
 | Delete Test Definition | Admin |
