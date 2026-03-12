@@ -1,8 +1,8 @@
 ---
-title: Vertica Connector | Collate Analytics Database Guide
-description: Connect Vertica database to Collate with our comprehensive connector guide. Easy setup, configuration steps, and metadata extraction for your data catalog.
-slug: /connectors/database/vertica
-sidebarTitle: SaaS/BYOC
+title: Vertica Hybrid Runner | Collate Analytics Database Guide
+description: Connect Vertica to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/vertica/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -63,7 +63,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA <schema> TO openmetadata;
 ```
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Vertica"} selectServicePath={"/public/images/connectors/vertica/select-service.png"} addNewServicePath={"/public/images/connectors/vertica/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/vertica/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

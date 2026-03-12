@@ -1,8 +1,8 @@
 ---
-title: SQLite Connector | Collate Lightweight DB Integration
-description: Learn to Configure Collate'sSQLite database connector for seamless data cataloging. Step-by-step setup guide with examples and troubleshooting tips.
-slug: /connectors/database/sqlite
-sidebarTitle: SaaS/BYOC
+title: SQLite Hybrid Runner | Collate Lightweight DB Integration
+description: Connect SQLite to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/sqlite/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -18,8 +18,8 @@ name="SQLite"
 stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
-In this section, we provide guides and references to use the Presto connector.
-Configure and schedule Presto metadata and profiler workflows from the Collate UI:
+In this section, we provide guides and references to use the SQLite connector.
+Configure and schedule SQLite metadata and profiler workflows from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
@@ -32,7 +32,7 @@ Configure and schedule Presto metadata and profiler workflows from the Collate U
 To extract metadata, the user needs to be able to perform `.tables`, `.schema`, on database you wish to extract metadata from and have `SELECT` permission on the `sqlite_temp_master`. Access to resources will be different based on the connector used.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"SQLite"} selectServicePath={"/public/images/connectors/sqlite/select-service.png"} addNewServicePath={"/public/images/connectors/sqlite/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/sqlite/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

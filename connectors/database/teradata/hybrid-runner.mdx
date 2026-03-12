@@ -1,8 +1,8 @@
 ---
-title: Teradata Connector | Collate Data Warehouse Guide
-description: Connect Teradata databases to Collate with our comprehensive connector guide. Step-by-step setup, configuration, and metadata extraction instructions.
-slug: /connectors/database/teradata
-sidebarTitle: SaaS/BYOC
+title: Teradata Hybrid Runner | Collate Data Warehouse Guide
+description: Connect Teradata to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/teradata/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -34,7 +34,7 @@ Connector was tested on Teradata DBS version 17.20. Since there are no significa
 ## Metadata Ingestion
 By default, all valid users in Teradata DB has full access to metadata objects, so there are no any specific requirements to user privileges.
 <MetadataIngestionUi connector={"Teradata"} selectServicePath={"/public/images/connectors/teradata/select-service.png"} addNewServicePath={"/public/images/connectors/teradata/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/teradata/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 <Tip>

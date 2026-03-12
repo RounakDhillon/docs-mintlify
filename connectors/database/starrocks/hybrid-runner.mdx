@@ -1,8 +1,8 @@
 ---
-title: StarRocks Connector | Collate Database Guide
-description: Connect StarRocks to Collate with our comprehensive database connector guide. Step-by-step setup, configuration, and metadata extraction for seamless integration.
-slug: /connectors/database/starrocks
-sidebarTitle: SaaS/BYOC
+title: StarRocks Hybrid Runner | Collate Database Guide
+description: Connect StarRocks to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/starrocks/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -51,6 +51,14 @@ Executing the profiler workflow or data quality tests will require the user to h
 ## Connection Options
 <Steps>
   <Step title="Connection Options">
+    <Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
     - **Scheme**: SQLAlchemy driver scheme options. Defaults to `mysql+pymysql`.
     - **Username**: Username to connect to StarRocks. This user should have privileges to read all the metadata in StarRocks.
     - **Password**: Password to connect to StarRocks.

@@ -481,7 +481,7 @@
                                         "group": "SingleStore",
                                         "pages": [
                                             "connectors/database/singlestore/index",
-                                            "connectors/database/singlestore/yaml",
+                                            "connectors/database/singlestore/hybrid-runner",
                                             "connectors/database/singlestore/troubleshooting"
                                         ]
                                     },
@@ -497,7 +497,7 @@
                                         "group": "SQLite",
                                         "pages": [
                                             "connectors/database/sqlite/index",
-                                            "connectors/database/sqlite/yaml",
+                                            "connectors/database/sqlite/hybrid-runner",
                                             "connectors/database/sqlite/troubleshooting"
                                         ]
                                     },
@@ -505,7 +505,7 @@
                                         "group": "SSAS",
                                         "pages": [
                                             "connectors/database/ssas/index",
-                                            "connectors/database/ssas/yaml",
+                                            "connectors/database/ssas/hybrid-runner",
                                             "connectors/database/ssas/troubleshooting"
                                         ]
                                     },
@@ -513,7 +513,7 @@
                                         "group": "StarRocks",
                                         "pages": [
                                             "connectors/database/starrocks/index",
-                                            "connectors/database/starrocks/yaml",
+                                            "connectors/database/starrocks/hybrid-runner",
                                             "connectors/database/starrocks/troubleshooting"
                                         ]
                                     },
@@ -521,7 +521,7 @@
                                         "group": "Synapse",
                                         "pages": [
                                             "connectors/database/synapse/index",
-                                            "connectors/database/synapse/yaml",
+                                            "connectors/database/synapse/hybrid-runner",
                                             "connectors/database/synapse/troubleshooting"
                                         ]
                                     },
@@ -529,7 +529,7 @@
                                         "group": "Teradata",
                                         "pages": [
                                             "connectors/database/teradata/index",
-                                            "connectors/database/teradata/yaml",
+                                            "connectors/database/teradata/hybrid-runner",
                                             "connectors/database/teradata/troubleshooting"
                                         ]
                                     },
@@ -537,7 +537,7 @@
                                         "group": "TimescaleDB",
                                         "pages": [
                                             "connectors/database/timescale/index",
-                                            "connectors/database/timescale/yaml",
+                                            "connectors/database/timescale/hybrid-runner",
                                             "connectors/database/timescale/troubleshooting"
                                         ]
                                     },
@@ -545,7 +545,7 @@
                                         "group": "Trino",
                                         "pages": [
                                             "connectors/database/trino/index",
-                                            "connectors/database/trino/yaml",
+                                            "connectors/database/trino/hybrid-runner",
                                             "connectors/database/trino/troubleshooting"
                                         ]
                                     },
@@ -553,7 +553,7 @@
                                         "group": "Unity Catalog",
                                         "pages": [
                                             "connectors/database/unity-catalog/index",
-                                            "connectors/database/unity-catalog/yaml",
+                                            "connectors/database/unity-catalog/hybrid-runner",
                                             "connectors/database/unity-catalog/troubleshooting"
                                         ]
                                     },
@@ -561,7 +561,7 @@
                                         "group": "Vertica",
                                         "pages": [
                                             "connectors/database/vertica/index",
-                                            "connectors/database/vertica/yaml",
+                                            "connectors/database/vertica/hybrid-runner",
                                             "connectors/database/vertica/troubleshooting"
                                         ]
                                     }
