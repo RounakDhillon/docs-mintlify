@@ -1,7 +1,7 @@
 ---
-title: Apache Ranger
-slug: /connectors/security/ranger
-sidebarTitle: SaaS/BYOC
+title: Apache Ranger (Hybrid Runner)
+slug: /connectors/security/ranger/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -18,7 +18,6 @@ Configure and schedule Apache Ranger reverse metadata workflows from the Collate
 - [Requirements](#requirements)
 - [Reverse Metadata Ingestion](#reverse-metadata-ingestion)
 - [Connection Details](#connection-details)
-- [Troubleshooting](/connectors/security/ranger/troubleshooting)
 ## Requirements
 ### Apache Ranger Setup
 Apache Ranger 2.0 or greater is required. The user should have access to the Apache Ranger Admin API with appropriate privileges to manage policies and tags.
@@ -35,6 +34,16 @@ The user connecting to Apache Ranger should have the following permissions:
 # - Read access to service definitions
 ```
 ### Connection Details
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 We support Apache Ranger with Basic Authentication using username and password.
 ## Reverse Metadata Ingestion

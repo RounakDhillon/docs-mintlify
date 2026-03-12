@@ -1,8 +1,8 @@
 ---
-title: Elasticsearch Connector | Collate Search Services
-description: Connect Elasticsearch to Collate with our comprehensive connector guide. Step-by-step setup, configuration, and integration instructions for seamless search.
-slug: /connectors/search/elasticsearch
-sidebarTitle: SaaS/BYOC
+title: Elasticsearch Hybrid Runner | Collate Search Services
+description: Connect Elasticsearch to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/search/elasticsearch/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/search/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -20,13 +20,12 @@ In this section, we provide guides and references to use the Elasticsearch conne
 Configure and schedule Elasticsearch metadata workflow from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-- [Troubleshooting](/connectors/search/elasticsearch/troubleshooting)
 ## Requirements
 We support Elasticsearch 7.0 and above.
 We extract Elasticsearch's metadata by using its [API](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html). To run this ingestion, you just need a user with permissions to the ElasticSearch instance.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"ElasticSearch"} selectServicePath={"/public/images/connectors/elasticsearch/select-service.png"} addNewServicePath={"/public/images/connectors/elasticsearch/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/elasticsearch/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **Host and Port**: This parameter specifies the host and port of the Elasticsearch instance. This should be specified as a URI string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set it to `https://localhost:9200`.
@@ -68,6 +67,16 @@ We extract Elasticsearch's metadata by using its [API](https://www.elastic.co/gu
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

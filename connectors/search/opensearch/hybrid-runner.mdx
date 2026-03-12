@@ -1,8 +1,8 @@
 ---
-title: OpenSearch Connector | Collate Search Integration
+title: OpenSearch Connector | Collate Search Integration (Hybrid Runner)
 description: Connect Collate to OpenSearch with our comprehensive connector guide. Setup instructions, configuration options, and troubleshooting tips included.
-slug: /connectors/search/opensearch
-sidebarTitle: SaaS/BYOC
+slug: /connectors/search/opensearch/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/search/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -20,14 +20,22 @@ In this section, we provide guides and references to use the OpenSearch connecto
 Configure and schedule OpenSearch metadata workflow from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-- [Troubleshooting](/connectors/search/opensearch/troubleshooting)
 ## Requirements
 We extract OpenSearch's metadata by using its [API](https://opensearch.org/docs/latest/api-reference/). To run this ingestion, you just need a user with permissions to the OpenSearch instance.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"OpenSearch"} selectServicePath={"/public/images/connectors/opensearch/select-service.png"} addNewServicePath={"/public/images/connectors/opensearch/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/opensearch/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 - **Host and Port**: This parameter specifies the host and port of the OpenSearch instance. This should be specified as a URI string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set it to `https://localhost:9200`.
 - **Authentication Types**:
     1. Basic Authentication

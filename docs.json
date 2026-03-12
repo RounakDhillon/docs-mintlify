@@ -735,7 +735,7 @@
                                         "group": "Google Drive",
                                         "pages": [
                                             "connectors/drive/googledrive/index",
-                                            "connectors/drive/googledrive/yaml",
+                                            "connectors/drive/googledrive/hybrid-runner",
                                             "connectors/drive/googledrive/troubleshooting"
                                         ]
                                     },
@@ -743,7 +743,7 @@
                                         "group": "SFTP",
                                         "pages": [
                                             "connectors/drive/sftp/index",
-                                            "connectors/drive/sftp/yaml",
+                                            "connectors/drive/sftp/hybrid-runner",
                                             "connectors/drive/sftp/troubleshooting"
                                         ]
                                     }
@@ -833,7 +833,7 @@
                                         "group": "MLflow",
                                         "pages": [
                                             "connectors/ml-model/mlflow/index",
-                                            "connectors/ml-model/mlflow/yaml",
+                                            "connectors/ml-model/mlflow/hybrid-runner",
                                             "connectors/ml-model/mlflow/troubleshooting"
                                         ]
                                     },
@@ -841,7 +841,7 @@
                                         "group": "SageMaker",
                                         "pages": [
                                             "connectors/ml-model/sagemaker/index",
-                                            "connectors/ml-model/sagemaker/yaml",
+                                            "connectors/ml-model/sagemaker/hybrid-runner",
                                             "connectors/ml-model/sagemaker/troubleshooting"
                                         ]
                                     },
@@ -849,7 +849,7 @@
                                         "group": "VertexAI",
                                         "pages": [
                                             "connectors/ml-model/vertexai/index",
-                                            "connectors/ml-model/vertexai/yaml",
+                                            "connectors/ml-model/vertexai/hybrid-runner",
                                             "connectors/ml-model/vertexai/troubleshooting"
                                         ]
                                     }
@@ -1049,7 +1049,7 @@
                                         "group": "Elasticsearch",
                                         "pages": [
                                             "connectors/search/elasticsearch/index",
-                                            "connectors/search/elasticsearch/yaml",
+                                            "connectors/search/elasticsearch/hybrid-runner",
                                             "connectors/search/elasticsearch/troubleshooting"
                                         ]
                                     },
@@ -1057,7 +1057,7 @@
                                         "group": "OpenSearch",
                                         "pages": [
                                             "connectors/search/opensearch/index",
-                                            "connectors/search/opensearch/yaml",
+                                            "connectors/search/opensearch/hybrid-runner",
                                             "connectors/search/opensearch/troubleshooting"
                                         ]
                                     }
@@ -1070,7 +1070,9 @@
                                     {
                                         "group": "Ranger",
                                         "pages": [
-                                            "connectors/security/ranger/index"
+                                            "connectors/security/ranger/index",
+                                            "connectors/security/ranger/hybrid-runner",
+                                            "connectors/security/ranger/troubleshooting"
                                         ]
                                     }
                                 ]
@@ -1083,7 +1085,7 @@
                                         "group": "ADLS",
                                         "pages": [
                                             "connectors/storage/adls/index",
-                                            "connectors/storage/adls/yaml",
+                                            "connectors/storage/adls/hybrid-runner",
                                             "connectors/storage/adls/troubleshooting"
                                         ]
                                     },
@@ -1091,7 +1093,7 @@
                                         "group": "GCS",
                                         "pages": [
                                             "connectors/storage/gcs/index",
-                                            "connectors/storage/gcs/yaml",
+                                            "connectors/storage/gcs/hybrid-runner",
                                             "connectors/storage/gcs/troubleshooting"
                                         ]
                                     },
@@ -1099,7 +1101,7 @@
                                         "group": "S3",
                                         "pages": [
                                             "connectors/storage/s3/index",
-                                            "connectors/storage/s3/yaml",
+                                            "connectors/storage/s3/hybrid-runner",
                                             "connectors/storage/s3/troubleshooting"
                                         ]
                                     }
@@ -2444,6 +2446,50 @@
         {
             "source": "/connectors/dashboard/thoughtspot/yaml",
             "destination": "/connectors/dashboard/thoughtspot/hybrid-runner"
+        },
+        {
+            "source": "/connectors/drive/googledrive/yaml",
+            "destination": "/connectors/drive/googledrive/hybrid-runner"
+        },
+        {
+            "source": "/connectors/drive/sftp/yaml",
+            "destination": "/connectors/drive/sftp/hybrid-runner"
+        },
+        {
+            "source": "/connectors/ml-model/mlflow/yaml",
+            "destination": "/connectors/ml-model/mlflow/hybrid-runner"
+        },
+        {
+            "source": "/connectors/ml-model/sagemaker/yaml",
+            "destination": "/connectors/ml-model/sagemaker/hybrid-runner"
+        },
+        {
+            "source": "/connectors/ml-model/vertexai/yaml",
+            "destination": "/connectors/ml-model/vertexai/hybrid-runner"
+        },
+        {
+            "source": "/connectors/search/elasticsearch/yaml",
+            "destination": "/connectors/search/elasticsearch/hybrid-runner"
+        },
+        {
+            "source": "/connectors/search/opensearch/yaml",
+            "destination": "/connectors/search/opensearch/hybrid-runner"
+        },
+        {
+            "source": "/connectors/security/ranger/yaml",
+            "destination": "/connectors/security/ranger/hybrid-runner"
+        },
+        {
+            "source": "/connectors/storage/adls/yaml",
+            "destination": "/connectors/storage/adls/hybrid-runner"
+        },
+        {
+            "source": "/connectors/storage/gcs/yaml",
+            "destination": "/connectors/storage/gcs/hybrid-runner"
+        },
+        {
+            "source": "/connectors/storage/s3/yaml",
+            "destination": "/connectors/storage/s3/hybrid-runner"
         },
         {
             "source": "/main-concepts/*",

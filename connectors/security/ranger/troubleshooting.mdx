@@ -1,0 +1,23 @@
+---
+title: Ranger Troubleshooting
+slug: /connectors/security/ranger/troubleshooting
+---
+
+## Connection Issues
+- Verify that the Apache Ranger Admin service is running and accessible
+- Check network connectivity between OpenMetadata and Apache Ranger
+- Ensure the provided credentials have the necessary write permissions for tags and policies
+
+## Authentication Issues
+- Verify username and password for basic authentication
+- Ensure the user account is active and has proper permissions in Apache Ranger
+
+## Reverse Metadata Issues
+- Verify that the service name in Apache Ranger matches exactly with the service name in OpenMetadata
+- Check if the user has write permissions for tag and policy management in Ranger
+- Ensure that the source service (Trino, etc.) is properly configured in OpenMetadata before setting up reverse metadata
+
+## API Access Issues
+- Verify that the user has write access to Apache Ranger APIs for tags and policies
+- Check if the Apache Ranger API endpoints are enabled and accessible
+- Ensure proper permissions are granted for policy and tag management operations

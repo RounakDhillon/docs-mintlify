@@ -1,8 +1,8 @@
 ---
-title: Vertexai | Official Docs
-description: Get started with vertexai. Setup instructions, features, and configuration details inside.
-slug: /connectors/ml-model/vertexai
-sidebarTitle: SaaS/BYOC
+title: Vertexai Hybrid Runner | Official Docs
+description: Connect VertexAI to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/ml-model/vertexai/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import ConfigureIngestion from '/snippets/connectors/ml-model/configure-ingestion.mdx'
@@ -21,7 +21,6 @@ In this section, we provide guides and references to use the VertexAI connector.
 Configure and schedule VertexAI metadata workflows from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-- [Troubleshooting](/connectors/ml-model/vertexai/troubleshooting)
 ## Requirements
 ### VertexAI API Permissions
 - Go to [Cloud VertexAI Library enable API](https://cloud.google.com/vertex-ai/docs/featurestore/setup)
@@ -58,6 +57,16 @@ Location refers to the geographical region where your resources, such as dataset
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

@@ -1,8 +1,8 @@
 ---
-title: ADLS | Official Documentation
+title: ADLS | Official Documentation (Hybrid Runner)
 description: Connect Azure Data Lake Storage to Collate with our comprehensive ADLS connector guide. Setup instructions, configuration, and metadata extraction.
-slug: /connectors/storage/adls
-sidebarTitle: SaaS/BYOC
+slug: /connectors/storage/adls/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -21,7 +21,6 @@ This page contains the setup guide and reference information for the ADLS connec
 Configure and schedule ADLS metadata workflows from the Collate UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
-- [Troubleshooting](/connectors/storage/adls/troubleshooting)
 ## Requirements
 We need the following permissions in Azure Data Lake Storage:
 ### ADLS Permissions
@@ -70,6 +69,15 @@ desired.
   <img src="/public/images/connectors/adls/service-connection.png" alt="Configure service connection" />
 </Step>
 <Step title="Connection Details">
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 **Client ID**: This unique identifier is assigned to your Azure Service Principal App, serving as a key for authentication and authorization.
 **Client Secret**: This confidential password is associated with the Service Principal, safeguarding access to Azure resources and ensuring secure communication.
 **Tenant ID**: Identifying your Azure Subscription, the Tenant ID links your resources to a specific organization or account within the Azure Active Directory.
