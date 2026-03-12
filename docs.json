@@ -2550,6 +2550,18 @@
             "destination": "/how-to-guides/guide-for-data-users/ingestion/:path*"
         },
         {
+            "source": "/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner",
+            "destination": "/getting-started/day-1/hybrid-saas"
+        },
+        {
+            "source": "/getting-started/how-to-guides/data-quality-observability/quality/tab",
+            "destination": "/how-to-guides/data-quality-observability/quality/tab"
+        },
+        {
+            "source": "/how-to-guides/data-governance/how-to-guides/data-governance/classification/sample-data-using-pii-tag",
+            "destination": "/how-to-guides/data-governance/classification/sample-data-using-pii-tag"
+        },
+        {
             "source": "/how-to-guides/data-quality-observability/quality/rules-library",
             "destination": "/how-to-guides/data-quality-observability/quality/test-library"
         }
