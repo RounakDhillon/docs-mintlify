@@ -1,8 +1,8 @@
 ---
-title: Epic FHIR Connector | Collate Healthcare Integration Guide
-description: Connect Epic FHIR to Collate to automatically discover, catalog, and manage your Epic FHIR metadata. Step-by-step configuration guide.
-slug: /connectors/database/epic
-sidebarTitle: Overview
+title: Epic FHIR Hybrid Runner | Collate Healthcare Integration Guide
+description: Connect Epic FHIR to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/epic/hybrid-runner
+sidebarTitle: Hybrid Runner
 Collate: true
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -20,7 +20,7 @@ stage="BETA"
 availableFeatures={["Metadata"]}
 unavailableFeatures={["Data Profiler", "Data Quality", "dbt", "Lineage", "Column-level Lineage", "Query Usage", "Owners", "Tags", "Sample Data", "Reverse Metadata (Collate Only)", "Auto-Classification", "Stored Procedures"]} />
 In this section, we provide guides and references to use the Epic FHIR connector.
-Configure and schedule Epic metadata workflows from the Collate UI:
+Configure and schedule Epic metadata workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/database/epic/troubleshooting)
@@ -30,7 +30,7 @@ To fetch metadata from Epic FHIR into OpenMetadata you will need:
 2. The FHIR version supported by your Epic server. Supported values are: `R4`, `STU3`, and `DSTU2`.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"EPIC"} selectServicePath={"/public/images/connectors/epic/select-service.png"} addNewServicePath={"/public/images/connectors/epic/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/epic/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **FHIR Server URL**: Base URL of the Epic FHIR server.
@@ -42,6 +42,15 @@ To fetch metadata from Epic FHIR into OpenMetadata you will need:
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

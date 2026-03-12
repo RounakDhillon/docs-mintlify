@@ -248,7 +248,7 @@
                                         "group": "Delta Lake",
                                         "pages": [
                                             "connectors/database/deltalake/index",
-                                            "connectors/database/deltalake/yaml",
+                                            "connectors/database/deltalake/hybrid-runner",
                                             "connectors/database/deltalake/troubleshooting"
                                         ]
                                     },
@@ -256,7 +256,7 @@
                                         "group": "Domo Database",
                                         "pages": [
                                             "connectors/database/domo-database/index",
-                                            "connectors/database/domo-database/yaml",
+                                            "connectors/database/domo-database/hybrid-runner",
                                             "connectors/database/domo-database/troubleshoot"
                                         ]
                                     },
@@ -264,7 +264,7 @@
                                         "group": "Doris",
                                         "pages": [
                                             "connectors/database/doris/index",
-                                            "connectors/database/doris/yaml",
+                                            "connectors/database/doris/hybrid-runner",
                                             "connectors/database/doris/troubleshooting"
                                         ]
                                     },
@@ -272,7 +272,7 @@
                                         "group": "Dremio",
                                         "pages": [
                                             "connectors/database/dremio/index",
-                                            "connectors/database/dremio/yaml",
+                                            "connectors/database/dremio/hybrid-runner",
                                             "connectors/database/dremio/troubleshooting"
                                         ]
                                     },
@@ -280,7 +280,7 @@
                                         "group": "Druid",
                                         "pages": [
                                             "connectors/database/druid/index",
-                                            "connectors/database/druid/yaml",
+                                            "connectors/database/druid/hybrid-runner",
                                             "connectors/database/druid/troubleshooting"
                                         ]
                                     },
@@ -288,7 +288,7 @@
                                         "group": "DynamoDB",
                                         "pages": [
                                             "connectors/database/dynamodb/index",
-                                            "connectors/database/dynamodb/yaml",
+                                            "connectors/database/dynamodb/hybrid-runner",
                                             "connectors/database/dynamodb/troubleshooting"
                                         ]
                                     },
@@ -296,7 +296,7 @@
                                         "group": "Epic",
                                         "pages": [
                                             "connectors/database/epic/index",
-                                            "connectors/database/epic/yaml",
+                                            "connectors/database/epic/hybrid-runner",
                                             "connectors/database/epic/troubleshooting"
                                         ]
                                     },
@@ -2350,6 +2350,34 @@
         {
             "source": "/connectors/database/db2/yaml",
             "destination": "/connectors/database/db2/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/deltalake/yaml",
+            "destination": "/connectors/database/deltalake/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/domo-database/yaml",
+            "destination": "/connectors/database/domo-database/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/doris/yaml",
+            "destination": "/connectors/database/doris/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/dremio/yaml",
+            "destination": "/connectors/database/dremio/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/druid/yaml",
+            "destination": "/connectors/database/druid/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/dynamodb/yaml",
+            "destination": "/connectors/database/dynamodb/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/epic/yaml",
+            "destination": "/connectors/database/epic/hybrid-runner"
         },
         {
             "source": "/connectors/database/mariadb/yaml",

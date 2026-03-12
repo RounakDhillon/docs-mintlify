@@ -1,8 +1,8 @@
 ---
-title: DynamoDB Connector | Collate NoSQL Database Integration
-description: Connect DynamoDB to Collate with our comprehensive database connector guide. Setup instructions, configuration options, and metadata extraction steps.
-slug: /connectors/database/dynamodb
-sidebarTitle: Overview
+title: DynamoDB Hybrid Runner | Collate NoSQL Database Integration
+description: Connect DynamoDB to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/dynamodb/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -18,18 +18,14 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures", "Data Quality", "Lineage", "Column-level Lineage", "dbt", "Sample Data"]} />
 In this section, we provide guides and references to use the DynamoDB connector.
-Configure and schedule DynamoDB metadata workflows from the Collate UI:
+Configure and schedule DynamoDB metadata workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/database/dynamodb/troubleshooting)
 ## Requirements
 The DynamoDB connector ingests metadata using the DynamoDB boto3 client.
-OpenMetadata retrieves information about all tables in the AWS account, describes each table to extract its schema, and scans a sample of records to infer column types. The user must have the following permissions:
-- `dynamodb:ListTables` — to discover all tables in the account.
-- `dynamodb:DescribeTable` — to retrieve table metadata (key schema, attribute definitions, item count, etc.).
-- `dynamodb:Scan` — to sample table data for schema inference and profiling.
-
-Below defined policy grants the necessary permissions:
+OpenMetadata retrieves information about all tables in the AWS account, the user must have permissions to perform the `dynamodb:ListTables` operation.
+Below defined policy grants the permissions to list all tables in DynamoDB:
 ```json
 {
     "Version": "2012-10-17",
@@ -37,9 +33,7 @@ Below defined policy grants the necessary permissions:
         {
             "Effect": "Allow",
             "Action": [
-                "dynamodb:ListTables",
-                "dynamodb:DescribeTable",
-                "dynamodb:Scan"
+                "dynamodb:ListTables"
             ],
             "Resource": "*"
         }
@@ -49,7 +43,7 @@ Below defined policy grants the necessary permissions:
 For more information on Dynamodb permissions visit the [AWS DynamoDB official documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/api-permissions-reference.html).
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"DynamoDB"} selectServicePath={"/public/images/connectors/dynamodb/select-service.png"} addNewServicePath={"/public/images/connectors/dynamodb/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/dynamodb/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **AWS Access Key ID** & **AWS Secret Access Key**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
@@ -98,6 +92,15 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

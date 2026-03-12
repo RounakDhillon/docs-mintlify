@@ -1,8 +1,8 @@
 ---
-title: Druid Connector | Collate Real-Time Analytics Guide
-description: Learn how to connect Apache Druid to Collate with our comprehensive connector guide. Step-by-step setup, configuration, and metadata extraction.
-slug: /connectors/database/druid
-sidebarTitle: Overview
+title: Druid Hybrid Runner | Collate Real-Time Analytics Guide
+description: Connect Apache Druid to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/druid/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -19,7 +19,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the Druid connector.
-Configure and schedule Druid metadata and profiler workflows from the Collate UI:
+Configure and schedule Druid metadata and profiler workflows from the OpenMetadata UI:
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
 - [Lineage](/how-to-guides/data-lineage/workflow)
@@ -28,7 +28,7 @@ Configure and schedule Druid metadata and profiler workflows from the Collate UI
 - [Troubleshooting](/connectors/database/druid/troubleshooting)
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Druid"} selectServicePath={"/public/images/connectors/druid/select-service.png"} addNewServicePath={"/public/images/connectors/druid/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/druid/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **Username**: Specify the User to connect to Druid. It should have enough privileges to read all the metadata.
@@ -41,6 +41,15 @@ Configure and schedule Druid metadata and profiler workflows from the Collate UI
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 
