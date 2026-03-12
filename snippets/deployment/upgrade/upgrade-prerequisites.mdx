@@ -1,8 +1,8 @@
-# Prerequisites
+## Prerequisites
 
 Everytime that you plan on upgrading OpenMetadata to a newer version, make sure to go over all these steps:
 
-## Backup your Metadata
+### Backup your Metadata
 
 Before upgrading your OpenMetadata version we strongly recommend backing up the metadata.
 
@@ -42,7 +42,7 @@ You can refer to the following guide to get more details about the backup and re
   </Card>
 </CardGroup>
 
-## Understanding the "Running" State in OpenMetadata
+### Understanding the "Running" State in OpenMetadata
 
 In OpenMetadata, the **"Running"** state indicates that the Collate server has received a response from Airflow confirming that a workflow is in progress. However, if Airflow unexpectedly stops or crashes before it can send a failure status update through the **Failure Callback**, OpenMetadata remains unaware of the workflow’s actual state. As a result, the workflow may appear to be stuck in **"Running"** even though it is no longer executing.
 
@@ -56,7 +56,7 @@ To resolve this issue:
 - Manually update the pipeline status if necessary.
 - Check Airflow logs to verify if the DAG execution was interrupted.
 
-### Update `sort_buffer_size` (MySQL) or `work_mem` (Postgres)
+#### Update `sort_buffer_size` (MySQL) or `work_mem` (Postgres)
 
 Before running the migrations, it is important to update these parameters to ensure there are no runtime errors.
 A safe value would be setting them to 20MB.
@@ -94,16 +94,16 @@ during the migration after bumping this value, you can increase them further.
 
 After the migration is finished, you can revert this changes.
 
-# Backward Incompatible Changes
+## Backward Incompatible Changes
 
-## 1.9.0
+### 1.9.0
 
-### Strong validation of test case parameters
+#### Strong validation of test case parameters
 
 `parameterValues` name of a testCase will be strongly validated against the name of the `parameterDefinition` in the testDefinition.
 If both parameter names do not match an error will be thrown on testCase creation
 
-### Multi-domain Support
+#### Multi-domain Support
 
 **All entities now support multi-domains**. Their `domain` field is now renamed to `domains` and modelled as a list of domains instead of a single domain.
 

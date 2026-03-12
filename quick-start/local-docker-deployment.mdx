@@ -14,14 +14,14 @@ content below 👇
 
 <iframe width="800" height="450" src="https://www.youtube.com/embed/ld43_jafL9w?start=0&end=407" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
-# Requirements (OSX, Linux and Windows)
+## Requirements (OSX, Linux and Windows)
 
 Please ensure your host system meets the requirements listed below. Then continue to the Procedure for installing
 OpenMetadata.
 
-## OSX and Linux
+### OSX and Linux
 
-### Docker (version 20.10.0 or greater)
+#### Docker (version 20.10.0 or greater)
 
 [Docker](https://docs.docker.com/get-started/overview/) is an open-source platform for developing, shipping, and running applications. It enables you to separate your applications from your infrastructure, so you can deliver software quickly using OS-level virtualization. It helps
 deliver software in packages called Containers.
@@ -40,7 +40,7 @@ You must allocate at least `6 GiB` of memory and `4 vCPUs` to Docker in order to
 
 </Tip>
 
-### Docker Compose (version v2.1.1 or greater)
+#### Docker Compose (version v2.1.1 or greater)
 
 The Docker `compose` package enables you to define and run multi-container Docker applications. The compose command
 integrates compose functions into the Docker platform, making them available from the Docker command-line interface (
@@ -62,7 +62,7 @@ Upon running this command you should see output similar to the following.
 Docker Compose version v2.1.1
 ```
 
-### Install Docker Compose Version 2.0.0 on Linux
+#### Install Docker Compose Version 2.0.0 on Linux
 
 Follow the instructions [here](https://docs.docker.com/compose/cli-command/#install-on-linux) to install docker compose version 2.0.0
 
@@ -88,9 +88,9 @@ Follow the instructions [here](https://docs.docker.com/compose/cli-command/#inst
     > Docker Compose version v2.2.3
     ```
 
-## Windows
+### Windows
 
-### WSL2, Ubuntu 20.04, and Docker for Windows
+#### WSL2, Ubuntu 20.04, and Docker for Windows
 
 - Install [WSL2](https://ubuntu.com/wsl)
 - Install [Ubuntu 20.04](https://www.microsoft.com/en-us/p/ubuntu-2004-lts/9n6svws3rx71)
@@ -100,9 +100,9 @@ Follow the instructions [here](https://docs.docker.com/compose/cli-command/#inst
     - Command: `apt install python3-pip  python3-venv` (Ensure that you have the privilege to install packages, if not, please use Super User.)
 
 
-## Procedure
+### Procedure
 
-### 1. Create a directory for OpenMetadata
+#### 1. Create a directory for OpenMetadata
 
 Create a new directory for OpenMetadata and navigate into that directory.
 
@@ -110,7 +110,7 @@ Create a new directory for OpenMetadata and navigate into that directory.
 mkdir openmetadata-docker && cd openmetadata-docker
 ```
 
-### 2. Download Docker Compose File from GitHub Releases
+#### 2. Download Docker Compose File from GitHub Releases
 
 Download the docker-compose.yml file from the release page [here](https://github.com/open-metadata/OpenMetadata/releases/latest).
 
@@ -202,22 +202,22 @@ You can access Airflow at [http://localhost:8080](http://localhost:8080). Use th
 - Username: `admin`
 - Password: `admin`
 
-### Customizing Airflow Admin Credentials:
+#### Customizing Airflow Admin Credentials:
   When using Docker Compose, you can change the default Airflow admin credentials by setting the following environment variables:
   - Username: `AIRFLOW_ADMIN_USER`
   - Password: `AIRFLOW_ADMIN_PASSWORD`
 
-## Airflow DAGs Showcased in Deployment
+### Airflow DAGs Showcased in Deployment
 
 You can explore the examples of Airflow DAGs used with OpenMetadata. Refer [here](https://github.com/open-metadata/OpenMetadata/tree/main/ingestion/examples/airflow/dags) for more information.
 
 <img src="/public/images/quickstart/docker/DAG_Examples.png" alt="DAG_Examples" />
 
-## Go on a tour and start discovering the power of metadata & collaboration
+### Go on a tour and start discovering the power of metadata & collaboration
 
 <img src="/public/images/quickstart/tour.png" alt="tour" />
 
-## Start and Stop
+### Start and Stop
 
 From the same directory mentioned in [step 1](#1.-create-a-directory-for-openmetadata), use the following commands to start and stop the Docker Compose services.
 

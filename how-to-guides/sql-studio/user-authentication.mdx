@@ -52,7 +52,7 @@ The authentication method available to you is determined by your administrator. 
 
 ---
 
-# Collate SSO Authentication
+## Collate SSO Authentication
 
 <Tip>
 
@@ -139,7 +139,7 @@ Collate SSO leverages your existing Google OIDC SSO configuration in Collate to 
 
 ---
 
-# OAuth Authentication
+## OAuth Authentication
 
 <Tip>
 
@@ -147,7 +147,7 @@ Collate SSO leverages your existing Google OIDC SSO configuration in Collate to 
 
 </Tip>
 
-## How OAuth Works
+### How OAuth Works
 
 OAuth requires you to authenticate directly with the database service provider (Google for BigQuery, Snowflake, Azure AD for Trino). You'll be redirected to the provider's authentication page, grant permissions, and then SQL Studio securely stores your OAuth tokens for query execution.
 
@@ -156,15 +156,15 @@ OAuth requires you to authenticate directly with the database service provider (
 - Direct authentication with database provider
 - Works with any OAuth provider configured by your administrator
 
-## Connecting with OAuth
+### Connecting with OAuth
 
-### Step 1: Access SQL Studio
+#### Step 1: Access SQL Studio
 
 1. Click **SQL Studio** from the main navigation menu
 2. You'll see a landing page with available services
 3. Find the service you want to connect to
 
-### Step 2: Select Service
+#### Step 2: Select Service
 
 1. Click on the service card (e.g., BigQuery, Snowflake, Trino)
 2. A connection dialog appears
@@ -177,7 +177,7 @@ OAuth requires you to authenticate directly with the database service provider (
    - **Snowflake**: Snowflake authentication page (e.g., `myorg.snowflakecomputing.com/oauth/authorize`)
    - **Trino**: Azure AD or configured OAuth provider
 
-### Step 3: Authenticate with Provider
+#### Step 3: Authenticate with Provider
 
 1. Sign in with your credentials:
    - **BigQuery**: Google email and password
@@ -186,7 +186,7 @@ OAuth requires you to authenticate directly with the database service provider (
 2. Complete any multi-factor authentication if required
 3. You may be asked to select an account or role (follow the prompts)
 
-### Step 4: Grant Permissions
+#### Step 4: Grant Permissions
 
 1. Review the permissions requested:
    - **BigQuery**: "Allow access to BigQuery API"
@@ -194,7 +194,7 @@ OAuth requires you to authenticate directly with the database service provider (
    - **Trino**: "Allow access to Trino/Starburst cluster"
 2. Click **Allow**, **Accept**, or **Authorize** (wording varies by provider)
 
-### Step 5: Connection Established
+#### Step 5: Connection Established
 
 1. After successful authentication, access token exchange happens automatically
 2. You're redirected back to SQL Studio
@@ -204,7 +204,7 @@ OAuth requires you to authenticate directly with the database service provider (
 6. After a few seconds, status changes to **Connected** 🟢
 7. A new query tab opens automatically
 
-### Step 6: Start Querying
+#### Step 6: Start Querying
 
 1. The SQL Editor is now active
 2. You can write and execute queries
@@ -216,9 +216,9 @@ OAuth requires you to authenticate directly with the database service provider (
 - Database connection parameters pulled from service configuration
 - Connection tested automatically
 
-## Troubleshooting External OAuth
+### Troubleshooting External OAuth
 
-### "Redirect URI Mismatch" Error
+#### "Redirect URI Mismatch" Error
 
 **Problem**: Error message about redirect URI mismatch during OAuth flow
 
@@ -226,7 +226,7 @@ OAuth requires you to authenticate directly with the database service provider (
 - Contact your administrator - OAuth app configuration needs correction
 - Verify you're using the correct Collate URL (e.g., `https://collate.example.com`, not `http://localhost`)
 
-### Authentication Successful But Connection Fails
+#### Authentication Successful But Connection Fails
 
 **Problem**: OAuth completes but test connection fails
 
@@ -235,7 +235,7 @@ OAuth requires you to authenticate directly with the database service provider (
 - Check network connectivity to the database service
 - Contact your administrator to review service configuration
 
-### Redirect Issues
+#### Redirect Issues
 
 **Problem**: Not redirected back to SQL Studio after authentication
 
@@ -246,7 +246,7 @@ OAuth requires you to authenticate directly with the database service provider (
 
 ---
 
-# Basic Authentication
+## Basic Authentication
 
 <Tip>
 
@@ -254,7 +254,7 @@ OAuth requires you to authenticate directly with the database service provider (
 
 </Tip>
 
-## How Basic Authentication Works
+### How Basic Authentication Works
 
 Basic Authentication requires you to manually enter credentials such as Username + Password, Service Account JSON, or Key Pair. Credentials are encrypted and stored securely.
 
@@ -265,9 +265,9 @@ Basic Authentication requires you to manually enter credentials such as Username
 
 ---
 
-## BigQuery Basic Authentication
+### BigQuery Basic Authentication
 
-### Credentials Required
+#### Credentials Required
 
 - **GCP Service Account JSON** file, containing:
   - Private Key ID
@@ -275,7 +275,7 @@ Basic Authentication requires you to manually enter credentials such as Username
   - Client Email
   - Client ID
 
-### Where to Get Credentials
+#### Where to Get Credentials
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Navigate to **IAM & Admin** → **Service Accounts**
@@ -286,14 +286,14 @@ Basic Authentication requires you to manually enter credentials such as Username
 5. Go to **Keys** tab → **Add Key** → **Create new key** → **JSON**
 6. Download the JSON file and store securely (e.g., 1Password)
 
-### Connecting with BigQuery Basic Auth
+#### Connecting with BigQuery Basic Auth
 
-#### Step 1: Select Service
+##### Step 1: Select Service
 
 1. In SQL Studio, select the BigQuery service from the dropdown
 2. Click **Configure Connection**
 
-#### Step 2: Enter Credentials
+##### Step 2: Enter Credentials
 
 You have two options:
 
@@ -312,13 +312,13 @@ You have two options:
    - **Client Email**: Copy from `client_email` field
    - **Client ID**: Copy from `client_id` field
 
-#### Step 3: (Optional) Configure Overrides
+##### Step 3: (Optional) Configure Overrides
 
 If your administrator enabled user-configurable fields:
 
 - **Dataset**: Enter default BigQuery dataset (e.g., `analytics`, `marketing`)
 
-#### Step 4: Test Connection
+##### Step 4: Test Connection
 
 1. Click **Test Connection**
 2. SQL Studio validates your credentials by:
@@ -327,7 +327,7 @@ If your administrator enabled user-configurable fields:
 3. Connection status changes to **Pending** 🟡
 4. Wait for test to complete
 
-#### Step 5: Save Configuration
+##### Step 5: Save Configuration
 
 1. If test succeeds, click **Save**
 2. Your credentials are encrypted and stored

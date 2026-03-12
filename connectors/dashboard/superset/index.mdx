@@ -31,7 +31,7 @@ The ingestion also works with Superset 2.0.0 🎉
 **Database Connection**: To extract metadata from Superset via MySQL or Postgres database, database user must have at least `SELECT` privilege on `dashboards` & `slices` tables within superset schema.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Superset"} selectServicePath={"/public/images/connectors/superset/select-service.png"} addNewServicePath={"/public/images/connectors/superset/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/superset/service-connection.png"} />
-# Connection Details
+## Connection Details
 <Steps>
 <Step title="Connection Details">
 - **Host and Port**: The `Host and Post` parameter is common for all three modes of authentication which specifies the host and port of the Superset instance. This should be specified as a string in the format `http://hostname:port` or `https://hostname:port`. For example, you might set the hostPort parameter to `https://org.superset.com:8088`.
