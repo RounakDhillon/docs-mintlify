@@ -1,8 +1,8 @@
 ---
-title: Hive Connector | Collate Big Data Integration Guide
-description: Connect Apache Hive to Collate with our comprehensive database connector guide. Setup instructions, configuration options, and metadata extraction steps.
-slug: /connectors/database/hive
-sidebarTitle: Overview
+title: Hive Hybrid Runner | Collate Big Data Integration Guide
+description: Connect Apache Hive to Collate using the Hybrid Runner deployment. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/hive/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -19,7 +19,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the Hive connector.
-Configure and schedule Hive metadata and profiler workflows from the Collate UI:
+Configure and schedule Hive metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
@@ -51,15 +51,15 @@ You can also ingest the metadata using Mysql metastore. This step is optional if
 - **Password**: Password to connect to MySQL.
 - **Host and Port**: Enter the fully qualified hostname and port number for your MySQL Metastore deployment in the Host and Port field in the format `hostname:port`.
 - **databaseSchema**: Enter the database schema which is associated with the metastore.
-</Step>
-<AdvancedConfiguration />
+
 #### For Postgres Metastore Connection
 You can also ingest the metadata using Postgres metastore. This step is optional if metastore details are not provided then we will query the hive server directly.
 - **Username**: Specify the User to connect to Postgres Metastore. It should have enough privileges to read all the metadata.
 - **Password**: Password to connect to Postgres.
 - **Host and Port**: Enter the fully qualified hostname and port number for your Postgres deployment in the Host and Port field in the format `hostname:port`.
 - **Database**: Initial Postgres database to connect to. Specify the name of database associated with metastore instance.
-<AdvancedConfiguration />
+</Step>
+
 <AdvancedConfiguration />
 <TestConnection />
 <ConfigureIngestion />
@@ -68,6 +68,15 @@ You can also ingest the metadata using Postgres metastore. This step is optional
 ## Securing Hive Connection with SSL in OpenMetadata
 To configure SSL for secure connections between OpenMetadata and a Hive database, you need to add `ssl_cert` as a key and the path to the CA certificate as its value under `connectionArguments`. Ensure that the certificate is accessible by the server. If you use a Docker or Kubernetes deployment, update the CA certificate in the Open Metadata server.
 <img src="/public/images/connectors/ssl_argument.png" alt="SSL Configuration" height="450px" />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

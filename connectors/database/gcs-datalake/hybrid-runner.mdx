@@ -1,8 +1,8 @@
 ---
-title: GCS Datalake Connector | Collate Cloud Storage Integration
-description: Connect your Google Cloud Storage data lake to Collate with our comprehensive GCS connector guide. Setup instructions, configuration tips & best practices.
-slug: /connectors/database/gcs-datalake
-sidebarTitle: Overview
+title: GCS Datalake Hybrid Runner | Collate Cloud Storage Integration
+description: Connect your Google Cloud Storage data lake to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/gcs-datalake/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -19,7 +19,7 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Owners", "dbt", "Tags", "Stored Procedures"]} />
 In this section, we provide guides and references to use the GCS Datalake connector.
-Configure and schedule GCS Datalake metadata and profiler workflows from the Collate UI:
+Configure and schedule GCS Datalake metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Data Profiler](/how-to-guides/data-quality-observability/profiler/profiler-workflow)
@@ -56,6 +56,15 @@ We support two ways of authenticating to GCS:
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

@@ -1,8 +1,8 @@
 ---
-title: Greenplum Connector | Collate Database Integration Guide
-description: Connect Greenplum to Collate with our comprehensive database connector guide. Setup instructions, configuration details, and metadata extraction made simple.
-slug: /connectors/database/greenplum
-sidebarTitle: Overview
+title: Greenplum Hybrid Runner | Collate Database Integration Guide
+description: Connect Greenplum to Collate using the Hybrid Runner deployment. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/greenplum/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -19,7 +19,7 @@ stage="BETA"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "dbt", "View Lineage", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures", "Lineage", "Column-level Lineage"]} />
 In this section, we provide guides and references to use the Greenplum connector.
-Configure and schedule Greenplum metadata and profiler workflows from the Collate UI:
+Configure and schedule Greenplum metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Query Usage](/how-to-guides/guide-for-data-users/ingestion/workflows/usage)
@@ -36,7 +36,7 @@ To extract metadata, the user needs to have `SELECT` privileges on all schemas a
 For profiler workflow and data quality tests, the user needs `SELECT` permission on the tables/schemas where the profiler/tests will be executed.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Greenplum"} selectServicePath={"/public/images/connectors/greenplum/select-service.png"} addNewServicePath={"/public/images/connectors/greenplum/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/greenplum/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **Username**: Specify the User to connect to Greenplum. It should have enough privileges to read all the metadata.
@@ -109,6 +109,15 @@ Under `Advanced Config`, specify the SSL mode appropriate for your connection, s
 For IAM authentication, it is recommended to choose the `allow` mode or another SSL mode that fits your specific requirements.
 </Tip>
 <img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

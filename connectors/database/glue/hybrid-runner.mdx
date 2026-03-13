@@ -1,8 +1,8 @@
 ---
-title: AWS Glue Connector | Collate Data Integration Guide
-description: Learn how to integrate AWS Glue with Collate using our comprehensive database connector guide. Step-by-step setup, configuration, and metadata extraction.
-slug: /connectors/database/glue
-sidebarTitle: Overview
+title: AWS Glue Hybrid Runner | Collate Data Integration Guide
+description: Integrate AWS Glue with Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/glue/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -18,7 +18,7 @@ stage="PROD"
 availableFeatures={["Metadata", "dbt"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures", "Data Profiler", "Data Quality", "Lineage", "Column-level Lineage", "Sample Data", "Auto-Classification"]} />
 In this section, we provide guides and references to use the Glue connector.
-Configure and schedule Glue metadata and profiler workflows from the Collate UI:
+Configure and schedule Glue metadata and profiler workflows from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [dbt Integration](/connectors/database/dbt)
@@ -27,7 +27,7 @@ Configure and schedule Glue metadata and profiler workflows from the Collate UI:
 User must have `glue:GetDatabases` and `glue:GetTables` permissions to ingest the basic metadata.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Glue"} selectServicePath={"/public/images/connectors/glue/select-service.png"} addNewServicePath={"/public/images/connectors/glue/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/glue/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **AWS Access Key ID** & **AWS Secret Access Key**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
@@ -76,6 +76,15 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

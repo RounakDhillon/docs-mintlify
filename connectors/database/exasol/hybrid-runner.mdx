@@ -1,8 +1,8 @@
 ---
-title: Exasol Connector | Collate High-Performance Database
-description: Connect Exasol database to Collate with our comprehensive connector guide. Step-by-step setup, configuration, and metadata extraction instructions.
-slug: /connectors/database/exasol
-sidebarTitle: Overview
+title: Exasol Hybrid Runner | Collate High-Performance Database
+description: Connect Exasol database to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/database/exasol/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import ExternalIngestionDeployment from '/snippets/connectors/external-ingestion-deployment.mdx'
@@ -20,7 +20,7 @@ stage="PROD"
 availableFeatures={["Metadata"]}
 unavailableFeatures={["Query Usage", "Lineage", "Column-level Lineage", "Data Profiler", "Data Quality", "Owners", "dbt", "Tags", "Stored Procedures", "Sample Data", "Auto-Classification"]} />
 In this section, we provide guides and references for using the Exasol connector.
-Configure and schedule Exasol metadata from the Collate UI:
+Configure and schedule Exasol metadata from the OpenMetadata UI:
 - [Requirements](#requirements)
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/database/exasol/troubleshooting)
@@ -58,6 +58,15 @@ Ensure that the appropriate TLS setting is chosen based on your security and dep
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

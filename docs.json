@@ -304,7 +304,7 @@
                                         "group": "Exasol",
                                         "pages": [
                                             "connectors/database/exasol/index",
-                                            "connectors/database/exasol/yaml",
+                                            "connectors/database/exasol/hybrid-runner",
                                             "connectors/database/exasol/troubleshooting"
                                         ]
                                     },
@@ -312,7 +312,7 @@
                                         "group": "GCS Datalake",
                                         "pages": [
                                             "connectors/database/gcs-datalake/index",
-                                            "connectors/database/gcs-datalake/yaml",
+                                            "connectors/database/gcs-datalake/hybrid-runner",
                                             "connectors/database/gcs-datalake/troubleshooting"
                                         ]
                                     },
@@ -320,7 +320,7 @@
                                         "group": "Glue",
                                         "pages": [
                                             "connectors/database/glue/index",
-                                            "connectors/database/glue/yaml",
+                                            "connectors/database/glue/hybrid-runner",
                                             "connectors/database/glue/troubleshooting"
                                         ]
                                     },
@@ -328,7 +328,7 @@
                                         "group": "Greenplum",
                                         "pages": [
                                             "connectors/database/greenplum/index",
-                                            "connectors/database/greenplum/yaml",
+                                            "connectors/database/greenplum/hybrid-runner",
                                             "connectors/database/greenplum/troubleshooting"
                                         ]
                                     },
@@ -336,7 +336,7 @@
                                         "group": "Hive",
                                         "pages": [
                                             "connectors/database/hive/index",
-                                            "connectors/database/hive/yaml",
+                                            "connectors/database/hive/hybrid-runner",
                                             "connectors/database/hive/troubleshooting"
                                         ]
                                     },
@@ -344,7 +344,7 @@
                                         "group": "Impala",
                                         "pages": [
                                             "connectors/database/impala/index",
-                                            "connectors/database/impala/yaml",
+                                            "connectors/database/impala/hybrid-runner",
                                             "connectors/database/impala/troubleshooting"
                                         ]
                                     },
@@ -2350,6 +2350,30 @@
         {
             "source": "/connectors/database/db2/yaml",
             "destination": "/connectors/database/db2/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/exasol/yaml",
+            "destination": "/connectors/database/exasol/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/gcs-datalake/yaml",
+            "destination": "/connectors/database/gcs-datalake/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/glue/yaml",
+            "destination": "/connectors/database/glue/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/greenplum/yaml",
+            "destination": "/connectors/database/greenplum/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/hive/yaml",
+            "destination": "/connectors/database/hive/hybrid-runner"
+        },
+        {
+            "source": "/connectors/database/impala/yaml",
+            "destination": "/connectors/database/impala/hybrid-runner"
         },
         {
             "source": "/connectors/database/deltalake/yaml",
