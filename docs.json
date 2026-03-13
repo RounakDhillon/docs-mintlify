@@ -1735,7 +1735,8 @@
                                     }
                                 ]
                             },
-                            "how-to-guides/data-governance/metrics"
+                            "how-to-guides/data-governance/metrics",
+                            "how-to-guides/data-governance/column-bulk-operations"
                         ]
                     }
                 ]
