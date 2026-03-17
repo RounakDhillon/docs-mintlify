@@ -1,8 +1,8 @@
 ---
-title: Stitch Connector | Official Documentation
+title: Stitch Hybrid Runner | Official Documentation
 description: Ingest Stitch pipeline metadata to track transformation flow and manage operational lineage.
-slug: /connectors/pipeline/stitch
-sidebarTitle: SaaS/BYOC
+slug: /connectors/pipeline/stitch/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
@@ -23,7 +23,7 @@ Configure and schedule Stitch metadata and profiler workflows from the Collate U
 - [Metadata Ingestion](#metadata-ingestion)
 - [Troubleshooting](/connectors/pipeline/stitch/troubleshooting)
 ## Requirements
-To extract metadata from Stitch, User first need to crate API crednetials:
+To extract metadata from Stitch, you first need to create API credentials:
 - `Token`: Token to access Stitch metadata.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Stitch"} selectServicePath={"/public/images/connectors/stitch/select-service.png"} addNewServicePath={"/public/images/connectors/stitch/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/stitch/service-connection.png"} />
@@ -37,7 +37,17 @@ To extract metadata from Stitch, User first need to crate API crednetials:
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
 By successfully completing these steps, the lineage information for the service will be displayed.
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

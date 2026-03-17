@@ -1,7 +1,8 @@
 ---
-title: SSIS
-slug: /connectors/pipeline/ssis
-sidebarTitle: SaaS/BYOC
+title: SSIS Hybrid Runner
+description: Ingest SSIS pipeline metadata, pipeline status, and lineage using the Hybrid Runner.
+slug: /connectors/pipeline/ssis/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
@@ -25,7 +26,7 @@ Configure and schedule SSIS metadata workflow from the Collate UI:
 ## Requirements
 To extract SSIS metadata, we need the database connection details where the SSIS metadata is stored.
 - `API` Permission ( While Creating the User, from Admin -> User )
-- To retrieve lineage data, the user must be granted [Component-level permissions](https://docs.matillion.com/metl/docs/2932106/#component).
+- To retrieve lineage data, make the SSIS package XML files available through a local path or an S3 bucket.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"SSIS"} selectServicePath={"/public/images/connectors/ssis/select-service.png"} addNewServicePath={"/public/images/connectors/ssis/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/ssis/service-connection.png"} />
 ## Connection Details
@@ -97,6 +98,15 @@ Choose the method that best fits your environment to ensure the connector can ac
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

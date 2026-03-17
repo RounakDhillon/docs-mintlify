@@ -1,8 +1,8 @@
 ---
-title: Wherescape Connector | Official Documentation
+title: Wherescape Hybrid Runner | Official Documentation
 description: Ingest metadata from WhereScape pipelines including task details, schedules, and lineage paths.
-slug: /connectors/pipeline/wherescape
-sidebarTitle: SaaS/BYOC
+slug: /connectors/pipeline/wherescape/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -25,7 +25,6 @@ Configure and schedule Wherescape metadata workflow from the Collate UI:
 ## Requirements
 To extract Wherescape metadata, we need the database connection details where the metadata is stored.
 - `API` Permission ( While Creating the User, from Admin -> User )
-- To retrieve lineage data, the user must be granted [Component-level permissions](https://docs.matillion.com/metl/docs/2932106/#component).
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"WhereScape"} selectServicePath={"/public/images/connectors/wherescape/select-service.png"} addNewServicePath={"/public/images/connectors/wherescape/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/wherescape/service-connection.png"} />
 ## Connection Details
@@ -43,6 +42,15 @@ In terms of `connection` we support the following selections:
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

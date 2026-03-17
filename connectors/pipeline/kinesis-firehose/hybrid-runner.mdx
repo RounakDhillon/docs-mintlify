@@ -1,8 +1,8 @@
 ---
-title: AWS Kinesis Firehose Connector | Official Documentation
-description: Ingest AWS Kinesis Firehose pipeline metadata to track data delivery streams and manage operational lineage.
-slug: /connectors/pipeline/kinesis-firehose
-sidebarTitle: SaaS/BYOC
+title: AWS Kinesis Firehose Hybrid Runner | Official Documentation
+description: Ingest AWS Kinesis Firehose pipeline metadata to track data delivery streams and manage operational lineage using the Hybrid Runner.
+slug: /connectors/pipeline/kinesis-firehose/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
@@ -131,6 +131,15 @@ To extract metadata from AWS Kinesis Firehose, you need to configure AWS credent
 </Steps>
 
 By successfully completing these steps, the lineage information for the service will be displayed.
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

@@ -956,7 +956,7 @@
                                         "group": "Kinesis Firehose",
                                         "pages": [
                                             "connectors/pipeline/kinesis-firehose/index",
-                                            "connectors/pipeline/kinesis-firehose/yaml",
+                                            "connectors/pipeline/kinesis-firehose/hybrid-runner",
                                             "connectors/pipeline/kinesis-firehose/troubleshooting"
                                         ]
                                     },
@@ -964,7 +964,7 @@
                                         "group": "Matillion",
                                         "pages": [
                                             "connectors/pipeline/matillion/index",
-                                            "connectors/pipeline/matillion/yaml",
+                                            "connectors/pipeline/matillion/hybrid-runner",
                                             "connectors/pipeline/matillion/troubleshooting"
                                         ]
                                     },
@@ -972,7 +972,7 @@
                                         "group": "Microsoft Fabric Pipeline",
                                         "pages": [
                                             "connectors/pipeline/microsoftfabricpipeline/index",
-                                            "connectors/pipeline/microsoftfabricpipeline/yaml",
+                                            "connectors/pipeline/microsoftfabricpipeline/hybrid-runner",
                                             "connectors/pipeline/microsoftfabricpipeline/troubleshooting"
                                         ]
                                     },
@@ -980,7 +980,7 @@
                                         "group": "Mulesoft",
                                         "pages": [
                                             "connectors/pipeline/mulesoft/index",
-                                            "connectors/pipeline/mulesoft/yaml",
+                                            "connectors/pipeline/mulesoft/hybrid-runner",
                                             "connectors/pipeline/mulesoft/troubleshooting"
                                         ]
                                     },
@@ -988,7 +988,7 @@
                                         "group": "NiFi",
                                         "pages": [
                                             "connectors/pipeline/nifi/index",
-                                            "connectors/pipeline/nifi/yaml",
+                                            "connectors/pipeline/nifi/hybrid-runner",
                                             "connectors/pipeline/nifi/troubleshooting"
                                         ]
                                     },
@@ -996,6 +996,7 @@
                                         "group": "OpenLineage",
                                         "pages": [
                                             "connectors/pipeline/openlineage/index",
+                                            "connectors/pipeline/openlineage/hybrid-runner",
                                             "connectors/pipeline/openlineage/troubleshooting"
                                         ]
                                     },
@@ -1003,7 +1004,7 @@
                                         "group": "Snowplow",
                                         "pages": [
                                             "connectors/pipeline/snowplow/index",
-                                            "connectors/pipeline/snowplow/yaml",
+                                            "connectors/pipeline/snowplow/hybrid-runner",
                                             "connectors/pipeline/snowplow/troubleshooting"
                                         ]
                                     },
@@ -1011,7 +1012,7 @@
                                         "group": "Spline",
                                         "pages": [
                                             "connectors/pipeline/spline/index",
-                                            "connectors/pipeline/spline/yaml",
+                                            "connectors/pipeline/spline/hybrid-runner",
                                             "connectors/pipeline/spline/troubleshooting"
                                         ]
                                     },
@@ -1019,7 +1020,7 @@
                                         "group": "SSIS",
                                         "pages": [
                                             "connectors/pipeline/ssis/index",
-                                            "connectors/pipeline/ssis/yaml",
+                                            "connectors/pipeline/ssis/hybrid-runner",
                                             "connectors/pipeline/ssis/troubleshooting"
                                         ]
                                     },
@@ -1027,7 +1028,7 @@
                                         "group": "Stitch",
                                         "pages": [
                                             "connectors/pipeline/stitch/index",
-                                            "connectors/pipeline/stitch/yaml",
+                                            "connectors/pipeline/stitch/hybrid-runner",
                                             "connectors/pipeline/stitch/troubleshooting"
                                         ]
                                     },
@@ -1035,7 +1036,7 @@
                                         "group": "WhereScape",
                                         "pages": [
                                             "connectors/pipeline/wherescape/index",
-                                            "connectors/pipeline/wherescape/yaml",
+                                            "connectors/pipeline/wherescape/hybrid-runner",
                                             "connectors/pipeline/wherescape/troubleshooting"
                                         ]
                                     }
@@ -2575,6 +2576,50 @@
         {
             "source": "/connectors/storage/s3/yaml",
             "destination": "/connectors/storage/s3/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/kinesis-firehose/yaml",
+            "destination": "/connectors/pipeline/kinesis-firehose/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/matillion/yaml",
+            "destination": "/connectors/pipeline/matillion/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/microsoftfabricpipeline/yaml",
+            "destination": "/connectors/pipeline/microsoftfabricpipeline/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/mulesoft/yaml",
+            "destination": "/connectors/pipeline/mulesoft/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/nifi/yaml",
+            "destination": "/connectors/pipeline/nifi/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/openlineage/yaml",
+            "destination": "/connectors/pipeline/openlineage/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/snowplow/yaml",
+            "destination": "/connectors/pipeline/snowplow/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/spline/yaml",
+            "destination": "/connectors/pipeline/spline/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/ssis/yaml",
+            "destination": "/connectors/pipeline/ssis/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/stitch/yaml",
+            "destination": "/connectors/pipeline/stitch/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/wherescape/yaml",
+            "destination": "/connectors/pipeline/wherescape/hybrid-runner"
         },
         {
             "source": "/main-concepts/*",

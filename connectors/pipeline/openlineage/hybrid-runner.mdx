@@ -1,8 +1,8 @@
 ---
-title: OpenLineage | Collate Data Lineage Pipeline
+title: OpenLineage Hybrid Runner | Collate Data Lineage Pipeline
 description: Connect your data pipelines with Collate'sOpenLineage connector. Track data lineage, monitor pipeline metadata, and gain end-to-end visibility.
-slug: /connectors/pipeline/openlineage
-sidebarTitle: SaaS/BYOC
+slug: /connectors/pipeline/openlineage/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -54,8 +54,9 @@ To Configure your Airflow instance
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
-##### Providing connection details programmatically via API
-###### 1. Preparing the Client
+
+### Providing connection details programmatically via API
+#### 1. Preparing the Client
 ```python
 from metadata.sdk import configure
 
@@ -64,7 +65,7 @@ configure(
     jwt_token="<token>",
 )
 ```
-###### 2. Creating the OpenLineage Pipeline service
+#### 2. Creating the OpenLineage Pipeline service
 ```python
 from metadata.generated.schema.api.services.createPipelineService import  CreatePipelineServiceRequest
 from metadata.generated.schema.entity.services.pipelineService import (
@@ -92,7 +93,7 @@ openlineage_service_request = CreatePipelineServiceRequest(
             poolTimeout=3.0,
             sessionTimeout=60,
             securityProtocol=KafkaSecurityProtocol.SSL,
-            # below ssl confing in optional and used only when securityProtocol=KafkaSecurityProtocol.SSL
+            # below ssl config is optional and used only when securityProtocol=KafkaSecurityProtocol.SSL
             sslConfig=ValidateSslClientConfig(
                 sslCertificate='/path/to/kafka/certs/Certificate.pem',
                 sslKey='/path/to/kafka/certs/Key.pem',
@@ -104,100 +105,14 @@ openlineage_service_request = CreatePipelineServiceRequest(
 # Pending fluent API: PipelineServices.create(openlineage_service_request)
 ```
 
-###### 1. Preparing the Client
-```python
-from metadata.sdk import configure
-
-configure(
-    host="http://localhost:8585/api",
-    jwt_token="<token>",
-)
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
 ```
-###### 2. Creating the OpenLineage Pipeline service
-```python
-from metadata.generated.schema.api.services.createPipelineService import  CreatePipelineServiceRequest
-from metadata.generated.schema.entity.services.pipelineService import (
-    PipelineServiceType,
-    PipelineConnection,
-)
-from metadata.generated.schema.entity.services.connections.pipeline.openLineageConnection import (
-    OpenLineageConnection,
-    SecurityProtocol as KafkaSecurityProtocol,
-    ConsumerOffsets
-)
-from metadata.generated.schema.security.ssl.validateSSLClientConfig import (
-    ValidateSslClientConfig,
-)
-openlineage_service_request = CreatePipelineServiceRequest(
-    name='openlineage-service',
-    displayName='OpenLineage Service',
-    serviceType=PipelineServiceType.OpenLineage,
-    connection=PipelineConnection(
-        config=OpenLineageConnection(
-            brokersUrl='broker1:9092,broker2:9092',
-            topicName='openlineage-events',
-            consumerGroupName='openmetadata-consumer',
-            consumerOffsets=ConsumerOffsets.earliest,
-            poolTimeout=3.0,
-            sessionTimeout=60,
-            securityProtocol=KafkaSecurityProtocol.SSL,
-            # below ssl confing in optional and used only when securityProtocol=KafkaSecurityProtocol.SSL
-            sslConfig=ValidateSslClientConfig(
-                sslCertificate='/path/to/kafka/certs/Certificate.pem',
-                sslKey='/path/to/kafka/certs/Key.pem',
-                caCertificate='/path/to/kafka/certs/RootCA.pem'
-                )
-        )
-    ),
-)
-# Pending fluent API: PipelineServices.create(openlineage_service_request)
+password: secret:/my/database/password
 ```
-
-###### 1. Preparing the Client
-```python
-from metadata.sdk import configure
-
-configure(
-    host="http://localhost:8585/api",
-    jwt_token="<token>",
-)
-```
-###### 2. Creating the OpenLineage Pipeline service
-```python
-from metadata.generated.schema.api.services.createPipelineService import  CreatePipelineServiceRequest
-from metadata.generated.schema.entity.services.pipelineService import (
-    PipelineServiceType,
-    PipelineConnection,
-)
-from metadata.generated.schema.entity.services.connections.pipeline.openLineageConnection import (
-    OpenLineageConnection,
-    SecurityProtocol as KafkaSecurityProtocol,
-    ConsumerOffsets
-)
-openlineage_service_request = CreatePipelineServiceRequest(
-    name='openlineage-service',
-    displayName='OpenLineage Service',
-    serviceType=PipelineServiceType.OpenLineage,
-    connection=PipelineConnection(
-        config=OpenLineageConnection(
-            brokersUrl='broker1:9092,broker2:9092',
-            topicName='openlineage-events',
-            consumerGroupName='openmetadata-consumer',
-            consumerOffsets=ConsumerOffsets.earliest,
-            poolTimeout=3.0,
-            sessionTimeout=60,
-            securityProtocol=KafkaSecurityProtocol.SSL,
-            # below ssl confing in optional and used only when securityProtocol=KafkaSecurityProtocol.SSL
-            sslConfig=ValidateSslClientConfig(
-                sslCertificate='/path/to/kafka/certs/Certificate.pem',
-                sslKey='/path/to/kafka/certs/Key.pem',
-                caCertificate='/path/to/kafka/certs/RootCA.pem'
-                )
-        )
-    ),
-)
-# Pending fluent API: PipelineServices.create(openlineage_service_request)
-```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 
