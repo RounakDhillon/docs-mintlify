@@ -2,14 +2,14 @@
 title: Azure AKS Deployment | Official Documentation
 description: Configure deployment with Azure Kubernetes Service (AKS) using Collate-recommended Helm charts and scalable configuration templates.
 slug: /deployment/kubernetes/aks
-sidebarTitle: Aks
+sidebarTitle: AKS
 collate: false
 ---
 
 import Faqs from '/snippets/deployment/faqs.mdx'
 
-# Openmetadata Deployment on Azure Kubernetes Service Cluster
-Openmetadata can be deployed on Azure Kubernetes Service. It however requires certain cloud specific configurations with regards to setting up storage accounts for Airflow which is one of its dependencies.
+# OpenMetadata Deployment on Azure Kubernetes Service
+OpenMetadata can be deployed on Azure Kubernetes Service. It, however, requires certain cloud-specific configurations to set up storage accounts for Airflow, which is one of its dependencies.
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ Make sure to create database and elastic cloud credentials as Kubernetes Secrets
 
 Also, disable MySQL and ElasticSearch from OpenMetadata Dependencies Helm Charts as mentioned in the FAQs [here](#how-to-disable-mysql-and-elasticsearch-from-openmetadata-dependencies-helm-charts).
 
-### Step 1 - Create a AKS cluster
+### Step 1 - Create an AKS cluster
 If you are deploying on a new cluster set the `EnableAzureDiskFileCSIDriver=true` to enable container storage interface storage drivers.
 ```azure-cli
 az aks create   --resource-group  MyResourceGroup    \
@@ -128,7 +128,7 @@ kubectl apply -f logs_dags_pvc.yaml
 ```
 
 ### Step 4 - Change owner and update permission for persistent volumes
-Airflow pods run as non-root user and lack write access to our persistent volumes. To fix this we create a job permissions_pod.yaml that runs a pod that mounts volumnes into the persistent volume claim and updates the owner of the mounted folders /airflow-dags and /airflow-logs to user id 5000, which is the default linux user id of Airflow pods.
+Airflow pods run as non-root user and lack write access to our persistent volumes. To fix this we create a job permissions_pod.yaml that runs a pod that mounts volumes into the persistent volume claim and updates the owner of the mounted folders /airflow-dags and /airflow-logs to user id 5000, which is the default linux user id of Airflow pods.
 
 ```yaml
 # permissions_pod.yaml
@@ -165,13 +165,13 @@ Start the job by applying the manifest in permissions_pod.yaml.
 kubectl apply -f permissions_pod.yaml
 ```
 
-### Step 5 - Add the Helm Openmetadata repo and set-up secrets
+### Step 5 - Add the Helm OpenMetadata repo and set up secrets
 #### Add Helm Repo
 ``` azure-cli
 helm repo add open-metadata https://helm.open-metadata.org/
 ```
 #### Create secrets
-It is recommeded to use external database and search for production deplyoments. The following implementation uses external postgresql DB from Azure Database. Any of the popular databases can be used. The default implementation uses mysql.
+It is recommended to use external database and search for production deployments. The following implementation uses external postgresql DB from Azure Database. Any of the popular databases can be used. The default implementation uses mysql.
 
 ```azure-cli
 kubectl create secret generic airflow-secrets                                    \
@@ -187,8 +187,8 @@ kubectl create secret generic postgresql-secret                                 
 
 ```
 
-### Step 6 - Install Openmetadata dependencies
-The values-dependencies-yaml is used to overwride default values in the official helm chart and must be configured for customizing for use cases. Uncomment the externalDatabase section with meaningful values to connect to external database for production deployments. We set sensitive information like host address, DB name and DB username through the CLI.
+### Step 6 - Install OpenMetadata dependencies
+The `values-dependencies.yaml` file is used to override the default values in the official Helm chart and should be configured for your deployment needs. Uncomment the `externalDatabase` section with meaningful values to connect to an external database for production deployments. We set sensitive information like the host address, database name, and database username through the CLI.
 ```yaml
 # values-dependencies.yaml
 
@@ -253,8 +253,8 @@ opensearch-0                                               1/1     Running   0  
 
 ```
 
-### Step 7 - Install Openmetadata
-Finally install Openmetadata optionally customizing the values provided in the official chart [here](https://github.com/open-metadata/openmetadata-helm-charts/blob/main/charts/openmetadata/values.yaml) using the values.yaml file.
+### Step 7 - Install OpenMetadata
+Finally install OpenMetadata optionally customizing the values provided in the official chart [here](https://github.com/open-metadata/openmetadata-helm-charts/blob/main/charts/openmetadata/values.yaml) using the values.yaml file.
 ```yaml
 # values.yaml
 

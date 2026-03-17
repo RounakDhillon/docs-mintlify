@@ -71,11 +71,11 @@ If running any of:
   - Lineage & Usage Workflow
 The following Grant is needed
 </Tip>
-- **Incremental Extraction**: Openmetadata fetches the information by querying `snowflake.account_usage.tables`.
-- **Ingesting Tags**: Openmetadata fetches the information by querying `snowflake.account_usage.tag_references`.
-- **Lineage & Usage Workflow**: Openmetadata fetches the query logs by querying `snowflake.account_usage.query_history` table. For this the snowflake user should be granted the `ACCOUNTADMIN` role or a role granted IMPORTED PRIVILEGES on the database `SNOWFLAKE`.
+- **Incremental Extraction**: OpenMetadata fetches the information by querying `snowflake.account_usage.tables`.
+- **Ingesting Tags**: OpenMetadata fetches the information by querying `snowflake.account_usage.tag_references`.
+- **Lineage & Usage Workflow**: OpenMetadata fetches the query logs by querying `snowflake.account_usage.query_history` table. For this the snowflake user should be granted the `ACCOUNTADMIN` role or a role granted IMPORTED PRIVILEGES on the database `SNOWFLAKE`.
 You can find more information about the `account_usage` schema [here](https://docs.snowflake.com/en/sql-reference/account-usage).
-- **Ingesting Stored Procedures**: Openmetadata fetches the information by querying `snowflake.account_usage.procedures` & `snowflake.account_usage.functions`.
+- **Ingesting Stored Procedures**: OpenMetadata fetches the information by querying `snowflake.account_usage.procedures` & `snowflake.account_usage.functions`.
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Snowflake"} selectServicePath={"/public/images/connectors/snowflake/select-service.png"} addNewServicePath={"/public/images/connectors/snowflake/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/snowflake/service-connection.png"} />
 ## Connection Details

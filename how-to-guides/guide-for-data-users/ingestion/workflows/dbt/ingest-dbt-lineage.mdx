@@ -22,7 +22,7 @@ To capture lineage, the `compiled_code` field must be present in the `manifest.j
 </Note>
 
 ### 1. Lineage information from dbt "depends_on" key
-Openmetadata fetches the lineage information from the `manifest.json` file. Below is a sample `manifest.json` file node containing lineage information under `node_name->depends_on->nodes`.
+OpenMetadata fetches the lineage information from the `manifest.json` file. Below is a sample `manifest.json` file node containing lineage information under `node_name->depends_on->nodes`.
 
 ```json
 "model.jaffle_shop.customers": {
@@ -45,7 +45,7 @@ For the above case the lineage will be created as shown in below:
 
 
 ### 2. Lineage information from dbt queries
-Openmetadata fetches the dbt query information from the `manifest.json` file.
+OpenMetadata fetches the dbt query information from the `manifest.json` file.
 
 Below is a sample `manifest.json` file node containing dbt query information under `node_name->compiled_code` or `node_name->compiled_sql`.
 

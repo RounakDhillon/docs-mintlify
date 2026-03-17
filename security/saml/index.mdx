@@ -22,7 +22,7 @@ Security requirements for your **production** environment:
 
 - Every IDP will have the following information
 
-1. EntityId/Authority -> Same as IDP Openmetadata has an Entity Id
+1. EntityId/Authority -> Same as IDP OpenMetadata has an Entity Id
 2. SignOn Url -> Service Provider SignOn Url
 3. X509 Certificate -> In case the SP expects (wantAuthnRequestSigned) then provide certificate for validating.
 4. Authority Url -> We just need to update the domain `localhost`.
@@ -32,7 +32,7 @@ Every IDP provides this information, we can download the XML Metadata and config
 
 ### Service Provider (SP) Configuration
 
-- Openmetadata is the service provider, we just update the `localhost` to the hosted URI.
+- OpenMetadata is the service provider, we just update the `localhost` to the hosted URI.
 
 1. EntityId/Authority -> Normally a Url providing info about the provider.
 2. SignOn Url -> Url to be used for signing purpose.

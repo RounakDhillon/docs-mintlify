@@ -1,7 +1,7 @@
 ---
 title: Cassandra Connector | Collate Database Integration
 description: Connect Cassandra to Collate with our database connector. Step-by-step setup guide, configuration options, and metadata extraction for your NoSQL database.
-slug: /connectors/database/cassandra
+slug: /connectors/database/cassandra/hybrid-runner
 sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -41,7 +41,8 @@ This applies **only to fields marked as secrets** in the connection form (these 
 For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
 </Tip>
 - **Username**: Username to connect to Cassandra. This user must have the necessary permissions to perform metadata extraction and table queries.
-- **Host Port**: When using the `cassandra` connecion schema, the hostPort parameter specifies the host and port of the Cassandra. This should be specified as a string in the format `hostname:port`. E.g., `localhost:9042`.- **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
+- **Host Port**: When using the `cassandra` connection schema, the `hostPort` parameter specifies the Cassandra host and port. Provide it as a string in the format `hostname:port`, for example `localhost:9042`.
+- **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use the default database name.
 **Auth Type**: Following authentication types are supported:
 1. **Basic Authentication**:
 We'll use the user credentials to connect to Cassandra

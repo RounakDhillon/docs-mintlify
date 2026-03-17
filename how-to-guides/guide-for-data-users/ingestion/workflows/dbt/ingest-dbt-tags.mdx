@@ -20,7 +20,7 @@ For dbt tags, if the tag is not already present it will be created under tag cat
 </Tip>
 
 ### 1. Table-Level Tags information in manifest.json file
-Openmetadata fetches the table-level tags information from the `manifest.json` file. Below is a sample `manifest.json` file node containing tags information under `node_name->tags`.
+OpenMetadata fetches the table-level tags information from the `manifest.json` file. Below is a sample `manifest.json` file node containing tags information under `node_name->tags`.
 
 ```json
 "model.jaffle_shop.customers": {
@@ -40,7 +40,7 @@ Openmetadata fetches the table-level tags information from the `manifest.json` f
 
 
 ### 2. Column-Level Tags information in manifest.json file
-Openmetadata fetches the column-level tags information from the `manifest.json` file. Below is a sample `manifest.json` file node containing tags information under `node_name->columns->column_name->tags`.
+OpenMetadata fetches the column-level tags information from the `manifest.json` file. Below is a sample `manifest.json` file node containing tags information under `node_name->columns->column_name->tags`.
 
 ```json
     "model.jaffle_shop.customers": {

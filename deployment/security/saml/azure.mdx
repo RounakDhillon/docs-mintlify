@@ -53,7 +53,7 @@ Security requirements for your **production** environment:
 
 <img src="/public/images/deployment/security/saml/azure/saml-azure-5.png" alt="saml-create-single-sign-On" />
 
-- Edit `Basic SAML Configuration` and populate the values as shown below for `EntityId` and `Assertion Consumer Service Url`. These value should match the one configured with Openmetadata Server side for `samlConfiguration.sp.entityId` and `samlConfiguration.sp.acs` respectively. After this click `Save`.
+- Edit `Basic SAML Configuration` and populate the values shown below for `EntityId` and `Assertion Consumer Service Url`. These values should match the ones configured on the OpenMetadata server for `samlConfiguration.sp.entityId` and `samlConfiguration.sp.acs`, respectively. After that, click `Save`.
 
 <img src="/public/images/deployment/security/saml/azure/saml-azure-6.png" alt="edit-basic-saml-configuration" />
 
@@ -65,7 +65,7 @@ Security requirements for your **production** environment:
 
 <img src="/public/images/deployment/security/saml/azure/saml-azure-8.png" alt="edit-claim-value" />
 
-- To Confirm the claim value we can navigate to user page and check the value of the user. In my case as you can see User Princpal Name is a my mail which i want to use for Openmetadata , so for me `user.userprincipalname` would be correct claim.
+- To confirm the claim value, navigate to the user page and verify the user's value. In this example, the User Principal Name matches the email address used for OpenMetadata, so `user.userprincipalname` is the correct claim.
 
 <img src="/public/images/deployment/security/saml/azure/saml-azure-9.png" alt="user-claim-value" />
 

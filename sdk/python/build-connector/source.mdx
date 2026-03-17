@@ -46,9 +46,9 @@ class Source(IterStep, ABC):
 
 A simple example of this implementation can be found in our demo Custom Connector [here](https://github.com/open-metadata/openmetadata-demo/blob/main/custom-connector/connector/my_csv_connector.py)
 
-## For Consumers of Openmetadata-ingestion to define custom connectors in their own package with same namespace
+## For Consumers of openmetadata-ingestion to Define Custom Connectors in Their Own Package with the Same Namespace
 
-As a consumer of Openmetadata-ingestion package, You can to add your custom connectors within the same namespace but in a different package repository.
+As a consumer of the `openmetadata-ingestion` package, you can add your custom connectors within the same namespace from a different package repository.
 
 **Here is the situation**
 
@@ -76,11 +76,11 @@ As a consumer of Openmetadata-ingestion package, You can to add your custom conn
 
 If you want my_awesome_connector.py to build as a source and run as a part of workflows defined in openmetadata_ingestion below are the steps.
 
-**First add your coustom project in PyCharm.**
+**First add your custom project in PyCharm.**
 <img src="/public/images/sdk/python/build-connector/add-project-in-pycharm.png" alt="Add project in pycharm" />
 
 **Now Go to IDE and Project Settings in PyCharm, inside that go to project section, and select python interpreter, Select virtual environment created for the project as python interpreter**
 <img src="/public/images/sdk/python/build-connector/select-interpreter.png" alt="Select interpreter in pycharm" />
 
-**Now apply and okay that interpreter**
+**Now apply and confirm that interpreter**
 <img src="/public/images/sdk/python/build-connector/add-interpreter.png" alt="Select interpreter in pycharm" />

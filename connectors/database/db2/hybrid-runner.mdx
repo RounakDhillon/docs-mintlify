@@ -1,7 +1,7 @@
 ---
 title: DB2 Connector | Collate Database Integration Guide
 description: Connect DB2 databases to Collate with our comprehensive connector guide. Step-by-step setup, configuration, and metadata extraction instructions.
-slug: /connectors/database/db2
+slug: /connectors/database/db2/hybrid-runner
 sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -19,13 +19,13 @@ stage="PROD"
 availableFeatures={["Metadata", "Data Profiler", "Data Quality", "View Lineage", "View Column-level Lineage", "dbt", "Sample Data", "Auto-Classification"]}
 unavailableFeatures={["Query Usage", "Owners", "Tags", "Stored Procedures"]} />
 <Warning>
-OpenMetadata doesn't ship DB2 connector in the ingestion contain by default.
+OpenMetadata doesn't ship the DB2 connector in the ingestion container by default.
 Please make sure you install the below Python package in the ingestion container if you are planning on running DB2 Connector.
-If you are running this as part of docker
+If you are running this as part of Docker:
 ```code
 docker exec -it openmetadata_ingestion pip install '.[db2]'
 ```
-Using python pip, Please make sure you provide appropriate version of ingestion in below command
+Using `pip`, make sure you provide the appropriate ingestion version in the command below.
 ```code
  pip install 'openmetadata-ingestion[db2]==1.2.4.0'
 ```
