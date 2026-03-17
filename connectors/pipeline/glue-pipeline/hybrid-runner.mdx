@@ -1,8 +1,8 @@
 ---
-title: Glue Pipeline | Collate Data Integration Pipeline
-description: Set up metadata ingestion from Glue pipelines to track source-to-target flows, logic, and job parameters.
-slug: /connectors/pipeline/glue-pipeline
-sidebarTitle: SaaS/BYOC
+title: Glue Pipeline Hybrid Runner | Collate Data Integration Pipeline
+description: Set up metadata ingestion from Glue pipelines to track source-to-target flows, logic, and job parameters using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/pipeline/glue-pipeline/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -79,6 +79,16 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

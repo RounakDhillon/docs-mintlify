@@ -1,8 +1,8 @@
 ---
-title: Datafactory | Official Documentation
-description: Get started with datafactory. Setup instructions, features, and configuration details inside.
-slug: /connectors/pipeline/datafactory
-sidebarTitle: SaaS/BYOC
+title: Datafactory Hybrid Runner | Official Documentation
+description: Get started with datafactory using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction. Setup instructions, features, and configuration details inside.
+slug: /connectors/pipeline/datafactory/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
@@ -57,7 +57,7 @@ Ensure that the service principal or managed identity you’re using has the nec
 - **Tenant ID** : To get the tenant ID, follow these steps:
 1. Log into [Microsoft Azure](https://ms.portal.azure.com/#allservices).
 2. Search for `App registrations` and select the `App registrations link`.
-3. Select the `Azure AD` app you're using for Power BI.
+3. Select the `Azure AD` app you're using for this connection.
 4. From the `Overview` section, copy the `Directory (tenant) ID`.
 - **Account Name** : Here are the step-by-step instructions for finding the account name for an Azure Data Lake Storage account:
 1. Sign in to the Azure portal and navigate to the `Storage accounts` page.
@@ -79,6 +79,16 @@ If lineage information is not displayed for a Data Factory service, follow these
 1. *Permissions*: Ensure that the service principal or managed identity you’re using has the necessary permissions in the Data Factory resource. (Reader, Contributor or Data Factory Contributor role at minimum).
 2. *Metadata Ingestion*: Ensure that metadata for both the source and sink database is ingested and passed to the lineage system. This typically involves configuring the relevant connectors to capture and transmit this information.
 3. *Run Successful*: Ensure that the Pipeline Run is successful.
+
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

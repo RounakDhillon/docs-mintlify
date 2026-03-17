@@ -1,8 +1,8 @@
 ---
-title: Airbyte Connector | Collate Pipeline Integration
-description: Connect Airbyte data pipelines to Collate for comprehensive data lineage tracking, metadata discovery, and pipeline monitoring. Setup guide included.
-slug: /connectors/pipeline/airbyte
-sidebarTitle: SaaS/BYOC
+title: Airbyte Hybrid Runner | Collate Pipeline Integration
+description: Connect Airbyte to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/pipeline/airbyte/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -40,6 +40,15 @@ To extract metadata, you will need access to the Airbyte instance with valid cre
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

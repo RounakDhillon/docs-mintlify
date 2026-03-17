@@ -863,7 +863,7 @@
                                         "group": "Airbyte",
                                         "pages": [
                                             "connectors/pipeline/airbyte/index",
-                                            "connectors/pipeline/airbyte/yaml",
+                                            "connectors/pipeline/airbyte/hybrid-runner",
                                             "connectors/pipeline/airbyte/troubleshooting"
                                         ]
                                     },
@@ -876,7 +876,7 @@
                                             "connectors/pipeline/airflow/lineage-backend",
                                             "connectors/pipeline/airflow/lineage-operator",
                                             "connectors/pipeline/airflow/mwaa",
-                                            "connectors/pipeline/airflow/yaml",
+                                            "connectors/pipeline/airflow/hybrid-runner",
                                             "connectors/pipeline/airflow/troubleshooting"
                                         ]
                                     },
@@ -884,7 +884,7 @@
                                         "group": "Dagster",
                                         "pages": [
                                             "connectors/pipeline/dagster/index",
-                                            "connectors/pipeline/dagster/yaml",
+                                            "connectors/pipeline/dagster/hybrid-runner",
                                             "connectors/pipeline/dagster/troubleshooting"
                                         ]
                                     },
@@ -892,7 +892,7 @@
                                         "group": "Databricks Pipeline",
                                         "pages": [
                                             "connectors/pipeline/databricks-pipeline/index",
-                                            "connectors/pipeline/databricks-pipeline/yaml",
+                                            "connectors/pipeline/databricks-pipeline/hybrid-runner",
                                             "connectors/pipeline/databricks-pipeline/troubleshooting"
                                         ]
                                     },
@@ -900,7 +900,7 @@
                                         "group": "Data Factory",
                                         "pages": [
                                             "connectors/pipeline/datafactory/index",
-                                            "connectors/pipeline/datafactory/yaml",
+                                            "connectors/pipeline/datafactory/hybrid-runner",
                                             "connectors/pipeline/datafactory/troubleshooting"
                                         ]
                                     },
@@ -908,7 +908,7 @@
                                         "group": "dbt Cloud",
                                         "pages": [
                                             "connectors/pipeline/dbtcloud/index",
-                                            "connectors/pipeline/dbtcloud/yaml",
+                                            "connectors/pipeline/dbtcloud/hybrid-runner",
                                             "connectors/pipeline/dbtcloud/troubleshooting"
                                         ]
                                     },
@@ -916,7 +916,7 @@
                                         "group": "Domo Pipeline",
                                         "pages": [
                                             "connectors/pipeline/domo-pipeline/index",
-                                            "connectors/pipeline/domo-pipeline/yaml",
+                                            "connectors/pipeline/domo-pipeline/hybrid-runner",
                                             "connectors/pipeline/domo-pipeline/troubleshooting"
                                         ]
                                     },
@@ -924,7 +924,7 @@
                                         "group": "Fivetran",
                                         "pages": [
                                             "connectors/pipeline/fivetran/index",
-                                            "connectors/pipeline/fivetran/yaml",
+                                            "connectors/pipeline/fivetran/hybrid-runner",
                                             "connectors/pipeline/fivetran/troubleshooting"
                                         ]
                                     },
@@ -932,7 +932,7 @@
                                         "group": "Flink",
                                         "pages": [
                                             "connectors/pipeline/flink/index",
-                                            "connectors/pipeline/flink/yaml",
+                                            "connectors/pipeline/flink/hybrid-runner",
                                             "connectors/pipeline/flink/troubleshooting"
                                         ]
                                     },
@@ -940,7 +940,7 @@
                                         "group": "Glue Pipeline",
                                         "pages": [
                                             "connectors/pipeline/glue-pipeline/index",
-                                            "connectors/pipeline/glue-pipeline/yaml",
+                                            "connectors/pipeline/glue-pipeline/hybrid-runner",
                                             "connectors/pipeline/glue-pipeline/troubleshooting"
                                         ]
                                     },
@@ -948,7 +948,7 @@
                                         "group": "Kafka Connect",
                                         "pages": [
                                             "connectors/pipeline/kafkaconnect/index",
-                                            "connectors/pipeline/kafkaconnect/yaml",
+                                            "connectors/pipeline/kafkaconnect/hybrid-runner",
                                             "connectors/pipeline/kafkaconnect/troubleshooting"
                                         ]
                                     },
@@ -2695,6 +2695,50 @@
         {
             "source": "/how-to-guides/data-quality-observability/quality/rules-library",
             "destination": "/how-to-guides/data-quality-observability/quality/test-library"
+        },
+        {
+            "source": "/connectors/pipeline/airbyte/yaml",
+            "destination": "/connectors/pipeline/airbyte/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/airflow/yaml",
+            "destination": "/connectors/pipeline/airflow/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/dagster/yaml",
+            "destination": "/connectors/pipeline/dagster/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/databricks-pipeline/yaml",
+            "destination": "/connectors/pipeline/databricks-pipeline/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/datafactory/yaml",
+            "destination": "/connectors/pipeline/datafactory/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/dbtcloud/yaml",
+            "destination": "/connectors/pipeline/dbtcloud/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/domo-pipeline/yaml",
+            "destination": "/connectors/pipeline/domo-pipeline/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/fivetran/yaml",
+            "destination": "/connectors/pipeline/fivetran/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/flink/yaml",
+            "destination": "/connectors/pipeline/flink/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/glue-pipeline/yaml",
+            "destination": "/connectors/pipeline/glue-pipeline/hybrid-runner"
+        },
+        {
+            "source": "/connectors/pipeline/kafkaconnect/yaml",
+            "destination": "/connectors/pipeline/kafkaconnect/hybrid-runner"
         }
     ],
     "api": {

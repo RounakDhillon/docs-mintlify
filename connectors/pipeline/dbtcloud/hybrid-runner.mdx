@@ -1,8 +1,8 @@
 ---
-title: dbt Cloud Connector | Collate Pipeline Integration
-description: Connect dbt Cloud to Collate with our comprehensive pipeline connector guide. Setup instructions, configuration examples, and troubleshooting tips.
-slug: /connectors/pipeline/dbtcloud
-sidebarTitle: SaaS/BYOC
+title: dbt Cloud Connector Hybrid Runner | Collate Pipeline Integration
+description: Connect dbt Cloud to Collate with our comprehensive pipeline connector guide using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction. Setup instructions, configuration examples, and troubleshooting tips.
+slug: /connectors/pipeline/dbtcloud/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -64,6 +64,16 @@ If lineage information is not displayed for a dbt Cloud service, follow these st
 1. *dbt Cloud Account*: Make sure that the dbt Cloud instance you are ingesting have the necessary permissions to fetch jobs and run graphql queries over the API.
 2. *Metadata Ingestion*: Ensure that metadata for both the source and sink database is ingested and passed to the lineage system. This typically involves configuring the relevant connectors to capture and transmit this information.
 3. *Last Run Successful*: Ensure that the Last Run for a Job is successful as OpenMetadata gets the metadata required to build the lineage using the last Run under a Job.
+
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

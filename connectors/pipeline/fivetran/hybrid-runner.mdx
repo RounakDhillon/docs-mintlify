@@ -1,8 +1,8 @@
 ---
-title: Fivetran Connector | Collate Data Integration
-description: Connect Fivetran pipelines to Collate for automated data lineage tracking, metadata discovery, and comprehensive pipeline monitoring and governance.
-slug: /connectors/pipeline/fivetran
-sidebarTitle: SaaS/BYOC
+title: Fivetran Connector Hybrid Runner | Collate Data Integration
+description: Connect Fivetran pipelines to Collate for automated data lineage tracking, metadata discovery, and comprehensive pipeline monitoring and governance using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/pipeline/fivetran/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -43,6 +43,16 @@ For more detailed documentation visit [here](https://fivetran.com/docs/rest-api/
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

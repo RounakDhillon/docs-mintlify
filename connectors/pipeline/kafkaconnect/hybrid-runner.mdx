@@ -1,8 +1,8 @@
 ---
-title: KafkaConnect | Collate Messaging Pipeline Connector
-description: Configure Kafka Connect for metadata ingestion from real-time event streams, schema updates, and topic usage.
-slug: /connectors/pipeline/kafkaconnect
-sidebarTitle: SaaS/BYOC
+title: KafkaConnect Hybrid Runner | Collate Messaging Pipeline Connector
+description: Configure Kafka Connect for metadata ingestion from real-time event streams, schema updates, and topic usage using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/pipeline/kafkaconnect/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/pipeline/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -26,7 +26,7 @@ Configure and schedule KafkaConnect metadata workflows from the Collate UI:
 - [Troubleshooting](/connectors/pipeline/kafkaconnect/troubleshooting)
 ## Requirements
 ### KafkaConnect Versions
-OpenMetadata is integrated with kafkaconnect up to version [3.6.1](https://docs.kafkaconnect.io/getting-started) and will continue to work for future kafkaconnect versions.
+OpenMetadata is integrated with kafkaconnect up to version [3.6.1](https://kafka.apache.org/36/documentation/#connect) and will continue to work for future kafkaconnect versions.
 The ingestion framework uses [kafkaconnect python client](https://libraries.io/pypi/kafka-connect-py) to connect to the kafkaconnect instance and perform the API calls
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"KafkaConnect"} selectServicePath={"/public/images/connectors/kafkaconnect/select-service.png"} addNewServicePath={"/public/images/connectors/kafkaconnect/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/kafkaconnect/service-connection.png"} />
@@ -65,6 +65,16 @@ If lineage information is not displayed for a Kafka Connect service, follow thes
 1. *Kafka Service Association*: Make sure the Kafka service that the data is being ingested from is associated with this Kafka Connect service. Additionally, verify that the correct name is passed on in the Kafka Service Name field during configuration. This field helps establish the lineage between the Kafka service and the Kafka Connect flow.
 2. *Source and Sink Configuration*: Verify that the Kafka Connect connector associated with the service is configured with a source and/or sink database or storage system. Connectors without a defined source or sink cannot provide lineage data.
 3. *Metadata Ingestion*: Ensure that metadata for both the source and sink database/storage systems is ingested and passed to the lineage system. This typically involves configuring the relevant connectors to capture and transmit this information.
+
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 
