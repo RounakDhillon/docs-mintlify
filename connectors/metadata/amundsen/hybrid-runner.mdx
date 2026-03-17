@@ -1,8 +1,8 @@
 ---
 title: Amundsen Connector | Collate Metadata Services
 description: Connect Amundsen to Collate effortlessly with our comprehensive connector guide. Step-by-step setup, configuration tips, and metadata integration instructions.
-slug: /connectors/metadata/amundsen
-sidebarTitle: SaaS/BYOC
+slug: /connectors/metadata/amundsen/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -28,7 +28,7 @@ To connect to Amundsen, you will need:
 - **Host and Port**: The URI of your Amundsen Neo4j Connection (e.g., bolt://localhost:7687)
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Amundsen"} selectServicePath={"/public/images/connectors/amundsen/select-service.png"} addNewServicePath={"/public/images/connectors/amundsen/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/amundsen/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **username**: Enter the username of your Amundsen user in the Username field. The specified user should be authorized to read all databases you want to include in the metadata ingestion workflow.
@@ -42,6 +42,15 @@ To connect to Amundsen, you will need:
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

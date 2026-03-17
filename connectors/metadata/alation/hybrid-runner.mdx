@@ -1,8 +1,8 @@
 ---
 title: Alation Connector | Official Documentation
 description: Connect Alation to Collate seamlessly with our comprehensive connector guide. Learn setup, configuration, and metadata synchronization steps.
-slug: /connectors/metadata/alation
-sidebarTitle: SaaS/BYOC
+slug: /connectors/metadata/alation/hybrid-runner
+sidebarTitle: Hybrid Runner
 collate: true
 ---
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
@@ -107,6 +107,15 @@ To perform incremental ingestion, these arguments should be used together. For i
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

@@ -1,8 +1,8 @@
 ---
 title: Kinesis Connector | Collate Streaming Integration
 description: Connect Amazon Kinesis to Collate with our comprehensive connector guide. Set up real-time streaming data ingestion and metadata extraction easily.
-slug: /connectors/messaging/kinesis
-sidebarTitle: SaaS/BYOC
+slug: /connectors/messaging/kinesis/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/messaging/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -47,7 +47,7 @@ The user must have the following policy set to access the metadata from Kinesis.
 For more information on Kinesis permissions visit the [AWS Kinesis official documentation](https://docs.aws.amazon.com/streams/latest/dev/controlling-access.html).
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"Kinesis"} selectServicePath={"/public/images/connectors/kinesis/select-service.png"} addNewServicePath={"/public/images/connectors/kinesis/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/kinesis/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **AWS Access Key ID** & **AWS Secret Access Key**: When you interact with AWS, you specify your AWS security credentials to verify who you are and whether you have
@@ -96,6 +96,15 @@ Find more information about [Source Identity](https://docs.aws.amazon.com/STS/la
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

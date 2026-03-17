@@ -1,8 +1,8 @@
 ---
 title: Atlas Connector | Collate Metadata Integration
 description: Connect Apache Atlas to Collate seamlessly. Complete setup guide, configuration steps, and best practices for Atlas metadata connector integration.
-slug: /connectors/metadata/atlas
-sidebarTitle: SaaS/BYOC
+slug: /connectors/metadata/atlas/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import ConfigureIngestion from '/snippets/connectors/metadata/configure-ingestion.mdx'
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
@@ -34,7 +34,7 @@ For example, to create a Hive Service you can follow these steps:
 ## 2. Atlas Metadata Ingestion
 Then, prepare the Atlas Service and configure the Ingestion:
 <MetadataIngestionUi connector={"Atlas"} selectServicePath={"/public/images/connectors/atlas/select-service.png"} addNewServicePath={"/public/images/connectors/atlas/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/atlas/service-connection.png"} />
-## Connection Details
+# Connection Details
 <Steps>
 <Step title="Connection Details">
 - **Host and Port**: Host and port of the Atlas service.
@@ -48,6 +48,15 @@ Then, prepare the Atlas Service and configure the Ingestion:
 <ConfigureIngestion />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

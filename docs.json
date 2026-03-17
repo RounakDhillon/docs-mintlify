@@ -757,7 +757,7 @@
                                         "group": "Kafka",
                                         "pages": [
                                             "connectors/messaging/kafka/index",
-                                            "connectors/messaging/kafka/yaml",
+                                            "connectors/messaging/kafka/hybrid-runner",
                                             "connectors/messaging/kafka/troubleshooting"
                                         ]
                                     },
@@ -765,7 +765,7 @@
                                         "group": "Kinesis",
                                         "pages": [
                                             "connectors/messaging/kinesis/index",
-                                            "connectors/messaging/kinesis/yaml",
+                                            "connectors/messaging/kinesis/hybrid-runner",
                                             "connectors/messaging/kinesis/troubleshooting"
                                         ]
                                     },
@@ -773,7 +773,7 @@
                                         "group": "Redpanda",
                                         "pages": [
                                             "connectors/messaging/redpanda/index",
-                                            "connectors/messaging/redpanda/yaml",
+                                            "connectors/messaging/redpanda/hybrid-runner",
                                             "connectors/messaging/redpanda/troubleshooting"
                                         ]
                                     }
@@ -787,7 +787,7 @@
                                         "group": "Alation",
                                         "pages": [
                                             "connectors/metadata/alation/index",
-                                            "connectors/metadata/alation/yaml",
+                                            "connectors/metadata/alation/hybrid-runner",
                                             "connectors/metadata/alation/troubleshooting"
                                         ]
                                     },
@@ -795,7 +795,7 @@
                                         "group": "Alation Sink",
                                         "pages": [
                                             "connectors/metadata/alationsink/index",
-                                            "connectors/metadata/alationsink/yaml",
+                                            "connectors/metadata/alationsink/hybrid-runner",
                                             "connectors/metadata/alationsink/troubleshooting"
                                         ]
                                     },
@@ -803,7 +803,7 @@
                                         "group": "Amundsen",
                                         "pages": [
                                             "connectors/metadata/amundsen/index",
-                                            "connectors/metadata/amundsen/yaml",
+                                            "connectors/metadata/amundsen/hybrid-runner",
                                             "connectors/metadata/amundsen/troubleshooting"
                                         ]
                                     },
@@ -811,7 +811,7 @@
                                         "group": "Atlas",
                                         "pages": [
                                             "connectors/metadata/atlas/index",
-                                            "connectors/metadata/atlas/yaml",
+                                            "connectors/metadata/atlas/hybrid-runner",
                                             "connectors/metadata/atlas/troubleshooting"
                                         ]
                                     },
@@ -819,7 +819,7 @@
                                         "group": "Collibra",
                                         "pages": [
                                             "connectors/metadata/collibra/index",
-                                            "connectors/metadata/collibra/yaml",
+                                            "connectors/metadata/collibra/hybrid-runner",
                                             "connectors/metadata/collibra/troubleshooting"
                                         ]
                                     }
@@ -2499,6 +2499,38 @@
         {
             "source": "/connectors/dashboard/thoughtspot/yaml",
             "destination": "/connectors/dashboard/thoughtspot/hybrid-runner"
+        },
+        {
+            "source": "/connectors/messaging/kafka/yaml",
+            "destination": "/connectors/messaging/kafka/hybrid-runner"
+        },
+        {
+            "source": "/connectors/messaging/kinesis/yaml",
+            "destination": "/connectors/messaging/kinesis/hybrid-runner"
+        },
+        {
+            "source": "/connectors/messaging/redpanda/yaml",
+            "destination": "/connectors/messaging/redpanda/hybrid-runner"
+        },
+        {
+            "source": "/connectors/metadata/alation/yaml",
+            "destination": "/connectors/metadata/alation/hybrid-runner"
+        },
+        {
+            "source": "/connectors/metadata/alationsink/yaml",
+            "destination": "/connectors/metadata/alationsink/hybrid-runner"
+        },
+        {
+            "source": "/connectors/metadata/amundsen/yaml",
+            "destination": "/connectors/metadata/amundsen/hybrid-runner"
+        },
+        {
+            "source": "/connectors/metadata/atlas/yaml",
+            "destination": "/connectors/metadata/atlas/hybrid-runner"
+        },
+        {
+            "source": "/connectors/metadata/collibra/yaml",
+            "destination": "/connectors/metadata/collibra/hybrid-runner"
         },
         {
             "source": "/connectors/drive/googledrive/yaml",
