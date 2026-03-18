@@ -1,0 +1,147 @@
+---
+title: "Git Sync Workflow | Collate Data Governance"
+description: "Synchronize metadata changes in Collate to a Git repository automatically using Git Sync workflows for version control and governance tracking."
+slug: /how-to-guides/data-governance/workflows/git-sync-workflow
+sidebarTitle: Git Sync Workflow
+---
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/58r5KeYbG_M" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+## Overview
+Collate 1.12 introduces Git Sync, a workflow capability that allows metadata changes in Collate to be automatically synchronized to a Git repository.
+
+Many organizations are adopting a metadata as code approach. Just like application code, metadata benefits from version control, review workflows, and historical tracking.
+
+Git Sync captures metadata updates in Collate and commits them to GitHub. This allows teams to maintain version history, review governance changes, and integrate metadata management with existing engineering workflows.
+
+Collate remains the main interface for managing metadata while Git stores the version history.
+
+## Why Git Sync Matters
+
+Metadata changes frequently as data platforms evolve. Tables are documented, tags are added, test cases are created, and governance classifications change.
+
+Without version control these updates are difficult to track.
+
+Git Sync helps organizations:
+- Track metadata history
+- Review governance updates through Git workflows
+- Integrate metadata with DevOps processes
+- Manage metadata using version control
+
+This enables teams to treat metadata as code while continuing to manage it through the Collate interface.
+
+## How Git Sync Works
+
+Git Sync is implemented through the Collate workflow engine.
+
+A workflow listens for metadata events and writes those changes to a Git repository.
+
+Examples of events include:
+- Creating a test case
+- Updating a table description
+- Adding tags or tiers
+- Updating glossary assignments
+
+When these events occur, the workflow commits the updated metadata to Git.
+
+## Creating a Git Sync Workflow
+
+Navigate to **Governance → Workflows** to create a workflow that captures metadata events and syncs them to Git.
+
+### Steps
+
+1. **Open Governance**
+
+2. **Select Workflows**
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk1.png" alt="Select Workflows in Governance" />
+
+3. **Click Create Workflow**
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk2.png" alt="Create New Workflow" />
+
+4. **Add a Start node** by dragging and dropping the Node
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk3.png" alt="Add Start Node to Workflow" />
+
+5. **Select assets to monitor**
+
+6. **Choose Event based trigger or Periodic Batch**. In Periodic batch one can schedule the running of the workflow.
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk3.1.png" alt="Choose Event Based or Periodic Batch Trigger" />
+
+7. **Add the Git Sync node**
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk4.png" alt="Add Git Sync Node" />
+
+8. **Configure GitHub connection details**
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk5.png" alt="Configure GitHub Connection Details" />
+
+9. **Add an End node**
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk6.png" alt="Add End Node to Workflow" />
+
+10. **Save and activate the workflow**
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk7.png" alt="Save and activate the workflow" />
+
+Once activated, the workflow listens for metadata changes and pushes them to GitHub.
+
+## GitHub Configuration
+
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk5.png" alt="Configure GitHub Connection Details" />
+
+The Git Sync node requires the following details:
+
+**Repository URL**
+Provide the GitHub repository where metadata files will be stored.
+
+**Access Token**
+Create a GitHub personal access token from the developer settings and use it for authentication.
+
+**Conflict Resolution**
+Choose how conflicts are handled:
+- Overwrite external changes
+- Preserve existing changes
+- Fail on conflict
+
+Most organizations treat Collate as the primary metadata source.
+
+## Repository Structure
+
+Metadata synced to GitHub is stored as YAML files.
+
+The structure reflects the hierarchy of the data platform.
+
+**Example**
+```
+service
+  database
+    schema
+      tables
+        customer.yaml
+```
+
+Each file includes metadata such as:
+- Fully qualified name
+- Columns
+- Tags and classifications
+- Descriptions
+- Timestamps and user information
+
+This makes it easy to track metadata changes and maintain a clear history.
+
+## Example Workflow
+
+1. A Git Sync workflow is active.
+
+2. A user updates a table in Collate.
+
+3. The update triggers a metadata event.
+
+4. The workflow commits the change to GitHub.
+
+5. The repository stores the updated metadata in YAML format.
+
+Future updates create additional commits, allowing teams to track metadata changes over time.

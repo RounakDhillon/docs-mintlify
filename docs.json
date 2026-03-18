@@ -1691,6 +1691,7 @@
                                 "pages": [
                                     "how-to-guides/data-governance/workflows/index",
                                     "how-to-guides/data-governance/workflows/creating-a-new-workflow",
+                                    "how-to-guides/data-governance/workflows/git-sync-workflow",
                                     {
                                         "group": "Default Workflows",
                                         "pages": [
