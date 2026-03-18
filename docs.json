@@ -40,7 +40,8 @@
     },
     "seo": {
         "metatags": {
-            "canonical": "https://docs.getcollate.io"
+            "canonical": "https://docs.getcollate.io",
+            "robots": "index,follow"
         }
     },
     "navigation": {
