@@ -28,7 +28,7 @@ To view created Glossary Terms, navigate to the Glossary section within OpenMeta
 
 OpenMetadata also supports creating nested Glossary Terms, allowing you to organize them hierarchically and seamlessly ingest them into dbt.
 
-<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-term.png" alt="Openmetadata_glossary_term" />
+<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-term.png" alt="OpenMetadata glossary term" />
 
 
 ### 2. Add Table-Level Glossary term information in schema.yml file
@@ -48,9 +48,9 @@ And for `more_nested_term` (`Test_Glossary.term_two.nested_term.more_nested_term
 
 you can see the current url containing the glossary term FQNs as **https://localhost:8585/glossary/`Test_Glossary.term_two.nested_term.more_nested_term`**
 
-<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-fqn.png" alt="Openmetadata_glossary_term" />
+<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-fqn.png" alt="OpenMetadata glossary FQN" />
 
-<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-nested-fqn.png" alt="Openmetadata_glossary_term" />
+<img src="/public/images/features/ingestion/workflows/dbt/dbt-features/dbt-glossary-nested-fqn.png" alt="OpenMetadata nested glossary FQN" />
 
 In your dbt schema.yml file for the `customers` table model, add the Glossary Term FQNs under `model->name->meta->openmetadata->glossary`
 The format should be a list of strings, like this:  ` [ 'Test_Glossary.term_one', 'Test_Glossary.term_two.nested_term.more_nested_term' ]`.
