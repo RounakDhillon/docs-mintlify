@@ -37,44 +37,44 @@ Once the app is installed, users need to invite it to their channel before they 
 
 ### Step 1: Invite the App to a Channel
 
-There are two ways to invite the Collate app to a channel:
+There are two ways to invite the AskCollate to a channel:
 
 **Option A — From channel settings:**
 1. Open the channel in Slack.
 2. Click the channel name at the top to open **Channel Settings**.
 3. Go to the **Integrations** tab → **Add an App**.
-4. Search for your Collate app and click **Add**.
+4. Search for your AskCollate and click **Add**.
 
 **Option B — Via slash command:**
 
 In any channel, type:
 ```
-/invite @CollateApp
+/invite @AskCollate
 ```
 
-Replace `@CollateApp` with the name you gave your Slack app during setup.
+Replace `@AskCollate` with the name you gave your Slack app during setup.
 
 ### Step 2: Start Asking Questions
 
 Once the app is in your channel, mention it with a natural language query:
 
 ```
-@CollateApp tell me the assets within bigquery service
+@AskCollate tell me the assets within bigquery service
 ```
 
 ```
-@CollateApp show tables owned by the marketing team
+@AskCollate show tables owned by the marketing team
 ```
 
 ```
-@CollateApp what are the Tier 1 assets in the warehouse?
+@AskCollate what are the Tier 1 assets in the warehouse?
 ```
 
 Collate AI will respond directly in the channel with relevant metadata from your data platform.
 
 <Tip>
 
-You can also interact with the Collate app in **Direct Messages** — no channel invite needed.
+You can also interact with the AskCollate in **Direct Messages** — no channel invite needed.
 
 </Tip>
 
@@ -133,7 +133,7 @@ To integrate Slack with Collate, you need to generate a **Bot Token**, **User To
 
 <img noZoom src="/public/images/applications/slack5.png" alt="Configuration" />
 
-4. Enter the **App Name** (e.g., `Collate Integration`) and choose your **Slack workspace**.
+4. Enter the **App Name** (e.g., `AskCollate`) and choose your **Slack workspace**.
 5. Click **Create App**.
 
 <img noZoom src="/public/images/applications/slack6.png" alt="Configuration" />
@@ -193,7 +193,7 @@ Only add the scopes you need. Ensure your Slack workspace allows user token gene
 Before installing the app to your workspace, configure the redirect URLs to ensure successful OAuth authentication:
 1. In the left-hand menu, go to **OAuth & Permissions**.
 2. Scroll down to the **Redirect URLs** section.
-3. Click **Add New Redirect URL** and enter the redirect URL (e.g., https://sandbox.open-metadata.org/api/slack/callback).
+3. Click **Add New Redirect URL** and enter the redirect URL (e.g., `https://&lt;your-instance-url&gt;.getcollate.io/api/slack/callback`).
 4. Click **Save URLs** to apply the changes.
 
 The redirect URL must exactly match the URL used in your OAuth request.
@@ -211,7 +211,7 @@ After setting the necessary OAuth scopes, follow the steps below to configure **
 
 <img noZoom src="/public/images/applications/enable-events.png" alt="Enable Events" />
 
-3. In the Request URL field, enter your app’s endpoint (e.g., https://sandbox.open-metadata.org/api/slack/events).
+3. In the Request URL field, enter your app’s endpoint (e.g., `https://&lt;your-instance-url&gt;.getcollate.io/api/slack/events`).
 
     - Slack will send a verification request containing a challenge parameter.
     - Ensure your endpoint responds with the challenge value to confirm validation.
