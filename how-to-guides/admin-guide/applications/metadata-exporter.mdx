@@ -7,7 +7,7 @@ collate: true
 
 # Metadata Exporter Application
 
-The **Metadata Exporter** application enables organizations to export **Data Quality (DQ)** test results (pass/fail flags, rule IDs, asset metadata, timestamps) and **profile data** into downstream analytical or data storage systems such as **Snowflake**, **BigQuery**, and **Databricks**.
+The **Metadata Exporter** application enables organizations to export **Data Quality (DQ)** test results (pass/fail flags, rule IDs, asset metadata, timestamps) and **profile data** into downstream analytical or data storage systems such as **Snowflake**, **BigQuery**, **Databricks**, and **Trino**.
 
 ## Overview
 
@@ -19,7 +19,7 @@ This capability supports:
 
 ## Key Features
 
-- Supports **Snowflake**, **Databricks**, and **BigQuery** destinations.
+- Supports **Snowflake**, **Databricks**, **BigQuery**, and **Trino** destinations.
 - Manual or scheduled export runs.
 - Selective export of data quality events or profile data.
 
@@ -99,6 +99,37 @@ Ensure the service account has the **BigQuery Data Editor** and **BigQuery Job U
 
 - The token must have workspace-wide read/write access.
 - The cluster must have access to the target database or mount location.
+
+#### Trino Configuration
+
+<Info>
+
+**Available from version 1.12.3**
+
+</Info>
+
+| Field | Description |
+|-------|-------------|
+| **Service Type** | Must be `Trino` |
+| **Username** | Trino user login with sufficient privileges |
+| **Password** | User password for Basic Authentication (or use JWT) |
+| **Host and Port** | Fully qualified hostname and port number for your Trino deployment |
+| **Catalog** | Trino catalog where the target database is stored |
+| **Database Name** | Target database within the Trino catalog |
+| **Schema Name** | Target schema (optional, restricts to a single schema) |
+| **Table Name** | Destination table to store exported metadata |
+
+**Authentication Options**
+
+- **Basic Auth**: Username and password
+- **JWT Auth**: Provide JWT token for authentication
+- **Azure**: Client ID, Client Secret, Tenant ID, and Scopes for Azure AD authentication
+
+<Tip>
+
+Ensure the Trino user has `SELECT` and `INSERT` privileges on the target table and schema.
+
+</Tip>
 
 ### Export Range
 
