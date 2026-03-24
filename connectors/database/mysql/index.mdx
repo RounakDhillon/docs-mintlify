@@ -49,6 +49,43 @@ GRANT SELECT ON world.hello TO '<username>';
 -- Grant show view to extract ddl
 GRANT SHOW VIEW ON world.* to '<username>';
 ```
+
+### Aurora MySQL IAM Authentication
+
+<Tip>
+For Aurora MySQL IAM authentication, enable **IAM DB authentication** in your RDS cluster settings and use the same **cluster endpoint** you will configure in OpenMetadata.
+</Tip>
+
+1. Connect as an admin user with password authentication and create (or validate) the IAM DB user:
+
+```sql
+CREATE USER 'openmetadata_iam'@'%' IDENTIFIED WITH AWSAuthenticationPlugin AS 'RDS';
+SHOW CREATE USER 'openmetadata_iam'@'%';
+```
+
+2. Grant minimum metadata permissions and verify:
+
+```sql
+GRANT SELECT, PROCESS, SHOW DATABASES, SHOW VIEW ON *.* TO 'openmetadata_iam'@'%';
+FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'openmetadata_iam'@'%';
+```
+
+3. Attach the IAM policy to the AWS principal used by ingestion:
+- Policy action must include `rds-db:connect`.
+- Resource must be exactly:
+  `arn:aws:rds-db:<aws_region>:<aws_account_number>:dbuser:<rds_db_resource_id>/openmetadata_iam`
+- If ingestion runs on EC2/ECS/EKS, attach the policy to that runtime role.
+- If ingestion runs locally, attach the policy to the IAM user/profile generating auth tokens.
+
+4. Validate IAM login from the same host that runs ingestion:
+
+```bash
+curl -o global-bundle.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+TOKEN="$(aws rds generate-db-auth-token --hostname <cluster-endpoint> --port 3306 --region <aws_region> --username openmetadata_iam)"
+mysql -h <cluster-endpoint> -P 3306 --ssl-ca=global-bundle.pem -u openmetadata_iam -p"$TOKEN"
+```
+
 ### Lineage & Usage
 To extract lineage & usage you need to enable the query logging in mysql and the user used in the connection needs to have select access to the `mysql.general_log`.
 ```sql
@@ -118,6 +155,13 @@ Executing the profiler workflow or data quality tests, will require the user to 
 <Step title="Connection Details">
 - **Username**: Specify the User to connect to MySQL. It should have enough privileges to read all the metadata.
 - **Auth Type**: Basic Auth or IAM based auth to connect to instances / cloud rds.
+  <Tip>
+  For Aurora MySQL IAM in OpenMetadata, use:
+  - **Username**: `openmetadata_iam`
+  - **Auth Type**: `IAM`
+  - **AWS Region**: `<aws_region>` (for example, `us-east-2`)
+  - **Host and Port**: `<cluster-endpoint>:3306` (use cluster endpoint)
+  </Tip>
   - **Basic Auth**:
     - **Password**: Password to connect to MySQL.
   - **IAM Based Auth**:
@@ -161,10 +205,17 @@ Executing the profiler workflow or data quality tests, will require the user to 
     - **Assume Role Source Identity**: The source identity specified by the principal that is calling the `AssumeRole` operation. You can use source identity
       information in AWS CloudTrail logs to determine who took actions with a role.
     Find more information about [Source Identity](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html#:~:text=Required%3A%20No-,SourceIdentity,-The%20source%20identity).
-- **Host and Port**: Enter the fully qualified hostname and port number for your MySQL deployment in the Host and Port field.
+- **IAM Policy Requirement**: The principal used by ingestion must have `rds-db:connect` permission with the exact DB user resource ARN:
+  `arn:aws:rds-db:<aws_region>:<aws_account_number>:dbuser:<rds_db_resource_id>/openmetadata_iam`.
+- **Credentials Source**:
+  - If ingestion runs on EC2/ECS/EKS, prefer runtime role credentials.
+  - If ingestion runs locally, configure IAM user/profile credentials.
+  - You can also provide AWS Access Key ID + AWS Secret Access Key + optional AWS Session Token.
+  - If needed, use Assume Role (Assume Role Arn, Assume Role Session Name, optional Source Identity).
+- **Host and Port**: Use the Aurora **cluster endpoint** and port `3306` that ingestion will use.
 - **databaseName**: Optional name to give to the database in OpenMetadata. If left blank, we will use default as the database name.
 - **databaseSchema**: databaseSchema of the data source. This is optional parameter, if you would like to restrict the metadata reading to a single databaseSchema. When left blank, OpenMetadata Ingestion attempts to scan all the databaseSchema.
-- **caCertificate**: Provide the path to ssl ca file.
+- **caCertificate**: Provide the CA bundle path used by ingestion runtime (for example, `global-bundle.pem`).
 - **sslCertificate**: Provide the path to ssl client certificate file (ssl_cert).
 - **sslKey**: Provide the path to ssl client certificate file (ssl_key).
 </Step>
@@ -175,6 +226,15 @@ Executing the profiler workflow or data quality tests, will require the user to 
 </Steps>
 ## Securing MySQL Connection with SSL in OpenMetadata
 To establish secure connections between OpenMetadata and MySQL, navigate to the `Advanced Config` section. Here, you can provide the CA certificate used for SSL validation by specifying the `caCertificate`.  Alternatively, if both client and server require mutual authentication, you'll need to use all three parameters: `ssl_key`, `ssl_cert`, and `ssl_ca`. In this case, `ssl_cert` is used for the client's SSL certificate, `ssl_key` for the private key associated with the SSL certificate, and `ssl_ca` for the CA certificate to validate the server's certificate.
+
+When using IAM auth with Aurora MySQL, ensure TLS is enabled and the CA file path is valid in the same runtime where ingestion executes. If you run ingestion in Docker or Kubernetes, mount the CA bundle into the container and configure the container path (not a laptop path).
+
+```yaml
+connectionArguments:
+  ssl:
+    ca: /path/in/runtime/global-bundle.pem
+```
+
 <img src="/public/images/connectors/ssl_connection.png" alt="SSL Configuration" height="450px" />
 <ReverseMetadata />
 
