@@ -23,7 +23,11 @@ Configure and schedule Elasticsearch metadata workflow from the Collate UI:
 - [Troubleshooting](/connectors/search/elasticsearch/troubleshooting)
 ## Requirements
 We support Elasticsearch 7.0 and above.
-We extract Elasticsearch's metadata by using its [API](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html). To run this ingestion, you just need a user with permissions to the ElasticSearch instance.
+We extract Elasticsearch's metadata by using its [API](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html). To run this ingestion, you need a user with read permissions to all the assets (indexes, indices, data streams) that you want to access in Collate.
+
+**Required Permissions:**
+- Read access to all Elasticsearch resources you want to ingest
+- The built-in `viewer` role in Elasticsearch should be sufficient for this purpose
 ## Metadata Ingestion
 <MetadataIngestionUi connector={"ElasticSearch"} selectServicePath={"/public/images/connectors/elasticsearch/select-service.png"} addNewServicePath={"/public/images/connectors/elasticsearch/add-new-service.png"} serviceConnectionPath={"/public/images/connectors/elasticsearch/service-connection.png"} />
 ## Connection Details
