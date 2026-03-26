@@ -138,11 +138,11 @@ credentials:
 You can use ADC authentication by leaving the GCP credentials empty:
 
 ```yaml
-# ADC authentication with optional billing project
+# ADC authentication — scans metadata from one or more data projects
 credentials:
   gcpConfig:
     type: gcp_adc
-    projectId: ["your-data-project-id"]  # Optional
+    projectId: ["your-data-project-id"]  # The project(s) containing your BigQuery datasets
 ```
 
 </div>
@@ -183,7 +183,10 @@ This setting does **not** affect actual billing—it is only used for internal r
 
 <ContentSection id={8} title="Billing Project ID" lines="12">
 
-**Billing Project ID (Optional)**: A billing project ID is a unique string used to identify and authorize your project for billing in Google Cloud.
+**Billing Project ID (Optional)**: The GCP project that will be **charged for the BigQuery jobs** Collate runs (metadata, usage, and lineage queries). This is separate from the **Project ID** field in your GCP credentials, which controls which datasets Collate scans.
+
+- **Same-project setup (most common):** Leave this blank or set it to the same value as your data **Project ID**. BigQuery charges will go to that project automatically.
+- **Cross-project billing setup:** Set this to the project that should receive the query charges (e.g., `my-billing-project`) when your data lives in a different project (e.g., `my-data-project`). The service account must have `bigquery.jobs.create` permission in the billing project.
 
 </ContentSection>
 

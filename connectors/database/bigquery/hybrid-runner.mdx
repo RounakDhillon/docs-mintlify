@@ -87,8 +87,8 @@ You can authenticate with your bigquery instance using either `GCP Credentials P
 You can check out [this](https://cloud.google.com/iam/docs/keys-create-delete#iam-service-account-keys-create-console) documentation on how to create the service account keys and download it.
 **GCP Credentials Values**: Passing the raw credential values provided by BigQuery. This requires us to provide the following information, all provided by BigQuery:
 - **Credentials type**: Credentials Type is the type of the account, for a service account the value of this field is `service_account`. To fetch this key, look for the value associated with the `type` key in the service account key file.
-- **Billing Project ID (Optional)**: A billing project ID is a unique string used to identify and authorize your project for billing in Google Cloud.
-- **Project ID**: A project ID is a unique string used to differentiate your project from all others in Google Cloud. To fetch this key, look for the value associated with the `project_id` key in the service account key file. You can also pass multiple project id to ingest metadata from different BigQuery projects into one service.
+- **Project ID**: The GCP project ID (or list of project IDs) that Collate should **read metadata from** — i.e., the project(s) containing the BigQuery datasets you want to catalog. To fetch this key, look for the value associated with the `project_id` key in the service account key file. You can also pass multiple project IDs to ingest metadata from different BigQuery projects into one service.
+- **Billing Project ID (Optional)**: The GCP project that will be **charged for the BigQuery jobs** Collate runs (metadata, usage, and lineage queries). This is separate from the data project(s) above. In simple setups where your data and billing are in the same project, you can leave this blank or set it to the same value as **Project ID**. Set it explicitly when your organization uses a centralized billing project, a shared service account that spans multiple data projects, or when the service account's home project should not receive the query charges.
 - **Private Key ID**: This is a unique identifier for the private key associated with the service account. To fetch this key, look for the value associated with the `private_key_id` key in the service account file.
 - **Private Key**: This is the private key associated with the service account that is used to authenticate and authorize access to BigQuery. To fetch this key, look for the value associated with the `private_key` key in the service account file.
 - **Client Email**: This is the email address associated with the service account. To fetch this key, look for the value associated with the `client_email` key in the service account key file.
@@ -117,12 +117,13 @@ If you want to use [ADC authentication](https://cloud.google.com/docs/authentica
 credentials:
   gcpConfig:
     type: gcp_adc
-    projectId: ["your-project-id"]  # Optional: specify project(s) for data access
+    projectId: ["your-data-project-id"]  # The project(s) to scan metadata from
 ```
-**Using ADC with Billing Project ID**: When using ADC authentication, you can still specify a **Billing Project ID** to ensure proper billing attribution for your BigQuery queries. This is particularly useful when:
-- Your service account has access to multiple projects
-- You want to bill queries to a specific project different from the one containing your data
-- You're running queries that span multiple projects
+**Using ADC with Billing Project ID**: When using ADC authentication, you can still specify a **Billing Project ID** at the connection level to control which project is charged for the BigQuery jobs Collate runs. This is useful when:
+- Your service account has access to multiple data projects but billing should go to a single project
+- You want to separate data access from billing attribution
+- The ADC identity is not associated with a single billable project
+
 **ADC Setup**: ADC authentication works automatically when running in Google Cloud environments (GKE, Compute Engine, Cloud Run) or when you've configured it locally using `gcloud auth application-default login`.
 </Tip>
 </Step>
