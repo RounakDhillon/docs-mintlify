@@ -1691,7 +1691,7 @@
                                 "pages": [
                                     "how-to-guides/data-governance/workflows/index",
                                     "how-to-guides/data-governance/workflows/creating-a-new-workflow",
-                                    "how-to-guides/data-governance/workflows/git-sync-workflow",
+                                    "how-to-guides/data-governance/workflows/git-sink-workflow",
                                     {
                                         "group": "Default Workflows",
                                         "pages": [
@@ -2327,6 +2327,10 @@
         ]
     },
     "redirects": [
+        {
+            "source": "/how-to-guides/data-governance/workflows/git-sync-workflow",
+            "destination": "/how-to-guides/data-governance/workflows/git-sink-workflow"
+        },
         {
             "source": "/connectors/database/snowflake/yaml",
             "destination": "/connectors/database/snowflake/hybrid-runner"

@@ -1,28 +1,28 @@
 ---
-title: "Git Sync Workflow | Collate Data Governance"
-description: "Synchronize metadata changes in Collate to a Git repository automatically using Git Sync workflows for version control and governance tracking."
-slug: /how-to-guides/data-governance/workflows/git-sync-workflow
-sidebarTitle: Git Sync Workflow
+title: "Git Sink Workflow | Collate Data Governance"
+description: "Synchronize metadata changes in Collate to a Git repository automatically using Git Sink workflows for version control and governance tracking."
+slug: /how-to-guides/data-governance/workflows/git-sink-workflow
+sidebarTitle: Git Sink Workflow
 ---
 
 <iframe width="800" height="450" src="https://www.youtube.com/embed/58r5KeYbG_M" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
 ## Overview
-Collate 1.12 introduces Git Sync, a workflow capability that allows metadata changes in Collate to be automatically synchronized to a Git repository.
+Collate 1.12 introduces Git Sink, a workflow capability that allows metadata changes in Collate to be automatically synchronized to a Git repository.
 
 Many organizations are adopting a metadata as code approach. Just like application code, metadata benefits from version control, review workflows, and historical tracking.
 
-Git Sync captures metadata updates in Collate and commits them to GitHub. This allows teams to maintain version history, review governance changes, and integrate metadata management with existing engineering workflows.
+Git Sink captures metadata updates in Collate and commits them to GitHub. This allows teams to maintain version history, review governance changes, and integrate metadata management with existing engineering workflows.
 
 Collate remains the main interface for managing metadata while Git stores the version history.
 
-## Why Git Sync Matters
+## Why Git Sink Matters
 
 Metadata changes frequently as data platforms evolve. Tables are documented, tags are added, test cases are created, and governance classifications change.
 
 Without version control these updates are difficult to track.
 
-Git Sync helps organizations:
+Git Sink helps organizations:
 - Track metadata history
 - Review governance updates through Git workflows
 - Integrate metadata with DevOps processes
@@ -30,9 +30,9 @@ Git Sync helps organizations:
 
 This enables teams to treat metadata as code while continuing to manage it through the Collate interface.
 
-## How Git Sync Works
+## How Git Sink Works
 
-Git Sync is implemented through the Collate workflow engine.
+Git Sink is implemented through the Collate workflow engine.
 
 A workflow listens for metadata events and writes those changes to a Git repository.
 
@@ -44,9 +44,13 @@ Examples of events include:
 
 When these events occur, the workflow commits the updated metadata to Git.
 
-## Creating a Git Sync Workflow
+## Creating a Git Sink Workflow
 
 Navigate to **Governance → Workflows** to create a workflow that captures metadata events and syncs them to Git.
+
+<Note>
+**Limitation**: Currently, Git Sink workflows only support Start and End nodes. You cannot add additional intermediate nodes beyond the Git Sink node itself.
+</Note>
 
 ### Steps
 
@@ -70,9 +74,9 @@ Navigate to **Governance → Workflows** to create a workflow that captures meta
 
 <img src="/public/images/how-to-guides/governance/git-sync/git-synk3.1.png" alt="Choose Event Based or Periodic Batch Trigger" />
 
-7. **Add the Git Sync node**
+7. **Add the Git Sink node**
 
-<img src="/public/images/how-to-guides/governance/git-sync/git-synk4.png" alt="Add Git Sync Node" />
+<img src="/public/images/how-to-guides/governance/git-sync/git-synk4.png" alt="Add Git Sink Node" />
 
 8. **Configure GitHub connection details**
 
@@ -92,7 +96,7 @@ Once activated, the workflow listens for metadata changes and pushes them to Git
 
 <img src="/public/images/how-to-guides/governance/git-sync/git-synk5.png" alt="Configure GitHub Connection Details" />
 
-The Git Sync node requires the following details:
+The Git Sink node requires the following details:
 
 **Repository URL**
 Provide the GitHub repository where metadata files will be stored.
@@ -134,7 +138,7 @@ This makes it easy to track metadata changes and maintain a clear history.
 
 ## Example Workflow
 
-1. A Git Sync workflow is active.
+1. A Git Sink workflow is active.
 
 2. A user updates a table in Collate.
 
