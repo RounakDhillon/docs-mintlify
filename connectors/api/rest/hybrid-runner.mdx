@@ -1,8 +1,8 @@
 ---
-title: REST API Connector | Collate Integration Documentation
-description: Learn how to integrate REST APIs with Collate connectors. Complete documentation, setup guides, and examples for seamless data source connections.
-slug: /connectors/api/rest
-sidebarTitle: SaaS/BYOC
+title: REST API Hybrid Runner | Collate Integration Documentation
+description: Connect REST APIs to Collate using the Hybrid Runner. Deploy the ingestion agent in your environment for secure, private network metadata extraction.
+slug: /connectors/api/rest/hybrid-runner
+sidebarTitle: Hybrid Runner
 ---
 import { ConnectorDetailsHeader } from '/snippets/components/ConnectorDetailsHeader/ConnectorDetailsHeader.jsx'
 import TestConnection from '/snippets/connectors/test-connection.mdx'
@@ -26,7 +26,7 @@ Configure and schedule REST metadata workflows from the Collate UI:
 
 - Generate OpenAPI schema URL for your service [OpenAPI spec](https://swagger.io/specification/#openapi-document)
 
-Provide a publicly accessible URL that points directly to your service’s OpenAPI specification file.
+Provide a publicly accessible URL that points directly to your service's OpenAPI specification file.
 
 #### Supported Formats
 - JSON (`.json`)
@@ -42,6 +42,15 @@ An OpenAPI schema URL typically refers to the URL where the OpenAPI Specificatio
 <TestConnection />
 <IngestionScheduleAndDeploy />
 </Steps>
+
+<Tip>
+When using a **Hybrid Ingestion Runner**, any sensitive credential fields—such as passwords, API keys, or private keys—must reference secrets using the following format:
+```
+password: secret:/my/database/password
+```
+This applies **only to fields marked as secrets** in the connection form (these typically mask input and show a visibility toggle icon).
+For a complete guide on managing secrets in hybrid setups, see the [Hybrid Ingestion Runner Secret Management Guide](https://docs.getcollate.io/getting-started/day-1/hybrid-saas/hybrid-ingestion-runner#3.-manage-secrets-securely).
+</Tip>
 
 ## Troubleshooting
 

@@ -105,7 +105,7 @@
                                         "group": "REST",
                                         "pages": [
                                             "connectors/api/rest/index",
-                                            "connectors/api/rest/yaml",
+                                            "connectors/api/rest/hybrid-runner",
                                             "connectors/api/rest/troubleshooting"
                                         ]
                                     }
@@ -2332,6 +2332,10 @@
             "destination": "/how-to-guides/data-governance/workflows/git-sink-workflow"
         },
         {
+            "source": "/connectors/api/rest/yaml",
+            "destination": "/connectors/api/rest/hybrid-runner"
+        },
+        {
             "source": "/connectors/database/snowflake/yaml",
             "destination": "/connectors/database/snowflake/hybrid-runner"
         },
@@ -2498,6 +2502,14 @@
         {
             "source": "/connectors/database/servicenow/yaml",
             "destination": "/connectors/database/servicenow/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/powerbi/yaml",
+            "destination": "/connectors/dashboard/powerbi/hybrid-runner"
+        },
+        {
+            "source": "/connectors/dashboard/powerbireportserver/yaml",
+            "destination": "/connectors/dashboard/powerbireportserver/hybrid-runner"
         },
         {
             "source": "/connectors/dashboard/qlikcloud/yaml",
