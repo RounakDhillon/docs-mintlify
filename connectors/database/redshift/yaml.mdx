@@ -96,7 +96,7 @@ Configure the source type and service name for your Redshift connector.
 
 <ContentSection id={4} title="Database" lines="9">
 
-**database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, OpenMetadata ingestion attempts to scan all the databases.
+**database**: The database of the data source is an optional parameter, if you would like to restrict the metadata reading to a single database. If left blank, Collate ingestion attempts to scan all the databases.
 
 </ContentSection>
 
@@ -204,8 +204,8 @@ source:
 <DataProfiler connector="redshift" />
 <AutoClassification connector="redshift" />
 <DataQuality />
-## Securing Redshift Connection with SSL in OpenMetadata
-To configure SSL for secure connections between OpenMetadata and a Redshift database, Redshift offers various SSL modes, each providing different levels of connection security.
+## Securing Redshift connection with SSL in Collate
+To configure SSL for secure connections between Collate and a Redshift database, Redshift offers various SSL modes, each providing different levels of connection security.
 When running the ingestion process externally, specify the SSL mode to be used for the Redshift connection, such as `prefer`, `verify-ca`, `allow`, and others. Once you've chosen the SSL mode, provide the CA certificate for SSL validation (`caCertificate`). Only the CA certificate is required for SSL validation in Redshift.
 ```yaml
       sslMode: disable #allow prefer require verify-ca verify-full

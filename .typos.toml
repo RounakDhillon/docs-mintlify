@@ -1,0 +1,15 @@
+[files]
+extend-exclude = [
+  "node_modules",
+  "docs-om",
+  "public",
+  "docs/plans",
+]
+
+[default.extend-words]
+AKS = "AKS"
+aks = "aks"
+Vertica = "Vertica"
+vertica = "vertica"
+asend = "asend"
+devlop = "devlop"

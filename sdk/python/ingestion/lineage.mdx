@@ -37,7 +37,7 @@ A **prerequisite** for this section is to have previously gone through the follo
 
 To prepare the necessary ingredients, execute the following steps.
 
-All functions that we are going to use related to Lineage can be found in [here](https://github.com/open-metadata/OpenMetadata/blob/main/ingestion/src/metadata/ingestion/ometa/mixins/lineage_mixin.py)
+All functions that we are going to use related to Lineage can be found [here](https://github.com/open-metadata/OpenMetadata/blob/main/ingestion/src/metadata/sdk/api/lineage.py).
 
 ### 1. Preparing the Client
 
@@ -149,23 +149,17 @@ table_b_entity = Tables.create(table_b)
 
 ### 6. Adding Lineage
 
-<Warning>
-Lineage operations (`add_lineage`, `get_lineage_by_name`, `add_lineage_by_query`) are not yet available in the Fluent API. They will be added in a future SDK release. Track progress in the [SDK changelog](/sdk/python/fluent).
-</Warning>
-
-With everything prepared, you can create Lineage between both Entities once fluent lineage support is released. An `AddLineageRequest` type represents the edge between two Entities, typed under `EntitiesEdge`. The request structure looks like this:
+With everything prepared, we can now create the lineage between both entities.
 
 ```python
-from metadata.generated.schema.type.entityReference import EntityReference
-from metadata.generated.schema.api.lineage.addLineage import AddLineageRequest
-from metadata.generated.schema.type.entityLineage import EntitiesEdge
+from metadata.sdk.api import Lineage
 
-add_lineage_request = AddLineageRequest(
-    edge=EntitiesEdge(
-        description="test lineage",
-        fromEntity=EntityReference(id=table_a_entity.id, type="table"),
-        toEntity=EntityReference(id=table_b_entity.id, type="table"),
-    ),
+created_lineage = Lineage.add_lineage(
+    from_entity_id=str(table_a_entity.id),
+    from_entity_type="table",
+    to_entity_id=str(table_b_entity.id),
+    to_entity_type="table",
+    description="test lineage",
 )
 ```
 
@@ -211,15 +205,16 @@ If we validate the Lineage from the UI, we will see:
 
 ### 7. Fetching Lineage
 
-Fetching lineage by name (`get_lineage_by_name`) is also pending the fluent API. The method signature for reference:
+Finally, let's fetch the lineage from the other node involved:
 
 ```python
-# Pending fluent API — signature reference only
-# Tables.get_lineage_by_name(
-#     fqn="test-service-db-lineage.test-db.test-schema.tableB",
-#     up_depth=1,
-#     down_depth=1,
-# )
+from metadata.sdk.api import Lineage
+
+lineage = Lineage.get_lineage(
+    "test-service-db-lineage.test-db.test-schema.tableB",
+    upstream_depth=1,
+    downstream_depth=1,
+)
 ```
 
 Which will give us the symmetric results from above
@@ -256,11 +251,11 @@ Which will give us the symmetric results from above
 
 <Tip>
 
-You can also get lineage by ID using the `get_lineage_by_id` method, which accepts `entity_id` instead of `fqn`.
+You can also get lineage by entity type and ID using `Lineage.get_entity_lineage(entity_type="table", entity_id="entity-id", upstream_depth=1, downstream_depth=1)`.
 
 </Tip>
 
-# Lineage Details
+## Lineage Details
 
 Note how when adding lineage information we give to the API an [AddLineage](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/api/lineage/addLineage.json)
 Request. This is composed of an Entity Edge, whose definition you can find [here](https://github.com/open-metadata/OpenMetadata/blob/main/openmetadata-spec/src/main/resources/json/schema/type/entityLineage.json#L75).
@@ -275,12 +270,16 @@ In the Lineage Details property we can pass further information specific about T
 - An array of `columnsLineage` as an object with an array of source and destination columns, as well as their own specific transformation function,
 - Optionally, the Entity Reference of a Pipeline powering the transformation from Table A to Table B.
 
-The API call will be exactly the same as before, but now we will add more ingredients when defining our objects. Let's
-see how to do that and play with the possible combinations:
+The simple `Lineage.add_lineage(...)` helper covers direct edges. For advanced payloads, construct an `AddLineageRequest`
+and submit it with `Lineage.add_lineage_request(...)`.
+
+Let's see how to do that and play with the possible combinations.
 
 First, import the required classes and create a new table:
 
 ```python
+from metadata.generated.schema.api.lineage.addLineage import AddLineageRequest
+from metadata.generated.schema.type.entityReference import EntityReference
 from metadata.generated.schema.type.entityLineage import (
     ColumnLineage,
     EntitiesEdge,
@@ -305,6 +304,8 @@ We can start by linking our columns together. For that we are going to create:
 2. A `LineageDetails` object, passing the column lineage and the SQL query that powers the transformation.
 
 ```python
+from metadata.sdk.api import Lineage
+
 column_lineage = ColumnLineage(
     fromColumns=["test-service-db-lineage.test-db.test-schema.tableA.id"],
     toColumn="test-service-db-lineage.test-db.test-schema.tableC.id"
@@ -322,7 +323,8 @@ add_lineage_request = AddLineageRequest(
         lineageDetails=lineage_details,
     ),
 )
-# Pending fluent API: created_lineage = Tables.add_lineage(add_lineage_request)
+
+created_lineage = Lineage.add_lineage_request(add_lineage_request)
 ```
 
 This information will now be reflected in the UI as well:
@@ -336,43 +338,18 @@ We can as well pass the reference to the pipeline used to create the lineage (e.
 To prepare this example, we need to start by creating the Pipeline Entity. Again, we'll need first
 to prepare the Pipeline Service:
 
+<Info>
+Pipeline service creation is managed through the OpenMetadata UI or the ingestion CLI. Once a pipeline service exists, you can create pipeline entities against it using the SDK as shown below.
+</Info>
+
 ```python
 from metadata.generated.schema.type.entityReference import EntityReference
 from metadata.generated.schema.api.data.createPipeline import CreatePipelineRequest
-from metadata.generated.schema.api.services.createPipelineService import (
-    CreatePipelineServiceRequest,
-)
-from metadata.generated.schema.entity.services.pipelineService import (
-    PipelineConnection,
-    PipelineService,
-    PipelineServiceType,
-)
-from metadata.generated.schema.entity.services.connections.pipeline.airflowConnection import (
-    AirflowConnection,
-)
-from metadata.generated.schema.entity.services.connections.pipeline.backendConnection import (
-    BackendConnection,
-)
-
-pipeline_service = CreatePipelineServiceRequest(
-    name="test-service-pipeline",
-    serviceType=PipelineServiceType.Airflow,
-    connection=PipelineConnection(
-        config=AirflowConnection(
-            hostPort="http://localhost:8080",
-            connection=BackendConnection(),
-        ),
-    ),
-)
-
 from metadata.sdk import Pipelines
-
-# Note: PipelineServices.create() is pending the fluent API.
-# Once available, replace with: pipeline_service_entity = PipelineServices.create(pipeline_service)
 
 create_pipeline = CreatePipelineRequest(
     name="test",
-    service="test-service-pipeline",  # use the service name directly
+    service="test-service-pipeline",
 )
 
 pipeline_entity = Pipelines.create(create_pipeline)
@@ -396,26 +373,11 @@ will be surfaced soon. Thanks!
 
 </Tip>
 
-# Automated SQL lineage
+## Automated SQL lineage
 
-In case you want OpenMetadata to identify the lineage based on the sql query, then you can make use of the method `add_lineage_by_query` of the python SDK to parser the sql and generate the lineage in OpenMetadata.
-
-
-follow the below code snippet for the example:
-
-```python
-from metadata.sdk import DatabaseServices
-
-database_service = DatabaseServices.retrieve_by_name("my_service")
-
-# Pending fluent API: Tables.add_lineage_by_query(
-#     database_service=database_service,
-#     timeout=200,
-#     sql="insert into target_table(id) as select id from source_table",
-# )
-```
-
-Above example would create a lineage between `target_table` and `source_table` within `my_service` database service.
+SQL-based lineage parsing is not part of `metadata.sdk.api.Lineage` today. If you need lineage generated from raw SQL,
+use the lineage ingestion workflow or CLI. The older `add_lineage_by_query` helper belongs to the legacy
+`metadata.ingestion.ometa` client surface, not the current `metadata.sdk` API.
 
 
 ## Automated SQL lineage via CLI
